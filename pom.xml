@@ -31,10 +31,10 @@
     <name>My App</name>
     <description>My App</description>
 
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
-        <version.wildfly-swarm>1.0.0.Alpha1</version.wildfly-swarm>
+        <version.wildfly-swarm>1.0.0.Alpha5</version.wildfly-swarm>
         <maven.min.version>3.2.1</maven.min.version>
     </properties>
 
@@ -46,27 +46,26 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.wildfly.swarm.examples.arjuna.Main</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
+                <artifactId>maven-war-plugin</artifactId>
+		<configuration>
+		  <failOnMissingWebXml>false</failOnMissingWebXml>
+		</configuration>
             </plugin>
             <plugin>
               <groupId>org.wildfly.swarm</groupId>
               <artifactId>wildfly-swarm-plugin</artifactId>
               <version>${version.wildfly-swarm}</version>
-              <executions>
-                <execution>
-                  <phase>package</phase>
-                  <goals>
-                    <goal>create</goal>
-                  </goals>
-                </execution>
-              </executions>
+	      <executions>
+		<execution>
+		  <id>package</id>
+		</execution>
+		<execution>
+		  <id>start</id>
+		</execution>
+		<execution>
+		  <id>stop</id>
+		</execution>
+	      </executions>
             </plugin>
         </plugins>
     </build>

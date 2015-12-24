@@ -34,6 +34,7 @@ import javax.naming.InitialContext;
 
 import com.arjuna.ats.arjuna.common.Uid;
 import com.arjuna.ats.arjuna.common.arjPropertyManager;
+import com.arjuna.ats.arjuna.AtomicAction;
 import com.arjuna.ats.arjuna.coordinator.CheckedAction;
 import com.arjuna.ats.arjuna.coordinator.CheckedActionFactory;
 
@@ -75,13 +76,23 @@ public class MyResource
 			    };
 			}
 		    });
+
+	    AtomicAction A = new AtomicAction();
+
+	    A.begin();
+
+	    System.out.println("Begin "+A);
+
+	    A.commit();
+
+	    System.out.println("Committed "+A);
 	}
 	catch (final Throwable x)
 	{
 	    x.printStackTrace();
 	}
 
-	return "Active";
+	return "Active! Yeah!";
     }
 
     @Path("begincommit")

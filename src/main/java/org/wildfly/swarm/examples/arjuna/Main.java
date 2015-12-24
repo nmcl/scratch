@@ -22,10 +22,10 @@
 
 package org.wildfly.swarm.examples.arjuna;
 
+import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.wildfly.swarm.container.Container;
+import org.wildfly.swarm.jaxrs.JAXRSArchive;
 import org.wildfly.swarm.transactions.TransactionsFraction;
-import org.wildfly.swarm.msc.ServiceDeployment;
-import org.wildfly.swarm.jaxrs.JaxRsDeployment;
 
 /**
  * @author nmcl
@@ -42,7 +42,9 @@ public class Main
 	 * any more than the default one - for now.
 	 */
 
-        container.subsystem(new TransactionsFraction(4712, 4713));
+	container.fraction(TransactionsFraction.createDefaultFraction());
+	//			   .port(4712)
+	//			   .statusPort(4713));
 
         // Start the container
 
@@ -52,7 +54,7 @@ public class Main
 	 * Now register JAX-RS resource class.
 	 */
 
-	JaxRsDeployment appDeployment = new JaxRsDeployment();
+	JAXRSArchive appDeployment = ShrinkWrap.create(JAXRSArchive.class);
         appDeployment.addResource(MyResource.class);
 
         container.deploy(appDeployment);
