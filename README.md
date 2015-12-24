@@ -1,9 +1,8 @@
-# JAX-RS & Transactions
+# JAX-RS & Arjuna Transactions
 
-This example uses a JAX-RS resource and UserTransaction to start
-and end transactions.
+This example uses a JAX-RS resource and AtomicAction & friends.
 
-Note, this has now been folded into the official WildFly-Swarm repository maintained at https://github.com/wildfly-swarm
+Note, these are not Java EE compliant APIs and classes we're going to use. But that's the point!
 
 ## Project `pom.xml`
 
