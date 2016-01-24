@@ -49,7 +49,7 @@ public class Main {
         appDeployment.addResource(MyResource.class);
 	appDeployment.addAllDependencies();
 	appDeployment.addClass(SampleLockable.class);
-	appDeployment.addAllDependencies();
+
         container.start();
         container.deploy(appDeployment);
     }
