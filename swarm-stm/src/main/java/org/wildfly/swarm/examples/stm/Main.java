@@ -47,7 +47,8 @@ public class Main {
 
         JAXRSArchive appDeployment = ShrinkWrap.create(JAXRSArchive.class);
         appDeployment.addResource(MyResource.class);
-
+	appDeployment.addAllDependencies();
+	appDeployment.addClass(SampleLockable.class);
 	appDeployment.addAllDependencies();
         container.start();
         container.deploy(appDeployment);
