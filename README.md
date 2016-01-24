@@ -1,2 +1,2 @@
-# wfswarm-example-arjuna
-An example of using Arjuna specific transactions in WildFly-Swarm
+# Scratch repo
+Various examples go in here that may be WIP and moved elsewhere are zero notice!
