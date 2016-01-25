@@ -1,5 +1,7 @@
 # JAX-RS & Arjuna Software Transactional Memory
 
+NOTE: taken from https://github.com/nmcl/wildfly-swarm-examples as STM classes not being picked up with fatjar.
+
 This example uses a JAX-RS resource and AtomicAction & friends.
 
 Note, these are not Java EE compliant APIs and classes we're going to use. But that's the point!
