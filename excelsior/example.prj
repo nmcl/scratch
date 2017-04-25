@@ -1,7 +1,5 @@
 %%Excelsior JET v11.3 project file
 
--jpiiproject=/Users/marklittle/github/scratch/excelsior/example.jpn
-
 -compilewithfixedheap-
 -genstackalloc+
 -genstacktrace-
@@ -23,6 +21,7 @@
 -jetcplastpage:=PageCompile
 -jetrt=Desktop
 -jetvmprop=-Djet.gc.heaplimit:0 -Djet.stack.trace
+-jpiiproject=/Users/marklittle/github/scratch/excelsior/example.jpn
 -main=AtomicTest
 -outputdir=.
 -outputname=example
