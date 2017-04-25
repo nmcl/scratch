@@ -1,0 +1,1083 @@
+Excelsior JET v11.3 Evaluation 64-bit (c) Excelsior 1997,2016
+Active Java SE Version 1.8.0_101 (profile 8101)
+************************  JET v11.3 EVALUATION **************************
+*  This program cannot be used in a business, commercial, government,  *
+*  or  institutional  environment  except  for  evaluation  purposes.  *
+************************************************************************
+Make project "/Users/marklittle/github/scratch/excelsior/example.prj"
+64-bit Excelsior JET for OS X does not yet support Startup Accelerator
+Reading arjuna-5.6.0.Final-SNAPSHOT.jar ...  246 classes
+Reading common-5.2.12.Final-SNAPSHOT.jar ...  17 classes
+Reading jboss-logging.jar ...  41 classes
+Reading txoj-5.6.0.Final-SNAPSHOT.jar ...  30 classes
+Reading . ...  3 classes
+
+Total compilable classes within classpath entries: 337
+
+------------------------  Parsing Stage  ---------------------------------------
+
+   1/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/AtomicAction.class
+   2/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/ObjectStoreEnvironmentBean.class
+   3/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/ObjectStoreEnvironmentBeanMBean.class
+   4/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/RecoveryEnvironmentBeanMBean.class
+   5/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/Uid.class
+   6/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionInfo.class
+   7/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionStatus.class
+   8/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AddOutcome.class
+   9/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncCommit.class
+  10/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxControl$Shutdown.class
+  11/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxStats.class
+  12/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/exceptions/ObjectStoreError.class
+  13/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/logging/tsLogger.class
+  14/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/BaseStore.class
+  15/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/jdbc/JDBCAccess.class
+  16/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/StoreManager.class
+  17/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryManager.class
+  18/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/InputObjectState.class
+  19/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/OutputObjectState.class
+  20/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogConsole.class
+  21/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/annotation/MXBeanPropertyDescription.class
+  22/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/ObjectStateWrapper.class
+  23/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/RecoveryStoreBean.class
+  24/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/StoreManagerProxy.class
+  25/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBeanMBean.class
+  26/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/HeaderState.class
+  27/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/LogRecordWrapperMBean.class
+  28/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/OSBTypeHandler.class
+  29/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ParticipantStatus.class
+  30/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/TransactionMonitor.class
+  31/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/common/UidHelper.class
+  32/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class
+  33/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/accessors/DynamicDataSourceJDBCAccess.class
+  34/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/PurgeShutdownHook.class
+  35/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/TwoPhaseVolatileStore.class
+  36/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery$Mode.class
+  37/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/MBeanProcessId.class
+  38/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/CheckedAction.class
+  39/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/CheckedActionFactory.class
+  40/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/HeuristicNotification.class
+  41/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/RecordListIterator.class
+  42/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/SynchronizationRecord.class
+  43/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TransactionReaper.class
+  44/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/ObjectModel.class
+  45/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ObjectStoreAPI.class
+  46/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ParticipantStore.class
+  47/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/RecoveryStore.class
+  48/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/StateType.class
+  49/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/ExpiryScanner.class
+  50/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryDriver.class
+  51/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/Service.class
+  52/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/TransactionStatusConnectionManager.class
+  53/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/ByteBuffer.class
+  54/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/UidWrapper.class
+  55/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/TopLevelAction.class
+  56/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/CadaverRecord.class
+  57/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/StateManagerFriend.class
+  58/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperWorkerThread.class
+  59/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$3.class
+  60/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$6.class
+  61/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalEnvironmentBeanMBean.class
+  62/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/mariadb_driver.class
+  63/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogPurger$LogElement.class
+  64/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/ManualProcessId.class
+  65/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/SocketProcessId.class
+  66/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/arjPropertyManager.class
+  67/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncBeforeSynchronization.class
+  68/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/HeuristicInformation.class
+  69/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/logging/arjunaI18NLogger_$logger.class
+  70/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/ObjectStateQuery.class
+  71/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/BaseStoreMBean.class
+  72/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/OutputObjectStateWrapper.class
+  73/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/RecoveryStoreBeanMBean.class
+  74/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/ParticipantStoreProxy.class
+  75/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/TxLogProxy.class
+  76/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBean$GenericAtomicActionWrapper.class
+  77/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ObjStoreBrowserMBean.class
+  78/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/StateManagerWrapper.class
+  79/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/FileLock.class
+  80/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/DisposeRecord.class
+  81/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/AppendLogTransaction.class
+  82/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/AsyncStore.class
+  83/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$8.class
+  84/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/accessors/DataSourceJDBCAccess.class
+  85/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/ibm_driver.class
+  86/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/microsoft_driver.class
+  87/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/NullActionStore.class
+  88/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ShadowNoFileLockStore.class
+  89/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/TwoPhaseVolatileStore$StateInstance.class
+  90/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Connection$Callback.class
+  91/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/ExpiredEntryMonitor.class
+  92/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/AndroidProcessId.class
+  93/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoordinatorEnvironmentBeanMBean.class
+  94/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/BasicActionFinalizer.class
+  95/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ExceptionDeferrer.class
+  96/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/internal/TxCommitStatistic.class
+  97/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/OnePhaseResource.class
+  98/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/RecordType.class
+  99/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TwoPhaseCommitThreadPool.class
+ 100/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TwoPhaseOutcome.class
+ 101/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/logging/arjunaI18NLogger.class
+ 102/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryModule.class
+ 103/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryScan.class
+ 104/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/TransactionStatusManager.class
+ 105/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/InputBuffer.class
+ 106/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/StateManager.class
+ 107/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogConsole$Command.class
+ 108/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogEditor.class
+ 109/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/MonitorThread.class
+ 110/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/ObjectStoreMonitor.class
+ 111/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/ParticipantStoreBeanMBean.class
+ 112/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/TxLogBean.class
+ 113/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/RecoveryStoreProxy.class
+ 114/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBean$1.class
+ 115/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBeanWrapperInterface.class
+ 116/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/HeuristicStatus.class
+ 117/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/OSEntryBeanMBean.class
+ 118/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/util/JMXServer.class
+ 119/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/Process.class
+ 120/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/ActivationRecord.class
+ 121/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/PersistenceRecord.class
+ 122/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperThread.class
+ 123/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/Header.class
+ 124/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalStore.class
+ 125/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogPurger.class
+ 126/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ShutdownThread.class
+ 127/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/AtomicActionRecoveryModule.class
+ 128/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Listener.class
+ 129/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery.class
+ 130/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/thread/ThreadSetup.class
+ 131/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/ExecProcessId.class
+ 132/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoordinatorEnvironmentBean.class
+ 133/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TwoPhaseCoordinator.class
+ 134/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/OTM$1.class
+ 135/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/ThreadUtil.class
+ 136/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/CadaverActivationRecord.class
+ 137/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/LastResourceRecord.class
+ 138/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/LogWriteStateManager.class
+ 139/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileLockingStore.class
+ 140/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$2.class
+ 141/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$5.class
+ 142/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore.class
+ 143/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/mysql_driver.class
+ 144/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/postgres_driver.class
+ 145/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/JDBCStore.class
+ 146/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ShadowingStore.class
+ 147/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Connection.class
+ 148/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/ExpiredTransactionStatusManagerScanner.class
+ 149/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/RecoveryManagerStatus.class
+ 150/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/thread/ThreadActionData.class
+ 151/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/tools/log/EditableAtomicAction.class
+ 152/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoreEnvironmentBean.class
+ 153/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/RecoveryEnvironmentBean.class
+ 154/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/abstractrecord/RecordTypeMap.class
+ 155/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionHierarchy.class
+ 156/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionManager.class
+ 157/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncAfterSynchronization.class
+ 158/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/BasicAction.class
+ 159/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/ObjectStatus.class
+ 160/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ObjectStoreIterator.class
+ 161/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/StateStatus.class
+ 162/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/TxLog.class
+ 163/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/ActionStatusService.class
+ 164/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryActivator.class
+ 165/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/ScanThread.class
+ 166/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/OutputBuffer.class
+ 167/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/DirEntry.class
+ 168/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/AtomicActionTypeMap.class
+ 169/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogBrowser.class
+ 170/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/HeaderStateReader.class
+ 171/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/LogRecordWrapper.class
+ 172/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/RecoveryMonitor.class
+ 173/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperElementManager.class
+ 174/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ActionStore.class
+ 175/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/CacheStore.class
+ 176/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$1.class
+ 177/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$4.class
+ 178/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$9.class
+ 179/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalStore$1.class
+ 180/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/h2_driver.class
+ 181/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/oracle_driver.class
+ 182/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/JDBCImple_driver.class
+ 183/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/VolatileStore.class
+ 184/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/FileProcessId.class
+ 185/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/UuidProcessId.class
+ 186/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoreEnvironmentBeanException.class
+ 187/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/recoveryPropertyManager.class
+ 188/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/abstractrecord/RecordTypeManager.class
+ 189/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AbstractRecord.class
+ 190/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionManager$Lifetime.class
+ 191/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionType.class
+ 192/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncPrepare.class
+ 193/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/listener/ReaperMonitor.class
+ 194/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/Reapable.class
+ 195/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/RecordList.class
+ 196/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ObjectStore.class
+ 197/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/ObjectType.class
+ 198/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoverAtomicAction.class
+ 199/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryManager$1.class
+ 200/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogConsole$1.class
+ 201/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/TransactionTypeManager$TransactionTypeMap.class
+ 202/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/TransactionTypeManager.class
+ 203/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/annotation/MXBeanDescription.class
+ 204/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/BaseStoreBean.class
+ 205/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/ParticipantStoreBean.class
+ 206/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/TxLogBeanMBean.class
+ 207/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBean.class
+ 208/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ObjStoreItemMBean.class
+ 209/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/OSEntryBean.class
+ 210/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/OTM$2.class
+ 211/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/Utility.class
+ 212/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/RecoveryRecord.class
+ 213/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperElement.class
+ 214/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$FileFilter.class
+ 215/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/HashedStore.class
+ 216/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqObjectStoreAdaptor.class
+ 217/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogPurger$Status.class
+ 218/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/StoreElement.class
+ 219/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/AtomicActionExpiryScanner.class
+ 220/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Listener$1.class
+ 221/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery$1.class
+ 222/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/RecoveryManagerImple.class
+ 223/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/TransactionStatusManagerItem.class
+ 224/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/TxLogWritePersistenceRecord.class
+ 225/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoreEnvironmentBeanMBean.class
+ 226/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxControl.class
+ 227/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxStatsMBean.class
+ 228/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/exceptions/FatalError.class
+ 229/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/exceptions/ObjectStoreException.class
+ 230/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ObjStoreBrowser.class
+ 231/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/OTM.class
+ 232/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$7.class
+ 233/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/HashedActionStore.class
+ 234/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalEnvironmentBean.class
+ 235/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/jconnect_driver.class
+ 236/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/mysql_ab_driver.class
+ 237/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/postgresql_driver.class
+ 238/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogInstance$TransactionData.class
+ 239/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogInstance.class
+ 240/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogStore.class
+ 241/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/ExpiredTransactionScanner.class
+ 242/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery$Status.class
+ 243/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/RecActivatorLoader.class
+ 244/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/TransactionStatusConnector.class
+ 245/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/WorkerService.class
+ 246/337: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/tools/log/EditableTransaction.class
+ 247/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/ClassloadingUtility.class
+ 248/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/BeanPopulator.class
+ 249/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/ConcatenationPrefix.class
+ 250/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/FullPropertyName.class
+ 251/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/PropertyPrefix.class
+ 252/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/logging/commonI18NLogger.class
+ 253/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/logging/commonI18NLogger_$logger.class
+ 254/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/logging/commonLogger.class
+ 255/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/ConfigurationInfo.class
+ 256/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/AbstractPropertiesFactory.class
+ 257/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/FileLocator.class
+ 258/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactory.class
+ 259/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactorySax.class
+ 260/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactoryStax$1.class
+ 261/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactoryStax.class
+ 262/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/SaxHandler.class
+ 263/337: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/StringPropertyReplacer.class
+ 264/337: jboss-logging.jar:/org/jboss/logging/Logger$Level.class
+ 265/337: jboss-logging.jar:/org/jboss/logging/MDC.class
+ 266/337: jboss-logging.jar:/org/jboss/logging/JBossLogManagerLogger.class
+ 267/337: jboss-logging.jar:/org/jboss/logging/LogMessage.class
+ 268/337: jboss-logging.jar:/org/jboss/logging/MessageLoggerInvocationHandler$1.class
+ 269/337: jboss-logging.jar:/org/jboss/logging/JBossLogRecord.class
+ 270/337: jboss-logging.jar:/org/jboss/logging/MessageBundle.class
+ 271/337: jboss-logging.jar:/org/jboss/logging/JBossLogManagerLogger$1.class
+ 272/337: jboss-logging.jar:/org/jboss/logging/Logger.class
+ 273/337: jboss-logging.jar:/org/jboss/logging/JDKLogger$1.class
+ 274/337: jboss-logging.jar:/org/jboss/logging/Log4jLogger.class
+ 275/337: jboss-logging.jar:/org/jboss/logging/Log4jLoggerProvider.class
+ 276/337: jboss-logging.jar:/org/jboss/logging/NDC.class
+ 277/337: jboss-logging.jar:/org/jboss/logging/AbstractLoggerProvider$Entry.class
+ 278/337: jboss-logging.jar:/org/jboss/logging/JDKLoggerProvider.class
+ 279/337: jboss-logging.jar:/org/jboss/logging/MessageLoggerInvocationHandler.class
+ 280/337: jboss-logging.jar:/org/jboss/logging/Message.class
+ 281/337: jboss-logging.jar:/org/jboss/logging/AbstractMdcLoggerProvider.class
+ 282/337: jboss-logging.jar:/org/jboss/logging/Slf4jLocationAwareLogger.class
+ 283/337: jboss-logging.jar:/org/jboss/logging/MessageBundleInvocationHandler.class
+ 284/337: jboss-logging.jar:/org/jboss/logging/JBossLogManagerProvider.class
+ 285/337: jboss-logging.jar:/org/jboss/logging/ParameterConverter.class
+ 286/337: jboss-logging.jar:/org/jboss/logging/Cause.class
+ 287/337: jboss-logging.jar:/org/jboss/logging/LoggerProvider.class
+ 288/337: jboss-logging.jar:/org/jboss/logging/LoggerProviders.class
+ 289/337: jboss-logging.jar:/org/jboss/logging/Slf4jLogger.class
+ 290/337: jboss-logging.jar:/org/jboss/logging/MessageBundleInvocationHandler$1.class
+ 291/337: jboss-logging.jar:/org/jboss/logging/Slf4jLoggerProvider.class
+ 292/337: jboss-logging.jar:/org/jboss/logging/Slf4jLocationAwareLogger$1.class
+ 293/337: jboss-logging.jar:/org/jboss/logging/JBossLogManagerProvider$1.class
+ 294/337: jboss-logging.jar:/org/jboss/logging/Message$Format.class
+ 295/337: jboss-logging.jar:/org/jboss/logging/Log4jLogger$1.class
+ 296/337: jboss-logging.jar:/org/jboss/logging/JDKLogger.class
+ 297/337: jboss-logging.jar:/org/jboss/logging/SerializedLogger.class
+ 298/337: jboss-logging.jar:/org/jboss/logging/MessageLogger.class
+ 299/337: jboss-logging.jar:/org/jboss/logging/Messages.class
+ 300/337: jboss-logging.jar:/org/jboss/logging/AbstractLoggerProvider.class
+ 301/337: jboss-logging.jar:/org/jboss/logging/Slf4jLogger$1.class
+ 302/337: jboss-logging.jar:/org/jboss/logging/JDKLevel.class
+ 303/337: jboss-logging.jar:/org/jboss/logging/Messages$1.class
+ 304/337: jboss-logging.jar:/org/jboss/logging/BasicLogger.class
+ 305/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/abstractrecords/CadaverLockManager.class
+ 306/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/Implementations.class
+ 307/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockRecordTypeMap.class
+ 308/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/BasicLockStore.class
+ 309/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/BasicPersistentLockStore.class
+ 310/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/LockStateStore.class
+ 311/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/LockStoreList.class
+ 312/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/LockStoreSegment.class
+ 313/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/recovery/RecoveredTransactionalObject.class
+ 314/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/common/TxojEnvironmentBean.class
+ 315/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/exceptions/LockStoreException.class
+ 316/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/Lock.class
+ 317/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/abstractrecords/CadaverLockRecord.class
+ 318/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockStatus.class
+ 319/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/abstractrecords/LockRecord.class
+ 320/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/lockstore/LockStore.class
+ 321/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockConflictManager.class
+ 322/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockResult.class
+ 323/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockFriend.class
+ 324/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/recovery/TORecoveryModule.class
+ 325/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/common/TxojEnvironmentBeanMBean.class
+ 326/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/ConflictType.class
+ 327/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/logging/txojI18NLogger_$logger.class
+ 328/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockList.class
+ 329/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/common/txojPropertyManager.class
+ 330/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockManager.class
+ 331/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockListIterator.class
+ 332/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockMode.class
+ 333/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/logging/txojI18NLogger.class
+ 334/337: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/logging/txojLogger.class
+ 335/337: AtomicObject.class
+ 336/337: AtomicTest.class
+ 337/337: TestException.class
+
+List of absent classes:
+  org/jboss/logging/annotations/Message$Format
+  org/jboss/logmanager/Logger
+  org/jboss/logmanager/ExtLogRecord$FormatStyle
+  org/jboss/logmanager/Level
+  org/jboss/logmanager/ExtLogRecord
+  org/jboss/logmanager/Logger$AttachmentKey
+  org/jboss/logmanager/LogContext
+  org/jboss/logmanager/MDC
+  org/jboss/logmanager/NDC
+  org/apache/log4j/Logger
+  org/apache/log4j/Level
+  org/apache/log4j/MDC
+  org/apache/log4j/NDC
+  org/slf4j/spi/LocationAwareLogger
+  org/slf4j/Logger
+  org/slf4j/LoggerFactory
+  org/slf4j/MDC
+  org/jboss/logging/annotations/Message
+  org/apache/activemq/artemis/core/journal/TransactionFailureCallback
+  org/apache/activemq/artemis/core/journal/RecordInfo
+  org/apache/activemq/artemis/core/io/aio/AIOSequentialFileFactory
+  org/apache/activemq/artemis/core/io/nio/NIOSequentialFileFactory
+  org/apache/activemq/artemis/core/journal/impl/JournalImpl
+  org/apache/activemq/artemis/core/journal/JournalLoadInformation
+  org/apache/activemq/artemis/core/io/SequentialFileFactory
+  org/apache/activemq/artemis/core/journal/Journal
+  org/apache/log4j/Priority
+
+List of classes with absent superclass or superinterface:
+  com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalStore$1 
+	superclass org/apache/activemq/artemis/core/journal/TransactionFailureCallback
+-------------------------------------------------------------------
+files: 337  errors: 0  warnings: 0  notices: 0
+
+------------------------  Codegen Stage  ---------------------------------------
+
+  0% done, 336/336 to go: TestException.class
+errors(0), warnings(0), notes(0); bytes(6995), time  0.08
+  0% done, 335/336 to go: AtomicTest.class
+errors(0), warnings(0), notes(0); bytes(6347), time  0.87
+  0% done, 334/336 to go: AtomicObject.class
+errors(0), warnings(0), notes(0); bytes(16889), time  0.46
+  0% done, 333/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/logging/txojLogger.class
+errors(0), warnings(0), notes(0); bytes(5280), time  0.08
+  1% done, 332/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/logging/txojI18NLogger.class
+errors(0), warnings(0), notes(0); bytes(22303), time  0.00
+  1% done, 331/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockMode.class
+errors(0), warnings(0), notes(0); bytes(6409), time  0.03
+  1% done, 330/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockListIterator.class
+errors(0), warnings(0), notes(0); bytes(5213), time  0.04
+  2% done, 329/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockManager.class
+errors(0), warnings(0), notes(0); bytes(47884), time  1.52
+  2% done, 328/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/common/txojPropertyManager.class
+errors(0), warnings(0), notes(0); bytes(4592), time  0.01
+  2% done, 327/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockList.class
+errors(0), warnings(0), notes(0); bytes(6861), time  0.05
+  2% done, 326/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/logging/txojI18NLogger_$logger.class
+errors(0), warnings(0), notes(0); bytes(54875), time  0.44
+  3% done, 325/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/ConflictType.class
+errors(0), warnings(0), notes(0); bytes(5564), time  0.02
+  3% done, 324/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/common/TxojEnvironmentBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(2843), time  0.00
+  3% done, 323/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/recovery/TORecoveryModule.class
+errors(0), warnings(0), notes(0); bytes(16553), time  0.43
+  4% done, 322/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockFriend.class
+errors(0), warnings(0), notes(0); bytes(7270), time  0.05
+  4% done, 321/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockResult.class
+errors(0), warnings(0), notes(0); bytes(5553), time  0.01
+  4% done, 320/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockConflictManager.class
+errors(0), warnings(0), notes(0); bytes(8664), time  0.08
+  5% done, 319/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/lockstore/LockStore.class
+errors(0), warnings(0), notes(0); bytes(4216), time  0.02
+  5% done, 318/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/abstractrecords/LockRecord.class
+errors(0), warnings(0), notes(0); bytes(26658), time  0.47
+  5% done, 317/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/LockStatus.class
+errors(0), warnings(0), notes(0); bytes(5587), time  0.01
+  5% done, 316/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/abstractrecords/CadaverLockRecord.class
+errors(0), warnings(0), notes(0); bytes(21441), time  0.20
+  6% done, 315/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/Lock.class
+errors(0), warnings(0), notes(0); bytes(25984), time  0.26
+  6% done, 314/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/exceptions/LockStoreException.class
+errors(0), warnings(0), notes(0); bytes(10352), time  0.01
+  6% done, 313/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/txoj/common/TxojEnvironmentBean.class
+errors(0), warnings(0), notes(0); bytes(11058), time  0.04
+  7% done, 312/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/recovery/RecoveredTransactionalObject.class
+errors(0), warnings(0), notes(0); bytes(14708), time  0.16
+  7% done, 311/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/LockStoreSegment.class
+errors(0), warnings(0), notes(0); bytes(9232), time  0.17
+  7% done, 310/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/LockStoreList.class
+errors(0), warnings(0), notes(0); bytes(7919), time  0.05
+  8% done, 309/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/LockStateStore.class
+errors(0), warnings(0), notes(0); bytes(4224), time  0.01
+  8% done, 308/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/BasicPersistentLockStore.class
+errors(0), warnings(0), notes(0); bytes(11276), time  0.08
+  8% done, 307/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/lockstore/BasicLockStore.class
+errors(0), warnings(0), notes(0); bytes(9285), time  0.07
+  8% done, 306/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/LockRecordTypeMap.class
+errors(0), warnings(0), notes(0); bytes(5189), time  0.00
+  9% done, 305/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/Implementations.class
+errors(0), warnings(0), notes(0); bytes(6576), time  0.06
+  9% done, 304/336 to go: txoj-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/txoj/abstractrecords/CadaverLockManager.class
+errors(0), warnings(0), notes(0); bytes(9425), time  0.02
+  9% done, 303/336 to go: jboss-logging.jar:/org/jboss/logging/BasicLogger.class
+errors(0), warnings(0), notes(0); bytes(12597), time  0.00
+ 10% done, 302/336 to go: jboss-logging.jar:/org/jboss/logging/Messages$1.class
+errors(0), warnings(0), notes(0); bytes(5587), time  0.01
+ 10% done, 301/336 to go: jboss-logging.jar:/org/jboss/logging/JDKLevel.class
+errors(0), warnings(0), notes(0); bytes(8569), time  0.03
+ 10% done, 300/336 to go: jboss-logging.jar:/org/jboss/logging/Slf4jLogger$1.class
+errors(0), warnings(0), notes(0); bytes(5992), time  0.06
+ 11% done, 299/336 to go: jboss-logging.jar:/org/jboss/logging/AbstractLoggerProvider.class
+errors(0), warnings(0), notes(0); bytes(8568), time  0.12
+ 11% done, 298/336 to go: jboss-logging.jar:/org/jboss/logging/Messages.class
+errors(0), warnings(0), notes(0); bytes(19204), time  0.19
+ 11% done, 297/336 to go: jboss-logging.jar:/org/jboss/logging/MessageLogger.class
+errors(0), warnings(0), notes(0); bytes(2681), time  0.00
+ 11% done, 296/336 to go: jboss-logging.jar:/org/jboss/logging/SerializedLogger.class
+errors(0), warnings(0), notes(0); bytes(4727), time  0.01
+ 12% done, 295/336 to go: jboss-logging.jar:/org/jboss/logging/JDKLogger.class
+errors(0), warnings(0), notes(0); bytes(34886), time  0.10
+ 12% done, 294/336 to go: jboss-logging.jar:/org/jboss/logging/Log4jLogger$1.class
+errors(0), warnings(0), notes(0); bytes(5992), time  0.07
+ 12% done, 293/336 to go: jboss-logging.jar:/org/jboss/logging/Message$Format.class
+errors(0), warnings(0), notes(0); bytes(7610), time  0.03
+ 13% done, 292/336 to go: jboss-logging.jar:/org/jboss/logging/JBossLogManagerProvider$1.class
+errors(0), warnings(0), notes(0); bytes(5253), time  0.02
+ 13% done, 291/336 to go: jboss-logging.jar:/org/jboss/logging/Slf4jLocationAwareLogger$1.class
+errors(0), warnings(0), notes(0); bytes(6174), time  0.06
+ 13% done, 290/336 to go: jboss-logging.jar:/org/jboss/logging/Slf4jLoggerProvider.class
+errors(0), warnings(0), notes(0); bytes(9355), time  0.06
+ 13% done, 289/336 to go: jboss-logging.jar:/org/jboss/logging/MessageBundleInvocationHandler$1.class
+errors(0), warnings(0), notes(0); bytes(5412), time  0.03
+ 14% done, 288/336 to go: jboss-logging.jar:/org/jboss/logging/Slf4jLogger.class
+errors(0), warnings(0), notes(0); bytes(35139), time  0.11
+ 14% done, 287/336 to go: jboss-logging.jar:/org/jboss/logging/LoggerProviders.class
+errors(0), warnings(0), notes(0); bytes(8417), time  0.05
+ 14% done, 286/336 to go: jboss-logging.jar:/org/jboss/logging/LoggerProvider.class
+errors(0), warnings(0), notes(0); bytes(3376), time  0.00
+ 15% done, 285/336 to go: jboss-logging.jar:/org/jboss/logging/Cause.class
+errors(0), warnings(0), notes(0); bytes(2540), time  0.00
+ 15% done, 284/336 to go: jboss-logging.jar:/org/jboss/logging/ParameterConverter.class
+errors(0), warnings(0), notes(0); bytes(2272), time  0.00
+ 15% done, 283/336 to go: jboss-logging.jar:/org/jboss/logging/JBossLogManagerProvider.class
+errors(0), warnings(0), notes(0); bytes(17898), time  0.13
+ 16% done, 282/336 to go: jboss-logging.jar:/org/jboss/logging/MessageBundleInvocationHandler.class
+errors(0), warnings(0), notes(0); bytes(17483), time  0.14
+ 16% done, 281/336 to go: jboss-logging.jar:/org/jboss/logging/Slf4jLocationAwareLogger.class
+errors(0), warnings(0), notes(0); bytes(34849), time  0.09
+ 16% done, 280/336 to go: jboss-logging.jar:/org/jboss/logging/AbstractMdcLoggerProvider.class
+errors(0), warnings(0), notes(0); bytes(6310), time  0.04
+ 16% done, 279/336 to go: jboss-logging.jar:/org/jboss/logging/Message.class
+errors(0), warnings(0), notes(0); bytes(3442), time  0.00
+ 17% done, 278/336 to go: jboss-logging.jar:/org/jboss/logging/MessageLoggerInvocationHandler.class
+errors(0), warnings(0), notes(0); bytes(10744), time  0.07
+ 17% done, 277/336 to go: jboss-logging.jar:/org/jboss/logging/JDKLoggerProvider.class
+errors(0), warnings(0), notes(0); bytes(5165), time  0.01
+ 17% done, 276/336 to go: jboss-logging.jar:/org/jboss/logging/AbstractLoggerProvider$Entry.class
+errors(0), warnings(0), notes(0); bytes(6149), time  0.01
+ 18% done, 275/336 to go: jboss-logging.jar:/org/jboss/logging/NDC.class
+errors(0), warnings(0), notes(0); bytes(7428), time  0.06
+ 18% done, 274/336 to go: jboss-logging.jar:/org/jboss/logging/Log4jLoggerProvider.class
+errors(0), warnings(0), notes(0); bytes(10847), time  0.07
+ 18% done, 273/336 to go: jboss-logging.jar:/org/jboss/logging/Log4jLogger.class
+errors(0), warnings(0), notes(0); bytes(35829), time  0.10
+ 19% done, 272/336 to go: jboss-logging.jar:/org/jboss/logging/JDKLogger$1.class
+errors(0), warnings(0), notes(0); bytes(5964), time  0.06
+ 19% done, 271/336 to go: jboss-logging.jar:/org/jboss/logging/Logger.class
+errors(0), warnings(0), notes(0); bytes(143329), time  2.12
+ 19% done, 270/336 to go: jboss-logging.jar:/org/jboss/logging/JBossLogManagerLogger$1.class
+errors(0), warnings(0), notes(0); bytes(6132), time  0.06
+ 19% done, 269/336 to go: jboss-logging.jar:/org/jboss/logging/MessageBundle.class
+errors(0), warnings(0), notes(0); bytes(2681), time  0.00
+ 20% done, 268/336 to go: jboss-logging.jar:/org/jboss/logging/JBossLogRecord.class
+errors(0), warnings(0), notes(0); bytes(16517), time  0.11
+ 20% done, 267/336 to go: jboss-logging.jar:/org/jboss/logging/MessageLoggerInvocationHandler$1.class
+errors(0), warnings(0), notes(0); bytes(5412), time  0.03
+ 20% done, 266/336 to go: jboss-logging.jar:/org/jboss/logging/LogMessage.class
+errors(0), warnings(0), notes(0); bytes(2821), time  0.00
+ 21% done, 265/336 to go: jboss-logging.jar:/org/jboss/logging/JBossLogManagerLogger.class
+errors(0), warnings(0), notes(0); bytes(35853), time  0.08
+ 21% done, 264/336 to go: jboss-logging.jar:/org/jboss/logging/MDC.class
+errors(0), warnings(0), notes(0); bytes(6024), time  0.04
+ 21% done, 263/336 to go: jboss-logging.jar:/org/jboss/logging/Logger$Level.class
+errors(0), warnings(0), notes(0); bytes(8554), time  0.04
+ 22% done, 262/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/StringPropertyReplacer.class
+errors(0), warnings(0), notes(0); bytes(14295), time  0.13
+ 22% done, 261/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/SaxHandler.class
+errors(0), warnings(0), notes(0); bytes(15959), time  0.07
+ 22% done, 260/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactoryStax.class
+errors(0), warnings(0), notes(0); bytes(9512), time  0.06
+ 22% done, 259/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactoryStax$1.class
+errors(0), warnings(0), notes(0); bytes(6091), time  0.01
+ 23% done, 258/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactorySax.class
+errors(0), warnings(0), notes(0); bytes(8900), time  0.03
+ 23% done, 257/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/PropertiesFactory.class
+errors(0), warnings(0), notes(0); bytes(9008), time  0.15
+ 23% done, 256/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/FileLocator.class
+errors(0), warnings(0), notes(0); bytes(13644), time  0.09
+ 24% done, 255/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/propertyservice/AbstractPropertiesFactory.class
+errors(0), warnings(0), notes(0); bytes(16723), time  0.10
+ 24% done, 254/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/util/ConfigurationInfo.class
+errors(0), warnings(0), notes(0); bytes(17053), time  0.18
+ 24% done, 253/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/logging/commonLogger.class
+errors(0), warnings(0), notes(0); bytes(5272), time  0.02
+ 25% done, 252/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/logging/commonI18NLogger_$logger.class
+errors(0), warnings(0), notes(0); bytes(19242), time  0.10
+ 25% done, 251/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/logging/commonI18NLogger.class
+errors(0), warnings(0), notes(0); bytes(8203), time  0.00
+ 25% done, 250/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/PropertyPrefix.class
+errors(0), warnings(0), notes(0); bytes(3150), time  0.00
+ 25% done, 249/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/FullPropertyName.class
+errors(0), warnings(0), notes(0); bytes(3169), time  0.00
+ 26% done, 248/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/ConcatenationPrefix.class
+errors(0), warnings(0), notes(0); bytes(3201), time  0.00
+ 26% done, 247/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/propertyservice/BeanPopulator.class
+errors(0), warnings(0), notes(0); bytes(44943), time  0.44
+ 26% done, 246/336 to go: common-5.2.12.Final-SNAPSHOT.jar:/com/arjuna/common/internal/util/ClassloadingUtility.class
+errors(0), warnings(0), notes(0); bytes(21226), time  0.22
+ 27% done, 245/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/tools/log/EditableTransaction.class
+errors(0), warnings(0), notes(0); bytes(3241), time  0.00
+ 27% done, 244/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/WorkerService.class
+errors(0), warnings(0), notes(0); bytes(13438), time  0.17
+ 27% done, 243/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/TransactionStatusConnector.class
+errors(0), warnings(0), notes(0); bytes(18447), time  0.31
+ 27% done, 242/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/RecActivatorLoader.class
+errors(0), warnings(0), notes(0); bytes(10192), time  0.08
+ 28% done, 241/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery$Status.class
+errors(0), warnings(0), notes(0); bytes(8550), time  0.04
+ 28% done, 240/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/ExpiredTransactionScanner.class
+errors(0), warnings(0), notes(0); bytes(10924), time  0.14
+ 28% done, 239/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogStore.class
+errors(0), warnings(0), notes(0); bytes(58838), time  1.38
+ 29% done, 238/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogInstance.class
+errors(0), warnings(0), notes(0); bytes(14296), time  0.08
+ 29% done, 237/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogInstance$TransactionData.class
+errors(0), warnings(0), notes(0); bytes(4797), time  0.00
+ 29% done, 236/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/postgresql_driver.class
+errors(0), warnings(0), notes(0); bytes(7875), time  0.03
+ 30% done, 235/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/mysql_ab_driver.class
+errors(0), warnings(0), notes(0); bytes(7944), time  0.01
+ 30% done, 234/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/jconnect_driver.class
+errors(0), warnings(0), notes(0); bytes(7561), time  0.02
+ 30% done, 233/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalEnvironmentBean.class
+errors(0), warnings(0), notes(0); bytes(20420), time  0.09
+ 30% done, 232/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/HashedActionStore.class
+errors(0), warnings(0), notes(0); bytes(8894), time  0.01
+ 31% done, 231/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$7.class
+errors(0), warnings(0), notes(0); bytes(6669), time  0.01
+ 31% done, 230/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/OTM.class
+errors(0), warnings(0), notes(0); bytes(143296), time  0.81
+ 31% done, 229/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ObjStoreBrowser.class
+errors(0), warnings(0), notes(0); bytes(55431), time  1.07
+ 32% done, 228/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/exceptions/ObjectStoreException.class
+errors(0), warnings(0), notes(0); bytes(10512), time  0.02
+ 32% done, 227/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/exceptions/FatalError.class
+errors(0), warnings(0), notes(0); bytes(10088), time  0.01
+ 32% done, 226/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxStatsMBean.class
+errors(0), warnings(0), notes(0); bytes(3173), time  0.00
+ 33% done, 225/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxControl.class
+errors(0), warnings(0), notes(0); bytes(22814), time  0.28
+ 33% done, 224/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoreEnvironmentBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(3330), time  0.00
+ 33% done, 223/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/TxLogWritePersistenceRecord.class
+errors(0), warnings(0), notes(0); bytes(16022), time  0.18
+ 33% done, 222/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/TransactionStatusManagerItem.class
+errors(0), warnings(0), notes(0); bytes(21957), time  0.20
+ 34% done, 221/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/RecoveryManagerImple.class
+errors(0), warnings(0), notes(0); bytes(16530), time  0.32
+ 34% done, 220/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery$1.class
+errors(0), warnings(0), notes(0); bytes(6247), time  0.03
+ 34% done, 219/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Listener$1.class
+errors(0), warnings(0), notes(0); bytes(4776), time  0.02
+ 35% done, 218/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/AtomicActionExpiryScanner.class
+errors(0), warnings(0), notes(0); bytes(6170), time  0.01
+ 35% done, 217/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/StoreElement.class
+errors(0), warnings(0), notes(0); bytes(6789), time  0.02
+ 35% done, 216/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogPurger$Status.class
+errors(0), warnings(0), notes(0); bytes(8782), time  0.04
+ 36% done, 215/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqObjectStoreAdaptor.class
+errors(0), warnings(0), notes(0); bytes(31514), time  0.37
+ 36% done, 214/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/HashedStore.class
+errors(0), warnings(0), notes(0); bytes(28028), time  0.33
+ 36% done, 213/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$FileFilter.class
+errors(0), warnings(0), notes(0); bytes(5825), time  0.01
+ 36% done, 212/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperElement.class
+errors(0), warnings(0), notes(0); bytes(16513), time  0.15
+ 37% done, 211/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/RecoveryRecord.class
+errors(0), warnings(0), notes(0); bytes(24021), time  0.18
+ 37% done, 210/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/Utility.class
+errors(0), warnings(0), notes(0); bytes(27582), time  0.29
+ 37% done, 209/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/OTM$2.class
+errors(0), warnings(0), notes(0); bytes(7806), time  0.00
+ 38% done, 208/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/OSEntryBean.class
+errors(0), warnings(0), notes(0); bytes(17697), time  0.28
+ 38% done, 207/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ObjStoreItemMBean.class
+errors(0), warnings(0), notes(0); bytes(2492), time  0.00
+ 38% done, 206/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBean.class
+errors(0), warnings(0), notes(0); bytes(35143), time  0.54
+ 38% done, 205/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/TxLogBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(3548), time  0.00
+ 39% done, 204/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/ParticipantStoreBean.class
+errors(0), warnings(0), notes(0); bytes(17712), time  0.11
+ 39% done, 203/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/BaseStoreBean.class
+errors(0), warnings(0), notes(0); bytes(10251), time  0.06
+ 39% done, 202/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/annotation/MXBeanDescription.class
+errors(0), warnings(0), notes(0); bytes(3365), time  0.00
+ 40% done, 201/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/TransactionTypeManager.class
+errors(0), warnings(0), notes(0); bytes(10293), time  0.07
+ 40% done, 200/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/TransactionTypeManager$TransactionTypeMap.class
+errors(0), warnings(0), notes(0); bytes(2787), time  0.00
+ 40% done, 199/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogConsole$1.class
+errors(0), warnings(0), notes(0); bytes(7363), time  0.09
+ 41% done, 198/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryManager$1.class
+errors(0), warnings(0), notes(0); bytes(6144), time  0.04
+ 41% done, 197/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoverAtomicAction.class
+errors(0), warnings(0), notes(0); bytes(14259), time  0.13
+ 41% done, 196/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/ObjectType.class
+errors(0), warnings(0), notes(0); bytes(5760), time  0.02
+ 41% done, 195/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ObjectStore.class
+errors(0), warnings(0), notes(0); bytes(13356), time  0.07
+ 42% done, 194/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/RecordList.class
+errors(0), warnings(0), notes(0); bytes(18569), time  0.25
+ 42% done, 193/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/Reapable.class
+errors(0), warnings(0), notes(0); bytes(2853), time  0.00
+ 42% done, 192/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/listener/ReaperMonitor.class
+errors(0), warnings(0), notes(0); bytes(2703), time  0.00
+ 43% done, 191/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncPrepare.class
+errors(0), warnings(0), notes(0); bytes(7018), time  0.07
+ 43% done, 190/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionType.class
+errors(0), warnings(0), notes(0); bytes(5665), time  0.01
+ 43% done, 189/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionManager$Lifetime.class
+errors(0), warnings(0), notes(0); bytes(5681), time  0.01
+ 44% done, 188/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AbstractRecord.class
+errors(0), warnings(0), notes(0); bytes(26172), time  0.32
+ 44% done, 187/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/abstractrecord/RecordTypeManager.class
+errors(0), warnings(0), notes(0); bytes(10690), time  0.12
+ 44% done, 186/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/recoveryPropertyManager.class
+errors(0), warnings(0), notes(0); bytes(4718), time  0.01
+ 44% done, 185/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoreEnvironmentBeanException.class
+errors(0), warnings(0), notes(0); bytes(7081), time  0.01
+ 45% done, 184/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/UuidProcessId.class
+errors(0), warnings(0), notes(0); bytes(6245), time  0.03
+ 45% done, 183/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/FileProcessId.class
+errors(0), warnings(0), notes(0); bytes(12241), time  0.12
+ 45% done, 182/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/VolatileStore.class
+errors(0), warnings(0), notes(0); bytes(27059), time  0.24
+ 46% done, 181/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/JDBCImple_driver.class
+errors(0), warnings(0), notes(0); bytes(48903), time  1.61
+ 46% done, 180/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/oracle_driver.class
+errors(0), warnings(0), notes(0); bytes(8467), time  0.03
+ 46% done, 179/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/h2_driver.class
+errors(0), warnings(0), notes(0); bytes(7471), time  0.01
+ 47% done, 178/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$9.class
+errors(0), warnings(0), notes(0); bytes(6457), time  0.04
+ 47% done, 177/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$4.class
+errors(0), warnings(0), notes(0); bytes(6951), time  0.01
+ 47% done, 176/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$1.class
+errors(0), warnings(0), notes(0); bytes(6774), time  0.01
+ 47% done, 175/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/CacheStore.class
+errors(0), warnings(0), notes(0); bytes(15269), time  0.31
+ 48% done, 174/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ActionStore.class
+errors(0), warnings(0), notes(0); bytes(18981), time  0.19
+ 48% done, 173/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperElementManager.class
+errors(0), warnings(0), notes(0); bytes(16530), time  0.19
+ 48% done, 172/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/RecoveryMonitor.class
+errors(0), warnings(0), notes(0); bytes(18038), time  0.18
+ 49% done, 171/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/LogRecordWrapper.class
+errors(0), warnings(0), notes(0); bytes(32141), time  0.29
+ 49% done, 170/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/HeaderStateReader.class
+errors(0), warnings(0), notes(0); bytes(5983), time  0.03
+ 49% done, 169/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogBrowser.class
+errors(0), warnings(0), notes(0); bytes(5109), time  0.11
+ 50% done, 168/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/AtomicActionTypeMap.class
+errors(0), warnings(0), notes(0); bytes(6593), time  0.02
+ 50% done, 167/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/DirEntry.class
+errors(0), warnings(0), notes(0); bytes(5090), time  0.01
+ 50% done, 166/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/OutputBuffer.class
+errors(0), warnings(0), notes(0); bytes(32210), time  0.48
+ 50% done, 165/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/ScanThread.class
+errors(0), warnings(0), notes(0); bytes(8228), time  0.02
+ 51% done, 164/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryActivator.class
+errors(0), warnings(0), notes(0); bytes(2464), time  0.00
+ 51% done, 163/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/ActionStatusService.class
+errors(0), warnings(0), notes(0); bytes(21624), time  0.33
+ 51% done, 162/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/TxLog.class
+errors(0), warnings(0), notes(0); bytes(3296), time  0.00
+ 52% done, 161/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/StateStatus.class
+errors(0), warnings(0), notes(0); bytes(7063), time  0.02
+ 52% done, 160/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ObjectStoreIterator.class
+errors(0), warnings(0), notes(0); bytes(5826), time  0.02
+ 52% done, 159/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/ObjectStatus.class
+errors(0), warnings(0), notes(0); bytes(6368), time  0.02
+ 52% done, 158/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/BasicAction.class
+errors(0), warnings(0), notes(0); bytes(117276), time  3.10
+ 53% done, 157/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncAfterSynchronization.class
+errors(0), warnings(0), notes(0); bytes(8851), time  0.06
+ 53% done, 156/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionManager.class
+errors(0), warnings(0), notes(0); bytes(10166), time  0.06
+ 53% done, 155/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionHierarchy.class
+errors(0), warnings(0), notes(0); bytes(22176), time  0.42
+ 54% done, 154/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/abstractrecord/RecordTypeMap.class
+errors(0), warnings(0), notes(0); bytes(2976), time  0.00
+ 54% done, 153/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/RecoveryEnvironmentBean.class
+errors(0), warnings(0), notes(0); bytes(34894), time  0.44
+ 54% done, 152/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoreEnvironmentBean.class
+errors(0), warnings(0), notes(0); bytes(22711), time  0.17
+ 55% done, 151/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/tools/log/EditableAtomicAction.class
+errors(0), warnings(0), notes(0); bytes(17924), time  0.12
+ 55% done, 150/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/thread/ThreadActionData.class
+errors(0), warnings(0), notes(0); bytes(21906), time  0.25
+ 55% done, 149/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/RecoveryManagerStatus.class
+errors(0), warnings(0), notes(0); bytes(8760), time  0.04
+ 55% done, 148/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/ExpiredTransactionStatusManagerScanner.class
+errors(0), warnings(0), notes(0); bytes(15149), time  0.12
+ 56% done, 147/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Connection.class
+errors(0), warnings(0), notes(0); bytes(11854), time  0.06
+ 56% done, 146/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ShadowingStore.class
+errors(0), warnings(0), notes(0); bytes(35712), time  0.41
+ 56% done, 145/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/JDBCStore.class
+errors(0), warnings(0), notes(0); bytes(29280), time  0.26
+ 57% done, 144/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/postgres_driver.class
+errors(0), warnings(0), notes(0); bytes(7843), time  0.02
+ 57% done, 143/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/mysql_driver.class
+errors(0), warnings(0), notes(0); bytes(7877), time  0.02
+ 57% done, 142/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore.class
+errors(0), warnings(0), notes(0); bytes(62114), time  1.02
+ 58% done, 141/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$5.class
+errors(0), warnings(0), notes(0); bytes(7074), time  0.02
+ 58% done, 140/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$2.class
+errors(0), warnings(0), notes(0); bytes(6569), time  0.13
+ 58% done, 139/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileLockingStore.class
+errors(0), warnings(0), notes(0); bytes(8602), time  0.06
+ 58% done, 138/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/LogWriteStateManager.class
+errors(0), warnings(0), notes(0); bytes(15073), time  0.17
+ 59% done, 137/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/LastResourceRecord.class
+errors(0), warnings(0), notes(0); bytes(24444), time  0.21
+ 59% done, 136/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/CadaverActivationRecord.class
+errors(0), warnings(0), notes(0); bytes(18790), time  0.15
+ 59% done, 135/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/ThreadUtil.class
+errors(0), warnings(0), notes(0); bytes(8255), time  0.05
+ 60% done, 134/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/OTM$1.class
+errors(0), warnings(0), notes(0); bytes(8547), time  0.04
+ 60% done, 133/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TwoPhaseCoordinator.class
+errors(0), warnings(0), notes(0); bytes(46662), time  1.08
+ 60% done, 132/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoordinatorEnvironmentBean.class
+errors(0), warnings(0), notes(0); bytes(34896), time  0.22
+ 61% done, 131/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/ExecProcessId.class
+errors(0), warnings(0), notes(0); bytes(19351), time  0.21
+ 61% done, 130/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/thread/ThreadSetup.class
+errors(0), warnings(0), notes(0); bytes(2484), time  0.01
+ 61% done, 129/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery.class
+errors(0), warnings(0), notes(0); bytes(57493), time  1.15
+ 61% done, 128/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Listener.class
+errors(0), warnings(0), notes(0); bytes(23546), time  0.24
+ 62% done, 127/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/AtomicActionRecoveryModule.class
+errors(0), warnings(0), notes(0); bytes(19247), time  0.23
+ 62% done, 126/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ShutdownThread.class
+errors(0), warnings(0), notes(0); bytes(9787), time  0.05
+ 62% done, 125/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogPurger.class
+errors(0), warnings(0), notes(0); bytes(16968), time  0.17
+ 63% done, 124/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalStore.class
+errors(0), warnings(0), notes(0); bytes(35380), time  0.30
+ 63% done, 123/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/Header.class
+errors(0), warnings(0), notes(0); bytes(5885), time  0.01
+ 63% done, 122/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperThread.class
+errors(0), warnings(0), notes(0); bytes(12441), time  0.18
+ 63% done, 121/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/PersistenceRecord.class
+errors(0), warnings(0), notes(0); bytes(29892), time  0.38
+ 64% done, 120/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/ActivationRecord.class
+errors(0), warnings(0), notes(0); bytes(23709), time  0.17
+ 64% done, 119/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/Process.class
+errors(0), warnings(0), notes(0); bytes(2302), time  0.00
+ 64% done, 118/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/util/JMXServer.class
+errors(0), warnings(0), notes(0); bytes(20959), time  0.15
+ 65% done, 117/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/OSEntryBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(3111), time  0.00
+ 65% done, 116/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/HeuristicStatus.class
+errors(0), warnings(0), notes(0); bytes(10967), time  0.06
+ 65% done, 115/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBeanWrapperInterface.class
+errors(0), warnings(0), notes(0); bytes(4306), time  0.00
+ 66% done, 114/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBean$1.class
+errors(0), warnings(0), notes(0); bytes(6570), time  0.06
+ 66% done, 113/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/RecoveryStoreProxy.class
+errors(0), warnings(0), notes(0); bytes(11946), time  0.10
+ 66% done, 112/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/TxLogBean.class
+errors(0), warnings(0), notes(0); bytes(8271), time  0.04
+ 66% done, 111/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/ParticipantStoreBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(3571), time  0.00
+ 67% done, 110/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/ObjectStoreMonitor.class
+errors(0), warnings(0), notes(0); bytes(12260), time  0.15
+ 67% done, 109/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/MonitorThread.class
+errors(0), warnings(0), notes(0); bytes(8385), time  0.01
+ 67% done, 108/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogEditor.class
+errors(0), warnings(0), notes(0); bytes(9140), time  0.08
+ 68% done, 107/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogConsole$Command.class
+errors(0), warnings(0), notes(0); bytes(10590), time  0.05
+ 68% done, 106/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/StateManager.class
+errors(0), warnings(0), notes(0); bytes(55809), time  1.30
+ 68% done, 105/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/InputBuffer.class
+errors(0), warnings(0), notes(0); bytes(29942), time  0.45
+ 69% done, 104/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/TransactionStatusManager.class
+errors(0), warnings(0), notes(0); bytes(19473), time  0.16
+ 69% done, 103/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryScan.class
+errors(0), warnings(0), notes(0); bytes(2400), time  0.00
+ 69% done, 102/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryModule.class
+errors(0), warnings(0), notes(0); bytes(2493), time  0.00
+ 69% done, 101/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/logging/arjunaI18NLogger.class
+errors(0), warnings(0), notes(0); bytes(193131), time  0.01
+ 70% done, 100/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TwoPhaseOutcome.class
+errors(0), warnings(0), notes(0); bytes(10427), time  0.02
+ 70% done, 99/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TwoPhaseCommitThreadPool.class
+errors(0), warnings(0), notes(0); bytes(10613), time  0.04
+ 70% done, 98/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/RecordType.class
+errors(0), warnings(0), notes(0); bytes(18939), time  0.15
+ 71% done, 97/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/OnePhaseResource.class
+errors(0), warnings(0), notes(0); bytes(3212), time  0.00
+ 71% done, 96/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/internal/TxCommitStatistic.class
+errors(0), warnings(0), notes(0); bytes(5253), time  0.01
+ 71% done, 95/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ExceptionDeferrer.class
+errors(0), warnings(0), notes(0); bytes(2739), time  0.00
+ 72% done, 94/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/BasicActionFinalizer.class
+errors(0), warnings(0), notes(0); bytes(4466), time  0.01
+ 72% done, 93/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/CoordinatorEnvironmentBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(4903), time  0.00
+ 72% done, 92/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/AndroidProcessId.class
+errors(0), warnings(0), notes(0); bytes(7432), time  0.03
+ 72% done, 91/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/ExpiredEntryMonitor.class
+errors(0), warnings(0), notes(0); bytes(23659), time  0.26
+ 73% done, 90/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/Connection$Callback.class
+errors(0), warnings(0), notes(0); bytes(3223), time  0.00
+ 73% done, 89/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/TwoPhaseVolatileStore$StateInstance.class
+errors(0), warnings(0), notes(0); bytes(6142), time  0.02
+ 73% done, 88/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/ShadowNoFileLockStore.class
+errors(0), warnings(0), notes(0); bytes(9901), time  0.00
+ 74% done, 87/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/NullActionStore.class
+errors(0), warnings(0), notes(0); bytes(12265), time  0.02
+ 74% done, 86/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/microsoft_driver.class
+errors(0), warnings(0), notes(0); bytes(8389), time  0.03
+ 74% done, 85/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/ibm_driver.class
+errors(0), warnings(0), notes(0); bytes(7907), time  0.02
+ 75% done, 84/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/accessors/DataSourceJDBCAccess.class
+errors(0), warnings(0), notes(0); bytes(11004), time  0.07
+ 75% done, 83/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$8.class
+errors(0), warnings(0), notes(0); bytes(6347), time  0.01
+ 75% done, 82/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/AsyncStore.class
+errors(0), warnings(0), notes(0); bytes(35982), time  0.77
+ 75% done, 81/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/AppendLogTransaction.class
+errors(0), warnings(0), notes(0); bytes(11869), time  0.02
+ 76% done, 80/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/DisposeRecord.class
+errors(0), warnings(0), notes(0); bytes(24455), time  0.23
+ 76% done, 79/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/utils/FileLock.class
+errors(0), warnings(0), notes(0); bytes(21009), time  0.34
+ 76% done, 78/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/StateManagerWrapper.class
+errors(0), warnings(0), notes(0); bytes(12021), time  0.07
+ 77% done, 77/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ObjStoreBrowserMBean.class
+errors(0), warnings(0), notes(0); bytes(4579), time  0.00
+ 77% done, 76/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBean$GenericAtomicActionWrapper.class
+errors(0), warnings(0), notes(0); bytes(29541), time  0.31
+ 77% done, 75/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/TxLogProxy.class
+errors(0), warnings(0), notes(0); bytes(8812), time  0.06
+ 77% done, 74/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/ParticipantStoreProxy.class
+errors(0), warnings(0), notes(0); bytes(10327), time  0.05
+ 78% done, 73/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/RecoveryStoreBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(3908), time  0.00
+ 78% done, 72/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/OutputObjectStateWrapper.class
+errors(0), warnings(0), notes(0); bytes(5150), time  0.01
+ 78% done, 71/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/BaseStoreMBean.class
+errors(0), warnings(0), notes(0); bytes(2686), time  0.00
+ 79% done, 70/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/ObjectStateQuery.class
+errors(0), warnings(0), notes(0); bytes(10742), time  0.08
+ 79% done, 69/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/logging/arjunaI18NLogger_$logger.class
+errors(0), warnings(0), notes(0); bytes(518419), time  3.55
+ 79% done, 68/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/HeuristicInformation.class
+errors(0), warnings(0), notes(0); bytes(2658), time  0.00
+ 80% done, 67/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncBeforeSynchronization.class
+errors(0), warnings(0), notes(0); bytes(8091), time  0.05
+ 80% done, 66/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/arjPropertyManager.class
+errors(0), warnings(0), notes(0); bytes(5800), time  0.02
+ 80% done, 65/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/SocketProcessId.class
+errors(0), warnings(0), notes(0); bytes(7941), time  0.05
+ 80% done, 64/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/ManualProcessId.class
+errors(0), warnings(0), notes(0); bytes(7070), time  0.04
+ 81% done, 63/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/LogPurger$LogElement.class
+errors(0), warnings(0), notes(0); bytes(4700), time  0.01
+ 81% done, 62/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/drivers/mariadb_driver.class
+errors(0), warnings(0), notes(0); bytes(7913), time  0.02
+ 81% done, 61/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/hornetq/HornetqJournalEnvironmentBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(3955), time  0.00
+ 82% done, 60/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$6.class
+errors(0), warnings(0), notes(0); bytes(6391), time  0.01
+ 82% done, 59/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/FileSystemStore$3.class
+errors(0), warnings(0), notes(0); bytes(6752), time  0.01
+ 82% done, 58/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/ReaperWorkerThread.class
+errors(0), warnings(0), notes(0); bytes(11809), time  0.12
+ 83% done, 57/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/StateManagerFriend.class
+errors(0), warnings(0), notes(0); bytes(11143), time  0.07
+ 83% done, 56/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/abstractrecords/CadaverRecord.class
+errors(0), warnings(0), notes(0); bytes(22753), time  0.26
+ 83% done, 55/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/TopLevelAction.class
+errors(0), warnings(0), notes(0); bytes(9228), time  0.00
+ 83% done, 54/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/UidWrapper.class
+errors(0), warnings(0), notes(0); bytes(23371), time  0.15
+ 84% done, 53/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/ByteBuffer.class
+errors(0), warnings(0), notes(0); bytes(2707), time  0.00
+ 84% done, 52/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/TransactionStatusConnectionManager.class
+errors(0), warnings(0), notes(0); bytes(16217), time  0.17
+ 84% done, 51/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/Service.class
+errors(0), warnings(0), notes(0); bytes(2895), time  0.00
+ 85% done, 50/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryDriver.class
+errors(0), warnings(0), notes(0); bytes(17404), time  0.11
+ 85% done, 49/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/ExpiryScanner.class
+errors(0), warnings(0), notes(0); bytes(2708), time  0.00
+ 85% done, 48/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/StateType.class
+errors(0), warnings(0), notes(0); bytes(6682), time  0.01
+ 86% done, 47/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/RecoveryStore.class
+errors(0), warnings(0), notes(0); bytes(3665), time  0.01
+ 86% done, 46/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ParticipantStore.class
+errors(0), warnings(0), notes(0); bytes(3284), time  0.00
+ 86% done, 45/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/ObjectStoreAPI.class
+errors(0), warnings(0), notes(0); bytes(2628), time  0.00
+ 86% done, 44/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/ObjectModel.class
+errors(0), warnings(0), notes(0); bytes(5346), time  0.01
+ 87% done, 43/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TransactionReaper.class
+errors(0), warnings(0), notes(0); bytes(61712), time  1.32
+ 87% done, 42/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/SynchronizationRecord.class
+errors(0), warnings(0), notes(0); bytes(3208), time  0.00
+ 87% done, 41/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/RecordListIterator.class
+errors(0), warnings(0), notes(0); bytes(5294), time  0.02
+ 88% done, 40/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/HeuristicNotification.class
+errors(0), warnings(0), notes(0); bytes(5579), time  0.02
+ 88% done, 39/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/CheckedActionFactory.class
+errors(0), warnings(0), notes(0); bytes(2421), time  0.00
+ 88% done, 38/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/CheckedAction.class
+errors(0), warnings(0), notes(0); bytes(6138), time  0.02
+ 88% done, 37/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/utils/MBeanProcessId.class
+errors(0), warnings(0), notes(0); bytes(9860), time  0.08
+ 89% done, 36/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/recovery/PeriodicRecovery$Mode.class
+errors(0), warnings(0), notes(0); bytes(8847), time  0.04
+ 89% done, 35/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/TwoPhaseVolatileStore.class
+errors(0), warnings(0), notes(0); bytes(25573), time  0.63
+ 89% done, 34/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/PurgeShutdownHook.class
+errors(0), warnings(0), notes(0); bytes(7667), time  0.01
+ 90% done, 33/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/objectstore/jdbc/accessors/DynamicDataSourceJDBCAccess.class
+errors(0), warnings(0), notes(0); bytes(17376), time  0.18
+ 90% done, 32/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class
+errors(0), warnings(0), notes(0); bytes(4912), time  0.00
+ 90% done, 31/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/internal/arjuna/common/UidHelper.class
+errors(0), warnings(0), notes(0); bytes(6355), time  0.03
+ 91% done, 30/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/TransactionMonitor.class
+errors(0), warnings(0), notes(0); bytes(13686), time  0.16
+ 91% done, 29/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ParticipantStatus.class
+errors(0), warnings(0), notes(0); bytes(9323), time  0.05
+ 91% done, 28/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/OSBTypeHandler.class
+errors(0), warnings(0), notes(0); bytes(11340), time  0.04
+ 91% done, 27/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/LogRecordWrapperMBean.class
+errors(0), warnings(0), notes(0); bytes(4712), time  0.00
+ 92% done, 26/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/HeaderState.class
+errors(0), warnings(0), notes(0); bytes(5842), time  0.02
+ 92% done, 25/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/mbean/ActionBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(4051), time  0.00
+ 92% done, 24/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/proxy/StoreManagerProxy.class
+errors(0), warnings(0), notes(0); bytes(30581), time  0.33
+ 93% done, 23/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/RecoveryStoreBean.class
+errors(0), warnings(0), notes(0); bytes(19987), time  0.11
+ 93% done, 22/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/api/mbeans/ObjectStateWrapper.class
+errors(0), warnings(0), notes(0); bytes(13381), time  0.13
+ 93% done, 21/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/osb/annotation/MXBeanPropertyDescription.class
+errors(0), warnings(0), notes(0); bytes(3447), time  0.00
+ 94% done, 20/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/tools/log/LogConsole.class
+errors(0), warnings(0), notes(0); bytes(34160), time  0.47
+ 94% done, 19/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/OutputObjectState.class
+errors(0), warnings(0), notes(0); bytes(19383), time  0.16
+ 94% done, 18/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/state/InputObjectState.class
+errors(0), warnings(0), notes(0); bytes(18891), time  0.19
+ 94% done, 17/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/recovery/RecoveryManager.class
+errors(0), warnings(0), notes(0); bytes(30145), time  0.31
+ 95% done, 16/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/StoreManager.class
+errors(0), warnings(0), notes(0); bytes(16641), time  0.18
+ 95% done, 15/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/jdbc/JDBCAccess.class
+errors(0), warnings(0), notes(0); bytes(3112), time  0.00
+ 95% done, 14/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/objectstore/BaseStore.class
+errors(0), warnings(0), notes(0); bytes(2510), time  0.00
+ 96% done, 13/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/logging/tsLogger.class
+errors(0), warnings(0), notes(0); bytes(5308), time  0.02
+ 96% done, 12/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/exceptions/ObjectStoreError.class
+errors(0), warnings(0), notes(0); bytes(10280), time  0.01
+ 96% done, 11/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxStats.class
+errors(0), warnings(0), notes(0); bytes(25583), time  0.17
+ 97% done, 10/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/TxControl$Shutdown.class
+errors(0), warnings(0), notes(0); bytes(8635), time  0.04
+ 97% done, 9/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AsyncCommit.class
+errors(0), warnings(0), notes(0); bytes(6497), time  0.04
+ 97% done, 8/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/AddOutcome.class
+errors(0), warnings(0), notes(0); bytes(5985), time  0.01
+ 97% done, 7/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionStatus.class
+errors(0), warnings(0), notes(0); bytes(10181), time  0.02
+ 98% done, 6/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/coordinator/ActionInfo.class
+errors(0), warnings(0), notes(0); bytes(7991), time  0.05
+ 98% done, 5/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/Uid.class
+errors(0), warnings(0), notes(0); bytes(39958), time  0.68
+ 98% done, 4/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/RecoveryEnvironmentBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(4008), time  0.00
+ 99% done, 3/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/ObjectStoreEnvironmentBeanMBean.class
+errors(0), warnings(0), notes(0); bytes(4766), time  0.00
+ 99% done, 2/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/common/ObjectStoreEnvironmentBean.class
+errors(0), warnings(0), notes(0); bytes(34873), time  0.19
+ 99% done, 1/336 to go: arjuna-5.6.0.Final-SNAPSHOT.jar:/com/arjuna/ats/arjuna/AtomicAction.class
+errors(0), warnings(0), notes(0); bytes(19158), time  0.12
+Processing startup profile...
+New "/Users/marklittle/github/scratch/excelsior/example_jetpdb/nums.clnums" is generated
+Preparing resources for packing ...
+Processing arjuna-5.6.0.Final-SNAPSHOT.jar ...
+Processing common-5.2.12.Final-SNAPSHOT.jar ...
+Processing jboss-logging.jar ...
+Processing txoj-5.6.0.Final-SNAPSHOT.jar ...
+Resources were successfully prepared for packing.
+-------------------------------------------------------------------
+files: 336  errors: 0  warnings: 0  notices: 0
+
+XDS Link Version 2.25.22 Copyright (c) Excelsior 1995-2016.
+No errors, no warnings
+
+Link time 0:00.97
+
+Total compilation time 0:58.99
+
