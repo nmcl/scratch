@@ -39,15 +39,22 @@ public class AtomicTest
     {
 	AtomicObject foo = new AtomicObject();
 	Uid u = foo.get_uid();
-
-	AtomicAction A = new AtomicAction();
+	AtomicAction A = null;
+	long startTime = System.currentTimeMillis();
 
     try {
+	for (int i = 0; i < 10000; i++)
+	{
+	    A = new AtomicAction();
+
 	    A.begin();
 
-	    foo.set(2);
+	    foo.incr(2);
 
 	    A.commit();
+	}
+
+	long endTime = System.currentTimeMillis();
 
 	    int finalVal = foo.get();
 
@@ -64,6 +71,8 @@ public class AtomicTest
 	    finalVal = foo.get();
 
 	    System.out.println("Final value: "+finalVal);
+
+	    System.out.println("Time taken: "+(endTime-startTime)+" milliseconds");
 	}
 	catch (TestException e)
 	{
