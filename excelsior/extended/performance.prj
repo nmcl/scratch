@@ -20,7 +20,7 @@
 -inlinetolimit=2000
 -jetcplastpage:=PageCompile
 -jetrt=Server
--jetvmprop=-Djet.gc.heaplimit:0 -Djet.stack.trace=false
+-jetvmprop=-Djet.gc.heaplimit:1174244058 -Djet.gc.ratio:0 -Djet.stack.trace=false
 -main=AtomicTest
 -outputdir=.
 -outputname=performance
