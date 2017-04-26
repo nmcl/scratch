@@ -1,7 +1,7 @@
 1
 "."
 4
-  FILE "arjuna-5.6.0.Final-SNAPSHOT.jar" "/Users/marklittle/github/scratch/excelsior/extended/performance_jetpdb/tmpres/arjuna-5.6.0.Final-SNAPSHOT__0.jar" HIDDEN
-  FILE "common-5.6.0.Final-SNAPSHOT.jar" "/Users/marklittle/github/scratch/excelsior/extended/performance_jetpdb/tmpres/common-5.6.0.Final-SNAPSHOT__3.jar" HIDDEN
-  FILE "jboss-logging.jar" "/Users/marklittle/github/scratch/excelsior/extended/performance_jetpdb/tmpres/jboss-logging__1.jar" HIDDEN
-  FILE "txoj-5.6.0.Final-SNAPSHOT.jar" "/Users/marklittle/github/scratch/excelsior/extended/performance_jetpdb/tmpres/txoj-5.6.0.Final-SNAPSHOT__2.jar" HIDDEN
+  FILE "arjuna-5.6.0.Final-SNAPSHOT.jar" "/Users/marklittle/github/scratch/excelsior/performance-persistent/performance_jetpdb/tmpres/arjuna-5.6.0.Final-SNAPSHOT__0.jar" HIDDEN
+  FILE "common-5.6.0.Final-SNAPSHOT.jar" "/Users/marklittle/github/scratch/excelsior/performance-persistent/performance_jetpdb/tmpres/common-5.6.0.Final-SNAPSHOT__1.jar" HIDDEN
+  FILE "jboss-logging.jar" "/Users/marklittle/github/scratch/excelsior/performance-persistent/performance_jetpdb/tmpres/jboss-logging__2.jar" HIDDEN
+  FILE "txoj-5.6.0.Final-SNAPSHOT.jar" "/Users/marklittle/github/scratch/excelsior/performance-persistent/performance_jetpdb/tmpres/txoj-5.6.0.Final-SNAPSHOT__3.jar" HIDDEN

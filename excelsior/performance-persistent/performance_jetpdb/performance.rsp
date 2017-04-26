@@ -14,14 +14,14 @@
 -config=StackLimit:900000
 -LargeAddressAware
 -config=VMProperty:-Djet.gc.heaplimit:0 -Djet.stack.trace=false
--config=ClassPath:.:*{exe.dir}/arjuna-5.6.0.Final-SNAPSHOT.jar:*{exe.dir}/jboss-logging.jar:*{exe.dir}/txoj-5.6.0.Final-SNAPSHOT.jar:/Users/marklittle/github/scratch/excelsior/etc:*{exe.dir}/common-5.6.0.Final-SNAPSHOT.jar
+-config=ClassPath:/Users/marklittle/github/scratch/excelsior/etc:.:*{exe.dir}/arjuna-5.6.0.Final-SNAPSHOT.jar:*{exe.dir}/common-5.6.0.Final-SNAPSHOT.jar:*{exe.dir}/jboss-logging.jar:*{exe.dir}/txoj-5.6.0.Final-SNAPSHOT.jar
 -config=JREHome:/usr/local/jet11.3-eval-amd64/bin/../profile1.8.0_101/jre
 -config=JETProfile:8101
 -config=JETProfileName:1.8.0_101
 -config=RuntimeKind:SERVER
--EmbeddedFileSys=/Users/marklittle/github/scratch/excelsior/extended/performance_jetpdb/performance.efs
+-EmbeddedFileSys=/Users/marklittle/github/scratch/excelsior/performance-persistent/performance_jetpdb/performance.efs
 -config=MainClass:AtomicTest
--config=StandaloneResources:.:/Users/marklittle/github/scratch/excelsior/etc
+-config=StandaloneResources:/Users/marklittle/github/scratch/excelsior/etc:.
 -config=VersionInfo:jet-1130-release (eval, en)
 -config=CompatibilityString:Java SE version: 1.8.0_101; JET update level: 0; CPU architecture: amd64
 -name=performance
@@ -35,8 +35,8 @@
 /usr/local/jet11.3-eval-amd64/lib/x86/_CoreFoundation.dylib
 /usr/local/jet11.3-eval-amd64/lib/x86/_libSystem.B.dylib
 /usr/local/jet11.3-eval-amd64/lib/x86/_libiconv.dylib
--ReadLinkInfo=/Users/marklittle/github/scratch/excelsior/extended/performance_jetpdb/reorder.li
-/Users/marklittle/github/scratch/excelsior/extended/performance_jetpdb/obj.zip
+-ReadLinkInfo=/Users/marklittle/github/scratch/excelsior/performance-persistent/performance_jetpdb/reorder.li
+/Users/marklittle/github/scratch/excelsior/performance-persistent/performance_jetpdb/obj.zip
 -Config=RTComponent:libXKRN11308101.dylib
 /usr/local/jet11.3-eval-amd64/lib/x86/startup-rtlink.zip
 -StrictLinkToDLL
