@@ -20,7 +20,7 @@
 -inlinetolimit=2000
 -jetcplastpage:=PageCompile
 -jetrt=Server
--jetvmprop=-Djet.gc.heaplimit:1174244058 -Djet.gc.ratio:0 -Djet.stack.trace=false
+-jetvmprop=-Djet.gc.heaplimit:0 -Djet.stack.trace=false
 -main=AtomicTest
 -outputdir=.
 -outputname=performance
@@ -41,17 +41,22 @@
   -protect=nomatter
   -optimize=all
 !end
-!classpathentry ./common-5.2.12.Final-SNAPSHOT.jar
-  -pack=noncompiled
-  -protect=nomatter
-  -optimize=all
-!end
 !classpathentry ./jboss-logging.jar
   -pack=noncompiled
   -protect=nomatter
   -optimize=all
 !end
 !classpathentry ./txoj-5.6.0.Final-SNAPSHOT.jar
+  -pack=noncompiled
+  -protect=nomatter
+  -optimize=all
+!end
+!classpathentry ../etc
+  -pack=none
+  -protect=all
+  -optimize=all
+!end
+!classpathentry ./common-5.6.0.Final-SNAPSHOT.jar
   -pack=noncompiled
   -protect=nomatter
   -optimize=all
