@@ -1,0 +1,1 @@
+Various examples to try out Excelsior. Don't look here for much structure of refactoring - it's quick and dirty!
