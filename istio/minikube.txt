@@ -1,0 +1,5 @@
+https://github.com/kubernetes/minikube/releases
+https://kubernetes.io/docs/tasks/tools/install-minikube/
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+https://docs.google.com/document/d/1kMaGlVwOFvy5CkIYNRKzkwMsJ8dPyYY4ZG_-kwJm9Rc/
