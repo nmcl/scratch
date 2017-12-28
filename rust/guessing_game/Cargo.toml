@@ -5,4 +5,4 @@ authors = ["nmcl <mlittle@redhat.com>"]
 
 [dependencies]
 
-rand = "0.3.14"
+rand = "0.4.0"
