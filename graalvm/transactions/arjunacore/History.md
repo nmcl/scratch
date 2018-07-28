@@ -26,7 +26,7 @@ Original exception that caused the problem: java.lang.NoClassDefFoundError: com/
 
 OK so now let's expand the jars from ArjunaCore and try again ...
 
-(i) explode the jars in the lib directory and add their contents, along with the two .mappings files, to the jar using jar -cmf manifest.txt BasicExample.jar BasicExample.class arjuna-properties.mappings txoj-properties.mappings com org
+(i) explode the jars in the lib directory and add their contents, along with the two .mappings files, to the jar using 'jar -cmf manifest.txt BasicExample.jar BasicExample.class arjuna-properties.mappings txoj-properties.mappings com org'
 
 (ii) native-image -jar BasicExample.jar
 
