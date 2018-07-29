@@ -2,4 +2,5 @@
 <properties>
     <entry key="CoreEnvironmentBean.nodeIdentifier">1</entry>
     <entry key="ObjectStoreEnvironmentBean.objectStoreSync">false</entry>
+    <entry key="ObjectStoreEnvironmentBean.transactionSync">false</entry>
 </properties>
