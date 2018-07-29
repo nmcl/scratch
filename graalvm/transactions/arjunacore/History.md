@@ -94,3 +94,35 @@ java.io.FileNotFoundException: /Users/marklittle/github/scratch/graalvm/transact
 	at com.arjuna.ats.arjuna.coordinator.BasicAction.<clinit>(BasicAction.java:3749)
 
 Looks like an issue with picking up the property file (through build info in the manifest).
+
+Add some judicious debugging code (aka print statements) and view how the system works with just the normal JVM ...
+
+java -jar BasicExample.jar
+**classFileName ConfigurationInfo.class
+**pathToThisClass jar:file:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore/BasicExample.jar!/com/arjuna/common/util/ConfigurationInfo.class
+**basePath jar:file:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore/BasicExample.jar!
+**propertyFileName jbossts-properties.xml
+**classLoader sun.misc.Launcher$AppClassLoader@5c647e05
+**findFile jbossts-properties.xml
+**testAbsolutePath /Users/marklittle/github/scratch/graalvm/transactions/arjunacore/jbossts-properties.xml
+**trying locateByProperty
+**user.dir /Users/marklittle/github/scratch/graalvm/transactions/arjunacore
+Jul 29, 2018 4:53:04 PM com.arjuna.ats.arjuna.recovery.TransactionStatusManager start
+INFO: ARJUNA012170: TransactionStatusManager started on port 54787 and host 127.0.0.1 with service com.arjuna.ats.arjuna.recovery.ActionStatusService
+
+So we find the property file in the user.dir (aka cwd). Now let's look at what happens when we use GraalVM ...
+
+Build on Server(pid: 32388, port: 55094)*
+   classlist:   1,633.88 ms
+       (cap):   1,598.41 ms
+       setup:   3,228.17 ms
+**classFileName ConfigurationInfo.class
+**pathToThisClass file:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore/com/arjuna/common/util/ConfigurationInfo.class
+**basePath file:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore
+Jul 29, 2018 5:03:19 PM com.arjuna.common.util.ConfigurationInfo getBuildTimeProperties
+WARN: ARJUNA048001: Could not find manifest file:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore/META-INF/MANIFEST.MF
+java.io.FileNotFoundException: /Users/marklittle/github/scratch/graalvm/transactions/arjunacore/META-INF/MANIFEST.MF (No such file or directory)
+
+There are other errors later but let's start with the root (cause). Looks like it all goes terribly wrong quickly as the pathToThisClass is no longer being resolved as within a jar, which clearly isn't going to be good for us as we would then look for the manifest data!
+
+Let's raise another issue: https://github.com/oracle/graal/issues/576
