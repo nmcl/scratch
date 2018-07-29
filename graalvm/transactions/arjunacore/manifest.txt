@@ -1,2 +1,2 @@
 Main-Class: BasicExample
-
+arjuna-properties-file: jbossts-properties.xml
