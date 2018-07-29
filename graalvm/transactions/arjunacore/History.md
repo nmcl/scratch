@@ -92,3 +92,5 @@ java.io.FileNotFoundException: /Users/marklittle/github/scratch/graalvm/transact
 	at com.arjuna.common.internal.util.propertyservice.BeanPopulator.getDefaultInstance(BeanPopulator.java:53)
 	at com.arjuna.ats.arjuna.common.arjPropertyManager.getCoordinatorEnvironmentBean(arjPropertyManager.java:51)
 	at com.arjuna.ats.arjuna.coordinator.BasicAction.<clinit>(BasicAction.java:3749)
+
+Looks like an issue with picking up the property file (through build info in the manifest).
