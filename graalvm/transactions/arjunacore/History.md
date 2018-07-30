@@ -126,3 +126,20 @@ java.io.FileNotFoundException: /Users/marklittle/github/scratch/graalvm/transact
 There are other errors later but let's start with the root (cause). Looks like it all goes terribly wrong quickly as the pathToThisClass is no longer being resolved as within a jar, which clearly isn't going to be good for us as we would then look for the manifest data!
 
 Let's raise another issue: https://github.com/oracle/graal/issues/576
+
+Don't want to hack around the code just yet so let's look at the rest of the errors and see if we can pick up the property file another way.
+
+**propertyFileName arjuna-properties.xml
+**classLoader java.net.URLClassLoader@2752db10
+**findFile arjuna-properties.xml
+**testAbsolutePath /Users/marklittle/.native-image/machine-id-hostid-0/session-id-2f92/server-id-52c4416f9d4428f66dde9dc05de2016ff99431b8062bf69a2313e1966848d913d8156e0fb35286eb94c98280a3717e3c3f96ae98a566536295ae0a268fc15790/arjuna-properties.xml
+**trying locateByProperty
+**user.dir /Users/marklittle/.native-image/machine-id-hostid-0/session-id-2f92/server-id-52c4416f9d4428f66dde9dc05de2016ff99431b8062bf69a2313e1966848d913d8156e0fb35286eb94c98280a3717e3c3f96ae98a566536295ae0a268fc15790
+**user.home /Users/marklittle
+**java.dir /usr/local/graalvm-ee-1.0.0-rc4/Contents/Home/jre
+**trying locateByResource
+**locateFile failed with java.io.FileNotFoundException: locateFile: file not found: arjuna-properties.xml
+
+user.dir definitely looks a bit funky with GraalVM. Time for another github issue to at least get a clarification. https://github.com/oracle/graal/issues/577
+
+Fortunately we can override user.dir on the command line.
