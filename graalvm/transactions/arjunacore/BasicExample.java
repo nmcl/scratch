@@ -32,11 +32,15 @@
 
 import com.arjuna.ats.arjuna.AtomicAction;
 import com.arjuna.ats.arjuna.coordinator.BasicAction;
+import com.arjuna.ats.arjuna.common.arjPropertyManager;
 
 public class BasicExample
 {
     public static void main (String[] args)
     {
+	arjPropertyManager.getObjectStoreEnvironmentBean().setObjectStoreSync(false);
+	arjPropertyManager.getObjectStoreEnvironmentBean().setTransactionSync(false);
+
         AtomicAction A = new AtomicAction();
         AtomicAction B = new AtomicAction();
 
