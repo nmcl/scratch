@@ -70,10 +70,7 @@ class FileLocator
         }
 
         if (findFile.startsWith(absolutePath))
-	{
-	    System.err.println("**file starts with "+absolutePath);
             return findFile.substring(absolutePath.length());
-	}
 
         if ((fullPathName = locateByProperty(findFile)) != null)
             return fullPathName;
