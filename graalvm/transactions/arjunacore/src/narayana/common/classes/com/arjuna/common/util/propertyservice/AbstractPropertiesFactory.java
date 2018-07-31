@@ -96,6 +96,8 @@ public abstract class AbstractPropertiesFactory {
             throw new RuntimeException("invalid property file "+propertiesSourceUri, e);
         }
 
+	System.err.println("**propertiesSourceUri is "+propertiesSourceUri);
+
         Properties properties = null;
 
         try {
@@ -104,6 +106,13 @@ public abstract class AbstractPropertiesFactory {
         	}
             properties = applySystemProperties(properties);
 
+	    Enumeration e = properties.propertyNames();
+	    while (e.hasMoreElements())
+	    {
+		String key = (String) e.nextElement();
+		System.err.println("**loaded "+key+" "+properties.getProperty(key));
+	    }
+		     
         } catch(Exception e) {
             throw new RuntimeException("unable to load properties from "+propertiesSourceUri, e);
         }
@@ -138,6 +147,8 @@ public abstract class AbstractPropertiesFactory {
         InputStream inputStream = null;
         Properties inputProperties = new Properties();
         Properties outputProperties = new Properties();
+
+	System.err.println("**creating input stream from "+uri);
 
         if( new File(uri).exists() ) {
             inputStream = new FileInputStream(uri);
@@ -192,6 +203,8 @@ public abstract class AbstractPropertiesFactory {
         if(propertyFileName == null) {
             throw new RuntimeException("Unable to resolve property file name");
         }
+
+	System.err.println("**calling getPropertiesFromFile with "+propertyFileName);
 
         defaultProperties = getPropertiesFromFile(propertyFileName, PropertiesFactoryStax.class.getClassLoader());
     }

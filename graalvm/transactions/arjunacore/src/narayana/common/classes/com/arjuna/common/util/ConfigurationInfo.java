@@ -103,17 +103,12 @@ public class ConfigurationInfo
         String classFileName = ConfigurationInfo.class.getSimpleName()+".class";
         String pathToThisClass = ConfigurationInfo.class.getResource(classFileName).toString();
 
-	System.out.println("**classFileName "+classFileName);
-	System.out.println("**pathToThisClass "+pathToThisClass);
-
         // we need to strip off the class name bit so we can replace it with the manifest name:
         int suffixLength = (ConfigurationInfo.class.getCanonicalName()+".class").length();
         // now derive the path to the .jar which contains the class and thus hopefully the right manifest:
         String basePath = pathToThisClass.substring(0, pathToThisClass.length()-suffixLength);
         if (basePath.endsWith("/"))
             basePath = basePath.substring(0, basePath.length()-1);
-
-	System.out.println("**basePath "+basePath);
 
         String pathToManifest = basePath+"/META-INF/MANIFEST.MF";
 

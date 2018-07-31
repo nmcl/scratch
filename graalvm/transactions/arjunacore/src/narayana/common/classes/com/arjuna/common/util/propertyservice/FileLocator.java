@@ -64,12 +64,16 @@ class FileLocator
             throw new FileNotFoundException("locateFile: null file name");
 
         String testAbsolutePath = new File(findFile).getAbsolutePath();
+
         if(testAbsolutePath.equals(findFile)) {
             return testAbsolutePath;
         }
 
         if (findFile.startsWith(absolutePath))
+	{
+	    System.err.println("**file starts with "+absolutePath);
             return findFile.substring(absolutePath.length());
+	}
 
         if ((fullPathName = locateByProperty(findFile)) != null)
             return fullPathName;
