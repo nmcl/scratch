@@ -1,1 +1,1 @@
-Based on https://www.graalvm.org/docs/getting-started/
+Same based on https://www.graalvm.org/docs/getting-started/
