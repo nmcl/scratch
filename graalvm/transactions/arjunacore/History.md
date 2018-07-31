@@ -127,10 +127,17 @@ There are other errors later but let's start with the root (cause). Looks like i
 
 Let's raise another issue: https://github.com/oracle/graal/issues/576
 
-Don't want to hack around the code just yet so let's look at the rest of the errors and see if we can pick up the property file another way.
+So seems from the answer to that issue we need to include the ConfigurationInfo class Narayana uses explicitly in the native-image call. So something like 'native-image -jar BasicExample.jar -H:IncludeResources='./com/arjuna/common/util/*ConfigurationInfo.class''
 
+Build on Server(pid: 35253, port: 56921)
+   classlist:     335.84 ms
+       (cap):     850.85 ms
+       setup:   1,535.20 ms
+**classFileName ConfigurationInfo.class
+**pathToThisClass file:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore/com/arjuna/common/util/ConfigurationInfo.class
+**basePath file:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore
 **propertyFileName arjuna-properties.xml
-**classLoader java.net.URLClassLoader@2752db10
+**classLoader java.net.URLClassLoader@49650587
 **findFile arjuna-properties.xml
 **testAbsolutePath /Users/marklittle/.native-image/machine-id-hostid-0/session-id-2f92/server-id-52c4416f9d4428f66dde9dc05de2016ff99431b8062bf69a2313e1966848d913d8156e0fb35286eb94c98280a3717e3c3f96ae98a566536295ae0a268fc15790/arjuna-properties.xml
 **trying locateByProperty
@@ -138,33 +145,11 @@ Don't want to hack around the code just yet so let's look at the rest of the err
 **user.home /Users/marklittle
 **java.dir /usr/local/graalvm-ee-1.0.0-rc4/Contents/Home/jre
 **trying locateByResource
-**locateFile failed with java.io.FileNotFoundException: locateFile: file not found: arjuna-properties.xml
-
-user.dir definitely looks a bit funky with GraalVM. Time for another github issue to at least get a clarification. https://github.com/oracle/graal/issues/577
-
-Fortunately we can override user.dir on the command line. Let's try: native-image -jar BasicExample.jar -Duser.dir=/Users/marklittle/github/scratch/graalvm/transactions/arjunacore
-
-Ignoring the usual complaint about the manifest data, we still get an error:
-
-*propertyFileName arjuna-properties.xml
-**classLoader java.net.URLClassLoader@366bdc1d
-**findFile arjuna-properties.xml
-**testAbsolutePath /Users/marklittle/github/scratch/graalvm/transactions/arjunacore/arjuna-properties.xml
-**trying locateByProperty
-**user.dir /Users/marklittle/github/scratch/graalvm/transactions/arjunacore
-**user.home /Users/marklittle
-**java.dir /usr/local/graalvm-ee-1.0.0-rc4/Contents/Home/jre
-**trying locateByResource
-**locateFile failed with java.io.FileNotFoundException: locateFile: file not found: arjuna-properties.xml
-Jul 30, 2018 8:07:19 AM com.arjuna.common.util.propertyservice.AbstractPropertiesFactory getPropertiesFromFile
-WARN: ARJUNA048002: Could not find configuration file, URL was: null
-Jul 30, 2018 8:07:20 AM com.arjuna.ats.arjuna.recovery.TransactionStatusManager start
-INFO: ARJUNA012170: TransactionStatusManager started on port 55695 and host 127.0.0.1 with service com.arjuna.ats.arjuna.recovery.ActionStatusService
-  (typeflow):   5,825.03 ms
-   (objects):   4,627.32 ms
-  (features):      63.92 ms
-    analysis:  10,709.45 ms
-    universe:     477.92 ms
+  (typeflow):   2,986.63 ms
+   (objects):   1,501.82 ms
+  (features):      44.70 ms
+    analysis:   4,655.01 ms
+    universe:     432.04 ms
 error: Unsupported method java.io.FileDescriptor.sync() is reachable: Native method. If you intend to use the Java Native Interface (JNI), specify -H:+JNI and see also -H:JNIConfigurationFiles=<path> (use -H:+PrintFlags for details)
 To diagnose the issue, you can add the option -H:+ReportUnsupportedElementsAtRuntime. The unsupported element is then reported at run time when it is accessed the first time.
 Detailed message:
@@ -184,29 +169,3 @@ Call path from entry point to java.io.FileDescriptor.sync():
 	at com.arjuna.ats.internal.arjuna.coordinator.ReaperWorkerThread.run(ReaperWorkerThread.java:78)
 	at com.oracle.svm.core.posix.thread.PosixJavaThreads.pthreadStartRoutine(PosixJavaThreads.java:238)
 	at com.oracle.svm.core.code.CEntryPointCallStubs.com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_002epthreadStartRoutine_0028com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_0024ThreadStartData_0029(generated:0)
-
-Looking at the start it's still not finding the property file to understand it can ignore the sync calls. Makes sense because the default name for the property file is used when the override in the manifest isn't present. For now let's add a copy with the default name then to user.dir and continue.
-
-Another error:
-
-error: Unsupported method java.io.FileDescriptor.sync() is reachable: Native method. If you intend to use the Java Native Interface (JNI), specify -H:+JNI and see also -H:JNIConfigurationFiles=<path> (use -H:+PrintFlags for details)
-To diagnose the issue, you can add the option -H:+ReportUnsupportedElementsAtRuntime. The unsupported element is then reported at run time when it is accessed the first time.
-Detailed message:
-Error: Unsupported method java.io.FileDescriptor.sync() is reachable: Native method. If you intend to use the Java Native Interface (JNI), specify -H:+JNI and see also -H:JNIConfigurationFiles=<path> (use -H:+PrintFlags for details)
-To diagnose the issue, you can add the option -H:+ReportUnsupportedElementsAtRuntime. The unsupported element is then reported at run time when it is accessed the first time.
-Call path from entry point to java.io.FileDescriptor.sync(): 
-	at java.io.FileDescriptor.sync(FileDescriptor.java)
-	at com.arjuna.ats.internal.arjuna.objectstore.ShadowingStore.write_state(ShadowingStore.java:602)
-	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.write_state_internal(FileSystemStore.java:365)
-	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.write_committed(FileSystemStore.java:139)
-	at com.arjuna.ats.arjuna.coordinator.BasicAction.updateState(BasicAction.java:3272)
-	at com.arjuna.ats.arjuna.coordinator.BasicAction.forgetHeuristics(BasicAction.java:1348)
-	at com.arjuna.ats.arjuna.coordinator.BasicAction.Abort(BasicAction.java:1680)
-	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.cancel(TwoPhaseCoordinator.java:124)
-	at com.arjuna.ats.arjuna.AtomicAction.cancel(AtomicAction.java:215)
-	at com.arjuna.ats.arjuna.coordinator.TransactionReaper.doCancellations(TransactionReaper.java:381)
-	at com.arjuna.ats.internal.arjuna.coordinator.ReaperWorkerThread.run(ReaperWorkerThread.java:78)
-	at com.oracle.svm.core.posix.thread.PosixJavaThreads.pthreadStartRoutine(PosixJavaThreads.java:238)
-	at com.oracle.svm.core.code.CEntryPointCallStubs.com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_002epthreadStartRoutine_0028com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_0024ThreadStartData_0029(generated:0)
-
-Looks like we missed a sync override somewhere.
