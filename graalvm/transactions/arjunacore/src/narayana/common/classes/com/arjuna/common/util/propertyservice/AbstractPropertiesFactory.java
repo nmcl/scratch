@@ -73,6 +73,7 @@ public abstract class AbstractPropertiesFactory {
      */
     public Properties getPropertiesFromFile(String propertyFileName, ClassLoader classLoader) {
         String propertiesSourceUri = null;
+	System.err.println("**getPropertiesFromFile "+propertyFileName+" "+classLoader);
         try
         {
             // This is the point where the search path is applied - user.dir (pwd), user.home, java.home, classpath
