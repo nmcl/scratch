@@ -170,4 +170,43 @@ Call path from entry point to java.io.FileDescriptor.sync():
 	at com.oracle.svm.core.posix.thread.PosixJavaThreads.pthreadStartRoutine(PosixJavaThreads.java:238)
 	at com.oracle.svm.core.code.CEntryPointCallStubs.com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_002epthreadStartRoutine_0028com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_0024ThreadStartData_0029(generated:0)
 
-Still not working but at least we're not seeing the issues with the manifest file as previously. The user.dir is still a bit funky (https://github.com/oracle/graal/issues/577) though.
+Still not working but at least we're not seeing the issues with the manifest file as previously. The user.dir is still a bit funky (https://github.com/oracle/graal/issues/577) though. Probably Narayana doing property file initialisation through statics. Let's go straight to the property file and define it on the command line:
+
+native-image -jar BasicExample.jar -H:IncludeResources='./com/arjuna/common/util/*ConfigurationInfo.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
+
+hutdown Server(pid: 35625, port: 58466)
+Build on Server(pid: 36297, port: 62721)*
+   classlist:   1,880.62 ms
+       (cap):   2,459.22 ms
+       setup:   4,960.12 ms
+**propertyFileName abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
+**classLoader java.net.URLClassLoader@6a63012c
+**findFile abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
+**testAbsolutePath /Users/marklittle/.native-image/machine-id-hostid-0/session-id-2f92/server-id-a6c5d9417b9496c0ca404d6052b3bcca117b64aff5ad1a7a080eeda8847657bf408463c3a5a075fceb22f09d3ed60782dcab00156283cc1b8e9d0358d91e7d4d/abs:/Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
+**findFile starts with
+Jul 31, 2018 4:04:51 PM com.arjuna.ats.arjuna.recovery.TransactionStatusManager start
+INFO: ARJUNA012170: TransactionStatusManager started on port 62736 and host 127.0.0.1 with service com.arjuna.ats.arjuna.recovery.ActionStatusService
+  (typeflow):   6,859.96 ms
+   (objects):   7,738.28 ms
+  (features):     111.04 ms
+    analysis:  15,176.01 ms
+    universe:     822.76 ms
+error: Unsupported method java.io.FileDescriptor.sync() is reachable: Native method. If you intend to use the Java Native Interface (JNI), specify -H:+JNI and see also -H:JNIConfigurationFiles=<path> (use -H:+PrintFlags for details)
+To diagnose the issue, you can add the option -H:+ReportUnsupportedElementsAtRuntime. The unsupported element is then reported at run time when it is accessed the first time.
+Detailed message:
+Error: Unsupported method java.io.FileDescriptor.sync() is reachable: Native method. If you intend to use the Java Native Interface (JNI), specify -H:+JNI and see also -H:JNIConfigurationFiles=<path> (use -H:+PrintFlags for details)
+To diagnose the issue, you can add the option -H:+ReportUnsupportedElementsAtRuntime. The unsupported element is then reported at run time when it is accessed the first time.
+Call path from entry point to java.io.FileDescriptor.sync(): 
+	at java.io.FileDescriptor.sync(FileDescriptor.java)
+	at com.arjuna.ats.internal.arjuna.objectstore.ShadowingStore.write_state(ShadowingStore.java:602)
+	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.write_state_internal(FileSystemStore.java:365)
+	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.write_committed(FileSystemStore.java:139)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.updateState(BasicAction.java:3272)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.forgetHeuristics(BasicAction.java:1348)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.Abort(BasicAction.java:1680)
+	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.cancel(TwoPhaseCoordinator.java:124)
+	at com.arjuna.ats.arjuna.AtomicAction.cancel(AtomicAction.java:215)
+	at com.arjuna.ats.arjuna.coordinator.TransactionReaper.doCancellations(TransactionReaper.java:381)
+	at com.arjuna.ats.internal.arjuna.coordinator.ReaperWorkerThread.run(ReaperWorkerThread.java:78)
+	at com.oracle.svm.core.posix.thread.PosixJavaThreads.pthreadStartRoutine(PosixJavaThreads.java:238)
+	at com.oracle.svm.core.code.CEntryPointCallStubs.com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_002epthreadStartRoutine_0028com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_0024ThreadStartData_0029(generated:0)
