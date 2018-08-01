@@ -387,7 +387,7 @@ public abstract class FileSystemStore extends ObjectStore
 
     protected synchronized final boolean synchronousWrites ()
     {
-	System.err.println("**synchronousWrites "+doSync+" "+syncWrites);
+	System.err.println("**synchronousWrites "+doSync+" "+syncWrites+" and "+this);
         return doSync && syncWrites;
     }
 
@@ -626,7 +626,9 @@ public abstract class FileSystemStore extends ObjectStore
 
         doSync = objectStoreEnvironmentBean.isObjectStoreSync();
 
-	System.err.println("**doSync "+doSync);
+	System.err.println("**doSync "+doSync+" "+this);
+
+	Thread.dumpStack();
 
         scanZeroLengthFiles = objectStoreEnvironmentBean.isScanZeroLengthFiles();
 
