@@ -394,4 +394,21 @@ Re-run ...
 
 ----
 
-After backing out debugging, let's try the native image.
+After backing out debugging, let's try the native image ...
+
+Exception in thread "main" java.lang.reflect.InvocationTargetException
+	at java.lang.Throwable.<init>(Throwable.java:310)
+	at java.lang.Exception.<init>(Exception.java:102)
+	at java.lang.ReflectiveOperationException.<init>(ReflectiveOperationException.java:89)
+	at java.lang.reflect.InvocationTargetException.<init>(InvocationTargetException.java:72)
+	at com.oracle.svm.reflect.proxies.Proxy_4_BasicExample_main.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:173)
+Caused by: java.lang.NullPointerException
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.<init>(BasicAction.java:97)
+	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.<init>(TwoPhaseCoordinator.java:55)
+	at com.arjuna.ats.arjuna.AtomicAction.<init>(AtomicAction.java:74)
+	at BasicExample.main(BasicExample.java:44)
+	... 3 more
+
+Hmmm ...
