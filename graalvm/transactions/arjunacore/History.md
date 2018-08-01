@@ -279,3 +279,115 @@ Let's add a little hack in FileSystemStore constructor while in parallel work wi
 
 //        doSync = objectStoreEnvironmentBean.isObjectStoreSync();
         doSync = arjPropertyManager.getObjectStoreEnvironmentBean().isObjectStoreSync();
+
+Running java -jar BasicExample.jar now gives:
+
+**doSync false com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore@1a6c5a9e com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean@37bba400
+java.lang.Exception: Stack trace
+	at java.lang.Thread.dumpStack(Thread.java:1336)
+	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.<init>(FileSystemStore.java:632)
+	at com.arjuna.ats.internal.arjuna.objectstore.ShadowingStore.<init>(ShadowingStore.java:653)
+	at com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore.<init>(ShadowNoFileLockStore.java:53)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.arjuna.common.internal.util.ClassloadingUtility.loadAndInstantiateClass(ClassloadingUtility.java:129)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.initStore(StoreManager.java:152)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.getActionStore(StoreManager.java:111)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.getRecoveryStore(StoreManager.java:68)
+	at com.arjuna.ats.arjuna.recovery.ActionStatusService.<init>(ActionStatusService.java:65)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.lang.Class.newInstance(Class.java:442)
+	at com.arjuna.common.internal.util.ClassloadingUtility.loadAndInstantiateClass(ClassloadingUtility.java:135)
+	at com.arjuna.ats.arjuna.recovery.TransactionStatusManager.start(TransactionStatusManager.java:125)
+	at com.arjuna.ats.arjuna.recovery.TransactionStatusManager.<init>(TransactionStatusManager.java:58)
+	at com.arjuna.ats.arjuna.coordinator.TxControl.createTransactionStatusManager(TxControl.java:188)
+	at com.arjuna.ats.arjuna.coordinator.TxControl.<clinit>(TxControl.java:264)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.Begin(BasicAction.java:1375)
+	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.start(TwoPhaseCoordinator.java:76)
+	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.start(TwoPhaseCoordinator.java:65)
+	at com.arjuna.ats.arjuna.AtomicAction.begin(AtomicAction.java:116)
+	at com.arjuna.ats.arjuna.AtomicAction.begin(AtomicAction.java:98)
+	at BasicExample.main(BasicExample.java:47)
+**doSync false com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore@31221be2 com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean@377dca04
+java.lang.Exception: Stack trace
+	at java.lang.Thread.dumpStack(Thread.java:1336)
+	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.<init>(FileSystemStore.java:632)
+	at com.arjuna.ats.internal.arjuna.objectstore.ShadowingStore.<init>(ShadowingStore.java:653)
+	at com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore.<init>(ShadowNoFileLockStore.java:53)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.arjuna.common.internal.util.ClassloadingUtility.loadAndInstantiateClass(ClassloadingUtility.java:129)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.initStore(StoreManager.java:152)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.getCommunicationStore(StoreManager.java:94)
+	at com.arjuna.ats.internal.arjuna.recovery.TransactionStatusManagerItem.getStore(TransactionStatusManagerItem.java:87)
+	at com.arjuna.ats.internal.arjuna.recovery.TransactionStatusManagerItem.saveThis(TransactionStatusManagerItem.java:280)
+	at com.arjuna.ats.internal.arjuna.recovery.TransactionStatusManagerItem.createAndSave(TransactionStatusManagerItem.java:77)
+	at com.arjuna.ats.arjuna.recovery.TransactionStatusManager.start(TransactionStatusManager.java:135)
+	at com.arjuna.ats.arjuna.recovery.TransactionStatusManager.<init>(TransactionStatusManager.java:58)
+	at com.arjuna.ats.arjuna.coordinator.TxControl.createTransactionStatusManager(TxControl.java:188)
+	at com.arjuna.ats.arjuna.coordinator.TxControl.<clinit>(TxControl.java:264)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.Begin(BasicAction.java:1375)
+	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.start(TwoPhaseCoordinator.java:76)
+	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.start(TwoPhaseCoordinator.java:65)
+	at com.arjuna.ats.arjuna.AtomicAction.begin(AtomicAction.java:116)
+	at com.arjuna.ats.arjuna.AtomicAction.begin(AtomicAction.java:98)
+	at BasicExample.main(BasicExample.java:47)
+**calling synchronousWrites! false com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore@31221be2
+**synchronousWrites false true and com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore@31221be2
+Aug 01, 2018 10:59:47 AM com.arjuna.ats.arjuna.recovery.TransactionStatusManager start
+INFO: ARJUNA012170: TransactionStatusManager started on port 60372 and host 127.0.0.1 with service com.arjuna.ats.arjuna.recovery.ActionStatusService
+
+But with native-image -jar BasicExample.jar -H:IncludeResources='./com/arjuna/common/util/*ConfigurationInfo.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml 
+
+**synchronousWrites false true and com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore@49d977ee
+  (typeflow):   3,378.66 ms
+   (objects):   1,403.82 ms
+  (features):      36.99 ms
+    analysis:   4,943.90 ms
+    universe:     282.36 ms
+error: Unsupported method java.io.FileDescriptor.sync() is reachable: Native method. If you intend to use the Java Native Interface (JNI), specify -H:+JNI and see also -H:JNIConfigurationFiles=<path> (use -H:+PrintFlags for details)
+To diagnose the issue, you can add the option -H:+ReportUnsupportedElementsAtRuntime. The unsupported element is then reported at run time when it is accessed the first time.
+Detailed message:
+Error: Unsupported method java.io.FileDescriptor.sync() is reachable: Native method. If you intend to use the Java Native Interface (JNI), specify -H:+JNI and see also -H:JNIConfigurationFiles=<path> (use -H:+PrintFlags for details)
+To diagnose the issue, you can add the option -H:+ReportUnsupportedElementsAtRuntime. The unsupported element is then reported at run time when it is accessed the first time.
+Call path from entry point to java.io.FileDescriptor.sync(): 
+	at java.io.FileDescriptor.sync(FileDescriptor.java)
+	at com.arjuna.ats.internal.arjuna.objectstore.ShadowingStore.write_state(ShadowingStore.java:603)
+	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.write_state_internal(FileSystemStore.java:365)
+	at com.arjuna.ats.internal.arjuna.objectstore.FileSystemStore.write_committed(FileSystemStore.java:139)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.updateState(BasicAction.java:3272)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.forgetHeuristics(BasicAction.java:1348)
+	at com.arjuna.ats.arjuna.coordinator.BasicAction.Abort(BasicAction.java:1680)
+	at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.cancel(TwoPhaseCoordinator.java:124)
+	at com.arjuna.ats.arjuna.AtomicAction.cancel(AtomicAction.java:215)
+	at com.arjuna.ats.arjuna.coordinator.TransactionReaper.doCancellations(TransactionReaper.java:381)
+	at com.arjuna.ats.internal.arjuna.coordinator.ReaperWorkerThread.run(ReaperWorkerThread.java:78)
+	at com.oracle.svm.core.posix.thread.PosixJavaThreads.pthreadStartRoutine(PosixJavaThreads.java:238)
+	at com.oracle.svm.core.code.CEntryPointCallStubs.com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_002epthreadStartRoutine_0028com_002eoracle_002esvm_002ecore_002eposix_002ethread_002ePosixJavaThreads_0024ThreadStartData_0029(generated:0)
+
+So this looks like it is purely a "is reachable" aspect rather than "is going to happen". So let's add another hack to ShadowingStore to ignore sync ...
+
+ //                    if (synchronousWrites())
+                    if (synchronousWrites() && false)
+
+Re-run ...
+
+  (typeflow):   2,959.68 ms
+   (objects):   1,161.06 ms
+  (features):      33.20 ms
+    analysis:   4,235.07 ms
+    universe:     259.71 ms
+     (parse):   1,063.14 ms
+    (inline):     779.18 ms
+   (compile):   6,056.73 ms
+     compile:   8,403.37 ms
+       image:   2,085.77 ms
+       write:   1,541.89 ms
+     [total]:  18,568.67 ms
