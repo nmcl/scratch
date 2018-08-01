@@ -591,9 +591,8 @@ public class ShadowingStore extends FileSystemStore
 
                     ofile.write(state.buffer(), 0, imageSize);
 
-		    System.err.println("**calling synchronousWrites! "+super.doSync+" "+this);
-
-                    if (synchronousWrites())
+		    //                    if (synchronousWrites())
+                    if (synchronousWrites() && false)
                     {
                         // must flush any in-memory buffering prior to sync
 

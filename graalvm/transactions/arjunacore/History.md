@@ -391,3 +391,7 @@ Re-run ...
        image:   2,085.77 ms
        write:   1,541.89 ms
      [total]:  18,568.67 ms
+
+----
+
+After backing out debugging, let's try the native image.
