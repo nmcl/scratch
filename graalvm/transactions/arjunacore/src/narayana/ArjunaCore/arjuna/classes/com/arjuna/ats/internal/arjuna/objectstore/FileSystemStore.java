@@ -624,7 +624,8 @@ public abstract class FileSystemStore extends ObjectStore
 
         fullStoreName = locateStore(_objectStoreRoot);
 
-        doSync = objectStoreEnvironmentBean.isObjectStoreSync();
+	//        doSync = objectStoreEnvironmentBean.isObjectStoreSync();
+        doSync = arjPropertyManager.getObjectStoreEnvironmentBean().isObjectStoreSync();
 
 	System.err.println("**doSync "+doSync+" "+this+" "+objectStoreEnvironmentBean);
 

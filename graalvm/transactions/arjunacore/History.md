@@ -274,3 +274,8 @@ java.lang.Exception: Stack trace
 **synchronousWrites true true and com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore@31221be2
 
 Summary: the configuration MBean for the transaction log is picking up the "no sync" data but the participant/communication store creation uses a new instance of the MBean which doesn't see the override. Strange. In running the jar normally (java -jar BasicExample) this doesn't cause an issue but with native-image it still allows sync to be called and that's not right (yet).
+
+Let's add a little hack in FileSystemStore constructor while in parallel work with the Narayana team to figure out what's happening:
+
+//        doSync = objectStoreEnvironmentBean.isObjectStoreSync();
+        doSync = arjPropertyManager.getObjectStoreEnvironmentBean().isObjectStoreSync();
