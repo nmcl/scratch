@@ -626,7 +626,7 @@ public abstract class FileSystemStore extends ObjectStore
 
         doSync = objectStoreEnvironmentBean.isObjectStoreSync();
 
-	System.err.println("**doSync "+doSync+" "+this);
+	System.err.println("**doSync "+doSync+" "+this+" "+objectStoreEnvironmentBean);
 
 	Thread.dumpStack();
 
