@@ -640,7 +640,7 @@ public class CoordinatorEnvironmentBean implements CoordinatorEnvironmentBeanMBe
         {
             synchronized (this) {
                 if(checkedActionFactory == null && checkedActionFactoryClassName != null) {
-                    CheckedActionFactory instance = ClassloadingUtility.loadAndInstantiateClass(CheckedActionFactory.class, checkedActionFactoryClassName, null);
+		    CheckedActionFactory instance = ClassloadingUtility.loadAndInstantiateClass(CheckedActionFactory.class, checkedActionFactoryClassName, null);
                     checkedActionFactory = instance;
                 }
             }

@@ -92,9 +92,10 @@ public class BasicAction extends StateManager
         recordBeingHandled = null;
 
         heuristicDecision = TwoPhaseOutcome.PREPARE_OK;
-		_checkedAction = arjPropertyManager
-				.getCoordinatorEnvironmentBean().getCheckedActionFactory()
-				.getCheckedAction(get_uid(), type());
+	//		_checkedAction = arjPropertyManager
+	//				.getCoordinatorEnvironmentBean().getCheckedActionFactory()
+	//				.getCheckedAction(get_uid(), type());
+	_checkedAction = new CheckedAction();
 
         _childThreads = null;
         _childActions = null;
