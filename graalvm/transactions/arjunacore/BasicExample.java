@@ -45,7 +45,10 @@ public class BasicExample
         AtomicAction B = new AtomicAction();
 
         A.begin();
+	System.out.println("Created "+A);
+
         B.begin();
+	System.out.println("Created "+B);
 
         B.commit();
         A.commit();
