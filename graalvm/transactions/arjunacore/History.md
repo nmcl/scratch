@@ -556,3 +556,5 @@ Caused by: java.lang.NullPointerException
 	at BasicObject.<init>(AITBasic.java:72)
 	at AITBasic.main(AITBasic.java:51)
 	... 3 more
+
+Added workaround with https://github.com/nmcl/scratch/issues/24
