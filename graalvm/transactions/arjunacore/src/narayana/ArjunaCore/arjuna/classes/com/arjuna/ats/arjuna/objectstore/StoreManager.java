@@ -150,7 +150,8 @@ public class StoreManager
 
         try
         {
-            store = ClassloadingUtility.loadAndInstantiateClass(ObjectStoreAPI.class, storeType, name);
+	    //            store = ClassloadingUtility.loadAndInstantiateClass(ObjectStoreAPI.class, storeType, name);
+	    store = new com.arjuna.ats.internal.arjuna.objectstore.ShadowNoFileLockStore(storeEnvBean);
         }
         catch (final Throwable ex)
         {

@@ -534,3 +534,25 @@ Caused by: java.lang.InstantiationException: Type `com.arjuna.ats.arjuna.common.
 Some Graal magic needed to include it because https://github.com/nmcl/scratch/issues/23
 
 Hack around this for now (details in the linked issue).
+
+But ...
+
+Exception in thread "main" java.lang.reflect.InvocationTargetException
+	at java.lang.Throwable.<init>(Throwable.java:310)
+	at java.lang.Exception.<init>(Exception.java:102)
+	at java.lang.ReflectiveOperationException.<init>(ReflectiveOperationException.java:89)
+	at java.lang.reflect.InvocationTargetException.<init>(InvocationTargetException.java:72)
+	at com.oracle.svm.reflect.proxies.Proxy_8_AITBasic_main.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:173)
+Caused by: java.lang.NullPointerException
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.initStore(StoreManager.java:160)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.setupStore(StoreManager.java:136)
+	at com.arjuna.ats.arjuna.StateManager.setupStore(StateManager.java:1144)
+	at com.arjuna.ats.arjuna.StateManager.setupStore(StateManager.java:1078)
+	at com.arjuna.ats.arjuna.StateManager.activate(StateManager.java:258)
+	at com.arjuna.ats.arjuna.StateManager.activate(StateManager.java:168)
+	at BasicObject.activate(AITBasic.java:129)
+	at BasicObject.<init>(AITBasic.java:72)
+	at AITBasic.main(AITBasic.java:51)
+	... 3 more
