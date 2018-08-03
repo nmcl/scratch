@@ -34,6 +34,7 @@ import com.arjuna.ats.arjuna.AtomicAction;
 import com.arjuna.ats.arjuna.coordinator.BasicAction;
 import com.arjuna.ats.arjuna.common.arjPropertyManager;
 import com.arjuna.ats.arjuna.coordinator.AbstractRecord;
+import com.arjuna.ats.arjuna.coordinator.TwoPhaseOutcome;
 
 public class Performance2
 {
@@ -50,12 +51,14 @@ public class Performance2
 	    AtomicAction A = new AtomicAction();
 
 	    A.begin();
+	    A.add(new SimpleAbstractRecord());
+	    A.add(new SimpleAbstractRecord());
 	    A.commit();
 	}
 
 	long finalTime = System.currentTimeMillis();
 
-	System.out.println("Time to create "+numberOfTransactions+" transactions is "+(finalTime - startTime)+" milliseconds.");
+	System.out.println("Time to create, enlist and commit "+numberOfTransactions+" transactions is "+(finalTime - startTime)+" milliseconds.");
     }
 }
 
@@ -79,28 +82,28 @@ class SimpleAbstractRecord extends AbstractRecord
     }
 
     public int nestedAbort() {
-	return 0;
+	return TwoPhaseOutcome.FINISH_OK;
     }
 
     public int nestedCommit() {
-	return 0;
+	return TwoPhaseOutcome.FINISH_OK;
     }
 
     public int nestedPrepare() {
-	return 0;
+	return TwoPhaseOutcome.PREPARE_OK;
     }
 
     public int topLevelAbort() {
-	return 0;
+	return TwoPhaseOutcome.FINISH_OK;
     }
 
     public int topLevelCommit() {
 	wasCommitted = true;
-	return 0;
+	return TwoPhaseOutcome.FINISH_OK;
     }
 
     public int topLevelPrepare() {
-	return 0;
+	return TwoPhaseOutcome.PREPARE_OK;
     }
 
     public void merge(AbstractRecord a) {
