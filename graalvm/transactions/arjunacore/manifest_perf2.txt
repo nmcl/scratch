@@ -1,0 +1,2 @@
+Main-Class: Performance2
+arjuna-properties-file: jbossts-properties.xml
