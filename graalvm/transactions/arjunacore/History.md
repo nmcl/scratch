@@ -1,3 +1,7 @@
+Represents a log of the problems found ...
+
+----
+
 To run with GraalVM let's first try a jar of jars ...
 
 (i) jar cmf manifest.txt BasicExample.jar BasicExample.class lib/*
@@ -489,4 +493,42 @@ Created BasicAction: 0:ffffc0a8561c:f383:5b634e41:2 status: ActionStatus.RUNNING
 Created BasicAction: 0:ffffc0a8561c:f383:5b634e41:3 status: ActionStatus.RUNNING
 
 ... success!
+
+----
+
+Moving on eventually to StateManager and friends, with AITBasic, we get the following when running the executable created after using 'native-image -jar AITBasic.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
+
+Exception in thread "main" java.lang.reflect.InvocationTargetException
+	at java.lang.Throwable.<init>(Throwable.java:310)
+	at java.lang.Exception.<init>(Exception.java:102)
+	at java.lang.ReflectiveOperationException.<init>(ReflectiveOperationException.java:89)
+	at java.lang.reflect.InvocationTargetException.<init>(InvocationTargetException.java:72)
+	at com.oracle.svm.reflect.proxies.Proxy_3_AITBasic_main.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:173)
+Caused by: java.lang.RuntimeException: java.lang.InstantiationException: Type `com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean` can not be instantiated reflectively as it does not have a no-parameter constructor or the no-parameter constructor has not been added explicitly to the native image.
+	at java.lang.Throwable.<init>(Throwable.java:310)
+	at java.lang.Exception.<init>(Exception.java:102)
+	at java.lang.RuntimeException.<init>(RuntimeException.java:96)
+	at com.arjuna.common.internal.util.propertyservice.BeanPopulator.getNamedInstance(BeanPopulator.java:90)
+	at com.arjuna.common.internal.util.propertyservice.BeanPopulator.getNamedInstance(BeanPopulator.java:66)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.initStore(StoreManager.java:146)
+	at com.arjuna.ats.arjuna.objectstore.StoreManager.setupStore(StoreManager.java:136)
+	at com.arjuna.ats.arjuna.StateManager.setupStore(StateManager.java:1144)
+	at com.arjuna.ats.arjuna.StateManager.setupStore(StateManager.java:1078)
+	at com.arjuna.ats.arjuna.StateManager.activate(StateManager.java:258)
+	at com.arjuna.ats.arjuna.StateManager.activate(StateManager.java:168)
+	at BasicObject.activate(AITBasic.java:129)
+	at BasicObject.<init>(AITBasic.java:72)
+	at AITBasic.main(AITBasic.java:51)
+	... 3 more
+Caused by: java.lang.InstantiationException: Type `com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean` can not be instantiated reflectively as it does not have a no-parameter constructor or the no-parameter constructor has not been added explicitly to the native image.
+	at java.lang.Throwable.<init>(Throwable.java:265)
+	at java.lang.Exception.<init>(Exception.java:66)
+	at java.lang.ReflectiveOperationException.<init>(ReflectiveOperationException.java:56)
+	at java.lang.InstantiationException.<init>(InstantiationException.java:63)
+	at com.oracle.svm.core.hub.DynamicHub.newInstance(DynamicHub.java:592)
+	at com.arjuna.common.internal.util.propertyservice.BeanPopulator.getNamedInstance(BeanPopulator.java:82)
+	... 13 more
+
 

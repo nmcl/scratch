@@ -67,3 +67,15 @@ And ...
 
 watchmen:arjunacore marklittle$ ./Performance3
 Time to create, enlist participants and synchronization and commit 1000 transactions is 7 milliseconds.
+
+For AITBasic, use 'native-image -jar AITBasic.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
+
+watchmen:arjunacore marklittle$ java -jar AITBasic.jar
+Aug 03, 2018 11:23:10 AM com.arjuna.common.util.propertyservice.AbstractPropertiesFactory getPropertiesFromFile
+WARN: ARJUNA048002: Could not find configuration file, URL was: null
+Aug 03, 2018 11:23:11 AM com.arjuna.ats.arjuna.recovery.TransactionStatusManager start
+INFO: ARJUNA012170: TransactionStatusManager started on port 64461 and host 127.0.0.1 with service com.arjuna.ats.arjuna.recovery.ActionStatusService
+Time to create, enlist and commit 1000 transactions is 1677 milliseconds.
+
+And ...
+

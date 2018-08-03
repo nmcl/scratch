@@ -1,0 +1,2 @@
+Main-Class: AITBasic
+arjuna-properties-file: jbossts-properties.xml
