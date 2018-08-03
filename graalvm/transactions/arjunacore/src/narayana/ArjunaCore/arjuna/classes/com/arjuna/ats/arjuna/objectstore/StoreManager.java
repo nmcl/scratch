@@ -143,7 +143,8 @@ public class StoreManager
 
     private static final ObjectStoreAPI initStore(String name)
     {
-        ObjectStoreEnvironmentBean storeEnvBean = BeanPopulator.getNamedInstance(ObjectStoreEnvironmentBean.class, name);
+	//ObjectStoreEnvironmentBean storeEnvBean = BeanPopulator.getNamedInstance(ObjectStoreEnvironmentBean.class, name);
+	ObjectStoreEnvironmentBean storeEnvBean = new ObjectStoreEnvironmentBean();
         String storeType = storeEnvBean.getObjectStoreType();
         ObjectStoreAPI store;
 

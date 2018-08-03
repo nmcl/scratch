@@ -531,4 +531,6 @@ Caused by: java.lang.InstantiationException: Type `com.arjuna.ats.arjuna.common.
 	at com.arjuna.common.internal.util.propertyservice.BeanPopulator.getNamedInstance(BeanPopulator.java:82)
 	... 13 more
 
+Some Graal magic needed to include it because https://github.com/nmcl/scratch/issues/23
 
+Hack around this for now (details in the linked issue).
