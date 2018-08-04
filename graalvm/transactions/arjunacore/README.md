@@ -22,6 +22,8 @@ watchmen:arjunacore marklittle$ ./BasicExample
 Created BasicAction: 0:ffffc0a8561c:f524:5b63549a:2 status: ActionStatus.RUNNING
 Created BasicAction: 0:ffffc0a8561c:f524:5b63549a:3 status: ActionStatus.RUNNING
 
+----
+
 For Performance1 same (i) as above but with:
 
 (ii) ./build_perf1.sh
@@ -40,6 +42,8 @@ And ...
 watchmen:arjunacore marklittle$ ./Performance1 
 Time to create 1000 is 2 milliseconds.
 
+----
+
 For Performance 2 just do the same as Performance 1 except (iii) becomes 'native-image -jar Performance2.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
 
 watchmen:arjunacore marklittle$ java -jar Performance2.jar
@@ -53,6 +57,8 @@ And ...
 
 watchmen:arjunacore marklittle$ ./Performance2
 Time to create, enlist and commit 1000 transactions is 6 milliseconds.
+
+----
 
 Performance3 is the same except for 'native-image -jar Performance3.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
 
@@ -68,6 +74,8 @@ And ...
 watchmen:arjunacore marklittle$ ./Performance3
 Time to create, enlist participants and synchronization and commit 1000 transactions is 7 milliseconds.
 
+----
+
 For AITBasic, use 'native-image -jar AITBasic.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
 
 watchmen:arjunacore marklittle$ java -jar AITBasic.jar
@@ -81,3 +89,18 @@ And ...
 
 watchmen:arjunacore marklittle$ ./AITBasic 
 Time to create, enlist and commit 1000 transactions is 842 milliseconds.
+
+----
+
+For AITNested the only change is 'native-image -jar AITNested.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
+
+watchmen:arjunacore marklittle$ java -jar AITNested.jar
+Aug 04, 2018 7:21:56 AM com.arjuna.common.util.propertyservice.AbstractPropertiesFactory getPropertiesFromFile
+WARN: ARJUNA048002: Could not find configuration file, URL was: null
+Aug 04, 2018 7:21:56 AM com.arjuna.ats.arjuna.recovery.TransactionStatusManager start
+INFO: ARJUNA012170: TransactionStatusManager started on port 50953 and host 127.0.0.1 with service com.arjuna.ats.arjuna.recovery.ActionStatusService
+Time to create, enlist and commit 1000 transactions is 3227 milliseconds.
+
+And ...
+
+
