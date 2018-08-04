@@ -558,3 +558,28 @@ Caused by: java.lang.NullPointerException
 	... 3 more
 
 Added workaround with https://github.com/nmcl/scratch/issues/24
+
+----
+
+With AITNested we get:
+
+Aug 04, 2018 7:25:32 AM com.arjuna.ats.internal.arjuna.abstractrecords.StateManagerFriend forgetAction
+WARN: ARJUNA012212: StateManagerFriend.forgetAction
+java.lang.NoSuchMethodException: com.arjuna.ats.arjuna.StateManager.forgetAction(com.arjuna.ats.arjuna.coordinator.BasicAction, boolean, int)
+        at java.lang.Throwable.<init>(Throwable.java:265)
+        at java.lang.Exception.<init>(Exception.java:66)
+        at java.lang.ReflectiveOperationException.<init>(ReflectiveOperationException.java:56)
+        at java.lang.NoSuchMethodException.<init>(NoSuchMethodException.java:51)
+        at java.lang.Class.getDeclaredMethod(Class.java:2130)
+        at com.arjuna.ats.internal.arjuna.abstractrecords.StateManagerFriend.forgetAction(StateManagerFriend.java:52)
+        at com.arjuna.ats.internal.arjuna.abstractrecords.RecoveryRecord.forgetAction(RecoveryRecord.java:297)
+        at com.arjuna.ats.internal.arjuna.abstractrecords.RecoveryRecord.nestedAbort(RecoveryRecord.java:102)
+        at com.arjuna.ats.arjuna.coordinator.BasicAction.doAbort(BasicAction.java:3021)
+        at com.arjuna.ats.arjuna.coordinator.BasicAction.doAbort(BasicAction.java:2998)
+        at com.arjuna.ats.arjuna.coordinator.BasicAction.Abort(BasicAction.java:1673)
+        at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.cancel(TwoPhaseCoordinator.java:124)
+        at com.arjuna.ats.arjuna.AtomicAction.abort(AtomicAction.java:186)
+        at AITNested.main(AITNested.java:65)
+        at com.oracle.svm.reflect.proxies.Proxy_1_AITNested_main.invoke(Unknown Source)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:173)
