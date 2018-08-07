@@ -593,3 +593,8 @@ BasicAction.class, boolean.class, int.class);
 So looks like this
 (https://github.com/oracle/graal/blob/master/substratevm/REFLECTION.md)
 might be the source of some much needed magic.
+
+Add appropriate json configuration file to capture the reflection data
+and then try:
+
+native-image -jar AITNested.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml -H:ReflectionConfigurationFiles=reflectconfig.json

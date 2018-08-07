@@ -92,7 +92,7 @@ Time to create, enlist and commit 1000 transactions is 842 milliseconds.
 
 ----
 
-For AITNested the only change is 'native-image -jar AITNested.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
+For AITNested the only change is 'native-image -jar AITNested.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml -H:ReflectionConfigurationFiles=reflectconfig.json'
 
 rorschach:arjunacore marklittle$ java -jar AITNested.jar
 Aug 07, 2018 3:41:40 PM com.arjuna.common.util.propertyservice.AbstractPropertiesFactory getPropertiesFromFile
@@ -103,4 +103,5 @@ Time to create, enlist and commit 1000 transactions is 2332 milliseconds.
 
 And ...
 
-
+rorschach:arjunacore marklittle$ ./AITNested 
+Time to create, enlist and commit 1000 transactions is 1353 milliseconds.
