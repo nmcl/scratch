@@ -582,4 +582,9 @@ java.lang.NoSuchMethodException: com.arjuna.ats.arjuna.StateManager.forgetAction
         at AITNested.main(AITNested.java:65)
         at com.oracle.svm.reflect.proxies.Proxy_1_AITNested_main.invoke(Unknown Source)
         at java.lang.reflect.Method.invoke(Method.java:498)
-        at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:173)
+        at
+		com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:173)
+
+This is the offending line ...
+
+Method m = StateManager.class.getDeclaredMethod("forgetAction", BasicAction.class, boolean.class, int.class);
