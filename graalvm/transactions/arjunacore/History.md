@@ -587,4 +587,9 @@ java.lang.NoSuchMethodException: com.arjuna.ats.arjuna.StateManager.forgetAction
 
 This is the offending line ...
 
-Method m = StateManager.class.getDeclaredMethod("forgetAction", BasicAction.class, boolean.class, int.class);
+Method m = StateManager.class.getDeclaredMethod("forgetAction",
+BasicAction.class, boolean.class, int.class);
+
+So looks like this
+(https://github.com/oracle/graal/blob/master/substratevm/REFLECTION.md)
+might be the source of some much needed magic.
