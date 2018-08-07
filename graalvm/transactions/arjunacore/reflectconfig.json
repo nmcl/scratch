@@ -2,7 +2,7 @@
   {
     "name" : "com.arjuna.ats.internal.arjuna.abstractrecords.StateManagerFriend",
     "allDeclaredConstructors" : true,
-      "allPublicConstructors" : true,
+    "allPublicConstructors" : true,
     "allDeclaredMethods" : true,
     "allPublicMethods" : true
   }
