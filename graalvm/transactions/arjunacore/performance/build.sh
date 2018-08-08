@@ -10,3 +10,5 @@ jar -xvf common-5.5.1.Final-SNAPSHOT.jar
 jar -xvf jboss-logging.jar
 rm -rf *.jar META-INF *mappings
 jar -cmf manifest_perf1.txt Performance$1.jar Performance$1.class com org
+
+rm manifest.txt

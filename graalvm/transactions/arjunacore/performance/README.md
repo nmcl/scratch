@@ -1,11 +1,8 @@
-Some basic ArjunaCore examples. You can look through History.md if you
-want to see the journey taken to get here.
+For Performance1:
 
-Note, things in this directory are rough and not intended for others to use. Really a workspace for hacking around some issues with GraalVM and/or Narayana implementation. Will eventually create a stable repository for end results.
+(i) add contents of ../lib to classpath. add ../etc directory to classpath.
 
-For Performance1 same (i) as above but with:
-
-(ii) ./build_perf1.sh
+(ii) ./build.sh 1
 
 (iii) native-image -jar Performance1.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
 
