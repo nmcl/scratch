@@ -1,5 +1,7 @@
  #!/bin/sh
 
+rm *.class
+
 echo "Main-Class: BasicExample
 arjuna-properties-file: jbossts-properties.xml" > manifest.txt
 
