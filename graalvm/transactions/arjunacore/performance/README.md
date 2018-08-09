@@ -20,7 +20,14 @@ Time to create 1000 is 2 milliseconds.
 
 ----
 
-For Performance 2 just do the same as Performance 1 except (iii) becomes 'native-image -jar Performance2.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
+For Performance2:
+
+(i) add contents of ../lib to classpath. add ../etc directory to
+classpath.
+
+(ii) ./build.sh 2
+
+(iii) native-image -jar Performance2.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
 
 watchmen:arjunacore marklittle$ java -jar Performance2.jar
 Aug 03, 2018 10:45:00 AM com.arjuna.common.util.propertyservice.AbstractPropertiesFactory getPropertiesFromFile
