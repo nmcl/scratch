@@ -22,10 +22,10 @@ Time to create 1000 is 2 milliseconds.
 
 For Performance2:
 
-(i) add contents of ../lib to classpath. add ../etc directory to
-classpath.
+(i) add contents of ../lib to classpath. add ../etc directory to 
+classpath. 
 
-(ii) ./build.sh 2
+(ii) ./build.sh 2 
 
 (iii) native-image -jar Performance2.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
 
@@ -43,7 +43,14 @@ Time to create, enlist and commit 1000 transactions is 6 milliseconds.
 
 ----
 
-Performance3 is the same except for 'native-image -jar Performance3.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml'
+For Performance3:
+
+(i) add contents of ../lib to classpath. add ../etc directory to  
+classpath.  
+
+(ii) ./build.sh 3
+
+(iii) native-image -jar Performance3.jar -H:IncludeResources='./com/arjuna/ats/internal/arjuna/coordinator/CheckedActionFactoryImple.class' -Dcom.arjuna.ats.arjuna.common.propertiesFile=abs:///Users/marklittle/github/scratch/graalvm/transactions/arjunacore/etc/jbossts-properties.xml
 
 watchmen:arjunacore marklittle$ java -jar Performance3.jar
 Aug 03, 2018 11:02:33 AM com.arjuna.common.util.propertyservice.AbstractPropertiesFactory getPropertiesFromFile
