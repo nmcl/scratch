@@ -1,6 +1,0 @@
-<application>
-    <display-name>compensations-ear</display-name>
-    <module>
-        <ejb>compensations-ejb.jar</ejb>
-    </module>
-</application>
