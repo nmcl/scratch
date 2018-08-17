@@ -1,1 +1,1 @@
-Here temporarily until the example is moved to use latest version.
+Here temporarily until the examples are moved to use latest version.
