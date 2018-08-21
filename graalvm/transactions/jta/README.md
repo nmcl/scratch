@@ -5,5 +5,3 @@ Note, things in this directory are rough and not intended for others to use. Rea
 JTA classes are downloaded from OTN and covered by the Oracle licence.
 
 Contents of lib directory are built from the fork within graalvm.
-
-Add jta-1_1-classes to classpath along with contents of lib directory.
