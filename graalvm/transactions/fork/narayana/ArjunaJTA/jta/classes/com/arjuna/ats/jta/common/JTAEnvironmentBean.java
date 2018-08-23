@@ -110,6 +110,8 @@ public class JTAEnvironmentBean implements JTAEnvironmentBeanMBean
 
 	private Map<String, Integer> commitMarkableResourceRecordDeleteBatchSizeMap = new HashMap<String, Integer>();
 
+    public JTAEnvironmentBean () {}
+    
 	/**
      * Returns true if subtransactions are allowed.
      * Warning: subtransactions are not JTA spec compliant and most XA resource managers don't understand them.

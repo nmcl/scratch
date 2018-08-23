@@ -27,4 +27,10 @@ Caused by: java.lang.InstantiationException: Type `com.arjuna.ats.jta.common.JTA
 	at com.arjuna.common.internal.util.propertyservice.BeanPopulator.getNamedInstance(BeanPopulator.java:82)
 	... 5 more
 
-So looks similar to other Bean configuration problems we saw with ArjunaCore.
+So looks similar to other Bean configuration problems we saw with
+ArjunaCore. Created an issue to track:
+https://github.com/nmcl/scratch/issues/30
+
+First try to add the default constructor it's complaining about ...
+
+public JTAEnvironmentBean () {}
