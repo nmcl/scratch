@@ -68,4 +68,5 @@ Caused by: java.lang.InstantiationException: Type `com.arjuna.ats.jta.common.JTA
 	at com.arjuna.common.internal.util.propertyservice.BeanPopulator.getNamedInstance(BeanPopulator.java:82)
 	... 5 more
 
-So something not quite right ...
+So something not quite right ... but checking code it seems to be a
+build/refresh problem. Try again.
