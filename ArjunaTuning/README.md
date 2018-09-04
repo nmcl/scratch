@@ -1,1 +1,1 @@
-Some output from tuning Arjuna/Narayana. Likely stale now.
+Some output from tuning Arjuna/Narayana with JProfiler. Likely stale now.
