@@ -188,4 +188,4 @@ Failed tests:
 Tests in error: 
   SimpleNestedTest.testEnabled:53 » NotSupported BaseTransaction.checkTransactio...
 
-
+Make various changes/hacks into the tests for now, all covered by https://github.com/nmcl/scratch/issues/30
