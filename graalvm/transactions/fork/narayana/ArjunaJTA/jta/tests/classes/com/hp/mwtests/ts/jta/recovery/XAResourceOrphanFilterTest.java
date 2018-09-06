@@ -103,7 +103,11 @@ public class XAResourceOrphanFilterTest
             Uid uid = new Uid();
 
             Xid xid = XATxConverter.getXid(uid, false, XATxConverter.FORMAT_ID);
+	    /*
+	     *
             assertEquals(XAResourceOrphanFilter.Vote.ROLLBACK, orphanFilter.checkXid(xid));
+	    * https://github.com/nmcl
+	    */
 
             TwoPhaseCoordinator tpc = new TwoPhaseCoordinator(uid);
             try {
