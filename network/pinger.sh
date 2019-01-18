@@ -8,6 +8,8 @@ do
 
 sleep 600
 
+date
+
 ping -c 10 www.bbc.co.uk
 
 done
