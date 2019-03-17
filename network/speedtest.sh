@@ -12,5 +12,7 @@ date
 
 curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip
 
+echo
+
 done
 done
