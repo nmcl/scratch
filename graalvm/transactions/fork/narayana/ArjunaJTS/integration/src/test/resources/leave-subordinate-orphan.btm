@@ -1,0 +1,18 @@
+########################################################################
+#
+# byteman script used to ensure that tests can synchronize with various
+# actions performed by the recovery code
+
+
+
+#########################################################################
+RULE Fail phase2Commit
+CLASS  com.arjuna.ats.arjuna.coordinator.BasicAction
+METHOD phase2Commit
+AT ENTRY
+BIND NOTHING
+IF readCounter("phase2commit") < 2
+	DO debug("Called"),
+	incrementCounter("phase2commit");
+	throw new Error()
+ENDRULE

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ArjunaJTA/jdbc/classes"/>
+	<classpathentry kind="src" path="ArjunaJTS/idl/jacorb/target/generated-sources/idl"/>
+	<classpathentry kind="src" path="STM/src/main/java"/>
+	<classpathentry kind="src" path="STM/src/test/java"/>
+	<classpathentry kind="src" path="ArjunaJTS/jtax/classes"/>
+	<classpathentry kind="src" path="ArjunaCore/txoj/classes"/>
+	<classpathentry kind="src" path="ArjunaJTS/orbportability/classes"/>
+	<classpathentry kind="src" path="ArjunaJTS/jts/classes"/>
+	<classpathentry kind="src" path="ArjunaJTS/jts/tests/classes"/>
+	<classpathentry kind="src" path="ArjunaCore/arjuna/tests/classes"/>
+	<classpathentry kind="src" path="ArjunaJTA/jdbc/tests/classes"/>
+	<classpathentry kind="src" path="ArjunaJTS/jtax/tests/classes"/>
+	<classpathentry kind="src" path="ArjunaJTA/jta/tests/classes"/>
+	<classpathentry kind="src" path="common/tests"/>
+	<classpathentry kind="src" path="ArjunaCore/arjuna/classes"/>
+	<classpathentry kind="src" path="ArjunaJTA/jta/classes"/>
+	<classpathentry kind="src" path="common/classes"/>
+	<classpathentry kind="src" path="ArjunaCore/txoj/tests/classes"/>
+	<classpathentry kind="src" path="ArjunaJTS/orbportability/tests/classes"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
