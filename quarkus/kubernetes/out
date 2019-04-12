@@ -1,0 +1,4 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    96  100    96    0     0  16704      0 --:--:-- --:--:-- --:--:-- 19200
+RESTEASY003210: Could not find resource for full path: http://192.168.99.100:31243/hello/quarkus
