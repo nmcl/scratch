@@ -5,3 +5,5 @@ Note, with the exception of Shamrock, the work is currently based on the Decembe
 The fork directory contains the source of the Narayana builds that are used to get this to work. Should probably be a branch on the Narayana repo but here for simplicitly at the moment.
 
 Licencing covered by default by top level licence but some folders, such as JTA, contain their own which overrides.
+
+Make sure to add . to CLASSPATH and set JAVA_HOME to GRAALVM_HOME
