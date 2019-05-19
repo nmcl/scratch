@@ -1,5 +1,7 @@
 Various examples to try out Excelsior. Don't look here for much structure of refactoring - it's quick and dirty!
 
+Note, pretty much frozen now in preference to Graal efforts.
+
 ----
 
 Persistent testing shows for non-compiled (Excelsior):
