@@ -1,6 +1,6 @@
-Various examples to try out Excelsior. Don't look here for much structure of refactoring - it's quick and dirty!
+Various examples to try out Excelsior JET. Don't look here for much structure of refactoring - it's quick and dirty!
 
-Note, pretty much frozen now in preference to Graal efforts.
+Note, pretty much frozen now in preference to GraalVM efforts.
 
 ----
 
