@@ -5,3 +5,4 @@ x.fillRect(                                     // draw rectangle
   i? 500 + .2 * ( 2*i*C(F) + 2e4/i ) : 0,       // Y coord
   K = i++? S(i)*9 : 2e3, K)                     // width, height 
   // from http://frankforce.com/?p=6378
+// http://capjs.3d2k.com/
