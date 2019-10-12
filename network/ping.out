@@ -1,0 +1,224 @@
+Sun 21 Apr 2019 11:20:53 BST
+PING www.bbc.net.uk (212.58.244.70): 56 data bytes
+64 bytes from 212.58.244.70: icmp_seq=0 ttl=53 time=53.442 ms
+64 bytes from 212.58.244.70: icmp_seq=1 ttl=53 time=24.951 ms
+64 bytes from 212.58.244.70: icmp_seq=2 ttl=53 time=31.868 ms
+64 bytes from 212.58.244.70: icmp_seq=3 ttl=53 time=30.747 ms
+64 bytes from 212.58.244.70: icmp_seq=4 ttl=53 time=47.173 ms
+64 bytes from 212.58.244.70: icmp_seq=5 ttl=53 time=36.960 ms
+64 bytes from 212.58.244.70: icmp_seq=6 ttl=53 time=35.545 ms
+64 bytes from 212.58.244.70: icmp_seq=7 ttl=53 time=38.160 ms
+64 bytes from 212.58.244.70: icmp_seq=8 ttl=53 time=56.830 ms
+64 bytes from 212.58.244.70: icmp_seq=9 ttl=53 time=23.171 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 23.171/37.885/56.830/10.791 ms
+Sun 21 Apr 2019 11:31:02 BST
+PING www.bbc.net.uk (212.58.249.215): 56 data bytes
+64 bytes from 212.58.249.215: icmp_seq=0 ttl=54 time=138.225 ms
+64 bytes from 212.58.249.215: icmp_seq=1 ttl=54 time=145.978 ms
+64 bytes from 212.58.249.215: icmp_seq=2 ttl=54 time=111.013 ms
+64 bytes from 212.58.249.215: icmp_seq=3 ttl=54 time=111.530 ms
+64 bytes from 212.58.249.215: icmp_seq=4 ttl=54 time=40.132 ms
+64 bytes from 212.58.249.215: icmp_seq=5 ttl=54 time=95.944 ms
+64 bytes from 212.58.249.215: icmp_seq=6 ttl=54 time=117.885 ms
+64 bytes from 212.58.249.215: icmp_seq=7 ttl=54 time=118.052 ms
+64 bytes from 212.58.249.215: icmp_seq=8 ttl=54 time=33.109 ms
+64 bytes from 212.58.249.215: icmp_seq=9 ttl=54 time=69.779 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 33.109/98.165/145.978/36.647 ms
+Sun 21 Apr 2019 11:41:11 BST
+PING www.bbc.net.uk (212.58.244.71): 56 data bytes
+64 bytes from 212.58.244.71: icmp_seq=0 ttl=53 time=25.472 ms
+64 bytes from 212.58.244.71: icmp_seq=1 ttl=53 time=26.367 ms
+64 bytes from 212.58.244.71: icmp_seq=2 ttl=53 time=22.154 ms
+64 bytes from 212.58.244.71: icmp_seq=3 ttl=53 time=27.885 ms
+64 bytes from 212.58.244.71: icmp_seq=4 ttl=53 time=30.291 ms
+64 bytes from 212.58.244.71: icmp_seq=5 ttl=53 time=45.535 ms
+64 bytes from 212.58.244.71: icmp_seq=6 ttl=53 time=30.714 ms
+64 bytes from 212.58.244.71: icmp_seq=7 ttl=53 time=141.215 ms
+64 bytes from 212.58.244.71: icmp_seq=8 ttl=53 time=63.954 ms
+64 bytes from 212.58.244.71: icmp_seq=9 ttl=53 time=64.074 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 22.154/47.766/141.215/34.450 ms
+Sun 21 Apr 2019 11:51:20 BST
+PING www.bbc.net.uk (212.58.249.210): 56 data bytes
+64 bytes from 212.58.249.210: icmp_seq=0 ttl=54 time=46.757 ms
+64 bytes from 212.58.249.210: icmp_seq=1 ttl=54 time=51.435 ms
+64 bytes from 212.58.249.210: icmp_seq=2 ttl=54 time=47.268 ms
+64 bytes from 212.58.249.210: icmp_seq=3 ttl=54 time=51.328 ms
+64 bytes from 212.58.249.210: icmp_seq=4 ttl=54 time=34.982 ms
+64 bytes from 212.58.249.210: icmp_seq=5 ttl=54 time=51.693 ms
+64 bytes from 212.58.249.210: icmp_seq=6 ttl=54 time=45.721 ms
+64 bytes from 212.58.249.210: icmp_seq=7 ttl=54 time=45.978 ms
+64 bytes from 212.58.249.210: icmp_seq=8 ttl=54 time=39.342 ms
+64 bytes from 212.58.249.210: icmp_seq=9 ttl=54 time=44.610 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 34.982/45.911/51.693/5.101 ms
+Sun 21 Apr 2019 12:01:29 BST
+PING www.bbc.net.uk (212.58.244.68): 56 data bytes
+64 bytes from 212.58.244.68: icmp_seq=0 ttl=53 time=31.850 ms
+64 bytes from 212.58.244.68: icmp_seq=1 ttl=53 time=61.459 ms
+64 bytes from 212.58.244.68: icmp_seq=2 ttl=53 time=26.060 ms
+64 bytes from 212.58.244.68: icmp_seq=3 ttl=53 time=15.038 ms
+64 bytes from 212.58.244.68: icmp_seq=4 ttl=53 time=41.971 ms
+64 bytes from 212.58.244.68: icmp_seq=5 ttl=53 time=41.403 ms
+64 bytes from 212.58.244.68: icmp_seq=6 ttl=53 time=28.617 ms
+64 bytes from 212.58.244.68: icmp_seq=7 ttl=53 time=53.584 ms
+64 bytes from 212.58.244.68: icmp_seq=8 ttl=53 time=19.387 ms
+64 bytes from 212.58.244.68: icmp_seq=9 ttl=53 time=42.594 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 15.038/36.196/61.459/13.969 ms
+Sun 21 Apr 2019 12:43:47 BST
+PING www.bbc.net.uk (212.58.249.213): 56 data bytes
+64 bytes from 212.58.249.213: icmp_seq=0 ttl=54 time=15.610 ms
+64 bytes from 212.58.249.213: icmp_seq=1 ttl=54 time=29.362 ms
+64 bytes from 212.58.249.213: icmp_seq=2 ttl=54 time=27.132 ms
+64 bytes from 212.58.249.213: icmp_seq=3 ttl=54 time=29.861 ms
+64 bytes from 212.58.249.213: icmp_seq=4 ttl=54 time=30.117 ms
+64 bytes from 212.58.249.213: icmp_seq=5 ttl=54 time=32.518 ms
+64 bytes from 212.58.249.213: icmp_seq=6 ttl=54 time=15.242 ms
+64 bytes from 212.58.249.213: icmp_seq=7 ttl=54 time=76.774 ms
+64 bytes from 212.58.249.213: icmp_seq=8 ttl=54 time=24.721 ms
+64 bytes from 212.58.249.213: icmp_seq=9 ttl=54 time=39.186 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 15.242/32.052/76.774/16.425 ms
+Sun 21 Apr 2019 12:53:56 BST
+PING www.bbc.net.uk (212.58.244.68): 56 data bytes
+64 bytes from 212.58.244.68: icmp_seq=0 ttl=53 time=14.813 ms
+64 bytes from 212.58.244.68: icmp_seq=1 ttl=53 time=15.676 ms
+64 bytes from 212.58.244.68: icmp_seq=2 ttl=53 time=15.570 ms
+64 bytes from 212.58.244.68: icmp_seq=3 ttl=53 time=16.113 ms
+64 bytes from 212.58.244.68: icmp_seq=4 ttl=53 time=15.206 ms
+64 bytes from 212.58.244.68: icmp_seq=5 ttl=53 time=16.784 ms
+64 bytes from 212.58.244.68: icmp_seq=6 ttl=53 time=15.627 ms
+64 bytes from 212.58.244.68: icmp_seq=7 ttl=53 time=15.625 ms
+64 bytes from 212.58.244.68: icmp_seq=8 ttl=53 time=15.773 ms
+64 bytes from 212.58.244.68: icmp_seq=9 ttl=53 time=15.735 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 14.813/15.692/16.784/0.491 ms
+Sun 21 Apr 2019 13:26:08 BST
+PING www.bbc.net.uk (212.58.249.213): 56 data bytes
+64 bytes from 212.58.249.213: icmp_seq=0 ttl=54 time=25.217 ms
+64 bytes from 212.58.249.213: icmp_seq=1 ttl=54 time=26.956 ms
+64 bytes from 212.58.249.213: icmp_seq=2 ttl=54 time=25.302 ms
+64 bytes from 212.58.249.213: icmp_seq=3 ttl=54 time=26.537 ms
+64 bytes from 212.58.249.213: icmp_seq=4 ttl=54 time=25.059 ms
+64 bytes from 212.58.249.213: icmp_seq=5 ttl=54 time=15.469 ms
+64 bytes from 212.58.249.213: icmp_seq=6 ttl=54 time=27.600 ms
+64 bytes from 212.58.249.213: icmp_seq=7 ttl=54 time=33.041 ms
+64 bytes from 212.58.249.213: icmp_seq=8 ttl=54 time=18.555 ms
+64 bytes from 212.58.249.213: icmp_seq=9 ttl=54 time=41.182 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 15.469/26.492/41.182/6.706 ms
+Sun 21 Apr 2019 13:36:17 BST
+PING www.bbc.net.uk (212.58.244.66): 56 data bytes
+64 bytes from 212.58.244.66: icmp_seq=0 ttl=53 time=30.337 ms
+64 bytes from 212.58.244.66: icmp_seq=1 ttl=53 time=27.808 ms
+64 bytes from 212.58.244.66: icmp_seq=2 ttl=53 time=33.580 ms
+64 bytes from 212.58.244.66: icmp_seq=3 ttl=53 time=24.132 ms
+64 bytes from 212.58.244.66: icmp_seq=4 ttl=53 time=32.738 ms
+64 bytes from 212.58.244.66: icmp_seq=5 ttl=53 time=27.381 ms
+64 bytes from 212.58.244.66: icmp_seq=6 ttl=53 time=31.886 ms
+64 bytes from 212.58.244.66: icmp_seq=7 ttl=53 time=33.420 ms
+64 bytes from 212.58.244.66: icmp_seq=8 ttl=53 time=33.903 ms
+64 bytes from 212.58.244.66: icmp_seq=9 ttl=53 time=31.872 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 24.132/30.706/33.903/3.091 ms
+Sun 21 Apr 2019 13:46:26 BST
+PING www.bbc.net.uk (212.58.249.208): 56 data bytes
+64 bytes from 212.58.249.208: icmp_seq=0 ttl=54 time=29.304 ms
+64 bytes from 212.58.249.208: icmp_seq=1 ttl=54 time=28.248 ms
+64 bytes from 212.58.249.208: icmp_seq=2 ttl=54 time=29.056 ms
+64 bytes from 212.58.249.208: icmp_seq=3 ttl=54 time=28.280 ms
+64 bytes from 212.58.249.208: icmp_seq=4 ttl=54 time=25.922 ms
+64 bytes from 212.58.249.208: icmp_seq=5 ttl=54 time=32.206 ms
+64 bytes from 212.58.249.208: icmp_seq=6 ttl=54 time=30.814 ms
+64 bytes from 212.58.249.208: icmp_seq=7 ttl=54 time=22.818 ms
+64 bytes from 212.58.249.208: icmp_seq=8 ttl=54 time=35.381 ms
+64 bytes from 212.58.249.208: icmp_seq=9 ttl=54 time=46.923 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 22.818/30.895/46.923/6.233 ms
+Sun 21 Apr 2019 13:56:35 BST
+PING www.bbc.net.uk (212.58.244.26): 56 data bytes
+64 bytes from 212.58.244.26: icmp_seq=0 ttl=53 time=23.709 ms
+64 bytes from 212.58.244.26: icmp_seq=1 ttl=53 time=26.009 ms
+64 bytes from 212.58.244.26: icmp_seq=2 ttl=53 time=25.916 ms
+64 bytes from 212.58.244.26: icmp_seq=3 ttl=53 time=29.181 ms
+64 bytes from 212.58.244.26: icmp_seq=4 ttl=53 time=23.913 ms
+64 bytes from 212.58.244.26: icmp_seq=5 ttl=53 time=76.805 ms
+64 bytes from 212.58.244.26: icmp_seq=6 ttl=53 time=78.544 ms
+64 bytes from 212.58.244.26: icmp_seq=7 ttl=53 time=108.447 ms
+64 bytes from 212.58.244.26: icmp_seq=8 ttl=53 time=137.910 ms
+64 bytes from 212.58.244.26: icmp_seq=9 ttl=53 time=89.976 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 23.709/62.041/137.910/39.732 ms
+Sun 21 Apr 2019 14:06:44 BST
+PING www.bbc.net.uk (212.58.244.68): 56 data bytes
+64 bytes from 212.58.244.68: icmp_seq=0 ttl=53 time=14.899 ms
+64 bytes from 212.58.244.68: icmp_seq=1 ttl=53 time=15.519 ms
+64 bytes from 212.58.244.68: icmp_seq=2 ttl=53 time=15.525 ms
+64 bytes from 212.58.244.68: icmp_seq=3 ttl=53 time=66.426 ms
+64 bytes from 212.58.244.68: icmp_seq=4 ttl=53 time=111.331 ms
+64 bytes from 212.58.244.68: icmp_seq=5 ttl=53 time=139.324 ms
+64 bytes from 212.58.244.68: icmp_seq=6 ttl=53 time=99.793 ms
+64 bytes from 212.58.244.68: icmp_seq=7 ttl=53 time=123.747 ms
+64 bytes from 212.58.244.68: icmp_seq=8 ttl=53 time=15.301 ms
+64 bytes from 212.58.244.68: icmp_seq=9 ttl=53 time=15.554 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 14.899/61.742/139.324/49.547 ms
+Sun 21 Apr 2019 14:16:54 BST
+PING www.bbc.net.uk (212.58.249.211): 56 data bytes
+64 bytes from 212.58.249.211: icmp_seq=0 ttl=54 time=109.891 ms
+64 bytes from 212.58.249.211: icmp_seq=1 ttl=54 time=99.498 ms
+64 bytes from 212.58.249.211: icmp_seq=2 ttl=54 time=88.517 ms
+64 bytes from 212.58.249.211: icmp_seq=3 ttl=54 time=115.342 ms
+64 bytes from 212.58.249.211: icmp_seq=4 ttl=54 time=124.034 ms
+64 bytes from 212.58.249.211: icmp_seq=5 ttl=54 time=46.611 ms
+64 bytes from 212.58.249.211: icmp_seq=6 ttl=54 time=14.952 ms
+64 bytes from 212.58.249.211: icmp_seq=7 ttl=54 time=15.763 ms
+64 bytes from 212.58.249.211: icmp_seq=8 ttl=54 time=15.997 ms
+64 bytes from 212.58.249.211: icmp_seq=9 ttl=54 time=15.759 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 14.952/64.636/124.034/44.575 ms
+Sun 21 Apr 2019 14:27:03 BST
+PING www.bbc.net.uk (212.58.244.69): 56 data bytes
+64 bytes from 212.58.244.69: icmp_seq=0 ttl=53 time=137.227 ms
+64 bytes from 212.58.244.69: icmp_seq=1 ttl=53 time=78.821 ms
+64 bytes from 212.58.244.69: icmp_seq=2 ttl=53 time=97.755 ms
+64 bytes from 212.58.244.69: icmp_seq=3 ttl=53 time=92.275 ms
+64 bytes from 212.58.244.69: icmp_seq=4 ttl=53 time=15.485 ms
+64 bytes from 212.58.244.69: icmp_seq=5 ttl=53 time=16.460 ms
+64 bytes from 212.58.244.69: icmp_seq=6 ttl=53 time=16.308 ms
+64 bytes from 212.58.244.69: icmp_seq=7 ttl=53 time=26.100 ms
+64 bytes from 212.58.244.69: icmp_seq=8 ttl=53 time=23.817 ms
+64 bytes from 212.58.244.69: icmp_seq=9 ttl=53 time=24.530 ms
+
+--- www.bbc.net.uk ping statistics ---
+10 packets transmitted, 10 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 15.485/52.878/137.227/42.167 ms
