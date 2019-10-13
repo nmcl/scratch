@@ -1,1 +1,1 @@
-Playing around with physics for JavaScript.
+Playing around with JavaScript programs which illustrate laws of physics.
