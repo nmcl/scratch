@@ -5,6 +5,11 @@
 
 public class DNA
 {
+    /**
+     * Normally specified per species but every now and then a randome
+     * element will creap in to change some of these values.
+     */
+    
     public enum Behaviours {
 	NUMBER_OF_LEGS,  // can be useful in combat or as predator/prey
 	NUMBER_OF_ARMS,  // can be useful in combat or as predator/prey
@@ -26,6 +31,21 @@ public class DNA
 	ARMOUR,  // gives protection against cold and combat
 	HAIR,  // gives some protection against cold
 	WINGS,  // assume even number needed to fly
+	CAN_REPRODUCE, // should usually be non-zero
 	FLYING_SPEED // if 0 then can't fly even if have wings
     }
+
+    public int getValue (int v)
+    {
+	return _theMagic[v];
+    }
+
+    public void setValue (int v, int n)
+    {
+	_theMagic[v] = n;
+    }
+
+    private static final int SIZE_OF_MAGIC = 100;
+    
+    private int[] _theMagic = new int[SIZE_OF_MAGIC];
 }

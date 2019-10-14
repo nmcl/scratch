@@ -4,5 +4,5 @@
 
 public class Creature
 {
-    private DNA _theMagic;
+    private DNA _theDNA;
 }
