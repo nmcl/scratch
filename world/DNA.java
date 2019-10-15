@@ -20,7 +20,7 @@ public class DNA
 	TEMPERATURE_THRESHOLD,  // how much less than base it can survive
 	BASE_OXYGEN,  // base needed to live
 	OXYGEN_THRESHOLD,  // how much less than base it can survive
-	CANCER,  // non-zero means has it and aggressiveness
+	DISEASE,  // non-zero means has a disease and aggressiveness
 	LIFESPAN,  // in units of the world
 	MALE,  // non-zero means yes
 	FEMALE,  // non-zero means yes
