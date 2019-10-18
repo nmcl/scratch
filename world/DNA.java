@@ -19,6 +19,9 @@ public class DNA
 	OVERALL_SIZE,  // size
 	BASE_TEMPERATURE,  // base needed to live
 	TEMPERATURE_THRESHOLD,  // how much less than base it can survive
+	LAND_BASED, // does the creature live on the land?
+	WATER_BASED, // does the creature live in water/ocean?
+	AIR_BASED, // does the creature live in the air?
 	BASE_OXYGEN,  // base needed to live
 	OXYGEN_THRESHOLD,  // how much less than base it can survive
 	DISEASE,  // non-zero means has a disease and aggressiveness
