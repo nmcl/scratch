@@ -21,6 +21,21 @@
  * - average values/range.
  * - range between minor and average which is positive somehow?
  * - range between average and major which is positive somehow?
+ *
+ * Examples:
+ *
+ * Heads:
+ * - 0 is dead!
+ * - 1 is the optimum value.
+ * - multiple is chaos and dead.
+ *
+ * Legs:
+ * - 0 is dead (easy for predators).
+ * - 1 is dead (easy for predators).
+ * - 2 is ok.
+ * - 3 is chaos (dead).
+ * - 4 is good for speed.
+ * - 5 and above chaos (dead). Though maybe 6 and 8 are ok?
  */
 
 public class DNA
