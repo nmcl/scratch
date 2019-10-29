@@ -11,6 +11,18 @@
  * chance of surviving.
  */
 
+/**
+ * Each element of DNA has a range of values. And a chance of mutation.
+ * Does the chance change as the value changes?
+ *
+ * Think of it as a spectrum.
+ * - minor range at far left which is bad.
+ * - major range at far right which is bad.
+ * - average values/range.
+ * - range between minor and average which is positive somehow?
+ * - range between average and major which is positive somehow?
+ */
+
 public class DNA
 {
     /**
