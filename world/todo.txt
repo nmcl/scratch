@@ -8,4 +8,4 @@ Each attribute of DNA should have some kind of "Goldilocks zone" whereby values 
 - Each trait encodes the rules.
 - Also the probability of mutation based on the current value.
 
-The animal class contains values for each trait. WE then give the current value to the Trait instance for each value and ask it to generate a new number. The new number is then used to influence whether the creature will live or die.
+The animal class contains values for each trait. We then give the current value to the Trait instance for each value and ask it to generate a new number. The new number is then used to influence whether the creature will live or die.
