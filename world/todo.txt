@@ -1,13 +1,13 @@
 Not in priority ordering ...
 
-Need some way or defining the probability that a "gene" will evolve.
+- Need some way or defining the probability that a "gene" will evolve.
 
-Need some way to define key "gene" values that help the current generation survive better than others and hence should not be evolved away. Beneficial versus harmful.
+- Need some way to define key "gene" values that help the current generation survive better than others and hence should not be evolved away. Beneficial versus harmful.
 
-Each attribute of DNA should have some kind of "Goldilocks zone" whereby values within a certain range are stable, those below a value are detrimental and those above are beneficial.
+- Each attribute of DNA should have some kind of "Goldilocks zone" whereby values within a certain range are stable, those below a value are detrimental and those above are beneficial.
 
-- DNA strand class per trait.
-- Each trait encodes the rules.
-- Also the probability of mutation based on the current value.
+  - DNA strand class per trait.
+  - Each trait encodes the rules.
+  - Also the probability of mutation based on the current value.
 
-The animal class contains values for each trait. We then give the current value to the Trait instance for each value and ask it to generate a new number. The new number is then used to influence whether the creature will live or die.
+- The animal class contains values for each trait. We then give the current value to the Trait instance for each value and ask it to generate a new number. The new number is then used to influence whether the creature will live or die.
