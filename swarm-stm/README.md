@@ -1,6 +1,6 @@
 # JAX-RS & Arjuna Software Transactional Memory
 
-Old code. Look in Swarm/Thorntail and/or Narayana.
+Old code. Look in the WildFLy Swarm/Thorntail and/or Narayana projects for updates.
 
 NOTE: taken from https://github.com/nmcl/wildfly-swarm-examples as STM classes not being picked up with fatjar.
 
