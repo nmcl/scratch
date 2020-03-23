@@ -22,14 +22,14 @@ public class growth
 
 	    if ("-infection".equals(args[i]))
 	    {
-		Double inf = new Double(args[i+1]);
+		Double inf = Double.parseDouble(args[i+1]);
 
 		r = inf.doubleValue();
 	    }
 
 	    if ("-time".equals(args[i]))
 	    {
-		Integer time = new Integer(args[i+1]);
+		Integer time = Integer.parseInt(args[i+1]);
 
 		t = time.intValue();
 	    }
