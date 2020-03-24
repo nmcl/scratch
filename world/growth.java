@@ -11,15 +11,23 @@ public class growth
 	double r = 0.3; // infection rate
 	int x = 0;
 	int t = 100;
+	int p = 0;
 	
 	for (int i = 0; i < args.length; i++)
         {
 	    if ("-help".equals(args[i]))
 	    {
-		System.out.println("growth [-infection <value>] [-time <value>] [-help]");
+		System.out.println("growth [-infection <value>] [-time <value>] [-population <value>] [-help]");
 		System.exit(0);
 	    }
 
+	    if ("-population".equals(args[i]))
+	    {
+		Integer pop = Integer.parseInt(args[i+1]);
+
+		p = pop.intValue();
+	    }
+	    
 	    if ("-infection".equals(args[i]))
 	    {
 		Double inf = Double.parseDouble(args[i+1]);
@@ -35,7 +43,7 @@ public class growth
 	    }
 	}
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < t; i++)
 	{
 	    System.out.println("Time: "+i);
 
@@ -44,6 +52,15 @@ public class growth
 	    System.out.println("Infected: "+y);
 
 	    a = y;
+
+	    if (p != 0)
+	    {
+		if (a > p)
+		{
+		    System.out.println("It took "+i+" iterations to saturate the population");
+		    System.exit(0);
+		}
+	    }
 	}
     }
 }
