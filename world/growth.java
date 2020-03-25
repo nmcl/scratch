@@ -42,8 +42,10 @@ public class growth
 		t = time.intValue();
 	    }
 	}
+	     
+	System.out.println("Time: 0\nInfected: "+a);
 
-	for (int i = 0; i < t; i++)
+	for (int i = 1; i < t; i++)
 	{
 	    System.out.println("Time: "+i);
 
