@@ -12,6 +12,7 @@ public class growth
 	int x = 0;
 	int t = 100;
 	int p = 0;
+	int mingleSeed = 0; // a fudge factor to represent population mingling or not
 	
 	for (int i = 0; i < args.length; i++)
         {
