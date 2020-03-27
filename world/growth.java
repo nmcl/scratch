@@ -12,14 +12,27 @@ public class growth
 	int x = 0;
 	int t = 100;
 	int p = 0;
-	int mingleSeed = 0; // a fudge factor to represent population mingling or not
-	
+	int mingle = 0; // a fudge factor to represent population mingling or not
+	int isolate = 0; // a fudge factor to represent population that isolates
+
 	for (int i = 0; i < args.length; i++)
         {
 	    if ("-help".equals(args[i]))
 	    {
-		System.out.println("growth [-infection <value>] [-time <value>] [-population <value>] [-help]");
+		System.out.println("growth [-infection <value>] [-time <value>] [-population <value>] [-mingle <value>] [-help]");
 		System.exit(0);
+	    }
+
+	    /**
+	     * The act of mingling increases the chance of cross pollination
+	     * of the infection, i.e., it increases the infection rate.
+	     */
+
+	    if ("-mingle".equals(arg[i]))
+	    {
+		Double m = Double.parseDouble(args[i+1]);
+
+		mingle = m.doubleValue();
 	    }
 
 	    if ("-population".equals(args[i]))
