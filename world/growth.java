@@ -12,14 +12,14 @@ public class growth
 	int x = 0;
 	int t = 100;
 	int p = 0;
-	int mingle = 0; // a fudge factor to represent population mingling or not
-	int isolate = 0; // a fudge factor to represent population that isolates
+	double mingle = 0.0; // a fudge factor to represent population mingling or not
+	double isolate = 0.0; // a fudge factor to represent population that isolates
 
 	for (int i = 0; i < args.length; i++)
         {
 	    if ("-help".equals(args[i]))
 	    {
-		System.out.println("growth [-infection <value>] [-time <value>] [-population <value>] [-mingle <value>] [-help]");
+		System.out.println("growth [-infection <value>] [-time <value>] [-population <value>] [-mingle <value>] [-isolate <value>] [-help]");
 		System.exit(0);
 	    }
 
@@ -28,11 +28,22 @@ public class growth
 	     * of the infection, i.e., it increases the infection rate.
 	     */
 
-	    if ("-mingle".equals(arg[i]))
+	    if ("-mingle".equals(args[i]))
 	    {
 		Double m = Double.parseDouble(args[i+1]);
 
 		mingle = m.doubleValue();
+	    }
+
+	    /**
+	     * The act of isolating reduces the changes of cross pollination.
+	     */
+
+	    if ("-isolate".equals(args[i]))
+	    {
+		Double iso = Double.parseDouble(args[i+1]);
+
+		isolate = iso.doubleValue();
 	    }
 
 	    if ("-population".equals(args[i]))
