@@ -70,9 +70,10 @@ public class growth
 
 	/**
 	 * What do we do with mingle and isolate? Since they both affect the infection rate
-	 * we'll start with a simple alogorithm of adding mingle and subtracting isolate.
+	 * we'll have different algorithms:
 	 *
-	 * Maybe we can add an option to define how they are used?
+	 * (i) a simple alogorithm of adding mingle and subtracting isolate.
+	 * (ii)
 	 */
 
 	r = r + mingle - isolate;
