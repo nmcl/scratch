@@ -14,12 +14,21 @@ public class growth
 	int p = 0;
 	double mingle = 0.0; // a fudge factor to represent population mingling or not
 	double isolate = 0.0; // a fudge factor to represent population that isolates
+	int algorithm = 1;
+
+	/**
+	 * What do we do with mingle and isolate? Since they both affect the infection rate
+	 * we'll have different algorithms:
+	 *
+	 * (i) a simple alogorithm of adding mingle and subtracting isolate.
+	 * (ii)
+	 */
 
 	for (int i = 0; i < args.length; i++)
         {
 	    if ("-help".equals(args[i]))
 	    {
-		System.out.println("growth [-infection <value>] [-time <value>] [-population <value>] [-mingle <value>] [-isolate <value>] [-help]");
+		System.out.println("growth [-infection <value>] [-time <value>] [-population <value>] [-mingle <value>] [-isolate <value>] <-algo <value>] [-help]");
 		System.exit(0);
 	    }
 
@@ -51,6 +60,13 @@ public class growth
 		Integer pop = Integer.parseInt(args[i+1]);
 
 		p = pop.intValue();
+	    }
+
+	    if ("-algo".equals(args[i]))
+	    {
+		Integer a = Integer.parseInt(args[i+1]);
+
+		algorithm = pop.intValue();
 	    }
 	    
 	    if ("-infection".equals(args[i]))
