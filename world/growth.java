@@ -64,9 +64,9 @@ public class growth
 
 	    if ("-algo".equals(args[i]))
 	    {
-		Integer a = Integer.parseInt(args[i+1]);
+		Integer al = Integer.parseInt(args[i+1]);
 
-		algorithm = pop.intValue();
+		algorithm = al.intValue();
 	    }
 	    
 	    if ("-infection".equals(args[i]))
@@ -92,7 +92,16 @@ public class growth
 	 * (ii)
 	 */
 
-	r = r + mingle - isolate;
+	switch (algorithm)
+	{
+	case 1:
+	    System.out.println("Algorithm 1.");
+	    r = r + mingle - isolate;
+	    break;
+	default:
+	    System.out.println("Algorithm "+algorithm+" unknown.");
+	    System.exit(0);
+	}
 
 	System.out.println("Time: 0\nInfected: "+a);
 
