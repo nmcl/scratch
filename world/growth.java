@@ -1,3 +1,7 @@
+/**
+ * Simulate viral growth through exponential formula.
+ */
+
 public class growth
 {
     public static void main (String[] args)
