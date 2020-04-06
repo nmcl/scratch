@@ -89,7 +89,7 @@ public class growth
 	 * we'll have different algorithms:
 	 *
 	 * (i) a simple alogorithm of adding mingle and subtracting isolate.
-	 * (ii)
+	 * (ii) mingle is a multiplies for r and isolate is a divisor.
 	 */
 
 	switch (algorithm)
@@ -97,6 +97,10 @@ public class growth
 	case 1:
 	    System.out.println("Algorithm 1.");
 	    r = r + mingle - isolate;
+	    break;
+	case 2:
+	    System.out.println("Algorithm 2.");
+	    r = r*(mingle/isolate);
 	    break;
 	default:
 	    System.out.println("Algorithm "+algorithm+" unknown.");
