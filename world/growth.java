@@ -20,14 +20,6 @@ public class growth
 	double isolate = 0.0; // a fudge factor to represent population that isolates
 	int algorithm = 1;
 
-	/**
-	 * What do we do with mingle and isolate? Since they both affect the infection rate
-	 * we'll have different algorithms:
-	 *
-	 * (i) a simple alogorithm of adding mingle and subtracting isolate.
-	 * (ii)
-	 */
-
 	for (int i = 0; i < args.length; i++)
         {
 	    if ("-help".equals(args[i]))
