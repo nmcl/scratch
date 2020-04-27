@@ -15,10 +15,10 @@ public class growth
 	double r = 0.3; // infection rate
 	int x = 0;
 	int t = 100;
-	int p = 0;
 	double mingle = 0.0; // a fudge factor to represent population mingling or not
 	double isolate = 0.0; // a fudge factor to represent population that isolates
 	int algorithm = 1;
+	int population = 0;
 
 	for (int i = 0; i < args.length; i++)
         {
@@ -51,11 +51,16 @@ public class growth
 		isolate = iso.doubleValue();
 	    }
 
+	    /**
+	     * Set the population so we can determine after how many iterations the
+	     * virus reaches saturation and we stop.
+	     */
+
 	    if ("-population".equals(args[i]))
 	    {
 		Integer pop = Integer.parseInt(args[i+1]);
 
-		p = pop.intValue();
+		population = pop.intValue();
 	    }
 
 	    if ("-algo".equals(args[i]))
@@ -115,9 +120,9 @@ public class growth
 
 	    a = y;
 
-	    if (p != 0)
+	    if (population != 0)
 	    {
-		if (a > p)
+		if (a > population)
 		{
 		    System.out.println("It took "+i+" iterations to saturate the population");
 		    System.exit(0);
