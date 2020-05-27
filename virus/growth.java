@@ -1,5 +1,7 @@
 /**
  * Simulate viral growth through exponential formula.
+ *
+ * Dedicated to Elizabeth Little, born May 6th 1947, died May 12th 2020. Victim of coronavirus.
  */
 
 public class growth
