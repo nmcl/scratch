@@ -8,4 +8,5 @@ public class Hearts implements Suite
     {
     }
 
-    private 
+    private Card[13] _theCards;
+}
