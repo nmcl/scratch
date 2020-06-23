@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Shuffle
 {
@@ -6,6 +7,10 @@ public class Shuffle
 
     public static void main (String args[])
     {
+	Random randCard = new Random();
+	Random randSuite = new Random();
+
+	
     }
 
     private Card[] _hearts = new Card[13];
