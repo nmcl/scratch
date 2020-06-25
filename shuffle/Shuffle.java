@@ -16,6 +16,11 @@ public class Shuffle
 	while (!finished)
 	{
 	    int theSuite = randSuite.nextInt(3);
+
+	    switch (theSuite)
+	    {
+	    case 0:
+		if 
 	}
     }
 
