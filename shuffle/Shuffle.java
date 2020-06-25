@@ -6,7 +6,6 @@ public class Shuffle
     public static void main (String args[])
     {
 	Random randCard = new Random();
-	Random randSuite = new Random();
 	boolean finished = false;
 
 	initialiseSuite(_hearts);
@@ -18,6 +17,11 @@ public class Shuffle
 	{
 	    int theSuite = randSuite.nextInt(3);
 	}
+    }
+
+    private int getCard (int[] suite)
+    {
+	
     }
 
     private void initialiseSuite (int[] suite)
@@ -33,7 +37,10 @@ public class Shuffle
 		else
 		    suite[i] = i;
 	    }
+	}
     }
+
+    private Random _randSuite = new Random();
 
     private int[] _hearts = new int[13];
     private int[] _spades = new int[13];
