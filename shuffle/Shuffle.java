@@ -43,7 +43,11 @@ public class Shuffle
     private Random _randSuite = new Random();
 
     private int[] _hearts = new int[13];
+    private int _heartsLeft = 13;
     private int[] _spades = new int[13];
+    private int _spadesLeft = 13;
     private int[] _clubs = new int[13];
+    private int _clubsLeft = 13;
     private int[] _diamonds = new int[13];
+    private int _diamondsLeft = 13;
 }
