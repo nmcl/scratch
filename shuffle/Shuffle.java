@@ -9,8 +9,11 @@ public class Shuffle
     {
 	Random randCard = new Random();
 	Random randSuite = new Random();
+	boolean finished = false;
 
-	
+	while (!finished)
+	{
+	}
     }
 
     private Card[] _hearts = new Card[13];
