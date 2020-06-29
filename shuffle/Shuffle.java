@@ -20,7 +20,10 @@ public class Shuffle
 	    switch (theSuite)
 	    {
 	    case 0:
-		if 
+		break;
+	    default:
+		break;
+	    }
 	}
     }
 
