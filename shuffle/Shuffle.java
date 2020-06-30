@@ -50,6 +50,8 @@ public class Shuffle
 
     private Random _randSuite = new Random();
 
+    // hack!!
+
     private int[] _hearts = new int[13];
     private int _heartsLeft = 13;
     private int[] _spades = new int[13];
