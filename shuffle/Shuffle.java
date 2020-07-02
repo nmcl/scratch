@@ -5,7 +5,6 @@ public class Shuffle
 
     public static void main (String args[])
     {
-	Random randCard = new Random();
 	boolean finished = false;
 
 	initialiseSuite(_hearts);
@@ -27,9 +26,12 @@ public class Shuffle
 	}
     }
 
-    private int getCard (int[] suite)
+    private int getCard (int[] suite, int left)
     {
-	
+	for (;;)
+	{
+	    int theCard = randCard.nextInt(13);
+	}
     }
 
     private void initialiseSuite (int[] suite)
@@ -49,6 +51,7 @@ public class Shuffle
     }
 
     private Random _randSuite = new Random();
+    private Random randCard = new Random();
 
     // hack!!
 
