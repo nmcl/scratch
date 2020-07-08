@@ -31,8 +31,6 @@ public class Shuffle
 	for (;;)
 	{
 	    int theCard = randCard.nextInt(13);
-
-	    // ??
 	}
     }
 
