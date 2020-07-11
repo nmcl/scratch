@@ -2,6 +2,8 @@ import java.util.Random;
 
 /**
  * 52 card deck, no Jokers.
+ *
+ * Shuffle cards and then draw them down.
  */
 
 public class Shuffle
