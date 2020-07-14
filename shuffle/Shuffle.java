@@ -21,10 +21,16 @@ public class Shuffle
 	while (!finished)
 	{
 	    int theSuite = randSuite.nextInt(3);
+	    int theCard;
 
 	    switch (theSuite)
 	    {
 	    case 0:
+		theCard = getCard(_hearts, _heartsLeft);
+		break;
+	    case 1:
+		break;
+	    case 2:
 		break;
 	    default:
 		break;
@@ -34,6 +40,9 @@ public class Shuffle
 
     private int getCard (int[] suite, int left)
     {
+	if (left == 0)
+	    return -1;
+
 	for (;;)
 	{
 	    int theCard = randCard.nextInt(13);
