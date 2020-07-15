@@ -29,10 +29,13 @@ public class Shuffle
 		theCard = getCard(_hearts, _heartsLeft);
 		break;
 	    case 1:
+		theCard = getCard(_spades, _spadesLeft);
 		break;
 	    case 2:
+		theCard = getCard(_clubs, _clubsLeft);
 		break;
 	    default:
+		theCard = getCard(_diamonds, _diamondsLeft);
 		break;
 	    }
 	}
