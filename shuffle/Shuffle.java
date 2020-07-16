@@ -34,8 +34,11 @@ public class Shuffle
 	    case 2:
 		theCard = getCard(_clubs, _clubsLeft);
 		break;
+	    case 3:
+		theCard = getCard(_clubs, _clubsLeft);
+		break;
 	    default:
-		theCard = getCard(_diamonds, _diamondsLeft);
+		// error
 		break;
 	    }
 	}
