@@ -23,6 +23,8 @@ public class Shuffle
 	    int theSuite = randSuite.nextInt(3);
 	    int theCard;
 
+	    // choose card.
+
 	    switch (theSuite)
 	    {
 	    case 0:
