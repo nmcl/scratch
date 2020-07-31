@@ -1,1 +1,1 @@
-Various JavaScript related activities.
+Various JavaScript related activities. Mostly around learning the language.
