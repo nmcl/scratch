@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class converter
 {
-    static final String DIRECTOR = "Director";
-    static final String STARRING = "Starring";
-    static final String MEDIA = "Media";
+    public static final String DIRECTOR = "Director:";
+    public static final String STARRING = "Starring:";
+    public static final String MEDIA = "Media:";
 
     public static void main (String args[]) throws IOException
     {
@@ -26,6 +26,18 @@ public class converter
 	// Removing the HTML tags
 
 	result = result.replaceAll("<[^>]*>", "");
-	System.out.println("Contents of the web page: "+result);
+	//	System.out.println("Contents of the web page: "+result);
+
+	String stars = "";
+	String media = "";
+
+	int directorStart = result.indexOf(converter.DIRECTOR);
+	String movie = result.substring(0, directorStart);
+
+	int starsStart = result.indexOf(converter.STARRING);
+	String director = result.substring(directorStart+converter.DIRECTOR.length(), starsStart);
+
+	System.out.println("Movie: "+movie);
+	System.out.println("Director: "+director);
     }
 }
