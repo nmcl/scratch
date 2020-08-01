@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class converter
 {
+    static final String DIRECTOR = "Director";
+    static final String STARRING = "Starring";
+    static final String MEDIA = "Media";
+
     public static void main (String args[]) throws IOException
     {
 	String fileName = "FF74D200-9E9B-4A7C-8A58-70CEAA7FF488.html";
