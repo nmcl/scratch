@@ -1,0 +1,42 @@
+#content
+{
+	width: 100%;
+}
+
+#menu
+{
+	display: none;
+}
+
+#footer
+{
+	display: none
+}
+
+#ItemsList
+{
+	display: none;
+}
+
+#itemCover
+{
+	max-width: 30%;
+}
+
+#SelectItemsType
+{
+	display: none;
+}
+
+
+div.bordered
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+#ButtonMenu
+{
+	display:none;
+}

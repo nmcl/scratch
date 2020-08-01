@@ -1,0 +1,162 @@
+body
+{
+	margin: 5px;
+	font-family: sans-serif;
+	font-size: 14px;
+	color: black;
+	background-color: white;
+}
+#content
+{
+	width: 85%;
+	float: right;
+}
+
+div.bordered
+{
+	margin: 0px;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#itemTitle
+{
+	margin: 5px;
+}
+
+#itemCover
+{
+	max-width: 20%;
+	float: left;
+	padding-right: 5px;
+	border: none;
+}
+
+#itemSummary
+{
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	text-align: justify;
+}
+
+#content table th
+{
+	text-transform: capitalize;
+	text-align: left;
+	font-weight: bold;
+}
+
+#content h2
+{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#content p, h2
+{
+	margin: 5px;
+	padding: 0;
+}
+
+br.cleared
+{
+	clear: both;
+	line-height: 0px;
+}
+
+
+#menu
+{
+	width: 15%;
+	float: left;
+	padding: 0;
+}
+
+#menu form p
+{
+	margin: 0;
+}
+
+#AddNewItem
+{
+	float: right;
+}
+
+#SelectItemsType
+{
+	width: 98%;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+#ItemsList
+{
+	width: 98%;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+#footer
+{
+	clear: both;
+}
+
+#ButtonMenu
+{
+	float: right;
+	border: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+
+#ButtonMenu a
+{
+	text-decoration: none;
+	color: black;
+}
+
+p.error
+{
+	color: red;
+	margin: 0;
+	font-weight: bold;
+	text-align: center;
+}
+
+#editItem
+{
+	padding: 5px;
+}
+
+#editItem h2
+{
+	margin: 0;
+	padding: 0;
+}
+
+#editItem input, textarea
+{
+	width: 100%;
+	padding: 0;
+	margin-bottom: 5px;
+}
+
+#editItem select
+{
+	padding: 0;
+	margin-bottom: 5px;
+}
+
+#editItem button
+{
+	margin: 2px 0 0;
+}
+
+#saveButton
+{
+	float: right;
+}
