@@ -1,1 +1,1 @@
-Some stuff to help play around with https://www.dwitter.net/
+Some stuff to help exercise https://www.dwitter.net/
