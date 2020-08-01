@@ -6,7 +6,9 @@ public class converter
 {
     public static final String DIRECTOR = "Director:";
     public static final String STARRING = "Starring:";
+    public static final String RATING = "Rating:";
     public static final String MEDIA = "Media:";
+    public static final String LANGUAGES = "Languages:";
 
     public static void main (String args[]) throws IOException
     {
@@ -28,16 +30,18 @@ public class converter
 	result = result.replaceAll("<[^>]*>", "");
 	//	System.out.println("Contents of the web page: "+result);
 
-	String stars = "";
-	String media = "";
-
 	int directorStart = result.indexOf(converter.DIRECTOR);
 	String movie = result.substring(0, directorStart);
 
 	int starsStart = result.indexOf(converter.STARRING);
 	String director = result.substring(directorStart+converter.DIRECTOR.length(), starsStart);
 
+	int mediaStart = result.indexOf(converter.MEDIA);
+	int languagesStart = result.indexOf(converter.LANGUAGES);
+	String media = result.substring(mediaStart+converter.MEDIA.length(), languagesStart);
+
 	System.out.println("Movie: "+movie);
 	System.out.println("Director: "+director);
+	System.out.println("Media: "+media);
     }
 }
