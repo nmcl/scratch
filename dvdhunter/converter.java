@@ -6,12 +6,19 @@ import java.util.Scanner;
 
 public class converter
 {
+    /**
+     * The various fields representing the movie. Apart from the movie title, all
+     * of them are optional.
+     *
+     * DO NOT re-order.
+     */
+
     public static final String DIRECTOR = "Director:";
+    public static final String GENRE = "Genre:";
     public static final String STARRING = "Starring:";
     public static final String RATING = "Rating:";
     public static final String MEDIA = "Media:";
     public static final String LANGUAGES = "Languages:";
-    public static final String GENRE = "Genre:";
 
     public static final String OUTPUT_FILE = "library.csv";
 
@@ -67,12 +74,17 @@ public class converter
 	// sometimes genre is there before Director
 
 	int genreStart = result.indexOf(converter.GENRE);
+	int directorStart = result.indexOf(converter.DIRECTOR);
+	String genre = "";
+
+	if (genreStart != -1)
+	    genre = result.substring(genreStart+converter.GENRE.length(), directorStart);
+
 	String movie = ((genreStart == -1) ? "" : result.substring(0, genreStart));
 
-	int directorStart = result.indexOf(converter.DIRECTOR);
 	if ("".equals(movie))
 	{
-	    movie = result.substring(0, directorStart);
+	    movie = ((directorStart == -1) ? "" : result.substring(0, directorStart));
 	}
 
 	int starsStart = result.indexOf(converter.STARRING);
@@ -82,11 +94,10 @@ public class converter
 	int languagesStart = result.indexOf(converter.LANGUAGES);
 	String media = ((languagesStart == -1) ? "" : result.substring(mediaStart+converter.MEDIA.length(), languagesStart));
 
-	/*
 	System.out.println("Movie: "+movie);
+	System.out.println("Genre: "+genre);
 	System.out.println("Director: "+director);
 	System.out.println("Media: "+media);
-	*/
 
 	csvWriter.append(movie);
 	csvWriter.append(",");
