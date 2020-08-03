@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.FileWriter;
+import java.io.File;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -15,56 +16,38 @@ public class converter
 
     public static void main (String args[]) throws IOException
     {
-	String fileName = "FF74D200-9E9B-4A7C-8A58-70CEAA7FF488.html";
+	String path = ".";
 
-	URL url = new URL("file://"+System.getProperty("user.dir")+"/"+fileName);
-	Scanner sc = new Scanner(url.openStream());
-	StringBuffer sb = new StringBuffer();
-
-	while (sc.hasNext())
+	for (int i = 0; i < args.length; i++)
 	{
-	    sb.append(sc.next());
+	    if ("-help".equals(args[i]))
+	    {
+		System.out.println("converter [-path <relative path>] [-help]");
+		System.exit(0);
+	    }
+
+	    if ("-path".equals(args[i]))
+		path = args[i+1];
 	}
-
-	String result = sb.toString();
-
-	// Removing the HTML tags
-
-	result = result.replaceAll("<[^>]*>", "");
-	//	System.out.println("Contents of the web page: "+result);
-
-	int directorStart = result.indexOf(converter.DIRECTOR);
-	String movie = result.substring(0, directorStart);
-
-	int starsStart = result.indexOf(converter.STARRING);
-	String director = result.substring(directorStart+converter.DIRECTOR.length(), starsStart);
-
-	int mediaStart = result.indexOf(converter.MEDIA);
-	int languagesStart = result.indexOf(converter.LANGUAGES);
-	String media = result.substring(mediaStart+converter.MEDIA.length(), languagesStart);
-
-	System.out.println("Movie: "+movie);
-	System.out.println("Director: "+director);
-	System.out.println("Media: "+media);
 
 	FileWriter csvWriter = new FileWriter(OUTPUT_FILE);
 
-	csvWriter.append(movie);
-	csvWriter.append(",");
-	csvWriter.append(director);
-	csvWriter.append(",");
-	csvWriter.append(media);
-	csvWriter.append("\n");
+	File folder = new File(System.getProperty("user.dir")+"/"+path);
+	File[] fileNames = folder.listFiles();
+
+	for (File file : fileNames)
+	{
+	    URL url = new URL("file://"+file.getPath());
+
+	    addFileData(url, csvWriter);
+	}
 
 	csvWriter.flush();
 	csvWriter.close();
     }
 
-    private static void addFileData (FileWriter csvWriter)
+    private static void addFileData (URL url, FileWriter csvWriter) throws IOException
     {
-	String fileName = "FF74D200-9E9B-4A7C-8A58-70CEAA7FF488.html";
-
-	URL url = new URL("file://"+System.getProperty("user.dir")+"/"+fileName);
 	Scanner sc = new Scanner(url.openStream());
 	StringBuffer sb = new StringBuffer();
 
