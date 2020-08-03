@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.FileWriter;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -9,6 +10,8 @@ public class converter
     public static final String RATING = "Rating:";
     public static final String MEDIA = "Media:";
     public static final String LANGUAGES = "Languages:";
+
+    public static final String OUTPUT_FILE = "library.csv";
 
     public static void main (String args[]) throws IOException
     {
@@ -43,5 +46,17 @@ public class converter
 	System.out.println("Movie: "+movie);
 	System.out.println("Director: "+director);
 	System.out.println("Media: "+media);
+
+	FileWriter csvWriter = new FileWriter(OUTPUT_FILE);
+
+	csvWriter.append(movie);
+	csvWriter.append(",");
+	csvWriter.append(director);
+	csvWriter.append(",");
+	csvWriter.append(media);
+	csvWriter.append("\n");
+
+	csvWriter.flush();
+	csvWriter.close();
     }
 }
