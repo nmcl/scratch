@@ -19,6 +19,7 @@ public class converter
     public static final String RATING = "Rating:";
     public static final String MEDIA = "Media:";
     public static final String LANGUAGES = "Languages:";
+    public static final String SUMMARY = "Summary:";
 
     public static final String OUTPUT_FILE = "library.csv";
 
@@ -93,6 +94,17 @@ public class converter
 	int mediaStart = result.indexOf(converter.MEDIA);
 	int languagesStart = result.indexOf(converter.LANGUAGES);
 	String media = ((languagesStart == -1) ? "" : result.substring(mediaStart+converter.MEDIA.length(), languagesStart));
+	int summaryStart = result.indexOf(converter.SUMMARY);
+
+	if ("".equals(media))
+	{
+	    media = ((summaryStart == -1) ? "" : result.substring(mediaStart+converter.MEDIA.length(), summaryStart));
+	}
+
+	if ("".equals(movie))
+	{
+	    movie = ((mediaStart == -1) ? "" : result.substring(0, mediaStart));
+	}
 
 	System.out.println("Movie: "+movie);
 	System.out.println("Genre: "+genre);
