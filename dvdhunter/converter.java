@@ -11,6 +11,7 @@ public class converter
     public static final String RATING = "Rating:";
     public static final String MEDIA = "Media:";
     public static final String LANGUAGES = "Languages:";
+    public static final String GENRE = "Genre:";
 
     public static final String OUTPUT_FILE = "library.csv";
 
@@ -61,17 +62,25 @@ public class converter
 	// Removing the HTML tags
 
 	result = result.replaceAll("<[^>]*>", "");
-	//	System.out.println("Contents of the web page: "+result);
+	System.out.println("Contents of the web page: "+result);
+
+	// sometimes genre is there before Director
+
+	int genreStart = result.indexOf(converter.GENRE);
+	String movie = ((genreStart == -1) ? "" : result.substring(0, genreStart));
 
 	int directorStart = result.indexOf(converter.DIRECTOR);
-	String movie = result.substring(0, directorStart);
+	if ("".equals(movie))
+	{
+	    movie = result.substring(0, directorStart);
+	}
 
 	int starsStart = result.indexOf(converter.STARRING);
-	String director = result.substring(directorStart+converter.DIRECTOR.length(), starsStart);
+	String director = ((starsStart == -1) ? "" : result.substring(directorStart+converter.DIRECTOR.length(), starsStart));
 
 	int mediaStart = result.indexOf(converter.MEDIA);
 	int languagesStart = result.indexOf(converter.LANGUAGES);
-	String media = result.substring(mediaStart+converter.MEDIA.length(), languagesStart);
+	String media = ((languagesStart == -1) ? "" : result.substring(mediaStart+converter.MEDIA.length(), languagesStart));
 
 	/*
 	System.out.println("Movie: "+movie);
