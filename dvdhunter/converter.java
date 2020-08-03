@@ -78,7 +78,7 @@ public class converter
 	int directorStart = result.indexOf(converter.DIRECTOR);
 	String genre = "";
 
-	if (genreStart != -1)
+	if ((genreStart != -1) && (directorStart != -1))
 	    genre = result.substring(genreStart+converter.GENRE.length(), directorStart);
 
 	String movie = ((genreStart == -1) ? "" : result.substring(0, genreStart));
