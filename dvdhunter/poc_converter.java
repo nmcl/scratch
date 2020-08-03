@@ -33,15 +33,15 @@ public class poc_converter
 	result = result.replaceAll("<[^>]*>", "");
 	//	System.out.println("Contents of the web page: "+result);
 
-	int directorStart = result.indexOf(converter.DIRECTOR);
+	int directorStart = result.indexOf(poc_converter.DIRECTOR);
 	String movie = result.substring(0, directorStart);
 
-	int starsStart = result.indexOf(converter.STARRING);
-	String director = result.substring(directorStart+converter.DIRECTOR.length(), starsStart);
+	int starsStart = result.indexOf(poc_converter.STARRING);
+	String director = result.substring(directorStart+poc_converter.DIRECTOR.length(), starsStart);
 
-	int mediaStart = result.indexOf(converter.MEDIA);
-	int languagesStart = result.indexOf(converter.LANGUAGES);
-	String media = result.substring(mediaStart+converter.MEDIA.length(), languagesStart);
+	int mediaStart = result.indexOf(poc_converter.MEDIA);
+	int languagesStart = result.indexOf(poc_converter.LANGUAGES);
+	String media = result.substring(mediaStart+poc_converter.MEDIA.length(), languagesStart);
 
 	System.out.println("Movie: "+movie);
 	System.out.println("Director: "+director);
