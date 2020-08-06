@@ -70,7 +70,7 @@ public class converter
 	// Removing the HTML tags
 
 	result = result.replaceAll("<[^>]*>", "");
-	System.out.println("Contents of the web page ("+url+"): "+result);
+	//	System.out.println("Contents of the web page ("+url+"): "+result);
 
 	// sometimes genre is there before Director
 
@@ -107,6 +107,13 @@ public class converter
 	{
 	    movie = ((mediaStart == -1) ? "" : result.substring(0, mediaStart));
 	}
+
+	// Do some final santity checking due to inconsistencies in output format!
+
+	int ratingStart = movie.indexOf(converter.RATING);
+
+	if (ratingStart != -1)
+	    movie = movie.substring(0, ratingStart);
 
 	System.out.println("Movie: "+movie);
 	System.out.println("Genre: "+genre);
