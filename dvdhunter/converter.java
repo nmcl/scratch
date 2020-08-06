@@ -91,15 +91,17 @@ public class converter
 	int starsStart = result.indexOf(converter.STARRING);
 	String director = (((starsStart == -1) || (directorStart == -1)) ? "" : result.substring(directorStart+converter.DIRECTOR.length(), starsStart));
 
+	// Sometimes Summary comes before Languages!
+
 	int mediaStart = result.indexOf(converter.MEDIA);
 	int languagesStart = result.indexOf(converter.LANGUAGES);
-	String media = ((languagesStart == -1) ? "" : result.substring(mediaStart+converter.MEDIA.length(), languagesStart));
 	int summaryStart = result.indexOf(converter.SUMMARY);
+	String media = "";
 
-	if ("".equals(media))
-	{
+	if (languagesStart < summaryStart)
+	    media = ((languagesStart == -1) ? "" : result.substring(mediaStart+converter.MEDIA.length(), languagesStart));
+	else
 	    media = ((summaryStart == -1) ? "" : result.substring(mediaStart+converter.MEDIA.length(), summaryStart));
-	}
 
 	if ("".equals(movie))
 	{
