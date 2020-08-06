@@ -89,7 +89,7 @@ public class converter
 	}
 
 	int starsStart = result.indexOf(converter.STARRING);
-	String director = ((starsStart == -1) ? "" : result.substring(directorStart+converter.DIRECTOR.length(), starsStart));
+	String director = (((starsStart == -1) || (directorStart == -1)) ? "" : result.substring(directorStart+converter.DIRECTOR.length(), starsStart));
 
 	int mediaStart = result.indexOf(converter.MEDIA);
 	int languagesStart = result.indexOf(converter.LANGUAGES);
