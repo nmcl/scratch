@@ -127,6 +127,8 @@ public class converter
 
 	csvWriter.append(movie);
 	csvWriter.append(",");
+	csvWriter.append(genre);
+	csvWriter.append(",");
 	csvWriter.append(director);
 	csvWriter.append(",");
 	csvWriter.append(media);
