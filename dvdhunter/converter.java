@@ -70,7 +70,7 @@ public class converter
 	// Removing the HTML tags
 
 	result = result.replaceAll("<[^>]*>", "");
-	System.out.println("Contents of the web page: "+result);
+	System.out.println("Contents of the web page ("+url+"): "+result);
 
 	// sometimes genre is there before Director
 
