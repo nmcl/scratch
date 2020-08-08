@@ -6,3 +6,6 @@ fields as they weren't always consistently written out by the original program! 
 result of the inconsistency is that sometimes data is ignored which could have
 been converted but it's easier to just add that back by hand that have so many
 different if/then/else clauses for one-off situations!
+
+It worked for most items but there were a few where the output was null. Manual checking
+added the data.
