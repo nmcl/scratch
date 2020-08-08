@@ -120,6 +120,7 @@ public class converter
 	if (starsStart != -1)
 	    movie = movie.substring(0, starsStart);
 
+	//	System.out.println("file: "+url);
 	System.out.println("Movie: "+movie);
 	System.out.println("Genre: "+genre);
 	System.out.println("Director: "+director);
