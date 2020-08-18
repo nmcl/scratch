@@ -1,1 +1,3 @@
+Once build go to ...
+
 http://localhost:8080/rest/stock

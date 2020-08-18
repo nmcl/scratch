@@ -1,1 +1,3 @@
+Once built, go to ...
+
 http://localhost:8080/rest/hello 
