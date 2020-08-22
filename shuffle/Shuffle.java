@@ -17,7 +17,7 @@ public class Shuffle
 	while (!finished)
 	{
 	    int theSuite = randSuite.nextInt(3)+1;
-	    char theCard = '';
+	    char theCard = NOCARD;
 
 	    // choose card.
 
@@ -41,7 +41,7 @@ public class Shuffle
 		throw new Exception("Invalid card "+theSuite);
 	    }
 
-	    if (theCard != '')
+	    if (theCard != NOCARD)
 		cardsDealt++;
 
 	    if (cardsDealt == 56)
@@ -49,21 +49,41 @@ public class Shuffle
 	}
     }
 
-    private int getCard (char[] suite)
+    private char getCard (char[] suite)
     {
 	int cardsLeft = 0;
+	char toReturn = NOCARD;
 
-	for (;;)
+	for (int i = 0; i < 14; i++)
 	{
-	    int theCard = randCard.nextInt(13);
+	    if (suite[i] != NOCARD)
+		cardsLeft++;
 	}
+
+	if (cardsLeft != 0)
+	{
+	    do
+	    {
+		int theCard = randCard.nextInt(14);
+		
+		toReturn = suite[theCard];
+
+		if (toReturn != NOCARD)
+		    suite[theCard] = NOCARD;
+	    }
+	    while (toReturn != NOCARD);
+	}
+
+	return toReturn;
     }
 
     private Random _randSuite = new Random();
     private Random randCard = new Random();
 
-    private char[] _hearts = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', '`J', 'Q', 'K' };
-    private char[] _spades = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', '`J', 'Q', 'K' };
-    private char[] _clubs = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', '`J', 'Q', 'K' };
-    private char[] _diamonds = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', '`J', 'Q', 'K' };
+    private char[] _hearts = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+    private char[] _spades = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+    private char[] _clubs = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+    private char[] _diamonds = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+
+    private static final char NOCARD = '';
 }
