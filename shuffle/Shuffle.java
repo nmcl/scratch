@@ -18,6 +18,7 @@ public class Shuffle
 	{
 	    int theSuite = randSuite.nextInt(3)+1;
 	    char theCard = NOCARD;
+	    String suite = "";
 
 	    // choose card.
 
@@ -25,15 +26,19 @@ public class Shuffle
 	    {
 	    case 1:
 		theCard = getCard(_hearts);
+		suite = "Hearts";
 		break;
 	    case 2:
 		theCard = getCard(_spades);
+		suite = "Spades";
 		break;
 	    case 3:
 		theCard = getCard(_clubs);
+		suite = "Clubs";
 		break;
 	    case 4:
-		theCard = getCard(_clubs);
+		theCard = getCard(_diamonds);
+		suite = "Diamonds";
 		break;
 	    default:
 		// error
@@ -42,7 +47,35 @@ public class Shuffle
 	    }
 
 	    if (theCard != NOCARD)
+	    {
 		cardsDealt++;
+
+		System.out.print("Card dealt: ");
+
+		switch (theCard)
+		{
+		case 'A':
+		    System.out.print("Ace");
+		    break;
+		case 'X':
+		    System.out.print("Ten");
+		    break;
+		case 'J':
+		    System.out.print("Jack");
+		    break;
+		case 'Q':
+		    System.out.print("Queen");
+		    break;
+		case 'K':
+		    System.out.print("King");
+		    break:
+		default:
+		    System.out.print(theCard);
+		    break:
+		}
+
+		System.out.print(" of "+suite);
+	    }
 
 	    if (cardsDealt == 56)
 		finished = true;
