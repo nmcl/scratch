@@ -9,7 +9,7 @@ import java.util.Random;
 public class Shuffle
 {
 
-    public static void main (String args[])
+    public static void main (String args[]) throws Exception
     {
 	boolean finished = false;
 
@@ -20,28 +20,29 @@ public class Shuffle
 
 	while (!finished)
 	{
-	    int theSuite = randSuite.nextInt(3);
+	    int theSuite = randSuite.nextInt(3)+1;
 	    int theCard;
 
 	    // choose card.
 
 	    switch (theSuite)
 	    {
-	    case 0:
+	    case 1:
 		theCard = getCard(_hearts, _heartsLeft);
 		break;
-	    case 1:
-		theCard = getCard(_spades, _spadesLeft);
-		break;
 	    case 2:
-		theCard = getCard(_clubs, _clubsLeft);
+		theCard = getCard(_spades, _spadesLeft);
 		break;
 	    case 3:
 		theCard = getCard(_clubs, _clubsLeft);
 		break;
+	    case 4:
+		theCard = getCard(_clubs, _clubsLeft);
+		break;
 	    default:
 		// error
-		break;
+
+		throw new Exception("Invalid card "+theSuite);
 	    }
 	}
     }
@@ -76,14 +77,15 @@ public class Shuffle
     private Random _randSuite = new Random();
     private Random randCard = new Random();
 
+    private static final char[] _initialSuits = "A123456789XJQK";
     // hack!!
 
-    private int[] _hearts = new int[13];
+    private int[] _hearts = new int[14];
     private int _heartsLeft = 13;
-    private int[] _spades = new int[13];
+    private int[] _spades = new int[14];
     private int _spadesLeft = 13;
-    private int[] _clubs = new int[13];
+    private int[] _clubs = new int[14];
     private int _clubsLeft = 13;
-    private int[] _diamonds = new int[13];
+    private int[] _diamonds = new int[14];
     private int _diamondsLeft = 13;
 }
