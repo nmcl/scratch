@@ -58,7 +58,7 @@ public class Shuffle
 		    System.out.print("Ace");
 		    break;
 		case 'X':
-		    System.out.print("Ten");
+		    System.out.print("10");
 		    break;
 		case 'J':
 		    System.out.print("Jack");
@@ -74,7 +74,7 @@ public class Shuffle
 		    break;
 		}
 
-		System.out.print(" of "+suite);
+		System.out.println(" of "+suite);
 	    }
 
 	    if (cardsDealt == 56)
@@ -104,7 +104,7 @@ public class Shuffle
 		if (toReturn != NOCARD)
 		    suite[theCard] = NOCARD;
 	    }
-	    while (toReturn != NOCARD);
+	    while (toReturn == NOCARD);
 	}
 
 	return toReturn;
