@@ -20,6 +20,8 @@ public class Shuffle
 	    char theCard = NOCARD;
 	    String suite = "";
 
+	    System.out.println("**Suite chosen "+theSuite);
+
 	    // choose card.
 
 	    switch (theSuite)
@@ -49,6 +51,8 @@ public class Shuffle
 	    if (theCard != NOCARD)
 	    {
 		cardsDealt++;
+
+		System.out.println("**cardsDealt "+cardsDealt);
 
 		System.out.print("Card dealt: ");
 
@@ -93,6 +97,8 @@ public class Shuffle
 		cardsLeft++;
 	}
 
+	System.out.println("**cards left "+cardsLeft);
+
 	if (cardsLeft != 0)
 	{
 	    do
@@ -101,11 +107,15 @@ public class Shuffle
 		
 		toReturn = suite[theCard];
 
+		System.out.println("**selected "+theCard+" and "+toReturn);
+
 		if (toReturn != NOCARD)
 		    suite[theCard] = NOCARD;
 	    }
 	    while (toReturn == NOCARD);
 	}
+
+	System.out.println("**dealing "+toReturn);
 
 	return toReturn;
     }
