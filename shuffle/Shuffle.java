@@ -25,19 +25,19 @@ public class Shuffle
 	    switch (theSuite)
 	    {
 	    case 1:
-		theCard = getCard(_hearts);
+		theCard = getCard(hearts);
 		suite = "Hearts";
 		break;
 	    case 2:
-		theCard = getCard(_spades);
+		theCard = getCard(spades);
 		suite = "Spades";
 		break;
 	    case 3:
-		theCard = getCard(_clubs);
+		theCard = getCard(clubs);
 		suite = "Clubs";
 		break;
 	    case 4:
-		theCard = getCard(_diamonds);
+		theCard = getCard(diamonds);
 		suite = "Diamonds";
 		break;
 	    default:
@@ -68,10 +68,10 @@ public class Shuffle
 		    break;
 		case 'K':
 		    System.out.print("King");
-		    break:
+		    break;
 		default:
 		    System.out.print(theCard);
-		    break:
+		    break;
 		}
 
 		System.out.print(" of "+suite);
@@ -82,7 +82,7 @@ public class Shuffle
 	}
     }
 
-    private char getCard (char[] suite)
+    private static char getCard (char[] suite)
     {
 	int cardsLeft = 0;
 	char toReturn = NOCARD;
@@ -110,13 +110,13 @@ public class Shuffle
 	return toReturn;
     }
 
-    private Random _randSuite = new Random();
-    private Random randCard = new Random();
+    private static Random randSuite = new Random();
+    private static Random randCard = new Random();
 
-    private char[] _hearts = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
-    private char[] _spades = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
-    private char[] _clubs = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
-    private char[] _diamonds = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+    private static char[] hearts = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+    private static char[] spades = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+    private static char[] clubs = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
+    private static char[] diamonds = { 'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'J', 'Q', 'K' };
 
-    private static final char NOCARD = '';
+    private static final char NOCARD = ' ';
 }
