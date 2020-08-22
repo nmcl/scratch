@@ -98,6 +98,8 @@ public class Shuffle
 	}
 
 	System.out.println("**cards left "+cardsLeft);
+	
+	printSuite(suite);
 
 	if (cardsLeft != 0)
 	{
@@ -117,7 +119,29 @@ public class Shuffle
 
 	System.out.println("**dealing "+toReturn);
 
+	printSuite(suite);
+
 	return toReturn;
+    }
+
+    private static final void printSuite (char[] suite)
+    {
+	for (int i = 0; i < 14; i++)
+	{
+	    switch (suite[i])
+	    {
+	    case NOCARD:
+		System.out.print("blank");
+		break;
+	    default:
+		System.out.print(suite[i]);
+		break;
+	    }
+
+	    System.out.print(", ");
+	}
+
+	System.out.println();
     }
 
     private static Random randSuite = new Random();
