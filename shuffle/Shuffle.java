@@ -1,7 +1,7 @@
 import java.util.Random;
 
 /**
- * 56 card deck, no Jokers.
+ * 56 card deck, no Jokers ... yet.
  *
  * Shuffle cards and then draw them down.
  */
