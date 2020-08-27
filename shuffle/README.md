@@ -1,1 +1,1 @@
-A random playing card generator. Shuffles and gives out the cards.
+A random playing card generator. Shuffles the deck and then gives out the cards.
