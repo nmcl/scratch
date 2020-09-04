@@ -1,9 +1,12 @@
 import java.util.Random;
 
 /**
- * 56 card deck, no Jokers ... yet.
+ * Traditional 56 card deck, no Jokers ... yet.
  *
  * Shuffle cards and then draw them down.
+ *
+ * Some debugging statements in the code but commented out
+ * for now.
  */
 
 public class Shuffle
