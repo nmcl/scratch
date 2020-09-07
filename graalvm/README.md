@@ -1,4 +1,4 @@
-Some GraalVM related work. Includes examples (some from the official Graal site) but also attempts to make Narayana transactions work.
+Some GraalVM related work. Includes examples (some from the official GraalVM project site) but also attempts to make Narayana transactions work.
 
 Remember to do something like the following:
 
