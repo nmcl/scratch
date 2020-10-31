@@ -2,6 +2,6 @@ I began working on this around February/March 2020 as Coronavirus was taking hol
 
 **Dedicated to Elizabeth Little, born May 6th 1947, died May 12th 2020. Covid-19 victim.**
 
-A program which simulates a virus exhibiting exponential growth. To add some subtleties, it also takes into account isolation and mingling factors amongst other things. You can specify the growth rate, isolation level, mingling factor etc. at runtime.
+This is a program which simulates a virus exhibiting exponential growth. To add some subtleties, it also takes into account isolation and mingling factors amongst other things. You can specify the growth rate, isolation level, mingling factor etc. at runtime.
 
 Doesn't rely upon any specific Java language features so should work with any version of Java.
