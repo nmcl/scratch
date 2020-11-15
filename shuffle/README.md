@@ -1,3 +1,3 @@
-A program which shuffles a pack of standard playing cards and then deals them out one at a time.
+A program which shuffles a pack of standard playing cards and then deals them out.
 
-Works on 56 cards: Ace to King for the four suites (diamonds, hearts, spades, clubs). No jockers.
+Uses 56 cards: Ace to King for the four suites (Diamonds, Hearts, Spades, Clubs). No Jokers.
