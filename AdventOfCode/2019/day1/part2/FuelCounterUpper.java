@@ -25,7 +25,7 @@ public class FuelCounterUpper
             }
         }
         
-        File file = new File("modules.txt");
+        File file = new File("modules.txt");  // hard coded for now
         BufferedReader reader = null;
         long totalFuel = 0;
         long totalMass = 0;
