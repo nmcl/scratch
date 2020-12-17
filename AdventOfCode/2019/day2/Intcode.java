@@ -2,22 +2,14 @@ import java.io.*;
 
 public class Intcode
 {
-    public enum OPCODE {
-        ADD(1), MULTIPLY(2), HALT(99);
+    /*
+     * Could be enum values but ints are just so much easier!
+     */
 
-        OPCODE (int val)
-        {
-            this._val = val;
-        }
-
-        public int getVal ()
-        {
-            return _val;
-        }
-
-        private int _val;
-    }
-
+    public static final int ADD = 1;
+    public static final int MULTIPLY = 2;
+    public static final int HALT = 99;
+   
     public static final String DELIMITER = ",";
 
     public static void main (String[] args)
@@ -61,6 +53,8 @@ public class Intcode
                         System.out.println(str);
                     }
                 }
+                else
+                    parseAndExecute(values);
             }
         }
         catch (Throwable ex)
@@ -75,6 +69,58 @@ public class Intcode
             }
             catch (Throwable ex)
             {
+            }
+        }
+    }
+
+    private static void parseAndExecute (String[] values)
+    {
+        for (int i = 0; i < values.length; i++)
+        {
+            String str = values[i];
+
+            switch (Integer.valueOf(str))
+            {
+                case Intcode.ADD:
+                {
+                    /*
+                     * Opcode 1 adds together numbers read from two positions
+                     * and stores the result in a third position. The three integers
+                     * immediately after the opcode tell you these three positions - the
+                     * first two indicate the positions from which you should read the
+                     * input values, and the third indicates the position at which
+                     * the output should be stored.
+                     */
+
+                     int position1 = Integer.valueOf(values[i+1]);
+                     int position2 = Integer.valueOf(values[i+2]);
+                     int store = Integer.valueOf(values[i+3]);
+
+                     int sum = Integer.valueOf(position1)+Integer.valueOf(position2);
+
+                     values[store] = String.valueOf(sum);
+
+                     i = i+3;  // move the pointer on.
+                }
+                break;
+                case Intcode.MULTIPLY:
+                {
+                    /*
+                     * Opcode 2 works exactly like opcode 1, except it multiplies the
+                     * two inputs instead of adding them. Again, the three integers after
+                     * the opcode indicate where the inputs and outputs are, not their values.
+                     */
+
+                    int position1 = Integer.valueOf(values[i+1]);
+                    int position2 = Integer.valueOf(values[i+2]);
+                    int store = Integer.valueOf(values[i+3]);
+
+                    int product = Integer.valueOf(position1)*Integer.valueOf(position2);
+
+                    values[store] = String.valueOf(product);
+
+                    i = i+3;  // move the pointer on.
+                }
             }
         }
     }
