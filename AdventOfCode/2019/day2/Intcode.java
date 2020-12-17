@@ -15,12 +15,13 @@ public class Intcode
     public static void main (String[] args)
     {
         boolean debug = false;
+        boolean dump = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-verify] [-debug]");
+                System.out.println("[-help] [-verify] [-debug] [-dump]");
                 System.exit(0);
             }
             
@@ -32,6 +33,9 @@ public class Intcode
 
             if ("-debug".equals(args[i]))
                 debug = true;
+
+            if ("-dump".equals(args[i]))
+                dump = true;
         }
 
         BufferedReader reader = null;
@@ -46,11 +50,11 @@ public class Intcode
             {
                 values = line.split(SEPARATOR);
 
-                if (debug)
+                if (dump)
                     dumpData(values);
                 else
                 {
-                    parseAndExecute(values);
+                    parseAndExecute(values, debug);
 
                     dumpData(values);
                 }
@@ -72,11 +76,14 @@ public class Intcode
         }
     }
 
-    private static void parseAndExecute (String[] values)
+    private static void parseAndExecute (String[] values, boolean debug)
     {
         for (int i = 0; i < values.length; i++)
         {
             String str = values[i];
+
+            if (debug)
+                System.out.println("Working on entry "+i+" with "+str);
 
             switch (Integer.valueOf(str))
             {
@@ -95,7 +102,13 @@ public class Intcode
                      int position2 = Integer.valueOf(values[i+2]);
                      int store = Integer.valueOf(values[i+3]);
 
+                     if (debug)
+                        System.out.println("Adding "+values[position1]+" and "+values[position2]);
+
                      int sum = Integer.valueOf(values[position1])+Integer.valueOf(values[position2]);
+
+                     if (debug)
+                        System.out.println("Storing "+sum+" at position "+store);
 
                      values[store] = String.valueOf(sum);
 
@@ -114,7 +127,13 @@ public class Intcode
                     int position2 = Integer.valueOf(values[i+2]);
                     int store = Integer.valueOf(values[i+3]);
 
+                    if (debug)
+                        System.out.println("Multiplying "+values[position1]+" and "+values[position2]);
+
                     int product = Integer.valueOf(values[position1])*Integer.valueOf(values[position2]);
+
+                    if (debug)
+                        System.out.println("Storing "+product+" at position "+store);
 
                     values[store] = String.valueOf(product);
 
@@ -126,6 +145,9 @@ public class Intcode
                     /*
                      * Means that the program is finished and should immediately halt.
                      */
+
+                     if (debug)
+                        System.out.println("Halting execution.");
 
                      return;
                 }
@@ -144,7 +166,7 @@ public class Intcode
         String[] values = TEST_CODE_1.split(SEPARATOR);
         String str = null;
 
-        parseAndExecute(values);
+        parseAndExecute(values, false);
 
         str = convert(values);
  
@@ -152,7 +174,7 @@ public class Intcode
         {
             values = TEST_CODE_2.split(SEPARATOR);
 
-            parseAndExecute(values);
+            parseAndExecute(values, false);
 
             str = convert(values);
  
@@ -160,7 +182,7 @@ public class Intcode
             {
                 values = TEST_CODE_3.split(SEPARATOR);
 
-                parseAndExecute(values);
+                parseAndExecute(values, false);
 
                 str = convert(values);
  
@@ -168,7 +190,7 @@ public class Intcode
                 {
                     values = TEST_CODE_4.split(SEPARATOR);
 
-                    parseAndExecute(values);
+                    parseAndExecute(values, false);
 
                     str = convert(values);
  
@@ -176,7 +198,7 @@ public class Intcode
                     {
                         values = TEST_CODE_5.split(SEPARATOR);
 
-                        parseAndExecute(values);
+                        parseAndExecute(values, false);
 
                         str = convert(values);
  
