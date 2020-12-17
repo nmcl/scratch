@@ -95,8 +95,6 @@ public class Intcode
                      int position2 = Integer.valueOf(values[i+2]);
                      int store = Integer.valueOf(values[i+3]);
 
-                     System.out.println("got "+position1+" "+position2+" "+store);
-
                      int sum = Integer.valueOf(values[position1])+Integer.valueOf(values[position2]);
 
                      values[store] = String.valueOf(sum);
@@ -143,11 +141,71 @@ public class Intcode
 
     private static void verify ()
     {
-        String[] values = TEST_CODE_2.split(SEPARATOR);
+        String[] values = TEST_CODE_1.split(SEPARATOR);
+        String str = null;
 
-        dumpData(values);
         parseAndExecute(values);
-        dumpData(values);
+
+        str = convert(values);
+ 
+        if (str.equals(TEST_RESULT_1))
+        {
+            values = TEST_CODE_2.split(SEPARATOR);
+
+            parseAndExecute(values);
+
+            str = convert(values);
+ 
+            if (str.equals(TEST_RESULT_2))
+            {
+                values = TEST_CODE_3.split(SEPARATOR);
+
+                parseAndExecute(values);
+
+                str = convert(values);
+ 
+                if (str.equals(TEST_RESULT_3))
+                {
+                    values = TEST_CODE_4.split(SEPARATOR);
+
+                    parseAndExecute(values);
+
+                    str = convert(values);
+ 
+                    if (str.equals(TEST_RESULT_4))
+                    {
+                        values = TEST_CODE_5.split(SEPARATOR);
+
+                        parseAndExecute(values);
+
+                        str = convert(values);
+ 
+                        if (str.equals(TEST_RESULT_5))
+                            System.out.println("Verified ok.");
+                        else
+                        System.out.println("Verify failed on "+TEST_RESULT_5+" with "+str);
+                    }
+                    else
+                        System.out.println("Verify failed on "+TEST_RESULT_4+" with "+str);
+                }
+                else
+                    System.out.println("Verify failed on "+TEST_RESULT_3+" with "+str);
+            }
+            else
+                System.out.println("Verify failed on "+TEST_RESULT_2+" with "+str);
+        }
+        else
+            System.out.println("Verify failed on "+TEST_RESULT_1+" with "+str);
+    }
+
+    private static String convert (String[] values)
+    {
+        String str = values[0];
+
+        for (int i = 1; i < values.length; i++)
+            str += SEPARATOR + values[i];
+
+        return str;
     }
 
     private static void dumpData (String[] values)
@@ -162,7 +220,7 @@ public class Intcode
     private static final String SEPARATOR = ",";
 
     private static final String TEST_CODE_1 = "1,9,10,3,2,3,11,0,99,30,40,50";
-    private static final String TEST_RESULT_1 = "";
+    private static final String TEST_RESULT_1 = "3500,9,10,70,2,3,11,0,99,30,40,50";
     private static final String TEST_CODE_2 = "1,0,0,0,99";
     private static final String TEST_RESULT_2 = "2,0,0,0,99";
     private static final String TEST_CODE_3 = "2,3,0,3,99";
