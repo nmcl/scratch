@@ -44,17 +44,16 @@ public class Intcode
 
             while ((line = reader.readLine()) != null)
             {
-                values = line.split(",");
+                values = line.split(SEPARATOR);
 
                 if (debug)
-                {
-                    for (String str : values)
-                    {
-                        System.out.println(str);
-                    }
-                }
+                    dumpData(values);
                 else
+                {
                     parseAndExecute(values);
+
+                    dumpData(values);
+                }
             }
         }
         catch (Throwable ex)
@@ -96,7 +95,9 @@ public class Intcode
                      int position2 = Integer.valueOf(values[i+2]);
                      int store = Integer.valueOf(values[i+3]);
 
-                     int sum = Integer.valueOf(position1)+Integer.valueOf(position2);
+                     System.out.println("got "+position1+" "+position2+" "+store);
+
+                     int sum = Integer.valueOf(values[position1])+Integer.valueOf(values[position2]);
 
                      values[store] = String.valueOf(sum);
 
@@ -115,11 +116,26 @@ public class Intcode
                     int position2 = Integer.valueOf(values[i+2]);
                     int store = Integer.valueOf(values[i+3]);
 
-                    int product = Integer.valueOf(position1)*Integer.valueOf(position2);
+                    int product = Integer.valueOf(values[position1])*Integer.valueOf(values[position2]);
 
                     values[store] = String.valueOf(product);
 
                     i = i+3;  // move the pointer on.
+                }
+                break;
+                case Intcode.HALT:
+                {
+                    /*
+                     * Means that the program is finished and should immediately halt.
+                     */
+
+                     return;
+                }
+                default:
+                {
+                    System.out.println("Unknown opcocde "+str+" encountered");
+
+                    return;
                 }
             }
         }
@@ -127,14 +143,32 @@ public class Intcode
 
     private static void verify ()
     {
+        String[] values = TEST_CODE_2.split(SEPARATOR);
 
+        dumpData(values);
+        parseAndExecute(values);
+        dumpData(values);
+    }
+
+    private static void dumpData (String[] values)
+    {
+        for (String str : values)
+        {
+            System.out.println(str);
+        }
     }
 
     private static final String DATA_FILE = "instructions.txt";
+    private static final String SEPARATOR = ",";
 
     private static final String TEST_CODE_1 = "1,9,10,3,2,3,11,0,99,30,40,50";
+    private static final String TEST_RESULT_1 = "";
     private static final String TEST_CODE_2 = "1,0,0,0,99";
+    private static final String TEST_RESULT_2 = "2,0,0,0,99";
     private static final String TEST_CODE_3 = "2,3,0,3,99";
+    private static final String TEST_RESULT_3 = "2,3,0,6,99";
     private static final String TEST_CODE_4 = "2,4,4,5,99,0";
+    private static final String TEST_RESULT_4 = "2,4,4,5,99,9801";
     private static final String TEST_CODE_5 = "1,1,1,4,99,5,6,0,99";
+    private static final String TEST_RESULT_5 = "30,1,1,4,2,5,6,0,99";
 }
