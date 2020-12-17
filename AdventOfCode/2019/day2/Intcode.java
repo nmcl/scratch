@@ -27,7 +27,7 @@ public class Intcode
             
             if ("-verify".equals(args[i]))
             {
-                Intcode.verify();
+                Intcode.verify(debug);
                 System.exit(0);
             }
 
@@ -161,44 +161,59 @@ public class Intcode
         }
     }
 
-    private static void verify ()
+    private static void verify (boolean debug)
     {
         String[] values = TEST_CODE_1.split(SEPARATOR);
         String str = null;
 
-        parseAndExecute(values, false);
+        if (debug)
+            System.out.println("Verifying "+TEST_CODE_1);
+
+        parseAndExecute(values, debug);
 
         str = convert(values);
  
         if (str.equals(TEST_RESULT_1))
         {
+            if (debug)
+                System.out.println("Verifying "+TEST_CODE_2);
+            
             values = TEST_CODE_2.split(SEPARATOR);
 
-            parseAndExecute(values, false);
+            parseAndExecute(values, debug);
 
             str = convert(values);
  
             if (str.equals(TEST_RESULT_2))
             {
+                if (debug)
+                    System.out.println("Verifying "+TEST_CODE_3);
+
                 values = TEST_CODE_3.split(SEPARATOR);
 
-                parseAndExecute(values, false);
+                parseAndExecute(values, debug);
 
                 str = convert(values);
  
                 if (str.equals(TEST_RESULT_3))
                 {
+                    if (debug)
+                        System.out.println("Verifying "+TEST_CODE_4);
+
                     values = TEST_CODE_4.split(SEPARATOR);
 
-                    parseAndExecute(values, false);
+                    parseAndExecute(values, debug);
 
                     str = convert(values);
  
                     if (str.equals(TEST_RESULT_4))
                     {
+                        if (debug)
+                            System.out.println("Verifying "+TEST_CODE_5);
+            
                         values = TEST_CODE_5.split(SEPARATOR);
 
-                        parseAndExecute(values, false);
+                        parseAndExecute(values, debug);
 
                         str = convert(values);
  
