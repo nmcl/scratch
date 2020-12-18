@@ -3,47 +3,27 @@ import java.io.*;
 public class CircuitBoard
 {
     public static final String SEPARATOR = ",";
-    
+
+    public static final int LENGTH = 1000;
+    public static final int WIDTH = 1000;
     public static void main (String[] args)
     {
-        boolean debug = false;
+        boolean verify = false;
         boolean dump = false;
-        boolean runVerifier = false;
-        int target = 19690720;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-value target] [-help] [-verify] [-debug] [-dump]");
+                System.out.println("[-help] [-verify] [-dump]");
                 System.exit(0);
             }
             
             if ("-verify".equals(args[i]))
-                runVerifier = true;
-
-            if ("-debug".equals(args[i]))
-                debug = true;
+                verify = true;
 
             if ("-dump".equals(args[i]))
                 dump = true;
-
-            if ("-value".equals(args[i]))
-                target = Integer.parseInt(args[i+1]);
-        }
-
-        /*
-         * Create the computer which will do the real work.
-         */
-
-        _theComputer = new Intcode(debug);
-
-        if (runVerifier)
-        {
-            Verifier theVerifier = new Verifier(_theComputer, debug);
-
-            theVerifier.verify();
-            System.exit(0);
         }
 
         /*
@@ -51,7 +31,8 @@ public class CircuitBoard
          */
 
         BufferedReader reader = null;
-        String[] values = null;
+        String[] line1 = null;
+        String[] line2 = null;
 
         try
         {
@@ -60,29 +41,25 @@ public class CircuitBoard
 
             while ((line = reader.readLine()) != null)
             {
-                values = line.split(Intcode.DELIMITER);
-
-                if (dump)
-                    dumpData(values);
+                if (line1 == null)
+                    line1 = line.split(SEPARATOR);
                 else
                 {
-                    resetState(values, debug);  // not really needed for this part.
-
-                    Cruncher bruteForce = new Cruncher(_theComputer, values, debug);
-
-                    String[] results = bruteForce.crunch(target);
-
-                    if (results != null)
-                    {
-                        System.out.println("To achieve the target of "+target+" requires a noun of "+results[0]+" and a verb of "+results[1]);
-
-                        int total = 100 * Integer.parseInt(results[0]) + Integer.parseInt(results[1]);
-
-                        System.out.println("And the answer is: "+total);
-                    }
+                    if (line2 == null)
+                        line2 = line.split(SEPARATOR);
                     else
-                        System.out.println("Could not achieve the target of "+target);
+                    {
+                        System.out.println("Unexpected extra lines in input file!");
+
+                        System.exit(0);
+                    }
                 }
+            }
+
+            if (dump)
+                dumpData(line1, line2);
+            else
+            {
             }
         }
         catch (Throwable ex)
@@ -101,9 +78,16 @@ public class CircuitBoard
         }
     }
 
-    private static final void dumpData (String[] values)
+    private static final void dumpData (String[] line1, String[] line2)
     {
-        for (String str : values)
+        System.out.println("Wire 1:");
+        for (String str : line1)
+        {
+            System.out.println(str);
+        }
+
+        System.out.println("\nWire 2:");
+        for (String str : line2)
         {
             System.out.println(str);
         }
