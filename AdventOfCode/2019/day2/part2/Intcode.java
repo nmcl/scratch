@@ -17,7 +17,7 @@ public class Intcode
      * into debug mode where it will output whatever action it
      * takes.
      */
-    
+
     public Intcode (boolean debug)
     {
         _debug = debug;
