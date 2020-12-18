@@ -6,6 +6,7 @@ public class Computer
     {
         boolean debug = false;
         boolean dump = false;
+        boolean runVerifier = false;
 
         for (int i = 0; i < args.length; i++)
         {
@@ -16,10 +17,7 @@ public class Computer
             }
             
             if ("-verify".equals(args[i]))
-            {
-                verify(debug);
-                System.exit(0);
-            }
+                runVerifier = true;
 
             if ("-debug".equals(args[i]))
                 debug = true;
@@ -30,6 +28,12 @@ public class Computer
 
         _theComputer = new Intcode(debug);
 
+        if (runVerifier)
+        {
+            verify(debug);
+            System.exit(0);
+        }
+        
         /*
          * Open the data file and read it in.
          */
@@ -52,7 +56,7 @@ public class Computer
                 {
                     resetState(values, debug);
 
-                    parseAndExecute(values, debug);
+                    _theComputer.parseAndExecute(values);
 
                     dumpData(values);
                 }
@@ -90,7 +94,7 @@ public class Computer
         if (debug)
             System.out.println("Verifying "+TEST_CODE_1);
 
-        parseAndExecute(values, debug);
+        _theComputer.parseAndExecute(values);
 
         str = convert(values);
  
@@ -101,7 +105,7 @@ public class Computer
             
             values = TEST_CODE_2.split(SEPARATOR);
 
-            parseAndExecute(values, debug);
+            _theComputer.parseAndExecute(values);
 
             str = convert(values);
  
@@ -112,7 +116,7 @@ public class Computer
 
                 values = TEST_CODE_3.split(SEPARATOR);
 
-                parseAndExecute(values, debug);
+                _theComputer.parseAndExecute(values);
 
                 str = convert(values);
  
@@ -123,7 +127,7 @@ public class Computer
 
                     values = TEST_CODE_4.split(SEPARATOR);
 
-                    parseAndExecute(values, debug);
+                    _theComputer.parseAndExecute(values);
 
                     str = convert(values);
  
@@ -134,7 +138,7 @@ public class Computer
             
                         values = TEST_CODE_5.split(SEPARATOR);
 
-                        parseAndExecute(values, debug);
+                        _theComputer.parseAndExecute(values);
 
                         str = convert(values);
  

@@ -12,6 +12,12 @@ public class Intcode
    
     public static final String DELIMITER = ",";
 
+    /*
+     * This implementation is stateless other than being placed
+     * into debug mode where it will output whatever action it
+     * takes.
+     */
+    
     public Intcode (boolean debug)
     {
         _debug = debug;
