@@ -33,7 +33,7 @@ public class Computer
             verify(debug);
             System.exit(0);
         }
-        
+
         /*
          * Open the data file and read it in.
          */
@@ -56,9 +56,10 @@ public class Computer
                 {
                     resetState(values, debug);
 
-                    _theComputer.parseAndExecute(values);
+                    System.out.println("The value at address 0 is: " + _theComputer.parseAndExecute(values));
 
-                    dumpData(values);
+                    if (debug)  
+                        dumpData(values);
                 }
             }
         }
