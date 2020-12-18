@@ -54,6 +54,8 @@ public class Intcode
                     dumpData(values);
                 else
                 {
+                    resetState(values, debug);
+
                     parseAndExecute(values, debug);
 
                     dumpData(values);
@@ -159,6 +161,20 @@ public class Intcode
                 }
             }
         }
+    }
+
+    /*
+     * Before running the program, replace position 1 with the value 12 and
+     * replace position 2 with the value 2.
+     */
+
+    private static void resetState (String[] values, boolean debug)
+    {
+        if (debug)
+            System.out.println("Replacing position 1 with 12 and position 2 with 2");
+            
+        values[1] = "12";
+        values[2] = "2";
     }
 
     private static void verify (boolean debug)
