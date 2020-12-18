@@ -26,6 +26,10 @@ public class Computer
                 dump = true;
         }
 
+        /*
+         * Create the computer which will do the real work.
+         */
+
         _theComputer = new Intcode(debug);
 
         if (runVerifier)
