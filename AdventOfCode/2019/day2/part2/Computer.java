@@ -7,12 +7,13 @@ public class Computer
         boolean debug = false;
         boolean dump = false;
         boolean runVerifier = false;
+        int target = 19690720;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-verify] [-debug] [-dump]");
+                System.out.println("[-value target] [-help] [-verify] [-debug] [-dump]");
                 System.exit(0);
             }
             
@@ -24,6 +25,9 @@ public class Computer
 
             if ("-dump".equals(args[i]))
                 dump = true;
+
+            if ("-value".equals(args[i]))
+                target = Integer.parseInt(args[i+1]);
         }
 
         /*
@@ -60,12 +64,22 @@ public class Computer
                     dumpData(values);
                 else
                 {
-                    resetState(values, debug);
+                    resetState(values, debug);  // not really needed for this part.
 
-                    System.out.println("The value at address 0 is: " + _theComputer.parseAndExecute(values));
+                    Cruncher bruteForce = new Cruncher(_theComputer, values, debug);
 
-                    if (debug)  
-                        dumpData(values);
+                    String[] results = bruteForce.crunch(target);
+
+                    if (results != null)
+                    {
+                        System.out.println("To achieve the target of "+target+" requires a noun of "+results[0]+" and a verb of "+results[1]);
+
+                        int total = 100 * Integer.parseInt(results[0]) + Integer.parseInt(results[1]);
+
+                        System.out.println("And the answer is: "+total);
+                    }
+                    else
+                        System.out.println("Could not achieve the target of "+target);
                 }
             }
         }

@@ -11,13 +11,13 @@ public class Cruncher
     {
 
         for (int i = 0; i < 100; i++)
-        {
-            String[] instructions = new String[_originalInstructions.length];
-
-            System.arraycopy(_originalInstructions, 0, instructions, 0, _originalInstructions.length);
-
+        {          
             for (int j = 0; j < 100; j++)
             {
+                String[] instructions = new String[_originalInstructions.length];
+
+                System.arraycopy(_originalInstructions, 0, instructions, 0, _originalInstructions.length);
+
                 String val1 = Integer.toString(i);
                 String val2 = Integer.toString(j);
 
