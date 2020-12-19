@@ -19,8 +19,8 @@ public class TestPlotter
      * size needed.
      */
 
-    public static final int LENGTH = 1000;
-    public static final int WIDTH = 1000;
+    public static final int DEFAULT_LENGTH = 1000;
+    public static final int DEFAULT_WIDTH = 1000;
 
     public static void main (String[] args)
     {
@@ -30,12 +30,18 @@ public class TestPlotter
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-debug]");
+                System.out.println("[-help] [-debug] [-width <width>] [-length <length>]");
                 System.exit(0);
             }
 
             if ("-debug".equals(args[i]))
                 debug = true;
+
+            if ("-width".equals(args[i]))
+                _width = Integer.parseInt(args[i+1]);
+
+            if ("-length".equals(args[i]))
+                _length = Integer.parseInt(args[i+1]);
         }
 
         /*
@@ -74,7 +80,7 @@ public class TestPlotter
             {
                 if (checkMatrixSize(line1) && checkMatrixSize(line2))
                 {
-                    System.out.println("Matrix of "+LENGTH+" and "+WIDTH+" is sufficient.");
+                    System.out.println("Matrix of "+_length+" and "+_width+" is sufficient.");
                 }
             }
         }
@@ -96,8 +102,8 @@ public class TestPlotter
 
     private static final boolean checkMatrixSize (String[] line)
     {
-        int xPos = LENGTH/2;
-        int yPos = WIDTH/2;
+        int xPos = _length/2;
+        int yPos = _width/2;
 
         for (String str : line)
         {
@@ -119,7 +125,7 @@ public class TestPlotter
                 {
                     xPos += Integer.parseInt(str.substring(1));
 
-                    if (xPos > LENGTH)
+                    if (xPos > _length)
                     {
                         System.out.println("Instruction "+str+" moved x pointer to "+xPos);
 
@@ -131,7 +137,7 @@ public class TestPlotter
                 {
                     yPos += Integer.parseInt(str.substring(1));
 
-                    if (yPos > WIDTH)
+                    if (yPos > _width)
                     {
                         System.out.println("Instruction "+str+" moved y pointer to "+yPos);
 
@@ -177,6 +183,9 @@ public class TestPlotter
             System.out.println(str);
         }
     }
+
+    private static int _length = DEFAULT_LENGTH;
+    private static int _width = DEFAULT_WIDTH;
 
     private static final String DATA_FILE = "data.txt";
 }
