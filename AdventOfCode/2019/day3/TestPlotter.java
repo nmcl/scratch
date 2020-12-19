@@ -13,6 +13,10 @@ public class TestPlotter
      * Assume the starting point is in the middle of the
      * 2d array. But how big should the array be to ensure
      * we don't run out of space or over the edges?
+     * 
+     * We take a guess at the moment but could create an
+     * iterative program to dynamically assess the minimum
+     * size needed.
      */
 
     public static final int LENGTH = 1000;
@@ -66,6 +70,8 @@ public class TestPlotter
 
             if (debug)
                 dumpData(line1, line2);
+            else
+                checkMatrixSize(line2, line2);
         }
         catch (Throwable ex)
         {
