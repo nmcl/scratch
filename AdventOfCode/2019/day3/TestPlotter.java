@@ -4,18 +4,34 @@ public class TestPlotter
 {
     public static final String SEPARATOR = ",";
 
+    public static final UP = "U";
+    public static final DOWN = "D";
+    public static final LEFT = "L";
+    public static final RIGHT = "R";
+
+    /*
+     * Assume the starting point is in the middle of the
+     * 2d array. But how big should the array be to ensure
+     * we don't run out of space or over the edges?
+     */
+
     public static final int LENGTH = 1000;
     public static final int WIDTH = 1000;
+
     public static void main (String[] args)
     {
+        boolean debug = false;
+
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help]");
+                System.out.println("[-help] [-debug]");
                 System.exit(0);
             }
 
+            if ("-debug".equals(args[i]))
+                debug = true;
         }
 
         /*
@@ -48,7 +64,8 @@ public class TestPlotter
                 }
             }
 
-            dumpData(line1, line2);
+            if (debug)
+                dumpData(line1, line2);
         }
         catch (Throwable ex)
         {
