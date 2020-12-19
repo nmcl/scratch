@@ -4,10 +4,10 @@ public class TestPlotter
 {
     public static final String SEPARATOR = ",";
 
-    public static final UP = "U";
-    public static final DOWN = "D";
-    public static final LEFT = "L";
-    public static final RIGHT = "R";
+    public static final char UP = 'U';
+    public static final char DOWN = 'D';
+    public static final char LEFT = 'L';
+    public static final char RIGHT = 'R';
 
     /*
      * Assume the starting point is in the middle of the
@@ -71,7 +71,12 @@ public class TestPlotter
             if (debug)
                 dumpData(line1, line2);
             else
-                checkMatrixSize(line2, line2);
+            {
+                if (checkMatrixSize(line1) && checkMatrixSize(line2))
+                {
+                    System.out.println("Matrix of "+LENGTH+" and "+WIDTH+" is sufficient.");
+                }
+            }
         }
         catch (Throwable ex)
         {
@@ -87,6 +92,75 @@ public class TestPlotter
             {
             }
         }
+    }
+
+    private static final boolean checkMatrixSize (String[] line)
+    {
+        int xPos = LENGTH/2;
+        int yPos = WIDTH/2;
+
+        for (String str : line)
+        {
+            switch (str.charAt(0))
+            {
+                case TestPlotter.LEFT:
+                {
+                    xPos -= Integer.parseInt(str.substring(1));
+
+                    if (xPos < 0)
+                    {
+                        System.out.println("Instruction "+str+" moved x pointer to "+xPos);
+
+                        return false;
+                    }
+                }
+                break;
+                case TestPlotter.RIGHT:
+                {
+                    xPos += Integer.parseInt(str.substring(1));
+
+                    if (xPos > LENGTH)
+                    {
+                        System.out.println("Instruction "+str+" moved x pointer to "+xPos);
+
+                        return false;
+                    }
+                }
+                break;
+                case TestPlotter.UP:
+                {
+                    yPos += Integer.parseInt(str.substring(1));
+
+                    if (yPos > WIDTH)
+                    {
+                        System.out.println("Instruction "+str+" moved y pointer to "+yPos);
+
+                        return false;
+                    }
+                }
+                break;
+                case TestPlotter.DOWN:
+                {
+                    yPos -= Integer.parseInt(str.substring(1));
+
+                    if (yPos < 0)
+                    {
+                        System.out.println("Instruction "+str+" moved y pointer to "+yPos);
+
+                        return false;
+                    }
+                }
+                break;
+                default:
+                {
+                    System.out.println("Unknown instruction: "+str.charAt(0));
+
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private static final void dumpData (String[] line1, String[] line2)
