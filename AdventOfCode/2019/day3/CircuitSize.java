@@ -101,10 +101,6 @@ public class CircuitSize
                 {
                     int left = Integer.parseInt(str.substring(1));
 
-                    /*
-                     * L10, U50, L95, D70, R20
-                     */
-
                     if (xPos - left < 0)
                     {
                         _length += left * 2; // origin should be in the middle
