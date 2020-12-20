@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class TestPlotter
+public class CircuitSize
 {
     public static final String SEPARATOR = ",";
 
@@ -68,7 +68,7 @@ public class TestPlotter
             {
                 if (checkMatrixSize(line1) && checkMatrixSize(line2))
                 {
-                    System.out.println("Matrix of "+_length+" and "+_width+" is sufficient.");
+                    System.out.println("Matrix of length:"+_length+" and width:"+_width+" is sufficient.");
                 }
             }
         }
@@ -149,9 +149,9 @@ public class TestPlotter
 
                     if (yPos - down < 0)
                     {
-                        _width += up * 2; // origin should be in the middle
+                        _width += down * 2; // origin should be in the middle
 
-                        yPos += down;
+                        yPos += down;  // move ptr in other direction so we don't go over the edge.  Negative?
                     }
                     else
                         yPos -= down;
