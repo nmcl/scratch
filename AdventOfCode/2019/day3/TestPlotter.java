@@ -80,7 +80,7 @@ public class TestPlotter
             {
                 if (checkMatrixSize(line1) && checkMatrixSize(line2))
                 {
-                    System.out.println("Matrix of "+_length+" and "+_width+" is sufficient.");
+                    System.out.println("Matrix of length:"+_length+" and wodth:"+_width+" is sufficient.");
                 }
             }
         }
@@ -115,7 +115,7 @@ public class TestPlotter
 
                     if (xPos < 0)
                     {
-                        System.out.println("Instruction "+str+" moved x pointer to "+xPos);
+                        System.out.println("Instruction "+str+" moved x pointer over the edge to "+xPos);
 
                         return false;
                     }
@@ -127,7 +127,7 @@ public class TestPlotter
 
                     if (xPos > _length)
                     {
-                        System.out.println("Instruction "+str+" moved x pointer to "+xPos);
+                        System.out.println("Instruction "+str+" moved x pointer beyond length to "+xPos);
 
                         return false;
                     }
@@ -139,7 +139,7 @@ public class TestPlotter
 
                     if (yPos > _width)
                     {
-                        System.out.println("Instruction "+str+" moved y pointer to "+yPos);
+                        System.out.println("Instruction "+str+" moved y pointer beyond width to "+yPos);
 
                         return false;
                     }
@@ -151,7 +151,7 @@ public class TestPlotter
 
                     if (yPos < 0)
                     {
-                        System.out.println("Instruction "+str+" moved y pointer to "+yPos);
+                        System.out.println("Instruction "+str+" moved y pointer over the edge to "+yPos);
 
                         return false;
                     }
