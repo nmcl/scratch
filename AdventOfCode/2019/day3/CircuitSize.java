@@ -90,8 +90,8 @@ public class TestPlotter
 
     private static final boolean checkMatrixSize (String[] line)
     {
-        int xPos = 0;
-        int yPos = 0;
+        int xPos = _length/2;
+        int yPos = _width/2;
 
         for (String str : line)
         {
@@ -99,56 +99,62 @@ public class TestPlotter
             {
                 case TestPlotter.LEFT:
                 {
-                    xPos -= Integer.parseInt(str.substring(1));
+                    int left = Integer.parseInt(str.substring(1));
 
                     /*
                      * L10, U50, L95, D70, R20
                      */
 
-                    if (xPos < 0)
+                    if (xPos - left < 0)
                     {
-                        _length += Integer.parseInt(str.substring(1));
+                        _length += left * 2; // origin should be in the middle
 
-                        System.out.println("Instruction "+str+" moved x pointer to "+xPos);
-
-                        return false;
+                        xPos += left;  // move ptr in other direction so we don't go over the edge.
                     }
+                    else
+                        xPos -= left;
                 }
                 break;
                 case TestPlotter.RIGHT:
                 {
-                    xPos += Integer.parseInt(str.substring(1));
+                    int right = Integer.parseInt(str.substring(1));
 
-                    if (xPos > _length)
+                    if (xPos + right > _length)
                     {
-                        System.out.println("Instruction "+str+" moved x pointer to "+xPos);
+                        _length += right * 2; // origin should be in the middle
 
-                        return false;
+                        xPos -= right;  // move ptr in other direction so we don't go over the edge.
                     }
+                    else
+                        xPos += right;
                 }
                 break;
                 case TestPlotter.UP:
                 {
-                    yPos += Integer.parseInt(str.substring(1));
+                    int up = Integer.parseInt(str.substring(1));
 
-                    if (yPos > _width)
+                    if (yPos + up > _width)
                     {
-                        System.out.println("Instruction "+str+" moved y pointer to "+yPos);
+                        _width += up * 2; // origin should be in the middle
 
-                        return false;
+                        yPos -= up;  // move ptr in other direction so we don't go over the edge.  Negative?
                     }
+                    else
+                        yPos += up;
                 }
                 break;
                 case TestPlotter.DOWN:
                 {
-                    yPos -= Integer.parseInt(str.substring(1));
+                    int down = Integer.parseInt(str.substring(1));
 
-                    if (yPos < 0)
+                    if (yPos - down < 0)
                     {
-                        System.out.println("Instruction "+str+" moved y pointer to "+yPos);
+                        _width += up * 2; // origin should be in the middle
 
-                        return false;
+                        yPos += down;
                     }
+                    else
+                        yPos -= down;
                 }
                 break;
                 default:
