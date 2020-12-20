@@ -24,18 +24,12 @@ public class TestPlotter
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-debug] [-width <width>] [-length <length>]");
+                System.out.println("[-help] [-debug]");
                 System.exit(0);
             }
 
             if ("-debug".equals(args[i]))
                 debug = true;
-
-            if ("-width".equals(args[i]))
-                _width = Integer.parseInt(args[i+1]);
-
-            if ("-length".equals(args[i]))
-                _length = Integer.parseInt(args[i+1]);
         }
 
         /*
@@ -96,8 +90,8 @@ public class TestPlotter
 
     private static final boolean checkMatrixSize (String[] line)
     {
-        int xPos = _length/2;
-        int yPos = _width/2;
+        int xPos = 0;
+        int yPos = 0;
 
         for (String str : line)
         {
@@ -107,8 +101,14 @@ public class TestPlotter
                 {
                     xPos -= Integer.parseInt(str.substring(1));
 
+                    /*
+                     * L10, U50, L95, D70, R20
+                     */
+
                     if (xPos < 0)
                     {
+                        _length += Integer.parseInt(str.substring(1));
+
                         System.out.println("Instruction "+str+" moved x pointer to "+xPos);
 
                         return false;
@@ -178,8 +178,8 @@ public class TestPlotter
         }
     }
 
-    private static int _length = DEFAULT_LENGTH;
-    private static int _width = DEFAULT_WIDTH;
+    private static int _length = 0;
+    private static int _width = 0;
 
     private static final String DATA_FILE = "data.txt";
 }
