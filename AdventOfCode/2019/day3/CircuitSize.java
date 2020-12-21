@@ -19,17 +19,21 @@ public class CircuitSize
     public static void main (String[] args)
     {
         boolean debug = false;
+        boolean dump = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-debug]");
+                System.out.println("[-help] [-debug] [-dump]");
                 System.exit(0);
             }
 
             if ("-debug".equals(args[i]))
                 debug = true;
+
+            if ("-dump".equals(args[i]))
+                dump = true;
         }
 
         /*
@@ -62,11 +66,11 @@ public class CircuitSize
                 }
             }
 
-            if (debug)
+            if (dump)
                 dumpData(line1, line2);
             else
             {
-                if (checkMatrixSize(line1) && checkMatrixSize(line2))
+                if (checkMatrixSize(line1, debug) && checkMatrixSize(line2, debug))
                 {
                     System.out.println("Matrix of length:"+_length+" and width:"+_width+" is sufficient.");
                 }
@@ -88,7 +92,7 @@ public class CircuitSize
         }
     }
 
-    private static final boolean checkMatrixSize (String[] line)
+    private static final boolean checkMatrixSize (String[] line, boolean debug)
     {
         int xPos = _length/2;
         int yPos = _width/2;
@@ -105,7 +109,7 @@ public class CircuitSize
                     {
                         _length += left * 2; // origin should be in the middle
 
-                        xPos += left;  // move ptr in other direction so we don't go over the edge.
+                        xPos = 0;
                     }
                     else
                         xPos -= left;
@@ -119,7 +123,7 @@ public class CircuitSize
                     {
                         _length += right * 2; // origin should be in the middle
 
-                        xPos -= right;  // move ptr in other direction so we don't go over the edge.
+                        xPos += right;
                     }
                     else
                         xPos += right;
@@ -133,7 +137,7 @@ public class CircuitSize
                     {
                         _width += up * 2; // origin should be in the middle
 
-                        yPos -= up;  // move ptr in other direction so we don't go over the edge.  Negative?
+                        yPos += up;
                     }
                     else
                         yPos += up;
@@ -147,7 +151,7 @@ public class CircuitSize
                     {
                         _width += down * 2; // origin should be in the middle
 
-                        yPos += down;  // move ptr in other direction so we don't go over the edge.  Negative?
+                        yPos = 0;
                     }
                     else
                         yPos -= down;
@@ -161,6 +165,9 @@ public class CircuitSize
                 }
             }
         }
+
+        if (debug)
+            System.out.println("length: "+_length+" and width: "+_width);
 
         return true;
     }
