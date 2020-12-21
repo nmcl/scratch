@@ -66,14 +66,57 @@ public class CircuitSize
                 }
             }
 
+            /*
+             * Keep test plotting and extending the matrix (circuit board sizse)
+             * until we don't need to expand it any more for that wire. This may
+             * not generate the minumum size board needed (since we assume the origin
+             * is in the middle, for instance) but it's large enough to cope with
+             * each wire without being far too big.
+             */
+
             if (dump)
                 dumpData(line1, line2);
             else
             {
-                if (checkMatrixSize(line1, debug) && checkMatrixSize(line2, debug))
+                int startLength = _length;
+                int startWidth = _width;
+                boolean done = false;
+
+                do
                 {
-                    System.out.println("Matrix of length:"+_length+" and width:"+_width+" is sufficient.");
+                    checkMatrixSize(line1, debug);
+
+                    if (startLength == _length)
+                    {
+                        if (startWidth == _width)
+                            done = true;
+                        else
+                            startWidth = _width;
+                    }
+                    else
+                        startLength = _length;
                 }
+                while (!done);
+
+                done = false;
+
+                do
+                {
+                    checkMatrixSize(line2, debug);
+
+                    if (startLength == _length)
+                    {
+                        if (startWidth == _width)
+                            done = true;
+                        else
+                            startWidth = _width;
+                    }
+                    else
+                        startLength = _length;
+                }
+                while (!done);
+
+                System.out.println("Matrix of length:"+_length+" and width:"+_width+" is sufficient.");
             }
         }
         catch (Throwable ex)
