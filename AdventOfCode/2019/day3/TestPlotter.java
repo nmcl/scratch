@@ -47,7 +47,7 @@ public class TestPlotter
             if ("-length".equals(args[i]))
                 _length = Integer.parseInt(args[i+1]);
 
-                if ("-example1".equals(args[i]))
+            if ("-example1".equals(args[i]))
                 fileToUse = EXAMPLE1;
 
             if ("-example2".equals(args[i]))
@@ -64,7 +64,7 @@ public class TestPlotter
 
         try
         {
-            reader = new BufferedReader(new FileReader(DATA_FILE));
+            reader = new BufferedReader(new FileReader(fileToUse));
             String line = null;
 
             while ((line = reader.readLine()) != null)
