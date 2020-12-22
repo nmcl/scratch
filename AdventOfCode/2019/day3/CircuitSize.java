@@ -9,6 +9,9 @@ public class CircuitSize
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
 
+    public static final int CENTRAL_PORT_X = 1;
+    public static final int CENTRAL_PORT_Y = 1;
+    
     /*
      * Building on TestPlotter, rather than have the user give
      * values for length and width for us to test against, this
@@ -150,7 +153,7 @@ public class CircuitSize
 
                     if (xPos - left < 0)
                     {
-                        _length += left * 2; // origin should be in the middle
+                        _length += left;
 
                         xPos = 0;
                     }
@@ -164,7 +167,7 @@ public class CircuitSize
 
                     if (xPos + right > _length)
                     {
-                        _length += right * 2; // origin should be in the middle
+                        _length += right;
 
                         xPos += right;
                     }
@@ -178,7 +181,7 @@ public class CircuitSize
 
                     if (yPos + up > _width)
                     {
-                        _width += up * 2; // origin should be in the middle
+                        _width += up;
 
                         yPos += up;
                     }
@@ -192,7 +195,7 @@ public class CircuitSize
 
                     if (yPos - down < 0)
                     {
-                        _width += down * 2; // origin should be in the middle
+                        _width += down;
 
                         yPos = 0;
                     }
@@ -230,8 +233,8 @@ public class CircuitSize
         }
     }
 
-    private static int _length = 0;
-    private static int _width = 0;
+    private static int _length = CENTRAL_PORT_X;
+    private static int _width = CENTRAL_PORT_Y;
 
     private static final String DATA_FILE = "data.txt";
 }
