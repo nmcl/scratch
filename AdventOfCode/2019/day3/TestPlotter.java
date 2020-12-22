@@ -22,18 +22,19 @@ public class TestPlotter
      * be obtained beforehand.
      */
 
-    public static final int DEFAULT_LENGTH = 1000;
-    public static final int DEFAULT_WIDTH = 1000;
+    public static final int DEFAULT_LENGTH = 23305;
+    public static final int DEFAULT_WIDTH = 14050;
 
     public static void main (String[] args)
     {
         boolean debug = false;
+        String fileToUse = DATA_FILE;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-debug] [-width <width>] [-length <length>]");
+                System.out.println("[-help] [-debug] [-width <width>] [-length <length>] [-example1] [-example2]");
                 System.exit(0);
             }
 
@@ -45,6 +46,12 @@ public class TestPlotter
 
             if ("-length".equals(args[i]))
                 _length = Integer.parseInt(args[i+1]);
+
+                if ("-example1".equals(args[i]))
+                fileToUse = EXAMPLE1;
+
+            if ("-example2".equals(args[i]))
+                fileToUse = EXAMPLE2;
         }
 
         /*
@@ -191,4 +198,6 @@ public class TestPlotter
     private static int _width = DEFAULT_WIDTH;
 
     private static final String DATA_FILE = "data.txt";
+    private static final String EXAMPLE1 = "example1.txt";
+    private static final String EXAMPLE2 = "example2.txt";
 }

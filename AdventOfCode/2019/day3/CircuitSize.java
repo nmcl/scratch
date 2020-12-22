@@ -23,12 +23,13 @@ public class CircuitSize
     {
         boolean debug = false;
         boolean dump = false;
+        String fileToUse = DATA_FILE;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-debug] [-dump]");
+                System.out.println("[-help] [-debug] [-dump] [-example1] [-example2]");
                 System.exit(0);
             }
 
@@ -37,6 +38,12 @@ public class CircuitSize
 
             if ("-dump".equals(args[i]))
                 dump = true;
+
+            if ("-example1".equals(args[i]))
+                fileToUse = EXAMPLE1;
+
+            if ("-example2".equals(args[i]))
+                fileToUse = EXAMPLE2;
         }
 
         /*
@@ -49,7 +56,7 @@ public class CircuitSize
 
         try
         {
-            reader = new BufferedReader(new FileReader(DATA_FILE));
+            reader = new BufferedReader(new FileReader(fileToUse));
             String line = null;
 
             while ((line = reader.readLine()) != null)
@@ -291,4 +298,6 @@ public class CircuitSize
     private static int _width = 0;
 
     private static final String DATA_FILE = "data.txt";
+    private static final String EXAMPLE1 = "example1.txt";
+    private static final String EXAMPLE2 = "example2.txt";
 }
