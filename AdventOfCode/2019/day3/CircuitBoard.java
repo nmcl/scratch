@@ -1,9 +1,21 @@
 import java.io.*;
 
+/*
+ * Take the data given and find where the two wires cross.
+ * 
+ * The size of the circuit board should have been obtained
+ * correctly beforehand using something like CircuitSize or
+ * TestPlotter. The algorithms which those programs use
+ * could be incorporated directly here but for now we'll keep
+ * things simple.
+ */
+
 public class CircuitBoard
 {
     public static final String SEPARATOR = ",";
 
+    // default circuit board size
+    
     public static final int LENGTH = 1000;
     public static final int WIDTH = 1000;
     public static void main (String[] args)
