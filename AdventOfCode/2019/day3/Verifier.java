@@ -122,10 +122,20 @@ public class Verifier
                         }
                         else
                         {
-                            if (result == EXAMPLE2_RESULT)
-                                System.out.println("Verified ok!");
+                            if (fileToUse.equals(EXAMPLE2))
+                            {
+                                if (result == EXAMPLE2_RESULT)
+                                    System.out.println("Verified ok!");
+                                else
+                                    System.out.println("Verify failed!");
+                            }
                             else
-                                System.out.println("Verify failed!");
+                            {
+                                if (result == EXAMPLE3_RESULT)
+                                    System.out.println("Verified ok!");
+                                else
+                                    System.out.println("Verify failed!");
+                            }
                         }
                     }
                     else

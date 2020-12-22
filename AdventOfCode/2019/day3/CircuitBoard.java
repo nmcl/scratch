@@ -130,7 +130,7 @@ public class CircuitBoard
 
     public int getDistance ()
     {
-        int result = -1;
+        int result = _length + _width;
         int xPos = 0;
         int yPos = 0;
 
@@ -140,19 +140,29 @@ public class CircuitBoard
             {
                 if (_theBoard[i][j] > 1)
                 {
-                    System.out.println("Wires cross at <"+i+", "+j+">");
+                    System.out.println("Checking "+i+" and "+j+" and "+result);
+
+                    if (i+j < result)
+                    {
+                        // ignore origin crossing
+
+                        if (i+j != (_length/2 + _width/2))
+                            result = i+j;
+                    }
                 }
             }
         }
 
-        return -1;
+        System.out.println("got "+(result - (_length/2 + _width/2)));
+
+        return result - (_length/2 + _width/2);
     }
 
     public final void printBoard ()
     {
-        for (int i = 0; i < _length; i++)
+        for (int i = _length -1; i >= 0; i--)
         {
-            for (int j = 0; j < _width; j++)
+            for (int j = _width -1; j >= 0; j--)
             {
                 System.out.print(_theBoard[i][j]);
             }
