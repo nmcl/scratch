@@ -42,10 +42,15 @@ public class CircuitBoard
             {
                 case TestPlotter.LEFT:
                 {
-                    xPos -= Integer.parseInt(str.substring(1));
+                    int left = Integer.parseInt(str.substring(1));
 
-                    if (xPos >= 0)
-                        _theBoard[xPos][yPos]++;
+                    if (xPos - left >= 0)
+                    {
+                        for (int i = xPos; i != xPos - left; i--)
+                            _theBoard[i][yPos]++;
+
+                        xPos -= left;
+                    }
                     else
                     {
                         System.out.println("LEFT "+Integer.parseInt(str.substring(1))+" moved xPos negative!");
@@ -56,10 +61,15 @@ public class CircuitBoard
                 break;
                 case TestPlotter.RIGHT:
                 {
-                    xPos += Integer.parseInt(str.substring(1));
+                    int right = Integer.parseInt(str.substring(1));
 
-                    if (xPos < _length)
-                        _theBoard[xPos][yPos]++;
+                    if (xPos + right < _length)
+                    {
+                        for (int i = xPos; i != xPos + right; i++)
+                            _theBoard[i][yPos]++;
+
+                        xPos += right;
+                    }
                     else
                     {
                         System.out.println("RIGHT "+Integer.parseInt(str.substring(1))+" moved xPos beyond max length!");
@@ -70,10 +80,15 @@ public class CircuitBoard
                 break;
                 case TestPlotter.UP:
                 {
-                    yPos += Integer.parseInt(str.substring(1));
+                    int up = Integer.parseInt(str.substring(1));
 
-                    if (yPos < _width)
-                        _theBoard[xPos][yPos]++;
+                    if (yPos + up < _width)
+                    {
+                        for (int i = yPos; i != yPos + up; i++)
+                            _theBoard[xPos][i]++;
+
+                        yPos += up;
+                    }
                     else
                     {
                         System.out.println("UP "+Integer.parseInt(str.substring(1))+" moved yPos beyond max width!");
@@ -84,10 +99,15 @@ public class CircuitBoard
                 break;
                 case TestPlotter.DOWN:
                 {
-                    yPos -= Integer.parseInt(str.substring(1));
+                    int down = Integer.parseInt(str.substring(1));
 
-                    if (yPos >= 0)
-                        _theBoard[xPos][yPos]++;
+                    if (yPos - down >= 0)
+                    {
+                        for (int i = yPos; i != yPos - down; i--)
+                            _theBoard[xPos][i]++;
+
+                        yPos -= down;
+                    }
                     else
                     {
                         System.out.println("DOWN "+Integer.parseInt(str.substring(1))+" moved yPos negative!");
