@@ -14,9 +14,12 @@ public class TestPlotter
      * 2d array. But how big should the array be to ensure
      * we don't run out of space or over the edges?
      * 
-     * We take a guess at the moment but could create an
-     * iterative program to dynamically assess the minimum
-     * size needed.
+     * We take a guess at the moment by taking a default size.
+     * However, other values for length and width can
+     * be given at input time.
+     * 
+     * If CircuitSize is used, then the exact values can
+     * be obtained beforehand.
      */
 
     public static final int DEFAULT_LENGTH = 1000;

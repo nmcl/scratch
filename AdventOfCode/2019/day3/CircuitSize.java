@@ -14,6 +14,9 @@ public class CircuitSize
      * values for length and width for us to test against, this
      * program takes the two lines and finds the circuit board
      * size needed to cope with the wires.
+     * 
+     * The values obtained can then be put back into TestPlotter
+     * to confirm the data in isolation.
      */
 
     public static void main (String[] args)
