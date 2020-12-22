@@ -134,8 +134,10 @@ public class CircuitBoard
         {
             for (int j = 0; j < _width; j++)
             {
-                System.out.println("<"+i+", "+j+", "+_theBoard[i][j]+">");
+                System.out.print(_theBoard[i][j]);
             }
+
+            System.out.println();
         }
     }
 

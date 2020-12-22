@@ -20,6 +20,9 @@ public class TestPlotter
      * 
      * If CircuitSize is used, then the exact values can
      * be obtained beforehand.
+     * 
+     * Note, this does not plot the wire itself but checks
+     * the extremities to determine the circuit board size.
      */
 
     public static final int DEFAULT_LENGTH = 23305;
@@ -53,7 +56,7 @@ public class TestPlotter
             if ("-example2".equals(args[i]))
                 fileToUse = EXAMPLE2;
 
-            if ("-example3".equals{args[i]))
+            if ("-example3".equals(args[i]))
                 fileToUse = EXAMPLE3;
         }
 

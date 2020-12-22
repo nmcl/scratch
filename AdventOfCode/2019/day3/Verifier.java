@@ -27,6 +27,10 @@ public class Verifier
     public static final int EXAMPLE2_WIDTH = 216;
     public static final int EXAMPLE2_RESULT = 135;
 
+    public static final int EXAMPLE3_LENGTH = 17;
+    public static final int EXAMPLE3_WIDTH = 16;
+    public static final int EXAMPLE3_RESULT = 6;
+
     public static void main (String[] args)
     {
         boolean dump = false;
@@ -38,7 +42,7 @@ public class Verifier
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-dump] [-example1] [-example2]");
+                System.out.println("[-help] [-dump] [-example1] [-example2] [-example3]");
                 System.exit(0);
             }
 
@@ -54,6 +58,14 @@ public class Verifier
 
                 length = EXAMPLE2_LENGTH;
                 width = EXAMPLE2_WIDTH;
+            }
+
+            if ("-example3".equals(args[i]))
+            {
+                fileToUse = EXAMPLE3;
+
+                length = EXAMPLE3_LENGTH;
+                width = EXAMPLE3_WIDTH;
             }
         }
 
@@ -166,4 +178,5 @@ public class Verifier
 
     private static final String EXAMPLE1 = "example1.txt";
     private static final String EXAMPLE2 = "example2.txt";
+    private static final String EXAMPLE3 = "example3.txt";
 }
