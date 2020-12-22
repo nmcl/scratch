@@ -27,19 +27,19 @@ public class TestPlotter
 
     public static void main (String[] args)
     {
-        boolean debug = false;
+        boolean dump = false;
         String fileToUse = DATA_FILE;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-debug] [-width <width>] [-length <length>] [-example1] [-example2]");
+                System.out.println("[-help] [-dump] [-width <width>] [-length <length>] [-example1] [-example2]");
                 System.exit(0);
             }
 
-            if ("-debug".equals(args[i]))
-                debug = true;
+            if ("-dump".equals(args[i]))
+                dump = true;
 
             if ("-width".equals(args[i]))
                 _width = Integer.parseInt(args[i+1]);
@@ -84,7 +84,7 @@ public class TestPlotter
                 }
             }
 
-            if (debug)
+            if (dump)
                 dumpData(line1, line2);
             else
             {

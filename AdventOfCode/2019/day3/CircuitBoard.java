@@ -17,9 +17,18 @@ public class CircuitBoard
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
 
-    public CircuitBoard ()
+    public CircuitBoard (int length, int width)
     {
+        _length = length;
+        _width = width;
 
+        _theBoard = new int[_length][_width];
+
+        for (int i = 0; i < _length; i++)
+        {
+            for (int j = 0; j < _width; j++)
+                _theBoard[i][j] = 0;
+        }
     }
 
     public boolean plotLine (String[] line)
@@ -38,7 +47,11 @@ public class CircuitBoard
                     if (xPos >= 0)
                         _theBoard[xPos][yPos]++;
                     else
+                    {
+                        System.out.println("LEFT "+Integer.parseInt(str.substring(1))+" moved xPos negative!");
+
                         return false;
+                    }
                 }
                 break;
                 case TestPlotter.RIGHT:
@@ -48,7 +61,11 @@ public class CircuitBoard
                     if (xPos < _length)
                         _theBoard[xPos][yPos]++;
                     else
+                    {
+                        System.out.println("RIGHT "+Integer.parseInt(str.substring(1))+" moved xPos beyond max length!");
+
                         return false;
+                    }
                 }
                 break;
                 case TestPlotter.UP:
@@ -58,7 +75,11 @@ public class CircuitBoard
                     if (yPos < _width)
                         _theBoard[xPos][yPos]++;
                     else
+                    {
+                        System.out.println("UP "+Integer.parseInt(str.substring(1))+" moved yPos beyond max width!");
+
                         return false;
+                    }
                 }
                 break;
                 case TestPlotter.DOWN:
@@ -68,7 +89,11 @@ public class CircuitBoard
                     if (yPos >= 0)
                         _theBoard[xPos][yPos]++;
                     else
+                    {
+                        System.out.println("DOWN "+Integer.parseInt(str.substring(1))+" moved yPos negative!");
+
                         return false;
+                    }
                 }
                 break;
                 default:
@@ -114,21 +139,7 @@ public class CircuitBoard
         }
     }
 
-    private static int _length = DEFAULT_LENGTH;
-    private static int _width = DEFAULT_WIDTH;
-
-    private static final String DATA_FILE = "data.txt";
-
-    /*
-     * Let's try something different this time with verifying the
-     * program works. Rather than embed verification within and potentially
-     * duplicate code, we'll have the examples in their own files and load
-     * them separately, compare with the expected result and give a
-     * true/false outcome accordingly.
-     */
-
-    private static final String EXAMPLE1 = "example1.txt";
-    private static final String EXAMPLE2 = "example2.txt";
-    private static final int EXAMPLE1_DISTANCE = 159;
-    private static final int EXAMPLE2_DISTANCE = 135;
+    private int[][] _theBoard = null;
+    int _length = 0;
+    int _width = 0;
 }
