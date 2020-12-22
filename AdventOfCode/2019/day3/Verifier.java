@@ -107,9 +107,13 @@ public class Verifier
             {
                 if (_theBoard.plotLine(line1))
                 {
+                    _theBoard.ignoreSelfCrossing();
+                    
+                    System.out.println("Distance? "+_theBoard.getDistance());
+
                     if (_theBoard.plotLine(line2))
                     {
-                        _theBoard.printBoard();
+                        //_theBoard.printBoard();
                         
                         int result = _theBoard.getDistance();
 

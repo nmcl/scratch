@@ -46,7 +46,7 @@ public class CircuitBoard
 
                     if (xPos - left >= 0)
                     {
-                        for (int i = xPos; i != xPos - left; i--)
+                        for (int i = xPos-left+1; i != xPos; i++)
                             _theBoard[i][yPos]++;
 
                         xPos -= left;
@@ -103,7 +103,7 @@ public class CircuitBoard
 
                     if (yPos - down >= 0)
                     {
-                        for (int i = yPos; i != yPos - down; i--)
+                        for (int i = yPos - down +1; i != yPos; i++)
                             _theBoard[xPos][i]++;
 
                         yPos -= down;
@@ -128,34 +128,54 @@ public class CircuitBoard
         return true;
     }
 
-    public int getDistance ()
-    {
-        int result = _length + _width;
-        int xPos = 0;
-        int yPos = 0;
+    /*
+     * Ignore points where a wire crosses itself.
+     */
 
+    public void ignoreSelfCrossing ()
+    {
         for (int i = 0; i < _length; i++)
         {
             for (int j = 0; j < _width; j++)
             {
                 if (_theBoard[i][j] > 1)
+                    _theBoard[i][j] = 1;
+            }
+        }
+    }
+
+    public int getDistance ()
+    {
+        int result = _length + _width;
+        int xPos = 0;
+        int yPos = 0;
+        boolean found = false;
+
+        System.out.println("Origin is "+(_length/2 + _width/2));
+
+        for (int i = 0; i < _length; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                if ((_theBoard[i][j] > 1) && ((i != _length/2) && (j != _width/2)))  // ignore origin
                 {
-                    System.out.println("Checking "+i+" and "+j+" and "+result);
+                    System.out.println("\nChecking "+(i+j));
+                    System.out.println("Current is "+result);
+                    System.out.println("Crosses at "+i+" "+j);
+                    found = true;
 
                     if (i+j < result)
-                    {
-                        // ignore origin crossing
-
-                        if (i+j != (_length/2 + _width/2))
-                            result = i+j;
-                    }
+                        result = i+j;
                 }
             }
         }
 
         System.out.println("got "+(result - (_length/2 + _width/2)));
 
-        return result - (_length/2 + _width/2);
+        if (found)
+            return result - (_length/2 + _width/2);
+        else
+            return 0;
     }
 
     public final void printBoard ()
