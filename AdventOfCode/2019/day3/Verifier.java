@@ -105,17 +105,15 @@ public class Verifier
                 dumpData(line1, line2);
             else
             {
-                if (_theBoard.plotLine(line1))
+                if (_theBoard.plotLine(line1, "A"))
                 {
-                    _theBoard.ignoreSelfCrossing();
-                    
-                    System.out.println("Distance? "+_theBoard.getDistance());
+                    _theBoard.printBoard();
 
-                    if (_theBoard.plotLine(line2))
+                    if (_theBoard.plotLine(line2, "B"))
                     {
                         //_theBoard.printBoard();
                         
-                        int result = _theBoard.getDistance();
+                        int result = _theBoard.getDistance("AB");
 
                         if (fileToUse.equals(EXAMPLE1))
                         {

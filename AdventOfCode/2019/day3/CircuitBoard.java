@@ -22,16 +22,16 @@ public class CircuitBoard
         _length = length;
         _width = width;
 
-        _theBoard = new int[_length][_width];
+        _theBoard = new String[_length][_width];
 
         for (int i = 0; i < _length; i++)
         {
             for (int j = 0; j < _width; j++)
-                _theBoard[i][j] = 0;
+                _theBoard[i][j] = "";
         }
     }
 
-    public boolean plotLine (String[] line)
+    public boolean plotLine (String[] line, String lineID)
     {
         int xPos = _length/2;  // always start in the centre of the grid
         int yPos = _width/2;
@@ -47,7 +47,10 @@ public class CircuitBoard
                     if (xPos - left >= 0)
                     {
                         for (int i = xPos-left+1; i != xPos; i++)
-                            _theBoard[i][yPos]++;
+                        {
+                            if (!_theBoard[i][yPos].contains(lineID))
+                                _theBoard[i][yPos] += lineID;
+                        }
 
                         xPos -= left;
                     }
@@ -66,7 +69,10 @@ public class CircuitBoard
                     if (xPos + right < _length)
                     {
                         for (int i = xPos; i != xPos + right; i++)
-                            _theBoard[i][yPos]++;
+                        {
+                            if (!_theBoard[i][yPos].contains(lineID))
+                                _theBoard[i][yPos] += lineID;
+                        }
 
                         xPos += right;
                     }
@@ -85,7 +91,10 @@ public class CircuitBoard
                     if (yPos + up < _width)
                     {
                         for (int i = yPos; i != yPos + up; i++)
-                            _theBoard[xPos][i]++;
+                        {
+                            if (!_theBoard[i][yPos].contains(lineID))
+                                _theBoard[xPos][i] += lineID;
+                        }
 
                         yPos += up;
                     }
@@ -104,7 +113,10 @@ public class CircuitBoard
                     if (yPos - down >= 0)
                     {
                         for (int i = yPos - down +1; i != yPos; i++)
-                            _theBoard[xPos][i]++;
+                        {
+                            if (!_theBoard[i][yPos].contains(lineID))
+                                _theBoard[xPos][i] += lineID;
+                        }
 
                         yPos -= down;
                     }
@@ -128,25 +140,9 @@ public class CircuitBoard
         return true;
     }
 
-    /*
-     * Ignore points where a wire crosses itself.
-     */
-
-    public void ignoreSelfCrossing ()
+    public int getDistance (String crossingLines)
     {
-        for (int i = 0; i < _length; i++)
-        {
-            for (int j = 0; j < _width; j++)
-            {
-                if (_theBoard[i][j] > 1)
-                    _theBoard[i][j] = 1;
-            }
-        }
-    }
-
-    public int getDistance ()
-    {
-        int result = _length + _width;
+        int result = (int) Math.sqrt((_length*_length) + (_width*_width));
         int xPos = 0;
         int yPos = 0;
         boolean found = false;
@@ -157,20 +153,26 @@ public class CircuitBoard
         {
             for (int j = 0; j < _width; j++)
             {
-                if ((_theBoard[i][j] > 1) && ((i != _length/2) && (j != _width/2)))  // ignore origin
+                if (!(_theBoard[i][j]).equals(""))
                 {
-                    System.out.println("\nChecking "+(i+j));
-                    System.out.println("Current is "+result);
-                    System.out.println("Crosses at "+i+" "+j);
-                    found = true;
+                    if ((_theBoard[i][j].equals(crossingLines)) && ((i != _length/2) && (j != _width/2)))  // ignore origin
+                    {
+                        System.out.println("\nChecking "+i+" "+j);
+                        System.out.println("Current is "+result);
+                        System.out.println("Crosses at "+i+" "+j);
+                        System.out.println("Have "+_theBoard[i][j]);
+                        found = true;
 
-                    if (i+j < result)
-                        result = i+j;
+                        int temp = (int) Math.sqrt((i*i)+(j*j));
+
+                        if (temp < result)
+                            result = i+j;
+                    }
                 }
             }
         }
 
-        System.out.println("got "+(result - (_length/2 + _width/2)));
+        System.out.println("Got "+(result - (_length/2 + _width/2)));
 
         if (found)
             return result - (_length/2 + _width/2);
@@ -180,18 +182,26 @@ public class CircuitBoard
 
     public final void printBoard ()
     {
-        for (int i = _length -1; i >= 0; i--)
+        for (int i = 0; i < _length; i++)
         {
-            for (int j = _width -1; j >= 0; j--)
+            for (int j = 0; j < _width; j++)
             {
-                System.out.print(_theBoard[i][j]);
+                if ("".equals(_theBoard[i][j]))
+                    System.out.print(".");
+                else
+                {
+                    if (_theBoard[i][j].length() > 1)
+                        System.out.print("X");
+                    else
+                        System.out.print("0");
+                }
             }
 
             System.out.println();
         }
     }
 
-    private int[][] _theBoard = null;
+    private String[][] _theBoard = null;
     int _length = 0;
     int _width = 0;
 }
