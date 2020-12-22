@@ -29,22 +29,14 @@ public class CircuitBoard
         boolean dump = false;
         int length = DEFAULT_LENGTH;
         int width = DEFAULT_WIDTH;
+        String fileToUse = DATA_FILE;
+        int expectedResult = -1;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-verify] [-dump] [-length <length>] [-width <width>]");
-                System.exit(0);
-            }
-            
-            if ("-verify".equals(args[i]))
-            {
-                if (verify())
-                    System.out.println("Verified ok!");
-                else
-                    System.out.println("Verify failed!");
-
+                System.out.println("[-help] [-verify] [-dump] [-length <length>] [-width <width>] [-example1 <result>] [-example2 <result>]");
                 System.exit(0);
             }
 
@@ -56,6 +48,20 @@ public class CircuitBoard
 
             if ("-length".equals(args[i]))
                 _length = Integer.parseInt(args[i+1]);
+
+            if ("-example1".equals(args[i]))
+            {
+                fileToUse = EXAMPLE1;
+
+                expectedResult = Integer.parseInt(args[i+1]);
+            }
+
+            if ("-example2".equals(args[i]))
+            {
+                fileToUse = EXAMPLE2;
+
+                expectedResult = Integer.parseInt(args[i+1]);
+            }
         }
 
         _theBoard = new int[_length][_width];
@@ -76,7 +82,7 @@ public class CircuitBoard
 
         try
         {
-            reader = new BufferedReader(new FileReader(DATA_FILE));
+            reader = new BufferedReader(new FileReader(fileToUse));
             String line = null;
 
             while ((line = reader.readLine()) != null)
@@ -102,9 +108,21 @@ public class CircuitBoard
             {
                 if (plotLine(line1))
                 {
-                    if (plotLine(line1))
+                    if (plotLine(line2))
                     {
+                        printBoard();
+                        
+                        int result = getDistance();
 
+                        if (expectedResult != -1)
+                        {
+                            if (expectedResult == result)
+                                System.out.println("Verified ok!");
+                            else
+                                System.out.println("Verify failed!");
+                        }
+                        else
+                            System.out.println("Manhattan distance: "+result);
                     }
                     else
                         System.out.println("Error in plotting second line!");
@@ -190,6 +208,26 @@ public class CircuitBoard
         return true;
     }
 
+    private static int getDistance ()
+    {
+        int result = -1;
+        int xPos = 0;
+        int yPos = 0;
+
+        for (int i = 0; i < _length; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                if (_theBoard[i][j] > 1)
+                {
+                    System.out.println("Wires cross at <"+i+", "+j+">");
+                }
+            }
+        }
+
+        return -1;
+    }
+
     private static final void dumpData (String[] line1, String[] line2)
     {
         System.out.println("Wire 1:");
@@ -205,19 +243,33 @@ public class CircuitBoard
         }
     }
 
-    private static final boolean verify ()
+    private static final void printBoard ()
     {
-
-        return true;
+        for (int i = 0; i < _length; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                System.out.println("<"+i+", "+j+", "+_theBoard[i][j]+">");
+            }
+        }
     }
 
     private static int[][] _theBoard = null;
-    private static int _length = 0;
-    private static int _width = 0;
+    private static int _length = DEFAULT_LENGTH;
+    private static int _width = DEFAULT_WIDTH;
 
     private static final String DATA_FILE = "data.txt";
+
+    /*
+     * Let's try something different this time with verifying the
+     * program works. Rather than embed verification within and potentially
+     * duplicate code, we'll have the examples in their own files and load
+     * them separately, compare with the expected result and give a
+     * true/false outcome accordingly.
+     */
+
     private static final String EXAMPLE1 = "example1.txt";
     private static final String EXAMPLE2 = "example2.txt";
-    private static final int EXAMPLE2_DISTANCE = 159;
+    private static final int EXAMPLE1_DISTANCE = 159;
     private static final int EXAMPLE2_DISTANCE = 135;
 }
