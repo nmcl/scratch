@@ -90,7 +90,7 @@ public class TestPlotter
             {
                 if (checkMatrixSize(line1) && checkMatrixSize(line2))
                 {
-                    System.out.println("Matrix of length:"+_length+" and wodth:"+_width+" is sufficient.");
+                    System.out.println("Matrix of length:"+_length+" and width:"+_width+" is sufficient.");
                 }
             }
         }
