@@ -94,12 +94,17 @@ public class CircuitBoard
                 dumpData(line1, line2);
             else
             {
-                if (plotLines(line1, line2))
+                if (plotLine(line1))
                 {
+                    if (plotLine(line1))
+                    {
 
+                    }
+                    else
+                        System.out.println("Error in plotting second line!");
                 }
                 else
-                    System.out.println("Error in plotting lines!");
+                    System.out.println("Error in plotting first line!");
             }
         }
         catch (Throwable ex)
@@ -118,69 +123,53 @@ public class CircuitBoard
         }
     }
 
-    private static final boolean plotLines (String[] line1, String[] lime2)
+    private static final boolean plotLine (String[] line)
     {
         int xPos = _length/2;  // always start in the centre of the grid
         int yPos = _width/2;
 
-        for (String str : line1)
+        for (String str : line)
         {
             switch (str.charAt(0))
             {
                 case TestPlotter.LEFT:
                 {
-                    int left = Integer.parseInt(str.substring(1));
+                    xPos -= Integer.parseInt(str.substring(1));
 
-                    if (xPos - left < 0)
-                    {
-                        _length += left;
-
-                        xPos = 0;
-                    }
+                    if (xPos >= 0)
+                        _theBoard[xPos][yPos]++;
                     else
-                        xPos -= left;
+                        return false;
                 }
                 break;
                 case TestPlotter.RIGHT:
                 {
-                    int right = Integer.parseInt(str.substring(1));
+                    xPos += Integer.parseInt(str.substring(1));
 
-                    if (xPos + right > _length)
-                    {
-                        _length += right;
-
-                        xPos += right;
-                    }
+                    if (xPos < _length)
+                        _theBoard[xPos][yPos]++;
                     else
-                        xPos += right;
+                        return false;
                 }
                 break;
                 case TestPlotter.UP:
                 {
-                    int up = Integer.parseInt(str.substring(1));
+                    yPos += Integer.parseInt(str.substring(1));
 
-                    if (yPos + up > _width)
-                    {
-                        _width += up;
-
-                        yPos += up;
-                    }
+                    if (yPos < _width)
+                        _theBoard[xPos][yPos]++;
                     else
-                        yPos += up;
+                        return false;
                 }
                 break;
                 case TestPlotter.DOWN:
                 {
-                    int down = Integer.parseInt(str.substring(1));
+                    yPos -= Integer.parseInt(str.substring(1));
 
-                    if (yPos - down < 0)
-                    {
-                        _width += down;
-
-                        yPos = 0;
-                    }
+                    if (yPos >= 0)
+                        _theBoard[xPos][yPos]++;
                     else
-                        yPos -= down;
+                        return false;
                 }
                 break;
                 default:
