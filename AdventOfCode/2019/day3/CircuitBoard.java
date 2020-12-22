@@ -123,114 +123,64 @@ public class CircuitBoard
         int xPos = _length/2;  // always start in the centre of the grid
         int yPos = _width/2;
 
-        if (debug)
-            System.out.println("Starting at <"+xPos+", "+yPos+">");
-
-        for (String str : line)
+        for (String str : line1)
         {
-            if (debug)
-                System.out.println("Current position <"+xPos+", "+yPos+">");
-
             switch (str.charAt(0))
             {
                 case TestPlotter.LEFT:
                 {
                     int left = Integer.parseInt(str.substring(1));
 
-                    if (debug)
-                        System.out.print("LEFT "+left+" command ");
-
                     if (xPos - left < 0)
                     {
-                        if (debug)
-                            System.out.println("moved pointer beyond range into the negative by "+(xPos-left));
-
                         _length += left;
 
                         xPos = 0;
                     }
                     else
-                    {
-                        if (debug)
-                            System.out.println("moved pointer by "+(xPos-left));
-
                         xPos -= left;
-                    }
                 }
                 break;
                 case TestPlotter.RIGHT:
                 {
                     int right = Integer.parseInt(str.substring(1));
 
-                    if (debug)
-                        System.out.print("RIGHT "+right+" command ");
-
                     if (xPos + right > _length)
                     {
-                        if (debug)
-                            System.out.println("moved pointer beyond range into the positive by "+(xPos+right));
-
                         _length += right;
 
                         xPos += right;
                     }
                     else
-                    {
-                        if (debug)
-                            System.out.println("moved pointer by "+(xPos+right));
-
                         xPos += right;
-                    }
                 }
                 break;
                 case TestPlotter.UP:
                 {
                     int up = Integer.parseInt(str.substring(1));
 
-                    if (debug)
-                        System.out.print("UP "+up+" command ");
-
                     if (yPos + up > _width)
                     {
-                        if (debug)
-                            System.out.println("moved pointer beyond range into the positive by "+(yPos+up));
-
                         _width += up;
 
                         yPos += up;
                     }
                     else
-                    {
-                        if (debug)
-                            System.out.println("moved pointer by "+(yPos+up));
-
                         yPos += up;
-                    }
                 }
                 break;
                 case TestPlotter.DOWN:
                 {
                     int down = Integer.parseInt(str.substring(1));
 
-                    if (debug)
-                        System.out.print("DOWN "+down+" command ");
-
                     if (yPos - down < 0)
                     {
-                        if (debug)
-                            System.out.println("moved pointer beyond range into the negative by "+(yPos-down));
-
                         _width += down;
 
                         yPos = 0;
                     }
                     else
-                    {
-                        if (debug)
-                            System.out.println("moved pointer by "+(yPos-down));
-
                         yPos -= down;
-                    }
                 }
                 break;
                 default:
@@ -241,9 +191,6 @@ public class CircuitBoard
                 }
             }
         }
-
-        if (debug)
-            System.out.println("length: "+_length+" and width: "+_width);
 
         return true;
     }
