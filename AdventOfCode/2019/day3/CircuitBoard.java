@@ -16,8 +16,8 @@ public class CircuitBoard
 
     // default circuit board size
 
-    public static final int LENGTH = 1000;
-    public static final int WIDTH = 1000;
+    public static final int DEFAULT_LENGTH = 23305;
+    public static final int DEFAULT_WIDTH = 14050;
 
     public static final char UP = 'U';
     public static final char DOWN = 'D';
@@ -27,8 +27,8 @@ public class CircuitBoard
     public static void main (String[] args)
     {
         boolean dump = false;
-        int length = LENGTH;
-        int width = WIDTH;
+        int length = DEFAULT_LENGTH;
+        int width = DEFAULT_WIDTH;
 
         for (int i = 0; i < args.length; i++)
         {
@@ -216,11 +216,8 @@ public class CircuitBoard
     private static int _width = 0;
 
     private static final String DATA_FILE = "data.txt";
-
-    private static final String TEST_LINE_1 = "R75,D30,R83,U83,L12,D49,R71,U7,L72";
-    private static final String TEST_LINE_2 = "U62,R66,U55,R34,D71,R55,D58,R83";
-    private static final int TEST_DISTANCE_1 = 159;
-    private static final String TEST_LINE_3 = "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51";
-    private static final String TEST_LINE_4 = "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7";
-    private static final int TEST_DISTANCE_2 = 135;
+    private static final String EXAMPLE1 = "example1.txt";
+    private static final String EXAMPLE2 = "example2.txt";
+    private static final int EXAMPLE2_DISTANCE = 159;
+    private static final int EXAMPLE2_DISTANCE = 135;
 }
