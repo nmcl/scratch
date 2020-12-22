@@ -34,7 +34,7 @@ public class TestPlotter
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-dump] [-width <width>] [-length <length>] [-example1] [-example2]");
+                System.out.println("[-help] [-dump] [-width <width>] [-length <length>] [-example1] [-example2] [-example3]");
                 System.exit(0);
             }
 
@@ -52,6 +52,9 @@ public class TestPlotter
 
             if ("-example2".equals(args[i]))
                 fileToUse = EXAMPLE2;
+
+            if ("-example3".equals{args[i]))
+                fileToUse = EXAMPLE3;
         }
 
         /*
@@ -200,4 +203,5 @@ public class TestPlotter
     private static final String DATA_FILE = "data.txt";
     private static final String EXAMPLE1 = "example1.txt";
     private static final String EXAMPLE2 = "example2.txt";
+    private static final String EXAMPLE3 = "example3.txt";
 }
