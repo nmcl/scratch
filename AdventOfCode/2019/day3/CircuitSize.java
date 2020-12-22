@@ -9,9 +9,6 @@ public class CircuitSize
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
 
-    public static final int CENTRAL_PORT_X = 1;
-    public static final int CENTRAL_PORT_Y = 1;
-    
     /*
      * Building on TestPlotter, rather than have the user give
      * values for length and width for us to test against, this
@@ -88,16 +85,17 @@ public class CircuitSize
                 do
                 {
                     checkMatrixSize(line1, debug);
+                    
+                    if (debug)
+                        System.out.println("Comparing <"+_length+", "+_width+"> with <"+startLength+", "+startWidth+">");
 
-                    if (startLength == _length)
-                    {
-                        if (startWidth == _width)
-                            done = true;
-                        else
-                            startWidth = _width;
-                    }
+                    if ((startLength == _length) && (startWidth == _width)) // we're done!
+                        done  = true;
                     else
+                    {
                         startLength = _length;
+                        startWidth = _width;
+                    }
                 }
                 while (!done);
 
@@ -106,6 +104,9 @@ public class CircuitSize
                 do
                 {
                     checkMatrixSize(line2, debug);
+
+                    if (debug)
+                        System.out.println("Comparing <"+_length+", "+_width+"> with <"+startLength+", "+startWidth+">");
 
                     if (startLength == _length)
                     {
@@ -140,67 +141,117 @@ public class CircuitSize
 
     private static final boolean checkMatrixSize (String[] line, boolean debug)
     {
-        int xPos = _length/2;
+        int xPos = _length/2;  // always start in the centre of the grid
         int yPos = _width/2;
+
+        if (debug)
+            System.out.println("Starting at <"+xPos+", "+yPos+">");
 
         for (String str : line)
         {
+            if (debug)
+                System.out.println("Current position <"+xPos+", "+yPos+">");
+
             switch (str.charAt(0))
             {
                 case TestPlotter.LEFT:
                 {
                     int left = Integer.parseInt(str.substring(1));
 
+                    if (debug)
+                        System.out.print("LEFT "+left+" command ");
+
                     if (xPos - left < 0)
                     {
+                        if (debug)
+                            System.out.println("moved pointer beyond range into the negative by "+(xPos-left));
+
                         _length += left;
 
                         xPos = 0;
                     }
                     else
+                    {
+                        if (debug)
+                            System.out.println("moved pointer by "+(xPos-left));
+
                         xPos -= left;
+                    }
                 }
                 break;
                 case TestPlotter.RIGHT:
                 {
                     int right = Integer.parseInt(str.substring(1));
 
+                    if (debug)
+                        System.out.print("RIGHT "+right+" command ");
+
                     if (xPos + right > _length)
                     {
+                        if (debug)
+                            System.out.println("moved pointer beyond range into the positive by "+(xPos+right));
+
                         _length += right;
 
                         xPos += right;
                     }
                     else
+                    {
+                        if (debug)
+                            System.out.println("moved pointer by "+(xPos+right));
+
                         xPos += right;
+                    }
                 }
                 break;
                 case TestPlotter.UP:
                 {
                     int up = Integer.parseInt(str.substring(1));
 
+                    if (debug)
+                        System.out.print("UP "+up+" command ");
+
                     if (yPos + up > _width)
                     {
+                        if (debug)
+                            System.out.println("moved pointer beyond range into the positive by "+(yPos+up));
+
                         _width += up;
 
                         yPos += up;
                     }
                     else
+                    {
+                        if (debug)
+                            System.out.println("moved pointer by "+(yPos+up));
+
                         yPos += up;
+                    }
                 }
                 break;
                 case TestPlotter.DOWN:
                 {
                     int down = Integer.parseInt(str.substring(1));
 
+                    if (debug)
+                        System.out.print("DOWN "+down+" command ");
+
                     if (yPos - down < 0)
                     {
+                        if (debug)
+                            System.out.println("moved pointer beyond range into the negative by "+(yPos-down));
+
                         _width += down;
 
                         yPos = 0;
                     }
                     else
+                    {
+                        if (debug)
+                            System.out.println("moved pointer by "+(yPos-down));
+
                         yPos -= down;
+                    }
                 }
                 break;
                 default:
@@ -233,8 +284,8 @@ public class CircuitSize
         }
     }
 
-    private static int _length = CENTRAL_PORT_X;
-    private static int _width = CENTRAL_PORT_Y;
+    private static int _length = 0;
+    private static int _width = 0;
 
     private static final String DATA_FILE = "data.txt";
 }

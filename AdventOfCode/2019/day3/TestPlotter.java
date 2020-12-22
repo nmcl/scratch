@@ -9,9 +9,6 @@ public class TestPlotter
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
 
-    public static final int CENTRAL_PORT_X = 1;
-    public static final int CENTRAL_PORT_Y = 1;
-    
     /*
      * Assume the starting point is in the middle of the
      * 2d array. But how big should the array be to ensure
@@ -105,8 +102,8 @@ public class TestPlotter
 
     private static final boolean checkMatrixSize (String[] line)
     {
-        int xPos = CENTRAL_PORT_X;
-        int yPos = CENTRAL_PORT_Y;
+        int xPos = _length/2;
+        int yPos = _width/2;
 
         for (String str : line)
         {
