@@ -24,7 +24,7 @@ public class Verifier
     public static final int EXAMPLE1_RESULT = 159;
 
     public static final int EXAMPLE2_LENGTH = 369;
-    public static final int EXAMPLE2_WIDTH = 216;
+    public static final int EXAMPLE2_WIDTH = 250;
     public static final int EXAMPLE2_RESULT = 135;
 
     public static final int EXAMPLE3_LENGTH = 17;
