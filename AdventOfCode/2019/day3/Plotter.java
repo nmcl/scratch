@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.Set;
+import java.util.HashSet;
 
 /*
  * Take the data given and find where the two wires cross.
@@ -14,58 +16,27 @@ public class Plotter
 {
     public static final String SEPARATOR = ",";
 
-    // default circuit board size
-
-    public static final int DEFAULT_LENGTH = 23305;
-    public static final int DEFAULT_WIDTH = 14050;
-
     public static void main (String[] args)
     {
         boolean dump = false;
-        int length = DEFAULT_LENGTH;
-        int width = DEFAULT_WIDTH;
-        String fileToUse = DATA_FILE;
-        int expectedResult = -1;
+        boolean debug = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-verify] [-dump] [-length <length>] [-width <width>] [-example1 <result>] [-example2 <result>]");
+                System.out.println("[-help] [-dump] [-debug]");
                 System.exit(0);
             }
 
             if ("-dump".equals(args[i]))
                 dump = true;
 
-            if ("-width".equals(args[i]))
-                _width = Integer.parseInt(args[i+1]);
-
-            if ("-length".equals(args[i]))
-                _length = Integer.parseInt(args[i+1]);
-
-            if ("-example1".equals(args[i]))
-            {
-                fileToUse = EXAMPLE1;
-
-                expectedResult = Integer.parseInt(args[i+1]);
-            }
-
-            if ("-example2".equals(args[i]))
-            {
-                fileToUse = EXAMPLE2;
-
-                expectedResult = Integer.parseInt(args[i+1]);
-            }
+            if ("-debug".equals(args[i]))
+                debug = true;
         }
 
-        _theBoard = new int[_length][_width];
-
-        for (int i = 0; i < _length; i++)
-        {
-            for (int j = 0; j < _width; j++)
-                _theBoard[i][j] = 0;
-        }
+        _theBoard = new CircuitBoard(debug);
 
         /*
          * Open the data file and read it in.
@@ -77,7 +48,7 @@ public class Plotter
 
         try
         {
-            reader = new BufferedReader(new FileReader(fileToUse));
+            reader = new BufferedReader(new FileReader(DATA_FILE));
             String line = null;
 
             while ((line = reader.readLine()) != null)
@@ -101,23 +72,20 @@ public class Plotter
                 dumpData(line1, line2);
             else
             {
-                if (plotLine(line1))
-                {
-                    if (plotLine(line2))
-                    {
-                        printBoard();
-                        
-                        int result = getDistance();
+                Set<Coordinate> firstLine = new HashSet<Coordinate>();
+                Set<Coordinate> secondLine = new HashSet<Coordinate>();
 
-                        if (expectedResult != -1)
-                        {
-                            if (expectedResult == result)
-                                System.out.println("Verified ok!");
-                            else
-                                System.out.println("Verify failed!");
-                        }
-                        else
-                            System.out.println("Manhattan distance: "+result);
+                if (_theBoard.plotLine(line1, firstLine))
+                {
+                    if (debug)
+                        _theBoard.printCircuit(firstLine);
+
+                    if (_theBoard.plotLine(line2, secondLine))
+                    {
+                        if (debug)
+                            _theBoard.printCircuit(secondLine);
+                        
+                        System.out.println("Manhattan distance is: "+_theBoard.getDistance(firstLine, secondLine));
                     }
                     else
                         System.out.println("Error in plotting second line!");
@@ -160,17 +128,4 @@ public class Plotter
     private static CircuitBoard _theBoard = null;
 
     private static final String DATA_FILE = "data.txt";
-
-    /*
-     * Let's try something different this time with verifying the
-     * program works. Rather than embed verification within and potentially
-     * duplicate code, we'll have the examples in their own files and load
-     * them separately, compare with the expected result and give a
-     * true/false outcome accordingly.
-     */
-
-    private static final String EXAMPLE1 = "example1.txt";
-    private static final String EXAMPLE2 = "example2.txt";
-    private static final int EXAMPLE1_DISTANCE = 159;
-    private static final int EXAMPLE2_DISTANCE = 135;
 }

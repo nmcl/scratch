@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Take the data given and find where the two wires cross.
@@ -19,23 +21,13 @@ public class Verifier
 
     // default circuit board size
 
-    public static final int EXAMPLE1_LENGTH = 537;
-    public static final int EXAMPLE1_WIDTH = 285;
     public static final int EXAMPLE1_RESULT = 159;
-
-    public static final int EXAMPLE2_LENGTH = 369;
-    public static final int EXAMPLE2_WIDTH = 250;
     public static final int EXAMPLE2_RESULT = 135;
-
-    public static final int EXAMPLE3_LENGTH = 17;
-    public static final int EXAMPLE3_WIDTH = 16;
     public static final int EXAMPLE3_RESULT = 6;
 
     public static void main (String[] args)
     {
         boolean dump = false;
-        int length = EXAMPLE1_LENGTH;
-        int width = EXAMPLE1_WIDTH;
         String fileToUse = EXAMPLE1;
         boolean debug = false;
 
@@ -57,23 +49,14 @@ public class Verifier
                 fileToUse = EXAMPLE1;
 
             if ("-example2".equals(args[i]))
-            {
                 fileToUse = EXAMPLE2;
 
-                length = EXAMPLE2_LENGTH;
-                width = EXAMPLE2_WIDTH;
-            }
 
             if ("-example3".equals(args[i]))
-            {
                 fileToUse = EXAMPLE3;
-
-                length = EXAMPLE3_LENGTH;
-                width = EXAMPLE3_WIDTH;
-            }
         }
 
-        _theBoard = new CircuitBoard(length, width, debug);
+        _theBoard = new CircuitBoard(debug);
 
         /*
          * Open the data file and read it in.
@@ -109,17 +92,20 @@ public class Verifier
                 dumpData(line1, line2);
             else
             {
-                if (_theBoard.plotLine(line1, "A"))
+                Set<Coordinate> firstLine = new HashSet<Coordinate>();
+                Set<Coordinate> secondLine = new HashSet<Coordinate>();
+
+                if (_theBoard.plotLine(line1, firstLine))
                 {
                     if (debug)
-                        _theBoard.printBoard();
+                        _theBoard.printCircuit(firstLine);
 
-                    if (_theBoard.plotLine(line2, "B"))
-                    {
+                    if (_theBoard.plotLine(line2, secondLine))
+                    {             
                         if (debug)
-                            _theBoard.printBoard();
-                        
-                        int result = _theBoard.getDistance("AB");
+                            _theBoard.printCircuit(secondLine);
+
+                        int result = _theBoard.getDistance(firstLine, secondLine);
 
                         if (fileToUse.equals(EXAMPLE1))
                         {

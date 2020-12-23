@@ -1,4 +1,7 @@
 import java.io.*;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Iterator;
 
 /*
  * Take the data given and find where the two wires cross.
@@ -17,117 +20,89 @@ public class CircuitBoard
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
 
-    public CircuitBoard (int maxX, int maxY, boolean debug)
+    public CircuitBoard (boolean debug)
     {
-        _xAxis = maxX;
-        _yAxis = maxY;
-
-        _theBoard = new String[_yAxis][_xAxis];
-
-        for (int y = 0; y < _yAxis; y++)
-        {
-            for (int x = 0; x < _xAxis; x++)
-                _theBoard[y][x] = "";
-        }
-
         _debug = debug;
     }
 
-    public boolean plotLine (String[] line, String lineID)
+    public boolean plotLine (String[] line, Set<Coordinate> theLine)
     {
-        int xPos = _xAxis/2;  // always start in the centre of the grid
-        int yPos = _yAxis/2;
+        int xPos = 0;
+        int yPos = 0;
 
         for (String str : line)
         {
+            if (_debug)
+                System.out.println("Command "+str);
+
             switch (str.charAt(0))
             {
-                case TestPlotter.LEFT:
+                case CircuitBoard.LEFT:
                 {
                     int left = Integer.parseInt(str.substring(1));
 
-                    if (xPos - left >= 0)
+                    for (int x = 0; x < left; x++)
                     {
-                        for (int x = xPos-left; x != xPos; x++)
-                        {
-                            if (!_theBoard[yPos][x].contains(lineID))
-                                _theBoard[yPos][x] += lineID;
-                        }
+                        Coordinate coord = new Coordinate(xPos-x, yPos);
 
-                        xPos -= left;
-                    }
-                    else
-                    {
-                        System.out.println("LEFT "+Integer.parseInt(str.substring(1))+" moved xPos negative!");
+                        if (_debug)
+                            System.out.println("Adding "+coord);
 
-                        return false;
+                        theLine.add(coord);
                     }
+
+                    xPos -= left;
                 }
                 break;
-                case TestPlotter.RIGHT:
+                case CircuitBoard.RIGHT:
                 {
                     int right = Integer.parseInt(str.substring(1));
 
-                    if (xPos + right < _xAxis)
+                    for (int x= 0; x < right; x++)
                     {
-                        for (int x= xPos; x <= xPos + right; x++)
-                        {
-                            if (!_theBoard[yPos][x].contains(lineID))
-                                _theBoard[yPos][x] += lineID;
-                        }
+                        Coordinate coord = new Coordinate(xPos+x, yPos);
 
-                        xPos += right;
-                    }
-                    else
-                    {
-                        System.out.println("RIGHT "+Integer.parseInt(str.substring(1))+" moved xPos beyond max length!");
+                        if (_debug)
+                            System.out.println("Adding "+coord);
 
-                        return false;
+                        theLine.add(coord);
                     }
+
+                    xPos += right;
                 }
                 break;
-                case TestPlotter.DOWN:
+                case CircuitBoard.DOWN:
                 {
                     int down = Integer.parseInt(str.substring(1));
 
-                    if (yPos + down < _yAxis)
+                    for (int y = 0; y < down; y++)
                     {
-                        for (int y = yPos; y <= yPos + down; y++)
-                        {
-                            if (!_theBoard[y][xPos].contains(lineID))
-                                _theBoard[y][xPos] += lineID;
-                        }
+                        Coordinate coord = new Coordinate(xPos, yPos-y);
 
-                        yPos += down;
-                    }
-                    else
-                    {
-                        System.out.println("DOWN "+Integer.parseInt(str.substring(1))+" moved yPos beyond max width!");
+                        if (_debug)
+                            System.out.println("Adding "+coord);
 
-                        return false;
+                        theLine.add(coord);
                     }
+
+                    yPos -= down;
                 }
                 break;
-                case TestPlotter.UP:
+                case CircuitBoard.UP:
                 {
                     int up = Integer.parseInt(str.substring(1));
 
-                    if (yPos - up >= 0)
+                    for (int y = 0; y < up; y++)
                     {
-                        for (int y = yPos - up; y <= yPos; y++)
-                        {
-                            if (!_theBoard[y][xPos].contains(lineID))
-                                _theBoard[y][xPos] += lineID;
-                        }
+                        Coordinate coord = new Coordinate(xPos, yPos+y);
 
-                        yPos -= up;
-                    }
-                    else
-                    {
-                        System.out.println("UP "+Integer.parseInt(str.substring(1))+" moved yPos negative!");
+                        if (_debug)
+                            System.out.println("Adding "+coord);
 
-                        return false;
+                        theLine.add(coord);
                     }
+
+                    yPos += up;
                 }
                 break;
                 default:
@@ -149,47 +124,66 @@ public class CircuitBoard
      * @return the distance.
      */
 
-    public int getDistance (String crossingLines)
+    public int getDistance (Set<Coordinate> line1, Set<Coordinate> line2)
     {
-        int result = _xAxis + _yAxis; // maximum it could be on this circuit board.
-        int toReturn = 0;
+        Set<Coordinate> overlap = new HashSet<Coordinate>();
+        Object[] coords = line2.toArray();
+        Iterator<Coordinate> iter = line1.iterator();
+        int toReturn = Integer.MAX_VALUE;
 
-        for (int y = 0; y < _yAxis; y++)
+        while (iter.hasNext())
         {
-            for (int x = 0; x < _xAxis; x++)
+            Coordinate element = iter.next();
+
+            if (_debug)
+                System.out.println("Checking to see if "+element+" is an overlap.");
+
+//            if (line2.contains(element))
+
+            boolean duplicate = false;
+
+            for (int i = 0; (i < coords.length) && !duplicate; i++)
             {
-                if (!(_theBoard[y][x]).equals(""))
+                if (element.equals((Coordinate) coords[i]))
+                    duplicate = true;
+            }
+
+            if (duplicate)
+            {
+                overlap.add(element);
+
+                if (_debug)
+                    System.out.println("It is an overlap.");
+            }
+            else
+            {
+                if (_debug)
+                    System.out.println("It is not an overlap.");
+            }
+        }
+
+        if (overlap.size() > 0)
+        {
+            iter = overlap.iterator();
+
+            while (iter.hasNext())
+            {
+                Coordinate element = iter.next();
+
+                if (_debug)
+                    System.out.println("Comparing "+element+" with "+toReturn);
+                
+                if ((element.getX() != 0) && (element.getY() != 0))
                 {
-                    if ((_theBoard[y][x].equals(crossingLines)) && ((x != _xAxis/2) && (y != _yAxis/2)))  // ignore origin
-                    {
-                        if (_debug)
-                        {
-                            System.out.println("\nChecking "+x+" "+y);
-                            System.out.println("Current distance is "+result);
-                        }
-
-                        int diffX = Math.abs(x - (_xAxis/2));
-                        int diffY = Math.abs(y - (_yAxis/2));
-
-                        if (_debug)
-                            System.out.println("Difference is "+diffX+" and "+diffY);
-
-                        int temp = diffX + diffY;
-
-                        if (_debug)
-                            System.out.println("Comparing new distance "+temp+" and current distance "+result);
-
-                        if (temp < result)
-                        {
-                            toReturn = temp;
-                            result = temp;
-                        }
-
-                        if (_debug)
-                            System.out.println("Current distance result is "+toReturn);
-                    }
+                    if (Math.abs(element.getX()) + Math.abs(element.getY()) < toReturn)
+                        toReturn = Math.abs(element.getX()) + Math.abs(element.getY());
                 }
             }
+        }
+        else
+        {
+            if (_debug)
+                System.out.println("No overlaps found!");
         }
 
         if (_debug)
@@ -198,29 +192,17 @@ public class CircuitBoard
         return toReturn;
     }
 
-    public final void printBoard ()
+    public void printCircuit (Set<Coordinate> theLine)
     {
-        for (int y = 0; y < _yAxis; y++)
-        {
-            for (int x = 0; x < _xAxis; x++)
-            {
-                if ("".equals(_theBoard[y][x]))
-                    System.out.print(".");
-                else
-                {
-                    if (_theBoard[y][x].length() > 1)
-                        System.out.print("X");
-                    else
-                        System.out.print("0");
-                }
-            }
+        Iterator<Coordinate> iter = theLine.iterator();
 
-            System.out.println();
+        System.out.println("Printing line coordinates.");
+
+        while (iter.hasNext())
+        {
+            System.out.println(iter.next());
         }
     }
 
-    private String[][] _theBoard = null;
-    private int _xAxis = 0;
-    private int _yAxis = 0;
     private boolean _debug = false;
 }
