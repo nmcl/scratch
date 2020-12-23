@@ -105,32 +105,39 @@ public class Verifier
                         if (debug)
                             _theBoard.printCircuit(secondLine);
 
-                        int result = _theBoard.getDistance(firstLine, secondLine);
+                        Set<Coordinate> overlaps = _theBoard.getOverlaps(firstLine, secondLine);
 
-                        if (fileToUse.equals(EXAMPLE1))
+                        if ((overlaps != null) && overlaps.size() > 0)
                         {
-                            if (result == EXAMPLE1_RESULT)
-                                System.out.println("Verified ok!");
+                            int result = _theBoard.getDistance(overlaps);
+
+                            if (fileToUse.equals(EXAMPLE1))
+                            {
+                                if (result == EXAMPLE1_RESULT)
+                                    System.out.println("Verified ok!");
+                                else
+                                    System.out.println("Verify failed!");
+                            }
                             else
-                                System.out.println("Verify failed!");
+                            {
+                                if (fileToUse.equals(EXAMPLE2))
+                                {
+                                    if (result == EXAMPLE2_RESULT)
+                                        System.out.println("Verified ok!");
+                                    else
+                                        System.out.println("Verify failed!");
+                                }
+                                else
+                                {
+                                    if (result == EXAMPLE3_RESULT)
+                                        System.out.println("Verified ok!");
+                                    else
+                                        System.out.println("Verify failed!");
+                                }
+                            }
                         }
                         else
-                        {
-                            if (fileToUse.equals(EXAMPLE2))
-                            {
-                                if (result == EXAMPLE2_RESULT)
-                                    System.out.println("Verified ok!");
-                                else
-                                    System.out.println("Verify failed!");
-                            }
-                            else
-                            {
-                                if (result == EXAMPLE3_RESULT)
-                                    System.out.println("Verified ok!");
-                                else
-                                    System.out.println("Verify failed!");
-                            }
-                        }
+                            System.out.println("There were no overlaps.");
                     }
                     else
                         System.out.println("Error in plotting second line!");

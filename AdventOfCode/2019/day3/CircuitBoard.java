@@ -2,6 +2,9 @@ import java.io.*;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Collections;
 
 /*
  * Take the data given and find where the two wires cross.
@@ -43,15 +46,15 @@ public class CircuitBoard
 
                     for (int x = 0; x < left; x++)
                     {
-                        Coordinate coord = new Coordinate(xPos-x, yPos);
+                        xPos--;
+
+                        Coordinate coord = new Coordinate(xPos, yPos);
 
                         if (_debug)
                             System.out.println("Adding "+coord);
 
                         theLine.add(coord);
                     }
-
-                    xPos -= left;
                 }
                 break;
                 case CircuitBoard.RIGHT:
@@ -60,15 +63,15 @@ public class CircuitBoard
 
                     for (int x= 0; x < right; x++)
                     {
-                        Coordinate coord = new Coordinate(xPos+x, yPos);
+                        xPos++;
+
+                        Coordinate coord = new Coordinate(xPos, yPos);
 
                         if (_debug)
                             System.out.println("Adding "+coord);
 
                         theLine.add(coord);
                     }
-
-                    xPos += right;
                 }
                 break;
                 case CircuitBoard.DOWN:
@@ -77,15 +80,15 @@ public class CircuitBoard
 
                     for (int y = 0; y < down; y++)
                     {
-                        Coordinate coord = new Coordinate(xPos, yPos-y);
+                        yPos--;
+
+                        Coordinate coord = new Coordinate(xPos, yPos);
 
                         if (_debug)
                             System.out.println("Adding "+coord);
 
                         theLine.add(coord);
                     }
-
-                    yPos -= down;
                 }
                 break;
                 case CircuitBoard.UP:
@@ -94,15 +97,15 @@ public class CircuitBoard
 
                     for (int y = 0; y < up; y++)
                     {
-                        Coordinate coord = new Coordinate(xPos, yPos+y);
+                        yPos++;
+
+                        Coordinate coord = new Coordinate(xPos, yPos);
 
                         if (_debug)
                             System.out.println("Adding "+coord);
 
                         theLine.add(coord);
                     }
-
-                    yPos += up;
                 }
                 break;
                 default:
@@ -118,78 +121,32 @@ public class CircuitBoard
     }
 
     /**
+     * Gets the overlapping coordinates between two given lines.
+     * 
+     * @param line1 first line.
+     * @param line2 second line.
+     * @return the overlaps.
+     */
+    
+    public Set<Coordinate> getOverlaps(Set<Coordinate> line1, Set<Coordinate> line2)
+    {
+        Set<Coordinate> overlaps = line1.stream().filter(coordinate -> line2.contains(coordinate)).collect(Collectors.toSet());
+
+        return overlaps;
+    }
+
+    /**
      * Get the Manhattan distance.
      * 
-     * @param crossingLines the representation of lines crossing, e.g., "AB" or "ABCD".
+     * @param overlaps the Set of the overlapping coordinates.
      * @return the distance.
      */
 
-    public int getDistance (Set<Coordinate> line1, Set<Coordinate> line2)
+    public int getDistance (Set<Coordinate> overlaps)
     {
-        Set<Coordinate> overlap = new HashSet<Coordinate>();
-        Object[] coords = line2.toArray();
-        Iterator<Coordinate> iter = line1.iterator();
-        int toReturn = Integer.MAX_VALUE;
+        List<Integer> distances = overlaps.stream().map(coordinate -> Math.abs(coordinate.getX()) + Math.abs(coordinate.getY())).collect(Collectors.toList());
 
-        while (iter.hasNext())
-        {
-            Coordinate element = iter.next();
-
-            if (_debug)
-                System.out.println("Checking to see if "+element+" is an overlap.");
-
-//            if (line2.contains(element))
-
-            boolean duplicate = false;
-
-            for (int i = 0; (i < coords.length) && !duplicate; i++)
-            {
-                if (element.equals((Coordinate) coords[i]))
-                    duplicate = true;
-            }
-
-            if (duplicate)
-            {
-                overlap.add(element);
-
-                if (_debug)
-                    System.out.println("It is an overlap.");
-            }
-            else
-            {
-                if (_debug)
-                    System.out.println("It is not an overlap.");
-            }
-        }
-
-        if (overlap.size() > 0)
-        {
-            iter = overlap.iterator();
-
-            while (iter.hasNext())
-            {
-                Coordinate element = iter.next();
-
-                if (_debug)
-                    System.out.println("Comparing "+element+" with "+toReturn);
-                
-                if ((element.getX() != 0) && (element.getY() != 0))
-                {
-                    if (Math.abs(element.getX()) + Math.abs(element.getY()) < toReturn)
-                        toReturn = Math.abs(element.getX()) + Math.abs(element.getY());
-                }
-            }
-        }
-        else
-        {
-            if (_debug)
-                System.out.println("No overlaps found!");
-        }
-
-        if (_debug)
-            System.out.println("Manhattan distance "+toReturn);
-
-        return toReturn;
+        return Collections.min(distances);
     }
 
     public void printCircuit (Set<Coordinate> theLine)

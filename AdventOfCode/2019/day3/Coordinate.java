@@ -1,4 +1,4 @@
-import javax.lang.model.element.Element;
+import java.util.Objects;
 
 /*
  * Represents a <x, y> coordinate for a piece of a wire.
@@ -31,7 +31,7 @@ public class Coordinate
     @Override
     public int hashCode ()
     {
-        return super.hashCode();
+        return Objects.hash(_x, _y);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Coordinate
         if (this == obj)
             return true;
         
-        if (obj instanceof Coordinate)
+        if (getClass() == obj.getClass())
         {
             Coordinate temp = (Coordinate) obj;
 
