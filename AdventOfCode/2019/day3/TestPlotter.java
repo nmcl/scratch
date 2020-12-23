@@ -26,7 +26,7 @@ public class TestPlotter
      */
 
     public static final int DEFAULT_LENGTH = 23305;
-    public static final int DEFAULT_WIDTH = 14050;
+    public static final int DEFAULT_WIDTH = 14044;
 
     public static void main (String[] args)
     {
@@ -149,7 +149,7 @@ public class TestPlotter
                     }
                 }
                 break;
-                case TestPlotter.UP:
+                case TestPlotter.DOWN:
                 {
                     yPos += Integer.parseInt(str.substring(1));
 
@@ -161,7 +161,7 @@ public class TestPlotter
                     }
                 }
                 break;
-                case TestPlotter.DOWN:
+                case TestPlotter.UP:
                 {
                     yPos -= Integer.parseInt(str.substring(1));
 

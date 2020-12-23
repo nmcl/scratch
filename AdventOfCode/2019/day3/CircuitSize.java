@@ -217,31 +217,6 @@ public class CircuitSize
                     }
                 }
                 break;
-                case TestPlotter.UP:
-                {
-                    int up = Integer.parseInt(str.substring(1));
-
-                    if (debug)
-                        System.out.print("UP "+up+" command ");
-
-                    if (yPos + up > _width)
-                    {
-                        if (debug)
-                            System.out.println("moved pointer beyond range into the positive by "+(yPos+up));
-
-                        _width += up;
-
-                        yPos += up;
-                    }
-                    else
-                    {
-                        if (debug)
-                            System.out.println("moved pointer by "+(yPos+up));
-
-                        yPos += up;
-                    }
-                }
-                break;
                 case TestPlotter.DOWN:
                 {
                     int down = Integer.parseInt(str.substring(1));
@@ -249,21 +224,46 @@ public class CircuitSize
                     if (debug)
                         System.out.print("DOWN "+down+" command ");
 
-                    if (yPos - down < 0)
+                    if (yPos + down > _width)
                     {
                         if (debug)
-                            System.out.println("moved pointer beyond range into the negative by "+(yPos-down));
+                            System.out.println("moved pointer beyond range into the positive by "+(yPos+down));
 
                         _width += down;
+
+                        yPos += down;
+                    }
+                    else
+                    {
+                        if (debug)
+                            System.out.println("moved pointer by "+(yPos+down));
+
+                        yPos += down;
+                    }
+                }
+                break;
+                case TestPlotter.UP:
+                {
+                    int up = Integer.parseInt(str.substring(1));
+
+                    if (debug)
+                        System.out.print("UP "+up+" command ");
+
+                    if (yPos - up < 0)
+                    {
+                        if (debug)
+                            System.out.println("moved pointer beyond range into the negative by "+(yPos-up));
+
+                        _width += up;
 
                         yPos = 0;
                     }
                     else
                     {
                         if (debug)
-                            System.out.println("moved pointer by "+(yPos-down));
+                            System.out.println("moved pointer by "+(yPos-up));
 
-                        yPos -= down;
+                        yPos -= up;
                     }
                 }
                 break;
