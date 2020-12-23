@@ -111,11 +111,13 @@ public class Verifier
             {
                 if (_theBoard.plotLine(line1, "A"))
                 {
-                    _theBoard.printBoard();
+                    if (debug)
+                        _theBoard.printBoard();
 
                     if (_theBoard.plotLine(line2, "B"))
                     {
-                        _theBoard.printBoard();
+                        if (debug)
+                            _theBoard.printBoard();
                         
                         int result = _theBoard.getDistance("AB");
 
