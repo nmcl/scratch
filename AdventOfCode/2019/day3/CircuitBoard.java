@@ -140,12 +140,17 @@ public class CircuitBoard
         return true;
     }
 
+    /**
+     * Get the Manhattan distance.
+     * 
+     * @param crossingLines the representation of lines crossing, e.g., "AB" or "ABCD".
+     * @return the distance.
+     */
+
     public int getDistance (String crossingLines)
     {
-        int result = (int) Math.sqrt((_xAxis*_xAxis) + (_yAxis*_yAxis));
-        boolean found = false;
-
-        System.out.println("Origin is "+(_xAxis/2 + _yAxis/2));
+        int result = _xAxis + _yAxis; // maximum it could be on this circuit board.
+        int toReturn = 0;
 
         for (int y = 0; y < _yAxis; y++)
         {
@@ -156,25 +161,32 @@ public class CircuitBoard
                     if ((_theBoard[y][x].equals(crossingLines)) && ((x != _xAxis/2) && (y != _yAxis/2)))  // ignore origin
                     {
                         System.out.println("\nChecking "+x+" "+y);
-                        System.out.println("Current is "+result);
-                        System.out.println("Have "+_theBoard[y][x]);
-                        found = true;
+                        System.out.println("Current distance is "+result);
 
-                        int temp = (int) Math.sqrt((x*x)+(y*y));
+                        int diffX = Math.abs(x - (_xAxis/2));
+                        int diffY = Math.abs(y - (_yAxis/2));
+
+                        System.out.println("Difference is "+diffX+" and "+diffY);
+
+                        int temp = diffX + diffY;
+
+                        System.out.println("Comparing new distance "+temp+" and current distance "+result);
 
                         if (temp < result)
-                            result = x+y;
+                        {
+                            toReturn = temp;
+                            result = temp;
+                        }
+
+                        System.out.println("Current distance result is "+toReturn);
                     }
                 }
             }
         }
 
-        System.out.println("Got "+(result - (_xAxis/2 + _yAxis/2)));
+        System.out.println("Got "+toReturn);
 
-        if (found)
-            return result - (_xAxis/2 + _yAxis/2);
-        else
-            return 0;
+        return toReturn;
     }
 
     public final void printBoard ()
@@ -201,4 +213,5 @@ public class CircuitBoard
     private String[][] _theBoard = null;
     private int _xAxis = 0;
     private int _yAxis = 0;
+    private boolean debug = false;
 }
