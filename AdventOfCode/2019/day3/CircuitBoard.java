@@ -17,7 +17,7 @@ public class CircuitBoard
     public static final char LEFT = 'L';
     public static final char RIGHT = 'R';
 
-    public CircuitBoard (int maxX, int maxY)
+    public CircuitBoard (int maxX, int maxY, boolean debug)
     {
         _xAxis = maxX;
         _yAxis = maxY;
@@ -29,6 +29,8 @@ public class CircuitBoard
             for (int x = 0; x < _xAxis; x++)
                 _theBoard[y][x] = "";
         }
+
+        _debug = debug;
     }
 
     public boolean plotLine (String[] line, String lineID)
@@ -160,17 +162,22 @@ public class CircuitBoard
                 {
                     if ((_theBoard[y][x].equals(crossingLines)) && ((x != _xAxis/2) && (y != _yAxis/2)))  // ignore origin
                     {
-                        System.out.println("\nChecking "+x+" "+y);
-                        System.out.println("Current distance is "+result);
+                        if (_debug)
+                        {
+                            System.out.println("\nChecking "+x+" "+y);
+                            System.out.println("Current distance is "+result);
+                        }
 
                         int diffX = Math.abs(x - (_xAxis/2));
                         int diffY = Math.abs(y - (_yAxis/2));
 
-                        System.out.println("Difference is "+diffX+" and "+diffY);
+                        if (_debug)
+                            System.out.println("Difference is "+diffX+" and "+diffY);
 
                         int temp = diffX + diffY;
 
-                        System.out.println("Comparing new distance "+temp+" and current distance "+result);
+                        if (_debug)
+                            System.out.println("Comparing new distance "+temp+" and current distance "+result);
 
                         if (temp < result)
                         {
@@ -178,13 +185,15 @@ public class CircuitBoard
                             result = temp;
                         }
 
-                        System.out.println("Current distance result is "+toReturn);
+                        if (_debug)
+                            System.out.println("Current distance result is "+toReturn);
                     }
                 }
             }
         }
 
-        System.out.println("Got "+toReturn);
+        if (_debug)
+            System.out.println("Manhattan distance "+toReturn);
 
         return toReturn;
     }
@@ -213,5 +222,5 @@ public class CircuitBoard
     private String[][] _theBoard = null;
     private int _xAxis = 0;
     private int _yAxis = 0;
-    private boolean debug = false;
+    private boolean _debug = false;
 }

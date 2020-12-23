@@ -37,14 +37,18 @@ public class Verifier
         int length = EXAMPLE1_LENGTH;
         int width = EXAMPLE1_WIDTH;
         String fileToUse = EXAMPLE1;
+        boolean debug = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-dump] [-example1] [-example2] [-example3]");
+                System.out.println("[-help] [-dump] [-debug] [-example1] [-example2] [-example3]");
                 System.exit(0);
             }
+
+            if ("-debug".equals(args[i]))
+                debug = true;
 
             if ("-dump".equals(args[i]))
                 dump = true;
@@ -69,7 +73,7 @@ public class Verifier
             }
         }
 
-        _theBoard = new CircuitBoard(length, width);
+        _theBoard = new CircuitBoard(length, width, debug);
 
         /*
          * Open the data file and read it in.
