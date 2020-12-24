@@ -87,7 +87,7 @@ public class Plotter
                         
                         Set<Coordinate> overlaps = _theBoard.getOverlaps(firstLine, secondLine);
 
-                        System.out.println("Manhattan distance is: "+_theBoard.getDistance(overlaps));
+                        System.out.println("Manhattan distance is: "+_theBoard.getManhattanDistance(overlaps));
                     }
                     else
                         System.out.println("Error in plotting second line!");

@@ -109,7 +109,7 @@ public class Verifier
 
                         if ((overlaps != null) && overlaps.size() > 0)
                         {
-                            int result = _theBoard.getDistance(overlaps);
+                            int result = _theBoard.getManhattanDistance(overlaps);
 
                             if (fileToUse.equals(EXAMPLE1))
                             {
@@ -161,7 +161,7 @@ public class Verifier
             }
         }
     }
-
+    
     private static final void dumpData (String[] line1, String[] line2)
     {
         System.out.println("Wire 1:");

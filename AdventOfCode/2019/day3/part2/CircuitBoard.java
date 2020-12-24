@@ -142,7 +142,7 @@ public class CircuitBoard
      * @return the distance.
      */
 
-    public int getDistance (Set<Coordinate> overlaps)
+    public int getManhattanDistance (Set<Coordinate> overlaps)
     {
         List<Integer> distances = overlaps.stream().map(coordinate -> Math.abs(coordinate.getX()) + Math.abs(coordinate.getY())).collect(Collectors.toList());
 
