@@ -22,8 +22,11 @@ public class Verifier
     // default circuit board size
 
     public static final int EXAMPLE1_RESULT = 159;
+    public static final int EXAMPLE1_STEPS = 610;
     public static final int EXAMPLE2_RESULT = 135;
+    public static final int EXAMPLE2_STEPS = 410;
     public static final int EXAMPLE3_RESULT = 6;
+    public static final int EXAMPLE3_STEPS = 30;
 
     public static void main (String[] args)
     {
@@ -50,7 +53,6 @@ public class Verifier
 
             if ("-example2".equals(args[i]))
                 fileToUse = EXAMPLE2;
-
 
             if ("-example3".equals(args[i]))
                 fileToUse = EXAMPLE3;
@@ -109,11 +111,15 @@ public class Verifier
 
                         if ((overlaps != null) && overlaps.size() > 0)
                         {
-                            int result = _theBoard.getManhattanDistance(overlaps);
+                            int result1 = _theBoard.getManhattanDistance(overlaps);
+                            int result2 = _theBoard.getMinimumDistance(overlaps, line1, line2);
 
+                            if (debug)
+                                System.out.println("Results are: "+result1+" "+result2);
+                            
                             if (fileToUse.equals(EXAMPLE1))
                             {
-                                if (result == EXAMPLE1_RESULT)
+                                if ((result1 == EXAMPLE1_RESULT) && (result2 == EXAMPLE1_STEPS))
                                     System.out.println("Verified ok!");
                                 else
                                     System.out.println("Verify failed!");
@@ -122,14 +128,14 @@ public class Verifier
                             {
                                 if (fileToUse.equals(EXAMPLE2))
                                 {
-                                    if (result == EXAMPLE2_RESULT)
+                                    if ((result1 == EXAMPLE2_RESULT) && (result2 == EXAMPLE2_STEPS))
                                         System.out.println("Verified ok!");
                                     else
                                         System.out.println("Verify failed!");
                                 }
                                 else
                                 {
-                                    if (result == EXAMPLE3_RESULT)
+                                    if ((result1 == EXAMPLE3_RESULT) && (result2 == EXAMPLE3_STEPS))
                                         System.out.println("Verified ok!");
                                     else
                                         System.out.println("Verify failed!");
