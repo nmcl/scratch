@@ -130,7 +130,7 @@ public class CircuitBoard
     
     public Set<Coordinate> getOverlaps(Set<Coordinate> line1, Set<Coordinate> line2)
     {
-        Set<Coordinate> overlaps = line1.stream().filter(coordinate -> line2.contains(coordinate)).collect(Collectors.toSet());
+        Set<Coordinate> overlaps = line1.stream().filter(coord -> line2.contains(coord)).collect(Collectors.toSet());
 
         return overlaps;
     }
@@ -144,7 +144,7 @@ public class CircuitBoard
 
     public int getManhattanDistance (Set<Coordinate> overlaps)
     {
-        List<Integer> distances = overlaps.stream().map(coordinate -> Math.abs(coordinate.getX()) + Math.abs(coordinate.getY())).collect(Collectors.toList());
+        List<Integer> distances = overlaps.stream().map(coord -> Math.abs(coord.getX()) + Math.abs(coord.getY())).collect(Collectors.toList());
 
         return Collections.min(distances);
     }
@@ -170,80 +170,41 @@ public class CircuitBoard
 
     private int stepsTravelled (Coordinate coord, String[] line)
     {
+        int stepsTaken = 0;
+        int length = 0;
         int xPos = 0;
         int yPos = 0;
-        int stepsTaken = 0;
-
-        /*
-         * Start walking through the grid.
-         */
 
         for (String str : line)
         {
-            switch (str.charAt(0))
+            length = Integer.parseInt(str.substring(1));
+
+            for (int i = 0; i < length; i++)
             {
-                case CircuitBoard.LEFT:
+                switch (str.charAt(0))
                 {
-                    int left = Integer.parseInt(str.substring(1));
-
-                    for (int x = 0; x < left; x++)
-                    {
-                        xPos--;
-                        stepsTaken++;
-
-                        if (coord.equals(new Coordinate(xPos, yPos)))
-                            break;
-                    }
-                }
-                break;
                 case CircuitBoard.RIGHT:
-                {
-                    int right = Integer.parseInt(str.substring(1));
-
-                    for (int x= 0; x < right; x++)
-                    {
-                        xPos++;
-                        stepsTaken++;
-
-                        if (coord.equals(new Coordinate(xPos, yPos)))
-                            break;
-                    }
-                }
-                break;
-                case CircuitBoard.DOWN:
-                {
-                    int down = Integer.parseInt(str.substring(1));
-
-                    for (int x= 0; x < down; x++)
-                    {
-                        xPos--;
-                        stepsTaken++;
-
-                        if (coord.equals(new Coordinate(xPos, yPos)))
-                            break;
-                    }
-                }
-                break;
+                    xPos++;
+                    break;
+                case CircuitBoard.LEFT:
+                    xPos--;
+                    break;
                 case CircuitBoard.UP:
-                {
-                    int up = Integer.parseInt(str.substring(1));
-
-                    for (int x= 0; x < up; x++)
-                    {
-                        xPos++;
-                        stepsTaken++;
-
-                        if (coord.equals(new Coordinate(xPos, yPos)))
-                            break;
-                    }
-                }
-                break;
+                    yPos++;
+                    break;
+                case CircuitBoard.DOWN:
+                    yPos--;
+                    break;
                 default:
-                {
                     System.out.println("Unknown instruction: "+str.charAt(0));
 
                     break;
                 }
+
+                stepsTaken++;
+
+                if (coord.equals(new Coordinate(xPos, yPos)))
+                    break; 
             }
 
             if (coord.equals(new Coordinate(xPos, yPos)))
