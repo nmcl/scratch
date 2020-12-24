@@ -149,9 +149,13 @@ public class CircuitBoard
         return Collections.min(distances);
     }
 
+    /**
+     * Get the minimum steps taken to an overlapping point.
+     */
+
     public int getMinimumDistance (Set<Coordinate> overlaps, String[] line1, String[] line2)
     {
-        List<Integer> distances = overlaps.stream().map(coordinate -> stepsTravelled(coordinate, line1) + stepsTravelled(coordinate, line2)).collect(Collectors.toList());
+        List<Integer> distances = overlaps.stream().map(coord -> stepsTravelled(coord, line1) + stepsTravelled(coord, line2)).collect(Collectors.toList());
 
         return Collections.min(distances);
     }
@@ -168,6 +172,10 @@ public class CircuitBoard
         }
     }
 
+    /*
+     * Walk the circuit, counting the steps we take.
+     */
+
     private int stepsTravelled (Coordinate coord, String[] line)
     {
         int stepsTaken = 0;
@@ -178,6 +186,12 @@ public class CircuitBoard
         for (String str : line)
         {
             length = Integer.parseInt(str.substring(1));
+
+            /*
+             * This time bring the loop outside the case statement. We're
+             * not really doing anything different in the loop bodies
+             * to warrant unique loops anyway.
+             */
 
             for (int i = 0; i < length; i++)
             {
