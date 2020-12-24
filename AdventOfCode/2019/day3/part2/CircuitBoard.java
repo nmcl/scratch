@@ -174,6 +174,10 @@ public class CircuitBoard
         int yPos = 0;
         int stepsTaken = 0;
 
+        /*
+         * Start walking through the grid.
+         */
+
         for (String str : line)
         {
             switch (str.charAt(0))
