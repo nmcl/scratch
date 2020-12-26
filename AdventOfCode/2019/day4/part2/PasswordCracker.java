@@ -32,7 +32,12 @@ public class PasswordCracker
 			String str = new String(""+i);
 
 			if (adjacentDigits(str, debug) && monotonicallyIncreasing(str, debug))
+			{
 				matchingCriteria++;
+
+				if (debug)
+					System.out.println("Matched:"+ str);
+			}
 		}
 
 		System.out.println("Matching criteria: "+matchingCriteria);
@@ -45,7 +50,7 @@ public class PasswordCracker
 			if (debug)
 				System.out.println("Verified "+VALID1);
 
-			if (monotonicallyIncreasing(VALID2, debug) && adjacentDigits(VALID2, debug))
+			if (adjacentDigits(VALID2, debug) && monotonicallyIncreasing(VALID2, debug))
 			{
 				if (debug)
 					System.out.println("Verified "+VALID2);
@@ -71,26 +76,34 @@ public class PasswordCracker
 	{
 		char[] digits = str.toCharArray();
 		int adjacent = 0;
+		int sequenceStart = -1;
 
-		for (int i = 0; i < digits.length -1; i++)
+		for (int i = 1; i < digits.length; i++)
 		{
+			System.out.println("Index "+i);
+
 			if (debug)
-				System.out.println("Checking "+digits[i]+" against "+digits[i+1]);
+				System.out.println("Checking "+digits[i-1]+" against "+digits[i]+" and "+sequenceStart);
 
-			if (digits[i] == digits[i+1])
+			if (digits[i-1] == digits[i])
 			{
-				adjacent++;
-
-				if (i < digits.length -2)
+				if (sequenceStart != -1)
 				{
-					if (debug)
-						System.out.println("Further checking "+digits[i]+" against "+digits[i+1]);
+					System.out.println("Sequence started at "+sequenceStart);
+					System.out.println("Comparing "+digits[i]+" "+digits[sequenceStart]);
 
-					if (digits[i+1] == digits[i+2])
+					if (digits[i] != digits[sequenceStart])
 					{
-						adjacent--;
-						i = i+2;
+						adjacent++;
+						sequenceStart = i-1;
 					}
+				}
+				else
+				{
+					System.out.println("Starting sequence at "+(i-1));
+
+					adjacent++;
+					sequenceStart = i-1;
 				}
 			}
 		}
