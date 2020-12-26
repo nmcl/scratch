@@ -42,10 +42,21 @@ public class PasswordCracker
 	{
 		if (adjacentDigits(VALID1, debug) && monotonicallyIncreasing(VALID1, debug))
 		{
-			if (!monotonicallyIncreasing(VALID2, debug) && adjacentDigits(VALID2, debug))
+			if (debug)
+				System.out.println("Verified "+VALID1);
+
+			if (monotonicallyIncreasing(VALID2, debug) && adjacentDigits(VALID2, debug))
 			{
-				if (adjacentDigits(FAILS, debug) && monotonicallyIncreasing(FAILS, debug))
+				if (debug)
+					System.out.println("Verified "+VALID2);
+
+				if (!adjacentDigits(FAILS, debug) && monotonicallyIncreasing(FAILS, debug))
+				{
+					if (debug)
+						System.out.println("Verified "+FAILS);
+
 					System.out.println("Verified ok!");
+				}
 				else
 					System.out.println("Failed to verify: "+FAILS);
 			}
@@ -63,12 +74,18 @@ public class PasswordCracker
 
 		for (int i = 0; i < digits.length -1; i++)
 		{
+			if (debug)
+				System.out.println("Checking "+digits[i]+" against "+digits[i+1]);
+
 			if (digits[i] == digits[i+1])
 			{
 				adjacent++;
 
 				if (i < digits.length -2)
 				{
+					if (debug)
+						System.out.println("Further checking "+digits[i]+" against "+digits[i+1]);
+
 					if (digits[i+1]  == digits[i+2])
 						adjacent--;
 				}
