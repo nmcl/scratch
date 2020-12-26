@@ -86,8 +86,11 @@ public class PasswordCracker
 					if (debug)
 						System.out.println("Further checking "+digits[i]+" against "+digits[i+1]);
 
-					if (digits[i+1]  == digits[i+2])
+					if (digits[i+1] == digits[i+2])
+					{
 						adjacent--;
+						i = i+2;
+					}
 				}
 			}
 		}
