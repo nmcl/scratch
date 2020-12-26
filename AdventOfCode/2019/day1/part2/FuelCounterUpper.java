@@ -8,7 +8,7 @@ public class FuelCounterUpper
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-mass <mass>] [-verify]");
+                System.out.println("Usage: [-help] [-mass <mass>] [-verify]");
                 System.exit(0);
             }
 

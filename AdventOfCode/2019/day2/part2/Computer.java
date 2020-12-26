@@ -13,7 +13,7 @@ public class Computer
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-value target] [-help] [-verify] [-debug] [-dump]");
+                System.out.println("Usage: [-value target] [-help] [-verify] [-debug] [-dump]");
                 System.exit(0);
             }
             

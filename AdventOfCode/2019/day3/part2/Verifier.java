@@ -38,7 +38,7 @@ public class Verifier
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-dump] [-debug] [-example1] [-example2] [-example3]");
+                System.out.println("Usage: [-help] [-dump] [-debug] [-example1] [-example2] [-example3]");
                 System.exit(0);
             }
 

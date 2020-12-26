@@ -25,7 +25,7 @@ public class Plotter
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-dump] [-debug]");
+                System.out.println("Usage: [-help] [-dump] [-debug]");
                 System.exit(0);
             }
 

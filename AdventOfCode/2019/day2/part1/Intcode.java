@@ -21,7 +21,7 @@ public class Intcode
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("[-help] [-verify] [-debug] [-dump]");
+                System.out.println("Usage: [-help] [-verify] [-debug] [-dump]");
                 System.exit(0);
             }
             
