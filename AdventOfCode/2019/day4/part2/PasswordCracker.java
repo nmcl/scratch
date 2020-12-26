@@ -1,8 +1,8 @@
 public class PasswordCracker
 {
-	public static final String VALID = "111111";
-	public static final String FAILS_INCREASE = "223450";
-	public static final String FAILS_DOUBLES = "123789";
+	public static final String VALID1 = "112233";
+	public static final String VALID2 = "111122";
+	public static final String FAILS = "123444";
 	public static void main (String[] args)
 	{
 		char[] digits = new char[6];
@@ -31,7 +31,7 @@ public class PasswordCracker
 		{
 			String str = new String(""+i);
 
-			if ((adjacentDigits(str, debug) > 0) && monotonicallyIncreasing(str, debug))
+			if (adjacentDigits(str, debug) && monotonicallyIncreasing(str, debug))
 				matchingCriteria++;
 		}
 
@@ -40,23 +40,23 @@ public class PasswordCracker
 
 	private static final void verify (boolean debug)
 	{
-		if ((adjacentDigits(VALID, debug) > 0) && monotonicallyIncreasing(VALID, debug))
+		if (adjacentDigits(VALID1, debug) && monotonicallyIncreasing(VALID1, debug))
 		{
-			if (!monotonicallyIncreasing(FAILS_INCREASE, debug) && (adjacentDigits(FAILS_INCREASE, debug) > 0))
+			if (!monotonicallyIncreasing(VALID2, debug) && adjacentDigits(VALID2, debug))
 			{
-				if ((adjacentDigits(FAILS_DOUBLES, debug) == 0) && monotonicallyIncreasing(FAILS_DOUBLES, debug))
+				if (adjacentDigits(FAILS, debug) && monotonicallyIncreasing(FAILS, debug))
 					System.out.println("Verified ok!");
 				else
-					System.out.println("Failed to verify: "+FAILS_DOUBLES);
+					System.out.println("Failed to verify: "+FAILS);
 			}
 			else
-				System.out.println("Failed to verify: "+FAILS_INCREASE);
+				System.out.println("Failed to verify: "+VALID2);
 		}
 		else
-			System.out.println("Failed to verify: "+VALID);
+			System.out.println("Failed to verify: "+VALID1);
 	}
 
-	private static final int adjacentDigits (String str, boolean debug)
+	private static final boolean adjacentDigits (String str, boolean debug)
 	{
 		char[] digits = str.toCharArray();
 		int adjacent = 0;
@@ -64,13 +64,21 @@ public class PasswordCracker
 		for (int i = 0; i < digits.length -1; i++)
 		{
 			if (digits[i] == digits[i+1])
+			{
 				adjacent++;
+
+				if (i < digits.length -2)
+				{
+					if (digits[i+1]  == digits[i+2])
+						adjacent--;
+				}
+			}
 		}
 
 		if (debug)
 			System.out.println("There are "+adjacent+" adjacents for "+str);
 
-		return adjacent;
+		return (adjacent > 0);
 	}
 
 	/*
