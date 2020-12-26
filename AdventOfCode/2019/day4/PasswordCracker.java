@@ -8,20 +8,24 @@ public class PasswordCracker
 		char[] digits = new char[6];
 		int matchingCriteria = 0;
 		String currentValue = null;
+		boolean debug = false;
 
 		for (int i = 0; i < args.length; i++)
 		{
 			if ("-help".equals(args[i]))
 			{
-				System.out.println("Usage: [-help] [-verify]");
+				System.out.println("Usage: [-help] [-debug] [-verify]");
 				System.exit(0);
 			}
 
 			if ("-verify".equals(args[i]))
 			{
-				verify();
+				verify(debug);
 				System.exit(0);
 			}
+
+			if ("-debug".equals(args[i]))
+				debug = true;
 		}
 
 		for (int i = _minRange; i <= _maxRange; i++)
@@ -29,18 +33,18 @@ public class PasswordCracker
 			String str = new String(""+i);
 
 			System.out.println("got: "+str);
-			System.out.println("Adjacent: "+adjacentDigits(str));
-			System.out.println("Increaing: "+monotonicallyIncreasing(str));
+			System.out.println("Adjacent: "+adjacentDigits(str, debug));
+			System.out.println("Increaing: "+monotonicallyIncreasing(str, debug));
 		}
 	}
 
-	private static final void verify ()
+	private static final void verify (boolean debug)
 	{
-		if ((adjacentDigits(VALID) == 1) && monotonicallyIncreasing(VALID))
+		if ((adjacentDigits(VALID, debug) > 0) && monotonicallyIncreasing(VALID, debug))
 		{
-			if ((adjacentDigits(FAILS_INCREASE) == 1) && !monotonicallyIncreasing(FAILS_INCREASE))
+			if (!monotonicallyIncreasing(FAILS_INCREASE, debug) && (adjacentDigits(FAILS_INCREASE, debug) > 0))
 			{
-				if (monotonicallyIncreasing(FAILS_DOUBLES) && (adjacentDigits(FAILS_DOUBLES) == 0))
+				if ((adjacentDigits(FAILS_DOUBLES, debug) == 0) && monotonicallyIncreasing(FAILS_DOUBLES, debug))
 					System.out.println("Verified ok!");
 				else
 					System.out.println("Failed to verify: "+FAILS_DOUBLES);
@@ -52,7 +56,7 @@ public class PasswordCracker
 			System.out.println("Failed to verify: "+VALID);
 	}
 
-	private static final int adjacentDigits (String str)
+	private static final int adjacentDigits (String str, boolean debug)
 	{
 		char[] digits = str.toCharArray();
 		int adjacent = 0;
@@ -63,6 +67,9 @@ public class PasswordCracker
 				adjacent++;
 		}
 
+		if (debug)
+			System.out.println("There are "+adjacent+" adjacents for "+str);
+
 		return adjacent;
 	}
 
@@ -70,19 +77,34 @@ public class PasswordCracker
 	 * ASCII codes increase so don't need to convert char to int.
 	 */
 
-	private static final boolean monotonicallyIncreasing (String str)
+	private static final boolean monotonicallyIncreasing (String str, boolean debug)
 	{
 		char[] digits = str.toCharArray();
 
-		if (digits[0] >= digits[1])
+		if (debug)
+			System.out.println("Comparing "+digits[0]+" and "+digits[1]);
+
+		if (digits[0] <= digits[1])
 		{
-			if (digits[1] >= digits[2])
+			if (debug)
+				System.out.println("Comparing "+digits[1]+" and "+digits[2]);
+
+			if (digits[1] <= digits[2])
 			{
-				if (digits[2] >= digits[3])
+				if (debug)
+					System.out.println("Comparing "+digits[2]+" and "+digits[3]);
+
+				if (digits[2] <= digits[3])
 				{
-					if (digits[3] >= digits[4])
+					if (debug)
+						System.out.println("Comparing "+digits[3]+" and "+digits[4]);
+
+					if (digits[3] <= digits[4])
 					{
-						if (digits[4] >= digits[5])
+						if (debug)
+							System.out.println("Comparing "+digits[4]+" and "+digits[5]);
+
+						if (digits[4] <= digits[5])
 							return true;
 					}
 				}
