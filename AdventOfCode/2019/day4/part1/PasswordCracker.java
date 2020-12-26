@@ -7,7 +7,6 @@ public class PasswordCracker
 	{
 		char[] digits = new char[6];
 		int matchingCriteria = 0;
-		String currentValue = null;
 		boolean debug = false;
 
 		for (int i = 0; i < args.length; i++)
@@ -32,10 +31,11 @@ public class PasswordCracker
 		{
 			String str = new String(""+i);
 
-			System.out.println("got: "+str);
-			System.out.println("Adjacent: "+adjacentDigits(str, debug));
-			System.out.println("Increaing: "+monotonicallyIncreasing(str, debug));
+			if ((adjacentDigits(str, debug) > 0) && monotonicallyIncreasing(str, debug))
+				matchingCriteria++;
 		}
+
+		System.out.println("Matching criteria: "+matchingCriteria);
 	}
 
 	private static final void verify (boolean debug)
