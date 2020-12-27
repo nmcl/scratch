@@ -180,7 +180,10 @@ public class Intcode
         if (_debug)
             System.out.println("Modes: "+allModes);
 
-        return allModes.toCharArray();
+        if (allModes != null)
+            return allModes.toCharArray();
+        else
+            return null;
     }
 
     private boolean _debug;
