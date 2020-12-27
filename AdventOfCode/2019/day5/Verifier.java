@@ -14,7 +14,12 @@ public class Verifier
         if (_debug)
             System.out.println("Verifying "+TEST_CODE_1);
 
-        _theComputer.parseAndExecute(values, 0);
+        str = _theComputer.parseAndExecute(values, Integer.parseInt(TEST_INPUT_1));
+
+        if (TEST_RESULT_1.equals(str))
+            System.out.println("Verified ok!");
+        else
+            System.out.println("Verify failed for "+TEST_CODE_1);
     }
 
     private String convert (String[] values)
@@ -31,7 +36,8 @@ public class Verifier
     private boolean _debug = false;
 
     private static final String TEST_CODE_1 = "3,0,4,0,99";
-    private static final String TEST_RESULT_1 = "";
+    private static final String TEST_INPUT_1 = "1234";
+    private static final String TEST_RESULT_1 = "1234";
     private static final String TEST_CODE_2 = "1002,4,3,4,33";
     private static final String TEST_RESULT_2 = "";
 }

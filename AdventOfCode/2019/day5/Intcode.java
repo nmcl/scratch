@@ -38,13 +38,15 @@ public class Intcode
 
     public String parseAndExecute (String[] values, int initialInput)
     {
+        String returnValue = null;
+
         for (int i = 0; i < values.length; i++)
         {
             String str = getOpcode(values[i]);
             char[] modes = getModes(values[i]);
 
             if (_debug)
-                System.out.println("Working on entry "+i+" with "+str+" and "+modes);
+                System.out.println("Working on entry "+i+" with command "+str+" and parameter modes "+((modes == null) ? POSITION_MODE : modes));
 
             switch (Integer.valueOf(str))
             {
@@ -110,6 +112,9 @@ public class Intcode
 
                      int savePosition = Integer.valueOf(values[i+1]);
 
+                     if (_debug)
+                        System.out.println("Storing "+initialInput+" at position "+savePosition);
+
                      values[savePosition] = String.valueOf(initialInput);
 
                      i = i+1;  // move the pointer on.
@@ -123,7 +128,12 @@ public class Intcode
 
                      int outputPosition = Integer.valueOf(values[i+1]);
 
-                     System.out.println("Output: "+String.valueOf(outputPosition));
+                     if (_debug)
+                        System.out.println("Pulling value from entry "+outputPosition);
+
+                     System.out.println("Output: "+String.valueOf(values[outputPosition]));
+
+                     returnValue = values[outputPosition];
 
                      i = i+1;  // move the pointer on.
                 }
@@ -137,7 +147,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Halting execution.");
 
-                     return values[0];
+                     return returnValue;
                 }
                 default:
                 {
@@ -160,6 +170,8 @@ public class Intcode
 
         if ((digits != null) && (digits.length() > 2))
             opcode = digits.substring(digits.length()-2);
+        else
+            opcode = digits;
        
         if (_debug)
             System.out.println("Opcode: "+opcode);
