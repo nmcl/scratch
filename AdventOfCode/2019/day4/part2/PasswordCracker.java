@@ -78,42 +78,61 @@ public class PasswordCracker
 		int adjacent = 0;
 		int sequenceStart = -1;
 
-		System.out.println("\nScanning "+str);
+		if (debug)
+			System.out.println("\nScanning "+str);
 
 		for (int i = 1; i < digits.length; i++)
 		{
-			System.out.println("Index at "+i);
-
-			if (sequenceStart == -1)
-				System.out.println("No sequence yet found.");
-			else
-				System.out.println("Sequence "+digits[sequenceStart]+" starts at index "+sequenceStart);
-
-			if (debug)
-				System.out.println("Checking digit "+digits[i-1]+" against digit "+digits[i]+" and "+sequenceStart);
-
 			if (digits[i-1] == digits[i])
 			{
-				if (sequenceStart != -1)
-				{
-					System.out.println("Found sequence started at "+sequenceStart);
-					System.out.println("Comparing digit "+digits[i]+" and start sequence digit "+digits[sequenceStart]);
+				int duplicate = 2;
+				boolean stop = false;
+				int j;
 
-					if (digits[i] != digits[sequenceStart])
+				if (debug)
+				{
+					System.out.println("Found dupliocate "+digits[i-1]+" at "+i);
+
+					System.out.println("Starting sequence scan from "+(i+1));
+				}
+
+				for (j = i+1; (j < digits.length) && !stop; j++)
+				{
+					/*
+					 * How many times does the digit appear in sequence?
+					 */
+
+					if (debug)
+						System.out.println("Comparing digits "+j+" and "+i);
+
+					if (digits[j] == digits[i])
 					{
-						adjacent++;
-						sequenceStart = i-1;
+						duplicate++;
+
+						if (debug)
+							System.out.println("Identical.");
 					}
 					else
-						adjacent--;
-				}
-				else
-				{
-					System.out.println("New sequence "+digits[i-1]+" found at "+(i-1));
+					{
+						stop = true;
+						i = j;
 
-					adjacent++;
-					sequenceStart = i-1;
+						if (debug)
+							System.out.println("Different.");
+					}
 				}
+
+				/*
+				 * If we get here without dropping out of the loop
+				 * early then we're at the end of the digit stream so
+				 * break out of the outer loop too.
+				 */
+
+				if (!stop && (j == digits.length))
+					i = digits.length;
+
+				if (duplicate == 2)
+					adjacent++;
 			}
 		}
 
