@@ -78,29 +78,38 @@ public class PasswordCracker
 		int adjacent = 0;
 		int sequenceStart = -1;
 
+		System.out.println("\nScanning "+str);
+
 		for (int i = 1; i < digits.length; i++)
 		{
-			System.out.println("Index "+i);
+			System.out.println("Index at "+i);
+
+			if (sequenceStart == -1)
+				System.out.println("No sequence yet found.");
+			else
+				System.out.println("Sequence "+digits[sequenceStart]+" starts at index "+sequenceStart);
 
 			if (debug)
-				System.out.println("Checking "+digits[i-1]+" against "+digits[i]+" and "+sequenceStart);
+				System.out.println("Checking digit "+digits[i-1]+" against digit "+digits[i]+" and "+sequenceStart);
 
 			if (digits[i-1] == digits[i])
 			{
 				if (sequenceStart != -1)
 				{
-					System.out.println("Sequence started at "+sequenceStart);
-					System.out.println("Comparing "+digits[i]+" "+digits[sequenceStart]);
+					System.out.println("Found sequence started at "+sequenceStart);
+					System.out.println("Comparing digit "+digits[i]+" and start sequence digit "+digits[sequenceStart]);
 
 					if (digits[i] != digits[sequenceStart])
 					{
 						adjacent++;
 						sequenceStart = i-1;
 					}
+					else
+						adjacent--;
 				}
 				else
 				{
-					System.out.println("Starting sequence at "+(i-1));
+					System.out.println("New sequence "+digits[i-1]+" found at "+(i-1));
 
 					adjacent++;
 					sequenceStart = i-1;
