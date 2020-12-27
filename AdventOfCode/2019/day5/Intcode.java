@@ -41,9 +41,10 @@ public class Intcode
         for (int i = 0; i < values.length; i++)
         {
             String str = getOpcode(values[i]);
+            char[] modes = getModes(values[i]);
 
             if (_debug)
-                System.out.println("Working on entry "+i+" with "+str);
+                System.out.println("Working on entry "+i+" with "+str+" and "+modes);
 
             switch (Integer.valueOf(str))
             {
@@ -125,10 +126,34 @@ public class Intcode
 
     private String getOpcode (String digits)
     {
-        if ((digits != null) && (digits.length > 2))
-            return String.substring(digits.length-2);
-        else
-            return null;
+        if (_debug)
+            System.out.println("Command: "+digits);
+        
+        String opcode = null;
+
+        if ((digits != null) && (digits.length() > 2))
+            opcode = digits.substring(digits.length()-2);
+       
+        if (_debug)
+            System.out.println("Opcode: "+opcode);
+
+        return opcode;
+    }
+
+    private char[] getModes (String digits)
+    {
+        if (_debug)
+            System.out.println("Command: "+digits);
+        
+        String allModes = null;
+
+        if ((digits != null) && (digits.length() > 2))
+            allModes = digits.substring(0, digits.length()-1);
+
+        if (_debug)
+            System.out.println("Modes: "+allModes);
+            
+        return allModes.toCharArray();
     }
 
     private boolean _debug;
