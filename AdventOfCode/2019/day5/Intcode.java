@@ -101,6 +101,16 @@ public class Intcode
                     i = i+3;  // move the pointer on.
                 }
                 break;
+                case Intcode.INPUT_AND_STORE:
+                {
+
+                }
+                break;
+                case Intcode.OUTPUT:
+                {
+
+                }
+                break;
                 case Intcode.HALT:
                 {
                     /*
@@ -152,7 +162,7 @@ public class Intcode
 
         if (_debug)
             System.out.println("Modes: "+allModes);
-            
+
         return allModes.toCharArray();
     }
 
