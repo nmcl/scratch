@@ -14,7 +14,7 @@ public class Verifier
         if (_debug)
             System.out.println("Verifying "+TEST_CODE_1);
 
-        _theComputer.parseAndExecute(values);
+        _theComputer.parseAndExecute(values, 0);
     }
 
     private String convert (String[] values)

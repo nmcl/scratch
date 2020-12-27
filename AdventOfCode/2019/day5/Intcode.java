@@ -36,7 +36,7 @@ public class Intcode
         _debug = debug;
     }
 
-    public String parseAndExecute (String[] values)
+    public String parseAndExecute (String[] values, int initialInput)
     {
         for (int i = 0; i < values.length; i++)
         {
@@ -103,12 +103,29 @@ public class Intcode
                 break;
                 case Intcode.INPUT_AND_STORE:
                 {
+                    /*
+                     * Opcode 3 takes a single integer as input and saves it to
+                     * the position given by its only parameter.
+                     */
 
+                     int savePosition = Integer.valueOf(values[i+1]);
+
+                     values[savePosition] = String.valueOf(initialInput);
+
+                     i = i+1;  // move the pointer on.
                 }
                 break;
                 case Intcode.OUTPUT:
                 {
+                    /*
+                     * Opcode 4 outputs the value of its only parameter.
+                     */
 
+                     int outputPosition = Integer.valueOf(values[i+1]);
+
+                     System.out.println("Output: "+String.valueOf(outputPosition));
+
+                     i = i+1;  // move the pointer on.
                 }
                 break;
                 case Intcode.HALT:
