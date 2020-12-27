@@ -30,6 +30,8 @@ public class Verifier
     private Intcode _theComputer = null;
     private boolean _debug = false;
 
-    private static final String TEST_CODE_1 = "1002,4,3,4,33";
+    private static final String TEST_CODE_1 = "3,0,4,0,99";
     private static final String TEST_RESULT_1 = "";
+    private static final String TEST_CODE_2 = "1002,4,3,4,33";
+    private static final String TEST_RESULT_2 = "";
 }
