@@ -71,19 +71,28 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     int position1 = Integer.valueOf(values[i+1]);
-                     int position2 = Integer.valueOf(values[i+2]);
-                     int store = Integer.valueOf(values[i+3]);
+                     int param1 = Integer.valueOf(values[i+1]);
+                     int param2 = Integer.valueOf(values[i+2]);
+                     int param3 = Integer.valueOf(values[i+3]);
+
+                     if (modes[0] == POSITION_MODE)
+                        param1 = Integer.valueOf(values[param1]);
+
+                     if (modes[1] == POSITION_MODE)
+                        param2 = Integer.valueOf(values[param2]);
+
+                     if (modes[2] == POSITION_MODE)
+                        param3 = Integer.valueOf(values[param3]);
 
                      if (_debug)
-                        System.out.println("Adding "+values[position1]+" and "+values[position2]);
+                        System.out.println("Adding "+param1+" and "+param2);
 
-                     int sum = Integer.valueOf(values[position1])+Integer.valueOf(values[position2]);
+                     int sum = param1+param2;
 
                      if (_debug)
-                        System.out.println("Storing "+sum+" at position "+store);
+                        System.out.println("Storing "+sum+" at position "+param3);
 
-                     values[store] = String.valueOf(sum);
+                     values[param3] = String.valueOf(sum);
 
                      i = i+3;  // move the pointer on.
                 }
@@ -149,12 +158,15 @@ public class Intcode
                      * the position given by its only parameter.
                      */
 
-                     int savePosition = Integer.valueOf(values[i+1]);
+                     int param1 = Integer.valueOf(values[i+1]);
+
+                     if (modes[0] == POSITION_MODE)
+                        param1 = Integer.valueOf(values[param1]);
 
                      if (_debug)
-                        System.out.println("Storing "+initialInput+" at position "+savePosition);
+                        System.out.println("Storing "+initialInput+" at position "+param1);
 
-                     values[savePosition] = String.valueOf(initialInput);
+                     values[param1] = String.valueOf(initialInput);
 
                      i = i+1;  // move the pointer on.
                 }
@@ -165,14 +177,17 @@ public class Intcode
                      * Opcode 4 outputs the value of its only parameter.
                      */
 
-                     int outputPosition = Integer.valueOf(values[i+1]);
+                     int param1 = Integer.valueOf(values[i+1]);
+
+                     if (modes[0] == POSITION_MODE)
+                        param1 = Integer.valueOf(values[param1]);
 
                      if (_debug)
-                        System.out.println("Pulling value from entry "+outputPosition);
+                        System.out.println("Pulling value from entry "+param1);
 
-                     System.out.println("Output: "+String.valueOf(values[outputPosition]));
+                     System.out.println("Output: "+String.valueOf(values[param1]));
 
-                     returnValue = values[outputPosition];
+                     returnValue = values[param1];
 
                      i = i+1;  // move the pointer on.
                 }
@@ -225,9 +240,6 @@ public class Intcode
 
     private int[] getModes (String digits)
     {
-        if (_debug)
-            System.out.println("Command: "+digits);
-        
         int[] theModes = new int[MAX_PARAMETERS];
 
         for (int i = 0; i < MAX_PARAMETERS; i++)
@@ -242,10 +254,15 @@ public class Intcode
 
             char[] modeArray = allModes.toCharArray();
 
-            for (int j = 0; j < modeArray.length; j++)
+            for (int j = modeArray.length-1; j >= 0; j--)
             {
                 if (modeArray[j] == '1')
-                    theModes[modeArray.length-j] = IMMEDIATE_MODE;
+                {
+                    System.out.println("Param "+j+" is IMMEDIATE");
+                    System.out.println("Setting mode element "+(modeArray.length-j-1));
+
+                    theModes[modeArray.length-j-1] = IMMEDIATE_MODE;
+                }
             }
         }
 
