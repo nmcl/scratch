@@ -179,15 +179,17 @@ public class Intcode
 
                      int param1 = Integer.valueOf(values[i+1]);
 
+                     /*
                      if (modes[0] == POSITION_MODE)
                         param1 = Integer.valueOf(values[param1]);
+*/
 
                      if (_debug)
                         System.out.println("Pulling value from entry "+param1);
 
-                     System.out.println("Output: "+String.valueOf(values[param1]));
+                     System.out.println("Output: "+String.valueOf(param1));
 
-                     returnValue = values[param1];
+                     returnValue = Integer.toString(param1);
 
                      i = i+1;  // move the pointer on.
                 }
