@@ -52,4 +52,7 @@ public class Verifier
     private static final String TEST_CODE_2 = "1002,4,3,4,33";
     private static final String TEST_INPUT_2 = "0";
     private static final String TEST_RESULT_2 = "";
+    private static final String TEST_CODE_3 = "1101,100,-1,4,0";
+    private static final String TEST_INPUT_3 = "0";
+    private static final String TEST_RESULT_3 = "";
 }
