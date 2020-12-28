@@ -96,19 +96,48 @@ public class Intcode
                      * the opcode indicate where the inputs and outputs are, not their values.
                      */
 
-                    int position1 = Integer.valueOf(values[i+1]);
-                    int position2 = Integer.valueOf(values[i+2]);
-                    int store = Integer.valueOf(values[i+3]);
+                    int param1 = Integer.valueOf(values[i+1]);
+                    int param2 = Integer.valueOf(values[i+2]);
+                    int param3 = Integer.valueOf(values[i+3]);
+
+                    if (modes[0] == POSITION_MODE)
+                    {
+                        System.out.println("Param1 "+param1+" is POSITION_MODE");
+
+                        param1 = Integer.valueOf(values[param1]);
+                    }
+                    else
+                        System.out.println("Param1 "+param1+" is IMMEDIATE_MODE");
+
+                    System.out.println("Param1 "+param1);
+
+                    if (modes[1] == POSITION_MODE)
+                    {
+                        System.out.println("Param2 "+param2+" is POSITION_MODE");
+
+                        param2 = Integer.valueOf(values[param2]);
+                    }
+
+                    System.out.println("Param2 "+param2);
+
+                    if (modes[2] == POSITION_MODE)
+                    {
+                        System.out.println("Param3 "+param3+" is POSITION_MODE");
+
+                        param3 = Integer.valueOf(values[param3]);
+                    }
+
+                    System.out.println("Param3 "+param3);
 
                     if (_debug)
-                        System.out.println("Multiplying "+values[position1]+" and "+values[position2]);
+                        System.out.println("Multiplying "+param1+" and "+param2);
 
-                    int product = Integer.valueOf(values[position1])*Integer.valueOf(values[position2]);
+                    int product = Integer.valueOf(param1)*Integer.valueOf(param2);
 
                     if (_debug)
-                        System.out.println("Storing "+product+" at position "+store);
+                        System.out.println("Storing "+product+" at position "+param3);
 
-                    values[store] = String.valueOf(product);
+                    values[param3] = String.valueOf(product);
 
                     i = i+3;  // move the pointer on.
                 }
@@ -216,7 +245,7 @@ public class Intcode
             for (int j = 0; j < modeArray.length; j++)
             {
                 if (modeArray[j] == '1')
-                    theModes[j] = IMMEDIATE_MODE;
+                    theModes[modeArray.length-j] = IMMEDIATE_MODE;
             }
         }
 
