@@ -45,11 +45,14 @@ public class Intcode
         for (int i = 0; i < values.length; i++)
         {
             String str = getOpcode(values[i]);
-            char[] modes = getModes(values[i]);
+            int[] modes = getModes(values[i]);
 
             if (_debug)
+            {
                 System.out.println("Working on entry "+i+" with command "+str+
-                                        " and parameter modes "+modes);
+                                        " and parameter modes ...");
+                printModes(modes);
+            }
 
             /*
              * Now factor in the parameter modes.
@@ -187,7 +190,8 @@ public class Intcode
     }
 
     /*
-     *
+     * Return the modes for the parameters, including default mode
+     * (POSITION_MODE) if nothing is defined.
      */
 
     private int[] getModes (String digits)
@@ -202,20 +206,32 @@ public class Intcode
 
         if ((digits != null) && (digits.length() > 2))
         {
-            String allModes = digits.substring(0, digits.length()-1);
+            String allModes = digits.substring(0, digits.length()-2);
+
+            if (_debug)
+                System.out.println("Mode string: "+allModes);
+
             char[] modeArray = allModes.toCharArray();
 
             for (int j = 0; j < modeArray.length; j++)
             {
                 if (modeArray[j] == '1')
-                    theModes[i] = IMMEDIATE_MODE;
+                    theModes[j] = IMMEDIATE_MODE;
             }
         }
 
         if (_debug)
-            System.out.println("Modes: "+theModes);
+            printModes(theModes);
 
         return theModes;
+    }
+
+    private void printModes (int[] modes)
+    {
+        for (int i = 0; i < modes.length; i++)
+        {
+            System.out.println("Parameter "+i+" is "+((modes[i] == IMMEDIATE_MODE) ? "immediate mode": "position mode"));
+        }
     }
 
     private boolean _debug;
