@@ -25,7 +25,28 @@ public class Verifier
             str = _theComputer.parseAndExecute(values, Integer.parseInt(TEST_INPUT_2));
 
             if (TEST_RESULT_2.equals(str))
-                System.out.println("Verified ok!");
+            {
+                System.out.println("Final data from "+TEST_CODE_2);
+                
+                dumpData(values);
+
+                if (_debug)
+                    System.out.println("\nVerifying "+TEST_CODE_3);
+
+                values = TEST_CODE_3.split(Intcode.DELIMITER);
+                str = _theComputer.parseAndExecute(values, Integer.parseInt(TEST_INPUT_3));
+
+                if (TEST_RESULT_3.equals(str))
+                {
+                    System.out.println("Final data from "+TEST_CODE_3);
+                
+                    dumpData(values);
+
+                    System.out.println("Verified ok!");
+                }
+                else
+                    System.out.println("Verify failed for "+TEST_CODE_3);
+            }
             else
                 System.out.println("Verify failed for "+TEST_CODE_2);
         }
@@ -41,6 +62,14 @@ public class Verifier
             str += Intcode.DELIMITER + values[i];
 
         return str;
+    }
+
+    private final void dumpData (String[] values)
+    {
+        for (String str : values)
+        {
+            System.out.println(str);
+        }
     }
 
     private Intcode _theComputer = null;
