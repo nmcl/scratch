@@ -51,5 +51,5 @@ public class Verifier
     private static final String TEST_RESULT_1 = "1234";
     private static final String TEST_CODE_2 = "1002,4,3,4,33";
     private static final String TEST_INPUT_2 = "0";
-    private static final String TEST_RESULT_2 = "0";
+    private static final String TEST_RESULT_2 = "";
 }

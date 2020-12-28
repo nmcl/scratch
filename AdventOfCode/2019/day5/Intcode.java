@@ -40,7 +40,7 @@ public class Intcode
 
     public String parseAndExecute (String[] values, int initialInput)
     {
-        String returnValue = null;
+        String returnValue = "";
 
         for (int i = 0; i < values.length; i++)
         {
@@ -81,9 +81,6 @@ public class Intcode
                      if (modes[1] == POSITION_MODE)
                         param2 = Integer.valueOf(values[param2]);
 
-                     if (modes[2] == POSITION_MODE)
-                        param3 = Integer.valueOf(values[param3]);
-
                      if (_debug)
                         System.out.println("Adding "+param1+" and "+param2);
 
@@ -110,33 +107,10 @@ public class Intcode
                     int param3 = Integer.valueOf(values[i+3]);
 
                     if (modes[0] == POSITION_MODE)
-                    {
-                        System.out.println("Param1 "+param1+" is POSITION_MODE");
-
                         param1 = Integer.valueOf(values[param1]);
-                    }
-                    else
-                        System.out.println("Param1 "+param1+" is IMMEDIATE_MODE");
-
-                    System.out.println("Param1 "+param1);
 
                     if (modes[1] == POSITION_MODE)
-                    {
-                        System.out.println("Param2 "+param2+" is POSITION_MODE");
-
                         param2 = Integer.valueOf(values[param2]);
-                    }
-
-                    System.out.println("Param2 "+param2);
-
-                    if (modes[2] == POSITION_MODE)
-                    {
-                        System.out.println("Param3 "+param3+" is POSITION_MODE");
-
-                        param3 = Integer.valueOf(values[param3]);
-                    }
-
-                    System.out.println("Param3 "+param3);
 
                     if (_debug)
                         System.out.println("Multiplying "+param1+" and "+param2);
@@ -179,15 +153,8 @@ public class Intcode
 
                      int param1 = Integer.valueOf(values[i+1]);
 
-                     /*
-                     if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
-*/
-
                      if (_debug)
                         System.out.println("Pulling value from entry "+param1);
-
-                     System.out.println("Output: "+String.valueOf(param1));
 
                      returnValue = Integer.toString(param1);
 
@@ -201,7 +168,7 @@ public class Intcode
                      */
 
                      if (_debug)
-                        System.out.println("Halting execution.");
+                        System.out.println("Halting execution with "+returnValue);
 
                      return returnValue;
                 }
@@ -214,7 +181,7 @@ public class Intcode
             }
         }
 
-        return values[0];
+        return returnValue;
     }
 
     private String getOpcode (String digits)
@@ -260,8 +227,8 @@ public class Intcode
             {
                 if (modeArray[j] == '1')
                 {
-                    System.out.println("Param "+j+" is IMMEDIATE");
-                    System.out.println("Setting mode element "+(modeArray.length-j-1));
+                    if (_debug)
+                        System.out.println("Param "+j+" is IMMEDIATE");
 
                     theModes[modeArray.length-j-1] = IMMEDIATE_MODE;
                 }
