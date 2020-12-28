@@ -23,6 +23,8 @@ public class Intcode
     public static final int POSITION_MODE = 0;  // parameter is interpreted as a position
     public static final int IMMEDIATE_MODE = 1; // parameter is interpreted as a value
 
+    private static final int MAX_PARAMETERS = 4;
+
     public static final String DELIMITER = ",";
 
     /*
@@ -46,7 +48,12 @@ public class Intcode
             char[] modes = getModes(values[i]);
 
             if (_debug)
-                System.out.println("Working on entry "+i+" with command "+str+" and parameter modes "+((modes == null) ? POSITION_MODE : modes));
+                System.out.println("Working on entry "+i+" with command "+str+
+                                        " and parameter modes "+modes);
+
+            /*
+             * Now factor in the parameter modes.
+             */
 
             switch (Integer.valueOf(str))
             {
@@ -179,23 +186,36 @@ public class Intcode
         return opcode;
     }
 
-    private char[] getModes (String digits)
+    /*
+     *
+     */
+
+    private int[] getModes (String digits)
     {
         if (_debug)
             System.out.println("Command: "+digits);
         
-        String allModes = null;
+        int[] theModes = new int[MAX_PARAMETERS];
+
+        for (int i = 0; i < MAX_PARAMETERS; i++)
+            theModes[i] = POSITION_MODE;
 
         if ((digits != null) && (digits.length() > 2))
-            allModes = digits.substring(0, digits.length()-1);
+        {
+            String allModes = digits.substring(0, digits.length()-1);
+            char[] modeArray = allModes.toCharArray();
+
+            for (int j = 0; j < modeArray.length; j++)
+            {
+                if (modeArray[j] == '1')
+                    theModes[i] = IMMEDIATE_MODE;
+            }
+        }
 
         if (_debug)
-            System.out.println("Modes: "+allModes);
+            System.out.println("Modes: "+theModes);
 
-        if (allModes != null)
-            return allModes.toCharArray();
-        else
-            return null;
+        return theModes;
     }
 
     private boolean _debug;
