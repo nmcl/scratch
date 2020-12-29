@@ -133,9 +133,10 @@ public class Intcode
                      */
 
                      int param1 = Integer.valueOf(values[i+1]);
+                    System.out.println("**param1 "+param1);
 
-                     if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
+                     //if (modes[0] == POSITION_MODE)
+                        //param1 = Integer.valueOf(values[param1]);
 
                      if (_debug)
                         System.out.println("Storing "+initialInput+" at position "+param1);

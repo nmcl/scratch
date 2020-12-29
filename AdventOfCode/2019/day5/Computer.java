@@ -5,22 +5,25 @@ public class Computer
     public static void main (String[] args)
     {
         boolean debug = false;
-        boolean runVerifier = false;
         int defaultInput = 1;
+        boolean runVerifier = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-help] [-verify] [-input <value>] [-debug]");
+                System.out.println("Usage: [-help] [-verify] [-debug] [-input <value>]");
                 System.exit(0);
             }
-            
-            if ("-verify".equals(args[i]))
-                runVerifier = true;
 
             if ("-debug".equals(args[i]))
                 debug = true;
+
+            if ("-input".equals(args[i]))
+                defaultInput = Integer.parseInt(args[i+1]);
+
+            if ("-verify".equals(args[i]))
+                runVerifier = true;
         }
 
         /*
@@ -53,6 +56,10 @@ public class Computer
             {
                 values = line.split(Intcode.DELIMITER);
             }
+
+            String str = _theComputer.parseAndExecute(values, defaultInput);
+
+            System.out.println("Got back "+str);
         }
         catch (Throwable ex)
         {
