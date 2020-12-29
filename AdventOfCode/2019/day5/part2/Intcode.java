@@ -181,7 +181,14 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                     
+                    int param1 = Integer.valueOf(values[i+1]);
+                    int param2 = Integer.valueOf(values[i+2]);
+
+                    if (modes[0] == POSITION_MODE)
+                        param1 = Integer.valueOf(values[param1]);
+
+                    if (modes[1] == POSITION_MODE)
+                        param2 = Integer.valueOf(values[param2]);
                 }
                 break;
                 case Intcode.HALT:
