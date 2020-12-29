@@ -53,8 +53,8 @@ public class Intcode
 
             if (_debug)
             {
-                System.out.println("Working on entry "+i+" with command "+str+
-                                        " and parameter modes ...");
+                System.out.println("\nWorking on entry "+i+" which is command "+str+
+                                        " with parameter modes ...");
                 printModes(modes);
             }
 
@@ -137,7 +137,6 @@ public class Intcode
                      */
 
                      int param1 = Integer.valueOf(values[i+1]);
-                    System.out.println("**param1 "+param1);
 
                      //if (modes[0] == POSITION_MODE)
                         //param1 = Integer.valueOf(values[param1]);
@@ -183,12 +182,73 @@ public class Intcode
 
                     int param1 = Integer.valueOf(values[i+1]);
                     int param2 = Integer.valueOf(values[i+2]);
+                    int param3 = Integer.valueOf(values[i+3]);
 
                     if (modes[0] == POSITION_MODE)
                         param1 = Integer.valueOf(values[param1]);
 
                     if (modes[1] == POSITION_MODE)
                         param2 = Integer.valueOf(values[param2]);
+
+                    if (modes[1] == POSITION_MODE)
+                        param3 = Integer.valueOf(values[param3]);
+
+                    if (_debug)
+                        System.out.println("Comparing "+param1+" and "+param2);
+
+                    if (param1 < param2)
+                        values[param3] = "1";
+                    else
+                        values[param3] = "0";
+
+                    i = i+3;  // move the pointer on.
+                }
+                break;
+                case Intcode.EQUALS:
+                {
+                    /*
+                     * If the first parameter is equal to the second parameter, it stores 1
+                     * in the position given by the third parameter. Otherwise, it stores 0.
+                     */
+
+                    int param1 = Integer.valueOf(values[i+1]);
+                    int param2 = Integer.valueOf(values[i+2]);
+                    int param3 = Integer.valueOf(values[i+3]);
+
+                    if (modes[0] == POSITION_MODE)
+                        param1 = Integer.valueOf(values[param1]);
+
+                    if (modes[1] == POSITION_MODE)
+                        param2 = Integer.valueOf(values[param2]);
+
+                    if (modes[1] == POSITION_MODE)
+                        param3 = Integer.valueOf(values[param3]);
+
+                    if (_debug)
+                    {
+                        System.out.println("Checking whether "+param1+" is equal to "+param2);
+                        System.out.print("Storing ");
+                    }
+
+                    if (param1 == param2)
+                    {
+                        if (_debug)
+                            System.out.print("1");
+
+                        values[param3] = "1";
+                    }
+                    else
+                    {
+                        if (_debug)
+                            System.out.print("0");
+
+                        values[param3] = "0";
+                    }
+
+                    if (_debug)
+                        System.out.println(" at location "+param3);
+
+                    i = i+3;  // move the pointer on.
                 }
                 break;
                 case Intcode.HALT:

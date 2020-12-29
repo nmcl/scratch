@@ -42,7 +42,15 @@ public class Verifier
                 
                     dumpData(values);
 
-                    System.out.println("Verified ok!");
+                    System.out.println("Verifying "+TEST_CODE_4);
+
+                    values = TEST_CODE_4.split(Intcode.DELIMITER);
+                    str = _theComputer.parseAndExecute(values, 7); // should be != 8
+
+                    if ("0".equals(str))
+                        System.out.println("Verified ok!");
+                    else
+                        System.out.println("Verify failed for "+TEST_CODE_4);
                 }
                 else
                     System.out.println("Verify failed for "+TEST_CODE_3);
@@ -84,4 +92,5 @@ public class Verifier
     private static final String TEST_CODE_3 = "1101,100,-1,4,0";
     private static final String TEST_INPUT_3 = "0";
     private static final String TEST_RESULT_3 = "";
+    private static final String TEST_CODE_4 = "3,9,8,9,10,9,4,9,99,-1,8";
 }
