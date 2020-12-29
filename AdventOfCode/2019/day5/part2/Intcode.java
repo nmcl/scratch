@@ -157,8 +157,6 @@ public class Intcode
 
                      int param1 = Integer.valueOf(values[i+1]);
 
-                     System.out.println("got "+values[i]+" and "+values[i+1]+" and "+i+" and "+(i+1));
-
                      returnValue = values[param1];
 
                      if (_debug)
@@ -186,8 +184,6 @@ public class Intcode
                     int param2 = Integer.valueOf(values[i+2]);
                     int param3 = Integer.valueOf(values[i+3]);
 
-                    System.out.println("Params: "+param1+" "+param2+" "+param3);
-
                     if (modes[0] == POSITION_MODE)
                         param1 = Integer.valueOf(values[param1]);
 
@@ -196,8 +192,6 @@ public class Intcode
 
                     if (modes[1] == POSITION_MODE)
                         param3 = Integer.valueOf(values[param3]);
-
-                    System.out.println("Params now: "+param1+" "+param2+" "+param3);
 
                     if (_debug)
                     {
@@ -237,8 +231,6 @@ public class Intcode
                     int param2 = Integer.valueOf(values[i+2]);
                     int param3 = Integer.valueOf(values[i+3]);
 
-                    System.out.println("Params: "+param1+" "+param2+" "+param3);
-
                     if (modes[0] == POSITION_MODE)
                         param1 = Integer.valueOf(values[param1]);
 
@@ -247,8 +239,6 @@ public class Intcode
 
                     if (modes[1] == POSITION_MODE)
                         param3 = Integer.valueOf(values[param3]);
-
-                    System.out.println("Params now: "+param1+" "+param2+" "+param3);
 
                     if (_debug)
                     {
