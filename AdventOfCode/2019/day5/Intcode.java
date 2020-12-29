@@ -157,7 +157,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Pulling value from entry "+param1);
 
-                     returnValue = Integer.toString(param1);
+                     returnValue = values[param1];
 
                      i = i+1;  // move the pointer on.
                 }
