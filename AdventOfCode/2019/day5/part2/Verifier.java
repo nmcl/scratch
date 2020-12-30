@@ -48,7 +48,7 @@ public class Verifier
                     values = TEST_CODE_4.split(Intcode.DELIMITER);
                     str = _theComputer.parseAndExecute(values, 9); // should != 8
                     
-                    if ("0".equals(str))
+                    if (TEST_RESULT_4.equals(str))
                     {
                         if (_debug)
                             System.out.println("\nVerifying "+TEST_CODE_5);
@@ -56,7 +56,7 @@ public class Verifier
                         values = TEST_CODE_5.split(Intcode.DELIMITER);
                         str = _theComputer.parseAndExecute(values, 2); // should be < 8
 
-                        if ("2".equals(str))
+                        if (TEST_RESULT_5.equals(str))
                         {
                             if (_debug)
                                 System.out.println("\nVerifying "+TEST_CODE_6);
@@ -64,7 +64,7 @@ public class Verifier
                             values = TEST_CODE_6.split(Intcode.DELIMITER);
                             str = _theComputer.parseAndExecute(values, 9); // should != 8
 
-                            if ("0".equals(str))
+                            if (TEST_RESULT_6.equals(str))
                             {
                                 if (_debug)
                                     System.out.println("\nVerifying "+TEST_CODE_7);
@@ -72,7 +72,7 @@ public class Verifier
                                 values = TEST_CODE_7.split(Intcode.DELIMITER);
                                 str = _theComputer.parseAndExecute(values, 2); // should be < 8
 
-                                if ("1".equals(str))
+                                if (TEST_RESULT_7.equals(str))
                                     System.out.println("Verified ok!");
                                 else
                                     System.out.println("Verify failed for "+TEST_CODE_7);
@@ -127,7 +127,11 @@ public class Verifier
     private static final String TEST_INPUT_3 = "0";
     private static final String TEST_RESULT_3 = "";
     private static final String TEST_CODE_4 = "3,9,8,9,10,9,4,9,99,-1,8";
+    private static final String TEST_RESULT_4 = "0";
     private static final String TEST_CODE_5 = "3,9,7,9,10,9,4,9,99,-1,8";
+    private static final String TEST_RESULT_5 = "2";
     private static final String TEST_CODE_6 = "3,3,1108,-1,8,3,4,3,99";
+    private static final String TEST_RESULT_6 = "0";
     private static final String TEST_CODE_7 = "3,3,1107,-1,8,3,4,3,99";
+    private static final String TEST_RESULT_7 = "1";
 }
