@@ -53,7 +53,7 @@ public class Intcode
 
             if (_debug)
             {
-                System.out.println("\nWorking on entry "+i+" which is command "+str+
+                System.out.println("\nWorking on element "+i+" which is command "+str+
                                         " with parameter modes ...");
                 printModes(modes);
             }
@@ -171,6 +171,48 @@ public class Intcode
                      * If the first parameter is non-zero, it sets the instruction pointer to
                      * the value from the second parameter. Otherwise, it does nothing.
                      */
+
+                    int param1 = Integer.valueOf(values[i+1]);
+                    int param2 = Integer.valueOf(values[i+2]);
+
+                    if (modes[0] == POSITION_MODE)
+                        param1 = Integer.valueOf(values[param1]);
+
+                    if (modes[1] == POSITION_MODE)
+                        param2 = Integer.valueOf(values[param2]);
+
+                    if (_debug)
+                        System.out.println("Checking "+param1+" and have "+param2);
+
+                    if (param1 != 0)
+                        i = param2 -1;  // remeber we're in a for-loop!
+                    else
+                        i = i+2;
+                }
+                break;
+                case Intcode.JUMP_IF_FALSE:
+                {
+                    /*
+                     * If the first parameter is zero, it sets the instruction pointer to the value
+                     * from the second parameter. Otherwise, it does nothing.
+                     */
+
+                    int param1 = Integer.valueOf(values[i+1]);
+                    int param2 = Integer.valueOf(values[i+2]);
+
+                    if (modes[0] == POSITION_MODE)
+                        param1 = Integer.valueOf(values[param1]);
+
+                    if (modes[1] == POSITION_MODE)
+                        param2 = Integer.valueOf(values[param2]);
+
+                    if (_debug)
+                        System.out.println("Checking "+param1+" and have "+param2);
+
+                    if (param1 == 0)
+                        i = param2 -1;  // remeber we're in a for-loop!
+                    else
+                        i = i+2;
                 }
                 break;
                 case Intcode.LESS_THAN:

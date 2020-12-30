@@ -73,7 +73,21 @@ public class Verifier
                                 str = _theComputer.parseAndExecute(values, 2); // should be < 8
 
                                 if (TEST_RESULT_7.equals(str))
-                                    System.out.println("Verified ok!");
+                                {
+                                    if (_debug)
+                                        System.out.println("\nVerifying "+TEST_CODE_8);
+
+                                    values = TEST_CODE_8.split(Intcode.DELIMITER);
+                                    str = _theComputer.parseAndExecute(values, 0);
+    
+                                    if (TEST_RESULT_8.equals(str))
+                                    {
+                                        System.out.println("**got "+str);
+                                        System.out.println("Verified ok!");
+                                    }
+                                    else
+                                        System.out.println("Verify failed for "+TEST_CODE_8);
+                                }
                                 else
                                     System.out.println("Verify failed for "+TEST_CODE_7);
                             }
@@ -134,4 +148,6 @@ public class Verifier
     private static final String TEST_RESULT_6 = "0";
     private static final String TEST_CODE_7 = "3,3,1107,-1,8,3,4,3,99";
     private static final String TEST_RESULT_7 = "1";
+    private static final String TEST_CODE_8 = "3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9";
+    private static final String TEST_RESULT_8 = "0";
 }
