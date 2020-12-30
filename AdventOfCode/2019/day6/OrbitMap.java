@@ -96,10 +96,19 @@ public class OrbitMap
     {
         int number = 0;
         Enumeration<Planet> iter = solarSystem.elements();
+        Vector<String> planetNames = new Vector<String>();
 
         while (iter.hasMoreElements())
         {
+            Planet thePlanet = iter.nextElement();
+            
+            System.out.println("comparing "+thePlanet.name()+" in "+planetNames.contains(thePlanet.name()));
+
+            if (!planetNames.contains(thePlanet.name()))
+                planetNames.add(thePlanet.name());
         }
+
+        System.out.println("We have "+planetNames.size()+" planets.");
 
         return number;
     }
