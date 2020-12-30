@@ -1,20 +1,13 @@
 import java.util.Objects;
+import java.util.Vector;
+import java.util.Enumeration;
 
 public class Planet
 {
     public Planet (String name)
     {
-        this(name, null);
-    }
-
-    public Planet (String name, String orbits)
-    {
         _name = name;
-
-        if (orbits != null)
-            _orbits = new Planet(orbits);
-        else
-            _orbits = null;
+        _satellites = new Vector<Planet>();
     }
 
     public String name ()
@@ -22,14 +15,19 @@ public class Planet
         return _name;
     }
         
-    public Planet getOrbit ()
+    public Vector<Planet> getSatellites ()
     {
-        return _orbits;
+        return _satellites;
     }
 
-    public void setOrbit (Planet orbits)
+    public void addSatellite (Planet orbits)
     {
-        _orbits = orbits;
+        _satellites.add(orbits);
+    }
+
+    public int getNumberOfSatellites ()
+    {
+        return _satellites.size();
     }
 
     @Override
@@ -60,12 +58,25 @@ public class Planet
     @Override
     public String toString ()
     {
-        if (_orbits != null)
-            return "Planet "+_name+" orbits "+_orbits.name();
+        if ((_satellites != null) && (_satellites.size() > 0))
+        {
+            String str = "Planet "+_name+" has satellites: ";
+
+            Enumeration<Planet> iter = _satellites.elements();
+
+            while (iter.hasMoreElements())
+            {
+                Planet p = iter.nextElement();
+                
+                str += p.name()+" ";
+            }
+
+            return str;
+        }
         else
-            return "Planet "+_name+" is a wanderer!";
+            return "Planet "+_name;
     }
 
     private String _name;
-    private Planet _orbits;
+    private Vector<Planet> _satellites;
 }

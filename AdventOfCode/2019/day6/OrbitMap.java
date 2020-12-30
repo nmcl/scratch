@@ -51,7 +51,30 @@ public class OrbitMap
             while ((line = reader.readLine()) != null)
             {
                 values = line.split(DELIMITER);
-                thePlanets.add(new Planet(values[1], values[0]));
+
+                Planet p1 = new Planet(values[0]);
+                int existingPlanet = thePlanets.indexOf(p1);
+
+                if (_debug)
+                    System.out.println("Checking to see if "+p1+" exists "+existingPlanet);
+
+                if (existingPlanet != -1)
+                {
+                    Planet p2 = thePlanets.elementAt(existingPlanet);
+
+                    if (_debug)
+                        System.out.println("Adding satellite "+values[1]+" to "+p2.name());
+
+                    p2.addSatellite(new Planet(values[1]));
+                }
+                else
+                {
+                    if (_debug)
+                        System.out.println("Adding "+p1+" with satellite "+values[1]);
+
+                    p1.addSatellite(new Planet(values[1]));
+                    thePlanets.add(p1);
+                }
             }
         }
         catch (Throwable ex)
@@ -66,6 +89,7 @@ public class OrbitMap
             }
             catch (Throwable ex)
             {
+                ex.printStackTrace();
             }
         }
     
@@ -115,6 +139,7 @@ public class OrbitMap
         if (_debug)
             System.out.println("We have "+planetNames.size()+" planets.");
 
+        
         return number;
     }
 
