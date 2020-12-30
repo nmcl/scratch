@@ -89,7 +89,38 @@ public class Verifier
                                         str = _theComputer.parseAndExecute(values, 1);
 
                                         if (TEST_RESULT_9.equals(str))
-                                            System.out.println("Verified ok!");
+                                        {
+                                            if (_debug)
+                                                System.out.println("\nVerifying "+TEST_CODE_10);
+
+                                            values = TEST_CODE_10.split(Intcode.DELIMITER);
+                                            str = _theComputer.parseAndExecute(values, 7);
+
+                                            if ("999".equals(str))
+                                            {
+                                                values = TEST_CODE_10.split(Intcode.DELIMITER);
+                                                str = _theComputer.parseAndExecute(values, 8);
+
+                                                if ("1000".equals(str))
+                                                {
+                                                    System.out.println("\n\nFINAL CHECK");
+
+                                                    values = TEST_CODE_10.split(Intcode.DELIMITER);
+                                                    str = _theComputer.parseAndExecute(values, 10);
+    
+                                                    System.out.println("**got "+str);
+
+                                                    if ("1001".equals(str))
+                                                        System.out.println("Verified ok!");
+                                                    else
+                                                        System.out.println("Verify failed for "+TEST_CODE_10+" greater than check.");
+                                                }
+                                                else
+                                                    System.out.println("Verify failed for "+TEST_CODE_10+" equals check.");
+                                            }
+                                            else
+                                                System.out.println("Verify failed for "+TEST_CODE_10+" less than check.");
+                                        }
                                         else
                                             System.out.println("Verify failed for "+TEST_CODE_9);
                                     }
@@ -151,7 +182,7 @@ public class Verifier
     private static final String TEST_CODE_4 = "3,9,8,9,10,9,4,9,99,-1,8";
     private static final String TEST_RESULT_4 = "0";
     private static final String TEST_CODE_5 = "3,9,7,9,10,9,4,9,99,-1,8";
-    private static final String TEST_RESULT_5 = "2";
+    private static final String TEST_RESULT_5 = "1";
     private static final String TEST_CODE_6 = "3,3,1108,-1,8,3,4,3,99";
     private static final String TEST_RESULT_6 = "0";
     private static final String TEST_CODE_7 = "3,3,1107,-1,8,3,4,3,99";
@@ -160,4 +191,5 @@ public class Verifier
     private static final String TEST_RESULT_8 = "0";
     private static final String TEST_CODE_9 = "3,3,1105,-1,9,1101,0,0,12,4,12,99,1";
     private static final String TEST_RESULT_9 = "1";
+    private static final String TEST_CODE_10 = "3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99";
 }
