@@ -1,5 +1,6 @@
 import java.io.*;
-import java.util.Stack;
+import java.util.Vector;
+import java.util.Enumeration;
 
 public class OrbitMap
 {
@@ -33,7 +34,7 @@ public class OrbitMap
                 dumpInput = true;
         }
 
-        Stack<Planet> thePlanets = new Stack<Planet>();
+        Vector<Planet> thePlanets = new Vector<Planet>();
         BufferedReader reader = null;
 
         try
@@ -47,7 +48,7 @@ public class OrbitMap
             while ((line = reader.readLine()) != null)
             {
                 values = line.split(DELIMITER);
-                thePlanets.push(new Planet(values[1], values[0]));
+                thePlanets.add(new Planet(values[1], values[0]));
             }
         }
         catch (Throwable ex)
@@ -73,15 +74,20 @@ public class OrbitMap
         }
     }
 
-    private static void printPlanets (Stack<Planet> solarSystem)
+    private static void printPlanets (Vector<Planet> solarSystem)
     {
-        Planet thePlanet = null;
+        Enumeration<Planet> iter = solarSystem.elements();
 
-        while (!solarSystem.empty())
+        while (iter.hasMoreElements())
         {
-            thePlanet = solarSystem.pop();
+            Planet thePlanet = iter.nextElement();
 
             System.out.println(thePlanet);
         }
+    }
+
+    private int directOrbits (Vector<Planet> solarSystem)
+    {
+        return 0;
     }
 }
