@@ -72,6 +72,12 @@ public class OrbitMap
 
             System.exit(0);
         }
+
+        if (runVerify)
+        {
+            int directOrbits = thePlanets.size();
+            int indirects = indirectOrbits(thePlanets);
+        }
     }
 
     private static void printPlanets (Vector<Planet> solarSystem)
@@ -86,8 +92,15 @@ public class OrbitMap
         }
     }
 
-    private int directOrbits (Vector<Planet> solarSystem)
+    private static int indirectOrbits (Vector<Planet> solarSystem)
     {
-        return 0;
+        int number = 0;
+        Enumeration<Planet> iter = solarSystem.elements();
+
+        while (iter.hasMoreElements())
+        {
+        }
+
+        return number;
     }
 }
