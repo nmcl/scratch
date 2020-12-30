@@ -61,9 +61,9 @@ public class Planet
     public String toString ()
     {
         if (_orbits != null)
-            return "Plant "+_name+" orbits "+_orbits.name();
+            return "Planet "+_name+" orbits "+_orbits.name();
         else
-            return "Plant "+_name+" is a wanderer!";
+            return "Planet "+_name+" is a wanderer!";
     }
 
     private String _name;
