@@ -112,8 +112,6 @@ public class Intcode
                     int param2 = Integer.valueOf(values[i+2]);
                     int param3 = Integer.valueOf(values[i+3]);
 
-                    System.out.println("**got "+param1+" "+param2+" "+param3);
-
                     if (modes[0] == POSITION_MODE)
                         param1 = Integer.valueOf(values[param1]);
 
@@ -142,10 +140,6 @@ public class Intcode
 
                      int param1 = Integer.valueOf(values[i+1]);
 
-                     System.out.println("**Store param index "+(i+1));
-
-                     System.out.println("**Store has "+param1);
-
                      if (_debug)
                         System.out.println("Storing "+initialInput+" at position "+param1);
 
@@ -160,11 +154,7 @@ public class Intcode
                      * Opcode 4 outputs the value of its only parameter.
                      */
 
-                     System.out.println("**Output param index "+(i+1));
-
                     int param1 = Integer.valueOf(values[i+1]);
-
-                    System.out.println("**Output has "+param1+" and "+modes[0]);
 
                     if (modes[0] == IMMEDIATE_MODE)
                         returnValue = Integer.toString(param1);

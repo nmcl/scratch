@@ -5,7 +5,7 @@ public class Computer
     public static void main (String[] args)
     {
         boolean debug = false;
-        int defaultInput = 1;
+        int defaultInput = 5;
         boolean runVerifier = false;
 
         for (int i = 0; i < args.length; i++)
