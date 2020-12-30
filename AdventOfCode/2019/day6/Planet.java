@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Planet
 {
     public Planet (String name)
@@ -30,6 +32,32 @@ public class Planet
         _orbits = orbits;
     }
 
+    @Override
+    public int hashCode ()
+    {
+        return Objects.hash(_name);
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Planet temp = (Planet) obj;
+
+            return (_name.equals(temp._name));
+        }
+
+        return false;
+    }
+
+    @Override
     public String toString ()
     {
         if (_orbits != null)
