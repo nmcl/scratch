@@ -2,18 +2,23 @@ public class Planet
 {
     public Planet (String name)
     {
-        super(name, null);
+        this(name, null);
     }
 
-    public Planet (String name, Planet orbits)
+    public Planet (String name, String orbits)
     {
         _name = name;
-        _orbits = orbits;
+
+        if (orbits != null)
+            _orbits = new Planet(orbits);
+        else
+            _orbits = null;
     }
 
     public String name ()
     {
         return _name;
+    }
         
     public Planet getOrbit ()
     {
@@ -28,7 +33,7 @@ public class Planet
     public String toString ()
     {
         if (_orbits != null)
-            return "Plant "+_name+" orbits"+_orbits.name();
+            return "Plant "+_name+" orbits "+_orbits.name();
         else
             return "Plant "+_name+" is a wanderer!";
     }

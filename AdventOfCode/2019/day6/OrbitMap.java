@@ -8,7 +8,7 @@ public class OrbitMap
 
     public static final String COM_NAME = "COM";
 
-    public static final String DELIMITER = ")";
+    public static final String DELIMITER = "\\)";
     public static void main (String[] args)
     {
         boolean runVerify = false;
@@ -39,15 +39,15 @@ public class OrbitMap
         try
         {
             File file = new File(dataFile);
-            String text = null;
+            String line = null;
             String values[] = null;
 
             reader = new BufferedReader(new FileReader(file));
 
-            while ((text = reader.readLine()) != null)
+            while ((line = reader.readLine()) != null)
             {
                 values = line.split(DELIMITER);
-                thePlanets.push(new Planet(values[0], values[1]));
+                thePlanets.push(new Planet(values[1], values[0]));
             }
         }
         catch (Throwable ex)
@@ -73,8 +73,15 @@ public class OrbitMap
         }
     }
 
-    private static void printPlanets (Stack<Planet> solarSystem
+    private static void printPlanets (Stack<Planet> solarSystem)
     {
+        Planet thePlanet = null;
 
+        while (!solarSystem.empty())
+        {
+            thePlanet = solarSystem.pop();
+
+            System.out.println(thePlanet);
+        }
     }
 }
