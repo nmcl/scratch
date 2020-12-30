@@ -20,7 +20,7 @@ public class OrbitMap
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-help] [-verify] [-dump]");
+                System.out.println("Usage: [-help] [-verify] [-dump] [-debug]");
                 System.exit(0);
             }
 
@@ -32,6 +32,9 @@ public class OrbitMap
 
             if ("-dump".equals(args[i]))
                 dumpInput = true;
+
+            if ("-debug".equals(args[i]))
+                _debug = true;
         }
 
         Vector<Planet> thePlanets = new Vector<Planet>();
@@ -102,14 +105,18 @@ public class OrbitMap
         {
             Planet thePlanet = iter.nextElement();
             
-            System.out.println("comparing "+thePlanet.name()+" in "+planetNames.contains(thePlanet.name()));
+            if (_debug)
+                System.out.println("Checking to see if planet "+thePlanet.name()+" is unique: "+(!planetNames.contains(thePlanet.name())));
 
             if (!planetNames.contains(thePlanet.name()))
                 planetNames.add(thePlanet.name());
         }
 
-        System.out.println("We have "+planetNames.size()+" planets.");
+        if (_debug)
+            System.out.println("We have "+planetNames.size()+" planets.");
 
         return number;
     }
+
+    private static boolean _debug = false;
 }
