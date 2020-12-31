@@ -4,6 +4,8 @@ import java.util.Enumeration;
 
 public class Planet
 {
+    public static final String COM_NAME = "COM";
+    
     public Planet (String name)
     {
         _name = name;

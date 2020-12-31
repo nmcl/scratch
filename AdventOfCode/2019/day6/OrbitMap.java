@@ -7,8 +7,6 @@ public class OrbitMap
     public static final String TEST_DATA = "testdata.txt";
     public static final String ORBITAL_DATA = "data.txt";
 
-    public static final String COM_NAME = "COM";
-
     public static final String DELIMITER = "\\)";
     public static void main (String[] args)
     {
@@ -154,7 +152,7 @@ public class OrbitMap
 
         if (_debug)
             System.out.println("Total number of unique planets: "+total);
-            
+
         return total;
     }
 
@@ -168,11 +166,10 @@ public class OrbitMap
         {
             Planet thePlanet = iter.nextElement();
             
-            if (_debug)
-                System.out.println("Checking to see if planet "+thePlanet.name()+" is unique: "+(!planetNames.contains(thePlanet.name())));
+           if (_debug)
+            System.out.println("Calculating orbit for "+thePlanet);
 
-            if (!planetNames.contains(thePlanet.name()))
-                planetNames.add(thePlanet.name());
+
         }
 
         if (_debug)
