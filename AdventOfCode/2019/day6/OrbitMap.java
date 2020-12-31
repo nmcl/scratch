@@ -94,12 +94,12 @@ public class OrbitMap
             System.exit(0);
         }
 
+        int orbits = totalOrbits(thePlanets);
+
+        System.out.println("Total orbits: "+orbits);
+
         if (runVerify)
         {
-            int orbits = totalOrbits(thePlanets);
-
-            System.out.println("Total orbits: "+orbits);
-
             if (orbits == 42)
                 System.out.println("Verified ok.");
             else
