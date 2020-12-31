@@ -8,6 +8,9 @@ public class OrbitMap
     public static final String ORBITAL_DATA = "data.txt";
 
     public static final String DELIMITER = "\\)";
+
+    public static final String YOU = "YOU";
+    public static final String SANTA = "SAN";
     public static void main (String[] args)
     {
         boolean runVerify = false;
@@ -37,6 +40,7 @@ public class OrbitMap
 
         Vector<Planet> thePlanets = new Vector<Planet>();
         BufferedReader reader = null;
+        Planet comPlanet = null;
 
         try
         {
@@ -69,6 +73,9 @@ public class OrbitMap
                     System.out.println("Adding satellite "+sat+" to "+p1);
 
                 p1.addSatellite(sat);
+
+                if ((comPlanet == null) && Planet.COM_NAME.equals(p1.name()))
+                    comPlanet = p1;
             }
         }
         catch (Throwable ex)
@@ -96,8 +103,23 @@ public class OrbitMap
 
         if (runVerify)
         {
-
+            minimumOrbit(comPlanet, new Planet(YOU), new Planet(SANTA));
         }
+    }
+
+    private static int minimumOrbit (Planet com, Planet start, Planet end)
+    {
+        int number = 0;
+        Planet beginPlanet = com.parentPlanet(start);
+        Planet endPlanet = com.parentPlanet(end);
+
+        if (_debug)
+        {
+            System.out.println("For "+start+" parent is "+beginPlanet.name());
+            System.out.println("For "+end+" parent is "+endPlanet.name());
+        }
+
+        return number;
     }
 
     private static void printPlanets (Vector<Planet> solarSystem)
