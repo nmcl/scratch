@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Computer
+public class Amplifier
 {
     public static void main (String[] args)
     {
