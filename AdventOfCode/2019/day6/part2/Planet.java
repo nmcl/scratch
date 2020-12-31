@@ -68,16 +68,12 @@ public class Planet
 
         if ((_satellites != null) && (_satellites.size() > 0))
         {
-            if (_satellites.contains(satellite))
-            {
-                path.add(this);
+            path.add(this);
 
+            if (_satellites.contains(satellite))
                 found = true;
-            }
             else
             {
-                path.add(this);
-
                 Enumeration<Planet> iter = _satellites.elements();
 
                 while (iter.hasMoreElements())
@@ -98,6 +94,47 @@ public class Planet
             return path;
         else
             return null;
+    }
+
+    public int hopsToSatellite (Planet sat)
+    {
+        int total = 0;
+        boolean found = false;
+
+        if ((_satellites != null) && (_satellites.size() > 0))
+        {
+            total++;
+
+            if (_satellites.contains(sat))
+                found = true;
+            else
+            {
+                Enumeration<Planet> iter = _satellites.elements();
+
+                while (iter.hasMoreElements())
+                {
+                    Planet p = iter.nextElement();
+
+                    if (p.equals(sat))
+                        found = true;
+                    else
+                    {
+                        int subtotal = p.hopsToSatellite(sat);
+
+                        if (subtotal > 0)
+                        {
+                            total += subtotal;
+                            found = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (found)
+            return total;
+        else
+            return 0;
     }
 
     public int totalOrbits ()
