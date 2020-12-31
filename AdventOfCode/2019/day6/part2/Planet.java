@@ -37,6 +37,29 @@ public class Planet
         return _satellites.size();
     }
 
+    public boolean hasRelatedSatellite (Planet satellite)
+    {
+        if ((_satellites != null) && (_satellites.size() > 0))
+        {
+            if (_satellites.contains(satellite))
+                return true;
+            else
+            {
+                Enumeration<Planet> iter = _satellites.elements();
+
+                while (iter.hasMoreElements())
+                {
+                    Planet p = iter.nextElement();
+
+                    if (p.hasRelatedSatellite(satellite))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public int totalOrbits ()
     {
         int total = 0;

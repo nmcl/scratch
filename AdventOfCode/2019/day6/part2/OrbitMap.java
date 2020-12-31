@@ -94,16 +94,9 @@ public class OrbitMap
             System.exit(0);
         }
 
-        int orbits = totalOrbits(thePlanets);
-
-        System.out.println("Total orbits: "+orbits);
-
         if (runVerify)
         {
-            if (orbits == 42)
-                System.out.println("Verified ok.");
-            else
-                System.out.println("Verify failed!");
+
         }
     }
 
@@ -117,45 +110,6 @@ public class OrbitMap
 
             System.out.println(thePlanet.printAll());
         }
-    }
-
-    /*
-     * Find the total number of unique planets.
-     */
-
-    private static int totalPlanets (Vector<Planet> solarSystem)
-    {
-        int total = 0;
-        Enumeration<Planet> iter = solarSystem.elements();
-        Vector<Planet> planets = new Vector<Planet>();
-
-        while (iter.hasMoreElements())
-        {
-            Planet thePlanet = iter.nextElement();
-            Vector<Planet> satellites = thePlanet.getSatellites();
-
-            if (satellites.size() > 0)
-            {
-                Enumeration<Planet> e = satellites.elements();
-
-                while (e.hasMoreElements())
-                {
-                    Planet theSatellite = e.nextElement();
-
-                    if (!planets.contains(theSatellite))
-                    {
-                        total++;
-
-                        planets.add(theSatellite);
-                    }
-                }
-            }
-        }
-
-        if (_debug)
-            System.out.println("Total number of unique planets: "+total);
-
-        return total;
     }
 
     private static int totalOrbits (Vector<Planet> solarSystem)
