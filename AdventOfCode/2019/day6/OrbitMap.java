@@ -51,28 +51,24 @@ public class OrbitMap
                 values = line.split(DELIMITER);
 
                 Planet p1 = new Planet(values[0]);
+                Planet sat = new Planet(values[1]);
                 int existingPlanet = thePlanets.indexOf(p1);
-
-                if (_debug)
-                    System.out.println("Checking to see if "+p1+" exists, "+((existingPlanet == -1) ? "which it doesn't." : "which it does."));
+                int existingSat = thePlanets.indexOf(sat);
 
                 if (existingPlanet != -1)
-                {
-                    Planet p2 = thePlanets.elementAt(existingPlanet);
-
-                    if (_debug)
-                        System.out.println("Adding satellite "+values[1]+" to "+p2.name());
-
-                    p2.addSatellite(new Planet(values[1]));
-                }
+                    p1 = thePlanets.elementAt(existingPlanet);
                 else
-                {
-                    if (_debug)
-                        System.out.println("Adding "+p1+" with satellite "+values[1]);
-
-                    p1.addSatellite(new Planet(values[1]));
                     thePlanets.add(p1);
-                }
+
+                if (existingSat != -1)
+                    sat = thePlanets.elementAt(existingSat);
+                else
+                    thePlanets.add(sat);
+                
+                if (_debug)
+                    System.out.println("Adding satellite "+sat+" to "+p1);
+
+                p1.addSatellite(sat);
             }
         }
         catch (Throwable ex)
@@ -113,7 +109,7 @@ public class OrbitMap
         {
             Planet thePlanet = iter.nextElement();
 
-            System.out.println(thePlanet);
+            System.out.println(thePlanet.printAll());
         }
     }
 
@@ -160,16 +156,40 @@ public class OrbitMap
     {
         int number = 0;
         Enumeration<Planet> iter = solarSystem.elements();
-        Vector<String> planetNames = new Vector<String>();
+        Vector<Planet> comSatellites = null;
+        Planet com = null;
+
+        while (iter.hasMoreElements() && (comSatellites == null))
+        {
+            Planet thePlanet = iter.nextElement();
+            
+            if (_debug)
+                System.out.println("Calculating orbit for "+thePlanet);
+
+            if (Planet.COM_NAME.equals(thePlanet.name()))
+            {
+                com = thePlanet;
+                comSatellites = thePlanet.getSatellites();
+            }
+        }
+
+        if (com == null)
+        {
+            System.out.println("Error - could not find "+Planet.COM_NAME);
+
+            return -1;
+        }
+
+        iter = solarSystem.elements();
 
         while (iter.hasMoreElements())
         {
             Planet thePlanet = iter.nextElement();
-            
-           if (_debug)
-            System.out.println("Calculating orbit for "+thePlanet);
 
+            if (!com.equals(thePlanet))
+            {
 
+            }
         }
 
         if (_debug)

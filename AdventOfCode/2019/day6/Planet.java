@@ -5,7 +5,7 @@ import java.util.Enumeration;
 public class Planet
 {
     public static final String COM_NAME = "COM";
-    
+
     public Planet (String name)
     {
         _name = name;
@@ -35,6 +35,27 @@ public class Planet
     public int getNumberOfSatellites ()
     {
         return _satellites.size();
+    }
+
+    public String printAll ()
+    {
+        if ((_satellites != null) && (_satellites.size() > 0))
+        {
+            String str = "Planet "+_name+" has satellites: ";
+
+            Enumeration<Planet> iter = _satellites.elements();
+
+            while (iter.hasMoreElements())
+            {
+                Planet p = iter.nextElement();
+                
+                str += p.printAll()+" ";
+            }
+
+            return str;
+        }
+        else
+            return "Planet "+_name+".";
     }
 
     @Override
