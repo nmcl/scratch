@@ -11,6 +11,7 @@ public class OrbitMap
 
     public static final String YOU = "YOU";
     public static final String SANTA = "SAN";
+    
     public static void main (String[] args)
     {
         boolean runVerify = false;
@@ -119,28 +120,33 @@ public class OrbitMap
             System.out.println("For "+end+" parent is "+endPlanet.name());
         }
 
-        System.out.println("Path "+com.pathToSatellite(start));
+        Vector<Planet> pathToStart = com.pathToSatellite(start);
+        Vector<Planet> pathToEnd  = com.pathToSatellite(end);
 
-        if (!beginPlanet.equals(endPlanet))
+        if (_debug)
         {
-            /*
-             *
-             * Find common root planet other than COM.
-             */
-
-             Enumeration<Planet> iter = solarSystem.elements();
-
-             while (iter.hasMoreElements())
-             {
-                 Planet thePlanet = iter.nextElement();
-
-                 if (thePlanet.hasSatellite(start))
-                    System.out.println("This "+thePlanet+" has "+start);
-
-                if (thePlanet.hasSatellite(end))
-                    System.out.println("This "+thePlanet+" has "+end);
-             }
+            System.out.println("Path to start: "+pathToStart);
+            System.out.println("\nPath to end: "+pathToEnd);
         }
+
+        // Now find common root.
+
+        Enumeration<Planet> iter = pathToStart.elements();
+        Planet commonRoot = null;  // assume just one?!
+        boolean endOfTheRoad = false;
+
+        while (iter.hasMoreElements() && !endOfTheRoad)
+        {
+            Planet p = iter.nextElement();
+
+            if (pathToEnd.contains(p))
+                commonRoot = p;
+            else
+                endOfTheRoad = true;
+        }
+
+        if (_debug)
+            System.out.println("Common root"+commonRoot);
 
         return number;
     }
