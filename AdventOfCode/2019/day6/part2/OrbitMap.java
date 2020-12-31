@@ -105,12 +105,12 @@ public class OrbitMap
         if (runVerify)
         {
             if (minimumOrbit(comPlanet, new Planet(YOU), new Planet(SANTA), thePlanets) == 4)
-                System.out.println("Verrified ok.");
+                System.out.println("Verified ok.");
             else
                 System.out.println("Verify failed!");
         }
-
-        //System.out.println("Minimum number of orbital transfers: "+commonRoot.hopsToSatellite(start));
+        else
+            System.out.println("Minimum number of orbital transfers: "+minimumOrbit(comPlanet, new Planet(YOU), new Planet(SANTA), thePlanets));
     }
 
     private static int minimumOrbit (Planet com, Planet start, Planet end, Vector<Planet> solarSystem)
@@ -152,7 +152,16 @@ public class OrbitMap
         if (_debug)
             System.out.println("Common root: "+commonRoot.name());
 
-        return commonRoot.hopsToSatellite(start);
+        int hopsFromStartToCommon = commonRoot.hopsToSatellite(start) -1;
+        int hopsFromCommonToEnd = commonRoot.hopsToSatellite(end) -1;
+
+        if (_debug)
+        {
+            System.out.println("Transfers from start to common: "+(hopsFromStartToCommon -1));
+            System.out.println("Transfers from common to end: "+(hopsFromCommonToEnd -1));
+        }
+
+        return hopsFromStartToCommon + hopsFromCommonToEnd;
     }
 
     private static void printPlanets (Vector<Planet> solarSystem)
