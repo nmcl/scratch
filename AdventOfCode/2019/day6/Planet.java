@@ -37,6 +37,26 @@ public class Planet
         return _satellites.size();
     }
 
+    public int totalOrbits ()
+    {
+        int total = 0;
+        
+        if ((_satellites != null) && (_satellites.size() > 0))
+        {
+            Enumeration<Planet> iter = _satellites.elements();
+
+            while (iter.hasMoreElements())
+            {
+                Planet p = iter.nextElement();
+
+                total += p.totalOrbits();
+                total++;
+            }
+        }
+
+        return total;
+    }
+
     public String printAll ()
     {
         if ((_satellites != null) && (_satellites.size() > 0))

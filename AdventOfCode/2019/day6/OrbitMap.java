@@ -96,8 +96,14 @@ public class OrbitMap
 
         if (runVerify)
         {
-            int directOrbits = totalPlanets(thePlanets);
-            int indirects = indirectOrbits(thePlanets);
+            int orbits = totalOrbits(thePlanets);
+
+            System.out.println("Total orbits: "+orbits);
+
+            if (orbits == 42)
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Verify failed!");
         }
     }
 
@@ -152,48 +158,23 @@ public class OrbitMap
         return total;
     }
 
-    private static int indirectOrbits (Vector<Planet> solarSystem)
+    private static int totalOrbits (Vector<Planet> solarSystem)
     {
         int number = 0;
         Enumeration<Planet> iter = solarSystem.elements();
-        Vector<Planet> comSatellites = null;
-        Planet com = null;
 
-        while (iter.hasMoreElements() && (comSatellites == null))
+        while (iter.hasMoreElements())
         {
             Planet thePlanet = iter.nextElement();
             
             if (_debug)
                 System.out.println("Calculating orbit for "+thePlanet);
 
-            if (Planet.COM_NAME.equals(thePlanet.name()))
-            {
-                com = thePlanet;
-                comSatellites = thePlanet.getSatellites();
-            }
-        }
-
-        if (com == null)
-        {
-            System.out.println("Error - could not find "+Planet.COM_NAME);
-
-            return -1;
-        }
-
-        iter = solarSystem.elements();
-
-        while (iter.hasMoreElements())
-        {
-            Planet thePlanet = iter.nextElement();
-
-            if (!com.equals(thePlanet))
-            {
-
-            }
+            number += thePlanet.totalOrbits();
         }
 
         if (_debug)
-            System.out.println("We have "+number+" planets.");
+            System.out.println("We have "+number+" orbits.");
 
         return number;
     }
