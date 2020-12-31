@@ -20,6 +20,11 @@ public class Planet
         return _satellites;
     }
 
+    public boolean hasSatellite (Planet satellite)
+    {
+        return _satellites.contains(satellite);
+    }
+
     public void addSatellite (Planet orbits)
     {
         _satellites.add(orbits);

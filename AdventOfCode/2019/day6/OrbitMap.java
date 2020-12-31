@@ -56,7 +56,7 @@ public class OrbitMap
                 int existingPlanet = thePlanets.indexOf(p1);
 
                 if (_debug)
-                    System.out.println("Checking to see if "+p1+" exists "+existingPlanet);
+                    System.out.println("Checking to see if "+p1+" exists, "+((existingPlanet == -1) ? "which it doesn't." : "which it does."));
 
                 if (existingPlanet != -1)
                 {
@@ -102,7 +102,7 @@ public class OrbitMap
 
         if (runVerify)
         {
-            int directOrbits = thePlanets.size();
+            int directOrbits = totalPlanets(thePlanets);
             int indirects = indirectOrbits(thePlanets);
         }
     }
@@ -117,6 +117,45 @@ public class OrbitMap
 
             System.out.println(thePlanet);
         }
+    }
+
+    /*
+     * Find the total number of unique planets.
+     */
+
+    private static int totalPlanets (Vector<Planet> solarSystem)
+    {
+        int total = 0;
+        Enumeration<Planet> iter = solarSystem.elements();
+        Vector<Planet> planets = new Vector<Planet>();
+
+        while (iter.hasMoreElements())
+        {
+            Planet thePlanet = iter.nextElement();
+            Vector<Planet> satellites = thePlanet.getSatellites();
+
+            if (satellites.size() > 0)
+            {
+                Enumeration<Planet> e = satellites.elements();
+
+                while (e.hasMoreElements())
+                {
+                    Planet theSatellite = e.nextElement();
+
+                    if (!planets.contains(theSatellite))
+                    {
+                        total++;
+
+                        planets.add(theSatellite);
+                    }
+                }
+            }
+        }
+
+        if (_debug)
+            System.out.println("Total number of unique planets: "+total);
+            
+        return total;
     }
 
     private static int indirectOrbits (Vector<Planet> solarSystem)
@@ -137,9 +176,8 @@ public class OrbitMap
         }
 
         if (_debug)
-            System.out.println("We have "+planetNames.size()+" planets.");
+            System.out.println("We have "+number+" planets.");
 
-        
         return number;
     }
 
