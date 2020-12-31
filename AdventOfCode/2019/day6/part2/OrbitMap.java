@@ -103,11 +103,11 @@ public class OrbitMap
 
         if (runVerify)
         {
-            minimumOrbit(comPlanet, new Planet(YOU), new Planet(SANTA));
+            minimumOrbit(comPlanet, new Planet(YOU), new Planet(SANTA), thePlanets);
         }
     }
 
-    private static int minimumOrbit (Planet com, Planet start, Planet end)
+    private static int minimumOrbit (Planet com, Planet start, Planet end, Vector<Planet> solarSystem)
     {
         int number = 0;
         Planet beginPlanet = com.parentPlanet(start);
@@ -117,6 +117,29 @@ public class OrbitMap
         {
             System.out.println("For "+start+" parent is "+beginPlanet.name());
             System.out.println("For "+end+" parent is "+endPlanet.name());
+        }
+
+        System.out.println("Path "+com.pathToSatellite(start));
+
+        if (!beginPlanet.equals(endPlanet))
+        {
+            /*
+             *
+             * Find common root planet other than COM.
+             */
+
+             Enumeration<Planet> iter = solarSystem.elements();
+
+             while (iter.hasMoreElements())
+             {
+                 Planet thePlanet = iter.nextElement();
+
+                 if (thePlanet.hasSatellite(start))
+                    System.out.println("This "+thePlanet+" has "+start);
+
+                if (thePlanet.hasSatellite(end))
+                    System.out.println("This "+thePlanet+" has "+end);
+             }
         }
 
         return number;

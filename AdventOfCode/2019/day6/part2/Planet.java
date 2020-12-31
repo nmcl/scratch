@@ -61,6 +61,50 @@ public class Planet
         return null;
     }
 
+    public Vector<Planet> pathToSatellite (Planet satellite)
+    {
+        Vector<Planet> path = new Vector<Planet>();
+        boolean found = false;
+
+        System.out.println("this "+name()+" checking for "+satellite.name());
+
+        if ((_satellites != null) && (_satellites.size() > 0))
+        {
+            if (_satellites.contains(satellite))
+            {
+                System.out.println(name()+" contains "+satellite);
+                path.add(this);
+
+                found = true;
+            }
+            else
+            {
+                System.out.println(name()+" does not contain "+satellite);
+
+                path.add(this);
+
+                Enumeration<Planet> iter = _satellites.elements();
+
+                while (iter.hasMoreElements())
+                {
+                    Planet p = iter.nextElement();
+                    Vector<Planet> subPath = p.pathToSatellite(satellite);
+
+                    if ((subPath != null) && (subPath.size() > 0))
+                    {
+                        path.addAll(subPath);
+                        found = true;
+                    }
+                }
+            }
+        }
+
+        if (found)
+            return path;
+        else
+            return null;
+    }
+
     public int totalOrbits ()
     {
         int total = 0;
