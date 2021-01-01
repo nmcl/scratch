@@ -6,19 +6,34 @@ public class Verifier
 
     public Verifier (boolean debug)
     {
-        _phaseSettings = phaseSettings;
         _debug = debug;
-
-        for (int i = 0; ACS.NUMBER_OF_AMPLIFIERS; i++
-            _amps[i] = new Amplifier(_phaseSettings[i], values, debug);
     }
 
     public boolean verify ()
     {
-        
+        Amplifier[] amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
+        int maxThrusterSignal = 0;
+
+        for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
+            amps[i] = new Amplifier(PHASE_SETTINGS_1[i], EXAMPLE_1_COMMANDS, _debug);
+
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                for (int k = 0; k < 5; k++)
+                {
+                    for (int l = 0; l < 5; l++)
+                    {
+                        for (int m = 0; m < 5; m++)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    private Amplifier[] _amps;
-    private int[] _phaseSettings;
     private boolean _debug;
 }
