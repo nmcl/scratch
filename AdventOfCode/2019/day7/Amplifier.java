@@ -29,7 +29,7 @@ public class Amplifier
 
         System.arraycopy(_commands, _commands.length, currentCommands, 0, _commands.length);
 
-        _phaseSetting = _computer.parseAndExecute(currentCommands, _phaseSetting);
+        _phaseSetting = Integer.parseInt(_computer.parseAndExecute(currentCommands, _phaseSetting));
 
         return _phaseSetting;
     }
