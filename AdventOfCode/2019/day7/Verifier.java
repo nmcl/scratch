@@ -27,12 +27,22 @@ public class Verifier
                     {
                         for (int m = 0; m < 5; m++)
                         {
-                            int[] initialResult = new int[5];
+                            int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
+
+                            for (int n = 0; n < ACS.NUMBER_OF_AMPLIFIERS; n++)
+                            {
+                                results[n] = amps[n].executeCommands();
+                            }
+
+                            if (results[ACS.NUMBER_OF_AMPLIFIERS-1] > maxThrusterSignal)
+                                maxThrusterSignal = results[ACS.NUMBER_OF_AMPLIFIERS];
                         }
                     }
                 }
             }
         }
+
+        return true;
     }
 
     private boolean _debug;

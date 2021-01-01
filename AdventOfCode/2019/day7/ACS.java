@@ -6,22 +6,18 @@ public class ACS
     public static void main (String[] args)
     {
         boolean debug = false;
-        int defaultInput = 5;
         boolean runVerifier = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-help] [-verify] [-debug] [-input <value>]");
+                System.out.println("Usage: [-help] [-verify] [-debug]");
                 System.exit(0);
             }
 
             if ("-debug".equals(args[i]))
                 debug = true;
-
-            if ("-input".equals(args[i]))
-                defaultInput = Integer.parseInt(args[i+1]);
 
             if ("-verify".equals(args[i]))
                 runVerifier = true;
@@ -29,7 +25,7 @@ public class ACS
 
         if (runVerifier)
         {
-            Verifier theVerifier = new Verifier(_theComputer, debug);
+            Verifier theVerifier = new Verifier(debug);
 
             theVerifier.verify();
             System.exit(0);
@@ -51,10 +47,6 @@ public class ACS
             {
                 values = line.split(Intcode.DELIMITER);
             }
-
-            String str = _theComputer.parseAndExecute(values, defaultInput);
-
-            System.out.println("Got back "+str);
         }
         catch (Throwable ex)
         {
