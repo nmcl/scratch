@@ -29,7 +29,9 @@ public class Amplifier
 
         System.arraycopy(_commands, _commands.length, currentCommands, 0, _commands.length);
 
-        return _computer.parseAndExecute(currentCommands, _phaseSetting);
+        _phaseSetting = _computer.parseAndExecute(currentCommands, _phaseSetting);
+
+        return _phaseSetting;
     }
 
     private Intcode _computer;
