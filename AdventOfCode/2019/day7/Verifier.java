@@ -27,7 +27,7 @@ public class Verifier
                     {
                         for (int m = 0; m < 5; m++)
                         {
-                            
+                            int[] initialResult = new int[5];
                         }
                     }
                 }
