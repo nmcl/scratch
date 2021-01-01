@@ -29,6 +29,8 @@ public class Verifier
 
             results[ampID] = amps[ampID].executeCommands();
 
+            System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
+
             for (int j = 0; j < 5; j++)
             {
                 ampID = 1;
@@ -36,6 +38,8 @@ public class Verifier
                 amps[ampID] = new Amplifier(ampID, j, results[ampID-1], EXAMPLE_1_COMMANDS, _debug);
 
                 results[ampID] = amps[ampID].executeCommands();
+
+                System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
 
                 for (int k = 0; k < 5; k++)
                 {
@@ -45,6 +49,8 @@ public class Verifier
 
                     results[ampID] = amps[ampID].executeCommands();
 
+                    System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
+
                     for (int l = 0; l < 5; l++)
                     {
                         ampID = 3;
@@ -52,6 +58,8 @@ public class Verifier
                         amps[ampID] = new Amplifier(ampID, j, results[ampID-1], EXAMPLE_1_COMMANDS, _debug);
 
                         results[ampID] = amps[ampID].executeCommands();
+
+                        System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
 
                         for (int m = 0; m < 5; m++)
                         {
@@ -61,6 +69,8 @@ public class Verifier
 
                             results[ampID] = amps[ampID].executeCommands();
 
+                            System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
+                            
                             if (results[ampID] > maxThrusterSignal)
                                 maxThrusterSignal = results[ampID];
                         }
