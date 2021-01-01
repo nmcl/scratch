@@ -49,6 +49,8 @@ public class Intcode
         String returnValue = "";
         int inputParam = 1;
 
+        System.out.println("Intcode inputs <"+initialInput1+", "+initialInput2+">");
+        
         for (int i = 0; i < values.length; i++)
         {
             String str = getOpcode(values[i]);
@@ -141,7 +143,7 @@ public class Intcode
 
                      int param1 = Integer.valueOf(values[i+1]);
 
-                     if (_debug)
+                     //if (_debug)
                         System.out.println("Storing "+((inputParam == 1) ? initialInput1 : initialInput2)+" at position "+param1);
 
                      values[param1] = String.valueOf(((inputParam == 1) ? initialInput1 : initialInput2));

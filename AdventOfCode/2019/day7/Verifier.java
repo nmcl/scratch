@@ -32,8 +32,6 @@ public class Verifier
                                 else
                                     amps[n] = new Amplifier(i, results[n-1], EXAMPLE_1_COMMANDS, _debug);
 
-                                System.out.println("Amplifier "+n+" created.");
-
                                 results[n] = amps[n].executeCommands();
 
                                 System.out.println("Amplifier "+n+" returned "+results[n]);
