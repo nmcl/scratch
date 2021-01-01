@@ -2,6 +2,7 @@ import java.io.*;
 
 public class ACS
 {
+    public static final int NUMBER_OF_AMPLIFIERS = 5;
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -25,12 +26,6 @@ public class ACS
             if ("-verify".equals(args[i]))
                 runVerifier = true;
         }
-
-        /*
-         * Create the computer which will do the real work.
-         */
-
-        _theComputer = new Intcode(debug);
 
         if (runVerifier)
         {
@@ -76,8 +71,6 @@ public class ACS
             }
         }
     }
-
-    private static Intcode _theComputer = null;
 
     private static final String DATA_FILE = "instructions.txt";
 }
