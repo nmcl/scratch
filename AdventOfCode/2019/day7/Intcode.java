@@ -44,9 +44,10 @@ public class Intcode
         _debug = debug;
     }
 
-    public String parseAndExecute (String[] values, int initialInput)
+    public String parseAndExecute (String[] values, int initialInput1, int initialInput2)
     {
         String returnValue = "";
+        int inputParam = 1;
 
         for (int i = 0; i < values.length; i++)
         {
@@ -141,9 +142,14 @@ public class Intcode
                      int param1 = Integer.valueOf(values[i+1]);
 
                      if (_debug)
-                        System.out.println("Storing "+initialInput+" at position "+param1);
+                        System.out.println("Storing "+((inputParam == 1) ? initialInput1 : initialInput2)+" at position "+param1);
 
-                     values[param1] = String.valueOf(initialInput);
+                     values[param1] = String.valueOf(((inputParam == 1) ? initialInput1 : initialInput2));
+
+                     inputParam++;  // assume only 2!
+
+                     if (inputParam > 2)
+                        inputParam = 2;
 
                      i = i+1;  // move the pointer on.
                 }
