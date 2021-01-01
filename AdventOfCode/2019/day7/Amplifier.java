@@ -27,7 +27,7 @@ public class Amplifier
     {
         String[] currentCommands = new String[_commands.length];
 
-        System.arraycopy(_commands, _commands.length, currentCommands, 0, _commands.length);
+        System.arraycopy(_commands, 0, currentCommands, 0, _commands.length);
 
         _phaseSetting = Integer.parseInt(_computer.parseAndExecute(currentCommands, _phaseSetting));
 
