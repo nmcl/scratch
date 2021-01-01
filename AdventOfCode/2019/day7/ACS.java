@@ -24,6 +24,8 @@ public class ACS
                 runVerifier = true;
         }
 
+        Vector<String> permutations = new Vector<String>();
+
         if (runVerifier)
         {
             Verifier theVerifier = new Verifier(debug);
