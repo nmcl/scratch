@@ -25,16 +25,20 @@ public class Verifier
                         {
                             int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
 
-                            for (int n = 0; n < ACS.NUMBER_OF_AMPLIFIERS; n++)
+                            for (int ampID = 0; ampID < ACS.NUMBER_OF_AMPLIFIERS; ampID++)
                             {
-                                if (n == 0)
-                                    amps[0] = new Amplifier(i, 0, EXAMPLE_1_COMMANDS, _debug);
+                                if (ampID == 0)
+                                {
+                                    amps[0] = new Amplifier(ampID, i, 0, EXAMPLE_1_COMMANDS, _debug);
+
+                                    System.out.println("Created amplifier "+amps[0]);
+                                }
                                 else
-                                    amps[n] = new Amplifier(i, results[n-1], EXAMPLE_1_COMMANDS, _debug);
+                                    amps[ampID] = new Amplifier(ampID, i, results[ampID-1], EXAMPLE_1_COMMANDS, _debug);
 
-                                results[n] = amps[n].executeCommands();
+                                results[ampID] = amps[ampID].executeCommands();
 
-                                System.out.println("Amplifier "+n+" returned "+results[n]);
+                                System.out.println("Amplifier "+ampID+" returned "+results[ampID]);
                             }
 
                             System.out.println("Comparing "+maxThrusterSignal+" and "+results[ACS.NUMBER_OF_AMPLIFIERS -1]);
