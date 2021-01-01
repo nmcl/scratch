@@ -6,20 +6,19 @@ public class Amplifier
         _computer = new Intcode(debug);
         _input1 = input1;
         _input2 = input2;
-        _commands = commands;
         _debug = debug;
 
-        //if (_debug)
+        _commands = new String[commands.length];
+
+        System.arraycopy(commands, 0, _commands, 0, commands.length);
+
+        if (_debug)
             System.out.println("Created "+toString());
     }
 
     public final int executeCommands ()
     {
-        String[] currentCommands = new String[_commands.length];
-
-        System.arraycopy(_commands, 0, currentCommands, 0, _commands.length);
-
-        return Integer.parseInt(_computer.parseAndExecute(currentCommands, _input1, _input2));
+        return Integer.parseInt(_computer.parseAndExecute(_commands, _input1, _input2));
     }
 
     @Override
