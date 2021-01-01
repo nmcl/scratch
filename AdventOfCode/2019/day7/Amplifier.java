@@ -1,26 +1,15 @@
 public class Amplifier
 {
-    public Amplifier (int ps, String[] commands, boolean debug)
+    public Amplifier (int input1, int input2, String[] commands, boolean debug)
     {
         _computer = new Intcode(debug);
-        _phaseSetting = ps;
+        _input1 = input1;
+        _input2 = input2;
         _commands = commands;
         _debug = debug;
-    }
 
-    public final void resetState ()
-    {
-        _computer = new Intcode(_debug);
-    }
-
-    public final void setPhaseSetting (int ps)
-    {
-        _phaseSetting = ps;
-    }
-
-    public final void setCommands (String[] commands)
-    {
-        _commands = commands;
+        //if (_debug)
+            System.out.println("Amplifier created with states <"+_input1+", "+_input2+">");
     }
 
     public final int executeCommands ()
@@ -29,13 +18,12 @@ public class Amplifier
 
         System.arraycopy(_commands, 0, currentCommands, 0, _commands.length);
 
-        _phaseSetting = Integer.parseInt(_computer.parseAndExecute(currentCommands, _phaseSetting));
-
-        return _phaseSetting;
+        return Integer.parseInt(_computer.parseAndExecute(currentCommands, _input1, _input2));
     }
 
     private Intcode _computer;
-    private int _phaseSetting;
+    private int _input1;
+    private int _input2;
     private String[] _commands;
     private boolean _debug;
 }
