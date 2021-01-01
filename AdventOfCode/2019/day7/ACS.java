@@ -3,6 +3,7 @@ import java.io.*;
 public class ACS
 {
     public static final int NUMBER_OF_AMPLIFIERS = 5;
+    public static final String DIGITS = "01234";
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -64,5 +65,25 @@ public class ACS
         }
     }
 
+    // because ... https://introcs.cs.princeton.edu/java/23recursion/Permutations.java.html
+
+    private static void permutation (String str)
+    { 
+		permutation("", str); 
+	}
+	
+    private static void permutation (String prefix, String str)
+    {
+        int n = str.length();
+        
+        if (n == 0)
+            System.out.println(prefix);
+        else
+        {
+			for (int i = 0; i < n; i++)
+				permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+		}
+    }
+    
     private static final String DATA_FILE = "instructions.txt";
 }
