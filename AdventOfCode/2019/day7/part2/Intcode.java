@@ -33,29 +33,46 @@ public class Intcode
 
     public static final String DELIMITER = ",";
 
+    public static final String HALTED = "HALTED";
+    public static final String PARSE_RROR = "PARSE_ERROR";
+
     /*
      * This implementation is stateless other than being placed
      * into debug mode where it will output whatever action it
      * takes.
      */
 
-    public Intcode (boolean debug)
+    public Intcode (String[] values, boolean debug)
     {
         _debug = debug;
+        _instructionPointer = 0;
+        _values = new String[values.length];
+
+        System.arraycopy(values, 0, _values, 0, values.length);
     }
 
-    public String parseAndExecute (String[] values, int initialInput1, int initialInput2)
+    /**
+     * Execute the commands given.
+     * 
+     * @param initialInput1 initial input param 1
+     * @param initialInput2 initial input param 2
+     * @param output any output that may be generated before termination.
+     * @return true if the program code has completed, false otherwise.
+     */
+
+     // maybe refactor and move much of this into the constructor?
+
+    public String parseAndExecute (int initialInput1, int initialInput2)
     {
-        String returnValue = "";
         int inputParam = 1;
 
         if (_debug)
             System.out.println("Intcode inputs <"+initialInput1+", "+initialInput2+">");
         
-        for (int i = 0; i < values.length; i++)
+        for (int i = _instructionPointer; i < values.length; i++)
         {
-            String str = getOpcode(values[i]);
-            int[] modes = getModes(values[i]);
+            String str = getOpcode(_values[i]);
+            int[] modes = getModes(_values[i]);
 
             if (_debug)
             {
@@ -81,15 +98,15 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     int param1 = Integer.valueOf(values[i+1]);
-                     int param2 = Integer.valueOf(values[i+2]);
-                     int param3 = Integer.valueOf(values[i+3]);
+                     int param1 = Integer.valueOf(_values[i+1]);
+                     int param2 = Integer.valueOf(_values[i+2]);
+                     int param3 = Integer.valueOf(_values[i+3]);
 
                      if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
+                        param1 = Integer.valueOf(_values[param1]);
 
                      if (modes[1] == POSITION_MODE)
-                        param2 = Integer.valueOf(values[param2]);
+                        param2 = Integer.valueOf(_values[param2]);
 
                      if (_debug)
                         System.out.println("Adding "+param1+" and "+param2);
@@ -99,7 +116,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Storing "+sum+" at position "+param3);
 
-                     values[param3] = String.valueOf(sum);
+                     _alues[param3] = String.valueOf(sum);
 
                      i = i+3;  // move the pointer on.
                 }
@@ -112,15 +129,15 @@ public class Intcode
                      * the opcode indicate where the inputs and outputs are, not their values.
                      */
 
-                    int param1 = Integer.valueOf(values[i+1]);
-                    int param2 = Integer.valueOf(values[i+2]);
-                    int param3 = Integer.valueOf(values[i+3]);
+                    int param1 = Integer.valueOf(_values[i+1]);
+                    int param2 = Integer.valueOf(_values[i+2]);
+                    int param3 = Integer.valueOf(_values[i+3]);
 
                     if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
+                        param1 = Integer.valueOf(_values[param1]);
 
                     if (modes[1] == POSITION_MODE)
-                        param2 = Integer.valueOf(values[param2]);
+                        param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
                         System.out.println("Multiplying "+param1+" and "+param2);
@@ -130,7 +147,7 @@ public class Intcode
                     if (_debug)
                         System.out.println("Storing "+product+" at position "+param3);
 
-                    values[param3] = String.valueOf(product);
+                    _values[param3] = String.valueOf(product);
 
                     i = i+3;  // move the pointer on.
                 }
@@ -142,12 +159,12 @@ public class Intcode
                      * the position given by its only parameter.
                      */
 
-                     int param1 = Integer.valueOf(values[i+1]);
+                     int param1 = Integer.valueOf(_values[i+1]);
 
                      if (_debug)
                         System.out.println("Storing "+((inputParam == 1) ? initialInput1 : initialInput2)+" at position "+param1);
 
-                     values[param1] = String.valueOf(((inputParam == 1) ? initialInput1 : initialInput2));
+                     _values[param1] = String.valueOf(((inputParam == 1) ? initialInput1 : initialInput2));
 
                      inputParam++;  // assume only 2!
 
@@ -163,17 +180,22 @@ public class Intcode
                      * Opcode 4 outputs the value of its only parameter.
                      */
 
-                    int param1 = Integer.valueOf(values[i+1]);
+                    int param1 = Integer.valueOf(_values[i+1]);
+                    String output;
 
                     if (modes[0] == IMMEDIATE_MODE)
-                        returnValue = Integer.toString(param1);
+                        output = Integer.toString(param1);
                     else
-                        returnValue = values[param1];
+                        output = _values[param1];
 
                      if (_debug)
-                        System.out.println("Outputting value "+returnValue+" from entry "+param1);
+                        System.out.println("Outputting value "+output+" from entry "+param1);
 
                      i = i+1;  // move the pointer on.
+
+                     _instructionPointer = i;
+
+                     return output;
                 }
                 break;
                 case Intcode.JUMP_IF_TRUE:
@@ -183,14 +205,14 @@ public class Intcode
                      * the value from the second parameter. Otherwise, it does nothing.
                      */
 
-                    int param1 = Integer.valueOf(values[i+1]);
-                    int param2 = Integer.valueOf(values[i+2]);
+                    int param1 = Integer.valueOf(_values[i+1]);
+                    int param2 = Integer.valueOf(_values[i+2]);
 
                     if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
+                        param1 = Integer.valueOf(_values[param1]);
 
                     if (modes[1] == POSITION_MODE)
-                        param2 = Integer.valueOf(values[param2]);
+                        param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
                         System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
@@ -213,14 +235,14 @@ public class Intcode
                      * from the second parameter. Otherwise, it does nothing.
                      */
 
-                    int param1 = Integer.valueOf(values[i+1]);
-                    int param2 = Integer.valueOf(values[i+2]);
+                    int param1 = Integer.valueOf(_values[i+1]);
+                    int param2 = Integer.valueOf(_values[i+2]);
 
                     if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
+                        param1 = Integer.valueOf(_values[param1]);
 
                     if (modes[1] == POSITION_MODE)
-                        param2 = Integer.valueOf(values[param2]);
+                        param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
                         System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
@@ -243,15 +265,15 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    int param1 = Integer.valueOf(values[i+1]);
-                    int param2 = Integer.valueOf(values[i+2]);
-                    int param3 = Integer.valueOf(values[i+3]);
+                    int param1 = Integer.valueOf(_values[i+1]);
+                    int param2 = Integer.valueOf(_values[i+2]);
+                    int param3 = Integer.valueOf(_values[i+3]);
 
                     if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
+                        param1 = Integer.valueOf(_values[param1]);
 
                     if (modes[1] == POSITION_MODE)
-                        param2 = Integer.valueOf(values[param2]);
+                        param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
                     {
@@ -264,14 +286,14 @@ public class Intcode
                         if (_debug)
                             System.out.print("1");
 
-                        values[param3] = "1";
+                        _values[param3] = "1";
                     }
                     else
                     {
                         if (_debug)
                             System.out.print("0");
 
-                        values[param3] = "0";
+                        _values[param3] = "0";
                     }
 
                     if (_debug)
@@ -287,15 +309,15 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    int param1 = Integer.valueOf(values[i+1]);
-                    int param2 = Integer.valueOf(values[i+2]);
-                    int param3 = Integer.valueOf(values[i+3]);
+                    int param1 = Integer.valueOf(_values[i+1]);
+                    int param2 = Integer.valueOf(_values[i+2]);
+                    int param3 = Integer.valueOf(_values[i+3]);
 
                     if (modes[0] == POSITION_MODE)
-                        param1 = Integer.valueOf(values[param1]);
+                        param1 = Integer.valueOf(_values[param1]);
 
                     if (modes[1] == POSITION_MODE)
-                        param2 = Integer.valueOf(values[param2]);
+                        param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
                     {
@@ -308,14 +330,14 @@ public class Intcode
                         if (_debug)
                             System.out.print("1");
 
-                        values[param3] = "1";
+                        _values[param3] = "1";
                     }
                     else
                     {
                         if (_debug)
                             System.out.print("0");
 
-                        values[param3] = "0";
+                        _values[param3] = "0";
                     }
 
                     if (_debug)
@@ -331,20 +353,24 @@ public class Intcode
                      */
 
                      if (_debug)
-                        System.out.println("Halting execution with "+returnValue);
+                        System.out.println("Halting execution.");
 
-                     return returnValue;
+                     _instructionPointer = i;
+
+                     return Intcode.HALTED;
                 }
                 default:
                 {
                     System.out.println("Unknown opcode "+str+" encountered");
 
-                    return "NaN";
+                    _instructionPointer = values.length;  // stop any further execution.
+
+                    return Intcode.PARSE_RROR;
                 }
             }
         }
 
-        return returnValue;
+        return true;
     }
 
     private String getOpcode (String digits)
@@ -404,4 +430,6 @@ public class Intcode
     }
 
     private boolean _debug;
+    private int _instructionPointer;
+    private String[] _values;
 }
