@@ -30,7 +30,11 @@ public class AmplifierSeries
                     System.out.println("Phase setting "+i+" is "+phaseSetting[i]);
             }
 
-            _amps[0].changeInputCodes(phaseSetting[0], 0);
+            if (i == 0)
+                _amps[0].changeInputCodes(phaseSetting[0], 0);
+            else
+                _amps[0].changeInputCodes(phaseSetting[0], results[4]);
+
             _amps[0].changeCommands(commands);
 
             results[0] = _amps[0].executeCommands();
