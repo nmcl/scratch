@@ -25,19 +25,19 @@ public class Verifier extends AmplifierSeries
                 else
                 {
                     if (_debug)
-                        System.out.println("Verify failed for "+EXAMPLE_3_COMMANDS);
+                        System.out.println("Verify failed for "+MAX_THRUSTER_SIGNAL_3);
                 }
             }
             else
             {
                 if (_debug)
-                    System.out.println("Verify failed for "+EXAMPLE_2_COMMANDS);
+                    System.out.println("Verify failed for "+MAX_THRUSTER_SIGNAL_2);
             }
         }
         else
         {
             if (_debug)
-                System.out.println("Verify failed for "+EXAMPLE_1_COMMANDS);
+                System.out.println("Verify failed for "+MAX_THRUSTER_SIGNAL_1);
         }
 
         return false;

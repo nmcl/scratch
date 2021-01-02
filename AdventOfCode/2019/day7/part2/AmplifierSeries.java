@@ -6,11 +6,13 @@ public class AmplifierSeries
     {
         _permutations = permutations;
         _debug = debug;
+
+        for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
+            _amps[i] = new Amplifier(i, _debug);
     }
 
     protected int maxThrusterSignal (String[] commands)
     {
-        Amplifier[] amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
         int maxThrusterSignal = 0;
         int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
         Enumeration<String> iter = _permutations.elements();
@@ -34,37 +36,42 @@ public class AmplifierSeries
                     System.out.println("Phase setting "+i+" is "+phaseSetting[i]);
             }
 
-            amps[0] = new Amplifier(0, phaseSetting[0], 0, commands, _debug);
+            _amps[0].changeInputCodes(phaseSetting[0], 0);
+            _amps[0].changeCommands(commands);
 
-            results[0] = amps[0].executeCommands();
+            results[0] = _amps[0].executeCommands();
 
             if (_debug)
                 System.out.println("Amplifier 0 returned "+results[0]);
 
-            amps[1] = new Amplifier(1, phaseSetting[1], results[0], commands, _debug);
+            _amps[1].changeInputCodes(phaseSetting[1], results[0]);
+            _amps[1].changeCommands(commands);
 
-            results[1] = amps[1].executeCommands();
+            results[1] = _amps[1].executeCommands();
 
             if (_debug)
                 System.out.println("Amplifier 1 returned "+results[1]);
 
-            amps[2] = new Amplifier(2, phaseSetting[2], results[1], commands, _debug);
+            _amps[2].changeInputCodes(phaseSetting[2], results[1]);
+            _amps[2].changeCommands(commands);
 
-            results[2] = amps[2].executeCommands();
+            results[2] = _amps[2].executeCommands();
 
             if (_debug)
                 System.out.println("Amplifier 2 returned "+results[2]);
 
-            amps[3] = new Amplifier(3, phaseSetting[3], results[2], commands, _debug);
+            _amps[3].changeInputCodes(phaseSetting[3], results[2]);
+            _amps[3].changeCommands(commands);
 
-            results[3] = amps[3].executeCommands();
+            results[3] = _amps[3].executeCommands();
 
             if (_debug)
                 System.out.println("Amplifier 3 returned "+results[3]);
 
-            amps[4] = new Amplifier(4, phaseSetting[4], results[3], commands, _debug);
+            _amps[4].changeInputCodes(phaseSetting[4], results[3]);
+            _amps[4].changeCommands(commands);
 
-            results[4] = amps[4].executeCommands();
+            results[4] = _amps[4].executeCommands();
 
             if (_debug)
                 System.out.println("Amplifier 4 returned "+results[4]);
@@ -81,4 +88,5 @@ public class AmplifierSeries
 
     protected Vector<String> _permutations;
     protected boolean _debug;
+    private Amplifier[] _amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
 }
