@@ -4,7 +4,7 @@ import java.util.*;
 public class ACS
 {
     public static final int NUMBER_OF_AMPLIFIERS = 5;
-    public static final String DIGITS = "01234";
+    public static final String DIGITS = "56789";
     public static void main (String[] args)
     {
         boolean debug = false;
