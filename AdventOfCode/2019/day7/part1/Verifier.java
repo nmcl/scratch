@@ -16,6 +16,12 @@ public class Verifier extends AmplifierSeries
 
     public boolean verify ()
     {
+        /*
+         * This just checks the maximum thruster signal value returned. It doesn't
+         * check that the phase sequence values are the ones given in the example
+         * text.
+         */
+
         if (verifyInstance(EXAMPLE_1_COMMANDS, MAX_THRUSTER_SIGNAL_1))
         {
             if (verifyInstance(EXAMPLE_2_COMMANDS, MAX_THRUSTER_SIGNAL_2))
