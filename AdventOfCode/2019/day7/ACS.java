@@ -35,7 +35,11 @@ public class ACS
         {
             Verifier theVerifier = new Verifier(permutations, debug);
 
-            theVerifier.verify();
+            if (theVerifier.verify())
+                System.out.println("Verified ok!");
+            else
+                System.out.println("Verify failed!");
+                
             System.exit(0);
         }
 
