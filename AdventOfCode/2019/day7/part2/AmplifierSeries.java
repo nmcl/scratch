@@ -17,12 +17,6 @@ public class AmplifierSeries
         int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
         Enumeration<String> iter = _permutations.elements();
 
-        /*
-         * Not the most efficient as we keep creating new Amplifier instances
-         * at each iteration. Once this works, replace with just resetting an
-         * existing Amplifier instance if it exists.
-         */
-
         while (iter.hasMoreElements())
         {
             String permutation = iter.nextElement();
