@@ -17,6 +17,7 @@ public class Verifier
         int maxThrusterSignal = 0;
         int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
         int ampID = 0;
+        Enumeration<String> iter = _permutations.elements();
 
         /*
          * Not the most efficient as we keep creating new Amplifier instances
@@ -24,81 +25,50 @@ public class Verifier
          * existing Amplifier instance if it exists.
          */
 
-        // Each phase setting is used exactly once.
-
-        for (int i = 0; i < 5; i++)
+        while (iter.hasMoreElements())
         {
-            ampID = 0;
+            String permutation = iter.nextElement();
+            int[] phaseSetting = new int[permutation.length()];
 
-            amps[ampID] = new Amplifier(ampID, i, 0, EXAMPLE_1_COMMANDS, _debug);
-
-            results[ampID] = amps[ampID].executeCommands();
-
-            System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
-
-            for (int j = 0; j < 5; j++)
+            for (int i = 0; i < permutation.length(); i++)
             {
-                if (j == i)
-                    break;
+                phaseSetting[i] = Character.getNumericValue(permutation.charAt(i));
 
-                ampID = 1;
-
-                amps[ampID] = new Amplifier(ampID, j, results[ampID-1], EXAMPLE_1_COMMANDS, _debug);
-
-                results[ampID] = amps[ampID].executeCommands();
-
-                System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
-
-                for (int k = 0; k < 5; k++)
-                {
-                    if ((k == j) || (k == i))
-                        break;
-
-                    ampID = 2;
-
-                    amps[ampID] = new Amplifier(ampID, k, results[ampID-1], EXAMPLE_1_COMMANDS, _debug);
-
-                    results[ampID] = amps[ampID].executeCommands();
-
-                    System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
-
-                    for (int l = 0; l < 5; l++)
-                    {
-                        if ((l == k) || (l == j) || (l == i))
-                            break;
-
-                        ampID = 3;
-
-                        amps[ampID] = new Amplifier(ampID, l, results[ampID-1], EXAMPLE_1_COMMANDS, _debug);
-
-                        results[ampID] = amps[ampID].executeCommands();
-
-                        System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
-
-                        for (int m = 0; m < 5; m++)
-                        {
-                            if ((m == l) || (m == k) || (m == j) || (m == i))
-                                break;
-                                
-                            ampID = 4;
-
-                            amps[ampID] = new Amplifier(ampID, m, results[ampID-1], EXAMPLE_1_COMMANDS, _debug);
-
-                            results[ampID] = amps[ampID].executeCommands();
-
-                            System.out.println("Amplifier "+ampID+"  returned "+results[ampID]);
-                            
-                            System.out.println("**indexes "+i+" "+j+" "+k+" "+l+" "+m);
-                            
-                            for (int z = 0; z < 5; z++)
-                                System.out.println(amps[z]);
-
-                            if (results[ampID] > maxThrusterSignal)
-                                maxThrusterSignal = results[ampID];
-                        }
-                    }
-                }
+                System.out.println("**Phase setting "+i+" is "+phaseSetting[i]);
             }
+
+            amps[0] = new Amplifier(0, phaseSetting[0], 0, EXAMPLE_1_COMMANDS, _debug);
+
+            results[0] = amps[0].executeCommands();
+
+            System.out.println("Amplifier 0 returned "+results[0]);
+
+            amps[1] = new Amplifier(1, phaseSetting[1], results[0], EXAMPLE_1_COMMANDS, _debug);
+
+            results[1] = amps[1].executeCommands();
+
+            System.out.println("Amplifier 1 returned "+results[1]);
+
+            amps[2] = new Amplifier(2, phaseSetting[2], results[1], EXAMPLE_1_COMMANDS, _debug);
+
+            results[2] = amps[2].executeCommands();
+
+            System.out.println("Amplifier 2 returned "+results[2]);
+
+            amps[3] = new Amplifier(3, phaseSetting[3], results[2], EXAMPLE_1_COMMANDS, _debug);
+
+            results[3] = amps[3].executeCommands();
+
+            System.out.println("Amplifier 3 returned "+results[3]);
+
+            amps[4] = new Amplifier(4, phaseSetting[4], results[3], EXAMPLE_1_COMMANDS, _debug);
+
+            results[4] = amps[4].executeCommands();
+
+            System.out.println("Amplifier 4 returned "+results[4]);
+
+            if (results[4] > maxThrusterSignal)
+                maxThrusterSignal = results[4];
         }
 
         System.out.println("Max thrusters: "+maxThrusterSignal);

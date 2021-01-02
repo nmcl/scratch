@@ -29,7 +29,7 @@ public class ACS
 
         // Each phase setting is used exactly once.
 
-        permutations(DIGITS, permutations);
+        permutation(DIGITS, permutations);
 
         if (runVerifier)
         {
