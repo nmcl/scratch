@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class ACS
 {
@@ -26,9 +27,13 @@ public class ACS
 
         Vector<String> permutations = new Vector<String>();
 
+        // Each phase setting is used exactly once.
+
+        permutations(DIGITS, permutations);
+
         if (runVerifier)
         {
-            Verifier theVerifier = new Verifier(debug);
+            Verifier theVerifier = new Verifier(permutations, debug);
 
             theVerifier.verify();
             System.exit(0);
@@ -69,21 +74,21 @@ public class ACS
 
     // because ... https://introcs.cs.princeton.edu/java/23recursion/Permutations.java.html
 
-    private static void permutation (String str)
+    private static void permutation (String str, Vector<String> options)
     { 
-		permutation("", str); 
+		permutation("", str, options); 
 	}
 	
-    private static void permutation (String prefix, String str)
+    private static void permutation (String prefix, String str, Vector<String> options)
     {
         int n = str.length();
         
         if (n == 0)
-            System.out.println(prefix);
+            options.add(prefix);
         else
         {
 			for (int i = 0; i < n; i++)
-				permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+				permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n), options);
 		}
     }
     

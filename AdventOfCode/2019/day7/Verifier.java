@@ -1,10 +1,13 @@
+import java.util.*;
+
 public class Verifier
 {
     public static final String[] EXAMPLE_1_COMMANDS = {"3","15","3","16","1002","16","10","16","1","16","15","15","4","15","99","0","0"};
     public static final int MAX_THRUSTER_SIGNAL_1 = 43210;
 
-    public Verifier (boolean debug)
+    public Verifier (Vector<String> permutations, boolean debug)
     {
+        _permutations = permutations;
         _debug = debug;
     }
 
@@ -103,5 +106,6 @@ public class Verifier
         return (maxThrusterSignal == MAX_THRUSTER_SIGNAL_1);
     }
 
+    private Vector<String> _permutations;
     private boolean _debug;
 }
