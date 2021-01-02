@@ -47,8 +47,14 @@ public class Intcode
         _debug = debug;
         _instructionPointer = 0;
         _values = new String[values.length];
+        _halted = false;
 
         System.arraycopy(values, 0, _values, 0, values.length);
+    }
+
+    public final boolean hasHalted ()
+    {
+        return _halted;
     }
 
     /**
@@ -64,6 +70,14 @@ public class Intcode
 
     public String parseAndExecute (int initialInput1, int initialInput2)
     {
+        if (_halted)
+        {
+            if (_debug)
+                System.out.println("Intocde computer has halted!");
+
+            return Intcode.HALTED;
+        }
+        
         int inputParam = 1;
 
         if (_debug)
@@ -356,6 +370,7 @@ public class Intcode
                         System.out.println("Halting execution.");
 
                      _instructionPointer = i;
+                    _halted = true;
 
                      return Intcode.HALTED;
                 }
@@ -364,6 +379,7 @@ public class Intcode
                     System.out.println("Unknown opcode "+str+" encountered");
 
                     _instructionPointer = values.length;  // stop any further execution.
+                    _halted = true;
 
                     return Intcode.PARSE_RROR;
                 }
@@ -432,4 +448,5 @@ public class Intcode
     private boolean _debug;
     private int _instructionPointer;
     private String[] _values;
+    private boolean _halted;
 }
