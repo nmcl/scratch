@@ -48,7 +48,7 @@ public class Intcode
         _instructionPointer = 0;
         _values = new String[values.length];
         _halted = false;
-        _returnState = "-1";
+        _currentState = "-1";
 
         System.arraycopy(values, 0, _values, 0, values.length);
     }
@@ -56,6 +56,11 @@ public class Intcode
     public final boolean hasHalted ()
     {
         return _halted;
+    }
+
+    public final String currentState ()
+    {
+        return _currentState;
     }
 
     /**
@@ -74,7 +79,7 @@ public class Intcode
             if (_debug)
                 System.out.println("Intocde computer has halted!");
 
-            return _returnState;
+            return _currentState;
         }
 
         int inputParam = 1;
@@ -85,13 +90,12 @@ public class Intcode
         for (int i = _instructionPointer; i < _values.length; i++)
         {
             String str = getOpcode(_values[i]);
+            int opcode = Integer.valueOf(str);
             int[] modes = getModes(_values[i]);
 
-            System.out.println("**and "+_values[i]);
-            
             if (_debug)
             {
-                System.out.println("\nWorking on element "+i+" which is command "+str+
+                System.out.println("\nWorking on element "+i+" which is command "+commandToString(opcode)+
                                         " with parameter modes ...");
                 printModes(modes);
             }
@@ -100,7 +104,7 @@ public class Intcode
              * Now factor in the parameter modes.
              */
 
-            switch (Integer.valueOf(str))
+            switch (opcode)
             {
                 case Intcode.ADD:
                 {
@@ -198,12 +202,12 @@ public class Intcode
                     int param1 = Integer.valueOf(_values[i+1]);
 
                     if (modes[0] == IMMEDIATE_MODE)
-                        _returnState = Integer.toString(param1);
+                        _currentState = Integer.toString(param1);
                     else
-                        _returnState = _values[param1];
+                        _currentState = _values[param1];
 
                      if (_debug)
-                        System.out.println("Outputting value "+_returnState+" from entry "+param1);
+                        System.out.println("Outputting value "+_currentState+" from entry "+param1);
 
                      i = i+1;  // move the pointer on.
 
@@ -211,7 +215,7 @@ public class Intcode
 
                      System.out.println("**returning with instruction pointer set to "+_instructionPointer);
 
-                     return _returnState;
+                     return _currentState;
                 }
  //               break;
                 case Intcode.JUMP_IF_TRUE:
@@ -376,7 +380,7 @@ public class Intcode
 
                     System.out.println("**halting with "+_instructionPointer);
 
-                     return _returnState;
+                     return _currentState;
                 }
                 default:
                 {
@@ -388,7 +392,7 @@ public class Intcode
             }
         }
 
-        return _returnState;
+        return _currentState;
     }
 
     private String getOpcode (String digits)
@@ -447,9 +451,36 @@ public class Intcode
         }
     }
 
+    private String commandToString (int command)
+    {
+        switch (command)
+        {
+            case ADD:
+                return "ADD";
+            case MULTIPLY:
+                return "MULTIPLY";
+            case INPUT_AND_STORE:
+                return "INPUT_AND_STORE";
+            case OUTPUT:
+                return "OUTPUT";
+            case JUMP_IF_TRUE:
+                return "JUMP_IF_TRUE";
+            case JUMP_IF_FALSE:
+                return "JUMP_IF_FALSE";
+            case LESS_THAN:
+                return "LESS_THAN";
+            case EQUALS:
+                return "EQUALS";
+            case HALT:
+                return "HALT";
+            default:
+                return "UNKNOWN";
+        }
+    }
+
     private boolean _debug;
     private int _instructionPointer;
     private String[] _values;
     private boolean _halted;
-    private String _returnState;
+    private String _currentState;
 }

@@ -26,13 +26,11 @@ public class AmplifierSeries
         {
             String permutation = iter.nextElement();
             int[] phaseSetting = new int[permutation.length()];
-            boolean firstLoop = true;
+            int loop = 0;
             boolean halted = false;
             int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
 
-            initialiseAmplifiers();
-
-            System.out.println("\n**permutation "+permutation);
+            initialiseAmplifiers();  // do this at the start of each permutation.
 
             for (int i = 0; i < permutation.length(); i++)
             {
@@ -44,6 +42,8 @@ public class AmplifierSeries
 
             while (!halted)
             {
+                System.out.println("\nLoop "+loop);
+
                 for (int i = 0; i < results.length; i++)
                     System.out.println("results "+i+" "+results[i]);
 
@@ -52,13 +52,12 @@ public class AmplifierSeries
 
                 if (!_amps[0].halted())
                 {
-                    if (firstLoop)
-                    {
+                    if (loop == 0)
                         results[0] = _amps[0].executeProgram(phaseSetting[0], 0);
-                        firstLoop = false;
-                    }
                     else
                         results[0] = _amps[0].executeProgram(phaseSetting[0], results[4]);
+
+                    loop++;
 
                     if (_debug)
                         System.out.println("Amplifier 0 returned "+results[0]);
@@ -119,7 +118,7 @@ public class AmplifierSeries
                         halted = true;
 
                     for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
-                        System.out.println("**exit wtate of "+i+" is "+_amps[i].halted());
+                        System.out.println("**exit state of "+i+" is "+_amps[i].halted());
                 }
                 else
                 {

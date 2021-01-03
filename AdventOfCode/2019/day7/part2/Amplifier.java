@@ -36,7 +36,7 @@ public class Amplifier
     @Override
     public String toString ()
     {
-        return "Amplifier "+_id;
+        return "Amplifier "+_id+" is "+((halted() ? "halted" : "active"));
     }
 
     private int _id;
