@@ -29,10 +29,8 @@ public class ACS
 
         // Each phase setting is used exactly once.
 
-//        permutation(DIGITS, permutations);
+        permutation(DIGITS, permutations);
 
-        permutations.add("98765");
-        
         if (runVerifier)
         {
             Verifier theVerifier = new Verifier(permutations, debug);

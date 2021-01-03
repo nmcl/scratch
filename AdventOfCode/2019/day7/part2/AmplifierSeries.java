@@ -42,14 +42,6 @@ public class AmplifierSeries
 
             while (!halted)
             {
-                System.out.println("\nLoop "+loop);
-
-                for (int i = 0; i < results.length; i++)
-                    System.out.println("results "+i+" "+results[i]);
-
-                for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
-                    System.out.println("**State of "+i+" is "+_amps[i].halted());
-
                 if (!_amps[0].halted())
                 {
                     if (loop == 0)
@@ -64,7 +56,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Amplifier 0 has already halted.");
                 }
 
@@ -77,7 +69,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Amplifier 1 has already halted.");
                 }
 
@@ -90,7 +82,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Amplifier 2 has already halted.");
                 }
 
@@ -103,7 +95,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Amplifier 3 has already halted.");
                 }
 
@@ -111,14 +103,11 @@ public class AmplifierSeries
                 {
                     results[4] = _amps[4].executeProgram(phaseSetting[4], results[3]);
 
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Amplifier 4 returned "+results[4]);
 
                     if (_amps[4].halted())
                         halted = true;
-
-                    for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
-                        System.out.println("**exit state of "+i+" is "+_amps[i].halted());
                 }
                 else
                 {
@@ -126,14 +115,10 @@ public class AmplifierSeries
                         System.out.println("Amplifier 4 has already halted.");
                 }
 
-                System.out.println("**amplifier 4 halted: "+_amps[4].halted());
-
                 // it's the last output from amp 4 we want, not every output.
 
                 if (_amps[4].halted() && (results[4] > maxThrusterSignal))
                     maxThrusterSignal = results[4];
-
-                System.out.println("Thruster signal: "+maxThrusterSignal);
             }
         }
 

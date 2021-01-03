@@ -33,8 +33,14 @@ public class Intcode
 
     public static final String DELIMITER = ",";
 
-    public static final String HALTED = "-1";
-    public static final String PARSE_RROR = "-2";
+    /**
+     * The status of the computer.
+     */
+
+    public static final int CREATED = 0;
+    public static final int PAUSED = 1;
+    public static final int RUNNING = 2;
+    public static final int HALTED = 3;
 
     /*
      * This implementation is stateless other than being placed
@@ -47,20 +53,25 @@ public class Intcode
         _debug = debug;
         _instructionPointer = 0;
         _values = new String[values.length];
-        _halted = false;
         _currentState = "-1";
+        _status = Intcode.CREATED;
 
         System.arraycopy(values, 0, _values, 0, values.length);
     }
 
     public final boolean hasHalted ()
     {
-        return _halted;
+        return (_status == HALTED);
     }
 
     public final String currentState ()
     {
         return _currentState;
+    }
+
+    public final int status ()
+    {
+        return _status;
     }
 
     /**
@@ -72,9 +83,11 @@ public class Intcode
      * @return true if the program code has completed, false otherwise.
      */
 
+     // maybe move the initial parameter to the constructor?
+
     public String executeProgram (int initialInput1, int initialInput2)
     {
-        if (_halted)
+        if (hasHalted())
         {
             if (_debug)
                 System.out.println("Intocde computer has halted!");
@@ -82,9 +95,7 @@ public class Intcode
             return _currentState;
         }
 
-        int inputParam = 1;
-
-        //if (_debug)
+        if (_debug)
             System.out.println("Intcode inputs <"+initialInput1+", "+initialInput2+"> and instruction pointer: "+_instructionPointer);
         
         for (int i = _instructionPointer; i < _values.length; i++)
@@ -181,14 +192,9 @@ public class Intcode
                      int param1 = Integer.valueOf(_values[i+1]);
 
                      if (_debug)
-                        System.out.println("Storing "+((inputParam == 1) ? initialInput1 : initialInput2)+" at position "+param1);
+                        System.out.println("Storing "+((_status == Intcode.CREATED) ? initialInput1 : initialInput2)+" at position "+param1);
 
-                     _values[param1] = String.valueOf(((inputParam == 1) ? initialInput1 : initialInput2));
-
-                     inputParam++;  // assume only 2!
-
-                     if (inputParam > 2)
-                        inputParam = 2;
+                     _values[param1] = String.valueOf(((_status == Intcode.CREATED) ? initialInput1 : initialInput2));
 
                      i = i+1;  // move the pointer on.
                 }
@@ -212,8 +218,7 @@ public class Intcode
                      i = i+1;  // move the pointer on.
 
                      _instructionPointer = i+1;
-
-                     System.out.println("**returning with instruction pointer set to "+_instructionPointer);
+                    _status = Intcode.PAUSED;
 
                      return _currentState;
                 }
@@ -376,9 +381,7 @@ public class Intcode
                         System.out.println("Halting execution.");
 
                      _instructionPointer = _values.length;
-                    _halted = true;
-
-                    System.out.println("**halting with "+_instructionPointer);
+                    _status = Intcode.HALTED;
 
                      return _currentState;
                 }
@@ -387,9 +390,11 @@ public class Intcode
                     System.out.println("Unknown opcode "+str+" encountered");
 
                     _instructionPointer = _values.length;  // stop any further execution.
-                    _halted = true;
+                    _status = Intcode.HALTED;
                 }
             }
+
+            _status = Intcode.RUNNING;
         }
 
         return _currentState;
@@ -481,6 +486,6 @@ public class Intcode
     private boolean _debug;
     private int _instructionPointer;
     private String[] _values;
-    private boolean _halted;
     private String _currentState;
+    private int _status;
 }
