@@ -66,8 +66,6 @@ public class Intcode
      * @return true if the program code has completed, false otherwise.
      */
 
-     // maybe refactor and move much of this into the constructor?
-
     public String parseAndExecute (int initialInput1, int initialInput2)
     {
         if (_halted)
@@ -77,13 +75,13 @@ public class Intcode
 
             return Intcode.HALTED;
         }
-        
+
         int inputParam = 1;
 
         if (_debug)
             System.out.println("Intcode inputs <"+initialInput1+", "+initialInput2+">");
         
-        for (int i = _instructionPointer; i < values.length; i++)
+        for (int i = _instructionPointer; i < _values.length; i++)
         {
             String str = getOpcode(_values[i]);
             int[] modes = getModes(_values[i]);
@@ -130,7 +128,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Storing "+sum+" at position "+param3);
 
-                     _alues[param3] = String.valueOf(sum);
+                     _values[param3] = String.valueOf(sum);
 
                      i = i+3;  // move the pointer on.
                 }
@@ -211,7 +209,7 @@ public class Intcode
 
                      return output;
                 }
-                break;
+ //               break;
                 case Intcode.JUMP_IF_TRUE:
                 {
                     /*
@@ -378,7 +376,7 @@ public class Intcode
                 {
                     System.out.println("Unknown opcode "+str+" encountered");
 
-                    _instructionPointer = values.length;  // stop any further execution.
+                    _instructionPointer = _values.length;  // stop any further execution.
                     _halted = true;
 
                     return Intcode.PARSE_RROR;
@@ -386,7 +384,7 @@ public class Intcode
             }
         }
 
-        return true;
+        return Intcode.HALTED;
     }
 
     private String getOpcode (String digits)

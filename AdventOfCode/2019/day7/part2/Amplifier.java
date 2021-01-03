@@ -8,7 +8,7 @@ public class Amplifier
     public Amplifier (int id, int input1, int input2, String[] commands, boolean debug)
     {
         _id = id;
-        _computer = new Intcode(debug);
+        _computer = new Intcode(commands, debug);
         _input1 = input1;
         _input2 = input2;
         _debug = debug;
@@ -52,11 +52,25 @@ public class Amplifier
 
     public final int executeCommands ()
     {
-        String[] theCommands = new String[_commands.length];
+        if (!halted())
+        {
+            String[] theCommands = new String[_commands.length];
 
-        System.arraycopy(_commands, 0, theCommands, 0, _commands.length);
+            System.arraycopy(_commands, 0, theCommands, 0, _commands.length);
 
-        return Integer.parseInt(_computer.parseAndExecute(theCommands, _input1, _input2));
+            return Integer.parseInt(_computer.parseAndExecute(_input1, _input2));
+        }
+        else
+        {
+            System.out.println("Cannot execute commands: amplifier "+_id+" has already halted!");
+
+            return -1;
+        }
+    }
+
+    public final boolean halted ()
+    {
+        return _computer.hasHalted();
     }
 
     @Override
