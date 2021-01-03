@@ -11,6 +11,8 @@ public class AmplifierSeries
 
     public void initialiseAmplifiers (String[] commands)
     {
+        _amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
+
         for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
         {
             _amps[i] = new Amplifier(i, commands, _debug);
