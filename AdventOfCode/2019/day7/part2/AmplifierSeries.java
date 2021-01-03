@@ -37,11 +37,9 @@ public class AmplifierSeries
                 if (!_amps[0].halted())
                 {
                     if (loop == 0)
-                    _amps[0].changeInputCodes(phaseSetting[0], 0);
+                        _amps[0].changeInputCodes(phaseSetting[0], 0);
                     else
                         _amps[0].changeInputCodes(phaseSetting[0], results[4]);
-
-                    _amps[0].changeCommands(commands);
 
                     results[0] = _amps[0].executeCommands();
 
@@ -57,7 +55,6 @@ public class AmplifierSeries
                 if (!_amps[1].halted())
                 {
                     _amps[1].changeInputCodes(phaseSetting[1], results[0]);
-                    _amps[1].changeCommands(commands);
 
                     results[1] = _amps[1].executeCommands();
 
@@ -73,7 +70,6 @@ public class AmplifierSeries
                 if (!_amps[2].halted())
                 {
                     _amps[2].changeInputCodes(phaseSetting[2], results[1]);
-                    _amps[2].changeCommands(commands);
 
                     results[2] = _amps[2].executeCommands();
 
@@ -89,7 +85,6 @@ public class AmplifierSeries
                 if (!_amps[3].halted())
                 {
                     _amps[3].changeInputCodes(phaseSetting[3], results[2]);
-                    _amps[3].changeCommands(commands);
 
                     results[3] = _amps[3].executeCommands();
 
@@ -105,7 +100,6 @@ public class AmplifierSeries
                 if (!_amps[4].halted())
                 {
                     _amps[4].changeInputCodes(phaseSetting[4], results[3]);
-                    _amps[4].changeCommands(commands);
 
                     results[4] = _amps[4].executeCommands();
 

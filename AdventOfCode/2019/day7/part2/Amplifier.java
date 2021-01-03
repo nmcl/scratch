@@ -35,21 +35,6 @@ public class Amplifier
         _input2 = input2;
     }
 
-    public final void changeCommands (String[] commands)
-    {
-        if (commands == null)
-        {
-            if (_debug)
-                System.out.println("No commands provided!");
-        }
-        else
-        {
-            _commands = new String[commands.length];
-
-            System.arraycopy(commands, 0, _commands, 0, commands.length);
-        }
-    }
-
     public final int executeCommands ()
     {
         if (!halted())
