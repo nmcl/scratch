@@ -62,7 +62,9 @@ public class ACS
 
             AmplifierSeries amps = new AmplifierSeries(permutations, debug);
 
-            System.out.println("Maximum thruster signal: "+amps.maxThrusterSignal(values));
+            amps.initialiseAmplifiers(values);
+
+            System.out.println("Maximum thruster signal: "+amps.maxThrusterSignal());
         }
         catch (Throwable ex)
         {

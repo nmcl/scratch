@@ -66,7 +66,7 @@ public class Intcode
      * @return true if the program code has completed, false otherwise.
      */
 
-    public String parseAndExecute (int initialInput1, int initialInput2)
+    public String executeProgram (int initialInput1, int initialInput2)
     {
         if (_halted)
         {

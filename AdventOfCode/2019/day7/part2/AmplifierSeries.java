@@ -6,12 +6,18 @@ public class AmplifierSeries
     {
         _permutations = permutations;
         _debug = debug;
-
-        for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
-            _amps[i] = new Amplifier(i, _debug);
+        _amps = null;
     }
 
-    protected int maxThrusterSignal (String[] commands)
+    public void initialiseAmplifiers (String[] commands)
+    {
+        for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
+        {
+            _amps[i] = new Amplifier(i, commands, _debug);
+        }
+    }
+
+    public int maxThrusterSignal ()
     {
         int maxThrusterSignal = 0;
         int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
@@ -37,11 +43,9 @@ public class AmplifierSeries
                 if (!_amps[0].halted())
                 {
                     if (loop == 0)
-                        _amps[0].changeInputCodes(phaseSetting[0], 0);
+                        results[0] = _amps[0].executeProgram(phaseSetting[0], 0);
                     else
-                        _amps[0].changeInputCodes(phaseSetting[0], results[4]);
-
-                    results[0] = _amps[0].executeCommands();
+                        results[0] = _amps[0].executeProgram(phaseSetting[0], results[4]);
 
                     if (_debug)
                         System.out.println("Amplifier 0 returned "+results[0]);
@@ -54,9 +58,7 @@ public class AmplifierSeries
 
                 if (!_amps[1].halted())
                 {
-                    _amps[1].changeInputCodes(phaseSetting[1], results[0]);
-
-                    results[1] = _amps[1].executeCommands();
+                    results[1] = _amps[1].executeProgram(phaseSetting[1], results[0]);
 
                     if (_debug)
                         System.out.println("Amplifier 1 returned "+results[1]);
@@ -69,9 +71,7 @@ public class AmplifierSeries
 
                 if (!_amps[2].halted())
                 {
-                    _amps[2].changeInputCodes(phaseSetting[2], results[1]);
-
-                    results[2] = _amps[2].executeCommands();
+                    results[2] = _amps[2].executeProgram(phaseSetting[2], results[1]);
 
                     if (_debug)
                         System.out.println("Amplifier 2 returned "+results[2]);
@@ -84,9 +84,7 @@ public class AmplifierSeries
 
                 if (!_amps[3].halted())
                 {
-                    _amps[3].changeInputCodes(phaseSetting[3], results[2]);
-
-                    results[3] = _amps[3].executeCommands();
+                    results[3] = _amps[3].executeProgram(phaseSetting[3], results[2]);
 
                     if (_debug)
                         System.out.println("Amplifier 3 returned "+results[3]);
@@ -99,9 +97,7 @@ public class AmplifierSeries
 
                 if (!_amps[4].halted())
                 {
-                    _amps[4].changeInputCodes(phaseSetting[4], results[3]);
-
-                    results[4] = _amps[4].executeCommands();
+                    results[4] = _amps[4].executeProgram(phaseSetting[4], results[3]);
 
                     if (_debug)
                         System.out.println("Amplifier 4 returned "+results[4]);
