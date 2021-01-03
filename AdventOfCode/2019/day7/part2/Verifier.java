@@ -37,7 +37,7 @@ public class Verifier extends AmplifierSeries
 
     private boolean verifyInstance (String[] commands, int expected)
     {
-        initialiseAmplifiers(commands);
+        setProgram(commands);
 
         return (maxThrusterSignal() == expected);
     }

@@ -7,16 +7,14 @@ public class AmplifierSeries
         _permutations = permutations;
         _debug = debug;
         _amps = null;
+        _initialProgram = null;
     }
 
-    public void initialiseAmplifiers (String[] commands)
+    public void setProgram (String[] initialProgram)
     {
-        _amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
+        _initialProgram = new String[initialProgram.length];
 
-        for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
-        {
-            _amps[i] = new Amplifier(i, commands, _debug);
-        }
+        System.arraycopy(initialProgram, 0, _initialProgram, 0, initialProgram.length);
     }
 
     public int maxThrusterSignal ()
@@ -31,6 +29,8 @@ public class AmplifierSeries
             int[] phaseSetting = new int[permutation.length()];
             int loop = 0;
             boolean halted = false;
+
+            initialiseAmplifiers();
 
             for (int i = 0; i < permutation.length(); i++)
             {
@@ -126,7 +126,18 @@ public class AmplifierSeries
         return maxThrusterSignal;
     }
 
+    private void initialiseAmplifiers ()
+    {
+        _amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
+
+        for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
+        {
+            _amps[i] = new Amplifier(i, _initialProgram, _debug);
+        }
+    }
+
     protected Vector<String> _permutations;
     protected boolean _debug;
     private Amplifier[] _amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
+    String[] _initialProgram;
 }
