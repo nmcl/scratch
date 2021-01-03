@@ -33,8 +33,8 @@ public class Intcode
 
     public static final String DELIMITER = ",";
 
-    public static final String HALTED = "HALTED";
-    public static final String PARSE_RROR = "PARSE_ERROR";
+    public static final String HALTED = "12345";  // just some value!
+    public static final String PARSE_RROR = "666";
 
     /*
      * This implementation is stateless other than being placed
@@ -205,7 +205,7 @@ public class Intcode
 
                      i = i+1;  // move the pointer on.
 
-                     _instructionPointer = i;
+                     _instructionPointer = i+1;
 
                      return output;
                 }
@@ -367,7 +367,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Halting execution.");
 
-                     _instructionPointer = i;
+                     _instructionPointer = _values.length;
                     _halted = true;
 
                      return Intcode.HALTED;
