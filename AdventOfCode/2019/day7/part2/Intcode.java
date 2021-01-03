@@ -33,8 +33,8 @@ public class Intcode
 
     public static final String DELIMITER = ",";
 
-    public static final String HALTED = "12345";  // just some value!
-    public static final String PARSE_RROR = "666";
+    public static final String HALTED = "-1";
+    public static final String PARSE_RROR = "-2";
 
     /*
      * This implementation is stateless other than being placed
@@ -48,6 +48,7 @@ public class Intcode
         _instructionPointer = 0;
         _values = new String[values.length];
         _halted = false;
+        _returnState = "-1";
 
         System.arraycopy(values, 0, _values, 0, values.length);
     }
@@ -73,19 +74,21 @@ public class Intcode
             if (_debug)
                 System.out.println("Intocde computer has halted!");
 
-            return Intcode.HALTED;
+            return _returnState;
         }
 
         int inputParam = 1;
 
-        if (_debug)
-            System.out.println("Intcode inputs <"+initialInput1+", "+initialInput2+">");
+        //if (_debug)
+            System.out.println("Intcode inputs <"+initialInput1+", "+initialInput2+"> and instruction pointer: "+_instructionPointer);
         
         for (int i = _instructionPointer; i < _values.length; i++)
         {
             String str = getOpcode(_values[i]);
             int[] modes = getModes(_values[i]);
 
+            System.out.println("**and "+_values[i]);
+            
             if (_debug)
             {
                 System.out.println("\nWorking on element "+i+" which is command "+str+
@@ -193,21 +196,22 @@ public class Intcode
                      */
 
                     int param1 = Integer.valueOf(_values[i+1]);
-                    String output;
 
                     if (modes[0] == IMMEDIATE_MODE)
-                        output = Integer.toString(param1);
+                        _returnState = Integer.toString(param1);
                     else
-                        output = _values[param1];
+                        _returnState = _values[param1];
 
                      if (_debug)
-                        System.out.println("Outputting value "+output+" from entry "+param1);
+                        System.out.println("Outputting value "+_returnState+" from entry "+param1);
 
                      i = i+1;  // move the pointer on.
 
                      _instructionPointer = i+1;
 
-                     return output;
+                     System.out.println("**returning with instruction pointer set to "+_instructionPointer);
+
+                     return _returnState;
                 }
  //               break;
                 case Intcode.JUMP_IF_TRUE:
@@ -370,7 +374,9 @@ public class Intcode
                      _instructionPointer = _values.length;
                     _halted = true;
 
-                     return Intcode.HALTED;
+                    System.out.println("**halting with "+_instructionPointer);
+
+                     return _returnState;
                 }
                 default:
                 {
@@ -378,13 +384,11 @@ public class Intcode
 
                     _instructionPointer = _values.length;  // stop any further execution.
                     _halted = true;
-
-                    return Intcode.PARSE_RROR;
                 }
             }
         }
 
-        return Intcode.HALTED;
+        return _returnState;
     }
 
     private String getOpcode (String digits)
@@ -447,4 +451,5 @@ public class Intcode
     private int _instructionPointer;
     private String[] _values;
     private boolean _halted;
+    private String _returnState;
 }

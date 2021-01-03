@@ -20,17 +20,19 @@ public class AmplifierSeries
     public int maxThrusterSignal ()
     {
         int maxThrusterSignal = 0;
-        int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
         Enumeration<String> iter = _permutations.elements();
 
         while (iter.hasMoreElements())
         {
             String permutation = iter.nextElement();
             int[] phaseSetting = new int[permutation.length()];
-            int loop = 0;
+            boolean firstLoop = true;
             boolean halted = false;
+            int[] results = new int[ACS.NUMBER_OF_AMPLIFIERS];
 
             initialiseAmplifiers();
+
+            System.out.println("\n**permutation "+permutation);
 
             for (int i = 0; i < permutation.length(); i++)
             {
@@ -42,10 +44,19 @@ public class AmplifierSeries
 
             while (!halted)
             {
+                for (int i = 0; i < results.length; i++)
+                    System.out.println("results "+i+" "+results[i]);
+
+                for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
+                    System.out.println("**State of "+i+" is "+_amps[i].halted());
+
                 if (!_amps[0].halted())
                 {
-                    if (loop == 0)
+                    if (firstLoop)
+                    {
                         results[0] = _amps[0].executeProgram(phaseSetting[0], 0);
+                        firstLoop = false;
+                    }
                     else
                         results[0] = _amps[0].executeProgram(phaseSetting[0], results[4]);
 
@@ -54,7 +65,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Amplifier 0 has already halted.");
                 }
 
@@ -67,7 +78,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Amplifier 1 has already halted.");
                 }
 
@@ -80,7 +91,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Amplifier 2 has already halted.");
                 }
 
@@ -93,7 +104,7 @@ public class AmplifierSeries
                 }
                 else
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Amplifier 3 has already halted.");
                 }
 
@@ -101,11 +112,14 @@ public class AmplifierSeries
                 {
                     results[4] = _amps[4].executeProgram(phaseSetting[4], results[3]);
 
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Amplifier 4 returned "+results[4]);
 
                     if (_amps[4].halted())
                         halted = true;
+
+                    for (int i = 0; i < ACS.NUMBER_OF_AMPLIFIERS; i++)
+                        System.out.println("**exit wtate of "+i+" is "+_amps[i].halted());
                 }
                 else
                 {
@@ -113,10 +127,14 @@ public class AmplifierSeries
                         System.out.println("Amplifier 4 has already halted.");
                 }
 
+                System.out.println("**amplifier 4 halted: "+_amps[4].halted());
+
                 // it's the last output from amp 4 we want, not every output.
 
                 if (_amps[4].halted() && (results[4] > maxThrusterSignal))
                     maxThrusterSignal = results[4];
+
+                System.out.println("Thruster signal: "+maxThrusterSignal);
             }
         }
 
@@ -138,6 +156,6 @@ public class AmplifierSeries
 
     protected Vector<String> _permutations;
     protected boolean _debug;
-    private Amplifier[] _amps = new Amplifier[ACS.NUMBER_OF_AMPLIFIERS];
+    private Amplifier[] _amps = null;
     String[] _initialProgram;
 }
