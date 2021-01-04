@@ -7,6 +7,8 @@ public class Verifier
     public Verifier ()
     {
         _theImage = new Image(EXAMPLE_WIDTH, EXAMPLE_HEIGHT, EXAMPLE_DATA);
+
+        System.out.println("Created image:\n"+_theImage);
     }
 
     public final boolean verify ()
