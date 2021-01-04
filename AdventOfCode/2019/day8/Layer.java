@@ -7,6 +7,19 @@ public class Layer
         _theData = data;
     }
 
+    public int numberOfPixels (int value)
+    {
+        int number = 0;
+
+        for (int i = 0; i < _theData.length; i++)
+        {
+            if (Character.getNumericValue(_theData[i]) == value)
+                number++;
+        }
+
+        return number;
+    }
+
     @Override
     public String toString ()
     {
