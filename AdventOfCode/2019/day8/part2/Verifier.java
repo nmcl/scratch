@@ -1,7 +1,7 @@
 public class Verifier
 {
-    public static final String EXAMPLE_DATA = "123456789012";
-    public static final int EXAMPLE_WIDTH = 3;
+    public static final String EXAMPLE_DATA = "0222112222120000";
+    public static final int EXAMPLE_WIDTH = 2;
     public static final int EXAMPLE_HEIGHT = 2;
 
     public Verifier (boolean debug)
@@ -15,7 +15,7 @@ public class Verifier
 
     public final boolean verify ()
     {
-        if (_theImage.numberOfLayers() == 2)
+        if (_theImage.numberOfLayers() == 4)
             return true;
         else
             return false;
