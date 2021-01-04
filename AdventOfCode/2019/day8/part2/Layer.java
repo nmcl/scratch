@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Layer
 {
     public Layer (int width, int height, char[] data)
@@ -29,39 +31,45 @@ public class Layer
 
         for (int i = 0; i < _theData.length; i++)
         {
-            switch (_theData[i])  // work off this layer's colour ...
-            {
-                case Colour.BLACK:
-                {
-                    /*
-                     * No need to look at the merging colour. Black
-                     * overrides white or transparent.
-                     */
-
-                    mergedData[i] = Colour.BLACK;
-                }
-                break;
-                case Colour.WHITE:
-                {
-                    mergedData[i] = Colour.WHITE;
-                }
-                break;
-                case Colour.TRANSPARENT:
-                {
-                    mergedData[i] = layerBelow._theData[i];
-                }
-                break;
-                default:
-                {
-                    System.out.println("Error - unknown pixel coloud: "+_theData[i]);
-
-                    mergedData[i] = Colour.BLACK;  // make it black
-                }
-                break;
-            }
+            if ((_theData[i] == Colour.WHITE) || (_theData[i] == Colour.BLACK))
+                mergedData[i] = _theData[i];
+            else
+                mergedData[i] = layerBelow._theData[i];
         }
 
        return new Layer(_width, _height, mergedData);
+    }
+
+    @Override
+    public int hashCode ()
+    {
+        return Objects.hash(_theData);
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Layer temp = (Layer) obj;
+
+            if (_theData.length != temp._theData.length)
+                return false;
+
+            for (int i = 0; i < _theData.length; i++)
+            {
+                if (_theData[i] != temp._theData[i])
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     @Override

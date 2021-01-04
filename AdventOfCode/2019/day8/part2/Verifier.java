@@ -3,6 +3,7 @@ public class Verifier
     public static final String EXAMPLE_DATA = "0222112222120000";
     public static final int EXAMPLE_WIDTH = 2;
     public static final int EXAMPLE_HEIGHT = 2;
+    public static final char[] EXAMPLE_RESULT = {'0','1','1','0'};
 
     /*
      * 02
@@ -35,10 +36,11 @@ public class Verifier
     public final boolean verify ()
     {
         Layer finalLayer = _theImage.getFinalLayer();
+        Layer expectedLayer = new Layer(EXAMPLE_WIDTH, EXAMPLE_HEIGHT, EXAMPLE_RESULT);
 
         System.out.println("Got back:\n"+finalLayer);
 
-        return true;
+        return finalLayer.equals(expectedLayer);
     }
 
     private Image _theImage;
