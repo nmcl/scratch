@@ -8,13 +8,14 @@ public class Decoder
     {
         int width = DEFAULT_WIDTH;
         int height = DEFAULT_HEIGHT;
+        boolean debug = false;
         boolean verify = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-helps".equals(args[i]))
             {
-                System.out.println("Usage: [-help] [-verify] [-width <size>] [-height <size>]");
+                System.out.println("Usage: [-help] [-debug] [-verify] [-width <size>] [-height <size>]");
                 System.exit(0);
             }
 
@@ -26,13 +27,19 @@ public class Decoder
 
             if ("-verify".equals(args[i]))
                 verify = true;
+
+            if ("-debug".equals(args[i]))
+                debug = true;
         }
 
         if (verify)
         {
-            Verifier theVerifier = new Verifier();
+            Verifier theVerifier = new Verifier(debug);
 
-            theVerifier.verify();
+            if (theVerifier.verify())
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Verify failed!");
         }
     }
 }

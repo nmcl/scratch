@@ -13,9 +13,14 @@ public class Image
         decodeImageData();
     }
 
-    public Vector<Layer> getLayers ()
+    public final int numberOfLayers ()
     {
-        return null;
+        return _layers.size();
+    }
+
+    public final Vector<Layer> getLayers ()
+    {
+        return _layers;
     }
 
     private void decodeImageData ()
