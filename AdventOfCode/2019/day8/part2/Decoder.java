@@ -75,30 +75,9 @@ public class Decoder
                 System.out.println("Image is: "+theImage.toString());
             }
 
-            Vector<Layer> layers = theImage.getLayers();
-            Enumeration<Layer> iter = layers.elements();
-            Layer fewestZeroPixels = null;
-            int zeros = Integer.MAX_VALUE;
-
-            while (iter.hasMoreElements())
-            {
-                Layer theLayer = iter.nextElement();
-                int numberOfZeros = theLayer.numberOfPixels(0);
-
-                if (numberOfZeros <= zeros)
-                {
-                    fewestZeroPixels = theLayer;
-                    zeros = numberOfZeros;
-                }
-            }
-
-            if (debug)
-                System.out.println("Layer with fewest zeros ("+zeros+"):\n"+fewestZeroPixels);
-
-            int numberOfOnes = fewestZeroPixels.numberOfPixels(1);
-            int numberOfTwos = fewestZeroPixels.numberOfPixels(2);
-
-            System.out.println("Number of 1 digits multiplied by the number of 2: "+(numberOfOnes * numberOfTwos));
+            Layer finalLayer = theImage.getRenderedLayer();
+            
+            System.out.println("Rendered layer:\n"+finalLayer.readableForm());
         }
     }
 }

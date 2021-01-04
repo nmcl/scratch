@@ -92,6 +92,33 @@ public class Layer
         return str;
     }
 
+    public String readableForm ()
+    {
+        String str = "";
+        int index = 0;
+
+        do
+        {
+            if (_theData[index] == Colour.WHITE)
+                str += "#";
+            else
+            {
+                if (_theData[index] == Colour.TRANSPARENT)
+                    str += ".";
+                else
+                    str += " ";
+            }
+            
+            index++;
+
+            if (index % _width == 0)
+                str += "\n";
+        }
+        while (index < _theData.length);
+
+        return str;
+    }
+
     private int _width;
     private int _height;
     private char[] _theData;
