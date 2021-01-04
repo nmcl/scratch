@@ -6,11 +6,13 @@ public class Verifier
 
     public Verifier ()
     {
-
+        _theImage = new Image(EXAMPLE_WIDTH, EXAMPLE_HEIGHT, EXAMPLE_DATA);
     }
 
     public final boolean verify ()
     {
         return true;
     }
+
+    private Image _theImage;
 }
