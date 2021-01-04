@@ -20,6 +20,50 @@ public class Layer
         return number;
     }
 
+    public Layer merge (Layer layerBelow)
+    {
+        if (layerBelow == null)
+            return null;
+
+        char[] mergedData = new char[_theData.length];
+
+        for (int i = 0; i < _theData.length; i++)
+        {
+            switch (_theData[i])  // work off this layer's colour ...
+            {
+                case Colour.BLACK:
+                {
+                    /*
+                     * No need to look at the merging colour. Black
+                     * overrides white or transparent.
+                     */
+
+                    mergedData[i] = Colour.BLACK;
+                }
+                break;
+                case Colour.WHITE:
+                {
+                    mergedData[i] = Colour.WHITE;
+                }
+                break;
+                case Colour.TRANSPARENT:
+                {
+                    mergedData[i] = layerBelow._theData[i];
+                }
+                break;
+                default:
+                {
+                    System.out.println("Error - unknown pixel coloud: "+_theData[i]);
+
+                    mergedData[i] = Colour.BLACK;  // make it black
+                }
+                break;
+            }
+        }
+
+       return new Layer(_width, _height, mergedData);
+    }
+
     @Override
     public String toString ()
     {

@@ -23,6 +23,35 @@ public class Image
         return _layers;
     }
 
+    public final Layer getFinalLayer ()
+    {
+        Enumeration<Layer> iter = _layers.elements();
+        Layer currentLayer = iter.nextElement();
+
+        if (currentLayer == null)
+        {
+            System.out.println("No first layer!");
+
+            return null;
+        }
+
+        while (iter.hasMoreElements())
+        {
+            Layer nextLayer = iter.nextElement();
+
+            if (nextLayer == null)
+            {
+                System.out.println("Uneven number of layers!");
+            }
+            else
+            {
+                currentLayer = currentLayer.merge(nextLayer);
+            }
+        }
+
+        return currentLayer;
+    }
+
     private void decodeImageData ()
     {
         char[] pixels = _data.toCharArray();

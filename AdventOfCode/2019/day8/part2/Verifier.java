@@ -4,6 +4,25 @@ public class Verifier
     public static final int EXAMPLE_WIDTH = 2;
     public static final int EXAMPLE_HEIGHT = 2;
 
+    /*
+     * 02
+     * 22
+     * 
+     * 11
+     * 22
+     * 
+     * 22
+     * 12
+     * 
+     * 00
+     * 00
+     * 
+     * Gives ...
+     * 
+     * 0 1
+     * 1 0
+     */
+
     public Verifier (boolean debug)
     {
         _theImage = new Image(EXAMPLE_WIDTH, EXAMPLE_HEIGHT, EXAMPLE_DATA);
@@ -15,10 +34,11 @@ public class Verifier
 
     public final boolean verify ()
     {
-        if (_theImage.numberOfLayers() == 4)
-            return true;
-        else
-            return false;
+        Layer finalLayer = _theImage.getFinalLayer();
+
+        System.out.println("Got back:\n"+finalLayer);
+
+        return true;
     }
 
     private Image _theImage;
