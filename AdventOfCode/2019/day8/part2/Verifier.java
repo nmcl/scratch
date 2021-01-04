@@ -35,7 +35,7 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Layer finalLayer = _theImage.getFinalLayer();
+        Layer finalLayer = _theImage.getRenderedLayer();
         Layer expectedLayer = new Layer(EXAMPLE_WIDTH, EXAMPLE_HEIGHT, EXAMPLE_RESULT);
 
         System.out.println("Got back:\n"+finalLayer);

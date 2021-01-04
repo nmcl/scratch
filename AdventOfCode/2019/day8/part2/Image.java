@@ -23,7 +23,7 @@ public class Image
         return _layers;
     }
 
-    public final Layer getFinalLayer ()
+    public final Layer getRenderedLayer ()
     {
         Enumeration<Layer> iter = _layers.elements();
         Layer currentLayer = iter.nextElement();
