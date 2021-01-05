@@ -36,7 +36,7 @@ public class Intcode
         _instructionPointer = 0;
         _values = new String[values.length];
         _currentState = "-1";
-        _status = Intcode.CREATED;
+        _status = Status.CREATED;
 
         System.arraycopy(values, 0, _values, 0, values.length);
     }
@@ -174,9 +174,9 @@ public class Intcode
                      int param1 = Integer.valueOf(_values[i+1]);
 
                      if (_debug)
-                        System.out.println("Storing "+((_status == Intcode.CREATED) ? initialInput1 : initialInput2)+" at position "+param1);
+                        System.out.println("Storing "+((_status == Status.CREATED) ? initialInput1 : initialInput2)+" at position "+param1);
 
-                     _values[param1] = String.valueOf(((_status == Intcode.CREATED) ? initialInput1 : initialInput2));
+                     _values[param1] = String.valueOf(((_status == Status.CREATED) ? initialInput1 : initialInput2));
 
                      i = i+1;  // move the pointer on.
                 }
@@ -200,7 +200,7 @@ public class Intcode
                      i = i+1;  // move the pointer on.
 
                      _instructionPointer = i+1;
-                    _status = Intcode.PAUSED;
+                    _status = Status.PAUSED;
 
                      return _currentState;
                 }
@@ -363,7 +363,7 @@ public class Intcode
                         System.out.println("Halting execution.");
 
                      _instructionPointer = _values.length;
-                    _status = Intcode.HALTED;
+                    _status = Status.HALTED;
 
                      return _currentState;
                 }
@@ -372,11 +372,11 @@ public class Intcode
                     System.out.println("Unknown opcode "+str+" encountered");
 
                     _instructionPointer = _values.length;  // stop any further execution.
-                    _status = Intcode.HALTED;
+                    _status = Status.HALTED;
                 }
             }
 
-            _status = Intcode.RUNNING;
+            _status = Status.RUNNING;
         }
 
         return _currentState;
