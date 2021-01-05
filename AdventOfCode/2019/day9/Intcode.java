@@ -15,15 +15,6 @@ public class Intcode
 
     public static final String DELIMITER = ",";
 
-    /**
-     * The status of the computer.
-     */
-
-    public static final int CREATED = 0;
-    public static final int PAUSED = 1;
-    public static final int RUNNING = 2;
-    public static final int HALTED = 3;
-
     /*
      * This implementation is stateless other than being placed
      * into debug mode where it will output whatever action it
@@ -43,7 +34,7 @@ public class Intcode
 
     public final boolean hasHalted ()
     {
-        return (_status == HALTED);
+        return (_status == Status.HALTED);
     }
 
     public final String currentState ()
