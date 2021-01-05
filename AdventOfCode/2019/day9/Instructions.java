@@ -1,9 +1,5 @@
 public class Instructions
 {
-    /*
-     * Could be enum values but ints are just so much easier!
-     */
-
      /**
       * The Opcodes for the computer.
       */
