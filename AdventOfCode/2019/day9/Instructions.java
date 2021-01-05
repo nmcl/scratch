@@ -14,7 +14,7 @@ public class Instructions
     public static final int EQUALS = 8;
     public static final int HALT = 99;
 
-    private String commandToString (int command)
+    public static final String commandToString (int command)
     {
         switch (command)
         {

@@ -1,25 +1,7 @@
 import java.io.*;
 
 public class Intcode
-{
-    /*
-     * Could be enum values but ints are just so much easier!
-     */
-
-     /**
-      * The Opcodes for the computer.
-      */
-
-    public static final int ADD = 1;
-    public static final int MULTIPLY = 2;
-    public static final int INPUT_AND_STORE = 3;
-    public static final int OUTPUT = 4;
-    public static final int JUMP_IF_TRUE = 5;
-    public static final int JUMP_IF_FALSE = 6;
-    public static final int LESS_THAN = 7;
-    public static final int EQUALS = 8;
-    public static final int HALT = 99;
-   
+{  
     /**
      * The Parameter modes.
      * 
@@ -106,7 +88,7 @@ public class Intcode
 
             if (_debug)
             {
-                System.out.println("\nWorking on element "+i+" which is command "+commandToString(opcode)+
+                System.out.println("\nWorking on element "+i+" which is command "+Instructions.commandToString(opcode)+
                                         " with parameter modes ...");
                 printModes(modes);
             }
@@ -117,7 +99,7 @@ public class Intcode
 
             switch (opcode)
             {
-                case Intcode.ADD:
+                case Instructions.ADD:
                 {
                     /*
                      * Opcode 1 adds together numbers read from two positions
@@ -151,7 +133,7 @@ public class Intcode
                      i = i+3;  // move the pointer on.
                 }
                 break;
-                case Intcode.MULTIPLY:
+                case Instructions.MULTIPLY:
                 {
                     /*
                      * Opcode 2 works exactly like opcode 1, except it multiplies the
@@ -182,7 +164,7 @@ public class Intcode
                     i = i+3;  // move the pointer on.
                 }
                 break;
-                case Intcode.INPUT_AND_STORE:
+                case Instructions.INPUT_AND_STORE:
                 {
                     /*
                      * Opcode 3 takes a single integer as input and saves it to
@@ -199,7 +181,7 @@ public class Intcode
                      i = i+1;  // move the pointer on.
                 }
                 break;
-                case Intcode.OUTPUT:
+                case Instructions.OUTPUT:
                 {
                     /*
                      * Opcode 4 outputs the value of its only parameter.
@@ -223,7 +205,7 @@ public class Intcode
                      return _currentState;
                 }
  //               break;
-                case Intcode.JUMP_IF_TRUE:
+                case Instructions.JUMP_IF_TRUE:
                 {
                     /*
                      * If the first parameter is non-zero, it sets the instruction pointer to
@@ -253,7 +235,7 @@ public class Intcode
                         i = i+2;
                 }
                 break;
-                case Intcode.JUMP_IF_FALSE:
+                case Instructions.JUMP_IF_FALSE:
                 {
                     /*
                      * If the first parameter is zero, it sets the instruction pointer to the value
@@ -283,7 +265,7 @@ public class Intcode
                         i = i+2;
                 }
                 break;
-                case Intcode.LESS_THAN:
+                case Instructions.LESS_THAN:
                 {
                     /*
                      * If the first parameter is less than the second parameter, it stores 1
@@ -327,7 +309,7 @@ public class Intcode
                     i = i+3;  // move the pointer on.
                 }
                 break;
-                case Intcode.EQUALS:
+                case Instructions.EQUALS:
                 {
                     /*
                      * If the first parameter is equal to the second parameter, it stores 1
@@ -371,7 +353,7 @@ public class Intcode
                     i = i+3;  // move the pointer on.
                 }
                 break;
-                case Intcode.HALT:
+                case Instructions.HALT:
                 {
                     /*
                      * Means that the program is finished and should immediately halt.
@@ -453,33 +435,6 @@ public class Intcode
         for (int i = 0; i < modes.length; i++)
         {
             System.out.println("Parameter "+i+" is "+((modes[i] == IMMEDIATE_MODE) ? "immediate mode": "position mode"));
-        }
-    }
-
-    private String commandToString (int command)
-    {
-        switch (command)
-        {
-            case ADD:
-                return "ADD";
-            case MULTIPLY:
-                return "MULTIPLY";
-            case INPUT_AND_STORE:
-                return "INPUT_AND_STORE";
-            case OUTPUT:
-                return "OUTPUT";
-            case JUMP_IF_TRUE:
-                return "JUMP_IF_TRUE";
-            case JUMP_IF_FALSE:
-                return "JUMP_IF_FALSE";
-            case LESS_THAN:
-                return "LESS_THAN";
-            case EQUALS:
-                return "EQUALS";
-            case HALT:
-                return "HALT";
-            default:
-                return "UNKNOWN";
         }
     }
 
