@@ -2,8 +2,6 @@ import java.io.*;
 
 public class Intcode
 {
-    private static final int MAX_PARAMETERS = 3;
-
     public static final String DELIMITER = ",";
 
     /*
@@ -66,13 +64,13 @@ public class Intcode
         {
             String str = getOpcode(_values[i]);
             int opcode = Integer.valueOf(str);
-            int[] modes = getModes(_values[i]);
+            int[] modes = ParameterMode.getModes(_values[i]);
 
             if (_debug)
             {
                 System.out.println("\nWorking on element "+i+" which is command "+Instructions.commandToString(opcode)+
                                         " with parameter modes ...");
-                printModes(modes);
+                ParameterMode.printModes(modes);
             }
 
             /*
@@ -380,44 +378,6 @@ public class Intcode
             System.out.println("Opcode: "+opcode);
 
         return opcode;
-    }
-
-    /*
-     * Return the modes for the parameters, including default mode
-     * (POSITION_MODE) if nothing is defined.
-     */
-
-    private final int[] getModes (String digits)
-    {
-        int[] theModes = new int[MAX_PARAMETERS];
-
-        for (int i = 0; i < MAX_PARAMETERS; i++)
-            theModes[i] = ParameterMode.POSITION_MODE;
-
-        if ((digits != null) && (digits.length() > 2))
-        {
-            String allModes = digits.substring(0, digits.length()-2);
-            char[] modeArray = allModes.toCharArray();
-
-            for (int j = modeArray.length-1; j >= 0; j--)
-            {
-                if (modeArray[j] == '1')
-                    theModes[modeArray.length-j-1] = ParameterMode.IMMEDIATE_MODE;
-            }
-        }
-
-        if (_debug)
-            printModes(theModes);
-
-        return theModes;
-    }
-
-    private static final void printModes (int[] modes)
-    {
-        for (int i = 0; i < modes.length; i++)
-        {
-            System.out.println("Parameter "+i+" is "+((modes[i] == ParameterMode.IMMEDIATE_MODE) ? "immediate mode": "position mode"));
-        }
     }
 
     private boolean _debug;
