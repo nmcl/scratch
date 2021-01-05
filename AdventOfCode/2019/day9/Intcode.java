@@ -1,16 +1,7 @@
 import java.io.*;
 
 public class Intcode
-{  
-    /**
-     * The Parameter modes.
-     * 
-     * Parameters that an instruction writes to will never be in immediate mode.
-     */
-
-    public static final int POSITION_MODE = 0;  // parameter is interpreted as a position
-    public static final int IMMEDIATE_MODE = 1; // parameter is interpreted as a value
-
+{
     private static final int MAX_PARAMETERS = 3;
 
     public static final String DELIMITER = ",";
@@ -105,10 +96,10 @@ public class Intcode
                      int param2 = Integer.valueOf(_values[i+2]);
                      int param3 = Integer.valueOf(_values[i+3]);
 
-                     if (modes[0] == POSITION_MODE)
+                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[param1]);
 
-                     if (modes[1] == POSITION_MODE)
+                     if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[param2]);
 
                      if (_debug)
@@ -136,10 +127,10 @@ public class Intcode
                     int param2 = Integer.valueOf(_values[i+2]);
                     int param3 = Integer.valueOf(_values[i+3]);
 
-                    if (modes[0] == POSITION_MODE)
+                    if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[param1]);
 
-                    if (modes[1] == POSITION_MODE)
+                    if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
@@ -180,7 +171,7 @@ public class Intcode
 
                     int param1 = Integer.valueOf(_values[i+1]);
 
-                    if (modes[0] == IMMEDIATE_MODE)
+                    if (modes[0] == ParameterMode.IMMEDIATE_MODE)
                         _currentState = Integer.toString(param1);
                     else
                         _currentState = _values[param1];
@@ -206,10 +197,10 @@ public class Intcode
                     int param1 = Integer.valueOf(_values[i+1]);
                     int param2 = Integer.valueOf(_values[i+2]);
 
-                    if (modes[0] == POSITION_MODE)
+                    if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[param1]);
 
-                    if (modes[1] == POSITION_MODE)
+                    if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
@@ -236,10 +227,10 @@ public class Intcode
                     int param1 = Integer.valueOf(_values[i+1]);
                     int param2 = Integer.valueOf(_values[i+2]);
 
-                    if (modes[0] == POSITION_MODE)
+                    if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[param1]);
 
-                    if (modes[1] == POSITION_MODE)
+                    if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
@@ -267,10 +258,10 @@ public class Intcode
                     int param2 = Integer.valueOf(_values[i+2]);
                     int param3 = Integer.valueOf(_values[i+3]);
 
-                    if (modes[0] == POSITION_MODE)
+                    if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[param1]);
 
-                    if (modes[1] == POSITION_MODE)
+                    if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
@@ -311,10 +302,10 @@ public class Intcode
                     int param2 = Integer.valueOf(_values[i+2]);
                     int param3 = Integer.valueOf(_values[i+3]);
 
-                    if (modes[0] == POSITION_MODE)
+                    if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[param1]);
 
-                    if (modes[1] == POSITION_MODE)
+                    if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[param2]);
 
                     if (_debug)
@@ -396,12 +387,12 @@ public class Intcode
      * (POSITION_MODE) if nothing is defined.
      */
 
-    private int[] getModes (String digits)
+    private final int[] getModes (String digits)
     {
         int[] theModes = new int[MAX_PARAMETERS];
 
         for (int i = 0; i < MAX_PARAMETERS; i++)
-            theModes[i] = POSITION_MODE;
+            theModes[i] = ParameterMode.POSITION_MODE;
 
         if ((digits != null) && (digits.length() > 2))
         {
@@ -411,7 +402,7 @@ public class Intcode
             for (int j = modeArray.length-1; j >= 0; j--)
             {
                 if (modeArray[j] == '1')
-                    theModes[modeArray.length-j-1] = IMMEDIATE_MODE;
+                    theModes[modeArray.length-j-1] = ParameterMode.IMMEDIATE_MODE;
             }
         }
 
@@ -421,11 +412,11 @@ public class Intcode
         return theModes;
     }
 
-    private void printModes (int[] modes)
+    private static final void printModes (int[] modes)
     {
         for (int i = 0; i < modes.length; i++)
         {
-            System.out.println("Parameter "+i+" is "+((modes[i] == IMMEDIATE_MODE) ? "immediate mode": "position mode"));
+            System.out.println("Parameter "+i+" is "+((modes[i] == ParameterMode.IMMEDIATE_MODE) ? "immediate mode": "position mode"));
         }
     }
 
