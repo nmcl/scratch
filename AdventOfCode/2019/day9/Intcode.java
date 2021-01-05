@@ -17,6 +17,7 @@ public class Intcode
         _values = new String[values.length];
         _currentState = "-1";
         _status = Status.CREATED;
+        _relativeBase = 0;
 
         System.arraycopy(values, 0, _values, 0, values.length);
     }
@@ -70,7 +71,7 @@ public class Intcode
             {
                 System.out.println("\nWorking on element "+i+" which is command "+Instructions.commandToString(opcode)+
                                         " with parameter modes ...");
-                                        
+
                 ParameterMode.printModes(modes);
             }
 
@@ -334,6 +335,15 @@ public class Intcode
                     i = i+3;  // move the pointer on.
                 }
                 break;
+                case Instructions.RELATIVE_BASE:
+                {
+                    /*
+                     * Set the relative base.
+                     */
+
+                    _relativeBase = Integer.valueOf(_values[i+1]);
+                }
+                break;
                 case Instructions.HALT:
                 {
                     /*
@@ -386,4 +396,5 @@ public class Intcode
     private String[] _values;
     private String _currentState;
     private int _status;
+    private int _relativeBase;
 }
