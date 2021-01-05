@@ -8,9 +8,10 @@ public class ParameterMode
 
     public static final int POSITION_MODE = 0;  // parameter is interpreted as a position
     public static final int IMMEDIATE_MODE = 1; // parameter is interpreted as a value
+    public static final int RELATIVE_MODE = 2;  // the parameter is interpreted as a position relative to base
 
     private static final int MAX_PARAMETERS = 3;
-    
+
     /*
      * Return the modes for the parameters, including default mode
      * (POSITION_MODE) if nothing is defined.
@@ -42,7 +43,22 @@ public class ParameterMode
     {
         for (int i = 0; i < modes.length; i++)
         {
-            System.out.println("Parameter "+i+" is "+((modes[i] == ParameterMode.IMMEDIATE_MODE) ? "immediate mode": "position mode"));
+            System.out.print("Parameter "+i+" is ");
+            
+            if (modes[i] == ParameterMode.IMMEDIATE_MODE)
+                System.out.println("immediate mode");
+            else
+            {
+                if (modes[i] == ParameterMode.POSITION_MODE)
+                    System.out.println("position mode");
+                else
+                {
+                    if (modes[i] == ParameterMode.RELATIVE_MODE)
+                        System.out.println("relative mode");
+                    else
+                        System.out.println("unknown mode!");
+                }
+            }
         }
     }
 }

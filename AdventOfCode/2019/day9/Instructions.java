@@ -12,6 +12,7 @@ public class Instructions
     public static final int JUMP_IF_FALSE = 6;
     public static final int LESS_THAN = 7;
     public static final int EQUALS = 8;
+    public static final int RELATIVE_BASE = 9;
     public static final int HALT = 99;
 
     public static final String commandToString (int command)
@@ -34,6 +35,8 @@ public class Instructions
                 return "LESS_THAN";
             case EQUALS:
                 return "EQUALS";
+            case RELATIVE_BASE:
+                return "RELATIVE_BASE";
             case HALT:
                 return "HALT";
             default:

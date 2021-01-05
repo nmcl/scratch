@@ -70,6 +70,7 @@ public class Intcode
             {
                 System.out.println("\nWorking on element "+i+" which is command "+Instructions.commandToString(opcode)+
                                         " with parameter modes ...");
+                                        
                 ParameterMode.printModes(modes);
             }
 
