@@ -47,7 +47,7 @@ public class Intcode
      * @return true if the program code has completed, false otherwise.
      */
 
-     // maybe move the initial parameter to the constructor?
+     // maybe move the initial parameter to the constructor? Or change this to a Vector/array for multiple states?
 
     public Vector<String> executeProgram (long initialInput1, long initialInput2)
     {
