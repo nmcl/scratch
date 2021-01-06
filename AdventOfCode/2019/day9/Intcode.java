@@ -94,7 +94,7 @@ public class Intcode
 
                      long param1 = Long.valueOf(_values[i+1]);
                      long param2 = Long.valueOf(_values[i+2]);
-                     long param3 = Long.valueOf(_values[i+3]);
+                     int param3 = Integer.valueOf(_values[i+3]);
 
                      if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
@@ -110,7 +110,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Storing "+sum+" at position "+param3);
 
-                     _values[(int) param3] = String.valueOf(sum);
+                     _values[param3] = String.valueOf(sum);
 
                      i = i+3;  // move the pointer on.
                 }
@@ -123,20 +123,20 @@ public class Intcode
                      * the opcode indicate where the inputs and outputs are, not their values.
                      */
 
-                    int param1 = Integer.valueOf(_values[i+1]);
-                    int param2 = Integer.valueOf(_values[i+2]);
+                    long param1 = Long.valueOf(_values[i+1]);
+                    long param2 = Long.valueOf(_values[i+2]);
                     int param3 = Integer.valueOf(_values[i+3]);
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[param1]);
+                        param1 = Integer.valueOf(_values[(int) param1]);
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[param2]);
+                        param2 = Integer.valueOf(_values[(int) param2]);
 
                     if (_debug)
                         System.out.println("Multiplying "+param1+" and "+param2);
 
-                    int product = Integer.valueOf(param1)*Integer.valueOf(param2);
+                    long product = Long.valueOf(param1)*Long.valueOf(param2);
 
                     if (_debug)
                         System.out.println("Storing "+product+" at position "+param3);
@@ -172,7 +172,7 @@ public class Intcode
                     int param1 = Integer.valueOf(_values[i+1]);
 
                     if (modes[0] == ParameterMode.IMMEDIATE_MODE)
-                        _currentState = Integer.toString(param1);
+                        _currentState = _values[i+1];
                     else
                         _currentState = _values[param1];
 
@@ -194,21 +194,21 @@ public class Intcode
                      * the value from the second parameter. Otherwise, it does nothing.
                      */
 
-                    int param1 = Integer.valueOf(_values[i+1]);
-                    int param2 = Integer.valueOf(_values[i+2]);
+                    long param1 = Long.valueOf(_values[i+1]);
+                    long param2 = Long.valueOf(_values[i+2]);
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[param1]);
+                        param1 = Integer.valueOf(_values[(int) param1]);
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[param2]);
+                        param2 = Integer.valueOf(_values[(int) param2]);
 
                     if (_debug)
                         System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
 
                     if (param1 != 0)
                     {
-                        i = param2 -1;  // remember we're in a for-loop!
+                        i = (int) param2 -1;  // remember we're in a for-loop!
 
                         if (_debug)
                             System.out.println("Will jump to "+param2);
@@ -224,21 +224,21 @@ public class Intcode
                      * from the second parameter. Otherwise, it does nothing.
                      */
 
-                    int param1 = Integer.valueOf(_values[i+1]);
-                    int param2 = Integer.valueOf(_values[i+2]);
+                    long param1 = Long.valueOf(_values[i+1]);
+                    long param2 = Long.valueOf(_values[i+2]);
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[param1]);
+                        param1 = Integer.valueOf(_values[(int) param1]);
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[param2]);
+                        param2 = Integer.valueOf(_values[(int) param2]);
 
                     if (_debug)
                         System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
 
                     if (param1 == 0)
                     {
-                        i = param2 -1;  // remember we're in a for-loop!
+                        i = (int) param2 -1;  // remember we're in a for-loop!
 
                         if (_debug)
                             System.out.println("Will jump to "+param2);
@@ -254,15 +254,15 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    int param1 = Integer.valueOf(_values[i+1]);
-                    int param2 = Integer.valueOf(_values[i+2]);
+                    long param1 = Long.valueOf(_values[i+1]);
+                    long param2 = Long.valueOf(_values[i+2]);
                     int param3 = Integer.valueOf(_values[i+3]);
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[param1]);
+                        param1 = Integer.valueOf(_values[(int) param1]);
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[param2]);
+                        param2 = Integer.valueOf(_values[(int) param2]);
 
                     if (_debug)
                     {
@@ -298,15 +298,15 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    int param1 = Integer.valueOf(_values[i+1]);
-                    int param2 = Integer.valueOf(_values[i+2]);
+                    long param1 = Long.valueOf(_values[i+1]);
+                    long param2 = Long.valueOf(_values[i+2]);
                     int param3 = Integer.valueOf(_values[i+3]);
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[param1]);
+                        param1 = Integer.valueOf(_values[(int) param1]);
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[param2]);
+                        param2 = Integer.valueOf(_values[(int) param2]);
 
                     if (_debug)
                     {
