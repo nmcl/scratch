@@ -48,7 +48,7 @@ public class Intcode
 
      // maybe move the initial parameter to the constructor?
 
-    public String executeProgram (int initialInput1, int initialInput2)
+    public String executeProgram (long initialInput1, long initialInput2)
     {
         if (hasHalted())
         {
@@ -92,9 +92,9 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     int param1 = Integer.valueOf(_values[i+1]);
-                     int param2 = Integer.valueOf(_values[i+2]);
-                     int param3 = Integer.valueOf(_values[i+3]);
+                     long param1 = Long.valueOf(_values[i+1]);
+                     long param2 = Long.valueOf(_values[i+2]);
+                     long param3 = Long.valueOf(_values[i+3]);
 
                      if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[param1]);
