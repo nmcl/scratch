@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class Intcode
 {
@@ -15,7 +16,7 @@ public class Intcode
         _debug = debug;
         _instructionPointer = 0;
         _values = new String[values.length];
-        _currentState = "-1";
+        _currentState = new Vector<String>();
         _status = Status.CREATED;
         _relativeBase = 0;
 
@@ -27,7 +28,7 @@ public class Intcode
         return (_status == Status.HALTED);
     }
 
-    public final String currentState ()
+    public final Vector<String> currentState ()
     {
         return _currentState;
     }
@@ -48,7 +49,7 @@ public class Intcode
 
      // maybe move the initial parameter to the constructor?
 
-    public String executeProgram (long initialInput1, long initialInput2)
+    public Vector<String> executeProgram (long initialInput1, long initialInput2)
     {
         if (hasHalted())
         {
@@ -192,13 +193,13 @@ public class Intcode
                     int param1 = Integer.valueOf(_values[i+1]);
 
                     if (modes[0] == ParameterMode.IMMEDIATE_MODE)
-                        _currentState = _values[i+1];
+                        _currentState.add(new String(_values[i+1]));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            _currentState = _values[param1 + _relativeBase];
+                            _currentState.add(new String(_values[param1 + _relativeBase]));
                         else
-                            _currentState = _values[param1];
+                            _currentState.add(new String(_values[param1]));
                     }
 
                      if (_debug)
@@ -460,7 +461,7 @@ public class Intcode
     private boolean _debug;
     private int _instructionPointer;
     private String[] _values;
-    private String _currentState;
+    private Vector<String> _currentState;
     private int _status;
     private int _relativeBase;
 }
