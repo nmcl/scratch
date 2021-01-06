@@ -97,6 +97,8 @@ public class Intcode
                      long param2 = Long.valueOf(_values[i+2]);
                      int param3 = Integer.valueOf(_values[i+3]);
 
+                     System.out.println("**using "+param1+" "+param2+" "+param3);
+                     
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
                     else
@@ -203,7 +205,7 @@ public class Intcode
                     }
 
                      if (_debug)
-                        System.out.println("Outputting value "+_currentState+" from entry "+param1);
+                        System.out.println("Addomg value "+_currentState+" from entry "+param1+" to output state (memory).");
 
                      i = i+1;  // move the pointer on.
 
