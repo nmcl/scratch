@@ -96,11 +96,21 @@ public class Intcode
                      long param2 = Long.valueOf(_values[i+2]);
                      int param3 = Integer.valueOf(_values[i+3]);
 
-                     if (modes[0] == ParameterMode.POSITION_MODE)
+                    if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                    }
 
-                     if (modes[1] == ParameterMode.POSITION_MODE)
+                    if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[(int) param2]);
+                    else
+                    {
+                        if (modes[1] == ParameterMode.RELATIVE_MODE)
+                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                    }
 
                      if (_debug)
                         System.out.println("Adding "+param1+" and "+param2);
@@ -129,9 +139,19 @@ public class Intcode
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                    }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[(int) param2]);
+                    else
+                    {
+                        if (modes[1] == ParameterMode.RELATIVE_MODE)
+                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                    }
 
                     if (_debug)
                         System.out.println("Multiplying "+param1+" and "+param2);
@@ -174,7 +194,12 @@ public class Intcode
                     if (modes[0] == ParameterMode.IMMEDIATE_MODE)
                         _currentState = _values[i+1];
                     else
-                        _currentState = _values[param1];
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            _currentState = _values[param1 + _relativeBase];
+                        else
+                            _currentState = _values[param1];
+                    }
 
                      if (_debug)
                         System.out.println("Outputting value "+_currentState+" from entry "+param1);
@@ -199,9 +224,19 @@ public class Intcode
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                    }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[(int) param2]);
+                    else
+                    {
+                        if (modes[1] == ParameterMode.RELATIVE_MODE)
+                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                    }
 
                     if (_debug)
                         System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
@@ -229,9 +264,19 @@ public class Intcode
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                    }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[(int) param2]);
+                    else
+                    {
+                        if (modes[1] == ParameterMode.RELATIVE_MODE)
+                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                    }
 
                     if (_debug)
                         System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
@@ -260,9 +305,19 @@ public class Intcode
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                    }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[(int) param2]);
+                    else
+                    {
+                        if (modes[1] == ParameterMode.RELATIVE_MODE)
+                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                    }
 
                     if (_debug)
                     {
@@ -304,9 +359,19 @@ public class Intcode
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(_values[(int) param1]);
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                    }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
                         param2 = Integer.valueOf(_values[(int) param2]);
+                    else
+                    {
+                        if (modes[1] == ParameterMode.RELATIVE_MODE)
+                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                    }
 
                     if (_debug)
                     {
@@ -338,10 +403,11 @@ public class Intcode
                 case Instructions.RELATIVE_BASE:
                 {
                     /*
-                     * Set the relative base.
+                     * The relative base increases (or decreases, if the value is negative)
+                     * by the value of the parameter.
                      */
 
-                    _relativeBase = Integer.valueOf(_values[i+1]);
+                    _relativeBase += Integer.valueOf(_values[i+1]);  // assume integer for array size
                 }
                 break;
                 case Instructions.HALT:
