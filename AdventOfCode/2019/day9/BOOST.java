@@ -26,7 +26,7 @@ public class BOOST
 
         if (runVerifier)
         {
-            Verifier theVerifier = new Verifier(permutations, debug);
+            Verifier theVerifier = new Verifier(debug);
 
             if (theVerifier.verify())
                 System.out.println("Verified ok!");

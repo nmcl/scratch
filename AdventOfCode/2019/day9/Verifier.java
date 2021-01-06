@@ -11,36 +11,29 @@ public class Verifier
 
     public Verifier (boolean debug)
     {
-        super(debug);
+        _debug = debug;
     }
 
     public boolean verify ()
     {
-        if (verifyInstance(EXAMPLE_1_COMMANDS, MAX_THRUSTER_SIGNAL_1))
+        Intcode theComputer = new Intcode(EXAMPLE_1_COMMANDS, _debug);
+        Vector<String> results = theComputer.executeProgram(0, 0);
+        Enumeration<String> iter = results.elements();
+        boolean verified = true;
+        int index = 0;
+
+        while (iter.hasMoreElements() && verified)
         {
-            if (verifyInstance(EXAMPLE_2_COMMANDS, MAX_THRUSTER_SIGNAL_2))
-            {
-                return true;
-            }
+            String item = iter.nextElement();
+
+            if (!EXAMPLE_1_RESULTS[index].equals(item))
+                verified = false;
             else
-            {
-                if (_debug)
-                    System.out.println("Verify failed for "+MAX_THRUSTER_SIGNAL_2);
-            }
-        }
-        else
-        {
-            if (_debug)
-                System.out.println("Verify failed for "+MAX_THRUSTER_SIGNAL_1);
+                index++;
         }
 
-        return false;
+        return verified;
     }
 
-    private boolean verifyInstance (String[] commands, int expected)
-    {
-        setProgram(commands);
-
-        return (maxThrusterSignal() == expected);
-    }
+    private boolean _debug;
 }
