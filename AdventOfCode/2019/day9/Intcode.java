@@ -97,20 +97,20 @@ public class Intcode
                      long param3 = Long.valueOf(_values[i+3]);
 
                      if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[param1]);
+                        param1 = Integer.valueOf(_values[(int) param1]);
 
                      if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[param2]);
+                        param2 = Integer.valueOf(_values[(int) param2]);
 
                      if (_debug)
                         System.out.println("Adding "+param1+" and "+param2);
 
-                     int sum = param1+param2;
+                     long sum = param1+param2;
 
                      if (_debug)
                         System.out.println("Storing "+sum+" at position "+param3);
 
-                     _values[param3] = String.valueOf(sum);
+                     _values[(int) param3] = String.valueOf(sum);
 
                      i = i+3;  // move the pointer on.
                 }
