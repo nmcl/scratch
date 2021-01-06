@@ -17,7 +17,11 @@ public class Verifier
     public boolean verify ()
     {
         Intcode theComputer = new Intcode(EXAMPLE_1_COMMANDS, _debug);
-        Vector<String> results = theComputer.executeProgram(0, 0);
+        Vector<String> results = new Vector<String>();
+        
+        while (!theComputer.hasHalted())
+            results = theComputer.executeProgram(0, 0);
+
         Enumeration<String> iter = results.elements();
         boolean verified = true;
         int index = 0;
