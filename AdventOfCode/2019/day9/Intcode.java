@@ -409,6 +409,11 @@ public class Intcode
                      */
 
                     _relativeBase += Integer.valueOf(_values[i+1]);  // assume integer for array size
+
+                    if (_debug)
+                        System.out.println("Relative base now "+_relativeBase);
+
+                    i = i +1;
                 }
                 break;
                 case Instructions.HALT:
