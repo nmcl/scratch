@@ -192,16 +192,16 @@ public class Intcode
                      * Opcode 4 outputs the value of its only parameter.
                      */
 
-                    int param1 = Integer.valueOf(getValue(i+1));
+                    long param1 = Long.valueOf(getValue(i+1));
 
                     if (modes[0] == ParameterMode.IMMEDIATE_MODE)
                         _currentState.add(new String(getValue(i+1)));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            _currentState.add(new String(getValue(param1 + _relativeBase)));
+                            _currentState.add(new String(getValue((int) param1 + _relativeBase)));
                         else
-                            _currentState.add(new String(getValue(param1)));
+                            _currentState.add(new String(getValue((int) param1)));
                     }
 
                      if (_debug)
