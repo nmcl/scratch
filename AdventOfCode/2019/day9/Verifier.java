@@ -19,8 +19,7 @@ public class Verifier
         Vector<String> instructions = new Vector<String>();
         Vector<String> results = new Vector<String>();
 
-        for (int i = 0; i < EXAMPLE_1_COMMANDS.length; i++)
-            instructions.add(i, EXAMPLE_1_COMMANDS[i]);
+        instructions.addAll(Arrays.asList(EXAMPLE_1_COMMANDS));
 
         Intcode theComputer = new Intcode(instructions, 0, _debug);
         

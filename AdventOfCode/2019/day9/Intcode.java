@@ -99,8 +99,6 @@ public class Intcode
                      long param2 = Long.valueOf(getValue(i+2));
                      int param3 = Integer.valueOf(getValue(i+3));
 
-                     System.out.println("**using "+param1+" "+param2+" "+param3);
-
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(getValue((int) param1));
                     else
@@ -453,8 +451,8 @@ public class Intcode
 
     private final String getValue (int i)
     {
-        if (_memory.size() < i)
-            _memory.ensureCapacity(i);
+        if (_memory.size() <= i)
+            _memory.setSize(i+EXPANSION_FACTOR);
 
         String str = _memory.elementAt(i);
 
@@ -469,8 +467,8 @@ public class Intcode
 
     private final void setValue (int i, String str)
     {
-        if (_memory.size() < i)
-            _memory.ensureCapacity(i);
+        if (_memory.size() <= i)
+            _memory.setSize(i+EXPANSION_FACTOR);
 
         _memory.set(i, str);
     }
@@ -500,4 +498,6 @@ public class Intcode
     private int _initialInput;
     private int _status;
     private int _relativeBase;
+
+    private static final int EXPANSION_FACTOR = 10;  // if we need to increase memory, add a bit more to reduce multiple back-to-back expansions
 }
