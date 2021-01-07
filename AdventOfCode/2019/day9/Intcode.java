@@ -5,6 +5,8 @@ public class Intcode
 {
     public static final String DELIMITER = ",";
 
+    public static final String INITIALISED_MEMORY = "0";
+
     /*
      * This implementation is stateless other than being placed
      * into debug mode where it will output whatever action it
@@ -16,7 +18,7 @@ public class Intcode
         _debug = debug;
         _instructionPointer = 0;
         _currentState = new Vector<String>();
-        _availableMemory = new Vector<String>(values);
+        _memory = new Vector<String>(values);
         _initialInput = input;
         _status = Status.CREATED;
         _relativeBase = 0;
@@ -61,11 +63,12 @@ public class Intcode
         if (_debug)
             System.out.println("Intcode input <"+_initialInput+"> and instruction pointer: "+_instructionPointer);
         
-        for (int i = _instructionPointer; i < _values.length; i++)
+        for (int i = _instructionPointer; i < _memory.size(); i++)
         {
-            String str = getOpcode(_values[i]);
+            String str = getOpcode(_memory.elementAt(i));
+                
             int opcode = Integer.valueOf(str);
-            int[] modes = ParameterMode.getModes(_values[i]);
+            int[] modes = ParameterMode.getModes(_memory.elementAt(i));
 
             if (_debug)
             {
@@ -92,17 +95,14 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     long param1 = Long.valueOf(_values[i+1]);
-                     long param2 = Long.valueOf(_values[i+2]);
-                     int param3 = Integer.valueOf(_values[i+3]);
+                     long param1 = Long.valueOf(_memory.elementAt(i+1));
+                     long param2 = Long.valueOf(_memory.elementAt(i+2));
+                     int param3 = Integer.valueOf(_memory.elementAt(i+3));
 
                      System.out.println("**using "+param1+" "+param2+" "+param3);
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                    {
-                        System.out.println("Position mode");
-                        param1 = Integer.valueOf(_values[(int) param1]);
-                    }
+                        param1 = Integer.valueOf(_memory.elementAt((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
@@ -449,6 +449,30 @@ public class Intcode
         return _currentState;
     }
 
+    private final String getValue (int i)
+    {
+        if (_memory.size() < i)
+            _memory.ensureCapacity(i);
+
+        String str = _memory.elementAt(i);
+
+        if (str == null)
+        {
+            str = INITIALISED_MEMORY;
+            _memory.set(i, str);
+        }
+
+        return str;
+    }
+
+    private final void setValue (int i, String str)
+    {
+        if (_memory.size() < i)
+            _memory.ensureCapacity(i);
+
+        _memory.set(i, str);
+    }
+
     private String getOpcode (String digits)
     {
         if (_debug)
@@ -470,7 +494,7 @@ public class Intcode
     private boolean _debug;
     private int _instructionPointer;
     private Vector<String> _currentState;
-    private Vector<String> _availableMemory;
+    private Vector<String> _memory;
     private int _initialInput;
     private int _status;
     private int _relativeBase;
