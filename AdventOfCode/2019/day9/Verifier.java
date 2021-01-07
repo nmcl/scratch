@@ -16,11 +16,16 @@ public class Verifier
 
     public boolean verify ()
     {
-        Intcode theComputer = new Intcode(EXAMPLE_1_COMMANDS, _debug);
+        Vector<String> instructions = new Vector<String>();
         Vector<String> results = new Vector<String>();
+
+        for (int i = 0; i < EXAMPLE_1_COMMANDS.length; i++)
+            instructions.add(i, EXAMPLE_1_COMMANDS[i]);
+
+        Intcode theComputer = new Intcode(instructions, 0, _debug);
         
         while (!theComputer.hasHalted())
-            results = theComputer.executeProgram(0, 0);
+            results = theComputer.executeProgram();
 
         Enumeration<String> iter = results.elements();
         boolean verified = true;

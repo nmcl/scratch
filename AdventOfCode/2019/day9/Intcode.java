@@ -95,26 +95,26 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     long param1 = Long.valueOf(_memory.elementAt(i+1));
-                     long param2 = Long.valueOf(_memory.elementAt(i+2));
-                     int param3 = Integer.valueOf(_memory.elementAt(i+3));
+                     long param1 = Long.valueOf(getValue(i+1));
+                     long param2 = Long.valueOf(getValue(i+2));
+                     int param3 = Integer.valueOf(getValue(i+3));
 
                      System.out.println("**using "+param1+" "+param2+" "+param3);
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_memory.elementAt((int) param1));
+                        param1 = Integer.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[(int) param2]);
+                        param2 = Integer.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                      if (_debug)
@@ -125,7 +125,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Storing "+sum+" at position "+param3);
 
-                     _values[param3] = String.valueOf(sum);
+                     setValue(param3, String.valueOf(sum));
 
                      i = i+3;  // move the pointer on.
                 }
@@ -138,24 +138,24 @@ public class Intcode
                      * the opcode indicate where the inputs and outputs are, not their values.
                      */
 
-                    long param1 = Long.valueOf(_values[i+1]);
-                    long param2 = Long.valueOf(_values[i+2]);
-                    int param3 = Integer.valueOf(_values[i+3]);
+                    long param1 = Long.valueOf(getValue(i+1));
+                    long param2 = Long.valueOf(getValue(i+2));
+                    int param3 = Integer.valueOf(getValue(i+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[(int) param1]);
+                        param1 = Integer.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[(int) param2]);
+                        param2 = Integer.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -166,7 +166,7 @@ public class Intcode
                     if (_debug)
                         System.out.println("Storing "+product+" at position "+param3);
 
-                    _values[param3] = String.valueOf(product);
+                    setValue(param3, String.valueOf(product));
 
                     i = i+3;  // move the pointer on.
                 }
@@ -178,12 +178,12 @@ public class Intcode
                      * the position given by its only parameter.
                      */
 
-                     int param1 = Integer.valueOf(_values[i+1]);
+                     int param1 = Integer.valueOf(getValue(i+1));
 
                      if (_debug)
-                        System.out.println("Storing "+((_status == Status.CREATED) ? initialInput1 : initialInput2)+" at position "+param1);
+                        System.out.println("Storing "+_initialInput+" at position "+param1);
 
-                     _values[param1] = String.valueOf(((_status == Status.CREATED) ? initialInput1 : initialInput2));
+                     setValue(param1, String.valueOf(_initialInput));
 
                      i = i+1;  // move the pointer on.
                 }
@@ -194,16 +194,16 @@ public class Intcode
                      * Opcode 4 outputs the value of its only parameter.
                      */
 
-                    int param1 = Integer.valueOf(_values[i+1]);
+                    int param1 = Integer.valueOf(getValue(i+1));
 
                     if (modes[0] == ParameterMode.IMMEDIATE_MODE)
-                        _currentState.add(new String(_values[i+1]));
+                        _currentState.add(new String(getValue(i+1)));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            _currentState.add(new String(_values[param1 + _relativeBase]));
+                            _currentState.add(new String(getValue(param1 + _relativeBase)));
                         else
-                            _currentState.add(new String(_values[param1]));
+                            _currentState.add(new String(getValue(param1)));
                     }
 
                      if (_debug)
@@ -224,23 +224,23 @@ public class Intcode
                      * the value from the second parameter. Otherwise, it does nothing.
                      */
 
-                    long param1 = Long.valueOf(_values[i+1]);
-                    long param2 = Long.valueOf(_values[i+2]);
+                    long param1 = Long.valueOf(getValue(i+1));
+                    long param2 = Long.valueOf(getValue(i+2));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[(int) param1]);
+                        param1 = Integer.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[(int) param2]);
+                        param2 = Integer.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -264,23 +264,23 @@ public class Intcode
                      * from the second parameter. Otherwise, it does nothing.
                      */
 
-                    long param1 = Long.valueOf(_values[i+1]);
-                    long param2 = Long.valueOf(_values[i+2]);
+                    long param1 = Long.valueOf(getValue(i+1));
+                    long param2 = Long.valueOf(getValue(i+2));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[(int) param1]);
+                        param1 = Integer.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[(int) param2]);
+                        param2 = Integer.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -304,24 +304,24 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    long param1 = Long.valueOf(_values[i+1]);
-                    long param2 = Long.valueOf(_values[i+2]);
-                    int param3 = Integer.valueOf(_values[i+3]);
+                    long param1 = Long.valueOf(getValue(i+1));
+                    long param2 = Long.valueOf(getValue(i+2));
+                    int param3 = Integer.valueOf(getValue(i+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[(int) param1]);
+                        param1 = Integer.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[(int) param2]);
+                        param2 = Integer.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -335,14 +335,14 @@ public class Intcode
                         if (_debug)
                             System.out.print("1");
 
-                        _values[param3] = "1";
+                        setValue(param3, "1");
                     }
                     else
                     {
                         if (_debug)
                             System.out.print("0");
 
-                        _values[param3] = "0";
+                        setValue(param3, "0");
                     }
 
                     if (_debug)
@@ -358,24 +358,24 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    long param1 = Long.valueOf(_values[i+1]);
-                    long param2 = Long.valueOf(_values[i+2]);
-                    int param3 = Integer.valueOf(_values[i+3]);
+                    long param1 = Long.valueOf(getValue(i+1));
+                    long param2 = Long.valueOf(getValue(i+2));
+                    int param3 = Integer.valueOf(getValue(i+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(_values[(int) param1]);
+                        param1 = Integer.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(_values[(int) param1 + _relativeBase]);
+                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(_values[(int) param2]);
+                        param2 = Integer.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(_values[(int) param2 + _relativeBase]);
+                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -389,14 +389,14 @@ public class Intcode
                         if (_debug)
                             System.out.print("1");
 
-                        _values[param3] = "1";
+                        setValue(param3, "1");
                     }
                     else
                     {
                         if (_debug)
                             System.out.print("0");
 
-                        _values[param3] = "0";
+                        setValue(param3, "0");
                     }
 
                     if (_debug)
@@ -412,7 +412,7 @@ public class Intcode
                      * by the value of the parameter.
                      */
 
-                    _relativeBase += Integer.valueOf(_values[i+1]);  // assume integer for array size
+                    _relativeBase += Integer.valueOf(getValue(i+1));  // assume integer for array size
 
                     if (_debug)
                         System.out.println("Relative base now "+_relativeBase);
@@ -429,7 +429,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Halting execution.");
 
-                     _instructionPointer = _values.length;
+                     _instructionPointer = _memory.size();
                     _status = Status.HALTED;
 
                      return _currentState;
@@ -438,7 +438,7 @@ public class Intcode
                 {
                     System.out.println("Unknown opcode "+str+" encountered");
 
-                    _instructionPointer = _values.length;  // stop any further execution.
+                    _instructionPointer = _memory.size();  // stop any further execution.
                     _status = Status.HALTED;
                 }
             }
@@ -448,6 +448,8 @@ public class Intcode
 
         return _currentState;
     }
+
+    // these methods ensure capacity is available
 
     private final String getValue (int i)
     {
