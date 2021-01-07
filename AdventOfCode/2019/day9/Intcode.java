@@ -104,15 +104,15 @@ public class Intcode
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
+                            param1 = Long.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(getValue((int) param2));
+                        param2 = Long.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
+                            param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                      if (_debug)
@@ -141,19 +141,19 @@ public class Intcode
                     int param3 = Integer.valueOf(getValue(i+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(getValue((int) param1));
+                        param1 = Long.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
+                            param1 = Long.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(getValue((int) param2));
+                        param2 = Long.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
+                            param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -226,19 +226,19 @@ public class Intcode
                     long param2 = Long.valueOf(getValue(i+2));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(getValue((int) param1));
+                        param1 = Long.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
+                            param1 = Long.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(getValue((int) param2));
+                        param2 = Long.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
+                            param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -266,19 +266,19 @@ public class Intcode
                     long param2 = Long.valueOf(getValue(i+2));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(getValue((int) param1));
+                        param1 = Long.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
+                            param1 = Long.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(getValue((int) param2));
+                        param2 = Long.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
+                            param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -307,19 +307,19 @@ public class Intcode
                     int param3 = Integer.valueOf(getValue(i+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(getValue((int) param1));
+                        param1 = Long.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
+                            param1 = Long.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(getValue((int) param2));
+                        param2 = Long.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
+                            param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
@@ -361,19 +361,19 @@ public class Intcode
                     int param3 = Integer.valueOf(getValue(i+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        param1 = Integer.valueOf(getValue((int) param1));
+                        param1 = Long.valueOf(getValue((int) param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            param1 = Integer.valueOf(getValue((int) param1 + _relativeBase));
+                            param1 = Long.valueOf(getValue((int) param1 + _relativeBase));
                     }
 
                     if (modes[1] == ParameterMode.POSITION_MODE)
-                        param2 = Integer.valueOf(getValue((int) param2));
+                        param2 = Long.valueOf(getValue((int) param2));
                     else
                     {
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
-                            param2 = Integer.valueOf(getValue((int) param2 + _relativeBase));
+                            param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
                     if (_debug)
