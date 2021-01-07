@@ -52,7 +52,6 @@ public class BOOST
             {
                 values = line.split(Intcode.DELIMITER);
             }
-
         }
         catch (Throwable ex)
         {
@@ -67,6 +66,28 @@ public class BOOST
             catch (Throwable ex)
             {
             }
+        }
+
+        Vector<String> instructions = new Vector<String>();
+
+        instructions.addAll(Arrays.asList(values));
+
+        Intcode theComputer = new Intcode(instructions, 1, debug);
+
+        Vector<String> results = new Vector<String>();
+
+        while (!theComputer.hasHalted())
+            results = theComputer.executeProgram();
+
+        Enumeration<String> iter = results.elements();
+
+        System.out.println("Got back:");
+
+        while (iter.hasMoreElements())
+        {
+            String item = iter.nextElement();
+
+            System.out.println(item);
         }
     }
     
