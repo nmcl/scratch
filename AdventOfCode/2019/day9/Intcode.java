@@ -11,16 +11,15 @@ public class Intcode
      * takes.
      */
 
-    public Intcode (String[] values, boolean debug)
+    public Intcode (Vector<String> values, int input, boolean debug)
     {
         _debug = debug;
         _instructionPointer = 0;
-        _values = new String[values.length];
         _currentState = new Vector<String>();
+        _availableMemory = new Vector<String>(values);
+        _initialInput = input;
         _status = Status.CREATED;
         _relativeBase = 0;
-
-        System.arraycopy(values, 0, _values, 0, values.length);
     }
 
     public final boolean hasHalted ()
@@ -49,7 +48,7 @@ public class Intcode
 
      // maybe move the initial parameter to the constructor? Or change this to a Vector/array for multiple states?
 
-    public Vector<String> executeProgram (long initialInput1, long initialInput2)
+    public Vector<String> executeProgram ()
     {
         if (hasHalted())
         {
@@ -60,7 +59,7 @@ public class Intcode
         }
 
         if (_debug)
-            System.out.println("Intcode inputs <"+initialInput1+", "+initialInput2+"> and instruction pointer: "+_instructionPointer);
+            System.out.println("Intcode input <"+_initialInput+"> and instruction pointer: "+_instructionPointer);
         
         for (int i = _instructionPointer; i < _values.length; i++)
         {
@@ -98,9 +97,12 @@ public class Intcode
                      int param3 = Integer.valueOf(_values[i+3]);
 
                      System.out.println("**using "+param1+" "+param2+" "+param3);
-                     
+
                     if (modes[0] == ParameterMode.POSITION_MODE)
+                    {
+                        System.out.println("Position mode");
                         param1 = Integer.valueOf(_values[(int) param1]);
+                    }
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
@@ -467,8 +469,9 @@ public class Intcode
 
     private boolean _debug;
     private int _instructionPointer;
-    private String[] _values;
     private Vector<String> _currentState;
+    private Vector<String> _availableMemory;
+    private int _initialInput;
     private int _status;
     private int _relativeBase;
 }
