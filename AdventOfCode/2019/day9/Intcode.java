@@ -186,7 +186,7 @@ public class Intcode
 
                      int param1 = Integer.valueOf(getValue(_instructionPointer+1));
 
-                     System.out.println("**have "+param1);
+                     System.out.println("**have "+param1+" -1 -1");
 
                      if (_debug)
                         System.out.println("Storing "+_initialInput+" at position "+param1);
@@ -216,7 +216,7 @@ public class Intcode
                             _currentState.add(new String(getValue((int) param1)));
                     }
 
-                    System.out.println("**have "+param1);
+                    System.out.println("**have "+param1+" -1 -1");
 
                      if (_debug)
                         System.out.println("Addomg value "+_currentState+" from entry "+param1+" to output state (memory).");
@@ -254,7 +254,7 @@ public class Intcode
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
-                    System.out.println("**have "+param1+" "+param2);
+                    System.out.println("**have "+param1+" "+param2+" -1");
 
                     if (_debug)
                         System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
@@ -296,7 +296,7 @@ public class Intcode
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
-                    System.out.println("**have "+param1+" "+param2);
+                    System.out.println("**have "+param1+" "+param2+" -1");
 
                     if (_debug)
                         System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
@@ -339,7 +339,7 @@ public class Intcode
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
-                    System.out.println("**have "+param1+" "+param2);
+                    System.out.println("**have "+param1+" "+param2+" "+param3);
 
                     if (_debug)
                     {
@@ -395,7 +395,7 @@ public class Intcode
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
-                    System.out.println("**have "+param1+" "+param2);
+                    System.out.println("**have "+param1+" "+param2+" "+param3);
 
                     if (_debug)
                     {
@@ -433,7 +433,7 @@ public class Intcode
 
                     _relativeBase += Integer.valueOf(getValue(_instructionPointer+1));  // assume integer for array size
 
-                    System.out.println("**have "+getValue(_instructionPointer+1));
+                    System.out.println("**have "+_relativeBase+" -1 -1");
 
                     if (_debug)
                         System.out.println("Relative base now "+_relativeBase);
@@ -450,7 +450,7 @@ public class Intcode
                      if (_debug)
                         System.out.println("Halting execution.");
 
-                        System.out.println("**have 99");
+                        System.out.println("**have -1 -1 -1");
 
                      _instructionPointer = _memory.size();
                     _status = Status.HALTED;
