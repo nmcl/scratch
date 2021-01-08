@@ -63,16 +63,20 @@ public class Intcode
         if (_debug)
             System.out.println("Intcode input <"+_initialInput+"> and instruction pointer: "+_instructionPointer);
         
-        for (int i = _instructionPointer; i < _memory.size(); i++)
+        // change to a while loop on _instructionPointer
+
+        while (!hasHalted())
         {
-            String str = getOpcode(_memory.elementAt(i));
+            System.out.println("**instruction pointer "+_instructionPointer);
+
+            String str = getOpcode(_memory.elementAt(_instructionPointer));
                 
             int opcode = Integer.valueOf(str);
-            int[] modes = ParameterMode.getModes(_memory.elementAt(i));
+            int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
             if (_debug)
             {
-                System.out.println("\nWorking on element "+i+" which is command "+Instructions.commandToString(opcode)+
+                System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
                                         " with parameter modes ...");
 
                 ParameterMode.printModes(modes);
@@ -95,9 +99,9 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     long param1 = Long.valueOf(getValue(i+1));
-                     long param2 = Long.valueOf(getValue(i+2));
-                     int param3 = Integer.valueOf(getValue(i+3));
+                     long param1 = Long.valueOf(getValue(_instructionPointer+1));
+                     long param2 = Long.valueOf(getValue(_instructionPointer+2));
+                     int param3 = Integer.valueOf(getValue(_instructionPointer+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Integer.valueOf(getValue((int) param1));
@@ -123,9 +127,11 @@ public class Intcode
                      if (_debug)
                         System.out.println("Storing "+sum+" at position "+param3);
 
+                        System.out.println("**have "+param1+" "+param2+" "+param3);
+
                      setValue(param3, String.valueOf(sum));
 
-                     i = i+3;  // move the pointer on.
+                     _instructionPointer += 4; // move the pointer on.
                 }
                 break;
                 case Instructions.MULTIPLY:
@@ -136,9 +142,9 @@ public class Intcode
                      * the opcode indicate where the inputs and outputs are, not their values.
                      */
 
-                    long param1 = Long.valueOf(getValue(i+1));
-                    long param2 = Long.valueOf(getValue(i+2));
-                    int param3 = Integer.valueOf(getValue(i+3));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2));
+                    int param3 = Integer.valueOf(getValue(_instructionPointer+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Long.valueOf(getValue((int) param1));
@@ -164,9 +170,11 @@ public class Intcode
                     if (_debug)
                         System.out.println("Storing "+product+" at position "+param3);
 
+                        System.out.println("**have "+param1+" "+param2+" "+param3);
+
                     setValue(param3, String.valueOf(product));
 
-                    i = i+3;  // move the pointer on.
+                    _instructionPointer += 4;  // move the pointer on.
                 }
                 break;
                 case Instructions.INPUT_AND_STORE:
@@ -176,14 +184,18 @@ public class Intcode
                      * the position given by its only parameter.
                      */
 
-                     int param1 = Integer.valueOf(getValue(i+1));
+                     int param1 = Integer.valueOf(getValue(_instructionPointer+1));
+
+                     System.out.println("**have "+param1);
 
                      if (_debug)
                         System.out.println("Storing "+_initialInput+" at position "+param1);
 
                      setValue(param1, String.valueOf(_initialInput));
 
-                     i = i+1;  // move the pointer on.
+                     _instructionPointer += 2;  // move the pointer on.
+
+                     System.out.println("**after store the pointer is "+_instructionPointer);
                 }
                 break;
                 case Instructions.OUTPUT:
@@ -192,10 +204,10 @@ public class Intcode
                      * Opcode 4 outputs the value of its only parameter.
                      */
 
-                    long param1 = Long.valueOf(getValue(i+1));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1));
 
                     if (modes[0] == ParameterMode.IMMEDIATE_MODE)
-                        _currentState.add(new String(getValue(i+1)));
+                        _currentState.add(new String(getValue(_instructionPointer+1)));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
@@ -204,12 +216,13 @@ public class Intcode
                             _currentState.add(new String(getValue((int) param1)));
                     }
 
+                    System.out.println("**have "+param1);
+
                      if (_debug)
                         System.out.println("Addomg value "+_currentState+" from entry "+param1+" to output state (memory).");
 
-                     i = i+1;  // move the pointer on.
+                    _instructionPointer += 2;  // move the pointer on.
 
-                     _instructionPointer = i+1;
                     _status = Status.PAUSED;
 
                      return _currentState;
@@ -222,8 +235,8 @@ public class Intcode
                      * the value from the second parameter. Otherwise, it does nothing.
                      */
 
-                    long param1 = Long.valueOf(getValue(i+1));
-                    long param2 = Long.valueOf(getValue(i+2));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Long.valueOf(getValue((int) param1));
@@ -241,18 +254,20 @@ public class Intcode
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
+                    System.out.println("**have "+param1+" "+param2);
+
                     if (_debug)
                         System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
 
                     if (param1 != 0)
                     {
-                        i = (int) param2 -1;  // remember we're in a for-loop!
+                        _instructionPointer = (int) param2;
 
                         if (_debug)
                             System.out.println("Will jump to "+param2);
                     }
                     else
-                        i = i+2;
+                        _instructionPointer += 3;
                 }
                 break;
                 case Instructions.JUMP_IF_FALSE:
@@ -262,8 +277,8 @@ public class Intcode
                      * from the second parameter. Otherwise, it does nothing.
                      */
 
-                    long param1 = Long.valueOf(getValue(i+1));
-                    long param2 = Long.valueOf(getValue(i+2));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Long.valueOf(getValue((int) param1));
@@ -281,18 +296,20 @@ public class Intcode
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
+                    System.out.println("**have "+param1+" "+param2);
+
                     if (_debug)
                         System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
 
                     if (param1 == 0)
                     {
-                        i = (int) param2 -1;  // remember we're in a for-loop!
+                        _instructionPointer = (int) param2;
 
                         if (_debug)
                             System.out.println("Will jump to "+param2);
                     }
                     else
-                        i = i+2;
+                        _instructionPointer += 3;
                 }
                 break;
                 case Instructions.LESS_THAN:
@@ -302,9 +319,9 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    long param1 = Long.valueOf(getValue(i+1));
-                    long param2 = Long.valueOf(getValue(i+2));
-                    int param3 = Integer.valueOf(getValue(i+3));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2));
+                    int param3 = Integer.valueOf(getValue(_instructionPointer+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Long.valueOf(getValue((int) param1));
@@ -321,6 +338,8 @@ public class Intcode
                         if (modes[1] == ParameterMode.RELATIVE_MODE)
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
+
+                    System.out.println("**have "+param1+" "+param2);
 
                     if (_debug)
                     {
@@ -376,6 +395,8 @@ public class Intcode
                             param2 = Long.valueOf(getValue((int) param2 + _relativeBase));
                     }
 
+                    System.out.println("**have "+param1+" "+param2);
+
                     if (_debug)
                     {
                         System.out.println("Checking whether "+param1+" is equal to "+param2);
@@ -412,6 +433,8 @@ public class Intcode
 
                     _relativeBase += Integer.valueOf(getValue(i+1));  // assume integer for array size
 
+                    System.out.println("**have "+getValue(i+1));
+
                     if (_debug)
                         System.out.println("Relative base now "+_relativeBase);
 
@@ -426,6 +449,8 @@ public class Intcode
 
                      if (_debug)
                         System.out.println("Halting execution.");
+
+                        System.out.println("**have 99");
 
                      _instructionPointer = _memory.size();
                     _status = Status.HALTED;
@@ -475,18 +500,12 @@ public class Intcode
 
     private String getOpcode (String digits)
     {
-        if (_debug)
-            System.out.println("Command: "+digits);
-        
         String opcode = null;
 
         if ((digits != null) && (digits.length() > 2))
             opcode = digits.substring(digits.length()-2);
         else
             opcode = digits;
-       
-        if (_debug)
-            System.out.println("Opcode: "+opcode);
 
         return opcode;
     }
