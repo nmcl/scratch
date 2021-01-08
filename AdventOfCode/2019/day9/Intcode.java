@@ -187,6 +187,14 @@ public class Intcode
 
                      int param1 = Integer.valueOf(getValue(_instructionPointer+1));
 
+                    if (modes[0] == ParameterMode.POSITION_MODE)
+                        param1 = Integer.valueOf(getValue(param1));
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            param1 = Integer.valueOf(getValue(param1 + _relativeBase));
+                    }
+
                      System.out.println("**have "+param1+" -1 -1");
 
                      if (_debug)
@@ -489,7 +497,7 @@ public class Intcode
 
     // these methods ensure capacity is available
 
-    private final String getValue (int i)
+    private final String getValue (int i, int mode)
     {
         if (_memory.size() <= i)
             _memory.setSize(i+EXPANSION_FACTOR);
