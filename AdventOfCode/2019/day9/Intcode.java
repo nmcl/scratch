@@ -62,8 +62,6 @@ public class Intcode
 
         if (_debug)
             System.out.println("Intcode input <"+_initialInput+"> and instruction pointer: "+_instructionPointer);
-        
-        // change to a while loop on _instructionPointer
 
         while (!hasHalted())
         {
@@ -73,6 +71,9 @@ public class Intcode
                 
             int opcode = Integer.valueOf(str);
             int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
+
+            System.out.println("**opcode "+opcode);
+            ParameterMode.printModes(modes);
 
             if (_debug)
             {
@@ -431,7 +432,15 @@ public class Intcode
                      * by the value of the parameter.
                      */
 
-                    _relativeBase += Integer.valueOf(getValue(_instructionPointer+1));  // assume integer for array size
+                    int readAddress = _instructionPointer + 1;
+
+                    if (modes[0] == ParameterMode.POSITION_MODE)
+                        _relativeBase += Integer.valueOf(getValue(readAddress));
+                    else
+                    {
+                        if (modes[0] == ParameterMode.RELATIVE_MODE)
+                            _relativeBase += Integer.valueOf(getValue(readAddress + _relativeBase));
+                    }
 
                     System.out.println("**have "+_relativeBase+" -1 -1");
 
