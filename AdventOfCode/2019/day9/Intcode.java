@@ -365,7 +365,7 @@ public class Intcode
                     if (_debug)
                         System.out.println(" at location "+param3);
 
-                    i = i+3;  // move the pointer on.
+                    _instructionPointer += 4;  // move the pointer on.
                 }
                 break;
                 case Instructions.EQUALS:
@@ -375,9 +375,9 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    long param1 = Long.valueOf(getValue(i+1));
-                    long param2 = Long.valueOf(getValue(i+2));
-                    int param3 = Integer.valueOf(getValue(i+3));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2));
+                    int param3 = Integer.valueOf(getValue(_instructionPointer+3));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
                         param1 = Long.valueOf(getValue((int) param1));
@@ -421,7 +421,7 @@ public class Intcode
                     if (_debug)
                         System.out.println(" at location "+param3);
 
-                    i = i+3;  // move the pointer on.
+                    _instructionPointer += 4;  // move the pointer on.
                 }
                 break;
                 case Instructions.RELATIVE_BASE:
@@ -431,14 +431,14 @@ public class Intcode
                      * by the value of the parameter.
                      */
 
-                    _relativeBase += Integer.valueOf(getValue(i+1));  // assume integer for array size
+                    _relativeBase += Integer.valueOf(getValue(_instructionPointer+1));  // assume integer for array size
 
-                    System.out.println("**have "+getValue(i+1));
+                    System.out.println("**have "+getValue(_instructionPointer+1));
 
                     if (_debug)
                         System.out.println("Relative base now "+_relativeBase);
 
-                    i = i +1;
+                    _instructionPointer += 2;
                 }
                 break;
                 case Instructions.HALT:
