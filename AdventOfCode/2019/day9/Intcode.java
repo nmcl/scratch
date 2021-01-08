@@ -432,17 +432,23 @@ public class Intcode
                      * by the value of the parameter.
                      */
 
-                    int readAddress = _instructionPointer + 1;
+                    int param1 = Integer.valueOf(getValue(_instructionPointer+1));
 
                     if (modes[0] == ParameterMode.POSITION_MODE)
-                        _relativeBase += Integer.valueOf(getValue(readAddress));
+                        param1 = Integer.valueOf(getValue(param1));
                     else
                     {
                         if (modes[0] == ParameterMode.RELATIVE_MODE)
-                            _relativeBase += Integer.valueOf(getValue(readAddress + _relativeBase));
+                        {
+                            System.out.println("**searching from "+_relativeBase+" "+param1);
+
+                            param1 = Integer.valueOf(getValue(param1 + _relativeBase));
+                        }
                     }
 
-                    System.out.println("**have "+_relativeBase+" -1 -1");
+                    System.out.println("**have "+param1+" -1 -1");
+
+                    _relativeBase += param1;
 
                     if (_debug)
                         System.out.println("Relative base now "+_relativeBase);
