@@ -98,9 +98,9 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
-                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1]));
-                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2]));
+                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
                      if (_debug)
                         System.out.println("Adding "+param1+" and "+param2);
@@ -125,9 +125,9 @@ public class Intcode
                      * the opcode indicate where the inputs and outputs are, not their values.
                      */
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1]));
-                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2]));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
                     if (_debug)
                         System.out.println("Multiplying "+param1+" and "+param2);
@@ -151,7 +151,7 @@ public class Intcode
                      * the position given by its only parameter.
                      */
 
-                     int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0]));
+                     int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
                      System.out.println("**have "+param1+" -1 -1");
 
@@ -171,7 +171,7 @@ public class Intcode
                      * Opcode 4 outputs the value of its only parameter.
                      */
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
                     System.out.println("**have "+param1+" -1 -1");
 
@@ -192,8 +192,8 @@ public class Intcode
                      * the value from the second parameter. Otherwise, it does nothing.
                      */
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1]));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
 
                     System.out.println("**have "+param1+" "+param2+" -1");
 
@@ -218,8 +218,8 @@ public class Intcode
                      * from the second parameter. Otherwise, it does nothing.
                      */
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1]));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
 
                     System.out.println("**have "+param1+" "+param2+" -1");
 
@@ -244,9 +244,9 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1]));
-                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2]));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
                     System.out.println("**have "+param1+" "+param2+" "+param3);
 
@@ -284,9 +284,9 @@ public class Intcode
                      * in the position given by the third parameter. Otherwise, it stores 0.
                      */
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1]));
-                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2]));
+                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
                     System.out.println("**have "+param1+" "+param2+" "+param3);
 
@@ -324,7 +324,7 @@ public class Intcode
                      * by the value of the parameter.
                      */
 
-                    int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0]));
+                    int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
                     System.out.println("**have "+param1+" -1 -1");
 
@@ -369,10 +369,11 @@ public class Intcode
 
     // these methods ensure capacity is available
 
-    private String getValue (int index, int mode)
+    private String getValue (int index, int mode, boolean isOutput)
     {
         System.out.println("**modeParam "+mode);
-
+        System.out.println("**values "+_instructionPointer+" and "+(index - _instructionPointer));
+        
         String param = null;
         
         switch (mode)
@@ -383,8 +384,11 @@ public class Intcode
                 param = getValue(index);
                 System.out.println("**got back use "+param);
 
-                param = getValue(Integer.valueOf(param));
-                System.out.println("**and now "+param);
+                if (!isOutput)
+                {
+                    param = getValue(Integer.valueOf(param));
+                    System.out.println("**and now "+param);
+                }
             }
             break;
             case ParameterMode.IMMEDIATE_MODE:
@@ -399,9 +403,17 @@ public class Intcode
                 System.out.println("**initially trying: "+index);
                 param = getValue(index);
 
-                System.out.println("**searching from "+_relativeBase+" "+param);
-                param = getValue(Integer.valueOf(param) + _relativeBase);
-                System.out.println("**will use "+param);
+                if (!isOutput)
+                {
+                    System.out.println("**searching from "+_relativeBase+" "+param);
+                    param = getValue(Integer.valueOf(param) + _relativeBase);
+                    System.out.println("**will use "+param);
+                }
+                else
+                {
+                    param = Integer.toString(Integer.valueOf(param) + _relativeBase);
+                    System.out.println("**and now "+param);
+                }
             }
             break;
             default:
