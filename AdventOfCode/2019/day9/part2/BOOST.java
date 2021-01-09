@@ -72,7 +72,7 @@ public class BOOST
 
         instructions.addAll(Arrays.asList(values));
 
-        Intcode theComputer = new Intcode(instructions, 1, debug);
+        Intcode theComputer = new Intcode(instructions, 2, debug);
 
         Vector<String> results = new Vector<String>();
 
