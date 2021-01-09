@@ -68,14 +68,10 @@ public class Intcode
             System.out.println("**instruction pointer "+_instructionPointer);
 
             String str = getOpcode(_memory.elementAt(_instructionPointer));
-            
-            System.out.println("**got "+str);
-
             int opcode = Integer.valueOf(str);
             int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
             System.out.println("**opcode "+opcode);
-            ParameterMode.printModes(modes);
 
             if (_debug)
             {
@@ -102,9 +98,9 @@ public class Intcode
                      * the output should be stored.
                      */
 
-                     long param1 = Long.valueOf(getValue(_instructionPointer+1), modes[0]);
-                     long param2 = Long.valueOf(getValue(_instructionPointer+2), modes[1]);
-                     int param3 = Integer.valueOf(getValue(_instructionPointer+3), modes[2]);
+                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0]));
+                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1]));
+                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2]));
 
                      if (_debug)
                         System.out.println("Adding "+param1+" and "+param2);
@@ -375,17 +371,47 @@ public class Intcode
 
     private String getValue (int index, int mode)
     {
-        String param1 = getValue(index);
-        
-        if (mode == ParameterMode.POSITION_MODE)
-            param1 = getValue(Integer.valueOf(param1));
-        else
-        {
-            if (mode == ParameterMode.RELATIVE_MODE)
-                param1 = getValue(Integer.valueOf(param1) + _relativeBase);
-        }
+        System.out.println("**modeParam "+mode);
 
-        return param1;
+        String param = null;
+        
+        switch (mode)
+        {
+            case ParameterMode.POSITION_MODE:
+            {
+                System.out.println("**initially trying: "+index);
+                param = getValue(index);
+                System.out.println("**got back use "+param);
+
+                param = getValue(Integer.valueOf(param));
+                System.out.println("**and now "+param);
+            }
+            break;
+            case ParameterMode.IMMEDIATE_MODE:
+            {
+                System.out.println("**initially trying: "+index);
+                param = getValue(index);
+                System.out.println("**will use "+param);
+            }
+            break;
+            case ParameterMode.RELATIVE_MODE:
+            {
+                System.out.println("**initially trying: "+index);
+                param = getValue(index);
+
+                System.out.println("**searching from "+_relativeBase+" "+param);
+                param = getValue(Integer.valueOf(param) + _relativeBase);
+                System.out.println("**will use "+param);
+            }
+            break;
+            default:
+            {
+                System.out.println("Unknown Parameter Mode found: "+mode);
+                param = "-1";
+            }
+        }
+        
+        return param;
     }
 
     private String getValue (int i)
