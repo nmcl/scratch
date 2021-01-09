@@ -65,13 +65,9 @@ public class Intcode
 
         while (!hasHalted())
         {
-            System.out.println("**instruction pointer "+_instructionPointer);
-
             String str = getOpcode(_memory.elementAt(_instructionPointer));
             int opcode = Integer.valueOf(str);
             int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
-
-            System.out.println("**opcode "+opcode);
 
             if (_debug)
             {
@@ -110,8 +106,6 @@ public class Intcode
                      if (_debug)
                         System.out.println("Storing "+sum+" at position "+param3);
 
-                        System.out.println("**have "+param1+" "+param2+" "+param3);
-
                      setValue(param3, String.valueOf(sum));
 
                      _instructionPointer += 4; // move the pointer on.
@@ -137,8 +131,6 @@ public class Intcode
                     if (_debug)
                         System.out.println("Storing "+product+" at position "+param3);
 
-                        System.out.println("**have "+param1+" "+param2+" "+param3);
-
                     setValue(param3, String.valueOf(product));
 
                     _instructionPointer += 4;  // move the pointer on.
@@ -151,9 +143,7 @@ public class Intcode
                      * the position given by its only parameter.
                      */
 
-                     int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], false));
-
-                     System.out.println("**have "+param1+" -1 -1");
+                     int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
                      if (_debug)
                         System.out.println("Storing "+_initialInput+" at position "+param1);
@@ -161,8 +151,6 @@ public class Intcode
                      setValue(param1, String.valueOf(_initialInput));
 
                      _instructionPointer += 2;  // move the pointer on.
-
-                     System.out.println("**after store the pointer is "+_instructionPointer);
                 }
                 break;
                 case Instructions.OUTPUT:
@@ -173,10 +161,10 @@ public class Intcode
 
                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
-                    System.out.println("**have "+param1+" -1 -1");
-
                      if (_debug)
-                        System.out.println("Addomg value "+_currentState+" from entry "+param1+" to output state (memory).");
+                        System.out.println("Adding value "+_currentState+" from entry "+param1+" to output state (memory).");
+
+                    _currentState.add(Long.toString(param1));
 
                     _instructionPointer += 2;  // move the pointer on.
 
@@ -194,8 +182,6 @@ public class Intcode
 
                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
-
-                    System.out.println("**have "+param1+" "+param2+" -1");
 
                     if (_debug)
                         System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
@@ -221,8 +207,6 @@ public class Intcode
                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
 
-                    System.out.println("**have "+param1+" "+param2+" -1");
-
                     if (_debug)
                         System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
 
@@ -247,8 +231,6 @@ public class Intcode
                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
-
-                    System.out.println("**have "+param1+" "+param2+" "+param3);
 
                     if (_debug)
                     {
@@ -288,8 +270,6 @@ public class Intcode
                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
-                    System.out.println("**have "+param1+" "+param2+" "+param3);
-
                     if (_debug)
                     {
                         System.out.println("Checking whether "+param1+" is equal to "+param2);
@@ -326,8 +306,6 @@ public class Intcode
 
                     int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
-                    System.out.println("**have "+param1+" -1 -1");
-
                     _relativeBase += param1;
 
                     if (_debug)
@@ -344,8 +322,6 @@ public class Intcode
 
                      if (_debug)
                         System.out.println("Halting execution.");
-
-                        System.out.println("**have -1 -1 -1");
 
                      _instructionPointer = _memory.size();
                     _status = Status.HALTED;
@@ -371,49 +347,31 @@ public class Intcode
 
     private String getValue (int index, int mode, boolean isOutput)
     {
-        System.out.println("**modeParam "+mode);
-        System.out.println("**values "+_instructionPointer+" and "+(index - _instructionPointer));
-        
         String param = null;
         
         switch (mode)
         {
             case ParameterMode.POSITION_MODE:
             {
-                System.out.println("**initially trying: "+index);
                 param = getValue(index);
-                System.out.println("**got back use "+param);
 
                 if (!isOutput)
-                {
                     param = getValue(Integer.valueOf(param));
-                    System.out.println("**and now "+param);
-                }
             }
             break;
             case ParameterMode.IMMEDIATE_MODE:
             {
-                System.out.println("**initially trying: "+index);
                 param = getValue(index);
-                System.out.println("**will use "+param);
             }
             break;
             case ParameterMode.RELATIVE_MODE:
             {
-                System.out.println("**initially trying: "+index);
                 param = getValue(index);
 
                 if (!isOutput)
-                {
-                    System.out.println("**searching from "+_relativeBase+" "+param);
                     param = getValue(Integer.valueOf(param) + _relativeBase);
-                    System.out.println("**will use "+param);
-                }
                 else
-                {
                     param = Integer.toString(Integer.valueOf(param) + _relativeBase);
-                    System.out.println("**and now "+param);
-                }
             }
             break;
             default:
