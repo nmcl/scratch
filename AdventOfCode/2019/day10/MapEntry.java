@@ -5,7 +5,7 @@ public abstract class MapEntry
         return _position;
     }
 
-    public abstract boolean empty ();
+    public abstract boolean isEmpty ();
 
     protected MapEntry (int x, int y)
     {

@@ -40,13 +40,13 @@ public class Map
 
                 for (int i = 0; i < _width; i++)
                 {
-                    if (asChar[i] == Asteroid.ASTEROID)
+                    if (asChar[i] == Asteroid.ASTEROID_REPRESENTATION)
                     {
                         _theMap.add(new Asteroid(_height, i));
                     }
                     else
                     {
-                        if (asChar[i] == Empty.EMPTY)
+                        if (asChar[i] == Empty.EMPTY_REPRESENTATION)
                         {
                             _theMap.add(new Empty(_height, i));
                         }
@@ -90,8 +90,12 @@ public class Map
         Enumeration<MapEntry> iter = _theMap.elements();
         String str = "";
 
+        System.out.println("width "+_width);
+
         while (iter.hasMoreElements())
         {
+            System.out.println("xAxis is "+xAxis);
+
             if (xAxis < _width)
                 xAxis++;
             else
