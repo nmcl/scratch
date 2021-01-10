@@ -21,15 +21,12 @@ public class Map
         return _width;
     }
 
-    public long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)
-    {
-        
-        return theList.stream()
-                .map(asteroid -> from.angleTo(asteroid))
-                .distinct().count();
-    }
+    /*
+     * Stream through all of the asteroids and get the
+     * count of visible items for each.
+     */
 
-    public long maxDetectableAsteroid () 
+    public final long maxDetectableAsteroid () 
     {
         /*
          * Remove all empty items before we search so we can
@@ -50,6 +47,15 @@ public class Map
         return allAsteroids.stream()
                 .mapToLong(asteroid -> detectableAsteroids(allAsteroids, asteroid))
                 .max().getAsLong();
+    }
+
+    // not working yet ...
+
+    private final long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)
+    {
+        return theList.stream()
+                .map(asteroid -> from.angleTo(asteroid))
+                .distinct().count();
     }
 
     private final boolean loadData (String file)
