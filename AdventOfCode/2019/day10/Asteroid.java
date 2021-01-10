@@ -1,14 +1,12 @@
-public class Asteroid
+public class Asteroid extends MapEntry
 {
     public Asteroid (int x, int y)
     {
-        _position = new Coordinate(x, y);
+        super(x, y);
     }
 
-    public final Coordinate getPosition ()
+    public boolean empty ()
     {
-        return _position;
+        return false;
     }
-
-    private Coordinate _position;
 }
