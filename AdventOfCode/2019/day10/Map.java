@@ -90,21 +90,17 @@ public class Map
         Enumeration<MapEntry> iter = _theMap.elements();
         String str = "";
 
-        System.out.println("width "+_width);
-
         while (iter.hasMoreElements())
         {
-            System.out.println("xAxis is "+xAxis);
+            MapEntry theEntry = iter.nextElement();
 
-            if (xAxis < _width)
-                xAxis++;
-            else
+            if (theEntry.getPosition().getX() != xAxis)
             {
+                xAxis = theEntry.getPosition().getX();
                 str += "\n";
-                xAxis = 0;
             }
 
-            str += iter.nextElement().toString();
+            str += theEntry.toString();
         }
 
         return str;

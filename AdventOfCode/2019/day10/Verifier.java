@@ -26,9 +26,10 @@ public class Verifier
         boolean ok = false;
         Map theMap = new Map(EXAMPLE_1_FILE);
 
-        System.out.println("Loaded "+theMap.getHeight()+" "+theMap.getWidth());
+        if (_debug)
+            System.out.println("Loaded map "+theMap.getHeight()+" by "+theMap.getWidth());
 
-        System.out.println("\nAnd\n"+theMap);
+        System.out.println("\nLoaded map ...\n\n"+theMap);
 
         return ok;
     }
