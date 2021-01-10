@@ -31,6 +31,22 @@ public class Verifier
 
         System.out.println("\nLoaded map ...\n\n"+theMap);
 
+        theMap = new Map(EXAMPLE_2_FILE);
+
+        System.out.println("\nLoaded map ...\n\n"+theMap);
+        
+        theMap = new Map(EXAMPLE_3_FILE);
+
+        System.out.println("\nLoaded map ...\n\n"+theMap);
+
+        theMap = new Map(EXAMPLE_4_FILE);
+
+        System.out.println("\nLoaded map ...\n\n"+theMap);
+
+        theMap = new Map(EXAMPLE_5_FILE);
+
+        System.out.println("\nLoaded map ...\n\n"+theMap);
+
         return ok;
     }
 
