@@ -21,34 +21,17 @@ public class Map
         return _width;
     }
 
-    public long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)
+    public long detectableAsteroids (MapEntry from)
     {
-        
-        return theList.stream()
+        return _theMap.stream()
                 .map(asteroid -> from.angleTo(asteroid))
                 .distinct().count();
     }
 
     public long maxDetectableAsteroid () 
     {
-        /*
-         * Remove all empty items before we search so we can
-         * ignore comparisons with space.
-         */
-
-        Vector<Asteroid> allAsteroids = new Vector<Asteroid>();
-        Enumeration<MapEntry> iter = _theMap.elements();
-
-        while (iter.hasMoreElements())
-        {
-            MapEntry item = iter.nextElement();
-
-            if (item instanceof Asteroid)
-                allAsteroids.add((Asteroid) item);
-        }
-
-        return allAsteroids.stream()
-                .mapToLong(asteroid -> detectableAsteroids(allAsteroids, asteroid))
+        return _theMap.stream()
+                .mapToLong(asteroid -> detectableAsteroids(asteroid))
                 .max().getAsLong();
     }
 

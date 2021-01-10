@@ -27,9 +27,17 @@ public class Verifier
         Map theMap = new Map(EXAMPLE_1_FILE);
 
         if (_debug)
+        {
             System.out.println("Loaded map "+theMap.getHeight()+" by "+theMap.getWidth());
 
-        System.out.println("\nLoaded map ...\n\n"+theMap);
+            System.out.println("\nLoaded map ...\n\n"+theMap);
+        }
+
+        long value = theMap.maxDetectableAsteroid();
+
+        System.out.println("**the value: "+value);
+
+        /*
 
         theMap = new Map(EXAMPLE_2_FILE);
 
@@ -45,7 +53,7 @@ public class Verifier
 
         theMap = new Map(EXAMPLE_5_FILE);
 
-        System.out.println("\nLoaded map ...\n\n"+theMap);
+        System.out.println("\nLoaded map ...\n\n"+theMap);*/
 
         return ok;
     }
