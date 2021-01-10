@@ -15,4 +15,21 @@ public class Verifier
     public static final String EXAMPLE_5_FILE = "example5.txt";
     public static final Coordinate EXAMPLE_5_RESULT = new Coordinate(11, 13);
     public static final int EXAMPLE_5_LOS = 210;
+
+    public Verifier (boolean debug)
+    {
+        _debug = debug;
+    }
+
+    public boolean verify ()
+    {
+        boolean ok = false;
+        Map theMap = new Map(EXAMPLE_1_FILE);
+
+        System.out.println("Loaded "+theMap.getHeight()+" "+theMap.getWidth());
+
+        return ok;
+    }
+
+    private boolean _debug;
 }
