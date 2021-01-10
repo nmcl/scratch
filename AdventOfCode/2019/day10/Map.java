@@ -3,9 +3,6 @@ import java.io.*;
 
 public class Map
 {
-    public static final char ASTEROID = '#';
-    public static final char EMPTY = '.';
-
     public  Map (String fileToLoad)
     {
         _theMap = new Vector<MapEntry>();
@@ -43,13 +40,13 @@ public class Map
 
                 for (int i = 0; i < _width; i++)
                 {
-                    if (asChar[i] == Plotter.ASTEROID)
+                    if (asChar[i] == Asteroid.ASTEROID)
                     {
                         _theMap.add(new Asteroid(_height, i));
                     }
                     else
                     {
-                        if (asChar[i] == Plotter.EMPTY)
+                        if (asChar[i] == Empty.EMPTY)
                         {
                             _theMap.add(new Empty(_height, i));
                         }
@@ -89,7 +86,24 @@ public class Map
     @Override
     public String toString ()
     {
-        return "";
+        int xAxis = 0;
+        Enumeration<MapEntry> iter = _theMap.elements();
+        String str = "";
+
+        while (iter.hasMoreElements())
+        {
+            if (xAxis < _width)
+                xAxis++;
+            else
+            {
+                str += "\n";
+                xAxis = 0;
+            }
+
+            str += iter.nextElement().toString();
+        }
+
+        return str;
     }
 
     private Vector<MapEntry> _theMap;

@@ -28,6 +28,8 @@ public class Verifier
 
         System.out.println("Loaded "+theMap.getHeight()+" "+theMap.getWidth());
 
+        System.out.println("\nAnd\n"+theMap);
+
         return ok;
     }
 

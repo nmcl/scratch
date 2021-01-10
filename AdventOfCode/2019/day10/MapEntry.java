@@ -6,7 +6,7 @@ public abstract class MapEntry
     }
 
     public abstract boolean empty ();
-    
+
     protected MapEntry (int x, int y)
     {
         _position = new Coordinate(x, y);
