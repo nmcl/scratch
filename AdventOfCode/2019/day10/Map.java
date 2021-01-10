@@ -1,17 +1,27 @@
 import java.util.*;
 import java.io.*;
 
-public class Plotter
+public class Map
 {
     public static final char ASTEROID = '#';
     public static final char EMPTY = '.';
 
-    public Plotter (String fileToLoad)
+    public  Map (String fileToLoad)
     {
+        _theMap = new Vector<MapEntry>();
+
         if (!loadData(fileToLoad))
             System.out.println("Error in loading data file: "+fileToLoad);
+    }
 
-        _theMap = new Vector<MapEntry>();
+    public final int getHeight ()
+    {
+        return _height;
+    }
+
+    public final int getWidth ()
+    {
+        return _width;
     }
 
     private final boolean loadData (String file)
