@@ -21,6 +21,8 @@ public class Verifier
         _debug = debug;
     }
 
+    // consider adding expected dimensions of grid as an assertion?
+    
     public boolean verify ()
     {
         boolean ok = false;
