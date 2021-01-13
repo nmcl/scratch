@@ -25,9 +25,7 @@ public class Asteroid extends MapEntry
 
         if (angle < 0)
             angle += 360;
-
-        System.out.println("**fromAngle "+angle);
-
+            
         return String.valueOf(angle);
     }
 
