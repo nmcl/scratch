@@ -35,6 +35,8 @@ public class Placement
                 System.out.println("Verified ok!");
             else
                 System.out.println("Verify failed!");
+
+            System.exit(0);
         }
     }
 }
