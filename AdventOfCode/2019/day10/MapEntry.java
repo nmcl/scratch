@@ -12,5 +12,5 @@ public abstract class MapEntry
         _position = new Coordinate(x, y);
     }
 
-    private Coordinate _position;
+    protected Coordinate _position;
 }
