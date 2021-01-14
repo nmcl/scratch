@@ -22,7 +22,7 @@ public class Verifier
     }
 
     // consider adding expected dimensions of grid as an assertion?
-    
+
     public boolean verify ()
     {
         boolean ok = false;
@@ -37,25 +37,79 @@ public class Verifier
 
         long value = theMap.maxDetectableAsteroid();
 
-        System.out.println("**the value: "+value);
+        ok = (value == EXAMPLE_1_LOS);
 
-        /*
+        if (ok)
+        {
+            theMap = new Map(EXAMPLE_2_FILE);
 
-        theMap = new Map(EXAMPLE_2_FILE);
+            if (_debug)
+            {
+                System.out.println("Loaded map "+theMap.getHeight()+" by "+theMap.getWidth());
 
-        System.out.println("\nLoaded map ...\n\n"+theMap);
-        
-        theMap = new Map(EXAMPLE_3_FILE);
+                System.out.println("\nLoaded map ...\n\n"+theMap);
+            }
 
-        System.out.println("\nLoaded map ...\n\n"+theMap);
+            value = theMap.maxDetectableAsteroid();
 
-        theMap = new Map(EXAMPLE_4_FILE);
+            ok = (value == EXAMPLE_2_LOS);
 
-        System.out.println("\nLoaded map ...\n\n"+theMap);
+            if (ok)
+            {
+                theMap = new Map(EXAMPLE_3_FILE);
 
-        theMap = new Map(EXAMPLE_5_FILE);
+                if (_debug)
+                {
+                    System.out.println("Loaded map "+theMap.getHeight()+" by "+theMap.getWidth());
 
-        System.out.println("\nLoaded map ...\n\n"+theMap);*/
+                    System.out.println("\nLoaded map ...\n\n"+theMap);
+                }
+
+                value = theMap.maxDetectableAsteroid();
+
+                ok = (value == EXAMPLE_3_LOS);
+
+                if (ok)
+                {
+                    theMap = new Map(EXAMPLE_4_FILE);
+
+                    if (_debug)
+                    {
+                        System.out.println("Loaded map "+theMap.getHeight()+" by "+theMap.getWidth());
+
+                        System.out.println("\nLoaded map ...\n\n"+theMap);
+                    }
+
+                    value = theMap.maxDetectableAsteroid();
+
+                    ok = (value == EXAMPLE_4_LOS);
+
+                    if (ok)
+                    {
+                        theMap = new Map(EXAMPLE_5_FILE);
+
+                        if (_debug)
+                        {
+                            System.out.println("Loaded map "+theMap.getHeight()+" by "+theMap.getWidth());
+
+                            System.out.println("\nLoaded map ...\n\n"+theMap);
+                        }
+
+                        value = theMap.maxDetectableAsteroid();
+
+                        ok = (value == EXAMPLE_5_LOS);
+                    }
+                    else
+                        System.out.println("Verify failed for "+EXAMPLE_4_FILE);
+                }
+                else
+                    System.out.println("Verify failed for "+EXAMPLE_3_FILE);
+            }
+            else
+                System.out.println("Verify failed for "+EXAMPLE_2_FILE);
+        }
+        else
+            System.out.println("Verify failed for "+EXAMPLE_1_FILE);
 
         return ok;
     }

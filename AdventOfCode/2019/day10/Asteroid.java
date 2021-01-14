@@ -14,9 +14,6 @@ public class Asteroid extends MapEntry
 
     public String angleTo (Asteroid target)
     {
-        System.out.println("**this "+this.getPosition());
-        System.out.println("**comparing against "+target.getPosition());
-
         /*
          * Use atan to determine angle from one asteroid (point)
          * to another.
@@ -29,8 +26,6 @@ public class Asteroid extends MapEntry
         if (angle < 0)
             angle += 360;
 
-        System.out.println("**returning "+angle);
-        
         return String.valueOf(angle);
     }
 
