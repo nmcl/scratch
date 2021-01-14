@@ -1,5 +1,7 @@
 public class Placement
 {
+    public static final String DATA_FILE = "data.txt";
+
     /*
      * Each asteroid is a point in the centre of it's "grid/square". To determine if
      * an asteroid is visible from another without being blocked, we "just" need to
@@ -38,5 +40,12 @@ public class Placement
 
             System.exit(0);
         }
+
+        Map theMap = new Map(DATA_FILE);
+        long value = theMap.maxDetectableAsteroid();
+
+        // maybe print out the Asteroid instance?
+        
+        System.out.println("The best position allows "+value+" asteroids to be detected.");
     }
 }
