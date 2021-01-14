@@ -77,15 +77,17 @@ public class Map
 
                 for (int i = 0; i < _width; i++)
                 {
+                    // remember x,y coords are reversed for arrays
+                    
                     if (asChar[i] == Asteroid.ASTEROID_REPRESENTATION)
                     {
-                        _theMap.add(new Asteroid(_height, i));
+                        _theMap.add(new Asteroid(i, _height));
                     }
                     else
                     {
                         if (asChar[i] == Empty.EMPTY_REPRESENTATION)
                         {
-                            _theMap.add(new Empty(_height, i));
+                            _theMap.add(new Empty(i, _height));
                         }
                         else
                         {
