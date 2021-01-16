@@ -27,7 +27,7 @@ class Target
     @Override
     public String toString ()
     {
-        return "Target asteroid at "+_theTarget.getPosition();
+        return _theTarget.getPosition().toString()+" "+_angle+" "+_distance;
     }
 
     @Override
