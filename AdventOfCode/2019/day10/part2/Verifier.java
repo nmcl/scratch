@@ -24,6 +24,8 @@ public class Verifier
         
         Asteroid bestLocation = theMap.getMonitoringStation();
 
+        System.out.println("**best location "+bestLocation.getPosition());
+
         return ok;
     }
 
