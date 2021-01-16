@@ -12,7 +12,10 @@ public class Verifier
         _debug = debug;
     }
 
-    // consider adding expected dimensions of grid as an assertion?
+    /*
+     * Could iterate through the other known asteroids as they are destroyed
+     * rather than going straight to the final answer.
+     */
 
     public boolean verify ()
     {
@@ -35,6 +38,10 @@ public class Verifier
         Target theSpecificTarget = results.elementAt(TARGET_ASTEROID_NUMBER -1);
 
         System.out.println("**target "+theSpecificTarget);
+
+        int value = theSpecificTarget.toDestroy().getPosition().getX()*100 + theSpecificTarget.toDestroy().getPosition().getY();
+        
+        ok = (value == EXAMPLE_RESULT);
 
         return ok;
     }
