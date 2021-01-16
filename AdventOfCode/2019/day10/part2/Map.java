@@ -91,7 +91,39 @@ public class Map
             System.out.println("**got back "+iter.nextElement());
         }
 
-        return sortedAllTargets;
+        int index = 0;
+        String laserAngle = null;
+        Vector<Target> finalSortedTarget = new Vector<Target>();
+
+        // walk through the targets
+        
+        while (!sortedAllTargets.isEmpty())
+        {
+            if (!sortedAllTargets.elementAt(index).getAngle().equals(laserAngle))
+            {
+                Target target = sortedAllTargets.remove(index);
+
+                laserAngle = target.getAngle();
+                finalSortedTarget.add(target);
+            }
+            else
+                index++;
+
+            if (index >= sortedAllTargets.size())
+            {
+                index = 0;
+                laserAngle = null;
+            }
+        }
+
+        iter = finalSortedTarget.elements();
+
+        while (iter.hasMoreElements())
+        {
+            System.out.println("**finally got back "+iter.nextElement());
+        }
+
+        return finalSortedTarget;
     }
 
     /*
