@@ -22,6 +22,14 @@ public class Coordinate
         return _y;
     }
 
+    public int distanceBetween (Coordinate other)
+    {
+        if (other == null)
+            return -1;
+
+        return Math.abs(getX() - other.getX()) + Math.abs(getY() - other.getY());
+    }
+
     @Override
     public String toString ()
     {

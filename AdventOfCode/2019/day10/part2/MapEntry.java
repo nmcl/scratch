@@ -5,11 +5,6 @@ public abstract class MapEntry
         return _position;
     }
 
-    public int distanceBetween (MapEntry other)
-    {
-        return Math.abs(_position.getX() - other.getPosition().getX()) + Math.abs(_position.getY() - other.getPosition().getY());
-    }
-
     public abstract boolean isEmpty ();
 
     protected MapEntry (int x, int y)
