@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.util.stream.*;
 
 public class Map
 {
@@ -57,6 +58,11 @@ public class Map
         return bestPosition;
     }
 
+    public Vector<Target> sortedTargets (Asteroid laserLocation)
+    {
+        return sortTargetsBySweepAngleThenDistance(laserLocation, filterAsteroids());
+    }
+
     private final long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)
     {
         return theList.stream()
@@ -64,7 +70,30 @@ public class Map
                 .distinct().count();
     }
 
-    
+    // sort by sweep angle and then distance.
+
+    private final Vector<Target> sortTargetsBySweepAngleThenDistance (Asteroid from, Vector<Asteroid> allAsteroids)
+    {
+        Vector<Target> sortedAllTargets = allAsteroids.stream()
+                        .filter(t -> !t.equals(from))
+                        .map(t -> new Target(from, t))
+                        .sorted((a, b) -> {
+                                    if (a.getAngle().equals(b.getAngle())) return a.getDistance() - b.getDistance();
+                                    else return Double.compare(Double.valueOf(a.getAngle()), Double.valueOf(b.getAngle()));
+                        }).collect(Collectors.toCollection(Vector::new));
+
+        System.out.println("**list size "+sortedAllTargets.size());
+
+        Enumeration<Target> iter = sortedAllTargets.elements();
+
+        while (iter.hasMoreElements())
+        {
+            System.out.println("**got back "+iter.nextElement());
+        }
+
+        return sortedAllTargets;
+    }
+
     /*
      * The Map we store contains empty elements. This method simply
      * filters out the empty space and returns only the asteroids.
