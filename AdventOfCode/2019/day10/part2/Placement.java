@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Placement
 {
     public static final String DATA_FILE = "data.txt";
@@ -13,12 +15,13 @@ public class Placement
     {
         boolean debug = false;
         boolean verify = false;
+        int asteroidNumber = 200;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-help] [-debug] [-verify]");
+                System.out.println("Usage: [-help] [-debug] [-verify] [-asteriod <number>]");
                 System.exit(0);
             }
 
@@ -27,6 +30,9 @@ public class Placement
 
             if ("-verify".equals(args[i]))
                 verify = true;
+
+            if ("-asteroid".equals(args[i]))
+                asteroidNumber = Integer.parseInt(args[i+1]);
         }
 
         if (verify)
@@ -42,10 +48,27 @@ public class Placement
         }
 
         Map theMap = new Map(DATA_FILE);
-        long value = theMap.maxDetectableAsteroid();
 
-        // maybe print out the Asteroid instance?
-        
-        System.out.println("The best position allows "+value+" asteroids to be detected.");
+        if (debug)
+        {
+            System.out.println("Loaded map "+theMap.getHeight()+" by "+theMap.getWidth());
+
+            System.out.println("\nLoaded map ...\n\n"+theMap);
+        }
+
+        Asteroid bestLocation = theMap.getMonitoringStation();
+
+        if (debug)
+            System.out.println("Best location "+bestLocation.getPosition());
+
+        Vector<Target> results = theMap.sortedTargets(bestLocation);
+        Target theSpecificTarget = results.elementAt(asteroidNumber -1);
+
+        if (debug)
+            System.out.println("Target "+theSpecificTarget);
+
+        int value = theSpecificTarget.toDestroy().getPosition().getX()*100 + theSpecificTarget.toDestroy().getPosition().getY();
+   
+        System.out.println("Final value: "+value);
     }
 }
