@@ -26,6 +26,8 @@ public class Verifier
 
         System.out.println("**best location "+bestLocation.getPosition());
 
+        theMap.sortedTargets(bestLocation);
+
         return ok;
     }
 
