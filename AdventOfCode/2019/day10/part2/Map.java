@@ -82,21 +82,12 @@ public class Map
                                     else return Double.compare(Double.valueOf(a.getAngle()), Double.valueOf(b.getAngle()));
                         }).collect(Collectors.toCollection(Vector::new));
 
-        System.out.println("**list size "+sortedAllTargets.size());
-
-        Enumeration<Target> iter = sortedAllTargets.elements();
-
-        while (iter.hasMoreElements())
-        {
-            System.out.println("**got back "+iter.nextElement());
-        }
-
         int index = 0;
         String laserAngle = null;
         Vector<Target> finalSortedTarget = new Vector<Target>();
 
         // walk through the targets
-        
+
         while (!sortedAllTargets.isEmpty())
         {
             if (!sortedAllTargets.elementAt(index).getAngle().equals(laserAngle))
@@ -114,13 +105,6 @@ public class Map
                 index = 0;
                 laserAngle = null;
             }
-        }
-
-        iter = finalSortedTarget.elements();
-
-        while (iter.hasMoreElements())
-        {
-            System.out.println("**finally got back "+iter.nextElement());
         }
 
         return finalSortedTarget;

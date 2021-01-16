@@ -31,13 +31,15 @@ public class Verifier
         
         Asteroid bestLocation = theMap.getMonitoringStation();
 
-        System.out.println("**best location "+bestLocation.getPosition());
+        if (_debug)
+            System.out.println("Best location "+bestLocation.getPosition());
 
         Vector<Target> results = theMap.sortedTargets(bestLocation);
 
         Target theSpecificTarget = results.elementAt(TARGET_ASTEROID_NUMBER -1);
 
-        System.out.println("**target "+theSpecificTarget);
+        if (_debug)
+            System.out.println("Target "+theSpecificTarget);
 
         int value = theSpecificTarget.toDestroy().getPosition().getX()*100 + theSpecificTarget.toDestroy().getPosition().getY();
         
