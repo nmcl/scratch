@@ -49,7 +49,36 @@ public class Map
                 .max().getAsLong();
     }
 
-    // not working yet ...
+    public final Asteroid getMonitoringStation ()
+    {
+        /*
+         * Remove all empty items before we search so we can
+         * ignore comparisons with space.
+         */
+
+        Vector<Asteroid> allAsteroids = new Vector<Asteroid>();
+        Enumeration<MapEntry> iter = _theMap.elements();
+
+        while (iter.hasMoreElements())
+        {
+            MapEntry item = iter.nextElement();
+
+            if (item instanceof Asteroid)
+                allAsteroids.add((Asteroid) item);
+        }
+
+        Enumeration<Asteroid> iter2 = allAsteroids.elements();
+
+        while (iter2.hasMoreElements())
+        {
+            Asteroid as = (Asteroid) iter2.nextElement();
+
+            System.out.println("**detected "+detectableAsteroids(allAsteroids, as));
+        }
+
+    
+        return null;
+    }
 
     private final long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)
     {
