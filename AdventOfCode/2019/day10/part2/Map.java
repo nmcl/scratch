@@ -28,21 +28,7 @@ public class Map
 
     public final long maxDetectableAsteroid () 
     {
-        /*
-         * Remove all empty items before we search so we can
-         * ignore comparisons with space.
-         */
-
-        Vector<Asteroid> allAsteroids = new Vector<Asteroid>();
-        Enumeration<MapEntry> iter = _theMap.elements();
-
-        while (iter.hasMoreElements())
-        {
-            MapEntry item = iter.nextElement();
-
-            if (item instanceof Asteroid)
-                allAsteroids.add((Asteroid) item);
-        }
+        Vector<Asteroid> allAsteroids = filterAsteroids();
 
         return allAsteroids.stream()
                 .mapToLong(asteroid -> detectableAsteroids(allAsteroids, asteroid))
@@ -51,29 +37,14 @@ public class Map
 
     public final Asteroid getMonitoringStation ()
     {
-        /*
-         * Remove all empty items before we search so we can
-         * ignore comparisons with space.
-         */
-
-        Vector<Asteroid> allAsteroids = new Vector<Asteroid>();
-        Enumeration<MapEntry> iter = _theMap.elements();
-
-        while (iter.hasMoreElements())
-        {
-            MapEntry item = iter.nextElement();
-
-            if (item instanceof Asteroid)
-                allAsteroids.add((Asteroid) item);
-        }
-
-        Enumeration<Asteroid> iter2 = allAsteroids.elements();
+        Vector<Asteroid> allAsteroids = filterAsteroids();
+        Enumeration<Asteroid> iter = allAsteroids.elements();
         Asteroid bestPosition = null;
         long maxDetected = 0;
 
-        while (iter2.hasMoreElements())
+        while (iter.hasMoreElements())
         {
-            Asteroid as = (Asteroid) iter2.nextElement();
+            Asteroid as = (Asteroid) iter.nextElement();
             long detectable = detectableAsteroids(allAsteroids, as);
 
             if (detectable > maxDetected)
@@ -91,6 +62,33 @@ public class Map
         return theList.stream()
                 .map(asteroid -> from.angleTo(asteroid))
                 .distinct().count();
+    }
+
+    
+    /*
+     * The Map we store contains empty elements. This method simply
+     * filters out the empty space and returns only the asteroids.
+     */
+
+    private final Vector<Asteroid> filterAsteroids ()
+    {
+        /*
+         * Remove all empty items before we search so we can
+         * ignore comparisons with space.
+         */
+
+        Vector<Asteroid> allAsteroids = new Vector<Asteroid>();
+        Enumeration<MapEntry> iter = _theMap.elements();
+
+        while (iter.hasMoreElements())
+        {
+            MapEntry item = iter.nextElement();
+
+            if (item instanceof Asteroid)
+                allAsteroids.add((Asteroid) item);
+        }
+
+        return allAsteroids;
     }
 
     private final boolean loadData (String file)
