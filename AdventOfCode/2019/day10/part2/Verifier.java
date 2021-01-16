@@ -1,8 +1,12 @@
+import java.util.*;
+
 public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
     public static final int EXAMPLE_RESULT = 802;
     
+    public static final int TARGET_ASTEROID_NUMBER = 200;
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -26,7 +30,11 @@ public class Verifier
 
         System.out.println("**best location "+bestLocation.getPosition());
 
-        theMap.sortedTargets(bestLocation);
+        Vector<Target> results = theMap.sortedTargets(bestLocation);
+
+        Target theSpecificTarget = results.elementAt(TARGET_ASTEROID_NUMBER -1);
+
+        System.out.println("**target "+theSpecificTarget);
 
         return ok;
     }
