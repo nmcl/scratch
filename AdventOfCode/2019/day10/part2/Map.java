@@ -68,16 +68,22 @@ public class Map
         }
 
         Enumeration<Asteroid> iter2 = allAsteroids.elements();
+        Asteroid bestPosition = null;
+        long maxDetected = 0;
 
         while (iter2.hasMoreElements())
         {
             Asteroid as = (Asteroid) iter2.nextElement();
+            long detectable = detectableAsteroids(allAsteroids, as);
 
-            System.out.println("**detected "+detectableAsteroids(allAsteroids, as));
+            if (detectable > maxDetected)
+            {
+                maxDetected = detectable;
+                bestPosition = as;
+            }
         }
 
-    
-        return null;
+        return bestPosition;
     }
 
     private final long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)

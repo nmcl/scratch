@@ -21,10 +21,8 @@ public class Verifier
 
             System.out.println("\nLoaded map ...\n\n"+theMap);
         }
-
-        long value = theMap.maxDetectableAsteroid();
         
-        theMap.getMonitoringStation();
+        Asteroid bestLocation = theMap.getMonitoringStation();
 
         return ok;
     }
