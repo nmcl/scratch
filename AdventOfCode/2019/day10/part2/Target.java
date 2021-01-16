@@ -2,17 +2,19 @@ import java.util.Objects;
 
 class Target
 {
-    public Target (Asteroid toDestroy)
+    public Target (Asteroid laser, Asteroid toDestroy)
     {
         _theTarget = toDestroy;
+        _angle = laser.angleTo(toDestroy);
+        _distance = laser.getPosition().distanceBetween(toDestroy.getPosition());
     }
 
     public Asteroid toDestroy ()
     {
         return _theTarget;
     }
-    
-    public final double getAngle ()
+
+    public final String getAngle ()
     {
         return _angle;
     }
@@ -54,6 +56,6 @@ class Target
     }
 
     private Asteroid _theTarget;
-    private double _angle = 0.0;
+    private String _angle = "";
     private int _distance = 0;
 }
