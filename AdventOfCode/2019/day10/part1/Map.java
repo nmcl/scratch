@@ -49,8 +49,6 @@ public class Map
                 .max().getAsLong();
     }
 
-    // not working yet ...
-
     private final long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)
     {
         return theList.stream()
