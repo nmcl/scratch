@@ -35,7 +35,6 @@ public class Verifier
             System.out.println("Best location "+bestLocation.getPosition());
 
         Vector<Target> results = theMap.sortedTargets(bestLocation);
-
         Target theSpecificTarget = results.elementAt(TARGET_ASTEROID_NUMBER -1);
 
         if (_debug)
