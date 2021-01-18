@@ -29,7 +29,19 @@ public class Robot
 
     public void paint ()
     {
+        Vector<String> output = null;
 
+        while (!_theComputer.hasHalted())
+        {
+            output = _theComputer.executeProgram();
+
+            /*
+             * Should return two outputs:
+             * 
+             * - paint instruction (black or white)
+             * - move instruction (left, right, up, down)
+             */
+        }
     }
 
     public final char currentDirection ()
