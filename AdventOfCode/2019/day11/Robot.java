@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Robot
 {
     public static final char UP = '^';
@@ -8,16 +10,26 @@ public class Robot
     public static final int DEFAULT_START_X = 0;
     public static final int DEFAULT_START_Y = 0;
 
-    public Robot (boolean debug, int x, int y)
+    public static final int NUMBER_OF_PANELS_TO_MOVE = 1;
+
+    public Robot (Vector<String> instructions, int x, int y, boolean debug)
     {
+        // any input instructions at this point should be provided 0
+
+        _theComputer = new Intcode(instructions, 0, debug);
         _debug = debug;
         _currentDirection = UP;  // The robot starts facing up.
         _currentPanel = new Panel(x, y);
     }
 
-    public Robot (boolean debug)
+    public Robot (Vector<String> instructions, boolean debug)
     {
-        this(debug, DEFAULT_START_X, DEFAULT_START_Y);
+        this(instructions, DEFAULT_START_X, DEFAULT_START_Y, debug);
+    }
+
+    public void paint ()
+    {
+
     }
 
     public final char currentDirection ()
