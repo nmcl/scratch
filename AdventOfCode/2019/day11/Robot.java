@@ -20,6 +20,9 @@ public class Robot
         _debug = debug;
         _currentDirection = UP;  // The robot starts facing up.
         _currentPanel = new Panel(x, y);
+        _panelsPainted = new Stack<Panel>();
+
+        _panelsPainted.push(_currentPanel);
     }
 
     public Robot (Vector<String> instructions, boolean debug)
@@ -59,4 +62,5 @@ public class Robot
     private boolean _debug;
     private char _currentDirection;
     private Panel _currentPanel;
+    Stack<Panel> _panelsPainted;
 }
