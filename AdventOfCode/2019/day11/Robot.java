@@ -7,6 +7,9 @@ public class Robot
     public static final char LEFT = '<';
     public static final char RIGHT = '>';
 
+    public static final int LEFT_TURN_90 = 0;
+    public static final int RUGHT_TURN_90 = 1;
+
     public static final int DEFAULT_START_X = 0;
     public static final int DEFAULT_START_Y = 0;
 
@@ -48,7 +51,15 @@ public class Robot
              String colour = output.get(0);
              String direction = output.get(1);
 
-             
+             if (Integer.parseInt(colour) == Panel.BLACK)
+                _currentPanel.paint(Panel.BLACK);
+            else
+                _currentPanel.paint(Panel.WHITE);
+
+            if (Integer.parseInt(direction) == LEFT_TURN_90)
+            {
+                
+            }
         }
     }
 
