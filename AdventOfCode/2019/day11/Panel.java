@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Panel
 {
     public static final int BLACK = 0;
@@ -28,6 +30,33 @@ public class Panel
     public String toString ()
     {
         return "Panel at "+_position+" with colour "+((_colour == BLACK) ? "black" : "white")+" and painted "+_numberOfTimesPainted+" times.";
+    }
+
+    @Override
+    public int hashCode ()
+    {
+        return Objects.hash(_colour, _numberOfTimesPainted, _position.hashCode());
+    }
+
+    // only compare position
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Panel p = (Panel) obj;
+
+            return _position.equals(p.getPosition());
+        }
+
+        return false;
     }
 
     private Coordinate _position;
