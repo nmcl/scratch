@@ -44,6 +44,11 @@ public class Robot
              * - paint instruction (black or white)
              * - move instruction (left, right, up, down)
              */
+
+             String colour = output.get(0);
+             String direction = output.get(1);
+
+             
         }
     }
 
