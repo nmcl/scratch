@@ -42,6 +42,8 @@ public class Robot
         {
             output = _theComputer.executeProgram();
 
+            System.out.println("got back "+output.size()+" instructions");
+
             /*
              * Should return two outputs:
              * 
@@ -57,12 +59,12 @@ public class Robot
 
             if (paintInstruction) // which output is this?
             {
-                paintPanel(output.get(0));
+                paintPanel(output.get(output.size() -1));
                 paintInstruction = false;
             }
             else
             {
-                moveRobot(output.get(0));
+                moveRobot(output.get(output.size() -1));
                 paintInstruction = true;
             }
         }
@@ -83,9 +85,12 @@ public class Robot
 
     private void paintPanel (String colour)
     {
-        System.out.println("**painting "+_currentPanel);
+        int theColour = Integer.parseInt(colour);
         
-       if (Integer.parseInt(colour) == Panel.BLACK)
+        //if (_debug)
+            System.out.println("Got instruction to paint panel "+ ((theColour == Panel.BLACK) ? "black" : "white"));
+
+       if (theColour == Panel.BLACK)
             _currentPanel.paint(Panel.BLACK);
         else
             _currentPanel.paint(Panel.WHITE);
@@ -97,6 +102,9 @@ public class Robot
         Coordinate currentPosition = _currentPanel.getPosition();
         int xCoord = currentPosition.getX();
         int yCoord = currentPosition.getY();
+
+        //if (_debug)
+            System.out.println("Got instruction to move "+newDirection);
 
         // figure out which direction we're supposed to point in next
 
