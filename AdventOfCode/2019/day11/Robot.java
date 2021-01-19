@@ -34,7 +34,7 @@ public class Robot
         this(instructions, DEFAULT_START_X, DEFAULT_START_Y, debug);
     }
 
-    public void paint ()
+    public int paint ()
     {
         Vector<String> output = null;
 
@@ -55,10 +55,10 @@ public class Robot
              * starts facing up.
              */
 
-             String colour = output.get(0);
-             String direction = output.get(1);
+            String colour = output.get(0);
+            String direction = output.get(1);
 
-             if (Integer.parseInt(colour) == Panel.BLACK)
+            if (Integer.parseInt(colour) == Panel.BLACK)
                 _currentPanel.paint(Panel.BLACK);
             else
                 _currentPanel.paint(Panel.WHITE);
@@ -158,6 +158,8 @@ public class Robot
             
             _currentPanel = nextPanel;
         }
+
+        return _panelsPainted.size();
     }
 
     public final char currentDirection ()
