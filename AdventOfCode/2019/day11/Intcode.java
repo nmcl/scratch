@@ -161,8 +161,8 @@ public class Intcode
 
                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
-                     if (_debug)
-                        System.out.println("Adding value "+_currentState+" from entry "+param1+" to output state (memory).");
+                    if (_debug)
+                        System.out.println("Adding value "+param1+" to output state.");
 
                     _currentState.add(Long.toString(param1));
 
