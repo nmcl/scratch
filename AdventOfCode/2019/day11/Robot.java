@@ -1,4 +1,3 @@
-import java.awt.Panel;
 import java.util.*;
 
 public class Robot
