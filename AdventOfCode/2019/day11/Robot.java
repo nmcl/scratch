@@ -149,6 +149,14 @@ public class Robot
                 else
                     nextPanel = null;
             }
+
+            if (nextPanel == null)
+            {
+                nextPanel = new Panel(nextCoord);
+                _panelsPainted.add(nextPanel);
+            }
+            
+            _currentPanel = nextPanel;
         }
     }
 
@@ -167,5 +175,5 @@ public class Robot
     private boolean _debug;
     private char _currentDirection;
     private Panel _currentPanel;
-    VectorPanell> _panelsPainted;
+    Vector<Panel> _panelsPainted;
 }
