@@ -44,8 +44,14 @@ public class Robot
             /*
              * Should return two outputs:
              * 
-             * - paint instruction (black or white)
-             * - move instruction (left, right, up, down)
+             * First, it will output a value indicating the color to paint the panel the
+             * robot is over: 0 means to paint the panel black, and 1 means to paint the panel white.
+             * 
+             * Second, it will output a value indicating the direction the robot should turn: 0 means
+             * it should turn left 90 degrees, and 1 means it should turn right 90 degrees.
+             * 
+             * After the robot turns, it should always move forward exactly one panel. The robot
+             * starts facing up.
              */
 
              String colour = output.get(0);
@@ -58,7 +64,7 @@ public class Robot
 
             if (Integer.parseInt(direction) == LEFT_TURN_90)
             {
-                
+
             }
         }
     }
