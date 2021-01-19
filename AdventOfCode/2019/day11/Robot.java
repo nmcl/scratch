@@ -188,6 +188,8 @@ public class Robot
                 nextPanel = null;
         }
 
+        System.out.println("nextPanel "+nextPanel);
+        
         if (nextPanel == null)
         {
             nextPanel = new Panel(nextCoord);
