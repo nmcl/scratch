@@ -10,6 +10,11 @@ public class Panel
         _position = new Coordinate(x, y);
     }
 
+    public Panel (Coordinate coord)
+    {
+        _position = coord;
+    }
+
     public final int timesPainted ()
     {
         return _numberOfTimesPainted;
@@ -38,8 +43,6 @@ public class Panel
         return Objects.hash(_colour, _numberOfTimesPainted, _position.hashCode());
     }
 
-    // only compare position
-
     @Override
     public boolean equals (Object obj)
     {
@@ -53,7 +56,7 @@ public class Panel
         {
             Panel p = (Panel) obj;
 
-            return _position.equals(p.getPosition());
+            return _position.equals(p.getPosition()) && (_colour == p._colour) && (_numberOfTimesPainted == p._numberOfTimesPainted);
         }
 
         return false;
