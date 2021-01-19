@@ -1,3 +1,4 @@
+import java.awt.Panel;
 import java.util.*;
 
 public class Robot
@@ -23,9 +24,9 @@ public class Robot
         _debug = debug;
         _currentDirection = UP;  // The robot starts facing up.
         _currentPanel = new Panel(x, y);
-        _panelsPainted = new Stack<Panel>();
+        _panelsPainted = new Vector<Panel>();
 
-        _panelsPainted.push(_currentPanel);
+        _panelsPainted.add(_currentPanel);
     }
 
     public Robot (Vector<String> instructions, boolean debug)
@@ -132,9 +133,22 @@ public class Robot
                     break;
             }
 
-            Panel nextPanel = new Panel(xCoord, yCoord);
+            Coordinate nextCoord = new Coordinate(xCoord, yCoord);
 
-            
+            // Have we passed over this panel before?
+
+            Enumeration<Panel> iter = _panelsPainted.elements();
+            Panel nextPanel = null;
+
+            while (iter.hasMoreElements() && (nextPanel == null))
+            {
+                nextPanel = iter.nextElement();
+
+                if (nextCoord.equals(nextPanel.getPosition()))
+                    break;
+                else
+                    nextPanel = null;
+            }
         }
     }
 
@@ -153,5 +167,5 @@ public class Robot
     private boolean _debug;
     private char _currentDirection;
     private Panel _currentPanel;
-    Stack<Panel> _panelsPainted;
+    VectorPanell> _panelsPainted;
 }
