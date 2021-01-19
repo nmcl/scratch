@@ -59,23 +59,10 @@ public class EHPR
 
         instructions.addAll(Arrays.asList(values));
 
-        Intcode theComputer = new Intcode(instructions, 2, debug);
+        Robot theRobot = new Robot(instructions, debug);
+        int numberOfPaintedPanels = theRobot.paint();
 
-        Vector<String> results = new Vector<String>();
-
-        while (!theComputer.hasHalted())
-            results = theComputer.executeProgram();
-
-        Enumeration<String> iter = results.elements();
-
-        System.out.println("Got back:");
-
-        while (iter.hasMoreElements())
-        {
-            String item = iter.nextElement();
-
-            System.out.println(item);
-        }
+        System.out.println("Number of painted panels: "+numberOfPaintedPanels);
     }
     
     private static final String DATA_FILE = "instructions.txt";

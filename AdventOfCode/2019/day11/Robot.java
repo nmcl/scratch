@@ -15,6 +15,11 @@ public class Robot
 
     public static final int NUMBER_OF_PANELS_TO_MOVE = 1;
 
+    public Robot (Vector<String> instructions, boolean debug)
+    {
+        this(instructions, DEFAULT_START_X, DEFAULT_START_Y, debug);
+    }
+
     public Robot (Vector<String> instructions, int x, int y, boolean debug)
     {
         // any input instructions at this point should be provided 0
@@ -28,14 +33,10 @@ public class Robot
         _panelsPainted.add(_currentPanel);
     }
 
-    public Robot (Vector<String> instructions, boolean debug)
-    {
-        this(instructions, DEFAULT_START_X, DEFAULT_START_Y, debug);
-    }
-
     public int paint ()
     {
         Vector<String> output = null;
+        boolean paintInstruction = true;
 
         while (!_theComputer.hasHalted())
         {
@@ -54,108 +55,16 @@ public class Robot
              * starts facing up.
              */
 
-            String colour = output.get(0);
-            String direction = output.get(1);
-
-            if (Integer.parseInt(colour) == Panel.BLACK)
-                _currentPanel.paint(Panel.BLACK);
+            if (paintInstruction) // which output is this?
+            {
+                paintPanel(output.get(0));
+                paintInstruction = false;
+            }
             else
-                _currentPanel.paint(Panel.WHITE);
-
-            int newDirection = Integer.parseInt(direction);
-            Coordinate currentPosition = _currentPanel.getPosition();
-            int xCoord = currentPosition.getX();
-            int yCoord = currentPosition.getY();
-
-            // figure out which direction we're supposed to point in next
-
-            switch (_currentDirection)
             {
-                case UP:
-                {
-                    if (newDirection == LEFT_TURN_90)
-                    {
-                        _currentDirection = LEFT;
-                        xCoord--;
-                    }
-                    else
-                    {
-                        _currentDirection = RIGHT;
-                        xCoord ++;
-                    }
-                }
-                break;
-                case DOWN:
-                {
-                    if (newDirection == LEFT_TURN_90)
-                    {
-                        _currentDirection = RIGHT;
-                        xCoord++;
-                    }
-                    else
-                    {
-                        _currentDirection = LEFT;
-                        xCoord--;
-                    }
-                }
-                break;
-                case LEFT:
-                {
-                    if (newDirection == LEFT_TURN_90)
-                    {
-                        _currentDirection = DOWN;
-                        yCoord--;
-                    }
-                    else
-                    {
-                        _currentDirection = UP;
-                        yCoord++;
-                    }
-                }
-                break;
-                case RIGHT:
-                {
-                    if (newDirection == LEFT_TURN_90)
-                    {
-                        _currentDirection = UP;
-                        yCoord++;
-                    }
-                    else
-                    {
-                        _currentDirection = DOWN;
-                        yCoord++;
-                    }
-                }
-                break;
-                default:
-                    System.out.println("Unknown current direction: "+_currentDirection);
-                    break;
+                moveRobot(output.get(0));
+                paintInstruction = true;
             }
-
-            Coordinate nextCoord = new Coordinate(xCoord, yCoord);
-
-            // Have we passed over this panel before?
-
-            Enumeration<Panel> iter = _panelsPainted.elements();
-            Panel nextPanel = null;
-
-            while (iter.hasMoreElements() && (nextPanel == null))
-            {
-                nextPanel = iter.nextElement();
-
-                if (nextCoord.equals(nextPanel.getPosition()))
-                    break;
-                else
-                    nextPanel = null;
-            }
-
-            if (nextPanel == null)
-            {
-                nextPanel = new Panel(nextCoord);
-                _panelsPainted.add(nextPanel);
-            }
-            
-            _currentPanel = nextPanel;
         }
 
         return _panelsPainted.size();
@@ -170,6 +79,114 @@ public class Robot
     public String toString ()
     {
         return "Robert current direction: "+_currentDirection+" and current panel: "+_currentPanel;
+    }
+
+    private void paintPanel (String colour)
+    {
+        System.out.println("**painting "+_currentPanel);
+        
+       if (Integer.parseInt(colour) == Panel.BLACK)
+            _currentPanel.paint(Panel.BLACK);
+        else
+            _currentPanel.paint(Panel.WHITE);
+    }
+
+    private void moveRobot (String direction)
+    {
+        int newDirection = Integer.parseInt(direction);
+        Coordinate currentPosition = _currentPanel.getPosition();
+        int xCoord = currentPosition.getX();
+        int yCoord = currentPosition.getY();
+
+        // figure out which direction we're supposed to point in next
+
+        switch (_currentDirection)
+        {
+            case UP:
+            {
+                if (newDirection == LEFT_TURN_90)
+                {
+                    _currentDirection = LEFT;
+                    xCoord--;
+                }
+                else
+                {
+                    _currentDirection = RIGHT;
+                    xCoord ++;
+                }
+            }
+            break;
+            case DOWN:
+            {
+                if (newDirection == LEFT_TURN_90)
+                {
+                    _currentDirection = RIGHT;
+                    xCoord++;
+                }
+                else
+                {
+                    _currentDirection = LEFT;
+                    xCoord--;
+                }
+            }
+            break;
+            case LEFT:
+            {
+                if (newDirection == LEFT_TURN_90)
+                {
+                    _currentDirection = DOWN;
+                    yCoord--;
+                }
+                else
+                {
+                    _currentDirection = UP;
+                    yCoord++;
+                }
+            }
+            break;
+            case RIGHT:
+            {
+                if (newDirection == LEFT_TURN_90)
+                {
+                    _currentDirection = UP;
+                    yCoord++;
+                }
+                else
+                {
+                    _currentDirection = DOWN;
+                    yCoord++;
+                }
+            }
+            break;
+            default:
+                System.out.println("Unknown current direction: "+_currentDirection);
+                break;
+        }
+
+        Coordinate nextCoord = new Coordinate(xCoord, yCoord);
+
+        // Have we passed over this panel before?
+
+        Enumeration<Panel> iter = _panelsPainted.elements();
+        Panel nextPanel = null;
+
+        while (iter.hasMoreElements() && (nextPanel == null))
+        {
+            nextPanel = iter.nextElement();
+
+            if (nextCoord.equals(nextPanel.getPosition()))
+                break;
+            else
+                nextPanel = null;
+        }
+
+        if (nextPanel == null)
+        {
+            nextPanel = new Panel(nextCoord);
+            _panelsPainted.add(nextPanel);
+        }
+        
+        _currentPanel = nextPanel;
     }
 
     private Intcode _theComputer;
