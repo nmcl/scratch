@@ -62,9 +62,45 @@ public class Robot
             else
                 _currentPanel.paint(Panel.WHITE);
 
-            if (Integer.parseInt(direction) == LEFT_TURN_90)
-            {
+            int newDirection = Integer.parseInt(direction);
 
+            switch (_currentDirection)
+            {
+                case UP:
+                {
+                    if (newDirection == LEFT_TURN_90)
+                        _currentDirection = LEFT;
+                    else
+                        _currentDirection = RIGHT;
+                }
+                break;
+                case DOWN:
+                {
+                    if (newDirection == LEFT_TURN_90)
+                        _currentDirection = RIGHT;
+                    else
+                        _currentDirection = LEFT;
+                }
+                break;
+                case LEFT:
+                {
+                    if (newDirection == LEFT_TURN_90)
+                        _currentDirection = DOWN;
+                    else
+                        _currentDirection = UP;
+                }
+                break;
+                case RIGHT:
+                {
+                    if (newDirection == LEFT_TURN_90)
+                        _currentDirection = UP;
+                    else
+                        _currentDirection = DOWN;
+                }
+                break;
+                default:
+                    System.out.println("Unknown current direction: "+_currentDirection);
+                    break;
             }
         }
     }
