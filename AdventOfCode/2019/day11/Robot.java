@@ -63,45 +63,78 @@ public class Robot
                 _currentPanel.paint(Panel.WHITE);
 
             int newDirection = Integer.parseInt(direction);
+            Coordinate currentPosition = _currentPanel.getPosition();
+            int xCoord = currentPosition.getX();
+            int yCoord = currentPosition.getY();
+
+            // figure out which direction we're supposed to point in next
 
             switch (_currentDirection)
             {
                 case UP:
                 {
                     if (newDirection == LEFT_TURN_90)
+                    {
                         _currentDirection = LEFT;
+                        xCoord--;
+                    }
                     else
+                    {
                         _currentDirection = RIGHT;
+                        xCoord ++;
+                    }
                 }
                 break;
                 case DOWN:
                 {
                     if (newDirection == LEFT_TURN_90)
+                    {
                         _currentDirection = RIGHT;
+                        xCoord++;
+                    }
                     else
+                    {
                         _currentDirection = LEFT;
+                        xCoord--;
+                    }
                 }
                 break;
                 case LEFT:
                 {
                     if (newDirection == LEFT_TURN_90)
+                    {
                         _currentDirection = DOWN;
+                        yCoord--;
+                    }
                     else
+                    {
                         _currentDirection = UP;
+                        yCoord++;
+                    }
                 }
                 break;
                 case RIGHT:
                 {
                     if (newDirection == LEFT_TURN_90)
+                    {
                         _currentDirection = UP;
+                        yCoord++;
+                    }
                     else
+                    {
                         _currentDirection = DOWN;
+                        yCoord++;
+                    }
                 }
                 break;
                 default:
                     System.out.println("Unknown current direction: "+_currentDirection);
                     break;
             }
+
+            Panel nextPanel = new Panel(xCoord, yCoord);
+
+            
         }
     }
 
