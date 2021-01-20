@@ -29,6 +29,10 @@ public class Robot
         _currentDirection = UP;  // The robot starts facing up.
         _currentPanel = new Panel(x, y);
         _panelsPainted = new Vector<Panel>();
+        _maxX = 0;
+        _minX = 0;
+        _maxY = 0;
+        _minY = 0;
 
         _panelsPainted.add(_currentPanel);
     }
@@ -81,6 +85,11 @@ public class Robot
     public String toString ()
     {
         return "Robert current direction: "+_currentDirection+" and current panel: "+_currentPanel;
+    }
+
+    public void printPath ()
+    {
+
     }
 
     private void paintPanel (String colour)
@@ -171,6 +180,22 @@ public class Robot
                 break;
         }
 
+        if (xCoord > _maxX)
+            _maxX = xCoord;
+        else
+        {
+            if (xCoord < _minX)
+                _minX = xCoord;
+        }
+
+        if (yCoord > _maxY)
+            _maxY = yCoord;
+        else
+        {
+            if (yCoord < _minY)
+                _minY = yCoord;
+        }
+
         Coordinate nextCoord = new Coordinate(xCoord, yCoord);
 
         // Have we passed over this panel before?
@@ -205,5 +230,9 @@ public class Robot
     private boolean _debug;
     private char _currentDirection;
     private Panel _currentPanel;
-    Vector<Panel> _panelsPainted;
+    private Vector<Panel> _panelsPainted;
+    private int _maxX;
+    private int _minX;
+    private int _maxY;
+    private int _minY;
 }
