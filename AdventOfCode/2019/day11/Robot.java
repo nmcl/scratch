@@ -15,6 +15,9 @@ public class Robot
 
     public static final int NUMBER_OF_PANELS_TO_MOVE = 1;
 
+    public static final String WHITE = " ";
+    public static final String BLACK = "x";
+
     public Robot (Vector<String> instructions, boolean debug)
     {
         this(instructions, DEFAULT_START_X, DEFAULT_START_Y, debug);
@@ -71,6 +74,8 @@ public class Robot
                 moveRobot(output);
                 paintInstruction = true;
             }
+
+            printPath();
         }
 
         return _panelsPainted.size();
@@ -89,14 +94,27 @@ public class Robot
 
     public void printPath ()
     {
+        for (int x = _minX; x <= _maxX; x++)
+        {
+            for (int y = _minY; y < _maxY; y++)
+            {
+                Panel p = new Panel(x, y);
 
+                if (_panelsPainted.contains(p))
+                    System.out.print(WHITE);
+                else
+                    System.out.println(BLACK);
+            }
+
+            System.out.println();
+        }
     }
 
     private void paintPanel (String colour)
     {
         int theColour = Integer.parseInt(colour);
         
-        //if (_debug)
+        if (_debug)
             System.out.println("Got instruction to paint panel "+ ((theColour == Panel.BLACK) ? "black" : "white"));
 
        if (theColour == Panel.BLACK)
@@ -112,7 +130,7 @@ public class Robot
         int xCoord = currentPosition.getX();
         int yCoord = currentPosition.getY();
 
-        //if (_debug)
+        if (_debug)
             System.out.println("Got instruction to move "+newDirection);
 
         // figure out which direction we're supposed to point in next
