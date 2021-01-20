@@ -35,14 +35,14 @@ public class Robot
 
     public int paint ()
     {
-        Vector<String> output = null;
+        String output = null;
         boolean paintInstruction = true;
 
         while (!_theComputer.hasHalted())
         {
             output = _theComputer.executeProgram();
 
-            System.out.println("got back "+output.size()+" instructions");
+            System.out.println("got back "+output+" instructions");
 
             /*
              * Should return two outputs:
@@ -59,12 +59,12 @@ public class Robot
 
             if (paintInstruction) // which output is this?
             {
-                paintPanel(output.get(output.size() -1));
+                paintPanel(output);
                 paintInstruction = false;
             }
             else
             {
-                moveRobot(output.get(output.size() -1));
+                moveRobot(output);
                 paintInstruction = true;
             }
         }
@@ -183,7 +183,7 @@ public class Robot
             nextPanel = iter.nextElement();
 
             System.out.println("**comparing "+nextCoord+" and "+nextPanel.getPosition());
-            
+
             if (nextCoord.equals(nextPanel.getPosition()))
                 break;
             else

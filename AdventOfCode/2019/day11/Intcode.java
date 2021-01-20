@@ -17,7 +17,7 @@ public class Intcode
     {
         _debug = debug;
         _instructionPointer = 0;
-        _currentState = new Vector<String>();
+        _result = null;
         _memory = new Vector<String>(values);
         _initialInput = input;
         _status = Status.CREATED;
@@ -29,9 +29,9 @@ public class Intcode
         return (_status == Status.HALTED);
     }
 
-    public final Vector<String> currentState ()
+    public final String currentResult ()  // the last result returned
     {
-        return _currentState;
+        return _result;
     }
 
     public final int status ()
@@ -42,22 +42,19 @@ public class Intcode
     /**
      * Execute the commands given.
      * 
-     * @param initialInput1 initial input param 1
-     * @param initialInput2 initial input param 2
-     * @param output any output that may be generated before termination.
-     * @return true if the program code has completed, false otherwise.
+     * @return a representation of the result
      */
 
      // maybe move the initial parameter to the constructor? Or change this to a Vector/array for multiple states?
 
-    public Vector<String> executeProgram ()
+    public String executeProgram ()
     {
         if (hasHalted())
         {
             if (_debug)
                 System.out.println("Intocde computer has halted!");
 
-            return _currentState;
+            return _result;
         }
 
         if (_debug)
@@ -164,13 +161,13 @@ public class Intcode
                     if (_debug)
                         System.out.println("Adding value "+param1+" to output state.");
 
-                    _currentState.add(Long.toString(param1));
+                    _result = Long.toString(param1);
 
                     _instructionPointer += 2;  // move the pointer on.
 
                     _status = Status.PAUSED;
 
-                     return _currentState;
+                     return _result;
                 }
  //               break;
                 case Instructions.JUMP_IF_TRUE:
@@ -326,7 +323,7 @@ public class Intcode
                      _instructionPointer = _memory.size();
                     _status = Status.HALTED;
 
-                     return _currentState;
+                     return _result;
                 }
                 default:
                 {
@@ -340,7 +337,7 @@ public class Intcode
             _status = Status.RUNNING;
         }
 
-        return _currentState;
+        return _result;
     }
 
     // these methods ensure capacity is available
@@ -422,7 +419,7 @@ public class Intcode
 
     private boolean _debug;
     private int _instructionPointer;
-    private Vector<String> _currentState;
+    private String _result;
     private Vector<String> _memory;
     private int _initialInput;
     private int _status;
