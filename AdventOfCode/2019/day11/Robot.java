@@ -182,6 +182,8 @@ public class Robot
         {
             nextPanel = iter.nextElement();
 
+            System.out.println("**comparing "+nextCoord+" and "+nextPanel.getPosition());
+            
             if (nextCoord.equals(nextPanel.getPosition()))
                 break;
             else
@@ -189,7 +191,7 @@ public class Robot
         }
 
         System.out.println("nextPanel "+nextPanel);
-        
+
         if (nextPanel == null)
         {
             nextPanel = new Panel(nextCoord);
