@@ -49,7 +49,7 @@ public class Robot
         {
             output = _theComputer.executeProgram();
 
-            System.out.println("got back "+output+" instructions");
+            //System.out.println("got back "+output+" instructions");
 
             /*
              * Should return two outputs:
@@ -225,7 +225,7 @@ public class Robot
         {
             nextPanel = iter.nextElement();
 
-            System.out.println("**comparing "+nextCoord+" and "+nextPanel.getPosition());
+            //System.out.println("**comparing "+nextCoord+" and "+nextPanel.getPosition());
 
             if (nextCoord.equals(nextPanel.getPosition()))
                 break;
@@ -233,7 +233,7 @@ public class Robot
                 nextPanel = null;
         }
 
-        System.out.println("nextPanel "+nextPanel);
+        //System.out.println("nextPanel "+nextPanel);
 
         if (nextPanel == null)
         {
