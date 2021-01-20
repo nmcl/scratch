@@ -89,7 +89,7 @@ public class Robot
     @Override
     public String toString ()
     {
-        return "Robert current direction: "+_currentDirection+" and current panel: "+_currentPanel;
+        return "Robot current direction: "+_currentDirection+" and current panel: "+_currentPanel;
     }
 
     public void printPath ()
