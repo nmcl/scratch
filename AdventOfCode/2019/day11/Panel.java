@@ -56,7 +56,7 @@ public class Panel
         {
             Panel p = (Panel) obj;
 
-            return _position.equals(p.getPosition()) && (_colour == p._colour) && (_numberOfTimesPainted == p._numberOfTimesPainted);
+            return _position.equals(p.getPosition()) && (_colour == p._colour);
         }
 
         return false;
