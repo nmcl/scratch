@@ -195,12 +195,12 @@ public class Robot
                 if (newDirection == LEFT_TURN_90)
                 {
                     _currentDirection = DOWN;
-                    yCoord--;
+                    yCoord++;
                 }
                 else
                 {
                     _currentDirection = UP;
-                    yCoord++;
+                    yCoord--;
                 }
             }
             break;
@@ -209,7 +209,7 @@ public class Robot
                 if (newDirection == LEFT_TURN_90)
                 {
                     _currentDirection = UP;
-                    yCoord++;
+                    yCoord--;
                 }
                 else
                 {
