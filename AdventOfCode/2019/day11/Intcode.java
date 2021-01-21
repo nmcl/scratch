@@ -17,7 +17,7 @@ public class Intcode
     {
         _debug = debug;
         _instructionPointer = 0;
-        _result = null;
+        _output = new Vector<String>();
         _memory = new Vector<String>(values);
         _initialInput = input;
         _status = Status.CREATED;
@@ -29,9 +29,9 @@ public class Intcode
         return (_status == Status.HALTED);
     }
 
-    public final String currentResult ()  // the last result returned
+    public final Vector<String> currentResult ()  // the last result returned
     {
-        return _result;
+        return _output;
     }
 
     public final int status ()
@@ -47,14 +47,14 @@ public class Intcode
 
      // maybe move the initial parameter to the constructor? Or change this to a Vector/array for multiple states?
 
-    public String executeProgram ()
+    public Vector<String> executeProgram ()
     {
         if (hasHalted())
         {
             if (_debug)
                 System.out.println("Intocde computer has halted!");
 
-            return _result;
+            return _output;
         }
 
         if (_debug)
@@ -161,13 +161,13 @@ public class Intcode
                     if (_debug)
                         System.out.println("Adding value "+param1+" to output state.");
 
-                    _result = Long.toString(param1);
+                    _output.add(Long.toString(param1));
 
                     _instructionPointer += 2;  // move the pointer on.
 
                     _status = Status.PAUSED;
 
-                     return _result;
+                     return _output;
                 }
  //               break;
                 case Instructions.JUMP_IF_TRUE:
@@ -419,7 +419,7 @@ public class Intcode
 
     private boolean _debug;
     private int _instructionPointer;
-    private String _result;
+    private Vector<String> _output;
     private Vector<String> _memory;
     private int _initialInput;
     private int _status;
