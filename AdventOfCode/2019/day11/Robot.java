@@ -44,6 +44,7 @@ public class Robot
     {
         String output = null;
         boolean paintInstruction = true;
+        int numberOfInstructions = 0;
 
         System.out.println("**starting at "+_currentPanel.getPosition());
         System.out.println("**initial computer output 0");
@@ -52,7 +53,13 @@ public class Robot
         {
             System.out.println("**current position "+_currentPanel.getPosition());
 
-            output = _theComputer.executeProgram();
+            if (numberOfInstructions == 0)
+                System.out.println("**initial computer output 0");
+
+            numberOfInstructions++;
+            System.out.println("**instruction number: "+numberOfInstructions);  
+
+            output = _theComputer.executeProgram(); 
 
             System.out.println("**computer output "+output);
 
