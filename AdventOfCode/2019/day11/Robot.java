@@ -46,14 +46,16 @@ public class Robot
         boolean paintInstruction = true;
 
         System.out.println("**starting at "+_currentPanel.getPosition());
-        System.out.println("**computer output 0");
+        System.out.println("**initial computer output 0");
 
         while (!_theComputer.hasHalted())
         {
+            System.out.println("**current position "+_currentPanel.getPosition());
+
             output = _theComputer.executeProgram();
 
             System.out.println("**computer output "+output);
-            
+
             /*
              * Should return two outputs:
              * 
