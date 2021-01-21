@@ -39,6 +39,16 @@ public class Intcode
         return _status;
     }
 
+    public final boolean hasOutput ()
+    {
+        return (_output.size() > 0);
+    }
+
+    public final String getOutput ()
+    {
+        return _output.remove(0);
+    }
+
     /**
      * Execute the commands given.
      * 
@@ -47,14 +57,14 @@ public class Intcode
 
      // maybe move the initial parameter to the constructor? Or change this to a Vector/array for multiple states?
 
-    public Vector<String> executeProgram ()
+    public int executeProgram ()
     {
         if (hasHalted())
         {
             if (_debug)
                 System.out.println("Intocde computer has halted!");
 
-            return _output;
+            return _status;
         }
 
         if (_debug)
@@ -167,7 +177,7 @@ public class Intcode
 
                     _status = Status.PAUSED;
 
-                     return _output;
+                     return _status;
                 }
  //               break;
                 case Instructions.JUMP_IF_TRUE:
@@ -323,7 +333,7 @@ public class Intcode
                      _instructionPointer = _memory.size();
                     _status = Status.HALTED;
 
-                     return _result;
+                    return _status;
                 }
                 default:
                 {
@@ -337,7 +347,7 @@ public class Intcode
             _status = Status.RUNNING;
         }
 
-        return _result;
+        return _status;
     }
 
     // these methods ensure capacity is available
