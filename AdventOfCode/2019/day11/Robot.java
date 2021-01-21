@@ -58,7 +58,7 @@ public class Robot
             numberOfInstructions++;
             System.out.println("**instruction number: "+numberOfInstructions);  
 
-            _theComputer.executeProgram(); 
+            _theComputer.singleStepExecution(); 
 
             if (_theComputer.hasOutput())
             {
