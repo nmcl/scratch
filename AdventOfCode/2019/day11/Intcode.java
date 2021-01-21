@@ -47,19 +47,28 @@ public class Intcode
     }
 
     /**
-     * Execute the commands given.
+     * Execute one instruction at a time.
      * 
-     * @return a representation of the result
+     * @return the current status.
      */
 
-     // maybe move the initial parameter to the constructor? Or change this to a Vector/array for multiple states?
+    public int singleStepExecution ()
+    {
+       return _status;
+    }
+    
+    /**
+     * Execute all the commands given, only returning when paused or halted.
+     * 
+     * @return the current status.
+     */
 
     public int executeProgram ()
     {
         if (hasHalted())
         {
             if (_debug)
-                System.out.println("Intocde computer has halted!");
+                System.out.println("Intcode computer has halted!");
 
             return _status;
         }
@@ -74,7 +83,7 @@ public class Intcode
             int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
             System.out.println("**opCode "+opcode);
-            
+
             if (_debug)
             {
                 System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
