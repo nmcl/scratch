@@ -51,6 +51,11 @@ public class Intcode
         _initialInput = input;
     }
 
+    public final int getInput ()
+    {
+        return _initialInput;
+    }
+
     /**
      * Execute all the commands given, only returning when paused or halted.
      * 
