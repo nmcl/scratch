@@ -32,12 +32,13 @@ public class Robot
         _currentDirection = UP;  // The robot starts facing up.
         _currentPanel = new Panel(x, y);
         _panelsPainted = new Vector<Panel>();
+
+        _panelsPainted.add(_currentPanel);
+
         _maxX = 0;
         _minX = 0;
         _maxY = 0;
         _minY = 0;
-
-        _panelsPainted.add(_currentPanel);
     }
 
     public int paint ()
