@@ -29,11 +29,6 @@ public class Intcode
         return (_status == Status.HALTED);
     }
 
-    public final Vector<String> currentResult ()  // the last result returned
-    {
-        return _output;
-    }
-
     public final int status ()
     {
         return _status;
@@ -41,6 +36,8 @@ public class Intcode
 
     public final boolean hasOutput ()
     {
+        System.out.println("**output size "+_output.size());
+
         return (_output.size() > 0);
     }
 
@@ -76,12 +73,12 @@ public class Intcode
             int opcode = Integer.valueOf(str);
             int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
-            if (_debug)
+            //if (_debug)
             {
                 System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
                                         " with parameter modes ...");
 
-                ParameterMode.printModes(modes);
+                //ParameterMode.printModes(modes);
             }
 
             /*
@@ -168,7 +165,7 @@ public class Intcode
 
                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Adding value "+param1+" to output state.");
 
                     _output.add(Long.toString(param1));
