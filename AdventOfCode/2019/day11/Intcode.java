@@ -46,6 +46,11 @@ public class Intcode
         return _output.remove(0);
     }
 
+    public final void setInput (int input)
+    {
+        _initialInput = input;
+    }
+
     /**
      * Execute all the commands given, only returning when paused or halted.
      * 
