@@ -31,10 +31,15 @@ public class Panel
         _numberOfTimesPainted++;
     }
 
+    public String fullOutput ()
+    {
+        return "Panel at "+_position+" with colour "+((_colour == BLACK) ? "black" : "white")+" and painted "+_numberOfTimesPainted+" times.";
+    }
+
     @Override
     public String toString ()
     {
-        return "Panel at "+_position+" with colour "+((_colour == BLACK) ? "black" : "white")+" and painted "+_numberOfTimesPainted+" times.";
+        return "Panel at "+_position;
     }
 
     @Override
@@ -42,6 +47,8 @@ public class Panel
     {
         return Objects.hash(_colour, _numberOfTimesPainted, _position.hashCode());
     }
+
+    // do not compare colour or number of times painted
 
     @Override
     public boolean equals (Object obj)
@@ -52,14 +59,20 @@ public class Panel
         if (this == obj)
             return true;
         
+        boolean result = false;
+
+            System.out.println("**comparing "+this+" and "+obj);
+
         if (getClass() == obj.getClass())
         {
             Panel p = (Panel) obj;
 
-            return _position.equals(p.getPosition()) && (_colour == p._colour);
+            result = _position.equals(p.getPosition());
         }
 
-        return false;
+        System.out.println((result) ? "found" : "not found");
+        
+        return result;
     }
 
     private Coordinate _position;
