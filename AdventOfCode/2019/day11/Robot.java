@@ -45,12 +45,15 @@ public class Robot
         String output = null;
         boolean paintInstruction = true;
 
+        System.out.println("**starting at "+_currentPanel.getPosition());
+        System.out.println("**computer output 0");
+
         while (!_theComputer.hasHalted())
         {
             output = _theComputer.executeProgram();
 
-            //System.out.println("got back "+output+" instructions");
-
+            System.out.println("**computer output "+output);
+            
             /*
              * Should return two outputs:
              * 
@@ -75,7 +78,7 @@ public class Robot
                 paintInstruction = true;
             }
 
-            printPath();
+            //printPath();
         }
 
         return _panelsPainted.size();
@@ -94,6 +97,8 @@ public class Robot
 
     public void printPath ()
     {
+        //System.out.println("**printing <"+_minX+", "+_maxX+"> and <"+_minY+", "+_maxY+">");
+         
         for (int x = _minX; x <= _maxX; x++)
         {
             for (int y = _minY; y < _maxY; y++)
