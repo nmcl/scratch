@@ -47,23 +47,28 @@ public class Intcode
     }
 
     /**
-     * Execute one instruction at a time.
-     * 
-     * @return the current status.
-     */
-
-    public int singleStepExecution ()
-    {
-       return _status;
-    }
-    
-    /**
      * Execute all the commands given, only returning when paused or halted.
      * 
      * @return the current status.
      */
 
     public int executeProgram ()
+    {
+        while (!hasHalted())
+        {
+            singleStepExecution();
+        }
+
+        return _status;
+    }
+
+    /**
+     * Execute one instruction at a time.
+     * 
+     * @return the current status.
+     */
+
+    public int singleStepExecution ()
     {
         if (hasHalted())
         {
@@ -76,284 +81,281 @@ public class Intcode
         if (_debug)
             System.out.println("Intcode input <"+_initialInput+"> and instruction pointer: "+_instructionPointer);
 
-        while (!hasHalted())
+        String str = getOpcode(_memory.elementAt(_instructionPointer));
+        int opcode = Integer.valueOf(str);
+        int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
+
+        System.out.println("**opCode "+opcode);
+
+        if (_debug)
         {
-            String str = getOpcode(_memory.elementAt(_instructionPointer));
-            int opcode = Integer.valueOf(str);
-            int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
+            System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
+                                    " with parameter modes ...");
 
-            System.out.println("**opCode "+opcode);
+            ParameterMode.printModes(modes);
+        }
 
-            if (_debug)
+        /*
+            * Now factor in the parameter modes.
+            */
+
+        switch (opcode)
+        {
+            case Instructions.ADD:
             {
-                System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
-                                        " with parameter modes ...");
-
-                ParameterMode.printModes(modes);
-            }
-
-            /*
-             * Now factor in the parameter modes.
-             */
-
-            switch (opcode)
-            {
-                case Instructions.ADD:
-                {
-                    /*
-                     * Opcode 1 adds together numbers read from two positions
-                     * and stores the result in a third position. The three integers
-                     * immediately after the opcode tell you these three positions - the
-                     * first two indicate the positions from which you should read the
-                     * input values, and the third indicates the position at which
-                     * the output should be stored.
-                     */
-
-                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
-                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
-                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
-
-                     if (_debug)
-                        System.out.println("Adding "+param1+" and "+param2);
-
-                     long sum = param1+param2;
-
-                     if (_debug)
-                        System.out.println("Storing "+sum+" at position "+param3);
-
-                     setValue(param3, String.valueOf(sum));
-
-                     _instructionPointer += 4; // move the pointer on.
-                }
-                break;
-                case Instructions.MULTIPLY:
-                {
-                    /*
-                     * Opcode 2 works exactly like opcode 1, except it multiplies the
-                     * two inputs instead of adding them. Again, the three integers after
-                     * the opcode indicate where the inputs and outputs are, not their values.
-                     */
+                /*
+                    * Opcode 1 adds together numbers read from two positions
+                    * and stores the result in a third position. The three integers
+                    * immediately after the opcode tell you these three positions - the
+                    * first two indicate the positions from which you should read the
+                    * input values, and the third indicates the position at which
+                    * the output should be stored.
+                    */
 
                     long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
                     long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
                     if (_debug)
-                        System.out.println("Multiplying "+param1+" and "+param2);
+                    System.out.println("Adding "+param1+" and "+param2);
 
-                    long product = Long.valueOf(param1)*Long.valueOf(param2);
+                    long sum = param1+param2;
 
                     if (_debug)
-                        System.out.println("Storing "+product+" at position "+param3);
+                    System.out.println("Storing "+sum+" at position "+param3);
 
-                    setValue(param3, String.valueOf(product));
+                    setValue(param3, String.valueOf(sum));
 
-                    _instructionPointer += 4;  // move the pointer on.
-                }
-                break;
-                case Instructions.INPUT_AND_STORE:
-                {
-                    /*
-                     * Opcode 3 takes a single integer as input and saves it to
-                     * the position given by its only parameter.
-                     */
+                    _instructionPointer += 4; // move the pointer on.
+            }
+            break;
+            case Instructions.MULTIPLY:
+            {
+                /*
+                    * Opcode 2 works exactly like opcode 1, except it multiplies the
+                    * two inputs instead of adding them. Again, the three integers after
+                    * the opcode indicate where the inputs and outputs are, not their values.
+                    */
 
-                     int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
+                long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
-                     if (_debug)
-                        System.out.println("Storing "+_initialInput+" at position "+param1);
+                if (_debug)
+                    System.out.println("Multiplying "+param1+" and "+param2);
 
-                     setValue(param1, String.valueOf(_initialInput));
+                long product = Long.valueOf(param1)*Long.valueOf(param2);
 
-                     _instructionPointer += 2;  // move the pointer on.
-                }
-                break;
-                case Instructions.OUTPUT:
-                {
-                    /*
-                     * Opcode 4 outputs the value of its only parameter.
-                     */
+                if (_debug)
+                    System.out.println("Storing "+product+" at position "+param3);
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                setValue(param3, String.valueOf(product));
 
-                    //if (_debug)
-                        System.out.println("Adding value "+param1+" to output state.");
+                _instructionPointer += 4;  // move the pointer on.
+            }
+            break;
+            case Instructions.INPUT_AND_STORE:
+            {
+                /*
+                    * Opcode 3 takes a single integer as input and saves it to
+                    * the position given by its only parameter.
+                    */
 
-                    _output.add(Long.toString(param1));
+                    int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
+
+                    if (_debug)
+                    System.out.println("Storing "+_initialInput+" at position "+param1);
+
+                    setValue(param1, String.valueOf(_initialInput));
 
                     _instructionPointer += 2;  // move the pointer on.
+            }
+            break;
+            case Instructions.OUTPUT:
+            {
+                /*
+                    * Opcode 4 outputs the value of its only parameter.
+                    */
 
-                    _status = Status.PAUSED;
+                long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
 
-                     return _status;
-                }
- //               break;
-                case Instructions.JUMP_IF_TRUE:
-                {
-                    /*
-                     * If the first parameter is non-zero, it sets the instruction pointer to
-                     * the value from the second parameter. Otherwise, it does nothing.
-                     */
+                if (_debug)
+                    System.out.println("Adding value "+param1+" to output state.");
 
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                _output.add(Long.toString(param1));
 
-                    if (_debug)
-                        System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
+                _instructionPointer += 2;  // move the pointer on.
 
-                    if (param1 != 0)
-                    {
-                        _instructionPointer = (int) param2;
-
-                        if (_debug)
-                            System.out.println("Will jump to "+param2);
-                    }
-                    else
-                        _instructionPointer += 3;
-                }
-                break;
-                case Instructions.JUMP_IF_FALSE:
-                {
-                    /*
-                     * If the first parameter is zero, it sets the instruction pointer to the value
-                     * from the second parameter. Otherwise, it does nothing.
-                     */
-
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
-
-                    if (_debug)
-                        System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
-
-                    if (param1 == 0)
-                    {
-                        _instructionPointer = (int) param2;
-
-                        if (_debug)
-                            System.out.println("Will jump to "+param2);
-                    }
-                    else
-                        _instructionPointer += 3;
-                }
-                break;
-                case Instructions.LESS_THAN:
-                {
-                    /*
-                     * If the first parameter is less than the second parameter, it stores 1
-                     * in the position given by the third parameter. Otherwise, it stores 0.
-                     */
-
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
-                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
-
-                    if (_debug)
-                    {
-                        System.out.println("Checking whether "+param1+" < "+param2);
-                        System.out.print("Storing ");
-                    }
-
-                    if (param1 < param2)
-                    {
-                        if (_debug)
-                            System.out.print("1");
-
-                        setValue(param3, "1");
-                    }
-                    else
-                    {
-                        if (_debug)
-                            System.out.print("0");
-
-                        setValue(param3, "0");
-                    }
-
-                    if (_debug)
-                        System.out.println(" at location "+param3);
-
-                    _instructionPointer += 4;  // move the pointer on.
-                }
-                break;
-                case Instructions.EQUALS:
-                {
-                    /*
-                     * If the first parameter is equal to the second parameter, it stores 1
-                     * in the position given by the third parameter. Otherwise, it stores 0.
-                     */
-
-                    long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
-                    long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
-                    int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
-
-                    if (_debug)
-                    {
-                        System.out.println("Checking whether "+param1+" is equal to "+param2);
-                        System.out.print("Storing ");
-                    }
-
-                    if (param1 == param2)
-                    {
-                        if (_debug)
-                            System.out.print("1");
-
-                        setValue(param3, "1");
-                    }
-                    else
-                    {
-                        if (_debug)
-                            System.out.print("0");
-
-                        setValue(param3, "0");
-                    }
-
-                    if (_debug)
-                        System.out.println(" at location "+param3);
-
-                    _instructionPointer += 4;  // move the pointer on.
-                }
-                break;
-                case Instructions.RELATIVE_BASE:
-                {
-                    /*
-                     * The relative base increases (or decreases, if the value is negative)
-                     * by the value of the parameter.
-                     */
-
-                    int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], false));
-
-                    _relativeBase += param1;
-
-                    if (_debug)
-                        System.out.println("Relative base now "+_relativeBase);
-
-                    _instructionPointer += 2;
-                }
-                break;
-                case Instructions.HALT:
-                {
-                    /*
-                     * Means that the program is finished and should immediately halt.
-                     */
-
-                     if (_debug)
-                        System.out.println("Halting execution.");
-
-                     _instructionPointer = _memory.size();
-                    _status = Status.HALTED;
+                _status = Status.PAUSED;
 
                     return _status;
-                }
-                default:
-                {
-                    System.out.println("Unknown opcode "+str+" encountered");
-
-                    _instructionPointer = _memory.size();  // stop any further execution.
-                    _status = Status.HALTED;
-                }
             }
+//               break;
+            case Instructions.JUMP_IF_TRUE:
+            {
+                /*
+                    * If the first parameter is non-zero, it sets the instruction pointer to
+                    * the value from the second parameter. Otherwise, it does nothing.
+                    */
 
-            _status = Status.RUNNING;
+                long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+
+                if (_debug)
+                    System.out.println("Checking "+param1+" != 0 and might jump to "+param2);
+
+                if (param1 != 0)
+                {
+                    _instructionPointer = (int) param2;
+
+                    if (_debug)
+                        System.out.println("Will jump to "+param2);
+                }
+                else
+                    _instructionPointer += 3;
+            }
+            break;
+            case Instructions.JUMP_IF_FALSE:
+            {
+                /*
+                    * If the first parameter is zero, it sets the instruction pointer to the value
+                    * from the second parameter. Otherwise, it does nothing.
+                    */
+
+                long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+
+                if (_debug)
+                    System.out.println("Checking "+param1+" == 0 and might jump to "+param2);
+
+                if (param1 == 0)
+                {
+                    _instructionPointer = (int) param2;
+
+                    if (_debug)
+                        System.out.println("Will jump to "+param2);
+                }
+                else
+                    _instructionPointer += 3;
+            }
+            break;
+            case Instructions.LESS_THAN:
+            {
+                /*
+                    * If the first parameter is less than the second parameter, it stores 1
+                    * in the position given by the third parameter. Otherwise, it stores 0.
+                    */
+
+                long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
+
+                if (_debug)
+                {
+                    System.out.println("Checking whether "+param1+" < "+param2);
+                    System.out.print("Storing ");
+                }
+
+                if (param1 < param2)
+                {
+                    if (_debug)
+                        System.out.print("1");
+
+                    setValue(param3, "1");
+                }
+                else
+                {
+                    if (_debug)
+                        System.out.print("0");
+
+                    setValue(param3, "0");
+                }
+
+                if (_debug)
+                    System.out.println(" at location "+param3);
+
+                _instructionPointer += 4;  // move the pointer on.
+            }
+            break;
+            case Instructions.EQUALS:
+            {
+                /*
+                    * If the first parameter is equal to the second parameter, it stores 1
+                    * in the position given by the third parameter. Otherwise, it stores 0.
+                    */
+
+                long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+                long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
+                int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
+
+                if (_debug)
+                {
+                    System.out.println("Checking whether "+param1+" is equal to "+param2);
+                    System.out.print("Storing ");
+                }
+
+                if (param1 == param2)
+                {
+                    if (_debug)
+                        System.out.print("1");
+
+                    setValue(param3, "1");
+                }
+                else
+                {
+                    if (_debug)
+                        System.out.print("0");
+
+                    setValue(param3, "0");
+                }
+
+                if (_debug)
+                    System.out.println(" at location "+param3);
+
+                _instructionPointer += 4;  // move the pointer on.
+            }
+            break;
+            case Instructions.RELATIVE_BASE:
+            {
+                /*
+                    * The relative base increases (or decreases, if the value is negative)
+                    * by the value of the parameter.
+                    */
+
+                int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], false));
+
+                _relativeBase += param1;
+
+                if (_debug)
+                    System.out.println("Relative base now "+_relativeBase);
+
+                _instructionPointer += 2;
+            }
+            break;
+            case Instructions.HALT:
+            {
+                /*
+                    * Means that the program is finished and should immediately halt.
+                    */
+
+                    if (_debug)
+                    System.out.println("Halting execution.");
+
+                    _instructionPointer = _memory.size();
+                _status = Status.HALTED;
+
+                return _status;
+            }
+            default:
+            {
+                System.out.println("Unknown opcode "+str+" encountered");
+
+                _instructionPointer = _memory.size();  // stop any further execution.
+                _status = Status.HALTED;
+            }
         }
+
+        _status = Status.RUNNING;
 
         return _status;
     }
