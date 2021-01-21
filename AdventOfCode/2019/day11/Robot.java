@@ -47,14 +47,13 @@ public class Robot
         int numberOfInstructions = 0;
 
         System.out.println("**starting at "+_currentPanel.getPosition());
-        System.out.println("**initial computer output 0");
 
         while (!_theComputer.hasHalted())
         {
             System.out.println("**current position "+_currentPanel.getPosition());
 
             if (numberOfInstructions == 0)
-                System.out.println("**initial computer output 0");
+                System.out.println("**initial computer input 0");
 
             numberOfInstructions++;
             System.out.println("**instruction number: "+numberOfInstructions);  
