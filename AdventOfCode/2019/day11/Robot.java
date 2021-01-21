@@ -58,35 +58,46 @@ public class Robot
             numberOfInstructions++;
             System.out.println("**instruction number: "+numberOfInstructions);  
 
-            output = _theComputer.executeProgram(); 
+            _theComputer.executeProgram(); 
 
-            System.out.println("**computer output "+output);
-
-            /*
-             * Should return two outputs:
-             * 
-             * First, it will output a value indicating the color to paint the panel the
-             * robot is over: 0 means to paint the panel black, and 1 means to paint the panel white.
-             * 
-             * Second, it will output a value indicating the direction the robot should turn: 0 means
-             * it should turn left 90 degrees, and 1 means it should turn right 90 degrees.
-             * 
-             * After the robot turns, it should always move forward exactly one panel. The robot
-             * starts facing up.
-             */
-
-            if (paintInstruction) // which output is this?
+            if (_theComputer.hasOutput())
             {
-                paintPanel(output);
-                paintInstruction = false;
+                output = _theComputer.getOutput();
+                System.out.println("**computer output "+output);
             }
             else
-            {
-                moveRobot(output);
-                paintInstruction = true;
-            }
+                System.out.println("**NO OUTPUT");
 
-            //printPath();
+            if (output != null)
+            {
+                /*
+                * Should return two outputs:
+                * 
+                * First, it will output a value indicating the color to paint the panel the
+                * robot is over: 0 means to paint the panel black, and 1 means to paint the panel white.
+                * 
+                * Second, it will output a value indicating the direction the robot should turn: 0 means
+                * it should turn left 90 degrees, and 1 means it should turn right 90 degrees.
+                * 
+                * After the robot turns, it should always move forward exactly one panel. The robot
+                * starts facing up.
+                */
+
+                if (paintInstruction) // which output is this?
+                {
+                    paintPanel(output);
+                    paintInstruction = false;
+                }
+                else
+                {
+                    moveRobot(output);
+                    paintInstruction = true;
+                }
+
+                //printPath();
+
+                output = null;
+            }
         }
 
         return _panelsPainted.size();
