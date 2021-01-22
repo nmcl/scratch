@@ -34,6 +34,7 @@ public class Robot
         _currentPanel = new Panel(x, y);
         _panelsPainted = new Vector<Panel>();
 
+        System.out.println("**adding");
         _panelsPainted.add(_currentPanel);
 
         _maxX = 0;
@@ -104,7 +105,7 @@ public class Robot
             }
         }
 
-        return _panelsPainted.size();
+        return _panelsPainted.size() -1;  // current panel isn't painted until next time!
     }
 
     public final char currentDirection ()
@@ -266,6 +267,7 @@ public class Robot
         if (nextPanel == null)
         {
             nextPanel = new Panel(nextCoord);
+            System.out.println("**adding");
             _panelsPainted.add(nextPanel);
         }
         
