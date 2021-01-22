@@ -36,8 +36,6 @@ public class Intcode
 
     public final boolean hasOutput ()
     {
-        System.out.println("**output size "+_output.size());
-
         return (_output.size() > 0);
     }
 
@@ -94,8 +92,6 @@ public class Intcode
         String str = getOpcode(_memory.elementAt(_instructionPointer));
         int opcode = Integer.valueOf(str);
         int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
-
-        System.out.println("**opCode "+opcode);
 
         if (_debug)
         {
