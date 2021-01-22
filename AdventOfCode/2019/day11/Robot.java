@@ -27,7 +27,8 @@ public class Robot
     {
         // any input instructions at this point should be provided 0
 
-        _theComputer = new Intcode(instructions, 0, debug);
+        _input = 0;
+        _theComputer = new Intcode(instructions, _input, debug);
         _debug = debug;
         _currentDirection = UP;  // The robot starts facing up.
         _currentPanel = new Panel(x, y);
@@ -51,6 +52,8 @@ public class Robot
 
         while (!_theComputer.hasHalted())
         {
+            _input = _currentPanel.colour();
+
             System.out.println("**current position "+_currentPanel.getPosition());
 
             if (numberOfInstructions == 0)
@@ -59,7 +62,7 @@ public class Robot
             numberOfInstructions++;
             System.out.println("**instruction number: "+numberOfInstructions);  
 
-            _theComputer.singleStepExecution(); 
+            _theComputer.singleStepExecution(_input); 
 
             if (_theComputer.hasOutput())
             {
@@ -269,6 +272,7 @@ public class Robot
         _currentPanel = nextPanel;
     }
 
+    private int _input;
     private Intcode _theComputer;
     private boolean _debug;
     private char _currentDirection;
