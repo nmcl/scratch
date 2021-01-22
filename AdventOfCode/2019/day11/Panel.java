@@ -65,9 +65,7 @@ public class Panel
             return true;
         
         boolean result = false;
-
-            System.out.println("**comparing "+this+" and "+obj);
-
+        
         if (getClass() == obj.getClass())
         {
             Panel p = (Panel) obj;
