@@ -34,7 +34,6 @@ public class Robot
         _currentPanel = new Panel(x, y);
         _panelsPainted = new Vector<Panel>();
 
-        System.out.println("**adding");
         _panelsPainted.add(_currentPanel);
 
         _maxX = 0;
@@ -47,31 +46,28 @@ public class Robot
     {
         String output = null;
         boolean paintInstruction = true;
-        int numberOfInstructions = 0;
-
-        System.out.println("**starting at "+_currentPanel.getPosition());
 
         while (!_theComputer.hasHalted())
         {
             _input = _currentPanel.colour();
 
-            System.out.println("**current position "+_currentPanel.getPosition());
-
-            if (numberOfInstructions == 0)
-                System.out.println("**initial computer input 0");
-
-            numberOfInstructions++;
-            System.out.println("**instruction number: "+numberOfInstructions);  
+            if (_debug)
+                System.out.println("Current position "+_currentPanel.getPosition());
 
             _theComputer.singleStepExecution(_input); 
 
             if (_theComputer.hasOutput())
             {
                 output = _theComputer.getOutput();
-                System.out.println("**computer output "+output);
+
+                if (_debug)
+                    System.out.println("Computer output "+output);
             }
             else
-                System.out.println("**NO OUTPUT");
+            {
+                if (_debug)
+                    System.out.println("NO OUTPUT");
+            }
 
             if (output != null)
             {
@@ -121,8 +117,6 @@ public class Robot
 
     public void printPath ()
     {
-        //System.out.println("**printing <"+_minX+", "+_maxX+"> and <"+_minY+", "+_maxY+">");
-         
         for (int x = _minX; x <= _maxX; x++)
         {
             for (int y = _minY; y < _maxY; y++)
@@ -267,7 +261,6 @@ public class Robot
         if (nextPanel == null)
         {
             nextPanel = new Panel(nextCoord);
-            System.out.println("**adding");
             _panelsPainted.add(nextPanel);
         }
         
