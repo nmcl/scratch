@@ -3,7 +3,7 @@ import java.util.Objects;
 public class Panel
 {
     public static final int BLACK = 0;
-    public static final int WHITE  =1;
+    public static final int WHITE = 1;
 
     public Panel (int x, int y)
     {
@@ -13,6 +13,11 @@ public class Panel
     public Panel (Coordinate coord)
     {
         _position = coord;
+    }
+
+    public final int colour ()
+    {
+        return _colour;
     }
 
     public final int timesPainted ()
@@ -71,7 +76,7 @@ public class Panel
         }
 
         System.out.println((result) ? "found" : "not found");
-        
+
         return result;
     }
 
