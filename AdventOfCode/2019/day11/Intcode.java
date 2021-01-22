@@ -13,13 +13,13 @@ public class Intcode
      * takes.
      */
 
-    public Intcode (Vector<String> values, int input, boolean debug)
+    public Intcode (Vector<String> values, int initialInput, boolean debug)
     {
         _debug = debug;
         _instructionPointer = 0;
         _output = new Vector<String>();
         _memory = new Vector<String>(values);
-        _initialInput = input;
+        _input = initialInput;
         _status = Status.CREATED;
         _relativeBase = 0;
     }
@@ -48,12 +48,12 @@ public class Intcode
 
     public final void setInput (int input)
     {
-        _initialInput = input;
+        _input = input;
     }
 
     public final int getInput ()
     {
-        return _initialInput;
+        return _input;
     }
 
     /**
@@ -66,7 +66,7 @@ public class Intcode
     {
         while (!hasHalted())
         {
-            singleStepExecution();
+            singleStepExecution(_input);
         }
 
         return _status;
@@ -78,7 +78,7 @@ public class Intcode
      * @return the current status.
      */
 
-    public int singleStepExecution ()
+    public int singleStepExecution (int input)
     {
         if (hasHalted())
         {
@@ -89,7 +89,7 @@ public class Intcode
         }
 
         if (_debug)
-            System.out.println("Intcode input <"+_initialInput+"> and instruction pointer: "+_instructionPointer);
+            System.out.println("Intcode input <"+input+"> and instruction pointer: "+_instructionPointer);
 
         String str = getOpcode(_memory.elementAt(_instructionPointer));
         int opcode = Integer.valueOf(str);
@@ -174,9 +174,9 @@ public class Intcode
                     int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
                     if (_debug)
-                    System.out.println("Storing "+_initialInput+" at position "+param1);
+                        System.out.println("Storing "+input+" at position "+param1);
 
-                    setValue(param1, String.valueOf(_initialInput));
+                    setValue(param1, String.valueOf(input));
 
                     _instructionPointer += 2;  // move the pointer on.
             }
@@ -451,7 +451,7 @@ public class Intcode
     private int _instructionPointer;
     private Vector<String> _output;
     private Vector<String> _memory;
-    private int _initialInput;
+    private int _input;
     private int _status;
     private int _relativeBase;
 
