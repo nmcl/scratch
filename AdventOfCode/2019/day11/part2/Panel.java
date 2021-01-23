@@ -36,7 +36,7 @@ public class Panel
         _numberOfTimesPainted++;
     }
 
-    public String fullOutput ()
+    public final String fullOutput ()
     {
         return "Panel at "+_position+" with colour "+((_colour == BLACK) ? "black" : "white")+" and painted "+_numberOfTimesPainted+" times.";
     }
