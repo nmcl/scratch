@@ -95,8 +95,6 @@ public class Robot
                     paintInstruction = true;
                 }
 
-                //printPath();
-
                 output = null;
             }
         }
@@ -126,7 +124,7 @@ public class Robot
                 if (_panelsPainted.contains(p))
                     System.out.print(WHITE);
                 else
-                    System.out.println(BLACK);
+                    System.out.print(BLACK);
             }
 
             System.out.println();
