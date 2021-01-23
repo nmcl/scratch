@@ -72,9 +72,7 @@ public class Panel
 
             result = _position.equals(p.getPosition());
         }
-
-        System.out.println((result) ? "found" : "not found");
-
+        
         return result;
     }
 

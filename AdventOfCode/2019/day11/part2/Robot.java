@@ -115,6 +115,10 @@ public class Robot
 
     public void printPath ()
     {
+        System.out.println("** got "+_minX+" "+_maxX);
+        System.out.println("** got "+_minY+" "+_maxY);
+        System.out.println("**and "+_panelsPainted.size());
+
         for (int x = _minX; x <= _maxX; x++)
         {
             for (int y = _minY; y < _maxY; y++)
