@@ -63,6 +63,8 @@ public class EHPR
         int numberOfPaintedPanels = theRobot.paint();
 
         System.out.println("Number of painted panels: "+numberOfPaintedPanels);
+
+        theRobot.printPath();
     }
     
     private static final String DATA_FILE = "instructions.txt";
