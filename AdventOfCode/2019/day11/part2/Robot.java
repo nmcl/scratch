@@ -134,22 +134,24 @@ public class Robot
             p.fullOutput();
         }
 
-        for (int x = _minX; x <= _maxX; x++)
+        for (int y = _minY; y <= _maxY; y++)
         {
-            for (int y = _minY; y < _maxY; y++)
+            for (int x = _minX; x < _maxX; x++)
             {
                 Panel p = new Panel(x, y);
+                int index = _panelsPainted.indexOf(p);
 
-                if (_panelsPainted.contains(p))
+                if (index >= 0)
                 {
-                    System.out.println("**"+p+" is present");
-                    System.out.print(WHITE);
+                    p = _panelsPainted.elementAt(index);
+
+                    if (p.colour() == Panel.WHITE)
+                        System.out.print(WHITE);
+                    else
+                        System.out.print(BLACK);
                 }
                 else
-                {
-                    System.out.println("**"+p+" is not present");
-                    System.out.print(BLACK);
-                }
+                    System.out.print(WHITE);
             }
 
             System.out.println();
