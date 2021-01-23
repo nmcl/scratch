@@ -27,7 +27,7 @@ public class Robot
     {
         // any input instructions at this point should be provided 0
 
-        _input = 0;
+        _input = -1;  // change for part 2
         _theComputer = new Intcode(instructions, _input, debug);
         _debug = debug;
         _currentDirection = UP;  // The robot starts facing up.
@@ -49,7 +49,10 @@ public class Robot
 
         while (!_theComputer.hasHalted())
         {
-            _input = _currentPanel.colour();
+            if (_input == -1) // change for part 2, start on white
+                _input = 1;
+            else
+                _input = _currentPanel.colour();
 
             if (_debug)
                 System.out.println("Current position "+_currentPanel.getPosition());
