@@ -121,6 +121,18 @@ public class Robot
         System.out.println("** got "+_minX+" "+_maxX);
         System.out.println("** got "+_minY+" "+_maxY);
         System.out.println("**and "+_panelsPainted.size());
+        System.out.println("**dumping ");
+
+        Enumeration<Panel> iter = _panelsPainted.elements();
+
+        while (iter.hasMoreElements())
+        {
+            Panel p = iter.nextElement();
+
+            System.out.println("**printing "+p.getPosition()+" with colour "+((p.colour() == Panel.BLACK) ? "black" : "white")+" and painted "+p.timesPainted()+" times.");
+
+            p.fullOutput();
+        }
 
         for (int x = _minX; x <= _maxX; x++)
         {
@@ -129,9 +141,15 @@ public class Robot
                 Panel p = new Panel(x, y);
 
                 if (_panelsPainted.contains(p))
+                {
+                    System.out.println("**"+p+" is present");
                     System.out.print(WHITE);
+                }
                 else
+                {
+                    System.out.println("**"+p+" is not present");
                     System.out.print(BLACK);
+                }
             }
 
             System.out.println();
