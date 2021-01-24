@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 /*
- * Represents a <x, y> coordinate for an Asteroid or an Empty space.
+ * Represents a <x, y, z> coordinate for Moon.
  */
 
 public class Coordinate
