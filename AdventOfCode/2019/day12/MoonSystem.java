@@ -19,5 +19,15 @@ public class MoonSystem
             if ("-verify".equals(args[i]))
                 verify = true;
         }
+
+        if (verify)
+        {
+            Verifier theVerifier = new Verifier(debug);
+
+            if (theVerifier.verify())
+                System.out.println("Verified ok!");
+            else
+                System.out.println("Verify failed!");
+        }
     }
 }
