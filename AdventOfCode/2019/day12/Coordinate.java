@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 /*
  * Represents a <x, y, z> coordinate for Moon.
  */

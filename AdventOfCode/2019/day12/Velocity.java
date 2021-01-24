@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 /*
  * Represents a <x, y, z> velocity for a Moon.
  */
