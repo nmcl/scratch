@@ -15,6 +15,9 @@ public class Verifier
 
         _activator = new Activate(EXAMPLE1_DATA, _debug);
 
+        if (_debug)
+            System.out.println("Activated: "+_activator);
+            
         return result;
     }
 
