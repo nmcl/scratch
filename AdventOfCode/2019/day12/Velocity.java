@@ -6,6 +6,11 @@ import java.util.Objects;
 
 public class Velocity
 {
+    public Velocity ()
+    {
+        this(0, 0, 0);
+    }
+    
     public Velocity (int x, int y, int z)
     {
         _x = x;
