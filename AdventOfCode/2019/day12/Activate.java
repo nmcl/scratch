@@ -62,7 +62,7 @@ public class Activate
         if (_debug)
             System.out.println("xData "+xData);
 
-        int startY = endX + xData.length();
+        int startY = endX +2;
         String yData = line.substring(startY+Y_VALUE.length(), line.indexOf(DEMARCATION, startY));
 
         if (_debug)
