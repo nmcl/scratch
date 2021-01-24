@@ -11,10 +11,16 @@ public class Activate
 
     public Activate (String dataFile, boolean debug)
     {
+        _system = new Vector<Moon>();
         _dataFile = dataFile;
         _debug = debug;
 
         createSystem();
+    }
+
+    public final Vector<Moon> getMoonSystem ()
+    {
+        return _system;
     }
 
     private void createSystem ()
@@ -73,6 +79,8 @@ public class Activate
 
         if (_debug)
             System.out.println("zData "+zData);
+
+        _system.add(new Moon(Integer.parseInt(xData), Integer.parseInt(yData), Integer.parseInt(zData)));
     }
     
     private Vector<Moon> _system;
