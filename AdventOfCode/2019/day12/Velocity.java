@@ -10,7 +10,7 @@ public class Velocity
     {
         this(0, 0, 0);
     }
-    
+
     public Velocity (int x, int y, int z)
     {
         _x = x;
@@ -56,7 +56,7 @@ public class Velocity
         
         if (getClass() == obj.getClass())
         {
-            Coordinate temp = (Coordinate) obj;
+            Velocity temp = (Velocity) obj;
 
             return ((_x == temp._x) && (_y == temp._y) && (_z == temp._z));
         }
