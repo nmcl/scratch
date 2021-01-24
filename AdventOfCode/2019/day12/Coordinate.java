@@ -31,7 +31,7 @@ public class Coordinate
     @Override
     public String toString ()
     {
-        return "<"+_x+", "+_y+", "+_z+">";
+        return "Coordinate: <"+_x+", "+_y+", "+_z+">";
     }
 
     @Override
