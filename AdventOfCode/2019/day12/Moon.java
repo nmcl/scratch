@@ -6,6 +6,12 @@ public class Moon
         _velocity = new Velocity();  // the x, y, and z velocity of each moon starts at 0.
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Moon: "+_position+" and "+_velocity;
+    }
+
     private Coordinate _position;
     private Velocity _velocity;
 }
