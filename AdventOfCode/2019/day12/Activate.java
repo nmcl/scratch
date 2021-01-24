@@ -18,6 +18,20 @@ public class Activate
         createSystem();
     }
 
+    @Override
+    public String toString ()
+    {
+        Enumeration<Moon> iter = _system.elements();
+        String toReturn = "The system: ";
+
+        while (iter.hasMoreElements())
+        {
+            toReturn += iter.nextElement() + ", ";
+        }
+
+        return toReturn;
+    }
+
     public final Vector<Moon> getMoonSystem ()
     {
         return _system;
