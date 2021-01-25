@@ -20,8 +20,6 @@ public class ThreeDPoint
 
     public final void setX (int x)
     {
-        System.out.println("setX "+x);
-        
         _x = x;
     }
 
