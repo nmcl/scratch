@@ -37,6 +37,32 @@ public class MoonSystem
         return _system;
     }
 
+    /*
+     * Initially we won't store the data for each step but simply
+     * update position and velocity in situ.
+     */
+
+    public final void applyGravity ()
+    {
+        Vector<Moon> systemPlusGravity = new Vector<Moon>();
+
+        for (int i = 0; i < _system.size(); i++)
+        {
+            Moon currentMoon = _system.elementAt(i);
+            Enumeration<Moon> iter = _system.elements();
+
+            while (iter.hasMoreElements())
+            {
+                Moon nextMoon = iter.nextElement();
+
+                if (!currentMoon.equals(nextMoon))
+                {
+                    
+                }
+            }
+        }
+    }
+
     private void createSystem ()
     {
         /*
