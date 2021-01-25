@@ -32,7 +32,7 @@ public class MoonSystem
         return toReturn;
     }
 
-    public final Vector<Moon> getMoonSystem ()
+    public final Vector<Moon> getMoons ()
     {
         return _system;
     }
