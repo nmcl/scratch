@@ -13,7 +13,7 @@ public class Verifier
     {
         boolean result = false;
 
-        _activator = new Activate(EXAMPLE1_DATA, _debug);
+        _activator = new MoonSystem(EXAMPLE1_DATA, _debug);
 
         if (_debug)
             System.out.println("Activated: "+_activator);
@@ -21,6 +21,6 @@ public class Verifier
         return result;
     }
 
-    private Activate _activator;
+    private MoonSystem _activator;
     private boolean _debug;
 }

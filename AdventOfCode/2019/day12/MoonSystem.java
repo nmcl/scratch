@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Activate
+public class MoonSystem
 {
     public static final String X_VALUE = "x=";
     public static final String Y_VALUE = "y=";
@@ -9,7 +9,7 @@ public class Activate
 
     public static final String DEMARCATION = ",";
 
-    public Activate (String dataFile, boolean debug)
+    public MoonSystem (String dataFile, boolean debug)
     {
         _system = new Vector<Moon>();
         _dataFile = dataFile;
