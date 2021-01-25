@@ -15,7 +15,7 @@ public class Moon
     {
         return _velocity;
     }
-    
+
     /*
      * On each axis (x, y, and z), the velocity of each moon changes by
      * exactly +1 or -1 to pull the moons together.
