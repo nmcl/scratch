@@ -35,11 +35,10 @@ public class MoonSystem
         for (int i = 0; i < _system.size(); i++)
         {
             Moon currentMoon = _system.elementAt(i);
-            Enumeration<Moon> iter = _system.elements();
 
-            while (iter.hasMoreElements())
+            for (int j = i; j < _system.size(); j++)
             {
-                Moon nextMoon = iter.nextElement();
+                Moon nextMoon = _system.elementAt(j);
 
                 currentMoon.applyGravity(nextMoon);
             }
