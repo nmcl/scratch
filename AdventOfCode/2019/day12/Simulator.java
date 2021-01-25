@@ -1,4 +1,4 @@
-public class MoonSystem
+public class Simulator
 {
     public static final void main (String[] args)
     {
