@@ -55,10 +55,6 @@ public class MoonSystem
             {
                 Moon nextMoon = iter.nextElement();
 
-                if (!currentMoon.equals(nextMoon))
-                {
-                    
-                }
             }
         }
     }
