@@ -12,6 +12,6 @@ public class Coordinate extends ThreeDPoint
     @Override
     public String toString ()
     {
-        return "Coordinate: <"+_x+", "+_y+", "+_z+">";
+        return "Coordinate: <x="+_x+", y="+_y+", z="+_z+">";
     }
 }

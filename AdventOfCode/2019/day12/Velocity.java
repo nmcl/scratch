@@ -17,6 +17,6 @@ public class Velocity extends ThreeDPoint
     @Override
     public String toString ()
     {
-        return "Velocity: <"+_x+", "+_y+", "+_z+">";
+        return "Velocity: <x="+_x+", y="+_y+", z="+_z+">";
     }
 }
