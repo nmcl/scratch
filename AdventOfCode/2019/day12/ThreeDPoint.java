@@ -18,14 +18,29 @@ public class ThreeDPoint
         return _x;
     }
 
+    public final void setX (int x)
+    {
+        _x = x;
+    }
+
     public final int getY ()
     {
         return _y;
     }
 
+    public final void setY (int y)
+    {
+        _y = y;
+    }
+
     public final int getZ ()
     {
         return _z;
+    }
+
+    public final void setZ (int z)
+    {
+        _z = z;
     }
 
     @Override
