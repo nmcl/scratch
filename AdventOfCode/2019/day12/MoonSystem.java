@@ -18,20 +18,6 @@ public class MoonSystem
         createSystem();
     }
 
-    @Override
-    public String toString ()
-    {
-        Enumeration<Moon> iter = _system.elements();
-        String toReturn = "The system: ";
-
-        while (iter.hasMoreElements())
-        {
-            toReturn += iter.nextElement() + ", ";
-        }
-
-        return toReturn;
-    }
-
     public final Vector<Moon> getMoons ()
     {
         return _system;
@@ -55,8 +41,49 @@ public class MoonSystem
             {
                 Moon nextMoon = iter.nextElement();
 
+                currentMoon.applyGravity(nextMoon);
             }
         }
+    }
+
+    public String moonCoordinates ()
+    {
+        Enumeration<Moon> iter = _system.elements();
+        String toReturn = "";
+
+        while (iter.hasMoreElements())
+        {
+            toReturn += iter.nextElement().getPosition()+"\n";
+        }
+
+        return toReturn;
+    }
+
+    public final String moonVelocities ()
+    {
+        Enumeration<Moon> iter = _system.elements();
+        String toReturn = "";
+
+        while (iter.hasMoreElements())
+        {
+            toReturn += iter.nextElement().getVelocity()+"\n";
+        }
+
+        return toReturn;
+    }
+
+    @Override
+    public String toString ()
+    {
+        Enumeration<Moon> iter = _system.elements();
+        String toReturn = "The system: ";
+
+        while (iter.hasMoreElements())
+        {
+            toReturn += iter.nextElement() + ", ";
+        }
+
+        return toReturn;
     }
 
     private void createSystem ()

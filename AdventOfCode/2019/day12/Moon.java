@@ -5,13 +5,17 @@ public class Moon
         _position = new Coordinate(x, y, z);
         _velocity = new Velocity();  // the x, y, and z velocity of each moon starts at 0.
     }
-
-    @Override
-    public String toString ()
+    
+    public final Coordinate getPosition ()
     {
-        return "Moon: "+_position+" and "+_velocity;
+        return _position;
     }
 
+    public final Velocity getVelocity ()
+    {
+        return _velocity;
+    }
+    
     /*
      * On each axis (x, y, and z), the velocity of each moon changes by
      * exactly +1 or -1 to pull the moons together.
@@ -72,6 +76,12 @@ public class Moon
                 }
             }
         }
+    }
+
+    @Override
+    public String toString ()
+    {
+        return "Moon: "+_position+" and "+_velocity;
     }
 
     private Coordinate _position;

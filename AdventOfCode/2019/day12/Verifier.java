@@ -18,6 +18,10 @@ public class Verifier
         if (_debug)
             System.out.println("Activated: "+_activator);
             
+        _activator.applyGravity();
+
+        System.out.println("Now have:\n"+_activator.moonCoordinates());
+
         return result;
     }
 
