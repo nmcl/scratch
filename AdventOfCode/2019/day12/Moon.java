@@ -28,51 +28,51 @@ public class Moon
             int x1 = _position.getX();
             int x2 = otherMoon._position.getX();
 
-            if (x1 > x2)
+            if (x1 < x2)
             {
-                _position.setX(x1 -1);
-                otherMoon._position.setX(x2 +1);
+                _velocity.setX(x1 -1);
+                otherMoon._velocity.setX(x2 +1);
             }
             else
             {
-                if (x1 < x2)
+                if (x1 > x2)
                 {
-                    _position.setX(x1 +1);
-                    otherMoon._position.setX(x2 -1);
+                    _velocity.setX(x1 +1);
+                    otherMoon._velocity.setX(x2 -1);
                 }
             }
 
             int y1 = _position.getY();
             int y2 = otherMoon._position.getY();
 
-            if (y1 > y2)
+            if (y1 < y2)
             {
-                _position.setY(y1 -1);
-                otherMoon._position.setY(y2 +1);
+                _velocity.setY(y1 -1);
+                otherMoon._velocity.setY(y2 +1);
             }
             else
             {
-                if (y1 < y2)
+                if (y1 > y2)
                 {
-                    _position.setY(y1 +1);
-                    otherMoon._position.setY(y2 -1);
+                    _velocity.setY(y1 +1);
+                    otherMoon._velocity.setY(y2 -1);
                 }
             }
 
             int z1 = _position.getZ();
             int z2 = otherMoon._position.getZ();
 
-            if (z1 > z2)
+            if (z1 < z2)
             {
-                _position.setZ(z1 -1);
-                otherMoon._position.setZ(z2 +1);
+                _velocity.setZ(z1 -1);
+                otherMoon._velocity.setZ(z2 +1);
             }
             else
             {
-                if (z1 < z2)
+                if (z1 > z2)
                 {
-                    _position.setZ(z1 +1);
-                    otherMoon._position.setZ(z2 -1);
+                    _velocity.setZ(z1 +1);
+                    otherMoon._velocity.setZ(z2 -1);
                 }
             }
         }
