@@ -23,6 +23,7 @@ public class Verifier
         _activator.applyGravity();
 
         System.out.println("Now have:\n"+_activator.moonVelocities());
+        System.out.println("and:\n"+_activator.moonCoordinates());
 
         return result;
     }
