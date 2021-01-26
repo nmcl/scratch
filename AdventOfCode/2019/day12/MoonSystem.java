@@ -30,20 +30,21 @@ public class MoonSystem
 
     public final void updateVelocities ()
     {
-        Vector<Moon> systemPlusGravity = new Vector<Moon>();
-
         for (int i = 0; i < _system.size(); i++)
         {
             Moon currentMoon = _system.elementAt(i);
-            
+            Moon tempMoon = new Moon(currentMoon);
+
             for (int j = i +1; j < _system.size(); j++)
             {
                 Moon nextMoon = _system.elementAt(j);
-
-                System.out.println("**calculating between "+i+" and "+j);
-
+                
                 currentMoon.updateVelocity(nextMoon);
             }
+
+            _system.set(i, tempMoon);
+
+            System.out.println("**NOW\n"+moonVelocities());
         }
     }
 

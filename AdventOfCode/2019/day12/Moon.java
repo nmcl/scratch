@@ -33,61 +33,59 @@ public class Moon
         {
             int x1 = _position.getX();
             int x2 = otherMoon._position.getX();
+            int y1 = _position.getY();
+            int y2 = otherMoon._position.getY();
+            int z1 = _position.getZ();
+            int z2 = otherMoon._position.getZ();
 
-            System.out.println("**comparing "+x1+" and "+x2);
-
+            System.out.println("**comparing "+x1+" "+y1+" "+z1);
+			System.out.println("**and "+x2+" "+y2+" "+z2);
+            System.out.println("**against "+_velocity.getX()+" "+_velocity.getY()+" "+_velocity.getZ());
+            
             if (x1 > x2)
             {
                 _velocity.decreaseX();
-                otherMoon._velocity.increaseX();
+                //otherMoon._velocity.increaseX();
             }
             else
             {
                 if (x1 < x2)
                 {
                     _velocity.increaseX();
-                    otherMoon._velocity.decreaseX();
+                    //otherMoon._velocity.decreaseX();
                 }
             }
-
-            int y1 = _position.getY();
-            int y2 = otherMoon._position.getY();
-
-            System.out.println("**comparing "+y1+" and "+y2);
 
             if (y1 > y2)
             {
                 _velocity.decreaseY();
-                otherMoon._velocity.decreaseY();
+                //otherMoon._velocity.decreaseY();
             }
             else
             {
                 if (y1 < y2)
                 {
                     _velocity.decreaseY();
-                    otherMoon._velocity.decreaseY();
+                    //otherMoon._velocity.decreaseY();
                 }
             }
-
-            int z1 = _position.getZ();
-            int z2 = otherMoon._position.getZ();
-
-            System.out.println("**comparing "+z1+" and "+z2);
 
             if (z1 > z2)
             {
                 _velocity.decreaseZ();
-                otherMoon._velocity.increaseZ();
+                //otherMoon._velocity.increaseZ();
             }
             else
             {
                 if (z1 < z2)
                 {
                     _velocity.increaseZ();
-                    otherMoon._velocity.decreaseZ();
+                    //otherMoon._velocity.decreaseZ();
                 }
             }
         }
+
+        System.out.println("**overwriting Moon with "+_velocity.getX()+" "+_velocity.getY()+" "+_velocity.getZ());
     }
 
     @Override
