@@ -25,46 +25,16 @@ public class ThreeDPoint
         return _x;
     }
 
-    public final void increaseX ()
-    {
-        _x++;
-    }
-
-    public final void decreaseX ()
-    {
-        _x--;
-    }
-
     public final int getY ()
     {
         return _y;
-    }
-
-    public final void increaseY ()
-    {
-        _y++;
-    }
-
-    public final void decreaseY ()
-    {
-        _y--;
     }
 
     public final int getZ ()
     {
         return _z;
     }
-
-    public final void increaseZ ()
-    {
-        _z++;
-    }
-
-    public final void decreaseZ ()
-    {
-        _z--;
-    }
-
+    
     @Override
     public int hashCode ()
     {

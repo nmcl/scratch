@@ -37,52 +37,21 @@ public class Moon
             int y2 = otherMoon._position.getY();
             int z1 = _position.getZ();
             int z2 = otherMoon._position.getZ();
-
+            int xVel = _velocity.getX();
+		    int yVel = _velocity.getY();
+            int zVel = _velocity.getZ();
+            
             System.out.println("**comparing "+x1+" "+y1+" "+z1);
 			System.out.println("**and "+x2+" "+y2+" "+z2);
-            System.out.println("**against "+_velocity.getX()+" "+_velocity.getY()+" "+_velocity.getZ());
+            System.out.println("**against "+xVel+" "+yVel+" "+zVel);
+
+            xVel = x1 > x2 ? xVel - 1 : (x1 == x2 ? xVel : xVel + 1);
+		    yVel = y1 > y2 ? yVel - 1 : (y1 == y2 ? yVel : yVel + 1);
+            zVel = z1 > z2 ? zVel - 1 : (z1 == z2 ? zVel : zVel + 1);
+
+            _velocity = new Velocity(xVel, yVel, zVel);
             
-            if (x1 > x2)
-            {
-                _velocity.decreaseX();
-                //otherMoon._velocity.increaseX();
-            }
-            else
-            {
-                if (x1 < x2)
-                {
-                    _velocity.increaseX();
-                    //otherMoon._velocity.decreaseX();
-                }
-            }
-
-            if (y1 > y2)
-            {
-                _velocity.decreaseY();
-                //otherMoon._velocity.decreaseY();
-            }
-            else
-            {
-                if (y1 < y2)
-                {
-                    _velocity.decreaseY();
-                    //otherMoon._velocity.decreaseY();
-                }
-            }
-
-            if (z1 > z2)
-            {
-                _velocity.decreaseZ();
-                //otherMoon._velocity.increaseZ();
-            }
-            else
-            {
-                if (z1 < z2)
-                {
-                    _velocity.increaseZ();
-                    //otherMoon._velocity.decreaseZ();
-                }
-            }
+            System.out.println("**THIS overwriting Moon with "+xVel+" "+yVel+" "+zVel);
         }
 
         System.out.println("**overwriting Moon with "+_velocity.getX()+" "+_velocity.getY()+" "+_velocity.getZ());
