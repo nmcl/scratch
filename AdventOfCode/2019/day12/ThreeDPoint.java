@@ -18,11 +18,14 @@ public class ThreeDPoint
         return _x;
     }
 
-    public final void setX (int x)
+    public final void increaseX ()
     {
-        System.out.println("**changing "+_x+" to "+x);
+        _x++;
+    }
 
-        _x = x;
+    public final void decreaseX ()
+    {
+        _x--;
     }
 
     public final int getY ()
@@ -30,11 +33,14 @@ public class ThreeDPoint
         return _y;
     }
 
-    public final void setY (int y)
+    public final void increaseY ()
     {
-        System.out.println("**changing "+_y+" to "+y);
+        _y++;
+    }
 
-        _y = y;
+    public final void decreaseY ()
+    {
+        _y--;
     }
 
     public final int getZ ()
@@ -42,11 +48,14 @@ public class ThreeDPoint
         return _z;
     }
 
-    public final void setZ (int z)
+    public final void increaseZ ()
     {
-        System.out.println("**changing "+_z+" to "+z);
+        _z++;
+    }
 
-        _z = z;
+    public final void decreaseZ ()
+    {
+        _z--;
     }
 
     @Override
