@@ -39,8 +39,9 @@ public class MoonSystem
                 Moon nextMoon = _system.elementAt(j);
 
                 currentMoon.updateVelocity(nextMoon);
-                currentMoon.updatePosition();
             }
+
+            //currentMoon.updatePosition();
         }
     }
 
