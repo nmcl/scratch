@@ -27,7 +27,7 @@ public class Moon
      * exactly +1 or -1 to pull the moons together.
      */
 
-    public final void applyGravity (Moon otherMoon)
+    public final void updateVelocity (Moon otherMoon)
     {
         if (!this.equals(otherMoon))
         {

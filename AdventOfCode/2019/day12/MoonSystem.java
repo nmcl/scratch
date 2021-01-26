@@ -28,7 +28,7 @@ public class MoonSystem
      * update position and velocity in situ.
      */
 
-    public final void applyGravity ()
+    public final void updateVelocities ()
     {
         Vector<Moon> systemPlusGravity = new Vector<Moon>();
 
@@ -42,7 +42,7 @@ public class MoonSystem
 
                 System.out.println("**calculating between "+i+" and "+j);
 
-                currentMoon.applyGravity(nextMoon);
+                currentMoon.updateVelocity(nextMoon);
             }
         }
     }
