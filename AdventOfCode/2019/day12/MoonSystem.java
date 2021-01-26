@@ -40,8 +40,14 @@ public class MoonSystem
 
                 currentMoon.updateVelocity(nextMoon);
             }
+        }
 
-            //currentMoon.updatePosition();
+        
+        for (int i = 0; i < _system.size(); i++)
+        {
+            Moon currentMoon = _system.elementAt(i);
+
+            currentMoon.updatePosition();
         }
     }
 
