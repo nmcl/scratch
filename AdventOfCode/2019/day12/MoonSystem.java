@@ -35,7 +35,7 @@ public class MoonSystem
         for (int i = 0; i < _system.size(); i++)
         {
             Moon currentMoon = _system.elementAt(i);
-
+            
             for (int j = i +1; j < _system.size(); j++)
             {
                 Moon nextMoon = _system.elementAt(j);

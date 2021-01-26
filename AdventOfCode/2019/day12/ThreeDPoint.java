@@ -13,6 +13,13 @@ public class ThreeDPoint
         _z = z;
     }
 
+    protected ThreeDPoint (ThreeDPoint toCopy)
+    {
+        _x = toCopy._x;
+        _y = toCopy._y;
+        _z = toCopy._z;
+    }
+
     public final int getX ()
     {
         return _x;

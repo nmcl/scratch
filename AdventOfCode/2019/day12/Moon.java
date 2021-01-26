@@ -5,6 +5,12 @@ public class Moon
         _position = new Coordinate(x, y, z);
         _velocity = new Velocity();  // the x, y, and z velocity of each moon starts at 0.
     }
+
+    public Moon (Moon toCopy)
+    {
+        _position = new Coordinate(toCopy._position);
+        _velocity = new Velocity(toCopy._velocity);
+    }
     
     public final Coordinate getPosition ()
     {

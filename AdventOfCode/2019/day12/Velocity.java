@@ -14,6 +14,11 @@ public class Velocity extends ThreeDPoint
         super(x, y, z);
     }
 
+    public Velocity (Velocity toCopy)
+    {
+        super(toCopy);
+    }
+
     @Override
     public String toString ()
     {

@@ -9,6 +9,11 @@ public class Coordinate extends ThreeDPoint
         super(x, y, z);
     }
 
+    public Coordinate (Coordinate toCopy)
+    {
+        super(toCopy);
+    }
+
     @Override
     public String toString ()
     {
