@@ -63,6 +63,8 @@ public class Moon
         int y = _position.getY();
         int z = _position.getZ();
 
+        System.out.println("**Coord was "+_position);
+
         _position = new Coordinate(x + _velocity.getX(), y + _velocity.getY(), z + _velocity.getZ());
 
         System.out.println("**Coord now "+_position);
