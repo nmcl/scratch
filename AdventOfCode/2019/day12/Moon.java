@@ -32,15 +32,15 @@ public class Moon
 
             if (x1 > x2)
             {
-                _velocity.decrementX();
-                otherMoon._velocity.incrementX();
+                _velocity.decreaseX();
+                otherMoon._velocity.increaseX();
             }
             else
             {
                 if (x1 < x2)
                 {
-                    _velocity.incrementX();
-                    otherMoon._velocity.decrementX();
+                    _velocity.increaseX();
+                    otherMoon._velocity.decreaseX();
                 }
             }
 
@@ -51,15 +51,15 @@ public class Moon
 
             if (y1 > y2)
             {
-                _velocity.decrementY();
-                otherMoon._velocity.incrementY();
+                _velocity.decreaseY();
+                otherMoon._velocity.decreaseY();
             }
             else
             {
                 if (y1 < y2)
                 {
-                    _velocity.incrementY();
-                    otherMoon._velocity.decrementY();
+                    _velocity.decreaseY();
+                    otherMoon._velocity.decreaseY();
                 }
             }
 
@@ -70,15 +70,15 @@ public class Moon
 
             if (z1 > z2)
             {
-                _velocity.decrementZ();
-                otherMoon._velocity.incrementZ();
+                _velocity.decreaseZ();
+                otherMoon._velocity.increaseZ();
             }
             else
             {
                 if (z1 < z2)
                 {
-                    _velocity.incrementZ();
-                    otherMoon._velocity.decrementZ();
+                    _velocity.increaseZ();
+                    otherMoon._velocity.decreaseZ();
                 }
             }
         }
