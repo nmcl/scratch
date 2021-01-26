@@ -20,6 +20,8 @@ public class ThreeDPoint
 
     public final void setX (int x)
     {
+        System.out.println("**changing "+_x+" to "+x);
+
         _x = x;
     }
 
@@ -30,6 +32,8 @@ public class ThreeDPoint
 
     public final void setY (int y)
     {
+        System.out.println("**changing "+_y+" to "+y);
+
         _y = y;
     }
 
@@ -40,6 +44,8 @@ public class ThreeDPoint
 
     public final void setZ (int z)
     {
+        System.out.println("**changing "+_z+" to "+z);
+
         _z = z;
     }
 
