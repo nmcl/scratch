@@ -20,7 +20,7 @@ public class Verifier
             
         System.out.println("Starting with:\n"+_activator.moonVelocities());
 
-        _activator.updateVelocities();
+        _activator.applyGravity();
 
         System.out.println("Now have:\n"+_activator.moonVelocities());
 

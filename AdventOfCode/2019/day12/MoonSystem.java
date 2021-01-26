@@ -28,7 +28,7 @@ public class MoonSystem
      * update position and velocity in situ.
      */
 
-    public final void updateVelocities ()
+    public final void applyGravity ()
     {
         for (int i = 0; i < _system.size(); i++)
         {
@@ -39,6 +39,7 @@ public class MoonSystem
                 Moon nextMoon = _system.elementAt(j);
 
                 currentMoon.updateVelocity(nextMoon);
+                currentMoon.updatePosition();
             }
         }
     }
