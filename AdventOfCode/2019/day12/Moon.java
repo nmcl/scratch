@@ -57,6 +57,15 @@ public class Moon
         System.out.println("**overwriting Moon with "+_velocity.getX()+" "+_velocity.getY()+" "+_velocity.getZ());
     }
 
+    public final void updatePosition ()
+    {
+        int x = _position.getX();
+        int y = _position.getY();
+        int z = _position.getZ();
+
+        _position = new Coordinate(x + _velocity.getX(), y + _velocity.getY(), z + _velocity.getZ());
+    }
+
     @Override
     public String toString ()
     {
