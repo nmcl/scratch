@@ -36,9 +36,11 @@ public class MoonSystem
         {
             Moon currentMoon = _system.elementAt(i);
 
-            for (int j = i; j < _system.size(); j++)
+            for (int j = i +1; j < _system.size(); j++)
             {
                 Moon nextMoon = _system.elementAt(j);
+
+                System.out.println("**calculating between "+i+" and "+j);
 
                 currentMoon.applyGravity(nextMoon);
             }
