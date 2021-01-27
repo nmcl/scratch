@@ -12,7 +12,7 @@ public class Verifier
     public static final Velocity EXAMPLE2_STEP20_MOON2 = new Velocity(1, 1, -4);
     public static final Velocity EXAMPLE2_STEP40_MOON1 = new Velocity(11, 3, 0);
     public static final Coordinate EXAMPLE2_STEP70_MOON4 = new Coordinate(17, 3, 1);
-    public static final Coordinate EXAMPLE2_STEP100_MOON3 = new Coordinate(32, -8, 14);
+    public static final Coordinate EXAMPLE2_STEP100_MOON3 = new Coordinate(-29, -11, -1);
     public static final int EXAMPLE2_TOTAL_ENERGY = 1940;
 
     public Verifier (boolean debug)
@@ -23,7 +23,7 @@ public class Verifier
 
     public final boolean verify ()
     {
-        return verifyExample1();// && verifyExample2();
+        return verifyExample1() && verifyExample2();
     }
 
     // we don't check all the data, just a sample.
@@ -48,8 +48,8 @@ public class Verifier
             }
         }
 
-        System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-        System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+        System.out.println("Moon positions after 2 steps:\n"+_activator.moonCoordinates());
+        System.out.println("Moon velocitie after 2 stepss:\n"+_activator.moonVelocities());
 
         Moon theMoon = _activator.getMoons().elementAt(1);
         Velocity theVelocity = theMoon.getVelocity();
@@ -61,8 +61,8 @@ public class Verifier
                 _activator.applyGravity();
             }
 
-            System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-            System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+            System.out.println("Moon positions after 4 steps:\n"+_activator.moonCoordinates());
+            System.out.println("Moon velocities after 4 steps:\n"+_activator.moonVelocities());
 
             theMoon = _activator.getMoons().elementAt(0);
             theVelocity = theMoon.getVelocity();
@@ -74,8 +74,8 @@ public class Verifier
                     _activator.applyGravity();
                 }
 
-                System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-                System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+                System.out.println("Moon positions after 7 steps:\n"+_activator.moonCoordinates());
+                System.out.println("Moon velocities after 7 steps:\n"+_activator.moonVelocities());
 
                 theMoon = _activator.getMoons().elementAt(3);
                 Coordinate theCoordinate = theMoon.getPosition();
@@ -87,8 +87,8 @@ public class Verifier
                         _activator.applyGravity();
                     }
 
-                    System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-                    System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+                    System.out.println("Moon positions after 10 steps:\n"+_activator.moonCoordinates());
+                    System.out.println("Moon velocities after 10 steps:\n"+_activator.moonVelocities());
 
                     theMoon = _activator.getMoons().elementAt(2);
                     theCoordinate = theMoon.getPosition();
@@ -125,8 +125,8 @@ public class Verifier
             }
         }
 
-        System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-        System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+        System.out.println("Moon positions after 20 steps:\n"+_activator.moonCoordinates());
+        System.out.println("Moon velocities after 20 steps:\n"+_activator.moonVelocities());
 
         Moon theMoon = _activator.getMoons().elementAt(1);
         Velocity theVelocity = theMoon.getVelocity();
@@ -138,8 +138,8 @@ public class Verifier
                 _activator.applyGravity();
             }
 
-            System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-            System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+            System.out.println("Moon positions after 40 steps:\n"+_activator.moonCoordinates());
+            System.out.println("Moon velocities after 40 steps:\n"+_activator.moonVelocities());
 
             theMoon = _activator.getMoons().elementAt(0);
             theVelocity = theMoon.getVelocity();
@@ -151,8 +151,8 @@ public class Verifier
                     _activator.applyGravity();
                 }
 
-                System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-                System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+                System.out.println("Moon positions after 70 steps:\n"+_activator.moonCoordinates());
+                System.out.println("Moon velocities after 70 steps:\n"+_activator.moonVelocities());
 
                 theMoon = _activator.getMoons().elementAt(3);
                 Coordinate theCoordinate = theMoon.getPosition();
@@ -164,8 +164,8 @@ public class Verifier
                         _activator.applyGravity();
                     }
 
-                    System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-                    System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+                    System.out.println("Moon positions after 100 steps:\n"+_activator.moonCoordinates());
+                    System.out.println("Moon velocities after 100 steps:\n"+_activator.moonVelocities());
 
                     theMoon = _activator.getMoons().elementAt(2);
                     theCoordinate = theMoon.getPosition();
