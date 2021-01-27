@@ -17,6 +17,11 @@ public class Verifier
 
     public final boolean verify ()
     {
+        return verifyExample1();
+    }
+    
+    private final boolean verifyExample1 ()
+    {
         boolean result = false;
 
         _activator = new MoonSystem(EXAMPLE1_DATA, _debug);
@@ -43,7 +48,21 @@ public class Verifier
 
         if (theVelocity.equals(EXAMPLE1_STEP2_MOON_2))
         {
-            result = true;
+            for (int i = 0; i < 2; i++)
+            {
+                _activator.applyGravity();
+            }
+
+            System.out.println("Moon positions:\n"+_activator.moonCoordinates());
+            System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+
+            theMoon = _activator.getMoons().elementAt(0);
+            theVelocity = theMoon.getVelocity();
+
+            if (theVelocity.equals(EXAMPLE1_STEP4_MOON1))
+            {
+                result = true;
+            }
         }
 
         return result;
