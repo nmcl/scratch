@@ -3,6 +3,9 @@ public class Verifier
     public static final String EXAMPLE1_DATA = "example1.txt";
     public static final String EXAMPLE2_DATA = "example2.txt";
 
+    public static final Velocity EXAMPLE1_STEP2_MOON_2 = new Velocity(-2, 5, 6);
+    public static final Coordinate EXAMPLE1_STEP7_MOON4 = new Coordinate(2, 0, 0);
+    
     public Verifier (boolean debug)
     {
         _activator = null;
