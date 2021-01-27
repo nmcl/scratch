@@ -22,6 +22,29 @@ public class Moon
         return _velocity;
     }
 
+    public final int getPotentialEnergy ()
+    {
+        int x = _position.getX();
+        int y = _position.getY();
+        int z = _position.getZ();
+
+        return Math.abs(x)+Math.abs(y)+Math.abs(z);
+    }
+
+    public final int getKineticEnergy ()
+    {
+        int xVel = _velocity.getX();
+        int yVel = _velocity.getY();
+        int zVel = _velocity.getZ();
+
+        return Math.abs(xVel)+Math.abs(yVel)+Math.abs(zVel);
+    }
+
+    public final int getTotalEnergy ()
+    {
+        return getPotentialEnergy() * getKineticEnergy();
+    }
+
     /*
      * On each axis (x, y, and z), the velocity of each moon changes by
      * exactly +1 or -1 to pull the moons together.

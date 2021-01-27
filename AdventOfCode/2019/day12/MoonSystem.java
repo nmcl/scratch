@@ -76,6 +76,19 @@ public class MoonSystem
         return toReturn;
     }
 
+    public final int totalEnergy ()
+    {
+        Enumeration<Moon> iter = _system.elements();
+        int total = 0;
+
+        while (iter.hasMoreElements())
+        {
+            total += iter.nextElement().getTotalEnergy();
+        }
+
+        return total;
+    }
+
     @Override
     public String toString ()
     {

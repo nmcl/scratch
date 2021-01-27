@@ -88,7 +88,10 @@ public class Verifier
                     theCoordinate = theMoon.getPosition();
 
                     if (theCoordinate.equals(EXAMPLE1_STEP10_MOON3))
-                        result = true;
+                    {
+                        if (_activator.totalEnergy() == EXAMPLE1_TOTAL_ENERGY)
+                            result = true;
+                    }
                 }
             }
         }
