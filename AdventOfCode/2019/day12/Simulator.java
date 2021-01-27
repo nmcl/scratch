@@ -1,5 +1,7 @@
 public class Simulator
 {
+    public static final String DATA_FILE = "data.txt";
+    public static final int ITERATIONS = 1000;
     public static final void main (String[] args)
     {
         boolean debug = false;
@@ -29,5 +31,14 @@ public class Simulator
             else
                 System.out.println("Verify failed!");
         }
+
+        MoonSystem theMoons = new MoonSystem(DATA_FILE, debug);
+
+        for (int i = 0; i < ITERATIONS; i++)
+        {
+            theMoons.applyGravity();
+        }
+
+        System.out.println("Total energy after "+ITERATIONS+" iteratiosn: "+theMoons.totalEnergy());
     }
 }
