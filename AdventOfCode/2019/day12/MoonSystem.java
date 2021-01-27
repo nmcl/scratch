@@ -42,7 +42,6 @@ public class MoonSystem
             }
         }
 
-        
         for (int i = 0; i < _system.size(); i++)
         {
             Moon currentMoon = _system.elementAt(i);
