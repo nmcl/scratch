@@ -19,7 +19,9 @@ public class Verifier
     {
         return verifyExample1();
     }
-    
+
+    // we don't check all the data, just a sample.
+
     private final boolean verifyExample1 ()
     {
         boolean result = false;
@@ -61,7 +63,33 @@ public class Verifier
 
             if (theVelocity.equals(EXAMPLE1_STEP4_MOON1))
             {
-                result = true;
+                for (int i = 0; i < 3; i++)
+                {
+                    _activator.applyGravity();
+                }
+
+                System.out.println("Moon positions:\n"+_activator.moonCoordinates());
+                System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+
+                theMoon = _activator.getMoons().elementAt(3);
+                Coordinate theCoordinate = theMoon.getPosition();
+
+                if (theCoordinate.equals(EXAMPLE1_STEP7_MOON4))
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        _activator.applyGravity();
+                    }
+
+                    System.out.println("Moon positions:\n"+_activator.moonCoordinates());
+                    System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+
+                    theMoon = _activator.getMoons().elementAt(2);
+                    theCoordinate = theMoon.getPosition();
+
+                    if (theCoordinate.equals(EXAMPLE1_STEP10_MOON3))
+                        result = true;
+                }
             }
         }
 
