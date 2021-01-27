@@ -3,18 +3,6 @@ public class Verifier
     public static final String EXAMPLE1_DATA = "example1.txt";
     public static final String EXAMPLE2_DATA = "example2.txt";
 
-    public static final Velocity EXAMPLE1_STEP2_MOON2 = new Velocity(-2, 5, 6);
-    public static final Velocity EXAMPLE1_STEP4_MOON1 = new Velocity(-3, -2, 1);
-    public static final Coordinate EXAMPLE1_STEP7_MOON4 = new Coordinate(2, 0, 0);
-    public static final Coordinate EXAMPLE1_STEP10_MOON3 = new Coordinate(3, -6, 1);
-    public static final int EXAMPLE1_TOTAL_ENERGY = 179;
-
-    public static final Velocity EXAMPLE2_STEP20_MOON2 = new Velocity(1, 1, -4);
-    public static final Velocity EXAMPLE2_STEP40_MOON1 = new Velocity(11, 3, 0);
-    public static final Coordinate EXAMPLE2_STEP70_MOON4 = new Coordinate(17, 3, 1);
-    public static final Coordinate EXAMPLE2_STEP100_MOON3 = new Coordinate(-29, -11, -1);
-    public static final int EXAMPLE2_TOTAL_ENERGY = 1940;
-
     public Verifier (boolean debug)
     {
         _activator = null;
