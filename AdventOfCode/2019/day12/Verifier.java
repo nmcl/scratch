@@ -23,13 +23,28 @@ public class Verifier
 
         if (_debug)
             System.out.println("Activated: "+_activator);
-            
-        System.out.println("Starting with:\n"+_activator.moonVelocities());
+        
+        for (int i = 0; i < 2; i++)
+        {
+            _activator.applyGravity();
 
-        _activator.applyGravity();
+            if (_debug)
+            {
+                System.out.println("Moon positions:\n"+_activator.moonCoordinates());
+                System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+            }
+        }
 
-        System.out.println("Now have:\n"+_activator.moonVelocities());
-        System.out.println("and:\n"+_activator.moonCoordinates());
+        System.out.println("Moon positions:\n"+_activator.moonCoordinates());
+        System.out.println("Moon velocities:\n"+_activator.moonVelocities());
+
+        Moon theMoon = _activator.getMoons().elementAt(1);
+        Velocity theVelocity = theMoon.getVelocity();
+
+        if (theVelocity.equals(EXAMPLE1_STEP2_MOON_2))
+        {
+            result = true;
+        }
 
         return result;
     }
