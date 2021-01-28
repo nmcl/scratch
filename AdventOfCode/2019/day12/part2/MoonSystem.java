@@ -22,6 +22,21 @@ public class MoonSystem
     {
         return _system;
     }
+    
+    // brute force won't work in any meaningful time!
+
+    public final Vector<Moon> duplicateTheSystem ()
+    {
+        Vector<Moon> theCopy = new Vector<Moon>();
+        Enumeration<Moon> iter = _system.elements();
+
+        while (iter.hasMoreElements())
+        {
+            theCopy.add(new Moon(iter.nextElement()));
+        }
+
+        return theCopy;
+    }
 
     /*
      * Initially we won't store the data for each step but simply
