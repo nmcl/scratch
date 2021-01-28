@@ -30,6 +30,8 @@ public class Simulator
                 System.out.println("Verified ok!");
             else
                 System.out.println("Verify failed!");
+
+            System.exit(0);
         }
 
         MoonSystem theMoons = new MoonSystem(DATA_FILE, debug);
