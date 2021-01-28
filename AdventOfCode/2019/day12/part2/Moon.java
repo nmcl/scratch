@@ -87,6 +87,25 @@ public class Moon
         return "Moon: "+_position+" and "+_velocity;
     }
 
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Moon temp = (Moon) obj;
+
+            return (_position.equals(temp._position) && _velocity.equals(temp._velocity));
+        }
+
+        return false;
+    }
+
     private Coordinate _position;
     private Velocity _velocity;
 }
