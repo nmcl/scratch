@@ -34,9 +34,14 @@ public class MoonSystem
     public final long[] periodicity ()
     {
         long[] periods = new long[3];
+        Vector<Moon> originalSystem = _system;
 
         periods[0] = periodicityOfAxis('x');
+        
+        _system = originalSystem;
         periods[1] = periodicityOfAxis('y');
+
+        _system = originalSystem;
         periods[2] = periodicityOfAxis('z');
 
         return periods;
