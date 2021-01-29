@@ -26,6 +26,10 @@ public class Verifier
     {
         boolean result = false;
         
+        _activator = new MoonSystem(EXAMPLE1_DATA, _debug);
+
+        System.out.println("**got back "+_activator.periodicity());
+        
         return result;
     }
 
