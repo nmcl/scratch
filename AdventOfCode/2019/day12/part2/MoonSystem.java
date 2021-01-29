@@ -30,13 +30,13 @@ public class MoonSystem
      */
 
      // do tbis for all axes
-     
+
     public final long periodicity ()  // a hack for now
     {
         Vector<Moon> tempSystem = new Vector<Moon>();
         Enumeration<Moon> iter = tempSystem.elements();
         Moon[] theState = new Moon[_system.size()];
-        long index = 0;
+        int index = 0;
         boolean found = false;
 
         while (iter.hasMoreElements())
@@ -50,23 +50,23 @@ public class MoonSystem
             index++;
         }
 
-        index = 0;
+        long period = 0;
 
         while (!found)
         {
             applyGravity();
-            index++;
+            period++;
 
             for (int i = 0; i < theState.length; i++)
             {
-                if (_theSystem.elementAt(i).equals(theState[i]))
+                if (_system.elementAt(i).equals(theState[i]))
                     found = true;
                 else
                     found = false;
             }
         }
 
-        return index;
+        return period;
     }
 
     /*
