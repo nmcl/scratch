@@ -27,7 +27,10 @@ public class Verifier
         
         _activator = new MoonSystem(EXAMPLE1_DATA, _debug);
 
-        System.out.println("**got back "+_activator.periodicity());
+        long[] periods = _activator.periodicity();
+
+        for (int i = 0; i < periods.length; i++)
+            System.out.println("**got back "+periods[i]+" for axis "+i);
 
         return result;
     }
@@ -38,7 +41,10 @@ public class Verifier
         
         _activator = new MoonSystem(EXAMPLE2_DATA, _debug);
 
-        System.out.println("**got back "+_activator.periodicity());
+        long[] periods = _activator.periodicity();
+
+        for (int i = 0; i < periods.length; i++)
+            System.out.println("**got back "+periods[i]+" for axis "+i);
         
         return result;
     }
