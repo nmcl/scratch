@@ -11,13 +11,12 @@ public class Verifier
     public Verifier (boolean debug)
     {
         _activator = null;
-        _histories = new Vector<Moon[]>();
         _debug = debug;
     }
 
     public final boolean verify ()
     {
-        return verifyExample1() && verifyExample2();
+        return verifyExample1() || verifyExample2();
     }
 
     // we don't check all the data, just a sample.
@@ -29,18 +28,21 @@ public class Verifier
         _activator = new MoonSystem(EXAMPLE1_DATA, _debug);
 
         System.out.println("**got back "+_activator.periodicity());
-        
+
         return result;
     }
 
     private final boolean verifyExample2 ()
     {
         boolean result = false;
+        
+        _activator = new MoonSystem(EXAMPLE2_DATA, _debug);
 
+        System.out.println("**got back "+_activator.periodicity());
+        
         return result;
     }
 
     private MoonSystem _activator;
-    private Vector<Moon[]> _histories;
     private boolean _debug;
 }
