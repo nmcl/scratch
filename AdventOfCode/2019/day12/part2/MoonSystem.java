@@ -34,7 +34,7 @@ public class MoonSystem
     public final long periodicity ()  // a hack for now
     {
         Vector<Moon> tempSystem = new Vector<Moon>();
-        Enumeration<Moon> iter = tempSystem.elements();
+        Enumeration<Moon> iter = _system.elements();
         Moon[] theState = new Moon[_system.size()];
         int index = 0;
         boolean found = false;
@@ -50,6 +50,8 @@ public class MoonSystem
             index++;
         }
 
+        _system = tempSystem;
+
         long period = 0;
 
         while (!found)
@@ -59,6 +61,8 @@ public class MoonSystem
 
             for (int i = 0; i < theState.length; i++)
             {
+                System.out.println("**comparing "+_system.elementAt(i)+" and "+theState[i]);
+
                 if (_system.elementAt(i).equals(theState[i]))
                     found = true;
                 else
