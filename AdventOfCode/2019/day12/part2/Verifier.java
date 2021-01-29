@@ -25,68 +25,13 @@ public class Verifier
     private final boolean verifyExample1 ()
     {
         boolean result = false;
-        Moon[] moonsAsArray = null;
-
-        _activator = new MoonSystem(EXAMPLE1_DATA, _debug);
-        moonsAsArray = new Moon[_activator.getMoons().size()];
-
-        _histories.add(_activator.duplicateTheSystem().toArray(moonsAsArray));
-
-        if (_debug)
-            System.out.println("Activated: "+_activator);
         
-        for (int i = 0; i < EXAMPLE1_REPEAT_TIME; i++)
-        {
-            _activator.applyGravity();
-            _histories.add(_activator.duplicateTheSystem().toArray(moonsAsArray));
-        }
-
-        System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-        System.out.println("Moon velocities:\n"+_activator.moonVelocities());
-        
-        result = true;
-
-        for (int i = 0; (i < moonsAsArray.length) && result; i++)
-        {
-            if (!_histories.elementAt(0)[i].equals(_activator.getMoons().elementAt(i)))
-                result = false;
-        }
-
         return result;
     }
 
     private final boolean verifyExample2 ()
     {
         boolean result = false;
-        Moon[] moonsAsArray = null;
-
-        _activator = new MoonSystem(EXAMPLE2_DATA, _debug);
-        moonsAsArray = new Moon[_activator.getMoons().size()];
-
-        _histories.add(_activator.duplicateTheSystem().toArray(moonsAsArray));
-
-        if (_debug)
-            System.out.println("Activated: "+_activator);
-        
-        long index = 0;
-
-        while (index < EXAMPLE2_REPEAT_TIME)
-        {
-            _activator.applyGravity();
-            _histories.add(_activator.duplicateTheSystem().toArray(moonsAsArray));
-            index++;
-        }
-
-        System.out.println("Moon positions:\n"+_activator.moonCoordinates());
-        System.out.println("Moon velocities:\n"+_activator.moonVelocities());
-        
-        result = true;
-
-        for (int i = 0; (i < moonsAsArray.length) && result; i++)
-        {
-            if (!_histories.elementAt(0)[i].equals(_activator.getMoons().elementAt(i)))
-                result = false;
-        }
 
         return result;
     }
