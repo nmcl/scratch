@@ -29,6 +29,45 @@ public class MoonSystem
      * the simulation equations are time-symmetical, i.e., the first repeated state is the initial state.
      */
 
+     // do tbis for all axes
+     
+    public final long periodicity ()  // a hack for now
+    {
+        Vector<Moon> tempSystem = new Vector<Moon>();
+        Enumeration<Moon> iter = tempSystem.elements();
+        Moon[] theState = new Moon[_system.size()];
+        long index = 0;
+        boolean found = false;
+
+        while (iter.hasMoreElements())
+        {
+            Moon currentMoon = iter.nextElement();
+            Moon replacement = new Moon(currentMoon.getPosition().getX(), 0, 0);
+
+            theState[index] = new Moon(replacement);
+            tempSystem.add(replacement);
+
+            index++;
+        }
+
+        index = 0;
+
+        while (!found)
+        {
+            applyGravity();
+            index++;
+
+            for (int i = 0; i < theState.length; i++)
+            {
+                if (_theSystem.elementAt(i).equals(theState[i]))
+                    found = true;
+                else
+                    found = false;
+            }
+        }
+
+        return index;
+    }
 
     /*
      * Initially we won't store the data for each step but simply
