@@ -31,46 +31,15 @@ public class MoonSystem
 
      // do tbis for all axes
 
-    public final long periodicity ()  // a hack for now
+    public final long[] periodicity ()
     {
-        Vector<Moon> tempSystem = new Vector<Moon>();
-        Enumeration<Moon> iter = _system.elements();
-        Moon[] theState = new Moon[_system.size()];
-        int index = 0;
-        boolean found = false;
+        long[] periods = new long[3];
 
-        while (iter.hasMoreElements())
-        {
-            Moon currentMoon = iter.nextElement();
-            Moon replacement = new Moon(currentMoon.getPosition().getX(), 0, 0);
+        periods[0] = periodicityOfAxis('x');
+        periods[1] = periodicityOfAxis('y');
+        periods[2] = periodicityOfAxis('z');
 
-            theState[index] = new Moon(replacement);
-            tempSystem.add(replacement);
-
-            index++;
-        }
-
-        _system = tempSystem;
-
-        long period = 0;
-
-        while (!found)
-        {
-            applyGravity();
-            period++;
-
-            for (int i = 0; i < theState.length; i++)
-            {
-                System.out.println("**comparing "+_system.elementAt(i)+" and "+theState[i]);
-
-                if (_system.elementAt(i).equals(theState[i]))
-                    found = true;
-                else
-                    found = false;
-            }
-        }
-
-        return period;
+        return periods;
     }
 
     /*
@@ -151,6 +120,58 @@ public class MoonSystem
         }
 
         return toReturn;
+    }
+
+    private final long periodicityOfAxis (char axis)
+    {
+        Vector<Moon> tempSystem = new Vector<Moon>();
+        Enumeration<Moon> iter = _system.elements();
+        Moon[] theState = new Moon[_system.size()];
+        int index = 0;
+        boolean found = false;
+
+        while (iter.hasMoreElements())
+        {
+            Moon currentMoon = iter.nextElement();
+            Moon replacement = null;
+            
+            if (axis == 'x')
+                replacement = new Moon(currentMoon.getPosition().getX(), 0, 0);
+            else
+            {
+                if (axis == 'y')
+                    replacement = new Moon(0, currentMoon.getPosition().getY(), 0);
+                else
+                    replacement = new Moon(0, 0, currentMoon.getPosition().getZ());
+            }
+
+            theState[index] = new Moon(replacement);
+            tempSystem.add(replacement);
+
+            index++;
+        }
+
+        _system = tempSystem;
+
+        long period = 0;
+
+        while (!found)
+        {
+            applyGravity();
+            period++;
+
+            for (int i = 0; i < theState.length; i++)
+            {
+                System.out.println("**comparing "+_system.elementAt(i)+" and "+theState[i]);
+
+                if (_system.elementAt(i).equals(theState[i]))
+                    found = true;
+                else
+                    found = false;
+            }
+        }
+
+        return period;
     }
 
     private void createSystem ()
