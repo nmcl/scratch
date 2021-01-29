@@ -32,6 +32,10 @@ public class Verifier
         for (int i = 0; i < periods.length; i++)
             System.out.println("**got back "+periods[i]+" for axis "+i);
 
+        long val = lcm(lcm(periods[0], periods[1]), periods[2]);
+
+        System.out.println("**lcm "+val);
+        
         return result;
     }
 
@@ -47,6 +51,29 @@ public class Verifier
             System.out.println("**got back "+periods[i]+" for axis "+i);
         
         return result;
+    }
+
+    public long lcm (long i, long y)
+    {
+        int n;
+        int x;
+        long s = 1;
+        long t = 1;
+
+        for (n = 1;; n++)
+        {
+            s = i * n;
+
+            for (x = 1; t < s; x++) 
+            {
+                t = y * x;
+            }
+
+            if (s == t)
+                break;
+        }
+
+        return s;
     }
 
     private MoonSystem _activator;
