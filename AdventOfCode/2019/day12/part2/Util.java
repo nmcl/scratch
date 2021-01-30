@@ -5,26 +5,24 @@ public class Util
         return lcm(lcm(x, y), z);
     }
 
-    public static long lcm (long i, long y)
+    // https://www.baeldung.com/java-least-common-multiple
+    
+    public static long lcm (long i, long j)
     {
-        int n;
-        int x;
-        long s = 1;
-        long t = 1;
+        if (i == 0 || j == 0)
+            return 0;
 
-        for (n = 1;; n++)
+        long absI = Math.abs(i);
+        long absJ = Math.abs(j);
+        long absHigherNumber = Math.max(absI, absJ);
+        long absLowerNumber = Math.min(absI, absJ);
+        long lcm = absHigherNumber;
+
+        while (lcm % absLowerNumber != 0)
         {
-            s = i * n;
-
-            for (x = 1; t < s; x++) 
-            {
-                t = y * x;
-            }
-
-            if (s == t)
-                break;
+            lcm += absHigherNumber;
         }
 
-        return s;
+        return lcm;
     }
 }
