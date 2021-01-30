@@ -5,7 +5,7 @@ public class Verifier
     public static final String EXAMPLE1_DATA = "example1.txt";
     public static final String EXAMPLE2_DATA = "example2.txt";
 
-    public static final int EXAMPLE1_REPEAT_TIME = 2772;
+    public static final long EXAMPLE1_REPEAT_TIME = 2772;
     public static final long EXAMPLE2_REPEAT_TIME = 4686774924L;
 
     public Verifier (boolean debug)
@@ -29,14 +29,13 @@ public class Verifier
 
         long[] periods = _activator.periodicity();
 
-        for (int i = 0; i < periods.length; i++)
-            System.out.println("**got back "+periods[i]+" for axis "+i);
+        if (_debug)
+        {
+            for (int i = 0; i < periods.length; i++)
+                System.out.println("Got back "+periods[i]+" for axis "+i);
+        }
 
-        long val = lcm(lcm(periods[0], periods[1]), periods[2]);
-
-        System.out.println("**lcm "+val);
-
-        return result;
+        return (Util.lcm(periods[0], periods[1], periods[2]) == EXAMPLE1_REPEAT_TIME);
     }
 
     private final boolean verifyExample2 ()
@@ -47,37 +46,13 @@ public class Verifier
 
         long[] periods = _activator.periodicity();
 
-        for (int i = 0; i < periods.length; i++)
-            System.out.println("**got back "+periods[i]+" for axis "+i);
-        
-        long val = lcm(lcm(periods[0], periods[1]), periods[2]);
-
-        System.out.println("**lcm "+val);
-
-        return result;
-    }
-
-    public long lcm (long i, long y)
-    {
-        int n;
-        int x;
-        long s = 1;
-        long t = 1;
-
-        for (n = 1;; n++)
+        if (_debug)
         {
-            s = i * n;
-
-            for (x = 1; t < s; x++) 
-            {
-                t = y * x;
-            }
-
-            if (s == t)
-                break;
+            for (int i = 0; i < periods.length; i++)
+                System.out.println("Got back "+periods[i]+" for axis "+i);
         }
-
-        return s;
+        
+        return (Util.lcm(periods[0], periods[1], periods[2]) == EXAMPLE2_REPEAT_TIME);
     }
 
     private MoonSystem _activator;

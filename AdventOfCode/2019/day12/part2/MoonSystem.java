@@ -168,11 +168,10 @@ public class MoonSystem
 
             period++;
 
-            System.out.println("**state size "+theState.length);
-
             for (int i = 0; i < theState.length; i++)
             {
-                System.out.println("**comparing "+_system.elementAt(i)+" and "+theState[i]);
+                if (_debug)
+                    System.out.println("Comparing "+_system.elementAt(i)+" and "+theState[i]);
 
                 if (_system.elementAt(i).equals(theState[i]))
                     numberOfMatches++;
@@ -180,11 +179,10 @@ public class MoonSystem
 
             if (numberOfMatches == theState.length)
                 found = true;
-                
-            System.out.println("**found "+found);
         }
 
-        System.out.println("**period is "+period);
+        if (_debug)
+            System.out.println("Period is "+period);
 
         return period;
     }
