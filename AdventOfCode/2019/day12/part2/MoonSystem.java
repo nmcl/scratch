@@ -133,13 +133,12 @@ public class MoonSystem
         Enumeration<Moon> iter = _system.elements();
         Moon[] theState = new Moon[_system.size()];
         int index = 0;
-        boolean found = false;
 
         while (iter.hasMoreElements())
         {
             Moon currentMoon = iter.nextElement();
             Moon replacement = null;
-            
+
             if (axis == 'x')
                 replacement = new Moon(currentMoon.getPosition().getX(), 0, 0);
             else
@@ -159,22 +158,33 @@ public class MoonSystem
         _system = tempSystem;
 
         long period = 0;
+        boolean found = false;
 
         while (!found)
         {
+            int numberOfMatches = 0;
+
             applyGravity();
+
             period++;
+
+            System.out.println("**state size "+theState.length);
 
             for (int i = 0; i < theState.length; i++)
             {
                 System.out.println("**comparing "+_system.elementAt(i)+" and "+theState[i]);
 
                 if (_system.elementAt(i).equals(theState[i]))
-                    found = true;
-                else
-                    found = false;
+                    numberOfMatches++;
             }
+
+            if (numberOfMatches == theState.length)
+                found = true;
+                
+            System.out.println("**found "+found);
         }
+
+        System.out.println("**period is "+period);
 
         return period;
     }
