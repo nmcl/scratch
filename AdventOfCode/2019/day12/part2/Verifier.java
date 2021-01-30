@@ -35,7 +35,7 @@ public class Verifier
         long val = lcm(lcm(periods[0], periods[1]), periods[2]);
 
         System.out.println("**lcm "+val);
-        
+
         return result;
     }
 
@@ -50,6 +50,10 @@ public class Verifier
         for (int i = 0; i < periods.length; i++)
             System.out.println("**got back "+periods[i]+" for axis "+i);
         
+        long val = lcm(lcm(periods[0], periods[1]), periods[2]);
+
+        System.out.println("**lcm "+val);
+
         return result;
     }
 
