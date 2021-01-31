@@ -1,5 +1,7 @@
 public class ArcadeCabinet
 {
+    public static final String INSTRUCTIONS = "instructions.txt";
+    
     public static void main (String[] args)
     {
         boolean debug = false;
