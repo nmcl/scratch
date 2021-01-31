@@ -1,7 +1,10 @@
+import java.util.*;
+import java.io.*;
+
 public class ArcadeCabinet
 {
-    public static final String INSTRUCTIONS = "instructions.txt";
-    
+    public static final String DATA_FILE = "instructions.txt";
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -17,5 +20,38 @@ public class ArcadeCabinet
             if ("-debug".equals(args[i]))
                 debug = true;
         }
+
+        /*
+         * Open the data file and read it in.
+         */
+
+        BufferedReader reader = null;
+        String[] values = null;
+
+        try
+        {
+            reader = new BufferedReader(new FileReader(DATA_FILE));
+            String line = null;
+
+            while ((line = reader.readLine()) != null)
+            {
+                values = line.split(Intcode.DELIMITER);
+            }
+        }
+        catch (Throwable ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                reader.close();
+            }
+            catch (Throwable ex)
+            {
+            }
+        }
+
     }
 }
