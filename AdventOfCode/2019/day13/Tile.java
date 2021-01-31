@@ -1,15 +1,21 @@
 public class Tile
 {
-    public Tile ()
+    public Tile (Coordinate position)
     {
-        this(TileId.EMPTY);
+        this(position, TileId.EMPTY);
     }
 
-    public Tile (int id)
+    public Tile (Coordinate position, int id)
     {
+        _position = position;
         _id = id;
     }
 
+    public final Coordinate getPosition ()
+    {
+        return _position;
+    }
+    
     public final int getId ()
     {
         return _id;
@@ -26,5 +32,6 @@ public class Tile
         return TileId.idToString(_id);
     }
 
+    private Coordinate _position;
     private int _id;
 }
