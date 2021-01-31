@@ -4,14 +4,7 @@ import java.util.*;
 public class Intcode
 {
     public static final String DELIMITER = ",";
-
     public static final String INITIALISED_MEMORY = "0";
-
-    /*
-     * This implementation is stateless other than being placed
-     * into debug mode where it will output whatever action it
-     * takes.
-     */
 
     public Intcode (Vector<String> values, int initialInput, boolean debug)
     {
