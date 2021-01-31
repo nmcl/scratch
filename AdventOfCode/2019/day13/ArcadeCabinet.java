@@ -58,5 +58,7 @@ public class ArcadeCabinet
         instructions.addAll(Arrays.asList(values));
 
         GameEngine game = new GameEngine(instructions, debug);
+
+        game.playGame();
     }
 }
