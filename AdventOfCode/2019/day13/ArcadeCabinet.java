@@ -53,5 +53,10 @@ public class ArcadeCabinet
             }
         }
 
+        Vector<String> instructions = new Vector<String>();
+
+        instructions.addAll(Arrays.asList(values));
+
+        GameEngine game = new GameEngine(instructions, debug);
     }
 }
