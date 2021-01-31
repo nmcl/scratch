@@ -18,48 +18,36 @@ public class GameEngine
 
         while (!_computer.hasHalted())
         {
-            _computer.singleStepExecution(INITIAL_INPUT);
-
-            if (_computer.hasOutput())
+            while (!_computer.hasOutput())
             {
-                x = Integer.parseInt(_computer.getOutput());
+                _computer.singleStepExecution(INITIAL_INPUT);
             }
-            else
-            {
-                System.out.println("Error - no x value given!");
 
-                return false;
-            }
+            x = Integer.parseInt(_computer.getOutput());
 
             if (!_computer.hasHalted())
             {
-                _computer.singleStepExecution(INITIAL_INPUT);
-
-                if (_computer.hasOutput())
+                while (!_computer.hasOutput())
                 {
-                    y = Integer.parseInt(_computer.getOutput());
+                    _computer.singleStepExecution(INITIAL_INPUT);
                 }
-                else
-                {
-                    System.out.println("Error - no y value given!");
 
-                    return false;
-                }
+                y = Integer.parseInt(_computer.getOutput());
 
                 if (!_computer.hasHalted())
                 {
-                    _computer.singleStepExecution(INITIAL_INPUT);
-
-                    if (_computer.hasOutput())
+                    while (!_computer.hasOutput())
                     {
-                        id = Integer.parseInt(_computer.getOutput());
+                        _computer.singleStepExecution(INITIAL_INPUT);
                     }
-                    else
-                    {
-                        System.out.println("Error - no id value given!");
 
-                        return false;
-                    }
+                    id = Integer.parseInt(_computer.getOutput());
+                }
+                else
+                {
+                    System.out.println("Error - computer halted after y!");
+
+                    return false;
                 }
 
                 System.out.println("**got "+x+" "+y+" "+TileId.idToString(id));
