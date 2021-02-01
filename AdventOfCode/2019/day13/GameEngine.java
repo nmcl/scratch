@@ -66,6 +66,7 @@ public class GameEngine
 
     private Intcode _computer;
     private boolean _debug;
+    private Screen _theScreen;
 
     private static final int INITIAL_INPUT = 0; // nothing specified in the overview
 }
