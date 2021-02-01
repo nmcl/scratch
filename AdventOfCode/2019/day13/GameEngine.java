@@ -24,20 +24,20 @@ public class GameEngine
                 _computer.singleStepExecution(INITIAL_INPUT);
             }
 
-            x = Integer.parseInt(_computer.getOutput());
-
             if (!_computer.hasHalted())
             {
+                x = Integer.parseInt(_computer.getOutput());
+
                 while (!_computer.hasHalted() && !_computer.hasOutput())
                 {
                     System.out.println("**checking y");
                     _computer.singleStepExecution(INITIAL_INPUT);
                 }
 
-                y = Integer.parseInt(_computer.getOutput());
-
                 if (!_computer.hasHalted())
                 {
+                    y = Integer.parseInt(_computer.getOutput());
+
                     while (!_computer.hasHalted() && !_computer.hasOutput())
                     {
                         System.out.println("**checking id");
