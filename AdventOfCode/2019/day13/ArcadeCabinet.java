@@ -60,5 +60,7 @@ public class ArcadeCabinet
         GameEngine game = new GameEngine(instructions, debug);
 
         game.playGame();
+
+        System.out.println("Number of blocks: "+game.getNumberOfBlocks());
     }
 }
