@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Tile
 {
     public Tile (Coordinate position)
@@ -30,6 +32,33 @@ public class Tile
     public String toString ()
     {
         return TileId.idToString(_id);
+    }
+
+    @Override
+    public int hashCode ()
+    {
+        return Objects.hash(_id, _position.hashCode());
+    }
+
+    // just compare tile positions
+    
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Tile temp = (Tile) obj;
+
+            return _position.equals(temp.getPosition());
+        }
+
+        return false;
     }
 
     private Coordinate _position;
