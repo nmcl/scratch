@@ -8,6 +8,7 @@ public class GameEngine
     {
         _computer = new Intcode(instructions, INITIAL_INPUT, debug);
         _debug = debug;
+        _theScreen = new Screen(_debug);
     }
 
     public final boolean playGame ()
@@ -50,7 +51,8 @@ public class GameEngine
                     return false;
                 }
 
-                System.out.println("**got "+x+" "+y+" "+TileId.idToString(id));
+                //if (_debug)
+                    System.out.println("Tile information: <"+x+", "+y+"> and "+TileId.idToString(id));
             }
             else
             {
@@ -62,6 +64,11 @@ public class GameEngine
         }
 
         return true;
+    }
+
+    public final int getNumberOfBlocks ()
+    {
+        return _theScreen.numberOfBlocks();
     }
 
     private Intcode _computer;
