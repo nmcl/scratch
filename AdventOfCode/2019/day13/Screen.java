@@ -25,7 +25,12 @@ public class Screen
 
         while (iter.hasMoreElements())
         {
-            if (iter.nextElement().getId() == TileId.BLOCK)
+            Tile t = iter.nextElement();
+
+            if (_debug)
+                System.out.println("Checking tile: "+t);
+
+            if (t.getId() == TileId.BLOCK)
                 count++;
         }
 

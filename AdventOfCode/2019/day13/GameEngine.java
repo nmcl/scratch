@@ -51,8 +51,10 @@ public class GameEngine
                     return false;
                 }
 
-                //if (_debug)
+                if (_debug)
                     System.out.println("Tile information: <"+x+", "+y+"> and "+TileId.idToString(id));
+
+                _theScreen.updateTile(new Tile(new Coordinate(x, y), id));
             }
             else
             {
