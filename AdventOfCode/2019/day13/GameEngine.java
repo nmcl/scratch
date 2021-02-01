@@ -18,8 +18,9 @@ public class GameEngine
 
         while (!_computer.hasHalted())
         {
-            while (!_computer.hasOutput())
+            while (!_computer.hasHalted() && !_computer.hasOutput())
             {
+                System.out.println("**checking x");
                 _computer.singleStepExecution(INITIAL_INPUT);
             }
 
@@ -27,8 +28,9 @@ public class GameEngine
 
             if (!_computer.hasHalted())
             {
-                while (!_computer.hasOutput())
+                while (!_computer.hasHalted() && !_computer.hasOutput())
                 {
+                    System.out.println("**checking y");
                     _computer.singleStepExecution(INITIAL_INPUT);
                 }
 
@@ -36,8 +38,9 @@ public class GameEngine
 
                 if (!_computer.hasHalted())
                 {
-                    while (!_computer.hasOutput())
+                    while (!_computer.hasHalted() && !_computer.hasOutput())
                     {
+                        System.out.println("**checking id");
                         _computer.singleStepExecution(INITIAL_INPUT);
                     }
 
