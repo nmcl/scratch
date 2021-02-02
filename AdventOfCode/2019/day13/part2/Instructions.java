@@ -43,4 +43,9 @@ public class Instructions
                 return "UNKNOWN";
         }
     }
+
+    private Instructions ()
+    {
+        // stop instantiation.
+    }
 }
