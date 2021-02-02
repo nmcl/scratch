@@ -70,4 +70,9 @@ public class ParameterMode
             }
         }
     }
+
+    private ParameterMode ()
+    {
+        // stop instantiation.
+    }
 }
