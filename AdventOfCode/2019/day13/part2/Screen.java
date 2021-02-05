@@ -6,6 +6,7 @@ public class Screen
     {
         _tiles = new Vector<Tile>();
         _debug = debug;
+        _score = new SegmentDisplay();
     }
 
     public final void updateTile (Tile theTile)
@@ -39,4 +40,5 @@ public class Screen
 
     private Vector<Tile> _tiles;
     private boolean _debug;
+    private SegmentDisplay _score;
 }
