@@ -9,6 +9,8 @@ public class GameEngine
         _computer = new Intcode(instructions, INITIAL_INPUT, debug);
         _debug = debug;
         _theScreen = new Screen(_debug);
+        _paddlePosition = null;
+        _ballPosition = null;
     }
 
     public final boolean playGame ()
@@ -76,6 +78,8 @@ public class GameEngine
     private Intcode _computer;
     private boolean _debug;
     private Screen _theScreen;
+    private Coordinate _paddlePosition;
+    private Coordinate _ballPosition;
 
     private static final int INITIAL_INPUT = 0; // nothing specified in the overview
 }
