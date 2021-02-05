@@ -22,6 +22,11 @@ public class Intcode
         return (_status == Status.HALTED);
     }
 
+    public final boolean hasPaused ()
+    {
+        return (_status == Status.PAUSED);
+    }
+
     public final int status ()
     {
         return _status;
