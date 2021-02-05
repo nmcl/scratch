@@ -56,7 +56,17 @@ public class GameEngine
                 if (_debug)
                     System.out.println("Tile information: <"+x+", "+y+"> and "+TileId.idToString(id));
 
-                _theScreen.updateTile(new Tile(new Coordinate(x, y), id));
+                Tile theTile = new Tile(new Coordinate(x, y), id));
+
+                _theScreen.updateTile(theTile);
+
+                if(theTile.getId() == TileId.BALL)
+                    _ballPosition = theTile.getPosition();
+                else
+                {
+                    if (theTile.getId() == TileId.PADDLE)
+                        _paddlePosition = theTile.getPosition();
+                }
             }
             else
             {
