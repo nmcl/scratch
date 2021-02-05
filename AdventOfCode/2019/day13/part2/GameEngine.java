@@ -19,6 +19,10 @@ public class GameEngine
         int y = 0;
         int id = TileId.EMPTY;
 
+        /*
+         * Initialise the screen.
+         */
+
         while (!_computer.hasHalted())
         {
             while (!_computer.hasHalted() && !_computer.hasOutput())
