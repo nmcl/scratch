@@ -89,6 +89,46 @@ public class GameEngine
         return _theScreen.numberOfBlocks();
     }
 
+    private final int[] getInformation ()
+    {
+        int[] values = new int[3];
+        
+        while (!_computer.hasHalted() && !_computer.hasOutput())
+            {
+                _computer.singleStepExecution(INITIAL_INPUT);
+            }
+
+            if (!_computer.hasHalted())
+            {
+                x = Integer.parseInt(_computer.getOutput());
+
+                while (!_computer.hasHalted() && !_computer.hasOutput())
+                {
+                    _computer.singleStepExecution(INITIAL_INPUT);
+                }
+
+                if (!_computer.hasHalted())
+                {
+                    y = Integer.parseInt(_computer.getOutput());
+
+                    while (!_computer.hasHalted() && !_computer.hasOutput())
+                    {
+                        _computer.singleStepExecution(INITIAL_INPUT);
+                    }
+
+                    id = Integer.parseInt(_computer.getOutput());
+                }
+                else
+                {
+                    System.out.println("Error - computer halted after outputing x value!");
+
+                    return false;
+                }
+
+                if (_debug)
+                    System.out.println("Tile information: <"+x+", "+y+"> and "+TileId.idToString(id));
+    }
+
     private Intcode _computer;
     private boolean _debug;
     private Screen _theScreen;
