@@ -15,70 +15,25 @@ public class GameEngine
 
     public final boolean playGame ()
     {
-        int x = 0;
-        int y = 0;
-        int id = TileId.EMPTY;
-
         /*
          * Initialise the screen.
          */
 
-        while (!_computer.hasHalted())
+        int[] output = getOutput(INITIAL_INPUT);
+
+        if (_debug)
+            System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
+
+        Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
+
+        _theScreen.updateTile(theTile);
+
+        if(theTile.getId() == TileId.BALL)
+            _ballPosition = theTile.getPosition();
+        else
         {
-            while (!_computer.hasHalted() && !_computer.hasOutput())
-            {
-                _computer.singleStepExecution(INITIAL_INPUT);
-            }
-
-            if (!_computer.hasHalted())
-            {
-                x = Integer.parseInt(_computer.getOutput());
-
-                while (!_computer.hasHalted() && !_computer.hasOutput())
-                {
-                    _computer.singleStepExecution(INITIAL_INPUT);
-                }
-
-                if (!_computer.hasHalted())
-                {
-                    y = Integer.parseInt(_computer.getOutput());
-
-                    while (!_computer.hasHalted() && !_computer.hasOutput())
-                    {
-                        _computer.singleStepExecution(INITIAL_INPUT);
-                    }
-
-                    id = Integer.parseInt(_computer.getOutput());
-                }
-                else
-                {
-                    System.out.println("Error - computer halted after outputing x value!");
-
-                    return false;
-                }
-
-                if (_debug)
-                    System.out.println("Tile information: <"+x+", "+y+"> and "+TileId.idToString(id));
-
-                Tile theTile = new Tile(new Coordinate(x, y), id));
-
-                _theScreen.updateTile(theTile);
-
-                if(theTile.getId() == TileId.BALL)
-                    _ballPosition = theTile.getPosition();
-                else
-                {
-                    if (theTile.getId() == TileId.PADDLE)
-                        _paddlePosition = theTile.getPosition();
-                }
-            }
-            else
-            {
-                if (_debug)
-                    System.out.println("Computer halted.");
-
-                return true;
-            }
+            if (theTile.getId() == TileId.PADDLE)
+                _paddlePosition = theTile.getPosition();
         }
 
         return true;
@@ -89,29 +44,29 @@ public class GameEngine
         return _theScreen.numberOfBlocks();
     }
 
-    private final int[] getInformation (int input)
+    private final int[] getOutput (int input)
     {
         int[] values = new int[3];
 
-        while (!_computer.hasHalted() && !_computer.hasOutput())
+        while (!_computer.hasPaused() && !_computer.hasOutput())
         {
             _computer.singleStepExecution(input);
         }
 
-        if (!_computer.hasHalted())
+        if (!_computer.hasPaused())
         {
             values[0] = Integer.parseInt(_computer.getOutput());
 
-            while (!_computer.hasHalted() && !_computer.hasOutput())
+            while (!_computer.hasPaused() && !_computer.hasOutput())
             {
                 _computer.singleStepExecution(input);
             }
 
-            if (!_computer.hasHalted())
+            if (!_computer.hasPaused())
             {
                 values[1] = Integer.parseInt(_computer.getOutput());
 
-                while (!_computer.hasHalted() && !_computer.hasOutput())
+                while (!_computer.hasPaused() && !_computer.hasOutput())
                 {
                     _computer.singleStepExecution(input);
                 }
