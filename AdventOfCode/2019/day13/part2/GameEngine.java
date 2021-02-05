@@ -89,44 +89,42 @@ public class GameEngine
         return _theScreen.numberOfBlocks();
     }
 
-    private final int[] getInformation ()
+    private final int[] getInformation (int input)
     {
         int[] values = new int[3];
-        
+
         while (!_computer.hasHalted() && !_computer.hasOutput())
+        {
+            _computer.singleStepExecution(input);
+        }
+
+        if (!_computer.hasHalted())
+        {
+            values[0] = Integer.parseInt(_computer.getOutput());
+
+            while (!_computer.hasHalted() && !_computer.hasOutput())
             {
-                _computer.singleStepExecution(INITIAL_INPUT);
+                _computer.singleStepExecution(input);
             }
 
             if (!_computer.hasHalted())
             {
-                x = Integer.parseInt(_computer.getOutput());
+                values[1] = Integer.parseInt(_computer.getOutput());
 
                 while (!_computer.hasHalted() && !_computer.hasOutput())
                 {
-                    _computer.singleStepExecution(INITIAL_INPUT);
+                    _computer.singleStepExecution(input);
                 }
 
-                if (!_computer.hasHalted())
-                {
-                    y = Integer.parseInt(_computer.getOutput());
+                values[2] = Integer.parseInt(_computer.getOutput());
+            }
+            else
+            {
+                System.out.println("Error - computer halted after outputing x value!");
+            }
+        }
 
-                    while (!_computer.hasHalted() && !_computer.hasOutput())
-                    {
-                        _computer.singleStepExecution(INITIAL_INPUT);
-                    }
-
-                    id = Integer.parseInt(_computer.getOutput());
-                }
-                else
-                {
-                    System.out.println("Error - computer halted after outputing x value!");
-
-                    return false;
-                }
-
-                if (_debug)
-                    System.out.println("Tile information: <"+x+", "+y+"> and "+TileId.idToString(id));
+        retrn values;
     }
 
     private Intcode _computer;
