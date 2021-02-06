@@ -54,6 +54,44 @@ public class GameEngine
                 _stick.setPosition(Joystick.TILTED_LEFT);
         }
 
+        while (!_computer.halted())
+        {
+            output = getOuput(_stick.getPosition());
+
+            if (_debug)
+                System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
+
+            if ((output[0] == -1) && (output[1] == 0)
+            {
+                // update score
+            }
+            else
+            {
+                theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
+
+                _theScreen.updateTile(theTile);
+
+             if(theTile.getId() == TileId.BALL)
+             {
+                _ballPosition = theTile.getPosition();
+
+                if (_ballPosition.getX() > _paddlePosition.getX())
+                    _stick.setPosition(Joystick.TILTED_RIGHT);
+                else
+                {
+                    if (_ballPosition.get() < _paddlePosition.getX())
+                        _stick.setPosition(Joystick.TILTED_LEFT);
+                    else
+                        _stick.setPosition(Joystick.NEUTRAL_POSITION);
+                }
+             }
+            else
+            {
+                if (theTile.getId() == TileId.PADDLE)
+                    _paddlePosition = theTile.getPosition();
+            }
+        }
+
         return true;
     }
 
