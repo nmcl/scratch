@@ -23,7 +23,7 @@ public class GameEngine
 
          // Replace entry 0 with 2 (unlimited lives)
 
-        _computer.changeInstruction("2", 0);
+        _computer.changeInstruction(0, "2");
 
         int[] output = getOutput(INITIAL_INPUT);
 
@@ -54,9 +54,9 @@ public class GameEngine
                 _stick.setPosition(Joystick.TILTED_LEFT);
         }
 
-        while (!_computer.halted())
+        while (!_computer.hasHalted())
         {
-            output = getOuput(_stick.getPosition());
+            output = getOutput(_stick.getPosition());
 
             if (_debug)
                 System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
@@ -79,7 +79,7 @@ public class GameEngine
                         _stick.setPosition(Joystick.TILTED_RIGHT);
                     else
                     {
-                        if (_ballPosition.get() < _paddlePosition.getX())
+                        if (_ballPosition.getX() < _paddlePosition.getX())
                             _stick.setPosition(Joystick.TILTED_LEFT);
                         else
                             _stick.setPosition(Joystick.NEUTRAL_POSITION);
@@ -136,7 +136,7 @@ public class GameEngine
             }
         }
 
-        retrn values;
+        return values;
     }
 
     private Intcode _computer;
