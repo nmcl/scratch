@@ -52,6 +52,11 @@ public class Intcode
         return _input;
     }
 
+    public final void changeInstruction (int entry, String value)
+    {
+        _memory.setElementAt(value, entry);
+    }
+
     /**
      * Execute all the commands given, only returning when paused or halted.
      * 
