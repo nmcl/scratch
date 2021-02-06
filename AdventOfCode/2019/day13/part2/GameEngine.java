@@ -21,7 +21,9 @@ public class GameEngine
          * once.
          */
 
-         // TODO replace 0 with 2
+         // Replace entry 0 with 2 (unlimited lives)
+
+        _computer.changeInstruction("2", 0);
 
         int[] output = getOutput(INITIAL_INPUT);
 
