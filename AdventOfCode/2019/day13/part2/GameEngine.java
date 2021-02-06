@@ -16,7 +16,8 @@ public class GameEngine
     public final boolean playGame ()
     {
         /*
-         * Initialise the screen.
+         * Initialise the screen. Run the game instructions
+         * once.
          */
 
         int[] output = getOutput(INITIAL_INPUT);
