@@ -29,11 +29,11 @@ public class Joystick
             case TILTED_LEFT:
                 return "tilted left";
             case TILTED_RIGHT:
-                RETURN "tilted right";
+                return "tilted right";
             default:
                 return "unknown";
         }
     }
-    
+
     private int _position;
 }
