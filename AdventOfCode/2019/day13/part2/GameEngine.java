@@ -21,6 +21,8 @@ public class GameEngine
          * once.
          */
 
+         // TODO replace 0 with 2
+
         int[] output = getOutput(INITIAL_INPUT);
 
         if (_debug)
