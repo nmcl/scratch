@@ -59,8 +59,8 @@ public class ArcadeCabinet
 
         GameEngine game = new GameEngine(instructions, debug);
 
-        game.playGame();
+        int score = game.playGame();
 
-        System.out.println("Number of blocks: "+game.getNumberOfBlocks());
+        System.out.println("Final score: "+score);
     }
 }

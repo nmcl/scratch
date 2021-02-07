@@ -22,9 +22,6 @@ public class Joystick
     @Override
     public String toString ()
     {
-        return ""+_position;
-
-        /*
         switch (_position)
         {
             case NEUTRAL_POSITION:
@@ -35,7 +32,7 @@ public class Joystick
                 return "tilted right";
             default:
                 return "unknown";
-        }*/
+        }
     }
 
     private int _position;

@@ -57,7 +57,7 @@ public class Intcode
         return _input;
     }
 
-    public final String useInput ()
+    public final String consumeInput ()
     {
         String toReturn = _input;
 
@@ -192,14 +192,15 @@ public class Intcode
                         if (_debug)
                             System.out.println("Storing "+getInput()+" at position "+param1);
 
-                        setValue(param1, useInput());
+                        setValue(param1, consumeInput());
 
                         _instructionPointer += 2;  // move the pointer on.
                     }
                     else
                     {
-                        System.out.println("**WAITING FOR INPUT");
-                        
+                        if (_debug)
+                            System.out.println("Waiting for input.");
+
                         _status = Status.WAITING_FOR_INPUT;
 
                         return _status;

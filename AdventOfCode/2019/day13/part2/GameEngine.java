@@ -12,7 +12,7 @@ public class GameEngine
         _stick = new Joystick();
     }
 
-    public final boolean playGame ()
+    public final int playGame ()
     {
         int[] output = null;
                 
@@ -27,16 +27,12 @@ public class GameEngine
 
         while (!_computer.hasHalted() && !_computer.waitingForInput())
         {
-            System.out.println("**waiting for input "+_computer.waitingForInput());
-
             output = getOutput();
 
             if (output != null)
             {
                 if (_debug)
                     System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
-
-                System.out.println("**initial "+output[0]+" "+output[1]+" "+output[2]);
 
                 Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
 
@@ -52,10 +48,9 @@ public class GameEngine
             }
             else
             {
-                System.out.println("**Waiting for input!");
+                if (_debug)
+                    System.out.println("Waiting for input!");
             }
-
-            System.out.println("**computer status "+Status.toString(_computer.status()));
         }
 
         /*
@@ -70,70 +65,60 @@ public class GameEngine
                 _stick.setPosition(Joystick.TILTED_LEFT);
         }
 
-        System.out.println("**initial joystick "+_stick);
-
         /*
          * Now let's play the game!
          */
 
-        System.out.println("\n\nPLAYING");
-
         while (!_computer.hasHalted())
         {
-            System.out.println("**COMPUTER "+_computer.hasHalted());
-
             _computer.setInput(Integer.toString(_stick.getPosition()));
 
             output = getOutput();
 
-            System.out.println("**output "+output);
-            
-            if (_debug)
-                System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
-
-            System.out.println("**gaming values "+output[0]+" "+output[1]+" "+output[2]);
-
-            if ((output[0] == -1) && (output[1] == 0))
+            if (output != null)
             {
-                // update score
+                if (_debug)
+                    System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
 
-                _theScreen.getSegmentDisplay().setScore(output[2]);
-
-                System.out.println("**score now "+_theScreen.getSegmentDisplay());
-            }
-            else
-            {
-                Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
-
-                _theScreen.updateTile(theTile);
-
-                if(theTile.getId() == TileId.BALL)
+                if ((output[0] == -1) && (output[1] == 0))
                 {
-                    _ballPosition = theTile.getPosition();
+                    // update score
 
-                    if (_ballPosition.getX() > _paddlePosition.getX())
-                        _stick.setPosition(Joystick.TILTED_RIGHT);
-                    else
-                    {
-                        if (_ballPosition.getX() < _paddlePosition.getX())
-                            _stick.setPosition(Joystick.TILTED_LEFT);
-                        else
-                            _stick.setPosition(Joystick.NEUTRAL_POSITION);
-                    }
+                    _theScreen.getSegmentDisplay().setScore(output[2]);
+
+                    if (_debug)
+                        System.out.println("Score now "+_theScreen.getSegmentDisplay());
                 }
                 else
                 {
-                    if (theTile.getId() == TileId.PADDLE)
-                        _paddlePosition = theTile.getPosition();
+                    Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
+
+                    _theScreen.updateTile(theTile);
+
+                    if(theTile.getId() == TileId.BALL)
+                    {
+                        _ballPosition = theTile.getPosition();
+
+                        if (_ballPosition.getX() > _paddlePosition.getX())
+                            _stick.setPosition(Joystick.TILTED_RIGHT);
+                        else
+                        {
+                            if (_ballPosition.getX() < _paddlePosition.getX())
+                                _stick.setPosition(Joystick.TILTED_LEFT);
+                            else
+                                _stick.setPosition(Joystick.NEUTRAL_POSITION);
+                        }
+                    }
+                    else
+                    {
+                        if (theTile.getId() == TileId.PADDLE)
+                            _paddlePosition = theTile.getPosition();
+                    }
                 }
             }
-
-            System.out.println("**gaming joystick "+_stick);
         }
 
-        System.out.println("**score "+_theScreen.getSegmentDisplay());
-
-        return true;
+        return _theScreen.getSegmentDisplay().getScore();
     }
 
     public final int getNumberOfBlocks ()
@@ -145,17 +130,13 @@ public class GameEngine
     {
         int[] values = new int[3];
 
-        System.out.println("**got "+_computer.hasPaused()+" "+_computer.hasOutput());
-
         do 
         {
             _computer.singleStepExecution();
-        } while (!_computer.hasPaused() && !_computer.hasOutput() && !_computer.waitingForInput());
+        } while (!_computer.hasPaused() && !_computer.hasOutput() && !_computer.waitingForInput() && !_computer.hasHalted());
 
-        if (_computer.waitingForInput())
+        if (_computer.waitingForInput() || _computer.hasHalted())
             return null;
-
-        System.out.println("**1 here "+Status.toString(_computer.status())+" "+_computer.hasOutput());
 
         values[0] = Integer.parseInt(_computer.getOutput());
 
@@ -164,17 +145,13 @@ public class GameEngine
             _computer.singleStepExecution();
         } while (!_computer.hasPaused() && !_computer.hasOutput());
 
-        System.out.println("**2 here "+Status.toString(_computer.status())+" "+_computer.hasOutput());
-
         values[1] = Integer.parseInt(_computer.getOutput());
 
         do
         {
             _computer.singleStepExecution();
         } while (!_computer.hasPaused() && !_computer.hasOutput());
-
-        System.out.println("**3 here "+Status.toString(_computer.status())+" "+_computer.hasOutput());
-
+        
         values[2] = Integer.parseInt(_computer.getOutput());
 
         return values;
