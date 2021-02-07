@@ -64,6 +64,8 @@ public class GameEngine
             if ((output[0] == -1) && (output[1] == 0))
             {
                 // update score
+
+                _theScreen.getSegmentDisplay().setScore(output[2]);
             }
             else
             {
