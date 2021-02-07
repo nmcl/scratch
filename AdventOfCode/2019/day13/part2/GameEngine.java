@@ -30,6 +30,8 @@ public class GameEngine
         if (_debug)
             System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
 
+        System.out.println("**initial "+output[0]+" "+output[1]+" "+output[2]);
+
         Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
 
         _theScreen.updateTile(theTile);
@@ -54,6 +56,16 @@ public class GameEngine
                 _stick.setPosition(Joystick.TILTED_LEFT);
         }
 
+        System.out.println("**initial joystick "+_stick);
+
+        /*
+         * Now let's play the game!
+         */
+
+        System.out.println("\n\nPLAYING");
+
+        //_computer = new Intcode(instructions, INITIAL_INPUT, debug);
+
         while (!_computer.hasHalted())
         {
             output = getOutput(_stick.getPosition());
@@ -61,11 +73,15 @@ public class GameEngine
             if (_debug)
                 System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
 
+            System.out.println("**gaming values "+output[0]+" "+output[1]+" "+output[2]);
+
             if ((output[0] == -1) && (output[1] == 0))
             {
                 // update score
 
                 _theScreen.getSegmentDisplay().setScore(output[2]);
+
+                System.out.println("**score now "+_theScreen.getSegmentDisplay());
             }
             else
             {
@@ -86,6 +102,8 @@ public class GameEngine
                         else
                             _stick.setPosition(Joystick.NEUTRAL_POSITION);
                     }
+
+                    System.out.println("**gaming joystick "+_stick);
                 }
                 else
                 {
@@ -94,6 +112,8 @@ public class GameEngine
                 }
             }
         }
+
+        System.out.println("**score "+_theScreen.getSegmentDisplay());
 
         return true;
     }
