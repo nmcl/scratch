@@ -6,7 +6,7 @@ public class GameEngine
 {
     public GameEngine (Vector<String> instructions, boolean debug)
     {
-        _computer = new Intcode(instructions, INITIAL_INPUT, debug);
+        _computer = new Intcode(instructions, null, debug);
         _debug = debug;
         _theScreen = new Screen(_debug);
         _paddlePosition = null;
@@ -29,7 +29,7 @@ public class GameEngine
 
         while (!_computer.waitingForInput())
         {
-            output = getOutput(INITIAL_INPUT);
+            output = getOutput();
 
             if (_debug)
                 System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
@@ -63,6 +63,9 @@ public class GameEngine
 
         System.out.println("**initial joystick "+_stick);
 
+        if (_stick != null)
+            return false;
+
         /*
          * Now let's play the game!
          */
@@ -73,7 +76,9 @@ public class GameEngine
 
         while (!_computer.hasHalted())
         {
-            output = getOutput(Integer.toString(_stick.getPosition()));
+            _computer.setInput(Integer.toString(_stick.getPosition()));
+
+            output = getOutput();
 
             if (_debug)
                 System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
@@ -128,15 +133,15 @@ public class GameEngine
         return _theScreen.numberOfBlocks();
     }
 
-    private final int[] getOutput (String input)
+    private final int[] getOutput ()
     {
         int[] values = new int[3];
 
         System.out.println("**got "+_computer.hasPaused()+" "+_computer.hasOutput());
-        
+
         while (!_computer.hasPaused() && !_computer.hasOutput())
         {
-            _computer.singleStepExecution(input);
+            _computer.singleStepExecution();
         }
 
         if (!_computer.hasPaused())
@@ -145,7 +150,7 @@ public class GameEngine
 
             while (!_computer.hasPaused() && !_computer.hasOutput())
             {
-                _computer.singleStepExecution(input);
+                _computer.singleStepExecution();
             }
 
             if (!_computer.hasPaused())
@@ -154,7 +159,7 @@ public class GameEngine
 
                 while (!_computer.hasPaused() && !_computer.hasOutput())
                 {
-                    _computer.singleStepExecution(input);
+                    _computer.singleStepExecution();
                 }
 
                 values[2] = Integer.parseInt(_computer.getOutput());
@@ -174,6 +179,4 @@ public class GameEngine
     private Coordinate _paddlePosition;
     private Coordinate _ballPosition;
     private Joystick _stick;
-
-    private static final String INITIAL_INPUT = null; // nothing specified in the overview
 }
