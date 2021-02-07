@@ -78,14 +78,16 @@ public class GameEngine
 
         System.out.println("\n\nPLAYING");
 
-        //_computer = new Intcode(instructions, INITIAL_INPUT, debug);
-
         while (!_computer.hasHalted())
         {
+            System.out.println("**COMPUTER "+_computer.hasHalted());
+
             _computer.setInput(Integer.toString(_stick.getPosition()));
 
             output = getOutput();
 
+            System.out.println("**output "+output);
+            
             if (_debug)
                 System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
 
