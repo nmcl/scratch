@@ -9,6 +9,11 @@ public class Screen
         _score = new SegmentDisplay();
     }
 
+    public final SegmentDisplay getSegmentDisplay ()
+    {
+        return _score;
+    }
+
     public final void updateTile (Tile theTile)
     {
         int index = _tiles.indexOf(theTile);
