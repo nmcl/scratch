@@ -25,28 +25,37 @@ public class GameEngine
 
         _computer.changeInstruction(0, "2");
 
-        while (!_computer.waitingForInput())
+        while (!_computer.hasHalted() && !_computer.waitingForInput())
         {
             System.out.println("**waiting for input "+_computer.waitingForInput());
 
             output = getOutput();
 
-            if (_debug)
-                System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
+            if (output != null)
+            {
+                if (_debug)
+                    System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
 
-            System.out.println("**initial "+output[0]+" "+output[1]+" "+output[2]);
+                System.out.println("**initial "+output[0]+" "+output[1]+" "+output[2]);
 
-            Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
+                Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
 
-            _theScreen.updateTile(theTile);
+                _theScreen.updateTile(theTile);
 
-            if (theTile.getId() == TileId.BALL)
-                _ballPosition = theTile.getPosition();
+                if (theTile.getId() == TileId.BALL)
+                    _ballPosition = theTile.getPosition();
+                else
+                {
+                    if (theTile.getId() == TileId.PADDLE)
+                        _paddlePosition = theTile.getPosition();
+                }
+            }
             else
             {
-                if (theTile.getId() == TileId.PADDLE)
-                    _paddlePosition = theTile.getPosition();
+                System.out.println("**Waiting for input!");
             }
+
+            System.out.println("**computer status "+Status.toString(_computer.status()));
         }
 
         /*
@@ -62,9 +71,6 @@ public class GameEngine
         }
 
         System.out.println("**initial joystick "+_stick);
-
-        if (_stick != null)
-            return false;
 
         /*
          * Now let's play the game!
@@ -112,8 +118,6 @@ public class GameEngine
                         else
                             _stick.setPosition(Joystick.NEUTRAL_POSITION);
                     }
-
-                    System.out.println("**gaming joystick "+_stick);
                 }
                 else
                 {
@@ -121,6 +125,8 @@ public class GameEngine
                         _paddlePosition = theTile.getPosition();
                 }
             }
+
+            System.out.println("**gaming joystick "+_stick);
         }
 
         System.out.println("**score "+_theScreen.getSegmentDisplay());
@@ -142,9 +148,12 @@ public class GameEngine
         do 
         {
             _computer.singleStepExecution();
-        } while (!_computer.hasPaused() && !_computer.hasOutput());
+        } while (!_computer.hasPaused() && !_computer.hasOutput() && !_computer.waitingForInput());
 
-        System.out.println("**1 here "+_computer.status());
+        if (_computer.waitingForInput())
+            return null;
+
+        System.out.println("**1 here "+Status.toString(_computer.status())+" "+_computer.hasOutput());
 
         values[0] = Integer.parseInt(_computer.getOutput());
 
@@ -153,7 +162,7 @@ public class GameEngine
             _computer.singleStepExecution();
         } while (!_computer.hasPaused() && !_computer.hasOutput());
 
-        System.out.println("**2 here "+_computer.status());
+        System.out.println("**2 here "+Status.toString(_computer.status())+" "+_computer.hasOutput());
 
         values[1] = Integer.parseInt(_computer.getOutput());
 
@@ -162,7 +171,7 @@ public class GameEngine
             _computer.singleStepExecution();
         } while (!_computer.hasPaused() && !_computer.hasOutput());
 
-        System.out.println("**3 here "+_computer.status());
+        System.out.println("**3 here "+Status.toString(_computer.status())+" "+_computer.hasOutput());
 
         values[2] = Integer.parseInt(_computer.getOutput());
 

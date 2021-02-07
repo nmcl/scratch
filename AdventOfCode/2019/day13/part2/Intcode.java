@@ -198,6 +198,8 @@ public class Intcode
                     }
                     else
                     {
+                        System.out.println("**WAITING FOR INPUT");
+                        
                         _status = Status.WAITING_FOR_INPUT;
 
                         return _status;
