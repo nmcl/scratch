@@ -10,7 +10,7 @@ public class Status
     public static final int HALTED = 3;
     public static final int WAITING_FOR_INPUT = 4;
 
-    public static final String statusToString (int status)
+    public static final String toString (int status)
     {
         switch (status)
         {
@@ -28,7 +28,7 @@ public class Status
                 return "UNKNOWN";
         }
     }
-    
+
     private Status ()
     {
         // stop instantiation.
