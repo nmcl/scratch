@@ -16,6 +16,8 @@ public class GameEngine
 
     public final boolean playGame ()
     {
+        int[] output = null;
+                
         /*
          * Initialise the screen. Run the game instructions
          * once.
@@ -25,23 +27,26 @@ public class GameEngine
 
         _computer.changeInstruction(0, "2");
 
-        int[] output = getOutput(INITIAL_INPUT);
-
-        if (_debug)
-            System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
-
-        System.out.println("**initial "+output[0]+" "+output[1]+" "+output[2]);
-
-        Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
-
-        _theScreen.updateTile(theTile);
-
-        if(theTile.getId() == TileId.BALL)
-            _ballPosition = theTile.getPosition();
-        else
+        while (!_computer.waitingForInput())
         {
-            if (theTile.getId() == TileId.PADDLE)
-                _paddlePosition = theTile.getPosition();
+            output = getOutput(INITIAL_INPUT);
+
+            if (_debug)
+                System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
+
+            System.out.println("**initial "+output[0]+" "+output[1]+" "+output[2]);
+
+            Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
+
+            _theScreen.updateTile(theTile);
+
+            if (theTile.getId() == TileId.BALL)
+                _ballPosition = theTile.getPosition();
+            else
+            {
+                if (theTile.getId() == TileId.PADDLE)
+                    _paddlePosition = theTile.getPosition();
+            }
         }
 
         /*
@@ -85,7 +90,7 @@ public class GameEngine
             }
             else
             {
-                theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
+                Tile theTile = new Tile(new Coordinate(output[0], output[1]), output[2]);
 
                 _theScreen.updateTile(theTile);
 
@@ -168,5 +173,5 @@ public class GameEngine
     private Coordinate _ballPosition;
     private Joystick _stick;
 
-    private static final String INITIAL_INPUT = "0"; // nothing specified in the overview
+    private static final String INITIAL_INPUT = null; // nothing specified in the overview
 }
