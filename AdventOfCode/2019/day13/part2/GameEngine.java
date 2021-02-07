@@ -132,6 +132,8 @@ public class GameEngine
     {
         int[] values = new int[3];
 
+        System.out.println("**got "+_computer.hasPaused()+" "+_computer.hasOutput());
+        
         while (!_computer.hasPaused() && !_computer.hasOutput())
         {
             _computer.singleStepExecution(input);
