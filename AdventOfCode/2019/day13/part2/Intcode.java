@@ -188,7 +188,11 @@ public class Intcode
                         _instructionPointer += 2;  // move the pointer on.
                     }
                     else
+                    {
                         _status = Status.WAITING_FOR_INPUT;
+
+                        return _status;
+                    }
             }
             break;
             case Instructions.OUTPUT:
