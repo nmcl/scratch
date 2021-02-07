@@ -1,5 +1,3 @@
-import java.util.function.IntConsumer;
-
 import java.util.*;
 
 public class GameEngine
@@ -29,6 +27,8 @@ public class GameEngine
 
         while (!_computer.waitingForInput())
         {
+            System.out.println("**waiting for input "+_computer.waitingForInput());
+
             output = getOutput();
 
             if (_debug)
@@ -139,36 +139,32 @@ public class GameEngine
 
         System.out.println("**got "+_computer.hasPaused()+" "+_computer.hasOutput());
 
-        while (!_computer.hasPaused() && !_computer.hasOutput())
+        do 
         {
             _computer.singleStepExecution();
-        }
+        } while (!_computer.hasPaused() && !_computer.hasOutput());
 
-        if (!_computer.hasPaused())
+        System.out.println("**1 here "+_computer.status());
+
+        values[0] = Integer.parseInt(_computer.getOutput());
+
+        do
         {
-            values[0] = Integer.parseInt(_computer.getOutput());
+            _computer.singleStepExecution();
+        } while (!_computer.hasPaused() && !_computer.hasOutput());
 
-            while (!_computer.hasPaused() && !_computer.hasOutput())
-            {
-                _computer.singleStepExecution();
-            }
+        System.out.println("**2 here "+_computer.status());
 
-            if (!_computer.hasPaused())
-            {
-                values[1] = Integer.parseInt(_computer.getOutput());
+        values[1] = Integer.parseInt(_computer.getOutput());
 
-                while (!_computer.hasPaused() && !_computer.hasOutput())
-                {
-                    _computer.singleStepExecution();
-                }
+        do
+        {
+            _computer.singleStepExecution();
+        } while (!_computer.hasPaused() && !_computer.hasOutput());
 
-                values[2] = Integer.parseInt(_computer.getOutput());
-            }
-            else
-            {
-                System.out.println("Error - computer halted after outputing x value!");
-            }
-        }
+        System.out.println("**3 here "+_computer.status());
+
+        values[2] = Integer.parseInt(_computer.getOutput());
 
         return values;
     }
