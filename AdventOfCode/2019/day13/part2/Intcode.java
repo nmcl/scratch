@@ -73,6 +73,11 @@ public class Intcode
         return _status;
     }
 
+    public int executeUntilInputRequired ()
+    {
+        return _status;
+    }
+
     /**
      * Execute one instruction at a time.
      * 
@@ -199,7 +204,6 @@ public class Intcode
 
                     return _status;
             }
-//               break;
             case Instructions.JUMP_IF_TRUE:
             {
                 /*
