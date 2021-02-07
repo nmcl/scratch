@@ -57,6 +57,15 @@ public class Intcode
         return _input;
     }
 
+    public final String useInput ()
+    {
+        String toReturn = _input;
+
+        _input = null;
+
+        return toReturn;
+    }
+
     public final void changeInstruction (int entry, String value)
     {
         _memory.setElementAt(value, entry);
@@ -72,7 +81,7 @@ public class Intcode
     {
         while (!hasHalted())
         {
-            singleStepExecution(_input);  // assume input is re-usable if more input required!
+            singleStepExecution();  // assume input only needed once!
         }
 
         return _status;
@@ -85,7 +94,7 @@ public class Intcode
      * @return the current status.
      */
 
-    public int singleStepExecution (String input)
+    public int singleStepExecution ()
     {
         if (hasHalted())
         {
@@ -96,7 +105,7 @@ public class Intcode
         }
 
         if (_debug)
-            System.out.println("Intcode input <"+input+"> and instruction pointer: "+_instructionPointer);
+            System.out.println("Intcode input <"+getInput()+"> and instruction pointer: "+_instructionPointer);
 
         String str = getOpcode(_memory.elementAt(_instructionPointer));
         int opcode = Integer.valueOf(str);
@@ -176,14 +185,14 @@ public class Intcode
                     * the position given by its only parameter.
                     */
 
-                    if (input != null)
+                    if (getInput() != null)
                     {
                         int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
                         if (_debug)
-                            System.out.println("Storing "+input+" at position "+param1);
+                            System.out.println("Storing "+getInput()+" at position "+param1);
 
-                        setValue(param1, input);
+                        setValue(param1, useInput());
 
                         _instructionPointer += 2;  // move the pointer on.
                     }
