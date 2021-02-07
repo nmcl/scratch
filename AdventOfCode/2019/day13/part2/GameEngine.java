@@ -68,7 +68,7 @@ public class GameEngine
 
         while (!_computer.hasHalted())
         {
-            output = getOutput(_stick.getPosition());
+            output = getOutput(Integer.toString(_stick.getPosition()));
 
             if (_debug)
                 System.out.println("Tile information: <"+output[0]+", "+output[1]+"> and "+TileId.idToString(output[2]));
@@ -123,7 +123,7 @@ public class GameEngine
         return _theScreen.numberOfBlocks();
     }
 
-    private final int[] getOutput (int input)
+    private final int[] getOutput (String input)
     {
         int[] values = new int[3];
 
@@ -168,5 +168,5 @@ public class GameEngine
     private Coordinate _ballPosition;
     private Joystick _stick;
 
-    private static final int INITIAL_INPUT = 0; // nothing specified in the overview
+    private static final String INITIAL_INPUT = "0"; // nothing specified in the overview
 }
