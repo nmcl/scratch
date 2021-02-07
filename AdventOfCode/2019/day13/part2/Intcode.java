@@ -27,11 +27,11 @@ public class Intcode
         return (_status == Status.PAUSED);
     }
 
-    public static final boolean waitingForInput ()
+    public final boolean waitingForInput ()
     {
         return (_status == Status.WAITING_FOR_INPUT);
     }
-    
+
     public final int status ()
     {
         return _status;
