@@ -6,7 +6,7 @@ public class Intcode
     public static final String DELIMITER = ",";
     public static final String INITIALISED_MEMORY = "0";
 
-    public Intcode (Vector<String> values, int initialInput, boolean debug)
+    public Intcode (Vector<String> values, String initialInput, boolean debug)
     {
         _debug = debug;
         _instructionPointer = 0;
@@ -27,6 +27,11 @@ public class Intcode
         return (_status == Status.PAUSED);
     }
 
+    public final boolean waitingForInput ()
+    {
+        return (_status == Status.WAITING_FOR_INPUT);
+    }
+
     public final int status ()
     {
         return _status;
@@ -42,14 +47,28 @@ public class Intcode
         return _output.remove(0);
     }
 
-    public final void setInput (int input)
+    public final void setInput (String input)
     {
         _input = input;
     }
 
-    public final int getInput ()
+    public final String getInput ()
     {
         return _input;
+    }
+
+    public final String consumeInput ()
+    {
+        String toReturn = _input;
+
+        _input = null;
+
+        return toReturn;
+    }
+
+    public final void changeInstruction (int entry, String value)
+    {
+        _memory.setElementAt(value, entry);
     }
 
     /**
@@ -62,19 +81,20 @@ public class Intcode
     {
         while (!hasHalted())
         {
-            singleStepExecution(_input);
+            singleStepExecution();  // assume input only needed once!
         }
 
         return _status;
     }
 
     /**
-     * Execute one instruction at a time.
+     * Execute one instruction at a time. If input is required and none is provided
+     * then change status and pause anyway.
      * 
      * @return the current status.
      */
 
-    public int singleStepExecution (int input)
+    public int singleStepExecution ()
     {
         if (hasHalted())
         {
@@ -85,7 +105,7 @@ public class Intcode
         }
 
         if (_debug)
-            System.out.println("Intcode input <"+input+"> and instruction pointer: "+_instructionPointer);
+            System.out.println("Intcode input <"+getInput()+"> and instruction pointer: "+_instructionPointer);
 
         String str = getOpcode(_memory.elementAt(_instructionPointer));
         int opcode = Integer.valueOf(str);
@@ -121,12 +141,12 @@ public class Intcode
                     int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
 
                     if (_debug)
-                    System.out.println("Adding "+param1+" and "+param2);
+                        System.out.println("Adding "+param1+" and "+param2);
 
                     long sum = param1+param2;
 
                     if (_debug)
-                    System.out.println("Storing "+sum+" at position "+param3);
+                        System.out.println("Storing "+sum+" at position "+param3);
 
                     setValue(param3, String.valueOf(sum));
 
@@ -165,14 +185,26 @@ public class Intcode
                     * the position given by its only parameter.
                     */
 
-                    int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
+                    if (getInput() != null)
+                    {
+                        int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
-                    if (_debug)
-                        System.out.println("Storing "+input+" at position "+param1);
+                        if (_debug)
+                            System.out.println("Storing "+getInput()+" at position "+param1);
 
-                    setValue(param1, String.valueOf(input));
+                        setValue(param1, consumeInput());
 
-                    _instructionPointer += 2;  // move the pointer on.
+                        _instructionPointer += 2;  // move the pointer on.
+                    }
+                    else
+                    {
+                        if (_debug)
+                            System.out.println("Waiting for input.");
+
+                        _status = Status.WAITING_FOR_INPUT;
+
+                        return _status;
+                    }
             }
             break;
             case Instructions.OUTPUT:
@@ -194,7 +226,6 @@ public class Intcode
 
                     return _status;
             }
-//               break;
             case Instructions.JUMP_IF_TRUE:
             {
                 /*
@@ -343,7 +374,7 @@ public class Intcode
                     */
 
                     if (_debug)
-                    System.out.println("Halting execution.");
+                        System.out.println("Halting execution.");
 
                     _instructionPointer = _memory.size();
                 _status = Status.HALTED;
@@ -445,7 +476,7 @@ public class Intcode
     private int _instructionPointer;
     private Vector<String> _output;
     private Vector<String> _memory;
-    private int _input;
+    private String _input;
     private int _status;
     private int _relativeBase;
 

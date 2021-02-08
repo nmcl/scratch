@@ -14,6 +14,12 @@ public class SegmentDisplay
     {
         _score = s;
     }
+
+    @Override
+    public String toString ()
+    {
+        return "Score: "+_score;
+    }
     
     private int _score;
 }
