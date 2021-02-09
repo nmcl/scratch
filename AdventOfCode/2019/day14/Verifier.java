@@ -10,4 +10,16 @@ public class Verifier
     public static final int TOTAL_ORE_4 = 180697;
     public static final String EXAMPLE5_FILE = "example5.txt";
     public static final int TOTAL_ORE_5 = 2210736;
+
+    public Verifier (boolean debug)
+    {
+        _debug = debug;
+    }
+
+    public final boolean verify ()
+    {
+        return false;
+    }
+
+    private boolean _debug;
 }
