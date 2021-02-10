@@ -29,6 +29,15 @@ public class Parser
             while ((line = reader.readLine()) != null)
             {
                 //values = line.split(Intcode.DELIMITER);
+
+                /*
+                 * Line format:
+                 * 
+                 * - ALWAYS start with a number
+                 * - ALWAYS follow with a String
+                 * - Then EITHER a comma if more than one chemical OR => to denote end of reactants
+                 * - ALWAYS end in a number and a String
+                 */
             }
         }
         catch (Throwable ex)
