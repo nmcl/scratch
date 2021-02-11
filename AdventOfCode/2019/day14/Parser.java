@@ -28,11 +28,13 @@ public class Parser
         {
             reader = new BufferedReader(new FileReader(fileName));
             String line = null;
-            Reaction react = new Reaction();
 
             while ((line = reader.readLine()) != null)
             {
                 System.out.println("**read "+line);
+                Reaction react = new Reaction();
+                Vector<Integer> quantities = new Vector<Integer>();
+                Vector<Chemical> chemicals = new Vector<Chemical>();
 
                 /*
                  * Line format:
@@ -68,6 +70,9 @@ public class Parser
 
                         ptr += chemDelim +2;  // move on past comma and space!
 
+                        quantities.add(quantity);
+                        chemicals.add(new Chemical(chem));
+
                         System.out.println("**got "+quantity+" and "+chem);
                     }
                     else
@@ -88,6 +93,8 @@ public class Parser
                 int createsSpace = line.indexOf(SPACE, createsPointer);
                 int createsQuantity = Integer.parseInt(line.substring(createsPointer, createsSpace));
                 String chemCreated = line.substring(createsSpace +1);
+
+                react.setCreated(new Chemical(chemCreated), createsQuantity);
 
                 System.out.println("**creates "+createsQuantity+" "+chemCreated);
             }
