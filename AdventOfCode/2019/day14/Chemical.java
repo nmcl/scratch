@@ -2,7 +2,7 @@ public class Chemical
 {
     public Chemical (String name)
     {
-        _name = name;
+        _name = name.trim();
     }
 
     public final String getName ()
