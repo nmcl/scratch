@@ -37,10 +37,34 @@ public class Parser
                  * - ALWAYS end in a number and a String
                  */
 
-                 int quantitySpace = line.indexOf(SPACE);
-                 int quantity = Integer.parseInt(line.substring(0, quantitySpace));
-                 
-                 
+                 Vector<Integer> quantities = new Vector<Integer>();
+                 Vector<Chemical> chemicals = new Vector<Chemical>();
+                 boolean allReactants = false;
+                 int ptr = 0;
+
+                 do
+                 {
+                    int quantitySpace = line.indexOf(ptr, SPACE);
+
+                    if (quantitySpace != -1)
+                    {
+                        int quantity = Integer.parseInt(line.substring(ptr, quantitySpace));
+                        int chemDelim = line.indexOf(DELIMITER, quantitySpace);
+                        String chem = null;
+
+                        if (chemDelim == -1)  // no more chemicals, but we do have a rogue quantity!
+                            allReactants = true;
+                        else
+                        {
+                            chem = line.substring(quantitySpace, chemDelim-1);
+                        }
+
+                        ptr = 
+                    }
+                    else
+                        allReactants = true;
+
+                } while (!allReactants);
             }
         }
         catch (Throwable ex)
