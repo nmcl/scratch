@@ -28,6 +28,8 @@ public class Parser
 
             while ((line = reader.readLine()) != null)
             {
+                System.out.println("**read "+line);
+                
                 /*
                  * Line format:
                  * 
