@@ -97,6 +97,8 @@ public class Parser
                 react.setCreated(new Chemical(chemCreated), createsQuantity);
 
                 System.out.println("**creates "+createsQuantity+" "+chemCreated);
+
+                reactions.add(react);
             }
         }
         catch (Throwable ex)

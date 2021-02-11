@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 public class Verifier
 {
     public static final String EXAMPLE1_FILE = "example1.txt";
@@ -20,8 +23,12 @@ public class Verifier
 
     public final boolean verify ()
     {
-        _theParser.loadData(EXAMPLE1_FILE);
+        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
+        Enumeration<Reaction> iter = reactions.elements();
 
+        while (iter.hasMoreElements())
+            System.out.println(iter.nextElement());
+            
         return false;
     }
 
