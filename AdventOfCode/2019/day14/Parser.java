@@ -3,9 +3,10 @@ import java.io.*;
 
 public class Parser
 {
-    public static final char DELIMITER = ',';
+    public static final String DELIMITER = ",";
     public static final String PRODUCES = "=>";
-    public static final char SPACE = ' ';
+    public static final String SPACE = " ";
+    public static final String ORE = "ORE";
 
     public Parser (boolean debug)
     {
@@ -29,7 +30,7 @@ public class Parser
             while ((line = reader.readLine()) != null)
             {
                 System.out.println("**read "+line);
-                
+
                 /*
                  * Line format:
                  * 
@@ -46,7 +47,9 @@ public class Parser
 
                  do
                  {
-                    int quantitySpace = line.indexOf(ptr, SPACE);
+                    int quantitySpace = line.indexOf(SPACE, ptr);
+
+                    System.out.println("**space at "+quantitySpace);
 
                     if (quantitySpace != -1)
                     {
@@ -54,14 +57,17 @@ public class Parser
                         int chemDelim = line.indexOf(DELIMITER, quantitySpace);
                         String chem = null;
 
-                        if (chemDelim == -1)  // no more chemicals, but we do have a rogue quantity!
-                            allReactants = true;
-                        else
-                        {
-                            chem = line.substring(quantitySpace, chemDelim-1);
+                        System.out.println("**chemDelim "+chemDelim);
 
-                            ptr += chemDelim;
+                        if (chemDelim == -1)  // no more chemicals
+                        {
+                            chemDelim = line.indexOf(PRODUCES, quantitySpace);
+                            allReactants = true;
                         }
+
+                        chem = line.substring(quantitySpace+1, chemDelim-1);
+
+                        ptr += chemDelim;
 
                         System.out.println("**got "+quantity+" and "+chem);
                     }
