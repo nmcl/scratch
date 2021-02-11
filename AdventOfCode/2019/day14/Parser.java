@@ -7,6 +7,7 @@ public class Parser
     public static final String PRODUCES = "=>";
     public static final String SPACE = " ";
     public static final String ORE = "ORE";
+    public static final String FUEL = "FUEL";
 
     public Parser (boolean debug)
     {
@@ -44,6 +45,7 @@ public class Parser
                  Vector<Chemical> chemicals = new Vector<Chemical>();
                  boolean allReactants = false;
                  int ptr = 0;
+                 int createsPointer = 0;
 
                  do
                  {
@@ -59,6 +61,7 @@ public class Parser
                         {
                             chemDelim = line.indexOf(PRODUCES, quantitySpace);
                             allReactants = true;
+                            createsPointer = chemDelim;
                         }
 
                         chem = line.substring(quantitySpace+1, chemDelim);
@@ -68,11 +71,25 @@ public class Parser
                         System.out.println("**got "+quantity+" and "+chem);
                     }
                     else
+                    {
+                        System.out.println("Error in parsing line!");
+
                         allReactants = true;
+                    }
 
                 } while (!allReactants);
 
                 // mow what do these reactants give us?
+
+                createsPointer += PRODUCES.length() +1;
+
+                System.out.println("**createsPointer "+createsPointer);
+
+                int createsSpace = line.indexOf(SPACE, createsPointer);
+                int createsQuantity = Integer.parseInt(line.substring(createsPointer, createsSpace));
+                String chemCreated = line.substring(createsSpace +1);
+
+                System.out.println("**creates "+createsQuantity+" "+chemCreated);
             }
         }
         catch (Throwable ex)
