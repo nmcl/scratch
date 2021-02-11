@@ -14,7 +14,7 @@ public class Parser
         _debug = debug;
     }
 
-    public void loadData (String fileName)
+    public Vector<Reaction> loadData (String fileName)
     {
         /*
          * Open the data file and read it in.
@@ -22,11 +22,13 @@ public class Parser
 
         BufferedReader reader = null;
         String[] values = null;
+        Vector<Reaction> reactions = new Vector<Reaction>();
 
         try
         {
             reader = new BufferedReader(new FileReader(fileName));
             String line = null;
+            Reaction react = new Reaction();
 
             while ((line = reader.readLine()) != null)
             {
@@ -41,8 +43,6 @@ public class Parser
                  * - ALWAYS end in a number and a String
                  */
 
-                 Vector<Integer> quantities = new Vector<Integer>();
-                 Vector<Chemical> chemicals = new Vector<Chemical>();
                  boolean allReactants = false;
                  int ptr = 0;
                  int createsPointer = 0;
@@ -106,6 +106,8 @@ public class Parser
             {
             }
         }
+
+        return reactions;
     }
 
     private boolean _debug;
