@@ -30,7 +30,7 @@ public class Reaction
         _reactants = reactants;
         _quantities = quantities;
     }
-    
+
     public final String chemicalCreated ()
     {
         return _chemicalCreated.getName();
