@@ -49,15 +49,11 @@ public class Parser
                  {
                     int quantitySpace = line.indexOf(SPACE, ptr);
 
-                    System.out.println("**space at "+quantitySpace);
-
                     if (quantitySpace != -1)
                     {
                         int quantity = Integer.parseInt(line.substring(ptr, quantitySpace));
                         int chemDelim = line.indexOf(DELIMITER, quantitySpace);
                         String chem = null;
-
-                        System.out.println("**chemDelim "+chemDelim);
 
                         if (chemDelim == -1)  // no more chemicals
                         {
@@ -67,7 +63,7 @@ public class Parser
 
                         chem = line.substring(quantitySpace+1, chemDelim);
 
-                        ptr += chemDelim;
+                        ptr += chemDelim +2;  // move on past comma and space!
 
                         System.out.println("**got "+quantity+" and "+chem);
                     }
@@ -75,6 +71,8 @@ public class Parser
                         allReactants = true;
 
                 } while (!allReactants);
+
+                // mow what do these reactants give us?
             }
         }
         catch (Throwable ex)
