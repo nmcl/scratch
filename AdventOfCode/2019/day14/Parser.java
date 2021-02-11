@@ -65,7 +65,7 @@ public class Parser
                             allReactants = true;
                         }
 
-                        chem = line.substring(quantitySpace+1, chemDelim-1);
+                        chem = line.substring(quantitySpace+1, chemDelim);
 
                         ptr += chemDelim;
 
