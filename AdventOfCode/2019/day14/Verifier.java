@@ -26,9 +26,11 @@ public class Verifier
         Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
         Enumeration<Reaction> iter = reactions.elements();
 
+        System.out.println("**size "+reactions.size());
+        
         while (iter.hasMoreElements())
             System.out.println(iter.nextElement());
-            
+
         return false;
     }
 
