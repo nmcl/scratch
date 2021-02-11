@@ -3,9 +3,9 @@ import java.io.*;
 
 public class Parser
 {
-    public static final String DELIMITER = ",";
+    public static final char DELIMITER = ',';
     public static final String PRODUCES = "=>";
-    public static final String SPACE = " ";
+    public static final char SPACE = ' ';
 
     public Parser (boolean debug)
     {
@@ -28,8 +28,6 @@ public class Parser
 
             while ((line = reader.readLine()) != null)
             {
-                //values = line.split(Intcode.DELIMITER);
-
                 /*
                  * Line format:
                  * 
@@ -38,6 +36,11 @@ public class Parser
                  * - Then EITHER a comma if more than one chemical OR => to denote end of reactants
                  * - ALWAYS end in a number and a String
                  */
+
+                 int quantitySpace = line.indexOf(SPACE);
+                 int quantity = Integer.parseInt(line.substring(0, quantitySpace));
+                 
+                 
             }
         }
         catch (Throwable ex)
