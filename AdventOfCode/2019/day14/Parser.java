@@ -82,6 +82,8 @@ public class Parser
                         allReactants = true;
                     }
 
+                    react.setReactants(chemicals, quantities);
+                    
                 } while (!allReactants);
 
                 // mow what do these reactants give us?
