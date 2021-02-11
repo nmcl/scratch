@@ -57,9 +57,11 @@ public class Parser
                         else
                         {
                             chem = line.substring(quantitySpace, chemDelim-1);
+
+                            ptr += chemDelim;
                         }
 
-                        ptr = 
+                        System.out.println("**got "+quantity+" and "+chem);
                     }
                     else
                         allReactants = true;

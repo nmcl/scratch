@@ -14,12 +14,17 @@ public class Verifier
     public Verifier (boolean debug)
     {
         _debug = debug;
+
+        _theParser = new Parser(debug);
     }
 
     public final boolean verify ()
     {
+        _theParser.loadData(EXAMPLE1_FILE);
+
         return false;
     }
 
     private boolean _debug;
+    private Parser _theParser;
 }
