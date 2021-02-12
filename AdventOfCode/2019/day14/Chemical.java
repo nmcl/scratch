@@ -1,7 +1,7 @@
 public class Chemical
 {
     // these are special.
-    
+
     public static final String ORE = "ORE";
     public static final String FUEL = "FUEL";
 
@@ -13,6 +13,12 @@ public class Chemical
     public final String getName ()
     {
         return _name;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return super.hashCode();
     }
 
     @Override

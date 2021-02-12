@@ -33,6 +33,15 @@ public class Verifier
                 System.out.println(iter.nextElement());
         }
 
+        HashMap<Chemical, Integer> inventory = new HashMap<Chemical, Integer>();
+        Reaction fuel = findReaction(Chemical.FUEL, reactions);
+
+        if (fuel != null)
+        {
+            boolean completed = false;
+            int fuelNeeded = fuel.amountCreated();
+        }
+
         return false;
     }
 
@@ -44,7 +53,7 @@ public class Verifier
         {
             Reaction r = iter.nextElement();
 
-            if (r.name().equals(name))
+            if (r.chemicalCreated().equals(name))
                 return r;
         }
 

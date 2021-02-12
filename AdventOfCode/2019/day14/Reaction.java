@@ -19,11 +19,6 @@ public class Reaction
         _quantities = quantities;
     }
 
-    public final String name ()
-    {
-        return _chemicalCreated.getName();
-    }
-
     public final void setCreated (Chemical name, int quantity)
     {
         _chemicalCreated = name;
@@ -39,6 +34,11 @@ public class Reaction
     public final String chemicalCreated ()
     {
         return _chemicalCreated.getName();
+    }
+
+    public final int amountCreated ()
+    {
+        return _quantityCreated;
     }
 
     @Override
