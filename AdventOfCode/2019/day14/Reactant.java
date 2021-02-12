@@ -23,6 +23,11 @@ public class Reactant
         return _amount;
     }
 
+    public final void setAmount (int v)
+    {
+        _amount = v;
+    }
+
     @Override
     public String toString ()
     {
