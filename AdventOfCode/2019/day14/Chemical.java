@@ -15,6 +15,22 @@ public class Chemical
         return _name;
     }
 
+    public final boolean isOre ()
+    {
+        if (_name.equals(Chemical.ORE))
+            return true;
+        else
+            return false;
+    }
+
+    public final boolean isFuel ()
+    {
+        if (_name.equals(Chemical.FUEL))
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public int hashCode()
     {
