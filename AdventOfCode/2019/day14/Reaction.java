@@ -25,6 +25,11 @@ public class Reaction
         _reactants = reactants;
     }
 
+    public final Vector<Reactant> getReactants ()
+    {
+        return _reactants;
+    }
+
     public final Reactant chemicalCreated ()
     {
         return _chemicalCreated;
