@@ -21,7 +21,6 @@ public class Parser
          */
 
         BufferedReader reader = null;
-        String[] values = null;
         Vector<Reaction> reactions = new Vector<Reaction>();
 
         try
