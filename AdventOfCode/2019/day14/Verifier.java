@@ -18,7 +18,6 @@ public class Verifier
     {
         _debug = debug;
         _theParser = new Parser(debug);
-        _oresNeeded = 0;
     }
 
     /*
@@ -33,6 +32,7 @@ public class Verifier
     public final boolean verify ()
     {
         Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
+        int oreNeeded = 0;
 
         //if (_debug)
         {
@@ -62,17 +62,30 @@ public class Verifier
              while (iter.hasMoreElements())
              {
                  Reactant react = iter.nextElement();
+                 Reaction r = findReaction(react.getChemical().getName(), reactions);
+                 int needed = react.getAmount();
 
                  System.out.println("**got "+react);
-
-                 Reaction r = findReaction(react.getChemical().getName(), reactions);
-
                  System.out.println("**and "+r);
+                 System.out.println("**needed "+needed);
 
                  if (r.isOre())
-                    System.out.println("ORE");
-                else
-                    System.out.println("NOT ORE");
+                 {
+                    System.out.println("**creates "+r.chemicalCreated().getAmount());
+                    int foundInInventory = takeFromInventory(react, inventory, needed);
+
+                    System.out.println("**found "+foundInInventory+" in inventory");
+                    //oreNeeded += r.getReactants().elementAt(0).getAmount();
+
+                    if (foundInInventory < needed)
+                    {
+                        
+                    }
+                 }
+                 else
+                 {
+
+                 }
              }
         }
         else
@@ -126,5 +139,4 @@ public class Verifier
 
     private boolean _debug;
     private Parser _theParser;
-    private int _oresNeeded;
 }
