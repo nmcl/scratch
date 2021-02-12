@@ -6,61 +6,43 @@ public class Reaction
     public Reaction ()
     {
         _chemicalCreated = null;
-        _quantityCreated = -1;
         _reactants = null;
-        _quantities = null;
     }
 
-    public Reaction (Chemical name, int quantity, Vector<Chemical> reactants, Vector<Integer> quantities)
+    public final void setCreated (Reactant name)
     {
         _chemicalCreated = name;
-        _quantityCreated = quantity;
-        _reactants = reactants;
-        _quantities = quantities;
     }
 
-    public final void setCreated (Chemical name, int quantity)
-    {
-        _chemicalCreated = name;
-        _quantityCreated = quantity;
-    }
-
-    public final void setReactants (Vector<Chemical> reactants, Vector<Integer> quantities)
+    public final void setReactants (Vector<Reactant> reactants)
     {
         _reactants = reactants;
-        _quantities = quantities;
     }
 
-    public final String chemicalCreated ()
+    public final Reactant chemicalCreated ()
     {
-        return _chemicalCreated.getName();
-    }
-
-    public final int amountCreated ()
-    {
-        return _quantityCreated;
+        return _chemicalCreated;
     }
 
     @Override
     public String toString ()
     {
         String str = "";
+        Enumeration<Reactant> iter = _reactants.elements();
 
-        for (int i = 0; i < _quantities.size(); i++)
+        while (iter.hasMoreElements())
         {
             if (str != "")
                 str += " and ";
 
-            str += _quantities.elementAt(i)+" of "+_reactants.elementAt(i);
+            str += iter.nextElement();
         }
 
-        str += " creates "+_quantityCreated+" of "+_chemicalCreated;
+        str += " creates "+_chemicalCreated;
 
         return str;
     }
 
-    private Chemical _chemicalCreated;
-    private int _quantityCreated;
-    private Vector<Chemical> _reactants;
-    private Vector<Integer> _quantities;
+    private Reactant _chemicalCreated;
+    private Vector<Reactant> _reactants;
 }
