@@ -32,8 +32,7 @@ public class Parser
                     System.out.println("Parser read: "+line);
 
                 Reaction react = new Reaction();
-                Vector<Integer> quantities = new Vector<Integer>();
-                Vector<Chemical> chemicals = new Vector<Chemical>();
+                Vector<Reactant> reactants = new Vector<Reactant>();
 
                 /*
                  * Line format:
@@ -69,8 +68,7 @@ public class Parser
 
                         ptr += chemDelim +2;  // move on past comma and space!
 
-                        quantities.add(quantity);
-                        chemicals.add(new Chemical(chem));
+                        reactants.add(new Reactant(new Chemical(chem), quantity));
                     }
                     else
                     {
@@ -79,7 +77,7 @@ public class Parser
                         allReactants = true;
                     }
 
-                    react.setReactants(chemicals, quantities);
+                    react.setReactants(reactants);
 
                 } while (!allReactants);
 
@@ -91,7 +89,7 @@ public class Parser
                 int createsQuantity = Integer.parseInt(line.substring(createsPointer, createsSpace));
                 String chemCreated = line.substring(createsSpace +1);
 
-                react.setCreated(new Chemical(chemCreated), createsQuantity);
+                react.setCreated(new Reactant(new Chemical(chemCreated), createsQuantity));
 
                 reactions.add(react);
             }

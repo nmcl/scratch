@@ -39,7 +39,7 @@ public class Verifier
         if (fuel != null)
         {
             boolean completed = false;
-            int fuelNeeded = fuel.amountCreated();
+            //int fuelNeeded = fuel.amountCreated();
         }
 
         return false;
