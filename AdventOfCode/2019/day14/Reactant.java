@@ -1,6 +1,6 @@
-public class Reactants
+public class Reactant
 {
-    public Reactants (Chemical chem, Integer quantity)
+    public Reactant (Chemical chem, Integer quantity)
     {
         _chemical = chem;
         _amount = quantity;
@@ -14,6 +14,12 @@ public class Reactants
     public final Integer getAmount ()
     {
         return _amount;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return _chemical.getName()+" of "+_amount;
     }
 
     private Chemical _chemical;
