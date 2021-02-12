@@ -39,8 +39,10 @@ public class Verifier
         if (fuel != null)
         {
             boolean completed = false;
-            //int fuelNeeded = fuel.amountCreated();
+            int fuelNeeded = fuel.chemicalCreated().getAmount();
         }
+        else
+            System.out.println("Error! No fuel required?!");
 
         return false;
     }
