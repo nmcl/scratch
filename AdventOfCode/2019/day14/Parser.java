@@ -31,7 +31,9 @@ public class Parser
 
             while ((line = reader.readLine()) != null)
             {
-                System.out.println("**read "+line);
+                if (_debug)
+                    System.out.println("Parser read: "+line);
+
                 Reaction react = new Reaction();
                 Vector<Integer> quantities = new Vector<Integer>();
                 Vector<Chemical> chemicals = new Vector<Chemical>();
@@ -72,8 +74,6 @@ public class Parser
 
                         quantities.add(quantity);
                         chemicals.add(new Chemical(chem));
-
-                        System.out.println("**got "+quantity+" and "+chem);
                     }
                     else
                     {
@@ -83,22 +83,18 @@ public class Parser
                     }
 
                     react.setReactants(chemicals, quantities);
-                    
+
                 } while (!allReactants);
 
                 // mow what do these reactants give us?
 
                 createsPointer += PRODUCES.length() +1;
 
-                System.out.println("**createsPointer "+createsPointer);
-
                 int createsSpace = line.indexOf(SPACE, createsPointer);
                 int createsQuantity = Integer.parseInt(line.substring(createsPointer, createsSpace));
                 String chemCreated = line.substring(createsSpace +1);
 
                 react.setCreated(new Chemical(chemCreated), createsQuantity);
-
-                System.out.println("**creates "+createsQuantity+" "+chemCreated);
 
                 reactions.add(react);
             }
