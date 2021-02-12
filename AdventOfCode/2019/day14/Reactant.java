@@ -1,3 +1,10 @@
+/**
+ * A tuple of the chemical and the amount used/produced, such
+ * as ...
+ * 
+ * 1 C
+ */
+
 public class Reactant
 {
     public Reactant (Chemical chem, Integer quantity)

@@ -1,6 +1,12 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * The reaction (equation), such as ...
+ * 
+ * 10 ORE => 10 A
+ */
+
 public class Reaction
 {
     public Reaction ()
