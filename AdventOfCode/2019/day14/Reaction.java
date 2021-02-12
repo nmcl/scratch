@@ -46,10 +46,10 @@ public class Reaction
             if (str != "")
                 str += " and ";
 
-            str += _reactants.elementAt(i)+"*"+_quantities.elementAt(i);
+            str += _quantities.elementAt(i)+" of "+_reactants.elementAt(i);
         }
 
-        str += " create "+_quantityCreated+" of "+_chemicalCreated;
+        str += " creates "+_quantityCreated+" of "+_chemicalCreated;
 
         return str;
     }
