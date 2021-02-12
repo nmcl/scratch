@@ -19,6 +19,11 @@ public class Reaction
         _quantities = quantities;
     }
 
+    public final String name ()
+    {
+        return _chemicalCreated.getName();
+    }
+
     public final void setCreated (Chemical name, int quantity)
     {
         _chemicalCreated = name;
