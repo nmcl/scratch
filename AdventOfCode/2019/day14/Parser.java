@@ -6,8 +6,6 @@ public class Parser
     public static final String DELIMITER = ",";
     public static final String PRODUCES = "=>";
     public static final String SPACE = " ";
-    public static final String ORE = "ORE";
-    public static final String FUEL = "FUEL";
 
     public Parser (boolean debug)
     {

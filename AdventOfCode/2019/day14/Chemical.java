@@ -1,5 +1,10 @@
 public class Chemical
 {
+    // these are special.
+    
+    public static final String ORE = "ORE";
+    public static final String FUEL = "FUEL";
+
     public Chemical (String name)
     {
         _name = name.trim();
