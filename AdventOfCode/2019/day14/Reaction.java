@@ -30,6 +30,17 @@ public class Reaction
         return _reactants;
     }
 
+    public final boolean isOre ()
+    {
+        if (_reactants.size() == 1)
+        {
+            if (_reactants.elementAt(0).getChemical().isOre())
+                return true;
+        }
+
+        return false;
+    }
+
     public final Reactant chemicalCreated ()
     {
         return _chemicalCreated;
