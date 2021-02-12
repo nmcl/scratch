@@ -17,8 +17,8 @@ public class Verifier
     public Verifier (boolean debug)
     {
         _debug = debug;
-
         _theParser = new Parser(debug);
+        _oresNeeded = 0;
     }
 
     /*
@@ -42,7 +42,6 @@ public class Verifier
                 System.out.println(iter.nextElement());
         }
 
-        HashMap<Chemical, Integer> inventory = new HashMap<Chemical, Integer>();
         Reaction fuel = findReaction(Chemical.FUEL, reactions);
         Vector<Reactant> inventory = new Vector<Reactant>();
 
@@ -50,13 +49,31 @@ public class Verifier
         {
             boolean completed = false;
             int fuelNeeded = fuel.chemicalCreated().getAmount();
-            Vector<Reactant> reactants = fuel.getReactants();
+            Vector<Reactant> reactants = fuel.getReactants();    // maybe not all reactions given are needed
 
             /*
              * Go through each reactant and try to create the
              * required amount, storing excess in the inventory.
              * So check the inventory first, of course.
              */
+
+             Enumeration<Reactant> iter = reactants.elements();
+
+             while (iter.hasMoreElements())
+             {
+                 Reactant react = iter.nextElement();
+
+                 System.out.println("**got "+react);
+
+                 Reaction r = findReaction(react.getChemical().getName(), reactions);
+
+                 System.out.println("**and "+r);
+
+                 if (r.isOre())
+                    System.out.println("ORE");
+                else
+                    System.out.println("NOT ORE");
+             }
         }
         else
             System.out.println("Error! No fuel required?!");
@@ -109,4 +126,5 @@ public class Verifier
 
     private boolean _debug;
     private Parser _theParser;
+    private int _oresNeeded;
 }
