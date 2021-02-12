@@ -24,12 +24,31 @@ public class Verifier
     public final boolean verify ()
     {
         Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
+
+        //if (_debug)
+        {
+            Enumeration<Reaction> iter = reactions.elements();
+
+            while (iter.hasMoreElements())
+                System.out.println(iter.nextElement());
+        }
+
+        return false;
+    }
+
+    private Reaction findReaction (String name, Vector<Reaction> reactions)
+    {
         Enumeration<Reaction> iter = reactions.elements();
 
         while (iter.hasMoreElements())
-            System.out.println(iter.nextElement());
+        {
+            Reaction r = iter.nextElement();
 
-        return false;
+            if (r.name().equals(name))
+                return r;
+        }
+
+        return null;
     }
 
     private boolean _debug;
