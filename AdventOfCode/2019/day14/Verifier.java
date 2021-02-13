@@ -56,47 +56,54 @@ public class Verifier
             boolean completed = false;
             Vector<Reactant> reactants = fuel.getReactants();    // maybe not all reactions given are needed
 
-            /*
-             * Go through each reactant and try to create the
-             * required amount, storing excess in the inventory.
-             * So check the inventory first, of course.
-             */
-
-             Enumeration<Reactant> iter = reactants.elements();
-
-             while (iter.hasMoreElements())
-             {
-                 Reactant react = iter.nextElement();
-                 Reaction r = findReaction(react.getChemical().getName(), reactions);
-                 int needed = react.getAmount();
-
-                 System.out.println("**got "+react);
-                 System.out.println("**and "+r);
-                 System.out.println("**needed "+needed);
-
-                 if (r.isOre())
-                 {
-                    System.out.println("**creates "+r.chemicalCreated().getAmount());
-                    int foundInInventory = takeFromInventory(react, inventory, needed);
-
-                    System.out.println("**found "+foundInInventory+" in inventory");
-                    //oreNeeded += r.getReactants().elementAt(0).getAmount();
-
-                    if (foundInInventory < needed)
-                    {
-                        
-                    }
-                 }
-                 else
-                 {
-
-                 }
-             }
+            createNeededAmount(reactants, reactions, inventory);
         }
         else
             System.out.println("Error! No fuel required?!");
         
         return false;
+    }
+
+    /*
+     * Go through each reactant and try to create the
+     * required amount, storing excess in the inventory.
+     * So check the inventory first, of course.
+     */
+
+    private int createNeededAmount (Vector<Reactant> reactants, Vector<Reaction> reactions, Vector<Reactant> inventory)
+    {
+        int oreNeeded = 0;
+        Enumeration<Reactant> iter = reactants.elements();
+
+        while (iter.hasMoreElements())
+        {
+            Reactant react = iter.nextElement();
+            Reaction r = findReaction(react.getChemical().getName(), reactions);
+            int needed = react.getAmount();
+
+            System.out.println("**reactant "+react);
+            System.out.println("**reaction "+r);
+            System.out.println("**needed "+needed);
+
+            if (r.isOre())
+            {
+                System.out.println("**creates "+r.chemicalCreated().getAmount());
+                int foundInInventory = takeFromInventory(react, inventory, needed);
+
+                System.out.println("**found "+foundInInventory+" in inventory");
+
+                if (foundInInventory < needed)
+                {
+                    
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        return oreNeeded;
     }
 
     private Reaction findReaction (String name, Vector<Reaction> reactions)
