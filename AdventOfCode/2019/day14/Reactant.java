@@ -34,6 +34,24 @@ public class Reactant
         return _amount+" "+_chemical.getName();
     }
 
+    // just compare chemical names
+    
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (obj instanceof Reactant)
+        {
+            Reactant temp = (Reactant) obj;
+
+            return _chemical.equals(temp._chemical);
+        }
+
+        return false;
+    }
+
     private Chemical _chemical;
     private Integer _amount;
 }
