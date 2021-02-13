@@ -91,7 +91,7 @@ public class Verifier
 
             int needed = react.getAmount();
             System.out.println("**quantity needed "+needed);
-            System.out.println("**quantity created "+r.chemicalCreated().getAmount());
+            System.out.println("**quantity which would be created "+r.chemicalCreated().getAmount());
 
             if (r.isOre())
             {
