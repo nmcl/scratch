@@ -127,33 +127,25 @@ public class Verifier
         return null;
     }
 
-    private int updateInventory (Reactant name, Reaction rct, Vector<Reactant> inventory, int amountNeeded)
+    private int updateInventory (Reactant needed, Reaction rct, Vector<Reactant> inventory, int amountNeeded)
     {
-        System.out.println("**checking inventory");
-        System.out.println("**reactant "+name);
-        System.out.println("**reaction "+rct);
-        
-        Enumeration<Reactant> iter = inventory.elements();
+        System.out.println("**CHECKING INVENTORY**");
+        System.out.println("**reactant needed: "+needed);
+        System.out.println("**reaction used to fulfil need: "+rct);
+
         int amount = -1;
 
-        while (iter.hasMoreElements())
+        if (inventory.contains(needed))
         {
-            Reactant r = iter.nextElement();
+            System.out.println("**PRESENT in inventory");
+        }
+        else
+        {
+            System.out.println("**NOT PRESENT in inventory");
 
-            if (r.getChemical().equals(name.getChemical()))
-            {
-                int amountFound = r.getAmount();
+            Reactant r = new Reactant(needed.getChemical(), amountNeeded);
 
-                if (amountFound > 0)
-                {
-                    if (amountFound >= amountNeeded)
-                        amount = amountNeeded;
-                    else
-                        amount = amountNeeded - amountFound;
-
-                    r.setAmount(amountFound - amount);
-                }
-            }
+            inventory.add(r);
         }
 
         return amount;
