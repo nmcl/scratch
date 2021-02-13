@@ -77,6 +77,8 @@ public class Verifier
         int oreNeeded = 0;
         Enumeration<Reactant> iter = reactants.elements();
 
+        System.out.println("\n**scanning reactants");
+
         while (iter.hasMoreElements())
         {
             Reactant react = iter.nextElement();
@@ -84,13 +86,15 @@ public class Verifier
             int needed = react.getAmount();
 
             System.out.println("**reactant "+react);
-            System.out.println("**reaction "+r);
-            System.out.println("**needed "+needed);
+            System.out.println("**found needed reaction: "+r);
+            System.out.println("**quantity needed "+needed);
+            System.out.println("**quantity created "+r.chemicalCreated().getAmount());
 
             if (r.isOre())
             {
-                System.out.println("**reaction is for ORE");
+                System.out.println("**reaction uses ORE");
 
+                /*
                 System.out.println("**creates "+r.chemicalCreated().getAmount());
                 int foundInInventory = takeFromInventory(react, inventory, needed);
 
@@ -99,11 +103,11 @@ public class Verifier
                 if (foundInInventory < needed)
                 {
                     
-                }
+                }*/
             }
             else
             {
-                System.out.println("**reaction is NOT for ORE");
+                System.out.println("**reaction does NOT use ORE");
             }
         }
 
