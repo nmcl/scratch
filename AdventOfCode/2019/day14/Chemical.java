@@ -1,6 +1,6 @@
 public class Chemical
 {
-    // these are special.
+    // these are special types.
 
     public static final String ORE = "ORE";
     public static final String FUEL = "FUEL";
