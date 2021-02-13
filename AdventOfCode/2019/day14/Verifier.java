@@ -43,12 +43,17 @@ public class Verifier
         }
 
         Reaction fuel = findReaction(Chemical.FUEL, reactions);
-        Vector<Reactant> inventory = new Vector<Reactant>();
+        Vector<Reactant> inventory = new Vector<Reactant>();  // where we will store excess reactants
+
+        /*
+         * Look at the reactions needed to create the amount
+         * of fuel. Work backwards from there.
+         */
 
         if (fuel != null)
         {
-            boolean completed = false;
             int fuelNeeded = fuel.chemicalCreated().getAmount();
+            boolean completed = false;
             Vector<Reactant> reactants = fuel.getReactants();    // maybe not all reactions given are needed
 
             /*
