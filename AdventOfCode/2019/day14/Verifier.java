@@ -52,6 +52,8 @@ public class Verifier
 
         if (fuel != null)
         {
+            System.out.println("**Need to create "+fuel);
+            
             int fuelNeeded = fuel.chemicalCreated().getAmount();
             boolean completed = false;
             Vector<Reactant> reactants = fuel.getReactants();    // maybe not all reactions given are needed
