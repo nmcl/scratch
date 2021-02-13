@@ -58,7 +58,9 @@ public class Verifier
             boolean completed = false;
             Vector<Reactant> reactants = fuel.getReactants();    // maybe not all reactions loaded are needed
 
-            createNeededAmount(reactants, reactions, inventory);
+            oreNeeded = createNeededAmount(reactants, reactions, inventory);
+
+            System.out.println("**final ore needed: "+oreNeeded);
         }
         else
             System.out.println("Error! No fuel required?!");
@@ -94,6 +96,10 @@ public class Verifier
             {
                 System.out.println("**reaction uses ORE");
 
+                oreNeeded += r.getReactants().elementAt(0).getAmount();
+
+                System.out.println("**oreNeeded "+oreNeeded);
+
                 /*
                 System.out.println("**creates "+r.chemicalCreated().getAmount());
                 int foundInInventory = takeFromInventory(react, inventory, needed);
@@ -108,6 +114,8 @@ public class Verifier
             else
             {
                 System.out.println("**reaction does NOT use ORE");
+
+                oreNeeded += createNeededAmount(r.getReactants(), reactions, inventory);
             }
         }
 
