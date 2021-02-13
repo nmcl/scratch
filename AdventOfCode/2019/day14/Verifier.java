@@ -96,26 +96,15 @@ public class Verifier
             if (r.isOre())
             {
                 System.out.println("**reaction uses ORE");
-
+                updateInventory(react, r, inventory, needed);
                 oreNeeded += r.getReactants().elementAt(0).getAmount();
 
                 System.out.println("**oreNeeded "+oreNeeded);
-
-                /*
-                System.out.println("**creates "+r.chemicalCreated().getAmount());
-                int foundInInventory = takeFromInventory(react, inventory, needed);
-
-                System.out.println("**found "+foundInInventory+" in inventory");
-
-                if (foundInInventory < needed)
-                {
-                    
-                }*/
             }
             else
             {
                 System.out.println("**reaction does NOT use ORE");
-
+                updateInventory(react, r, inventory, needed);
                 oreNeeded += createNeededAmount(r.getReactants(), reactions, inventory);
             }
         }
@@ -138,8 +127,12 @@ public class Verifier
         return null;
     }
 
-    private int takeFromInventory (Reactant name, Vector<Reactant> inventory, int amountNeeded)
+    private int updateInventory (Reactant name, Reaction rct, Vector<Reactant> inventory, int amountNeeded)
     {
+        System.out.println("**checking inventory");
+        System.out.println("**reactant "+name);
+        System.out.println("**reaction "+rct);
+        
         Enumeration<Reactant> iter = inventory.elements();
         int amount = -1;
 
