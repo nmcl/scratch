@@ -29,13 +29,19 @@ public class Reactant
     }
 
     @Override
+    public int hashCode()
+    {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString ()
     {
         return _amount+" "+_chemical.getName();
     }
 
     // just compare chemical names
-    
+
     @Override
     public boolean equals (Object obj)
     {
