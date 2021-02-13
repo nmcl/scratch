@@ -34,7 +34,7 @@ public class Verifier
         Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
         int oreNeeded = 0;
 
-        //if (_debug)
+        if (_debug)
         {
             Enumeration<Reaction> iter = reactions.elements();
 
@@ -52,11 +52,11 @@ public class Verifier
 
         if (fuel != null)
         {
-            System.out.println("**Need to create "+fuel);
-            
+            System.out.println("**Fuel equation: "+fuel);
+
             int fuelNeeded = fuel.chemicalCreated().getAmount();
             boolean completed = false;
-            Vector<Reactant> reactants = fuel.getReactants();    // maybe not all reactions given are needed
+            Vector<Reactant> reactants = fuel.getReactants();    // maybe not all reactions loaded are needed
 
             createNeededAmount(reactants, reactions, inventory);
         }
@@ -89,6 +89,8 @@ public class Verifier
 
             if (r.isOre())
             {
+                System.out.println("**reaction is for ORE");
+
                 System.out.println("**creates "+r.chemicalCreated().getAmount());
                 int foundInInventory = takeFromInventory(react, inventory, needed);
 
@@ -101,7 +103,7 @@ public class Verifier
             }
             else
             {
-
+                System.out.println("**reaction is NOT for ORE");
             }
         }
 
