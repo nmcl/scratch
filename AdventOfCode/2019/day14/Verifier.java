@@ -84,11 +84,12 @@ public class Verifier
         while (iter.hasMoreElements())
         {
             Reactant react = iter.nextElement();
-            Reaction r = findReaction(react.getChemical().getName(), reactions);
-            int needed = react.getAmount();
-
             System.out.println("**reactant "+react);
+
+            Reaction r = findReaction(react.getChemical().getName(), reactions);
             System.out.println("**found needed reaction: "+r);
+
+            int needed = react.getAmount();
             System.out.println("**quantity needed "+needed);
             System.out.println("**quantity created "+r.chemicalCreated().getAmount());
 
