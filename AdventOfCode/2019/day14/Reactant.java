@@ -31,7 +31,7 @@ public class Reactant
     @Override
     public String toString ()
     {
-        return _chemical.getName()+" of "+_amount;
+        return _amount+" "+_chemical.getName();
     }
 
     private Chemical _chemical;
