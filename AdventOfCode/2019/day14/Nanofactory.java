@@ -40,7 +40,7 @@ public class NanoFactory
         if (fuel != null)
         {
             if (_debug)
-                System.out.println("Fuel equation: "+fuel);
+                System.out.println("\nFuel equation: "+fuel);
 
             int fuelNeeded = fuel.chemicalCreated().getAmount();
             boolean completed = false;
@@ -127,7 +127,7 @@ public class NanoFactory
                  */
 
                 if (_debug)
-                    System.out.println("Eeaction does NOT use ORE.");
+                    System.out.println("Reaction does NOT use ORE.");
 
                 int amountStored = checkInventory(chemicalAndQuantity);
 
