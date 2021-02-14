@@ -49,22 +49,22 @@ public class Parser
 
                  do
                  {
-                    int Quantitiespace = line.indexOf(SPACE, ptr);
+                    int quantitySpace = line.indexOf(SPACE, ptr);
 
-                    if (Quantitiespace != -1)
+                    if (quantitySpace != -1)
                     {
-                        int quantity = Integer.parseInt(line.substring(ptr, Quantitiespace));
-                        int chemDelim = line.indexOf(DELIMITER, Quantitiespace);
+                        int quantity = Integer.parseInt(line.substring(ptr, quantitySpace));
+                        int chemDelim = line.indexOf(DELIMITER, quantitySpace);
                         String chem = null;
 
                         if (chemDelim == -1)  // no more chemicals
                         {
-                            chemDelim = line.indexOf(PRODUCES, Quantitiespace);
+                            chemDelim = line.indexOf(PRODUCES, quantitySpace);
                             allChemicalQuantities = true;
                             createsPointer = chemDelim;
                         }
 
-                        chem = line.substring(Quantitiespace+1, chemDelim);
+                        chem = line.substring(quantitySpace+1, chemDelim);
 
                         ptr += chemDelim +2;  // move on past comma and space!
 
