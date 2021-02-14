@@ -79,17 +79,17 @@ public class Verifier
         int oreNeeded = 0;
         Enumeration<ChemicalQuantity> iter = ChemicalQuantitys.elements();
 
-        System.out.println("\n**scanning ChemicalQuantitys");
+        System.out.println("\n**scanning reactions");
 
         while (iter.hasMoreElements())
         {
-            ChemicalQuantity chemicalAndQuantity = iter.nextElement();
+            ChemicalQuantity chemicalAndQuantity = iter.nextElement();  // the chemical needed and the amount of it
             System.out.println("**ChemicalQuantity "+chemicalAndQuantity);
 
-            Reaction r = findReaction(chemicalAndQuantity.getChemical().getName(), reactions);
+            Reaction r = findReaction(chemicalAndQuantity.getChemical().getName(), reactions);  // the reaction for the chemical needed
             System.out.println("**found needed reaction: "+r);
 
-            int needed = chemicalAndQuantity.getAmount();
+            int needed = chemicalAndQuantity.getAmount();  // the amount of chemical needed
             System.out.println("**quantity needed "+needed);
             System.out.println("**quantity which would be created "+r.chemicalCreated().getAmount());
 
@@ -100,16 +100,37 @@ public class Verifier
 
             if (r.isOre())
             {
+                /*
+                 * If the chemical needed is ORE then we don't need
+                 * to do anything special as it's always available at
+                 * whatever quantity.
+                 */
+
                 System.out.println("**reaction uses ORE");
-                checkInventory(chemicalAndQuantity, inventory);
+
                 oreNeeded += r.getChemicalQuantitys().elementAt(0).getAmount();
 
                 System.out.println("**oreNeeded "+oreNeeded);
             }
             else
             {
+                /*
+                 * Not ORE so we need to create the chemical using
+                 * the reaction. Check the inventory first and update
+                 * if we have excess.
+                 */
+
                 System.out.println("**reaction does NOT use ORE");
-                checkInventory(chemicalAndQuantity, inventory);
+
+                if (checkInventory(chemicalAndQuantity, inventory))
+                {
+                    consumeFromInventory(chemicalAndQuantity, inventory);
+                }
+                else
+                {
+
+                }
+
                 oreNeeded += createNeededAmount(r.getChemicalQuantitys(), reactions, inventory);
             }
         }
@@ -138,6 +159,39 @@ public class Verifier
             if (stored.getAmount() >= needed.getAmount())
                 quantityPresent = true;
         }
+
+        return quantityPresent;
+    }
+
+    /*
+     * Consume the chemical needed and the amount from the inventory.
+     * We've already determined presence of the chemical and the amount
+     * but double check!
+     */
+
+    private boolean consumeFromInventory (ChemicalQuantity needed, Vector<ChemicalQuantity> inventory)
+    {
+        System.out.println("**CONSUMING FROM INVENTORY**");
+
+        boolean quantityPresent = false;
+        int index = inventory.indexOf(needed);
+
+        if (index != -1)
+        {
+            ChemicalQuantity stored = inventory.elementAt(index);
+            int amountStored = stored.getAmount();
+
+            if (amountStored >= needed.getAmount())
+            {
+                stored.setAmount(amountStored - needed.getAmount());
+
+                quantityPresent = true;
+            }
+            else
+                System.out.println("ERROR - Chemical suddenly no longer present at the required amount in the inventory!");
+        }
+        else
+            System.out.println("ERROR - Chemical suddenly no longer present in the inventory!");
 
         return quantityPresent;
     }
