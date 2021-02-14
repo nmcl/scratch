@@ -66,7 +66,7 @@ public class Parser
 
                         chem = line.substring(quantitySpace+1, chemDelim);
 
-                        ptr += chemDelim +2;  // move on past comma and space!
+                        ptr = chemDelim +2;  // move on past comma and space!
 
                         ChemicalQuantities.add(new ChemicalQuantity(new Chemical(chem), quantity));
                     }
