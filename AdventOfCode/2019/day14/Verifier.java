@@ -108,18 +108,27 @@ public class Verifier
 
                 System.out.println("**reaction uses ORE");
 
-                oreNeeded += r.getChemicalQuantities().elementAt(0).getAmount();
+                int amountStored = checkInventory(chemicalAndQuantity, inventory);
 
-                System.out.println("**oreNeeded "+oreNeeded);
-                System.out.println("**quantity of "+chemicalAndQuantity.getChemical()+" created from reaction: "+r.chemicalCreated().getAmount());
-
-                int amountCreated = r.chemicalCreated().getAmount();
-
-                if (amountCreated > needed)
+                if (amountStored >= chemicalAndQuantity.getAmount())
                 {
-                    System.out.println("**creating more than needed");
+                    consumeFromInventory(chemicalAndQuantity, inventory);
+                }
+                else
+                {
+                    oreNeeded += r.getChemicalQuantities().elementAt(0).getAmount();
 
-                    updateInventory(chemicalAndQuantity.getChemical(), amountCreated - needed, inventory);
+                    System.out.println("**oreNeeded "+oreNeeded);
+                    System.out.println("**quantity of "+chemicalAndQuantity.getChemical()+" created from reaction: "+r.chemicalCreated().getAmount());
+
+                    int amountCreated = r.chemicalCreated().getAmount();
+
+                    if (amountCreated > needed)
+                    {
+                        System.out.println("**created "+(amountCreated - needed)+" more than needed");
+
+                        storeExcessChemical(chemicalAndQuantity.getChemical(), amountCreated - needed, inventory);
+                    }
                 }
             }
             else
@@ -162,9 +171,9 @@ public class Verifier
         return oreNeeded;
     }
 
-    private void updateInventory (Chemical chem, int amount, Vector<ChemicalQuantity> inventory)
+    private void storeExcessChemical (Chemical chem, int amount, Vector<ChemicalQuantity> inventory)
     {
-        System.out.println("**UPDATING INVENTORY**");
+        System.out.println("**ADDING EXCESS "+chem+" TO INVENTORY**");
 
         ChemicalQuantity toStore = new ChemicalQuantity(chem, amount);
         int index = inventory.indexOf(toStore);
@@ -178,43 +187,14 @@ public class Verifier
             int currentQuantityInInventory = chemQ.getAmount();
 
             chemQ.setAmount(currentQuantityInInventory + amount);
+            System.out.println("**storage now: "+chemQ);
         }
         else
         {
             System.out.println("**CHEMICAL NOT in inventory");
 
-            System.out.println("**adding "+toStore);
+            System.out.println("**adding to storage: "+toStore);
             inventory.add(toStore);
-        }
-    }
-
-    /*
-     * Add chemical amount to the inventory.
-     */
-
-    private void addToInventory (ChemicalQuantity needed, Reaction react, Vector<ChemicalQuantity> inventory)
-    {
-        System.out.println("**ADDING TO INVENTORY**");
-
-        int index = inventory.indexOf(needed);
-
-        if (index != -1)
-        {
-            System.out.println("**CHEMICAL ALREADY in inventory");
-
-            ChemicalQuantity chem = inventory.elementAt(index);
-            System.out.println("**present "+chem);
-            int currentQuantityInInventory = chem.getAmount();
-
-            chem.setAmount(currentQuantityInInventory + react.chemicalCreated().getAmount());
-        }
-        else
-        {
-            System.out.println("**CHEMICAL NOT in inventory");
-
-            ChemicalQuantity chem = new ChemicalQuantity(react.chemicalCreated());
-            System.out.println("**adding "+chem);
-            inventory.add(chem);
         }
     }
 
