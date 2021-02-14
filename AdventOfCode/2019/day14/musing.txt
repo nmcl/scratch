@@ -21,3 +21,18 @@
 
 1B needs 1 ORE
 [31 ORE used, 2A in store]
+
+----
+
+9 ORE => 2 A
+8 ORE => 3 B
+7 ORE => 5 C
+3 A, 4 B => 1 AB
+5 B, 7 C => 1 BC
+4 C, 1 A => 1 CA
+2 AB, 3 BC, 4 CA => 1 FUEL
+
+----
+
+1 FUEL needs 3AB, 3BC and 4CA
+4CA from 4*(4C and 1A)
