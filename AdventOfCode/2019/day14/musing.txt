@@ -35,4 +35,21 @@
 ----
 
 1 FUEL needs 3AB, 3BC and 4CA
-4CA from 4*(4C and 1A)
+
+4CA from 4 times (4C and 1A)
+
+1CA needs 4C and 1A
+5C from 7 ORE. We only need 4C so 1C left over. [7 ORE used, 1C in store]
+5C from 7 ORE. We only need 4C so 1C left over. [14 ORE used, 2C in store]
+5C from 7 ORE. We only need 4C so 1C left over. [21 ORE used, 3C in store]
+5C from 7 ORE. We only need 4C so 1C left over. [28 ORE used, 4C in store]
+2A from 9 ORE. We only need 1A so 1A left over. [37 ORE used, 4C and 1A in store]
+1A from store. [37 ORE used, 4C in store]
+2A from 9 ORE. We only need 1A so 1A left over. [46 ORE used, 4C and 1A in store]
+1A from store. [46 ORE used, 4C in store]
+
+3BC needs 3 times (5B and 7C)
+3B from 8 ORE. [54 ORE used, 4C in store]
+3B from 8 ORE. We only need 2B so 1B left over. [62 ORE used, 4C and 1B in store]
+3B from 8 ORE. [70 ORE used, 4C and 1B in store]
+3B from 8 ORE. WE ONLY NEE[78 ORE used, 4C AND ]
