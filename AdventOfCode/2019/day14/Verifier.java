@@ -36,8 +36,12 @@ public class Verifier
         int oreNeeded = factory.oreNeeded();
         boolean verified = false;
 
-        if (oreNeeded == TOTAL_ORE_1)
+        System.out.println("**ORE "+oreNeeded);
+        
+        if (oreNeeded == TOTAL_ORE_2)
         {
+            System.out.println("Verified "+EXAMPLE1_FILE);
+
             reactions = _theParser.loadData(EXAMPLE2_FILE);
             factory = new NanoFactory(reactions, _debug);
             oreNeeded = factory.oreNeeded();
