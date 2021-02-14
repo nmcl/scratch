@@ -140,6 +140,8 @@ public class Verifier
                      * and check again.
                      */
 
+                     System.out.println("**reaction in question: "+r);
+
                      //addToInventory(chemicalAndQuantity, r, inventory);
                 }
 
