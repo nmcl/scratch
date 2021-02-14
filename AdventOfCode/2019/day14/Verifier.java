@@ -83,13 +83,13 @@ public class Verifier
 
         while (iter.hasMoreElements())
         {
-            ChemicalQuantity react = iter.nextElement();
-            System.out.println("**ChemicalQuantity "+react);
+            ChemicalQuantity chemicalAndQuantity = iter.nextElement();
+            System.out.println("**ChemicalQuantity "+chemicalAndQuantity);
 
-            Reaction r = findReaction(react.getChemical().getName(), reactions);
+            Reaction r = findReaction(chemicalAndQuantity.getChemical().getName(), reactions);
             System.out.println("**found needed reaction: "+r);
 
-            int needed = react.getAmount();
+            int needed = chemicalAndQuantity.getAmount();
             System.out.println("**quantity needed "+needed);
             System.out.println("**quantity which would be created "+r.chemicalCreated().getAmount());
 
@@ -101,7 +101,7 @@ public class Verifier
             if (r.isOre())
             {
                 System.out.println("**reaction uses ORE");
-                updateInventory(react, r, inventory, needed);
+                checkInventory(chemicalAndQuantity, inventory);
                 oreNeeded += r.getChemicalQuantitys().elementAt(0).getAmount();
 
                 System.out.println("**oreNeeded "+oreNeeded);
@@ -109,7 +109,7 @@ public class Verifier
             else
             {
                 System.out.println("**reaction does NOT use ORE");
-                updateInventory(react, r, inventory, needed);
+                checkInventory(chemicalAndQuantity, inventory);
                 oreNeeded += createNeededAmount(r.getChemicalQuantitys(), reactions, inventory);
             }
         }
@@ -117,28 +117,29 @@ public class Verifier
         return oreNeeded;
     }
 
-    private int updateInventory (ChemicalQuantity needed, Reaction rct, Vector<ChemicalQuantity> inventory, int amountNeeded)
+    /*
+     * Check to see if the chemical is present in the inventory with at least the amount
+     * needed.
+     */
+
+    private boolean checkInventory (ChemicalQuantity needed, Vector<ChemicalQuantity> inventory)
     {
         System.out.println("**CHECKING INVENTORY**");
-        System.out.println("**ChemicalQuantity needed: "+needed);
-        System.out.println("**reaction used to fulfil need: "+rct);
 
-        int amount = -1;
+        boolean quantityPresent = false;
+        int index = inventory.indexOf(needed);
 
-        if (inventory.contains(needed))
+        if (index != -1)
         {
             System.out.println("**PRESENT in inventory");
-        }
-        else
-        {
-            System.out.println("**NOT PRESENT in inventory");
 
-            ChemicalQuantity r = new ChemicalQuantity(needed.getChemical(), amountNeeded);
+            ChemicalQuantity stored = inventory.elementAt(index);
 
-            inventory.add(r);
+            if (stored.getAmount() >= needed.getAmount())
+                quantityPresent = true;
         }
 
-        return amount;
+        return quantityPresent;
     }
 
     private Reaction findReaction (String name, Vector<Reaction> reactions)
