@@ -43,7 +43,7 @@ public class Verifier
         }
 
         Reaction fuel = findReaction(Chemical.FUEL, reactions);
-        Vector<ChemicalQuantity> inventory = new Vector<ChemicalQuantity>();  // where we will store excess ChemicalQuantitys
+        Vector<ChemicalQuantity> inventory = new Vector<ChemicalQuantity>();  // where we will store excess ChemicalQuantities
 
         /*
          * Look at the reactions needed to create the amount
@@ -56,9 +56,9 @@ public class Verifier
 
             int fuelNeeded = fuel.chemicalCreated().getAmount();
             boolean completed = false;
-            Vector<ChemicalQuantity> ChemicalQuantitys = fuel.getChemicalQuantitys();    // maybe not all reactions loaded are needed
+            Vector<ChemicalQuantity> ChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
 
-            oreNeeded = createNeededAmount(ChemicalQuantitys, reactions, inventory);
+            oreNeeded = createNeededAmount(ChemicalQuantities, reactions, inventory);
 
             System.out.println("**final ore needed: "+oreNeeded);
         }
@@ -74,10 +74,10 @@ public class Verifier
      * So check the inventory first, of course.
      */
 
-    private int createNeededAmount (Vector<ChemicalQuantity> ChemicalQuantitys, Vector<Reaction> reactions, Vector<ChemicalQuantity> inventory)
+    private int createNeededAmount (Vector<ChemicalQuantity> ChemicalQuantities, Vector<Reaction> reactions, Vector<ChemicalQuantity> inventory)
     {
         int oreNeeded = 0;
-        Enumeration<ChemicalQuantity> iter = ChemicalQuantitys.elements();
+        Enumeration<ChemicalQuantity> iter = ChemicalQuantities.elements();
 
         System.out.println("\n**scanning reactions");
 
@@ -108,7 +108,7 @@ public class Verifier
 
                 System.out.println("**reaction uses ORE");
 
-                oreNeeded += r.getChemicalQuantitys().elementAt(0).getAmount();
+                oreNeeded += r.getChemicalQuantities().elementAt(0).getAmount();
 
                 System.out.println("**oreNeeded "+oreNeeded);
             }
@@ -140,10 +140,10 @@ public class Verifier
                      * and check again.
                      */
 
-                     addToInventory(chemicalAndQuantity, r, inventory);
+                     //addToInventory(chemicalAndQuantity, r, inventory);
                 }
 
-                oreNeeded += createNeededAmount(r.getChemicalQuantitys(), reactions, inventory);
+                oreNeeded += createNeededAmount(r.getChemicalQuantities(), reactions, inventory);
             }
         }
 

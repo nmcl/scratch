@@ -32,56 +32,56 @@ public class Parser
                     System.out.println("Parser read: "+line);
 
                 Reaction react = new Reaction();
-                Vector<ChemicalQuantity> ChemicalQuantitys = new Vector<ChemicalQuantity>();
+                Vector<ChemicalQuantity> ChemicalQuantities = new Vector<ChemicalQuantity>();
 
                 /*
                  * Line format:
                  * 
                  * - ALWAYS start with a number
                  * - ALWAYS follow with a String
-                 * - Then EITHER a comma if more than one chemical OR => to denote end of ChemicalQuantitys
+                 * - Then EITHER a comma if more than one chemical OR => to denote end of ChemicalQuantities
                  * - ALWAYS end in a number and a String
                  */
 
-                 boolean allChemicalQuantitys = false;
+                 boolean allChemicalQuantities = false;
                  int ptr = 0;
                  int createsPointer = 0;
 
                  do
                  {
-                    int quantitySpace = line.indexOf(SPACE, ptr);
+                    int Quantitiespace = line.indexOf(SPACE, ptr);
 
-                    if (quantitySpace != -1)
+                    if (Quantitiespace != -1)
                     {
-                        int quantity = Integer.parseInt(line.substring(ptr, quantitySpace));
-                        int chemDelim = line.indexOf(DELIMITER, quantitySpace);
+                        int quantity = Integer.parseInt(line.substring(ptr, Quantitiespace));
+                        int chemDelim = line.indexOf(DELIMITER, Quantitiespace);
                         String chem = null;
 
                         if (chemDelim == -1)  // no more chemicals
                         {
-                            chemDelim = line.indexOf(PRODUCES, quantitySpace);
-                            allChemicalQuantitys = true;
+                            chemDelim = line.indexOf(PRODUCES, Quantitiespace);
+                            allChemicalQuantities = true;
                             createsPointer = chemDelim;
                         }
 
-                        chem = line.substring(quantitySpace+1, chemDelim);
+                        chem = line.substring(Quantitiespace+1, chemDelim);
 
                         ptr += chemDelim +2;  // move on past comma and space!
 
-                        ChemicalQuantitys.add(new ChemicalQuantity(new Chemical(chem), quantity));
+                        ChemicalQuantities.add(new ChemicalQuantity(new Chemical(chem), quantity));
                     }
                     else
                     {
                         System.out.println("Error in parsing line!");
 
-                        allChemicalQuantitys = true;
+                        allChemicalQuantities = true;
                     }
 
-                    react.setChemicalQuantitys(ChemicalQuantitys);
+                    react.setChemicalQuantities(ChemicalQuantities);
 
-                } while (!allChemicalQuantitys);
+                } while (!allChemicalQuantities);
 
-                // mow what do these ChemicalQuantitys give us?
+                // mow what do these ChemicalQuantities give us?
 
                 createsPointer += PRODUCES.length() +1;
 
