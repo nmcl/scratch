@@ -84,14 +84,14 @@ public class Verifier
         while (iter.hasMoreElements())
         {
             ChemicalQuantity chemicalAndQuantity = iter.nextElement();  // the chemical needed and the amount of it
-            System.out.println("**ChemicalQuantity "+chemicalAndQuantity);
+            System.out.println("\n**ChemicalQuantity "+chemicalAndQuantity);
 
             Reaction r = findReaction(chemicalAndQuantity.getChemical().getName(), reactions);  // the reaction for the chemical needed
             System.out.println("**found needed reaction: "+r);
 
             int needed = chemicalAndQuantity.getAmount();  // the amount of chemical needed
-            System.out.println("**quantity needed "+needed);
-            System.out.println("**quantity which would be created "+r.chemicalCreated().getAmount());
+            System.out.println("**quantity of "+chemicalAndQuantity.getChemical()+" needed: "+needed);
+            System.out.println("**quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
 
             /*
              * TODO we may need to run the same reaction multiple
@@ -165,6 +165,7 @@ public class Verifier
             System.out.println("**CHEMICAL ALREADY in inventory");
 
             ChemicalQuantity chem = inventory.elementAt(index);
+            System.out.println("**present "+chem);
             int currentQuantityInInventory = chem.getAmount();
 
             chem.setAmount(currentQuantityInInventory + react.chemicalCreated().getAmount());
@@ -174,7 +175,7 @@ public class Verifier
             System.out.println("**CHEMICAL NOT in inventory");
 
             ChemicalQuantity chem = new ChemicalQuantity(react.chemicalCreated());
-
+            System.out.println("**adding "+chem);
             inventory.add(chem);
         }
     }
@@ -197,6 +198,8 @@ public class Verifier
 
             return inventory.elementAt(index).getAmount();
         }
+        else
+            System.out.println("**NOT PRESENT in inventory");
 
         return amountPresent;
     }
