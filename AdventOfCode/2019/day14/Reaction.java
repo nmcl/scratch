@@ -12,36 +12,36 @@ public class Reaction
     public Reaction ()
     {
         _chemicalCreated = null;
-        _reactants = null;
+        _ChemicalQuantitys = null;
     }
 
-    public final void setCreated (Reactant name)
+    public final void setCreated (ChemicalQuantity name)
     {
         _chemicalCreated = name;
     }
 
-    public final void setReactants (Vector<Reactant> reactants)
+    public final void setChemicalQuantitys (Vector<ChemicalQuantity> ChemicalQuantitys)
     {
-        _reactants = reactants;
+        _ChemicalQuantitys = ChemicalQuantitys;
     }
 
-    public final Vector<Reactant> getReactants ()
+    public final Vector<ChemicalQuantity> getChemicalQuantitys ()
     {
-        return _reactants;
+        return _ChemicalQuantitys;
     }
 
     public final boolean isOre ()
     {
-        if (_reactants.size() == 1)
+        if (_ChemicalQuantitys.size() == 1)
         {
-            if (_reactants.elementAt(0).getChemical().isOre())
+            if (_ChemicalQuantitys.elementAt(0).getChemical().isOre())
                 return true;
         }
 
         return false;
     }
 
-    public final Reactant chemicalCreated ()
+    public final ChemicalQuantity chemicalCreated ()
     {
         return _chemicalCreated;
     }
@@ -50,7 +50,7 @@ public class Reaction
     public String toString ()
     {
         String str = "";
-        Enumeration<Reactant> iter = _reactants.elements();
+        Enumeration<ChemicalQuantity> iter = _ChemicalQuantitys.elements();
 
         while (iter.hasMoreElements())
         {
@@ -65,6 +65,6 @@ public class Reaction
         return str;
     }
 
-    private Reactant _chemicalCreated;
-    private Vector<Reactant> _reactants;
+    private ChemicalQuantity _chemicalCreated;
+    private Vector<ChemicalQuantity> _ChemicalQuantitys;
 }

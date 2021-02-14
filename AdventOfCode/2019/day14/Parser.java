@@ -32,18 +32,18 @@ public class Parser
                     System.out.println("Parser read: "+line);
 
                 Reaction react = new Reaction();
-                Vector<Reactant> reactants = new Vector<Reactant>();
+                Vector<ChemicalQuantity> ChemicalQuantitys = new Vector<ChemicalQuantity>();
 
                 /*
                  * Line format:
                  * 
                  * - ALWAYS start with a number
                  * - ALWAYS follow with a String
-                 * - Then EITHER a comma if more than one chemical OR => to denote end of reactants
+                 * - Then EITHER a comma if more than one chemical OR => to denote end of ChemicalQuantitys
                  * - ALWAYS end in a number and a String
                  */
 
-                 boolean allReactants = false;
+                 boolean allChemicalQuantitys = false;
                  int ptr = 0;
                  int createsPointer = 0;
 
@@ -60,7 +60,7 @@ public class Parser
                         if (chemDelim == -1)  // no more chemicals
                         {
                             chemDelim = line.indexOf(PRODUCES, quantitySpace);
-                            allReactants = true;
+                            allChemicalQuantitys = true;
                             createsPointer = chemDelim;
                         }
 
@@ -68,20 +68,20 @@ public class Parser
 
                         ptr += chemDelim +2;  // move on past comma and space!
 
-                        reactants.add(new Reactant(new Chemical(chem), quantity));
+                        ChemicalQuantitys.add(new ChemicalQuantity(new Chemical(chem), quantity));
                     }
                     else
                     {
                         System.out.println("Error in parsing line!");
 
-                        allReactants = true;
+                        allChemicalQuantitys = true;
                     }
 
-                    react.setReactants(reactants);
+                    react.setChemicalQuantitys(ChemicalQuantitys);
 
-                } while (!allReactants);
+                } while (!allChemicalQuantitys);
 
-                // mow what do these reactants give us?
+                // mow what do these ChemicalQuantitys give us?
 
                 createsPointer += PRODUCES.length() +1;
 
@@ -89,7 +89,7 @@ public class Parser
                 int createsQuantity = Integer.parseInt(line.substring(createsPointer, createsSpace));
                 String chemCreated = line.substring(createsSpace +1);
 
-                react.setCreated(new Reactant(new Chemical(chemCreated), createsQuantity));
+                react.setCreated(new ChemicalQuantity(new Chemical(chemCreated), createsQuantity));
 
                 reactions.add(react);
             }

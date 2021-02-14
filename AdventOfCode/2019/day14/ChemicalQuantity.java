@@ -5,9 +5,9 @@
  * 1 C
  */
 
-public class Reactant
+public class ChemicalQuantity
 {
-    public Reactant (Chemical chem, Integer quantity)
+    public ChemicalQuantity (Chemical chem, Integer quantity)
     {
         _chemical = chem;
         _amount = quantity;
@@ -48,9 +48,9 @@ public class Reactant
         if (obj == null)
             return false;
 
-        if (obj instanceof Reactant)
+        if (obj instanceof ChemicalQuantity)
         {
-            Reactant temp = (Reactant) obj;
+            ChemicalQuantity temp = (ChemicalQuantity) obj;
 
             return _chemical.equals(temp._chemical);
         }
