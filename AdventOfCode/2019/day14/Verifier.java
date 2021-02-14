@@ -126,11 +126,21 @@ public class Verifier
 
                 if (amountStored >= chemicalAndQuantity.getAmount())
                 {
+                    /*
+                     * There's enough of the chemical in storage so just
+                     * use that and we're done!
+                     */
+
                     consumeFromInventory(chemicalAndQuantity, inventory);
                 }
                 else
                 {
+                    /*
+                     * Not enough in storage so create more, add it
+                     * and check again.
+                     */
 
+                     addToInventory(chemicalAndQuantity, r, inventory);
                 }
 
                 oreNeeded += createNeededAmount(r.getChemicalQuantitys(), reactions, inventory);
@@ -138,6 +148,35 @@ public class Verifier
         }
 
         return oreNeeded;
+    }
+
+    /*
+     * Add chemical amount to the inventory.
+     */
+
+    private void addToInventory (ChemicalQuantity needed, Reaction react, Vector<ChemicalQuantity> inventory)
+    {
+        System.out.println("**ADDING TO INVENTORY**");
+
+        int index = inventory.indexOf(needed);
+
+        if (index != -1)
+        {
+            System.out.println("**CHEMICAL ALREADY in inventory");
+
+            ChemicalQuantity chem = inventory.elementAt(index);
+            int currentQuantityInInventory = chem.getAmount();
+
+            chem.setAmount(currentQuantityInInventory + react.chemicalCreated().getAmount());
+        }
+        else
+        {
+            System.out.println("**CHEMICAL NOT in inventory");
+
+            ChemicalQuantity chem = new ChemicalQuantity(react.chemicalCreated());
+
+            inventory.add(chem);
+        }
     }
 
     /*
