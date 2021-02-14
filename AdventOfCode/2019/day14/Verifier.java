@@ -74,10 +74,10 @@ public class Verifier
      * So check the inventory first, of course.
      */
 
-    private int createNeededAmount (Vector<ChemicalQuantity> ChemicalQuantities, Vector<Reaction> reactions, Vector<ChemicalQuantity> inventory)
+    private int createNeededAmount (Vector<ChemicalQuantity> chemicalQuantities, Vector<Reaction> reactions, Vector<ChemicalQuantity> inventory)
     {
         int oreNeeded = 0;
-        Enumeration<ChemicalQuantity> iter = ChemicalQuantities.elements();
+        Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
 
         System.out.println("\n**scanning reactions");
 
