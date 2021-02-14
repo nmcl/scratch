@@ -37,7 +37,7 @@ public class ChemicalQuantity
     @Override
     public String toString ()
     {
-        return _amount+" "+_chemical.getName();
+        return _amount+":"+_chemical.getName();
     }
 
     // just compare chemical names
