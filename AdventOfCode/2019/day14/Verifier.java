@@ -122,7 +122,9 @@ public class Verifier
 
                 System.out.println("**reaction does NOT use ORE");
 
-                if (checkInventory(chemicalAndQuantity, inventory))
+                int amountStored = checkInventory(chemicalAndQuantity, inventory);
+
+                if (amountStored >= chemicalAndQuantity.getAmount())
                 {
                     consumeFromInventory(chemicalAndQuantity, inventory);
                 }
@@ -143,24 +145,21 @@ public class Verifier
      * needed.
      */
 
-    private boolean checkInventory (ChemicalQuantity needed, Vector<ChemicalQuantity> inventory)
+    private int checkInventory (ChemicalQuantity needed, Vector<ChemicalQuantity> inventory)
     {
         System.out.println("**CHECKING INVENTORY**");
 
-        boolean quantityPresent = false;
+        int amountPresent = 0;
         int index = inventory.indexOf(needed);
 
         if (index != -1)
         {
             System.out.println("**PRESENT in inventory");
 
-            ChemicalQuantity stored = inventory.elementAt(index);
-
-            if (stored.getAmount() >= needed.getAmount())
-                quantityPresent = true;
+            return inventory.elementAt(index).getAmount();
         }
 
-        return quantityPresent;
+        return amountPresent;
     }
 
     /*
