@@ -13,6 +13,12 @@ public class ChemicalQuantity
         _amount = quantity;
     }
 
+    public ChemicalQuantity (ChemicalQuantity fromReaction)
+    {
+        _chemical = fromReaction._chemical;
+        _amount = fromReaction._amount;
+    }
+
     public final Chemical getChemical ()
     {
         return _chemical;
