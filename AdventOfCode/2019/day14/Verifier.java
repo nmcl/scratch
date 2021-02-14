@@ -31,7 +31,7 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
+        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE2_FILE);
         NanoFactory factory = new NanoFactory(reactions, _debug);
         int oreNeeded = factory.oreNeeded();
         boolean verified = false;
