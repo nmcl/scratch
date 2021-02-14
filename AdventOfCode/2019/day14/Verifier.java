@@ -34,8 +34,20 @@ public class Verifier
         Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
         NanoFactory factory = new NanoFactory(reactions, _debug);
         int oreNeeded = factory.oreNeeded();
-        
-        return (oreNeeded == TOTAL_ORE_1);
+        boolean verified = false;
+
+        if (oreNeeded == TOTAL_ORE_1)
+        {
+            reactions = _theParser.loadData(EXAMPLE2_FILE);
+            factory = new NanoFactory(reactions, _debug);
+            oreNeeded = factory.oreNeeded();
+
+            return (oreNeeded == TOTAL_ORE_2);
+        }
+        else
+            System.out.println("Failed on "+EXAMPLE1_FILE);
+
+        return verified;
     }
 
     private boolean _debug;
