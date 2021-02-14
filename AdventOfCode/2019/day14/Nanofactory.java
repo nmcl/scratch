@@ -39,15 +39,14 @@ public class NanoFactory
 
         if (fuel != null)
         {
-            System.out.println("**Fuel equation: "+fuel);
+            if (_debug)
+                System.out.println("Fuel equation: "+fuel);
 
             int fuelNeeded = fuel.chemicalCreated().getAmount();
             boolean completed = false;
             Vector<ChemicalQuantity> ChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
 
             oreNeeded = createNeededAmount(ChemicalQuantities);
-
-            System.out.println("**final ore needed: "+oreNeeded);
         }
         else
             System.out.println("Error! No fuel required?!");
@@ -66,19 +65,22 @@ public class NanoFactory
         int oreNeeded = 0;
         Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
 
-        System.out.println("\n**scanning reactions");
+        if (_debug)
+            System.out.println("\nScanning reactions.");
 
         while (iter.hasMoreElements())
         {
             ChemicalQuantity chemicalAndQuantity = iter.nextElement();  // the chemical needed and the amount of it
-            System.out.println("\n**ChemicalQuantity "+chemicalAndQuantity);
-
             Reaction r = findReaction(chemicalAndQuantity.getChemical().getName());  // the reaction for the chemical needed
-            System.out.println("**found needed reaction: "+r);
-
             int needed = chemicalAndQuantity.getAmount();  // the amount of chemical needed
-            System.out.println("**quantity of "+chemicalAndQuantity.getChemical()+" needed: "+needed);
-            System.out.println("**quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
+
+            if (_debug)
+            {
+                System.out.println("\nChemicalQuantity "+chemicalAndQuantity);
+                System.out.println("Needed reaction: "+r);
+                System.out.println("Quantity of "+chemicalAndQuantity.getChemical()+" needed: "+needed);
+                System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
+            }
 
             /*
              * TODO we may need to run the same reaction multiple
@@ -93,7 +95,8 @@ public class NanoFactory
                  * whatever quantity.
                  */
 
-                System.out.println("**reaction uses ORE");
+                if (_debug)
+                    System.out.println("Reaction uses ORE");
 
                 int amountStored = checkInventory(chemicalAndQuantity);
 
@@ -104,15 +107,12 @@ public class NanoFactory
                 else
                 {
                     oreNeeded += r.getChemicalQuantities().elementAt(0).getAmount();
-
-                    System.out.println("**oreNeeded "+oreNeeded);
-                    System.out.println("**quantity of "+chemicalAndQuantity.getChemical()+" created from reaction: "+r.chemicalCreated().getAmount());
-
                     int amountCreated = r.chemicalCreated().getAmount();
 
                     if (amountCreated > needed)
                     {
-                        System.out.println("**created "+(amountCreated - needed)+" more than needed");
+                        if (_debug)
+                            System.out.println("Created "+(amountCreated - needed)+" more "+r.chemicalCreated()+" than needed");
 
                         storeExcessChemical(chemicalAndQuantity.getChemical(), amountCreated - needed);
                     }
@@ -126,7 +126,8 @@ public class NanoFactory
                  * if we have excess.
                  */
 
-                System.out.println("**reaction does NOT use ORE");
+                if (_debug)
+                    System.out.println("Eeaction does NOT use ORE.");
 
                 int amountStored = checkInventory(chemicalAndQuantity);
 
@@ -139,18 +140,7 @@ public class NanoFactory
 
                     consumeFromInventory(chemicalAndQuantity);
                 }
-                else
-                {
-                    /*
-                     * Not enough in storage so create more, add it
-                     * and check again.
-                     */
-
-                     System.out.println("**reaction in question: "+r);
-
-                     //addToInventory(chemicalAndQuantity, r, inventory);
-                }
-
+                
                 oreNeeded += createNeededAmount(r.getChemicalQuantities());
             }
         }
@@ -160,27 +150,27 @@ public class NanoFactory
 
     private void storeExcessChemical (Chemical chem, int amount)
     {
-        System.out.println("**ADDING EXCESS "+chem+" TO INVENTORY**");
+        if (_debug)
+            System.out.println("Storing excess "+chem+" in the inventory.");
 
         ChemicalQuantity toStore = new ChemicalQuantity(chem, amount);
         int index = _storage.indexOf(toStore);
 
         if (index != -1)
         {
-            System.out.println("**CHEMICAL ALREADY in inventory");
-
             ChemicalQuantity chemQ = _storage.elementAt(index);
-            System.out.println("**present "+chemQ);
             int currentQuantityInInventory = chemQ.getAmount();
 
             chemQ.setAmount(currentQuantityInInventory + amount);
-            System.out.println("**storage now: "+chemQ);
+
+            if (_debug)
+                System.out.println("Inventory now storing: "+chemQ);
         }
         else
         {
-            System.out.println("**CHEMICAL NOT in inventory");
+            if (_debug)
+                System.out.println("Adding fresh to storage: "+toStore);
 
-            System.out.println("**adding to storage: "+toStore);
             _storage.add(toStore);
         }
     }
@@ -192,19 +182,11 @@ public class NanoFactory
 
     private int checkInventory (ChemicalQuantity needed)
     {
-        System.out.println("**CHECKING INVENTORY**");
-
         int amountPresent = 0;
         int index = _storage.indexOf(needed);
 
         if (index != -1)
-        {
-            System.out.println("**PRESENT in inventory");
-
             return _storage.elementAt(index).getAmount();
-        }
-        else
-            System.out.println("**NOT PRESENT in inventory");
 
         return amountPresent;
     }
@@ -217,7 +199,8 @@ public class NanoFactory
 
     private boolean consumeFromInventory (ChemicalQuantity needed)
     {
-        System.out.println("**CONSUMING FROM INVENTORY**");
+        if (_debug)
+            System.out.println("Consuming chemical from storage.");
 
         boolean quantityPresent = false;
         int index = _storage.indexOf(needed);
