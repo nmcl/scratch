@@ -93,6 +93,11 @@ public class Verifier
             System.out.println("**quantity needed "+needed);
             System.out.println("**quantity which would be created "+r.chemicalCreated().getAmount());
 
+            /*
+             * TODO we may need to run the same reaction multiple
+             * times to get the desired amount.
+             */
+
             if (r.isOre())
             {
                 System.out.println("**reaction uses ORE");
