@@ -63,5 +63,19 @@
 5C from 7 ORE. [97 ORE used, 4C in store] 15C
 5C from 7 ORE. We only need 2C so 3C left over. [104 ORE used, 3C in store] 21C
 
+3AB: 3 times (3 A, 4 B => 1 AB) aka 3*(3A + 4B)
+
+9 ORE => 2 A. We need 9A.
+2A from 9 ORE. [113 ORE used, 3C in store] 2A
+2A from 9 ORE. [122 ORE used, 3C in store] 4A
+2A from 9 ORE. [131 ORE used, 3C in store] 6A
+2A from 9 ORE. [140 ORE used, 3C in store] 8A
+2A from 9 ORE. We only need 1A so 1A left over. [149 ORE used, 3C and 1A in store] 9A
+
+8 ORE => 3 B. We need 12B.
+3B from 8 ORE. [157 ORE used, 3C and 1A in store] 3B
+3B from 8 ORE. [165 ORE used, 3C and 1A in store] 6B
+3B from 8 ORE. [173 ORE used, 3C and 1A in store] 9B
+3B from 8 ORE. [181 ORE used, 3C and 1A in store] 12B
 
 Should be 165!
