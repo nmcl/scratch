@@ -50,24 +50,18 @@
 
 3BC: 3 times [5 B, 7 C => 1 BC] aka 3*(5B + 7C)
 
-3BC needs 3 times (5B and 7C)
-3B from 8 ORE. [54 ORE used, 4C in store] 3B total.
-3B from 8 ORE. We only need 2B so 1B left over. [62 ORE used, 4C and 1B in store] 5B total.
-3B from 8 ORE. [70 ORE used, 4C in store] 9B total.
-3B from 8 ORE. We only need 1B so 2B left over. [78 ORE used, 4C and 2B in store] 10B total.
-3B from 8 ORE. [86 ORE used, 4C in store] 15B total.
-5C from 7 ORE. We only need 2C from store. [93 ORE used, 2C in store] 7C total.
-5C from 7 ORE. We need 2C from store. [100 ORE used.] 14C total.
-5C from 7 ORE. [107 ORE used.] 19C total.
-5C from 7 ORE. We only need 2C so 3C left over. [114 ORE used, 3C in store]
+8 ORE => 3 B. We need 15B in total.
+3B from 8 ORE. [44 ORE used, 4C in store] 3B
+3B from 8 ORE. [52 ORE used, 4C in store] 6B
+3B from 8 ORE. [60 ORE used, 4C in store] 9B
+3B from 8 ORE. [68 ORE used, 4C in store] 12B
+3B from 8 ORE. [76 ORE used, 4C in store] 15B
 
-2AB needs 2 times (3A and 4B)
-2A from 9 ORE. [123 ORE used, 3C in store] 2A total.
-2A from 9 ORE. We only need 1A. [131 ORE used, 3C and 1A in store] 3A total.
-2A from 9 ORE. [140 ORE used, 3C in store] 6A total.
+7 ORE => 5 C. We need 21C in total. Have 4C in storage so only need 17C.
+5C from 7 ORE. [83 ORE used, 4C in store] 5C
+5C from 7 ORE. [90 ORE used, 4C in store] 10C
+5C from 7 ORE. [97 ORE used, 4C in store] 15C
+5C from 7 ORE. We only need 2C so 3C left over. [104 ORE used, 3C in store] 21C
 
-3B from 8 ORE. [148 ORE used, 3C in store] 3B total.
-3B from 8 ORE. We only need 1B. [156 ORE used, 3C and 2B in store] 4B total.
-3B from 8 ORE. We only need 2B. [164 ORE used, 3C and 1B in store] 8B total.
 
 Should be 165!
