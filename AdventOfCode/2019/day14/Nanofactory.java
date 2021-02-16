@@ -102,13 +102,17 @@ public class NanoFactory
                 
                 do
                 {
-                    amountCreated += checkInventory(chemicalAndQuantity);
+                    System.out.println("**amount created so far: "+amountCreated);
 
-                    System.out.println("**amount from inventory: "+amountCreated);
+                    int storage = checkInventory(chemicalAndQuantity);
 
-                    if (amountCreated >= chemicalAndQuantity.getAmount())
+                    System.out.println("**amount from  inventory: "+storage);
+
+                    if (storage >= chemicalAndQuantity.getAmount())
                     {
                         consumeFromInventory(chemicalAndQuantity);
+
+                        amountCreated += chemicalAndQuantity.getAmount();
                     }
                     else
                     {
@@ -128,6 +132,9 @@ public class NanoFactory
                         else
                             System.out.println("**Not enough created.");
                     }
+
+                    System.out.println("**after all that: "+amountCreated);
+
                 } while (amountCreated != needed);
             }
             else
@@ -152,6 +159,8 @@ public class NanoFactory
 
                     consumeFromInventory(chemicalAndQuantity);
                 }
+                
+                System.out.println("**LOOPING");
                 
                 oreNeeded += createNeededAmount(r.getChemicalQuantities());
             }
@@ -181,7 +190,7 @@ public class NanoFactory
         else
         {
             if (_debug)
-                System.out.println("Adding fresh to storage: "+toStore);
+                System.out.println("Adding to storage: "+toStore);
 
             _storage.add(toStore);
         }
