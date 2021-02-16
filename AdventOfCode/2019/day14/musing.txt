@@ -1,5 +1,7 @@
 Represents a debug trail for figuring out what's wrong!
 
+Always show your working out!
+
 ----
 
 10 ORE => 10 A
