@@ -98,25 +98,37 @@ public class NanoFactory
                 if (_debug)
                     System.out.println("Reaction uses ORE");
 
-                int amountStored = checkInventory(chemicalAndQuantity);
-
-                if (amountStored >= chemicalAndQuantity.getAmount())
+                int amountCreated = 0;
+                
+                do
                 {
-                    consumeFromInventory(chemicalAndQuantity);
-                }
-                else
-                {
-                    oreNeeded += r.getChemicalQuantities().elementAt(0).getAmount();
-                    int amountCreated = r.chemicalCreated().getAmount();
+                    amountCreated += checkInventory(chemicalAndQuantity);
 
-                    if (amountCreated > needed)
+                    System.out.println("**amount from inventory: "+amountCreated);
+
+                    if (amountCreated >= chemicalAndQuantity.getAmount())
                     {
-                        if (_debug)
-                            System.out.println("Created "+(amountCreated - needed)+" more "+r.chemicalCreated()+" than needed");
-
-                        storeExcessChemical(chemicalAndQuantity.getChemical(), amountCreated - needed);
+                        consumeFromInventory(chemicalAndQuantity);
                     }
-                }
+                    else
+                    {
+                        oreNeeded += r.getChemicalQuantities().elementAt(0).getAmount();
+                        
+                        amountCreated += r.chemicalCreated().getAmount();
+
+                        if (amountCreated > needed)
+                        {
+                            if (_debug)
+                                System.out.println("Created "+(amountCreated - needed)+" more "+r.chemicalCreated()+" than needed");
+
+                            storeExcessChemical(chemicalAndQuantity.getChemical(), amountCreated - needed);
+
+                            amountCreated = needed;
+                        }
+                        else
+                            System.out.println("**Not enough created.");
+                    }
+                } while (amountCreated != needed);
             }
             else
             {
