@@ -82,6 +82,8 @@ public class NanoFactory
                 System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
             }
 
+            for (int i = 0; i < chemicalAndQuantity.getChemical(); i++)
+            {
             /*
              * TODO we may need to run the same reaction multiple
              * times to get the desired amount.
@@ -164,6 +166,7 @@ public class NanoFactory
                 
                 oreNeeded += createNeededAmount(r.getChemicalQuantities());
             }
+        }
         }
 
         return oreNeeded;
