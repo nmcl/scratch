@@ -82,7 +82,7 @@ public class NanoFactory
                 System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
             }
 
-            for (int i = 0; i < chemicalAndQuantity.getChemical(); i++)
+            for (int i = 0; i < chemicalAndQuantity.getAmount(); i++)
             {
             /*
              * TODO we may need to run the same reaction multiple
