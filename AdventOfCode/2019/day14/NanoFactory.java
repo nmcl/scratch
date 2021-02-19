@@ -147,7 +147,7 @@ public class NanoFactory
                  */
 
                 if (_debug)
-                    System.out.println("Reaction does NOT use ORE.");
+                    System.out.println("Reaction "+r+" does NOT use ORE.");
 
                 int amountStored = checkInventory(chemicalAndQuantity);
 
@@ -163,8 +163,11 @@ public class NanoFactory
                 
                 System.out.println("**LOOPING");
                 
-                oreNeeded += createNeededAmount(r.getChemicalQuantities());
+                for (int i = 0; i < chemicalAndQuantity.getAmount(); i++)
+                    oreNeeded += createNeededAmount(r.getChemicalQuantities());
             }
+
+            System.out.println("\nFINISHED WITH "+chemicalAndQuantity);
         }
 
         return oreNeeded;
