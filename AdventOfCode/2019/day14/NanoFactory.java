@@ -82,8 +82,6 @@ public class NanoFactory
                 System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
             }
 
-            for (int i = 0; i < chemicalAndQuantity.getAmount(); i++)  /// fail!!!!
-            {
             /*
              * TODO we may need to run the same reaction multiple
              * times to get the desired amount.
@@ -141,32 +139,41 @@ public class NanoFactory
             }
             else
             {
-                /*
-                 * Not ORE so we need to create the chemical using
-                 * the reaction. Check the inventory first and update
-                 * if we have excess.
-                 */
+                int amountCreated = 0;
 
-                if (_debug)
-                    System.out.println("Reaction does NOT use ORE.");
-
-                int amountStored = checkInventory(chemicalAndQuantity);
-
-                if (amountStored >= chemicalAndQuantity.getAmount())
+                do
                 {
                     /*
-                     * There's enough of the chemical in storage so just
-                     * use that and we're done!
-                     */
+                    * Not ORE so we need to create the chemical using
+                    * the reaction. Check the inventory first and update
+                    * if we have excess.
+                    */
 
-                    consumeFromInventory(chemicalAndQuantity);
-                }
-                
-                System.out.println("**LOOPING");
-                
-                oreNeeded += createNeededAmount(r.getChemicalQuantities());
+                    if (_debug)
+                        System.out.println("Reaction does NOT use ORE.");
+
+                    int amountStored = checkInventory(chemicalAndQuantity);
+
+                    if (amountStored >= chemicalAndQuantity.getAmount())
+                    {
+                        /*
+                        * There's enough of the chemical in storage so just
+                        * use that and we're done!
+                        */
+
+                        consumeFromInventory(chemicalAndQuantity);
+
+                        amountCreated += chemicalAndQuantity.getAmount();
+                    }
+                    
+                    System.out.println("**LOOPING");
+                    
+                    oreNeeded += createNeededAmount(r.getChemicalQuantities());
+
+                    System.out.println("**GOT BACK:" +amountCreated);
+                    
+                } while (amountCreated != needed);
             }
-        }
         }
 
         return oreNeeded;
