@@ -1,9 +1,9 @@
 import java.util.*;
 import java.io.*;
 
-public class NanoFactory
+public class NanoRefinery
 {
-    public NanoFactory (Vector<Reaction> reactions, boolean debug)
+    public NanoRefinery (Vector<Reaction> reactions, boolean debug)
     {
         _debug = debug;
         _reactions = reactions;

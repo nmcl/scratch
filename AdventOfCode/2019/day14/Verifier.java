@@ -31,7 +31,7 @@ public class Verifier
     public final boolean verify ()
     {
         Vector<Reaction> reactions = _theParser.loadData(EXAMPLE3_FILE);
-        NanoFactory factory = new NanoFactory(reactions, _debug);
+        NanoRefinery factory = new NanoRefinery(reactions, _debug);
         int oreNeeded = factory.oreNeeded();
         boolean verified = false;
 
@@ -42,7 +42,7 @@ public class Verifier
             System.out.println("Verified "+EXAMPLE1_FILE);
 
             reactions = _theParser.loadData(EXAMPLE2_FILE);
-            factory = new NanoFactory(reactions, _debug);
+            factory = new NanoRefinery(reactions, _debug);
             oreNeeded = factory.oreNeeded();
 
             if (oreNeeded == TOTAL_ORE_2)
@@ -50,7 +50,7 @@ public class Verifier
                 System.out.println("Verified "+EXAMPLE2_FILE);
 
                 reactions = _theParser.loadData(EXAMPLE3_FILE);
-                factory = new NanoFactory(reactions, _debug);
+                factory = new NanoRefinery(reactions, _debug);
                 oreNeeded = factory.oreNeeded();
 
                 if (oreNeeded == TOTAL_ORE_3)
