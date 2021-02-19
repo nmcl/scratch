@@ -170,6 +170,8 @@ public class NanoFactory
             System.out.println("\nFINISHED WITH "+chemicalAndQuantity);
         }
 
+        System.out.println("**Ore used so far: "+oreNeeded);
+        
         return oreNeeded;
     }
 

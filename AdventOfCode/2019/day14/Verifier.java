@@ -1,5 +1,4 @@
 import java.util.*;
-import java.io.*;
 
 public class Verifier
 {
@@ -31,14 +30,14 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE2_FILE);
+        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
         NanoFactory factory = new NanoFactory(reactions, _debug);
         int oreNeeded = factory.oreNeeded();
         boolean verified = false;
 
         System.out.println("**ORE "+oreNeeded);
         
-        if (oreNeeded == TOTAL_ORE_2)
+        if (oreNeeded == TOTAL_ORE_1)
         {
             System.out.println("Verified "+EXAMPLE1_FILE);
 
@@ -46,7 +45,19 @@ public class Verifier
             factory = new NanoFactory(reactions, _debug);
             oreNeeded = factory.oreNeeded();
 
-            return (oreNeeded == TOTAL_ORE_2);
+            if (oreNeeded == TOTAL_ORE_2)
+            {
+                System.out.println("Verified "+EXAMPLE2_FILE);
+
+                reactions = _theParser.loadData(EXAMPLE3_FILE);
+                factory = new NanoFactory(reactions, _debug);
+                oreNeeded = factory.oreNeeded();
+
+                if (oreNeeded == TOTAL_ORE_3)
+                    verified = true;
+            }
+            else
+                System.out.println("Failed on "+EXAMPLE2_FILE);
         }
         else
             System.out.println("Failed on "+EXAMPLE1_FILE);
