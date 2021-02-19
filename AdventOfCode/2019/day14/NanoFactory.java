@@ -161,7 +161,7 @@ public class NanoFactory
                     consumeFromInventory(chemicalAndQuantity);
                 }
                 
-                System.out.println("**LOOPING");
+                System.out.println("**LOOPING "+chemicalAndQuantity.getAmount());
                 
                 for (int i = 0; i < chemicalAndQuantity.getAmount(); i++)
                     oreNeeded += createNeededAmount(r.getChemicalQuantities());
