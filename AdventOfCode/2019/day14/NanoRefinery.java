@@ -78,21 +78,18 @@ public class NanoRefinery
         if ((theReaction.getAmount() % r.chemicalCreated().getAmount()) != 0)
             numberOfTimesReactionNeedsToRun++;
 
-        if (_debug)
+        //if (_debug)
         {
-            System.out.println("\nWorking on reaction "+theReaction.getChemical());
+            System.out.println("\ncreateNeededAmount on: "+theReaction.getChemical());
             System.out.println("Needed reaction: "+r);
             System.out.println("Quantity of "+theReaction.getChemical()+" needed: "+needed);
             System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
         }
 
-        if (_debug)
-            System.out.println("**Reaction needs to run "+numberOfTimesReactionNeedsToRun+" times.");
+        int amountCreated = 0;
 
         for (int i = 0; i < numberOfTimesReactionNeedsToRun; i++)
         {
-            System.out.println("**amountOfOre "+amountOfOre+" on loop "+i);
-
             if (r.isOre())
             {
                 /*
@@ -101,18 +98,12 @@ public class NanoRefinery
                  * whatever quantity.
                  */
 
-                if (_debug)
+                //if (_debug)
                     System.out.println("Reaction uses ORE");
-
-                int amountCreated = 0;
                 
                 do
                 {
-                    System.out.println("**amount "+theReaction.getChemical()+" created so far: "+amountCreated);
-
                     int storage = checkInventory(theReaction);
-
-                    System.out.println("**amount "+theReaction.getChemical()+" from inventory: "+storage);
 
                     if (storage >= theReaction.getAmount())
                     {
@@ -122,28 +113,20 @@ public class NanoRefinery
                     }
                     else
                     {
-                        System.out.println("**adding ore from "+r.getChemicalQuantities().elementAt(0));
                         amountOfOre += r.getChemicalQuantities().elementAt(0).getAmount();
                         
                         amountCreated += r.chemicalCreated().getAmount();
 
-                        System.out.println("Created "+r.chemicalCreated().getAmount()+" of "+r.chemicalCreated().getChemical());
-
                         if (amountCreated > needed)
                         {
-                            if (_debug)
+                            //if (_debug)
                                 System.out.println("Created "+(amountCreated - needed)+" more "+r.chemicalCreated()+" than needed");
 
                             storeExcessChemical(theReaction.getChemical(), amountCreated - needed);
 
                             amountCreated = needed;
                         }
-                        else
-                            System.out.println("**Not enough "+r.chemicalCreated().getChemical()+" created.");
                     }
-
-                    System.out.println("**amount of "+theReaction.getChemical()+" created so far: "+amountCreated);
-                    System.out.println("**and ore used doing so: "+amountOfOre);
                     
                 } while (amountCreated != needed);
             }
@@ -155,15 +138,13 @@ public class NanoRefinery
                  * if we have excess.
                  */
 
-                if (_debug)
+                //if (_debug)
                     System.out.println("Reaction "+r+" does NOT use ORE.");
 
                 int amountStored = checkInventory(theReaction);
 
                 if (amountStored >= theReaction.getAmount())
                 {
-                    System.out.println("**Can get "+theReaction+" from storage");
-
                     /*
                      * There's enough of the chemical in storage so just
                      * use that and we're done!
@@ -173,7 +154,10 @@ public class NanoRefinery
                 }
                 else
                 {
-                    System.out.println("**Not enough "+theReaction.getChemical()+" in storage: "+amountOfOre);
+                    /*
+                    System.out.println("\n\n**OOPS!!");
+
+                    System.out.println("**Not enough "+theReaction.getChemical()+" in storage: "+amountStored);
 
                     Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
                     Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
@@ -182,19 +166,16 @@ public class NanoRefinery
                     {
                         ChemicalQuantity reaction = iter.nextElement();
                         System.out.println("**Starting to loop on: "+reaction+" for "+theReaction);
-                        
+
                         amountOfOre += createNeededAmount(reaction);
                     }
 
                     System.out.println("**After looping on "+theReaction+" amount uses "+amountOfOre);
+                    */
                 }
             }
-
-            System.out.println("\nFINISHED WITH "+theReaction.getChemical());
         }
 
-        System.out.println("**Ore used for reaction: "+amountOfOre);
-        
         return amountOfOre;
     }
 
