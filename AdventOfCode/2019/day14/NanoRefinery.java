@@ -49,9 +49,11 @@ public class NanoRefinery
             while (iter.hasMoreElements())
             {
                 ChemicalQuantity reaction = iter.nextElement();
-                System.out.println("**Working on: "+reaction);
+                System.out.println("\n**Working on: "+reaction);
                 
                 amountOfOre += createNeededAmount(reaction);
+
+                System.out.println("**ORE used for "+reaction+" is "+amountOfOre);
             }
         }
         else
@@ -89,7 +91,7 @@ public class NanoRefinery
 
         for (int i = 0; i < numberOfTimesReactionNeedsToRun; i++)
         {
-            System.out.println("**amountOfOre "+amountOfOre);
+            System.out.println("**amountOfOre "+amountOfOre+" on loop "+i);
 
             if (r.isOre())
             {
@@ -179,7 +181,7 @@ public class NanoRefinery
                     while (iter.hasMoreElements())
                     {
                         ChemicalQuantity reaction = iter.nextElement();
-                        System.out.println("**Starting to loop on: "+reaction);
+                        System.out.println("**Starting to loop on: "+reaction+" for "+theReaction);
                         
                         amountOfOre += createNeededAmount(reaction);
                     }
