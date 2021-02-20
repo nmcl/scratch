@@ -161,10 +161,14 @@ public class NanoRefinery
                     consumeFromInventory(chemicalAndQuantity);
                 }
                 
-                System.out.println("**LOOPING "+chemicalAndQuantity.getAmount());
+                int loop = (int) Math.ceil(chemicalAndQuantity.getAmount()/r.chemicalCreated().getAmount());
+
+                System.out.println("**LOOPING "+loop);
                 
-                for (int i = 0; i < chemicalAndQuantity.getAmount(); i++)
+                for (int i = 0; i < loop; i++)
                     oreNeeded += createNeededAmount(r.getChemicalQuantities());
+
+                System.out.println("**fininished LOOP with "+oreNeeded);
             }
 
             System.out.println("\nFINISHED WITH "+chemicalAndQuantity);
