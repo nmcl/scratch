@@ -30,14 +30,14 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE3_FILE);
+        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE2_FILE);
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
         int oreNeeded = factory.oreNeeded();
         boolean verified = false;
 
         System.out.println("**ORE "+oreNeeded);
         
-        if (oreNeeded == TOTAL_ORE_3)
+        if (oreNeeded == TOTAL_ORE_2)
         {
             System.out.println("Verified "+EXAMPLE1_FILE);
 
@@ -60,7 +60,7 @@ public class Verifier
                 System.out.println("Failed on "+EXAMPLE2_FILE);
         }
         else
-            System.out.println("Failed on "+EXAMPLE3_FILE);
+            System.out.println("Failed on "+EXAMPLE1_FILE);
 
         return verified;
     }
