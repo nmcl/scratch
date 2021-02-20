@@ -18,15 +18,6 @@ public class NanoRefinery
         }
     }
 
-    /*
-     * 10 ORE => 10 A
-     * 1 ORE => 1 B
-     * 7 A, 1 B => 1 C
-     * 7 A, 1 C => 1 D
-     * 7 A, 1 D => 1 E
-     * 7 A, 1 E => 1 FUEL
-     */
-
     public final int oreNeeded ()
     {
         int amountOfOre = 0;
@@ -139,7 +130,7 @@ public class NanoRefinery
                  */
 
                 //if (_debug)
-                    System.out.println("Reaction "+r+" does NOT use ORE.");
+                    System.out.println("**Reaction "+r+" does NOT use ORE.");
 
                 int amountStored = checkInventory(theReaction);
 
@@ -154,9 +145,22 @@ public class NanoRefinery
                 }
                 else
                 {
-                    /*
-                    System.out.println("\n\n**OOPS!!");
+                    System.out.println("**Storage lookup failed for "+theReaction);
 
+                    Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
+                    Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
+
+                    while (iter.hasMoreElements())
+                    {
+                        ChemicalQuantity reaction = iter.nextElement();
+                        System.out.println("**reaction "+reaction);
+
+                        int oreReturned = createNeededAmount(reaction);
+
+                        System.out.println("**oreReturned "+oreReturned+" for "+reaction);
+                    }
+
+                    /*
                     System.out.println("**Not enough "+theReaction.getChemical()+" in storage: "+amountStored);
 
                     Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
