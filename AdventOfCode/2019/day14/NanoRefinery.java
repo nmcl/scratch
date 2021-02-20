@@ -71,11 +71,14 @@ public class NanoRefinery
         int amountOfOre = 0;
         Reaction r = findReaction(theReaction.getChemical().getName());  // the reaction for the chemical needed
         int needed = theReaction.getAmount();  // the amount of chemical needed
-        int numberOfTimesReactionNeedsToRun = (int) Math.ceil(theReaction.getAmount() / r.chemicalCreated().getAmount());
+        int numberOfTimesReactionNeedsToRun = theReaction.getAmount() / r.chemicalCreated().getAmount();
+
+        if ((theReaction.getAmount() % r.chemicalCreated().getAmount()) != 0)
+            numberOfTimesReactionNeedsToRun++;
 
         if (_debug)
         {
-            System.out.println("\nWorking on reaction "+theReaction);
+            System.out.println("\nWorking on reaction "+theReaction.getChemical());
             System.out.println("Needed reaction: "+r);
             System.out.println("Quantity of "+theReaction.getChemical()+" needed: "+needed);
             System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
@@ -152,6 +155,8 @@ public class NanoRefinery
 
                 if (amountStored >= theReaction.getAmount())
                 {
+                    System.out.println("**Can get "+theReaction+" from storage");
+
                     /*
                      * There's enough of the chemical in storage so just
                      * use that and we're done!
@@ -159,20 +164,24 @@ public class NanoRefinery
 
                     consumeFromInventory(theReaction);
                 }
-                
-                Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
-                Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
-
-                while (iter.hasMoreElements())
+                else
                 {
-                    ChemicalQuantity reaction = iter.nextElement();
-                    System.out.println("**Working on: "+reaction);
-                    
-                    amountOfOre += createNeededAmount(reaction);
+                    System.out.println("**Not enough "+theReaction+" in storage");
+
+                    Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
+                    Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
+
+                    while (iter.hasMoreElements())
+                    {
+                        ChemicalQuantity reaction = iter.nextElement();
+                        System.out.println("**Working on: "+reaction);
+                        
+                        amountOfOre += createNeededAmount(reaction);
+                    }
                 }
             }
 
-            System.out.println("\nFINISHED WITH "+theReaction);
+            System.out.println("\nFINISHED WITH "+theReaction.getChemical());
         }
 
         System.out.println("**Ore used for reaction: "+amountOfOre);
