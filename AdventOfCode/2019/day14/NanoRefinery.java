@@ -160,7 +160,16 @@ public class NanoRefinery
                     consumeFromInventory(theReaction);
                 }
                 
-                theReaction += createNeededAmount(r.getChemicalQuantities());
+                Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
+                Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
+
+                while (iter.hasMoreElements())
+                {
+                    ChemicalQuantity reaction = iter.nextElement();
+                    System.out.println("**Working on: "+reaction);
+                    
+                    amountOfOre += createNeededAmount(reaction);
+                }
             }
 
             System.out.println("\nFINISHED WITH "+theReaction);
