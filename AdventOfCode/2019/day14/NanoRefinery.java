@@ -82,6 +82,11 @@ public class NanoRefinery
                 System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
             }
 
+            int numberOfTimesReactionNeedsToRun = (int) Math.ceil(chemicalAndQuantity.getAmount() / r.chemicalCreated().getAmount());
+
+            if (_debug)
+                System.out.println("**Reaction needs to run "+numberOfTimesReactionNeedsToRun+" times.");
+
             /*
              * TODO we may need to run the same reaction multiple
              * times to get the desired amount.
@@ -161,14 +166,12 @@ public class NanoRefinery
                     consumeFromInventory(chemicalAndQuantity);
                 }
                 
-                int loop = (int) Math.ceil(chemicalAndQuantity.getAmount()/r.chemicalCreated().getAmount());
-
-                System.out.println("**LOOPING "+loop);
-                
-                for (int i = 0; i < loop; i++)
+                for (int i = 0; i < numberOfTimesReactionNeedsToRun; i++)
+                {
+                    System.out.println("**LOOPING reaction "+r+" number "+(i+1));
                     oreNeeded += createNeededAmount(r.getChemicalQuantities());
-
-                System.out.println("**fininished LOOP with "+oreNeeded);
+                    System.out.println("**LOOPING reaction "+r+" number "+(i+1)+" concluded");
+                }
             }
 
             System.out.println("\nFINISHED WITH "+chemicalAndQuantity);
