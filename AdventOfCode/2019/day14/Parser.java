@@ -28,8 +28,8 @@ public class Parser
 
             while ((line = reader.readLine()) != null)
             {
-                //if (_debug)
-                //    System.out.println("Parser read: "+line);
+                if (_debug)
+                    System.out.println("Parser read: "+line);
 
                 Reaction react = new Reaction();
                 Vector<ChemicalQuantity> ChemicalQuantities = new Vector<ChemicalQuantity>();
