@@ -60,7 +60,7 @@ public class Verifier
                 System.out.println("Failed on "+EXAMPLE2_FILE);
         }
         else
-            System.out.println("Failed on "+EXAMPLE1_FILE);
+            System.out.println("Failed on "+EXAMPLE2_FILE);
 
         return verified;
     }
