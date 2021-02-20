@@ -9,7 +9,7 @@ public class NanoRefinery
         _reactions = reactions;
         _storage = new Vector<ChemicalQuantity>();  // where we will store excess ChemicalQuantities
 
-        if (_debug)
+        //if (_debug)
         {
             Enumeration<Reaction> iter = reactions.elements();
 
@@ -39,7 +39,7 @@ public class NanoRefinery
 
         if (fuel != null)
         {
-            if (_debug)
+           // if (_debug)
                 System.out.println("\nFuel equation: "+fuel);
 
             int fuelNeeded = fuel.chemicalCreated().getAmount();
