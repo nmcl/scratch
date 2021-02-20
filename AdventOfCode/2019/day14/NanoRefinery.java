@@ -29,7 +29,7 @@ public class NanoRefinery
 
     public final int oreNeeded ()
     {
-        int oreNeeded = 0;
+        int amountOfOre = 0;
         Reaction fuel = findReaction(Chemical.FUEL);
 
         /*
@@ -43,15 +43,21 @@ public class NanoRefinery
                 System.out.println("\nFuel equation: "+fuel);
 
             int fuelNeeded = fuel.chemicalCreated().getAmount();
-            boolean completed = false;
-            Vector<ChemicalQuantity> ChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
+            Vector<ChemicalQuantity> fuelChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
+            Enumeration<ChemicalQuantity> iter = fuelChemicalQuantities.elements();
 
-            oreNeeded = createNeededAmount(ChemicalQuantities);
+            while (iter.hasMoreElements())
+            {
+                ChemicalQuantity reaction = iter.nextElement();
+                System.out.println("**Working on: "+reaction);
+                
+                amountOfOre += createNeededAmount(reaction);
+            }
         }
         else
             System.out.println("Error! No fuel required?!");
         
-        return oreNeeded;
+        return amountOfOre;
     }
 
     /*
@@ -60,13 +66,20 @@ public class NanoRefinery
      * So check the inventory first, of course.
      */
 
-    private int createNeededAmount (Vector<ChemicalQuantity> chemicalQuantities)
+    private int createNeededAmount (ChemicalQuantity theReaction)
     {
-        int oreNeeded = 0;
-        Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
+        int amountOfOre = 0;
+        Reaction r = findReaction(theReaction.getChemical().getName());  // the reaction for the chemical needed
+        int needed = theReaction.getAmount();  // the amount of chemical needed
+        int numberOfTimesReactionNeedsToRun = (int) Math.ceil(theReaction.getAmount() / r.chemicalCreated().getAmount());
 
         if (_debug)
-            System.out.println("\nScanning reactions.");
+        {
+            System.out.println("\Working on reaction "+theReaction);
+            System.out.println("Needed reaction: "+r);
+            System.out.println("Quantity of "+theReaction.getChemical()+" needed: "+needed);
+            System.out.println("Quantity which would be created from reaction: "+r.theReaction().getAmount());
+        }
 
         while (iter.hasMoreElements())
         {
@@ -168,7 +181,7 @@ public class NanoRefinery
                 
                 for (int i = 0; i < numberOfTimesReactionNeedsToRun; i++)
                 {
-                    System.out.println("**LOOPING reaction "+r+" number "+(i+1));
+                    System.out.println("\n**LOOPING reaction "+r+" number "+(i+1)+" starting");
                     oreNeeded += createNeededAmount(r.getChemicalQuantities());
                     System.out.println("**LOOPING reaction "+r+" number "+(i+1)+" concluded");
                 }
@@ -177,7 +190,7 @@ public class NanoRefinery
             System.out.println("\nFINISHED WITH "+chemicalAndQuantity);
         }
 
-        System.out.println("**Ore used so far: "+oreNeeded);
+        System.out.println("**Ore used for reaction: "+oreNeeded);
         
         return oreNeeded;
     }
