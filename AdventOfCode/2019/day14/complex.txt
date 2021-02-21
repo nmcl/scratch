@@ -1,0 +1,36 @@
+Represents a debug trail for figuring out what's wrong!
+
+Always show your working out!
+
+----
+
+2 VPVL, 7 FWMGM, 2 CXFTF, 11 MNCFX => 1 STKFG
+17 NVRVD, 3 JNWZP => 8 VPVL
+22 VJHF, 37 MNCFX => 5 FWMGM
+139 ORE => 4 NVRVD
+144 ORE => 7 JNWZP
+5 MNCFX, 7 RFSQX, 2 FWMGM, 2 VPVL, 19 CXFTF => 3 HVMC
+5 VJHF, 7 MNCFX, 9 VPVL, 37 CXFTF => 6 GNMV
+145 ORE => 6 MNCFX
+1 NVRVD => 8 CXFTF
+1 VJHF, 6 MNCFX => 4 RFSQX
+176 ORE => 6 VJHF
+53 STKFG, 6 MNCFX, 46 VJHF, 81 HVMC, 68 CXFTF, 25 GNMV => 1 FUEL
+
+
+1 FUEL needs 53 STKFG, 6 MNCFX, 46 VJHF, 81 HVMC, 68 CXFTF and 25 GNMV
+
+53 STKFG: 53 times [2 VPVL, 7 FWMGM, 2 CXFTF, 11 MNCFX] aka 53*(2*VPVL + 7*FWMGM + 2*CXFTF + 11*MNCFX)
+
+17 NVRVD, 3 JNWZP => 8 VPVL. We need 106 VPVL in total. Which is 14 times this reaction. 14*(17*NVRVD + 3*JNWZP) = 238*NVRVD + 42*JNWZP
+139 ORE => 4 NVRVD. We need 60 times this. [8340 ORE used, 2*NVRVD in storage]
+144 ORE => 7 JNWZP. We need 6 times this. [9204 ORE used, 2*NVRVD in storage]
+
+22 VJHF, 37 MNCFX => 5 FWMGM. We need 371 FWMGM in total. Which is 75 times this reaction. 75*(22*VJHF + 37*MNCFX) = 1650*VJHF + 2775*MNCFX
+176 ORE => 6 VJHF. We need 1650 VJHF which is 275 times this. [57604 ORE used, 2*NVRVD in storage]
+145 ORE => 6 MNCFX. We need 2775 MNCFX which is 463 times this. [124739 ORE used, 2*NVRVD and 3*MNCFX in storage]
+
+1 NVRVD => 8 CXFTF. We need 106 CXFTF. We have 16 already since 2*NVRVD in storage, leaving 90 new needed which is 12 times.
+139 ORE => 4 NVRVD. We need 3 times which gives us 96 CXFTF so 6 CXFTF in storage. [125156 ORE used, 3*MNCFX and 6*CXFTF in storage]
+
+145 ORE => 6 MNCFX. We need 583 MNCFX which is 98 times this. [139366 ORE used, 3*MNCFX, 6*CXFTF and 5*MNCFX in storage]
