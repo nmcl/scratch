@@ -44,7 +44,7 @@ public class NanoRefinery
                 ChemicalQuantity reaction = iter.nextElement();
                 System.out.println("\n**Working on: "+reaction);
                 
-                createNeededAmount(reaction);
+                synthesiseChemical(reaction);
 
                 System.out.println("**ORE used for "+reaction+" is "+_amountOfOre);
             }
@@ -61,14 +61,14 @@ public class NanoRefinery
      * So check the inventory first, of course.
      */
 
-    private void createNeededAmount (ChemicalQuantity theReaction)
+    private void synthesiseChemical (ChemicalQuantity theReaction)
     {
         Reaction r = findReaction(theReaction.getChemical().getName());  // the reaction for the chemical needed
         int needed = theReaction.getAmount();  // the amount of chemical needed
 
         //if (_debug)
         {
-            System.out.println("\ncreateNeededAmount of: "+theReaction.getChemical());
+            System.out.println("\nsynthesiseChemical: "+theReaction.getChemical());
             System.out.println("Needed reaction: "+r);
             System.out.println("Quantity of "+theReaction.getChemical()+" needed: "+needed);
             System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
@@ -80,7 +80,7 @@ public class NanoRefinery
         {
             System.out.println("**Looping for reaction "+theReaction);
             System.out.println("**amount of Ore at this stage "+_amountOfOre);
-            System.out.println("**amount created so far "+amountCreated);
+            System.out.println("**amount of "+theReaction.getChemical()+" created so far "+amountCreated);
 
             if (r.isOre())
             {
@@ -162,7 +162,7 @@ public class NanoRefinery
                         ChemicalQuantity reaction = iter.nextElement();
                         System.out.println("\n**Reaction to utilise "+reaction);
 
-                        createNeededAmount(reaction);
+                        synthesiseChemical(reaction);
 
                         System.out.println("\n**ore created at this stage "+_amountOfOre+" for "+reaction);
                     }
