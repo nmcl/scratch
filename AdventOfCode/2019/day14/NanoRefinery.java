@@ -51,8 +51,6 @@ public class NanoRefinery
                 System.out.println("**---------------------------------------");
 
                 printStorage();
-
-                System.out.println();
             }
         }
         else
@@ -81,6 +79,13 @@ public class NanoRefinery
         }
 
         int amountCreated = checkInventory(theReaction);
+
+        if (amountCreated == needed)
+        {
+            System.out.println("Already have enough in inventory!");
+
+            consumeFromInventory(theReaction);
+        }
 
         while (amountCreated != needed)
         {
