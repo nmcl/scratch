@@ -69,6 +69,7 @@ public class NanoRefinery
     {
         Reaction r = findReaction(theReaction.getChemical().getName());  // the reaction for the chemical needed
         int needed = theReaction.getAmount();  // the amount of chemical needed
+        int index = 0;
 
         if (_debug)
         {
@@ -85,6 +86,10 @@ public class NanoRefinery
 
         while (amountCreated < needed)
         {
+            index++;
+
+            System.out.println("Looping "+index+" for "+r);
+            
             if (r.isOre())
             {
                 /*
