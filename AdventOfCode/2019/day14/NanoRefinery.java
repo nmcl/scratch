@@ -184,7 +184,7 @@ public class NanoRefinery
 
                     storeChemical(r.chemicalCreated().getChemical(), r.chemicalCreated().getAmount());
                     
-                    amountCreated += r.chemicalCreated().getAmount();
+                    //amountCreated += r.chemicalCreated().getAmount();
                 }
             }
         }
