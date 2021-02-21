@@ -30,9 +30,11 @@ LOOP 1:
 139 ORE => 4 NVRVD [139 ORE, 2 NVRVD in storage] 2 NVRVD
 144 ORE => 7 JNWZP [283 ORE, 2 NVRVD and 4 JNWZP in storage] 2 NVRVD, 3 JNWZP => 8 VPVL but we only need 2 VPVL
 We need 2 VPVL so [283 ORE, 2 NVRVD, 4 JNWZP and 6 VPVL in storage]
+**Leave 2 VPVL in storage for now! [283 ORE, 2 NVRVD, 4 JNWZP and 8 VPVL in storage]
 
 LOOP 2:
 2 VPVL from storage. [283 ORE, 2 NVRVD, 4 JNWZP and 4 VPVL in storage] 4 VPVL
+**Leave other 2 (hence 4 total) VPVL in storage for now! [283 ORE, 2 NVRVD, 4 JNWZP and 8 VPVL in storage]
 
 LOOP 1:
 2 VJHF, 2 MNCFX => 5 FWMGM
