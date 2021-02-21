@@ -71,7 +71,7 @@ public class NanoRefinery
 
         //if (_debug)
         {
-            System.out.println("\ncreateNeededAmount on: "+theReaction.getChemical());
+            System.out.println("\ncreateNeededAmount of: "+theReaction.getChemical());
             System.out.println("Needed reaction: "+r);
             System.out.println("Quantity of "+theReaction.getChemical()+" needed: "+needed);
             System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
@@ -81,8 +81,10 @@ public class NanoRefinery
 
         for (int i = 0; i < numberOfTimesReactionNeedsToRun; i++)
         {
-            System.out.println("**Looping this reaction "+(i+1));
-
+            System.out.println("**Loop "+(i+1)+" for reaction "+theReaction);
+            System.out.println("**amount of Ore at this stage "+amountOfOre);
+            System.out.println("**amount created so far "+amountCreated);
+            
             if (r.isOre())
             {
                 /*
@@ -163,26 +165,11 @@ public class NanoRefinery
 
                         amountOfOre += oreReturned;
                     }
-
-                    /*
-                    System.out.println("**Not enough "+theReaction.getChemical()+" in storage: "+amountStored);
-
-                    Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
-                    Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
-
-                    while (iter.hasMoreElements())
-                    {
-                        ChemicalQuantity reaction = iter.nextElement();
-                        System.out.println("**Starting to loop on: "+reaction+" for "+theReaction);
-
-                        amountOfOre += createNeededAmount(reaction);
-                    }
-
-                    System.out.println("**After looping on "+theReaction+" amount uses "+amountOfOre);
-                    */
                 }
             }
         }
+
+        System.out.println("\n**oreReturned "+amountOfOre+" for "+theReaction);
 
         return amountOfOre;
     }
