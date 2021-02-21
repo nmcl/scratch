@@ -78,6 +78,8 @@ public class NanoRefinery
             System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
         }
 
+        printStorage();
+
         int amountCreated = checkInventory(theReaction);
 
         if (amountCreated == needed)
@@ -87,11 +89,13 @@ public class NanoRefinery
             consumeFromInventory(theReaction);
         }
 
-        while (amountCreated != needed)
+        while (amountCreated < needed)
         {
             System.out.println("**Looping for reaction "+theReaction);
             System.out.println("**amount of Ore at this stage "+_amountOfOre);
             System.out.println("**amount of "+theReaction.getChemical()+" created so far "+amountCreated);
+
+            printStorage();
 
             if (r.isOre())
             {
@@ -105,6 +109,8 @@ public class NanoRefinery
                     System.out.println("Reaction "+r+" uses ORE");
                 
                 int storage = checkInventory(theReaction);
+
+                System.out.println("**amount of "+theReaction+" in inventory "+storage);
 
                 if (storage >= theReaction.getAmount())
                 {
@@ -292,12 +298,13 @@ public class NanoRefinery
     {
         Enumeration<ChemicalQuantity> iter = _storage.elements();
 
-        System.out.println("Printing storage contents.");
-
+        System.out.println("\nPrinting storage contents.");
+        System.out.println("----------");
         while (iter.hasMoreElements())
             System.out.println(iter.nextElement());
 
-        System.out.println("Storage printing done.");
+        System.out.println("----------");
+        System.out.println("Storage printing done.\n");
     }
 
     private boolean _debug;

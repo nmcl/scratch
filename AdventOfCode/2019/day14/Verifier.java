@@ -54,7 +54,18 @@ public class Verifier
                 oreNeeded = factory.oreNeeded();
 
                 if (oreNeeded == TOTAL_ORE_3)
-                    verified = true;
+                {
+                    System.out.println("Verified "+EXAMPLE3_FILE);
+
+                    reactions = _theParser.loadData(EXAMPLE4_FILE);
+                    factory = new NanoRefinery(reactions, _debug);
+                    oreNeeded = factory.oreNeeded();
+
+                    if (oreNeeded == TOTAL_ORE_4)
+                        verified = true;
+                }
+                else
+                    System.out.println("Failed on "+EXAMPLE3_FILE);
             }
             else
                 System.out.println("Failed on "+EXAMPLE2_FILE);
