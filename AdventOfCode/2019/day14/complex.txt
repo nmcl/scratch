@@ -25,6 +25,52 @@ Always show your working out!
 
 2 STKFG: 2 times [2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX]
 
+Synthesizing STKFG:
+2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX => 1 STKFG
+
+Synthesizing VPVL:
+2 NVRVD, 3 JNWZP => 8 VPVL
+
+Synthesizing NVRVD:
+139 ORE => 4 NVRVD
+We need 2 NVRVD, so consume 2 and store 2 [139 ORE, 2 NRVD in storage]
+
+Synthesizing JNWZP:
+144 ORE => 7 JNWZP
+We need 3 JNWZP, so consume 3 and store 4 [283 ORE, 2 NRVD, 4 JNWZP in storage]
+
+Synthesizing VPVL now possible:
+8 VPVL from 2 NRVD and 3 JNWZP. We need 2 so store remaining 6. [283 ORE, 2 NRVD, 4 JNWZP, 6 VPVL in storage]
+
+----ONLY ONE LOOP OF 2 VPVL DONE SO FAR----
+
+Synthesizing FWMGM:
+2 VJHF, 2 MNCFX => 5 FWMGM
+
+Synthesizing VJHF:
+176 ORE => 6 VJHF
+We need 2 VJHF, so consume 2 and store 4 [456 ORE, 2 NRVD, 4 JNWZP, 6 VPVL, 4 VJHF in storage]
+
+Synthesizing MNCFX:
+145 ORE => 6 MNCFX
+We need 2 MNCFX, so consume 2 and store 4 [604 ORE, 2 NRVD, 4 JNWZP, 6 VPVL, 4 VJHF, 4 MNCFX in storage]
+
+Synthesizing 7 FWMGM now possible using 2 of each we've created:
+5 FWMGM from 2 VJHF and 2 MNCFX. We create 5 and store 5. [604 ORE, 2 NRVD, 4 JNWZP, 6 VPVL, 4 VJHF, 4 MNCFX, 5 FWMGM in storage]
+5 FWMGM from 2 VJHF and 2 MNCFX. Store remaining 3. [604 ORE, 2 NRVD, 4 JNWZP, 6 VPVL, 2 VJHF, 2 MNCFX, 3 FWMGM in storage]
+
+----ONLY ONE LOOP OF 7 FWMGM DONE SO FAR----
+
+Synthesizing CXFTF:
+1 NVRVD => 8 CXFTF
+Found NRVD in storage. We need 2 CXFTF. Use NRVD and store excess CXFTF. [604 ORE, 1 NRVD, 4 JNWZP, 6 VPVL, 2 VJHF, 2 MNCFX, 3 FWMGM, 6 CXFTF in storage]
+
+----ONLY ONE LOOP OF 2 CXFTF DONE SO FAR----
+
+
+----
+
+
 LOOP 1:
 2 NVRVD, 3 JNWZP => 8 VPVL
 139 ORE => 4 NVRVD [139 ORE, 2 NVRVD in storage] 2 NVRVD
