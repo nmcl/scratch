@@ -137,7 +137,7 @@ public class NanoRefinery
 
                 int amountStored = checkInventory(theReaction);
 
-                System.out.println("**amount in storage "+amountStored);
+                System.out.println("**amount of "+theReaction.getChemical()+" in storage "+amountStored);
 
                 if (amountStored >= needed)
                 {
@@ -152,7 +152,11 @@ public class NanoRefinery
                 }
                 else
                 {
-                    System.out.println("**Storage lookup failed for "+theReaction);
+                    System.out.println("**Storage lookup failed for "+theReaction+" - not enough present.");
+
+                    /*
+                     * Nothing in the store so create some.
+                     */
 
                     Vector<ChemicalQuantity> chemicalQuantities = r.getChemicalQuantities();
                     Enumeration<ChemicalQuantity> iter = chemicalQuantities.elements();
@@ -166,6 +170,12 @@ public class NanoRefinery
 
                         System.out.println("\n**ore created at this stage "+_amountOfOre+" for "+reaction);
                     }
+
+                    System.out.println("**USED REACTANTS and now have "+r.chemicalCreated().getAmount()+" of "+r.chemicalCreated().getChemical());
+
+                    storeChemical(r.chemicalCreated().getChemical(), r.chemicalCreated().getAmount());
+                    
+                    amountCreated = r.chemicalCreated().getAmount();
                 }
                 
                 System.out.println("**amountOfOre here: "+_amountOfOre);
