@@ -88,8 +88,8 @@ public class NanoRefinery
         {
             index++;
 
-            System.out.println("Looping "+index+" for "+r);
-            
+            System.out.println("Looping "+index+" for "+r+" and <"+amountCreated+" and "+needed+"> and "+_amountOfOre);
+
             if (r.isOre())
             {
                 /*
@@ -170,7 +170,7 @@ public class NanoRefinery
 
                     storeChemical(r.chemicalCreated().getChemical(), r.chemicalCreated().getAmount());
                     
-                    amountCreated = r.chemicalCreated().getAmount();
+                    amountCreated += r.chemicalCreated().getAmount();
                 }
             }
         }
