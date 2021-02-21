@@ -80,6 +80,8 @@ public class NanoRefinery
         }
 
         System.out.println("\nSynthesising: "+theReaction.getChemical());
+
+        printStorage();
         
         int amountCreated = checkInventory(theReaction);
 
@@ -274,13 +276,12 @@ public class NanoRefinery
     {
         Enumeration<ChemicalQuantity> iter = _storage.elements();
 
-        System.out.println("\nPrinting storage contents.");
+        System.out.println("\nStorage contents.");
         System.out.println("----------");
         while (iter.hasMoreElements())
             System.out.println(iter.nextElement());
 
         System.out.println("----------");
-        System.out.println("Storage printing done.\n");
     }
 
     private boolean _debug;
