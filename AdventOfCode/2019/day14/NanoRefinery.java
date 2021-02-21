@@ -70,7 +70,7 @@ public class NanoRefinery
         Reaction r = findReaction(theReaction.getChemical().getName());  // the reaction for the chemical needed
         int needed = theReaction.getAmount();  // the amount of chemical needed
 
-        //if (_debug)
+        if (_debug)
         {
             System.out.println("\nsynthesiseChemical: "+theReaction.getChemical());
             System.out.println("Needed reaction: "+r);
@@ -95,8 +95,6 @@ public class NanoRefinery
             System.out.println("**amount of Ore at this stage "+_amountOfOre);
             System.out.println("**amount of "+theReaction.getChemical()+" created so far "+amountCreated);
 
-            printStorage();
-
             if (r.isOre())
             {
                 /*
@@ -105,7 +103,7 @@ public class NanoRefinery
                  * whatever quantity.
                  */
 
-                //if (_debug)
+                if (_debug)
                     System.out.println("Reaction "+r+" uses ORE");
                 
                 int storage = checkInventory(theReaction);
@@ -132,7 +130,7 @@ public class NanoRefinery
 
                     if (amountCreated >= needed)
                     {
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("Created "+(amountCreated - needed)+" more "+r.chemicalCreated()+" than needed");
 
                         consumeFromInventory(theReaction);
@@ -149,7 +147,7 @@ public class NanoRefinery
                  * if we have excess.
                  */
 
-                //if (_debug)
+                if (_debug)
                     System.out.println("**Reaction "+r+" does NOT use ORE.");
 
                 int amountStored = checkInventory(theReaction);
@@ -188,14 +186,10 @@ public class NanoRefinery
                         System.out.println("\n**ore created at this stage "+_amountOfOre+" for "+reaction);
                     }
 
-                    System.out.println("**USED REACTANTS and now have "+r.chemicalCreated().getAmount()+" of "+r.chemicalCreated().getChemical());
-
                     storeChemical(r.chemicalCreated().getChemical(), r.chemicalCreated().getAmount());
                     
                     amountCreated = r.chemicalCreated().getAmount();
                 }
-                
-                System.out.println("**amountOfOre here: "+_amountOfOre);
             }
         }
 
@@ -204,7 +198,7 @@ public class NanoRefinery
 
     private void storeChemical (Chemical chem, int amount)
     {
-        //if (_debug)
+        if (_debug)
             System.out.println("Storing "+amount+" of "+chem+" in the inventory.");
 
         ChemicalQuantity toStore = new ChemicalQuantity(chem, amount);
@@ -217,12 +211,12 @@ public class NanoRefinery
 
             chemQ.setAmount(currentQuantityInInventory + amount);
 
-            //if (_debug)
+            if (_debug)
                 System.out.println("Inventory now storing: "+chemQ);
         }
         else
         {
-            //if (_debug)
+            if (_debug)
                 System.out.println("Adding to storage: "+toStore);
 
             _storage.add(toStore);
