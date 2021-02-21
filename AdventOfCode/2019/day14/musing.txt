@@ -14,18 +14,21 @@ Always show your working out!
 ----
 
 1 FUEL needs 1E and 7A
-10A from 10 ORE. Use 7A and put 3A into inventory. [10 ORE used, 3A in store]
 
-1E needs 7A and 1D
-10A from 10 ORE. Use 7A and put 3A into inventory. [20 ORE used, 6A in store]
+10 ORE => 10 A. We need 7A.
+10A from 10 ORE. Use 7A and put 3A into storage. [10 ORE used, 3A in store] 7A
 
-1D needs 7A and 1C
-10A from 10 ORE. Use 7A and put 3A into inventory. [30 ORE used, 9A in store]
+7 A, 1 D => 1 E. We need 7A. Have 3A in storage so only need 4A new.
+10A from 10 ORE. Use 4A and put 6A into inventory. [20 ORE used, 6A in store] 7A
 
-1C needs 7A and 1B
-7A from storage. [30 ORE used, 2A in store]
+7 A, 1 C => 1 D. We need 7A. Have 6A in storage so only need 1A new.
+10A from 10 ORE. Use 1A and put 9A into inventory. [30 ORE used, 9A in store] 7A
 
-1B needs 1 ORE
+7 A, 1 B => 1 C. We need 7A. Have 9A in storage so no new needed.
+7A from storage. [30 ORE used, 2A in store] 7A
+
+1 ORE => 1 B
+
 [31 ORE used, 2A in store]
 
 ----DONE----
