@@ -73,12 +73,14 @@ public class NanoRefinery
 
         if (_debug)
         {
-            System.out.println("\nsynthesiseChemical: "+theReaction.getChemical());
+            System.out.println("\nSynthesising: "+theReaction.getChemical());
             System.out.println("Needed reaction: "+r);
             System.out.println("Quantity of "+theReaction.getChemical()+" needed: "+needed);
             System.out.println("Quantity which would be created from reaction: "+r.chemicalCreated().getAmount());
         }
 
+        System.out.println("\nSynthesising: "+theReaction.getChemical());
+        
         int amountCreated = checkInventory(theReaction);
 
         if (amountCreated >= needed)
