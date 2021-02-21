@@ -36,8 +36,8 @@ LOOP 2:
 
 LOOP 1:
 2 VJHF, 2 MNCFX => 5 FWMGM
-145 ORE => 6 MNCFX but we only need 2 MNCFX [428 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL and 4 MNCFX in storage]
-176 ORE => 6 VJHF but we only need 2 VJHF [604 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL, 4 MNCFX and 4 VJHF in storage]
+176 ORE => 6 VJHF but we only need 2 VJHF [459 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL, 4 MNCFX and 4 VJHF in storage]
+145 ORE => 6 MNCFX but we only need 2 MNCFX [604 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL and 4 MNCFX in storage]
 We have 5 FWMGM but we need 7 FWMGM. Get 2 FWMGM by using storage => [604 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL, 2 MNCFX and 2 VJHF in storage] 7 FWMGM
 
 LOOP 2:
