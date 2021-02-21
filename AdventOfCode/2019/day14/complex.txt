@@ -25,6 +25,10 @@ Always show your working out!
 
 2 STKFG: 2 times [2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX]
 
+----> START LOOP ONE [2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX] <----
+
+Currently [0 ORE, empty storage]
+
 Synthesizing STKFG:
 2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX => 1 STKFG
 
@@ -67,7 +71,22 @@ Found NRVD in storage. We need 2 CXFTF. Use NRVD and store excess CXFTF. [604 OR
 
 ----ONLY ONE LOOP OF 2 CXFTF DONE SO FAR----
 
+Synthesizing MNCFX:
+145 ORE => 6 MNCFX
+We need 4 MNCFX so store excess. [749 ORE, 1 NRVD, 4 JNWZP, 6 VPVL, 2 VJHF, 4 MNCFX, 3 FWMGM, 6 CXFTF in storage]
 
+----ONLY ONE LOOP OF 4 MNCFX DONE SO FAR----
+
+----> END LOOP ONE [2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX] <----
+
+----> START LOOP TWO [2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX] <----
+
+Currently [749 ORE, 1 NRVD, 4 JNWZP, 6 VPVL, 2 VJHF, 4 MNCFX, 3 FWMGM, 6 CXFTF in storage]
+
+Synthesizing VPVL:
+2 NVRVD, 3 JNWZP => 8 VPVL
+
+ 
 ----
 
 
