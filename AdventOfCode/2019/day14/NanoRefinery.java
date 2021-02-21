@@ -46,7 +46,13 @@ public class NanoRefinery
                 
                 synthesiseChemical(reaction);
 
-                System.out.println("**ORE used for "+reaction+" is "+_amountOfOre);
+                System.out.println("**---------------------------------------");
+                System.out.println("**COMPLETED ORE used for "+reaction+" is "+_amountOfOre);
+                System.out.println("**---------------------------------------");
+
+                printStorage();
+
+                System.out.println();
             }
         }
         else
@@ -275,6 +281,18 @@ public class NanoRefinery
         }
 
         return null;
+    }
+
+    private void printStorage ()
+    {
+        Enumeration<ChemicalQuantity> iter = _storage.elements();
+
+        System.out.println("Printing storage contents.");
+
+        while (iter.hasMoreElements())
+            System.out.println(iter.nextElement());
+
+        System.out.println("Storage printing done.");
     }
 
     private boolean _debug;
