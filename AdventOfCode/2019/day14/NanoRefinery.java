@@ -96,7 +96,7 @@ public class NanoRefinery
         {
             index++;
 
-            System.out.println("\nLoop "+index+" for "+r+" and <"+amountCreated+" and "+needed+"> and "+_amountOfOre);
+            System.out.println("\nLoop "+index+" for "+r+" and ore consumed: "+_amountOfOre);
 
             if (r.isOre())
             {
