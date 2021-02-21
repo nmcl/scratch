@@ -178,7 +178,7 @@ public class NanoRefinery
 
     private void storeChemical (Chemical chem, int amount)
     {
-        if (_debug)
+        //if (_debug)
             System.out.println("Storing "+amount+" of "+chem+" in the inventory.");
 
         ChemicalQuantity toStore = new ChemicalQuantity(chem, amount);
@@ -227,8 +227,8 @@ public class NanoRefinery
 
     private boolean consumeFromInventory (ChemicalQuantity needed)
     {
-        if (_debug)
-            System.out.println("Consuming chemical from storage.");
+        //if (_debug)
+            System.out.println("Consuming "+needed.getAmount()+" of chemical "+needed.getChemical()+" from storage.");
 
         boolean quantityPresent = false;
         int index = _storage.indexOf(needed);
