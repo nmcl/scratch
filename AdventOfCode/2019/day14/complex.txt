@@ -4,33 +4,56 @@ Always show your working out!
 
 ----
 
-2 VPVL, 7 FWMGM, 2 CXFTF, 11 MNCFX => 1 STKFG
-17 NVRVD, 3 JNWZP => 8 VPVL
-22 VJHF, 37 MNCFX => 5 FWMGM
+2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX => 1 STKFG
+2 NVRVD, 3 JNWZP => 8 VPVL
+2 STKFG, 6 MNCFX, 2 VJHF, 2 HVMC, 2 CXFTF, 2 GNMV => 1 FUEL
+2 VJHF, 2 MNCFX => 5 FWMGM
 139 ORE => 4 NVRVD
 144 ORE => 7 JNWZP
 5 MNCFX, 7 RFSQX, 2 FWMGM, 2 VPVL, 19 CXFTF => 3 HVMC
-5 VJHF, 7 MNCFX, 9 VPVL, 37 CXFTF => 6 GNMV
+5 VJHF, 7 MNCFX, 9 VPVL, 2 CXFTF => 6 GNMV
 145 ORE => 6 MNCFX
 1 NVRVD => 8 CXFTF
 1 VJHF, 6 MNCFX => 4 RFSQX
 176 ORE => 6 VJHF
-53 STKFG, 6 MNCFX, 46 VJHF, 81 HVMC, 68 CXFTF, 25 GNMV => 1 FUEL
 
+----
 
-1 FUEL needs 53 STKFG, 6 MNCFX, 46 VJHF, 81 HVMC, 68 CXFTF and 25 GNMV
+1 FUEL needs 2 STKFG, 6 MNCFX, 2 VJHF, 2 HVMC, 2 CXFTF and 2 GNMV 
 
-53 STKFG: 53 times [2 VPVL, 7 FWMGM, 2 CXFTF, 11 MNCFX] aka 53*(2*VPVL + 7*FWMGM + 2*CXFTF + 11*MNCFX)
+----
 
-17 NVRVD, 3 JNWZP => 8 VPVL. We need 106 VPVL in total. Which is 14 times this reaction. 14*(17*NVRVD + 3*JNWZP) = 238*NVRVD + 42*JNWZP
-139 ORE => 4 NVRVD. We need 60 times this. [8340 ORE used, 2*NVRVD in storage]
-144 ORE => 7 JNWZP. We need 6 times this. [9204 ORE used, 2*NVRVD in storage]
+2 STKFG: 2 times [2 VPVL, 7 FWMGM, 2 CXFTF, 4 MNCFX]
 
-22 VJHF, 37 MNCFX => 5 FWMGM. We need 371 FWMGM in total. Which is 75 times this reaction. 75*(22*VJHF + 37*MNCFX) = 1650*VJHF + 2775*MNCFX
-176 ORE => 6 VJHF. We need 1650 VJHF which is 275 times this. [57604 ORE used, 2*NVRVD in storage]
-145 ORE => 6 MNCFX. We need 2775 MNCFX which is 463 times this. [124739 ORE used, 2*NVRVD and 3*MNCFX in storage]
+LOOP 1:
+2 NVRVD, 3 JNWZP => 8 VPVL
+139 ORE => 4 NVRVD [139 ORE, 2 NVRVD in storage] 2 NVRVD
+144 ORE => 7 JNWZP [283 ORE, 2 NVRVD and 4 JNWZP in storage] 2 NVRVD, 3 JNWZP => 8 VPVL but we only need 2 VPVL
+We need 2 VPVL so [283 ORE, 2 NVRVD, 4 JNWZP and 6 VPVL in storage]
 
-1 NVRVD => 8 CXFTF. We need 106 CXFTF. We have 16 already since 2*NVRVD in storage, leaving 90 new needed which is 12 times.
-139 ORE => 4 NVRVD. We need 3 times which gives us 96 CXFTF so 6 CXFTF in storage. [125156 ORE used, 3*MNCFX and 6*CXFTF in storage]
+LOOP 2:
+2 VPVL from storage. [283 ORE, 2 NVRVD, 4 JNWZP and 4 VPVL in storage] 4 VPVL
 
-145 ORE => 6 MNCFX. We need 583 MNCFX which is 98 times this. [139366 ORE used, 3*MNCFX, 6*CXFTF and 5*MNCFX in storage]
+LOOP 1:
+2 VJHF, 2 MNCFX => 5 FWMGM
+145 ORE => 6 MNCFX but we only need 2 MNCFX [428 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL and 4 MNCFX in storage]
+176 ORE => 6 VJHF but we only need 2 VJHF [604 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL, 4 MNCFX and 4 VJHF in storage]
+We have 5 FWMGM but we need 7 FWMGM. Get 2 FWMGM by using storage => [604 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL, 2 MNCFX and 2 VJHF in storage] 7 FWMGM
+
+LOOP 2:
+Use storage for first 5 FWMGM. [604 ORE, 2 NVRVD, 4 JNWZP, and 4 VPVL in storage] 5 FWMGM
+We have 5 FWMGM but we need 7 FWMGM.
+145 ORE => 6 MNCFX but we only need 2 MNCFX [749 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL and 4 MNCFX in storage]
+176 ORE => 6 VJHF but we only need 2 VJHF [925 ORE, 2 NVRVD, 4 JNWZP, 4 VPVL, 4 MNCFX and 4 VJHF in storage]
+
+LOOP 1:
+1 NVRVD => 8 CXFTF
+We have sufficient in storage => [925 ORE, 1 NVRVD, 4 JNWZP, 4 VPVL, 4 MNCFX, 4 VJHF and 6 CXFTF in storage] as we need 2 CXFTF
+
+LOOP 2:
+Sufficient in storage => [925 ORE, 1 NVRVD, 4 JNWZP, 4 VPVL, 4 MNCFX, 4 VJHF and 4 CXFTF in storage] 4 CXFTF
+
+LOOP 1:
+145 ORE => 6 MNCFX
+Use storage for first 4 MNCFX. [925 ORE, 1 NVRVD, 4 JNWZP, 4 VPVL, 4 VJHF and 4 CXFTF in storage]
+145 ORE => 6 MNCFX but we only need 4 MNCFX. [1070 ORE, 1 NVRVD, 4 JNWZP, 4 VPVL, 4 VJHF, 2 MNCFX and 4 CXFTF in storage]
