@@ -65,7 +65,16 @@ public class Verifier
                     {
                         System.out.println("Verified "+EXAMPLE4_FILE);
 
-                        verified = true;
+                        reactions = _theParser.loadData(EXAMPLE5_FILE);
+                        factory = new NanoRefinery(reactions, _debug);
+                        oreNeeded = factory.oreNeeded();
+
+                        if (oreNeeded == TOTAL_ORE_5)
+                        {
+                            System.out.println("Verified "+EXAMPLE5_FILE);
+
+                            verified = true;
+                        }
                     }
                 }
                 else
