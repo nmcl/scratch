@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class FuelCalculator
 {
     public static final String DATA_FILE = "reactions.txt";
