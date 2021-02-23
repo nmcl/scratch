@@ -35,11 +35,10 @@ public class Verifier
         int oreNeeded = factory.oreNeeded();
         boolean verified = false;
 
-        System.out.println("**ORE "+oreNeeded);
-        
         if (oreNeeded == TOTAL_ORE_1)
         {
-            System.out.println("Verified "+EXAMPLE1_FILE);
+            if (_debug)
+                System.out.println("Verified "+EXAMPLE1_FILE);
 
             reactions = _theParser.loadData(EXAMPLE2_FILE);
             factory = new NanoRefinery(reactions, _debug);
@@ -47,7 +46,8 @@ public class Verifier
 
             if (oreNeeded == TOTAL_ORE_2)
             {
-                System.out.println("Verified "+EXAMPLE2_FILE);
+                if (_debug)
+                    System.out.println("Verified "+EXAMPLE2_FILE);
 
                 reactions = _theParser.loadData(EXAMPLE3_FILE);
                 factory = new NanoRefinery(reactions, _debug);
@@ -55,7 +55,8 @@ public class Verifier
 
                 if (oreNeeded == TOTAL_ORE_3)
                 {
-                    System.out.println("Verified "+EXAMPLE3_FILE);
+                    if (_debug)
+                        System.out.println("Verified "+EXAMPLE3_FILE);
 
                     reactions = _theParser.loadData(EXAMPLE4_FILE);
                     factory = new NanoRefinery(reactions, _debug);
@@ -63,7 +64,8 @@ public class Verifier
 
                     if (oreNeeded == TOTAL_ORE_4)
                     {
-                        System.out.println("Verified "+EXAMPLE4_FILE);
+                        if (_debug)
+                            System.out.println("Verified "+EXAMPLE4_FILE);
 
                         reactions = _theParser.loadData(EXAMPLE5_FILE);
                         factory = new NanoRefinery(reactions, _debug);
@@ -71,7 +73,8 @@ public class Verifier
 
                         if (oreNeeded == TOTAL_ORE_5)
                         {
-                            System.out.println("Verified "+EXAMPLE5_FILE);
+                            if (_debug)
+                                System.out.println("Verified "+EXAMPLE5_FILE);
 
                             verified = true;
                         }
