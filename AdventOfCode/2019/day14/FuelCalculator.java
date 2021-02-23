@@ -1,5 +1,6 @@
 public class FuelCalculator
 {
+    public static final String DATA_FILE = "reactions.txt";
     public static final void main (String[] args)
     {
         boolean debug = false;
@@ -31,5 +32,12 @@ public class FuelCalculator
                 
             System.exit(0);
         }
+
+        Parser theParser = new Parser(debug);
+        Vector<Reaction> reactions = theParser.loadData(DATA_FILE);
+        NanoRefinery factory = new NanoRefinery(reactions, debug);
+        int oreNeeded = factory.oreNeeded();
+
+        System.out.println("Ore needed to create 1 fuel: "+oreNeeded);
     }
 }
