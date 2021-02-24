@@ -41,5 +41,9 @@ public class FuelCalculator
         int oreNeeded = factory.oreNeeded();
 
         System.out.println("Ore needed to create 1 fuel: "+oreNeeded);
+
+        long totalOre = 1000000000000L;
+
+        // try a quick division
     }
 }
