@@ -2,12 +2,15 @@ import java.util.*;
 
 public class Verifier
 {
+    public static final String EXAMPLE1_FILE = "example1.txt";
+    public static final int TOTAL_ORE_1 = 13312;
+    public static final long TOTAL_FUEL_1 = 82892753L;
+    public static final String EXAMPLE2_FILE = "example2.txt";
+    public static final int TOTAL_ORE_2 = 180697;
+    public static final long TOTAL_FUEL_2 = 5586022L;
     public static final String EXAMPLE3_FILE = "example3.txt";
-    public static final int TOTAL_ORE_3 = 13312;
-    public static final String EXAMPLE4_FILE = "example4.txt";
-    public static final int TOTAL_ORE_4 = 180697;
-    public static final String EXAMPLE5_FILE = "example5.txt";
-    public static final int TOTAL_ORE_5 = 2210736;
+    public static final int TOTAL_ORE_3 = 2210736;
+    public static final long TOTAL_FUEL_3 = 460664L;
 
     public Verifier (boolean debug)
     {
@@ -45,27 +48,7 @@ public class Verifier
                     if (_debug)
                         System.out.println("Verified "+EXAMPLE3_FILE);
 
-                    reactions = _theParser.loadData(EXAMPLE4_FILE);
-                    factory = new NanoRefinery(reactions, _debug);
-                    oreNeeded = factory.oreNeeded();
-
-                    if (oreNeeded == TOTAL_ORE_4)
-                    {
-                        if (_debug)
-                            System.out.println("Verified "+EXAMPLE4_FILE);
-
-                        reactions = _theParser.loadData(EXAMPLE5_FILE);
-                        factory = new NanoRefinery(reactions, _debug);
-                        oreNeeded = factory.oreNeeded();
-
-                        if (oreNeeded == TOTAL_ORE_5)
-                        {
-                            if (_debug)
-                                System.out.println("Verified "+EXAMPLE5_FILE);
-
-                            verified = true;
-                        }
-                    }
+                    verified = true;
                 }
                 else
                     System.out.println("Failed on "+EXAMPLE3_FILE);
