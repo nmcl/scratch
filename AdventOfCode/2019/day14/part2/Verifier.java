@@ -22,13 +22,20 @@ public class Verifier
     {
         Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
-        int oreNeeded = factory.oreNeeded();
         boolean verified = false;
         long totalOre = 1000000000000L;
+        int oreNeeded = factory.oreNeeded(0);
+        long iterations = totalOre / oreNeeded;
+
+        factory = new NanoRefinery(reactions, _debug);
+        
+        oreNeeded = factory.oreNeeded(iterations*100);
+
+        System.out.println("ore consumed over "+(iterations*100)+" iterations: "+oreNeeded);
 
         if (oreNeeded == TOTAL_ORE_1)
         {
-            long iterations = totalOre / oreNeeded;
+
         }
         else
             System.out.println("Failed on "+EXAMPLE1_FILE);

@@ -38,7 +38,7 @@ public class FuelCalculator
         Parser theParser = new Parser(debug);
         Vector<Reaction> reactions = theParser.loadData(DATA_FILE);
         NanoRefinery factory = new NanoRefinery(reactions, debug);
-        int oreNeeded = factory.oreNeeded();
+        int oreNeeded = factory.oreNeeded(0);
 
         System.out.println("Ore needed to create 1 fuel: "+oreNeeded);
 

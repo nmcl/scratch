@@ -19,7 +19,7 @@ public class NanoRefinery
         }
     }
 
-    public final int oreNeeded ()
+    public final int oreNeeded (long amountOfFuel)
     {
         Reaction fuel = findReaction(Chemical.FUEL);
 
@@ -33,10 +33,12 @@ public class NanoRefinery
             if (_debug)
                 System.out.println("\nFuel equation: "+fuel);
 
-            int fuelNeeded = fuel.chemicalCreated().getAmount();
+            long fuelNeeded = ((amountOfFuel <= 0) ? fuel.chemicalCreated().getAmount() : amountOfFuel);
             Vector<ChemicalQuantity> fuelChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
             Enumeration<ChemicalQuantity> iter = fuelChemicalQuantities.elements();
 
+            System.out.println("**checking for "+fuelNeeded);
+            
             _amountOfOre = 0;
 
             while (iter.hasMoreElements())
