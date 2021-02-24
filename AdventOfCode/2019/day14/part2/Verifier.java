@@ -24,37 +24,11 @@ public class Verifier
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
         int oreNeeded = factory.oreNeeded();
         boolean verified = false;
+        long totalOre = 1000000000000L;
 
         if (oreNeeded == TOTAL_ORE_1)
         {
-            if (_debug)
-                System.out.println("Verified "+EXAMPLE1_FILE);
-
-            reactions = _theParser.loadData(EXAMPLE2_FILE);
-            factory = new NanoRefinery(reactions, _debug);
-            oreNeeded = factory.oreNeeded();
-
-            if (oreNeeded == TOTAL_ORE_2)
-            {
-                if (_debug)
-                    System.out.println("Verified "+EXAMPLE2_FILE);
-
-                reactions = _theParser.loadData(EXAMPLE3_FILE);
-                factory = new NanoRefinery(reactions, _debug);
-                oreNeeded = factory.oreNeeded();
-
-                if (oreNeeded == TOTAL_ORE_3)
-                {
-                    if (_debug)
-                        System.out.println("Verified "+EXAMPLE3_FILE);
-
-                    verified = true;
-                }
-                else
-                    System.out.println("Failed on "+EXAMPLE3_FILE);
-            }
-            else
-                System.out.println("Failed on "+EXAMPLE2_FILE);
+            long iterations = totalOre / oreNeeded;
         }
         else
             System.out.println("Failed on "+EXAMPLE1_FILE);
