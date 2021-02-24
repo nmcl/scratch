@@ -29,9 +29,9 @@ public class Verifier
 
         factory = new NanoRefinery(reactions, _debug);
         
-        oreNeeded = factory.oreNeeded(iterations*100);
+        oreNeeded = factory.oreNeeded(iterations);
 
-        System.out.println("ore consumed over "+(iterations*100)+" iterations: "+oreNeeded);
+        System.out.println("ore consumed over "+iterations+" iterations: "+oreNeeded);
 
         if (oreNeeded == TOTAL_ORE_1)
         {
