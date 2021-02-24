@@ -34,30 +34,35 @@ public class NanoRefinery
                 System.out.println("\nFuel equation: "+fuel);
 
             long fuelNeeded = ((amountOfFuel <= 0) ? fuel.chemicalCreated().getAmount() : amountOfFuel);
-            Vector<ChemicalQuantity> fuelChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
-            Enumeration<ChemicalQuantity> iter = fuelChemicalQuantities.elements();
+            long fuelCreated = 0;
 
-            System.out.println("**checking for "+fuelNeeded);
-            
-            _amountOfOre = 0;
-
-            while (iter.hasMoreElements())
+            while (fuelCreated < fuelNeeded)
             {
-                ChemicalQuantity reaction = iter.nextElement();
+                Vector<ChemicalQuantity> fuelChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
+                Enumeration<ChemicalQuantity> iter = fuelChemicalQuantities.elements();                
 
-                if (_debug)
-                    System.out.println("\nWorking on: "+reaction);
-                
-                synthesiseChemical(reaction);
+                _amountOfOre = 0;
 
-                if (_debug)
+                while (iter.hasMoreElements())
                 {
-                    System.out.println("**---------------------------------------");
-                    System.out.println("**COMPLETED ORE used for "+reaction+" is "+_amountOfOre);
-                    System.out.println("**---------------------------------------");
+                    ChemicalQuantity reaction = iter.nextElement();
 
-                    printStorage();
+                    if (_debug)
+                        System.out.println("\nWorking on: "+reaction);
+                    
+                    synthesiseChemical(reaction);
+
+                    if (_debug)
+                    {
+                        System.out.println("**---------------------------------------");
+                        System.out.println("**COMPLETED ORE used for "+reaction+" is "+_amountOfOre);
+                        System.out.println("**---------------------------------------");
+
+                        printStorage();
+                    }
                 }
+
+                fuelCreated += fuel.chemicalCreated().getAmount();
             }
         }
         else
