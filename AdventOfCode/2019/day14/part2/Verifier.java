@@ -26,8 +26,6 @@ public class Verifier
         long totalOre = 1000000000000L;
         long fuelCreated = factory.createMaxFuelFromOre(totalOre);
 
-        System.out.println("ore consumed over "+(iterations*2)+" iterations: "+oreNeeded);
-
         if (fuelCreated== TOTAL_FUEL_1)
         {
             verified = true;
