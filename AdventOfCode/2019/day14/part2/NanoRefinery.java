@@ -36,12 +36,12 @@ public class NanoRefinery
             long fuelNeeded = ((amountOfFuel <= 0) ? fuel.chemicalCreated().getAmount() : amountOfFuel);
             long fuelCreated = 0;
 
+            _amountOfOre = 0;
+
             while (fuelCreated < fuelNeeded)
             {
                 Vector<ChemicalQuantity> fuelChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
                 Enumeration<ChemicalQuantity> iter = fuelChemicalQuantities.elements();                
-
-                _amountOfOre = 0;
 
                 while (iter.hasMoreElements())
                 {
