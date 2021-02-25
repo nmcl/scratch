@@ -17,13 +17,13 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE2_FILE);
+        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE3_FILE);
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
         boolean verified = false;
         long totalOre = 1000000000000L;
         long fuelCreated = factory.createMaxFuelFromOre(totalOre);
 
-        if (fuelCreated == TOTAL_FUEL_2)
+        if (fuelCreated == TOTAL_FUEL_3)
         {
             return true;
             /*
