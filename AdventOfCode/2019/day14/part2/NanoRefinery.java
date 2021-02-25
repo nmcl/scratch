@@ -19,6 +19,54 @@ public class NanoRefinery
         }
     }
 
+    /*
+     * Create the most amount of fuel from the given amount of ore.
+     */
+
+    public final long createMaxFuelFromOre (long oreAvailable)
+    {
+        Reaction fuel = findReaction(Chemical.FUEL);
+        long fuelCreated = 0L;
+
+        /*
+         * Look at the reactions needed to create the amount
+         * of fuel. Work backwards from there.
+         */
+
+        if (fuel != null)
+        {
+            long lastRoundFuel = 0L;  // remember the fuel we created last iteration
+
+            _amountOfOre = 0L;
+
+            while (_amountOfOre < oreAvailable)
+            {
+                lastRoundFuel = fuelCreated;
+
+                Vector<ChemicalQuantity> fuelChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
+                Enumeration<ChemicalQuantity> iter = fuelChemicalQuantities.elements();                
+
+                while (iter.hasMoreElements())
+                {
+                    ChemicalQuantity reaction = iter.nextElement();
+
+                    synthesiseChemical(reaction);
+                }
+
+                lastRoundFuel = fuelCreated;
+                
+                fuelCreated += fuel.chemicalCreated().getAmount();
+            }
+
+            if (_amountOfOre > oreAvailable)  // if we used more ore than available, report the previous fuel amount
+                fuelCreated = lastRoundFuel;
+        }
+        else
+            System.out.println("Error! No fuel required?!");
+
+        return fuelCreated;
+    }
+
     public final long oreNeeded (long amountOfFuel)
     {
         Reaction fuel = findReaction(Chemical.FUEL);

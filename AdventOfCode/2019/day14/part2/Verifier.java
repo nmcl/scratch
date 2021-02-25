@@ -24,21 +24,16 @@ public class Verifier
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
         boolean verified = false;
         long totalOre = 1000000000000L;
-        long oreNeeded = factory.oreNeeded(0);  // ore needed to produce 1 FUEL
-        long iterations = totalOre / oreNeeded;  // rough estimate of number of iterations
-
-        factory = new NanoRefinery(reactions, _debug);
-        
-        oreNeeded = factory.oreNeeded(iterations*2);
+        long fuelCreated = factory.createMaxFuelFromOre(totalOre);
 
         System.out.println("ore consumed over "+(iterations*2)+" iterations: "+oreNeeded);
 
-        if (oreNeeded == TOTAL_ORE_1)
+        if (fuelCreated== TOTAL_FUEL_1)
         {
-
+            verified = true;
         }
         else
-            System.out.println("Failed on "+EXAMPLE1_FILE);
+            System.out.println("Failed on "+EXAMPLE1_FILE+" with "+fuelCreated);
 
         return verified;
     }
