@@ -19,7 +19,7 @@ public class NanoRefinery
         }
     }
 
-    public final int oreNeeded (long amountOfFuel)
+    public final long oreNeeded (long amountOfFuel)
     {
         Reaction fuel = findReaction(Chemical.FUEL);
 
@@ -294,5 +294,5 @@ public class NanoRefinery
     private boolean _debug;
     private Vector<Reaction> _reactions;
     private Vector<ChemicalQuantity> _storage;
-    private int _amountOfOre;
+    private long _amountOfOre;
 }

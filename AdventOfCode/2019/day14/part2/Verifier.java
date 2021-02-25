@@ -24,7 +24,7 @@ public class Verifier
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
         boolean verified = false;
         long totalOre = 1000000000000L;
-        int oreNeeded = factory.oreNeeded(0);  // ore needed to produce 1 FUEL
+        long oreNeeded = factory.oreNeeded(0);  // ore needed to produce 1 FUEL
         long iterations = totalOre / oreNeeded;  // rough estimate of number of iterations
 
         factory = new NanoRefinery(reactions, _debug);
