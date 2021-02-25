@@ -3,13 +3,10 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE1_FILE = "example1.txt";
-    public static final int TOTAL_ORE_1 = 13312;
     public static final long TOTAL_FUEL_1 = 82892753L;
     public static final String EXAMPLE2_FILE = "example2.txt";
-    public static final int TOTAL_ORE_2 = 180697;
     public static final long TOTAL_FUEL_2 = 5586022L;
     public static final String EXAMPLE3_FILE = "example3.txt";
-    public static final int TOTAL_ORE_3 = 2210736;
     public static final long TOTAL_FUEL_3 = 460664L;
 
     public Verifier (boolean debug)
@@ -20,15 +17,25 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
+        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE2_FILE);
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
         boolean verified = false;
         long totalOre = 1000000000000L;
         long fuelCreated = factory.createMaxFuelFromOre(totalOre);
 
-        if (fuelCreated== TOTAL_FUEL_1)
+        if (fuelCreated == TOTAL_FUEL_2)
         {
-            verified = true;
+            return true;
+            /*
+            reactions = _theParser.loadData(EXAMPLE2_FILE);
+            factory = new NanoRefinery(reactions, _debug);
+
+            fuelCreated = factory.createMaxFuelFromOre(totalOre);
+
+            if (fuelCreated == TOTAL_FUEL_2)
+                verified = true;
+            else
+                System.out.println("Failed on "+EXAMPLE2_FILE+" with "+fuelCreated);*/
         }
         else
             System.out.println("Failed on "+EXAMPLE1_FILE+" with "+fuelCreated);
