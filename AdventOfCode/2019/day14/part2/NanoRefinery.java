@@ -47,6 +47,7 @@ public class NanoRefinery
                 {
                     System.out.println("Fuel created so far: "+lastRoundFuel);
                     System.out.println("Ore used so far: "+_amountOfOre);
+                }
 
                 Vector<ChemicalQuantity> fuelChemicalQuantities = fuel.getChemicalQuantities();    // maybe not all reactions loaded are needed
                 Enumeration<ChemicalQuantity> iter = fuelChemicalQuantities.elements();                
