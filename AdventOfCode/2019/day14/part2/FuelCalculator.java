@@ -38,12 +38,9 @@ public class FuelCalculator
         Parser theParser = new Parser(debug);
         Vector<Reaction> reactions = theParser.loadData(DATA_FILE);
         NanoRefinery factory = new NanoRefinery(reactions, debug);
-        long oreNeeded = factory.oreNeeded();
-
-        System.out.println("Ore needed to create 1 fuel: "+oreNeeded);
-
         long totalOre = 1000000000000L;
+        long fuelCreated = factory.createMaxFuelFromOre(totalOre);
 
-        // try a quick division
+        System.out.println("Maximum fuel created from "+totalOre+": "+fuelCreated);
     }
 }
