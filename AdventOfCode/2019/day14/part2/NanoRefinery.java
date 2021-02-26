@@ -54,7 +54,7 @@ public class NanoRefinery
                 }
 
                 lastRoundFuel = fuelCreated;
-                
+
                 fuelCreated += fuel.chemicalCreated().getAmount();
             }
 
@@ -67,7 +67,7 @@ public class NanoRefinery
         return fuelCreated;
     }
 
-    public final long oreNeeded (long amountOfFuel)
+    public final long oreNeeded ()
     {
         Reaction fuel = findReaction(Chemical.FUEL);
 
@@ -81,7 +81,7 @@ public class NanoRefinery
             if (_debug)
                 System.out.println("\nFuel equation: "+fuel);
 
-            long fuelNeeded = ((amountOfFuel <= 0) ? fuel.chemicalCreated().getAmount() : amountOfFuel);
+            long fuelNeeded = fuel.chemicalCreated().getAmount();
             long fuelCreated = 0;
 
             _amountOfOre = 0;
