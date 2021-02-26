@@ -17,25 +17,44 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE3_FILE);
+        Vector<Reaction> reactions = _theParser.loadData(EXAMPLE1_FILE);
         NanoRefinery factory = new NanoRefinery(reactions, _debug);
         boolean verified = false;
         long totalOre = 1000000000000L;
         long fuelCreated = factory.createMaxFuelFromOre(totalOre);
 
-        if (fuelCreated == TOTAL_FUEL_3)
+        if (fuelCreated == TOTAL_FUEL_1)
         {
-            return true;
-            /*
+            if (_debug)
+                System.out.println("Verified "+EXAMPLE1_FILE);
+
             reactions = _theParser.loadData(EXAMPLE2_FILE);
             factory = new NanoRefinery(reactions, _debug);
 
             fuelCreated = factory.createMaxFuelFromOre(totalOre);
 
             if (fuelCreated == TOTAL_FUEL_2)
-                verified = true;
+            {
+                if (_debug)
+                    System.out.println("Verified "+EXAMPLE2_FILE);
+
+                reactions = _theParser.loadData(EXAMPLE3_FILE);
+                factory = new NanoRefinery(reactions, _debug);
+
+                fuelCreated = factory.createMaxFuelFromOre(totalOre);
+
+                if (fuelCreated == TOTAL_FUEL_3)
+                {
+                    if (_debug)
+                        System.out.println("Verified "+EXAMPLE3_FILE);
+
+                    verified = true;
+                }
+                else
+                    System.out.println("Failed on "+EXAMPLE3_FILE+" with "+fuelCreated);
+            }
             else
-                System.out.println("Failed on "+EXAMPLE2_FILE+" with "+fuelCreated);*/
+                System.out.println("Failed on "+EXAMPLE2_FILE+" with "+fuelCreated);
         }
         else
             System.out.println("Failed on "+EXAMPLE1_FILE+" with "+fuelCreated);
