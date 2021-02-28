@@ -5,5 +5,10 @@ public class RepairDroid
         _debug = debug;
     }
 
+    public void printGrid ()
+    {
+        
+    }
+
     private boolean _debug;
 }
