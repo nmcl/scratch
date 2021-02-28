@@ -17,7 +17,7 @@ public class Movement
                 return "WEST";
             case EAST:
                 return "EAST";
-            default
+            default:
                 return "UNKNOWN";
         }
     }
