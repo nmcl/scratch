@@ -1,4 +1,4 @@
-public class Movement
+public class DroidMovement
 {
     public static final int NORTH = 1;
     public static final int SOUTH = 2;
@@ -22,7 +22,7 @@ public class Movement
         }
     }
 
-    private Movement ()  // prevent instantiation
+    private DroidMovement ()  // prevent instantiation
     {
     }
 }
