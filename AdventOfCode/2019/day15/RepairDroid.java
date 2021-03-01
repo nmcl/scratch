@@ -7,6 +7,9 @@ public class RepairDroid
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _location = new Coordinate(0, 0);
+        _visitedLocations = new Vector<Coordinate>();
+
+        _visitedLocations.add(_location);
     }
 
     public final int moveToOxygenStation ()
@@ -24,4 +27,5 @@ public class RepairDroid
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _location;
+    private Vector<Coordinate> _visitedLocations;
 }
