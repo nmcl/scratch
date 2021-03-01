@@ -1,8 +1,11 @@
 public class RepairDroid
 {
-    public RepairDroid (boolean debug)
+    public static final String INITIAL_INPUT = "";
+
+    public RepairDroid (Vector<String> instructions, boolean debug)
     {
         _debug = debug;
+        _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
     }
 
     public void printGrid ()
@@ -11,4 +14,5 @@ public class RepairDroid
     }
 
     private boolean _debug;
+    private Intcode _theComputer;
 }
