@@ -6,6 +6,14 @@ public class RepairDroid
     {
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
+        _location = new Coordinate(0, 0);
+    }
+
+    public final int moveToOxygenStation ()
+    {
+        int numberOfSteps = 0;
+
+        return numberOfSteps;
     }
 
     public void printGrid ()
@@ -15,4 +23,5 @@ public class RepairDroid
 
     private boolean _debug;
     private Intcode _theComputer;
+    private Coordinate _location;
 }
