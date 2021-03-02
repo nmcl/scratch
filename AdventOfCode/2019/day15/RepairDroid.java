@@ -15,7 +15,13 @@ public class RepairDroid
     public final int moveToOxygenStation ()
     {
         int numberOfSteps = 0;
+        boolean found = false;
 
+        while (!found)
+        {
+
+        }
+        
         return numberOfSteps;
     }
 
