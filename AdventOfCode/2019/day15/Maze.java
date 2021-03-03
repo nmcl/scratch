@@ -27,10 +27,28 @@ public class Maze
     @Override
     public String toString ()
     {
-        int x = _minX;
-        int y = _minY;
-        
-        return "";
+        String str = "";
+
+        for (int y = _minY; y < _maxY; y++)
+        {
+            for (int x = _minX; x < _maxX; x++)
+            {
+                Tile theTile = new Tile(new Coordinate(x, y));
+                int index = _map.indexOf(theTile);
+
+                if (index != -1)
+                {
+                    theTile = _map.get(index);
+                    str += theTile.content();
+                }
+                else
+                    str += TileId.UNEXPLORED;
+            }
+
+            str += "\n";
+        }
+
+        return str;
     }
 
     private Vector<Tile> _map;
