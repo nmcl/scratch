@@ -27,7 +27,7 @@ public class Maze
     @Override
     public String toString ()
     {
-        String str = "";
+        String str = "--------\n";
 
         for (int y = _minY; y < _maxY; y++)
         {
@@ -48,6 +48,8 @@ public class Maze
             str += "\n";
         }
 
+        str += "--------\n";
+        
         return str;
     }
 
