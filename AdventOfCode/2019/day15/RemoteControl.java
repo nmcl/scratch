@@ -58,5 +58,7 @@ public class RemoteControl
         instructions.addAll(Arrays.asList(values));
 
         RepairDroid droid = new RepairDroid(instructions, debug);
+
+        droid.moveToOxygenStation();
     }
 }
