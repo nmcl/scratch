@@ -36,18 +36,26 @@ public class RepairDroid
         {
             Coordinate to = new Coordinate(from.getX(), from.getY()+1);
 
+            System.out.println("\n"+_theMap);
+
             if (!tryToMove(String.valueOf(DroidMovement.NORTH), from, to))
             {
                 to = new Coordinate(from.getX(), from.getY()-1);
+
+                System.out.println("\n"+_theMap);
 
                 if (!tryToMove(String.valueOf(DroidMovement.SOUTH), from, to))
                 {
                     to = new Coordinate(from.getX()+1, from.getY());
 
+                    System.out.println("\n"+_theMap);
+
                     if (!tryToMove(String.valueOf(DroidMovement.EAST), from, to))
                     {
                         to = new Coordinate(from.getX()-1, from.getY());
 
+                        System.out.println("\n"+_theMap);
+                        
                         return tryToMove(String.valueOf(DroidMovement.WEST), from, to);
                     }
                 }
