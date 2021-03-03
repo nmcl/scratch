@@ -28,23 +28,52 @@ public class RepairDroid
         
     }
 
-    private void recursiveSearch (Coordinate from)
+    private boolean recursiveSearch (Coordinate from)
     {
-        boolean found = false;
-
-        while (!found && !_theComputer.hasHalted())
+        while (!_theComputer.hasHalted())
         {
-            _theComputer.setInput(DroidMovement.NORTH);
+            Coordinate coord = new Coordinate(from.getX(), from.getY()+1);
+
+            _theComputer.setInput(new String(DroidMovement.NORTH));
 
             _theComputer.singleStepExecution();
 
             if (_theComputer.hasOutput())
             {
-                String response = _theComputer.getOutput();
+                int response = Integer.parseInt(_theComputer.getOutput());
+
+                switch (response)
+                {
+                    case DroidStatus.ARRIVED:
+                    {
+                        _theMap.addContent(coord, TileId.OXYGEN_STATION);
+                        
+                        return true;
+                    }
+                    break;
+                    case DroidStatus.COLLISION:
+                    {
+                        _theMap.addContent(from, TileId.WALL);  // didn't move as we hit a wall
+
+                        return false;
+                    }
+                    break;
+                    case DroidStatus.MOVED:
+                    {
+                        _theMap.addContent(coord, TileId.TRAVERSE);
+
+                        return recursiveSearch(coord);
+                    }
+                    break;
+                    default:
+                        System.out.println("Unknown response: "+response);
+                }
             }
             else
                 System.out.println("Error - no output after move instruction!");
         }
+
+        return false;
     }
 
     private boolean _debug;
