@@ -6,6 +6,12 @@ import java.util.Objects;
 
 public class Coordinate
 {
+    public Coordinate (Coordinate coord)
+    {
+        _x = coord._x;
+        _y = coord._y;
+    }
+
     public Coordinate (int x, int y)
     {
         _x = x;
