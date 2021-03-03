@@ -20,12 +20,14 @@ public class RepairDroid
 
         // create a map first!
 
+        recursiveSearch(_location);
+
         return numberOfSteps;
     }
 
     public void printGrid ()
     {
-
+        System.out.println(_theMap);
     }
 
     private boolean recursiveSearch (Coordinate from)
