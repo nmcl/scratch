@@ -55,7 +55,7 @@ public class RepairDroid
                         to = new Coordinate(from.getX()-1, from.getY());
 
                         System.out.println("\n"+_theMap);
-                        
+
                         return tryToMove(String.valueOf(DroidMovement.WEST), from, to);
                     }
                 }
@@ -69,7 +69,11 @@ public class RepairDroid
     {
         _theComputer.setInput(direction);
 
-        _theComputer.singleStepExecution();
+        do
+        {
+            _theComputer.singleStepExecution();
+        }
+        while (!_theComputer.waitingForInput());
 
         if (_theComputer.hasOutput())
         {
