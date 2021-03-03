@@ -9,7 +9,7 @@ public class RepairDroid
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _location = new Coordinate(0, 0);  // starting location
-        _theMap = new Map();
+        _theMap = new Maze();
 
         _theMap.addContent(_location, TileId.TRAVERSE);
     }
@@ -25,7 +25,7 @@ public class RepairDroid
 
     public void printGrid ()
     {
-        
+
     }
 
     private boolean recursiveSearch (Coordinate from)
@@ -34,19 +34,19 @@ public class RepairDroid
         {
             Coordinate to = new Coordinate(from.getX(), from.getY()+1);
 
-            if (!tryToMove(new String(DroidMovement.NORTH), from, to))
+            if (!tryToMove(String.valueOf(DroidMovement.NORTH), from, to))
             {
                 to = new Coordinate(from.getX(), from.getY()-1);
 
-                if (!tryToMove(new String(DroidMovement.SOUTH), from, to))
+                if (!tryToMove(String.valueOf(DroidMovement.SOUTH), from, to))
                 {
                     to = new Coordinate(from.getX()+1, from.getY());
 
-                    if (!tryToMove(new String(DroidMovement.EAST), from, to))
+                    if (!tryToMove(String.valueOf(DroidMovement.EAST), from, to))
                     {
                         to = new Coordinate(from.getX()-1, from.getY());
 
-                        return tryToMove(new String(DroidMovement.WEST), from, to));
+                        return tryToMove(String.valueOf(DroidMovement.WEST), from, to);
                     }
                 }
             }
@@ -73,21 +73,18 @@ public class RepairDroid
                     
                     return true;
                 }
-                break;
                 case DroidStatus.COLLISION:
                 {
                     _theMap.addContent(from, TileId.WALL);  // didn't move as we hit a wall
 
                     return false;
                 }
-                break;
                 case DroidStatus.MOVED:
                 {
                     _theMap.addContent(to, TileId.TRAVERSE);
 
                     return recursiveSearch(to);
                 }
-                break;
                 default:
                     System.out.println("Unknown response: "+response);
             }
@@ -101,5 +98,5 @@ public class RepairDroid
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _location;
-    private Map _theMap;
+    private Maze _theMap;
 }
