@@ -17,7 +17,24 @@ public class RepairDroid
     public final int moveToOxygenStation ()
     {
         int numberOfSteps = 0;
+
+        // create a map first!
+        
+        return numberOfSteps;
+    }
+
+    public void printGrid ()
+    {
+        
+    }
+
+    private void recursiveSearch (Coordinate from)
+    {
         boolean found = false;
+
+        /*
+         * This is NOT right at the moment. Braindump and experiment through code!
+         */
 
         while (!found)
         {
@@ -25,11 +42,6 @@ public class RepairDroid
         }
 
         return numberOfSteps;
-    }
-
-    public void printGrid ()
-    {
-        
     }
 
     private boolean _debug;
