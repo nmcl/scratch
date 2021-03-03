@@ -2,7 +2,7 @@ import java.util.*;
 
 public class RepairDroid
 {
-    public static final String INITIAL_INPUT = "";
+    public static final String INITIAL_INPUT = Integer.toString(DroidMovement.NORTH);
 
     public RepairDroid (Vector<String> instructions, boolean debug)
     {
