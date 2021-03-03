@@ -32,94 +32,68 @@ public class RepairDroid
     {
         while (!_theComputer.hasHalted())
         {
-            Coordinate coord = new Coordinate(from.getX(), from.getY()+1);
+            Coordinate to = new Coordinate(from.getX(), from.getY()+1);
 
-            _theComputer.setInput(new String(DroidMovement.NORTH));
-
-            _theComputer.singleStepExecution();
-
-            if (_theComputer.hasOutput())
+            if (!tryToMove(new String(DroidMovement.NORTH), from, to))
             {
-                int response = Integer.parseInt(_theComputer.getOutput());
+                to = new Coordinate(from.getX(), from.getY()-1);
 
-                switch (response)
+                if (!tryToMove(new String(DroidMovement.SOUTH), from, to))
                 {
-                    case DroidStatus.ARRIVED:
-                    {
-                        _theMap.addContent(coord, TileId.OXYGEN_STATION);
-                        
-                        return true;
-                    }
-                    break;
-                    case DroidStatus.COLLISION:
-                    {
-                        _theMap.addContent(from, TileId.WALL);  // didn't move as we hit a wall
+                    to = new Coordinate(from.getX()+1, from.getY());
 
-                        return false;
-                    }
-                    break;
-                    case DroidStatus.MOVED:
+                    if (!tryToMove(new String(DroidMovement.EAST), from, to))
                     {
-                        _theMap.addContent(coord, TileId.TRAVERSE);
+                        to = new Coordinate(from.getX()-1, from.getY());
 
-                        return recursiveSearch(coord);
+                        return tryToMove(new String(DroidMovement.WEST), from, to));
                     }
-                    break;
-                    default:
-                        System.out.println("Unknown response: "+response);
                 }
             }
-            else
-                System.out.println("Error - no output after move instruction!");
         }
 
         return false;
     }
 
-    private boolean tryToMove (Coordinate from)
+    private boolean tryToMove (String direction, Coordinate from, Coordinate to)
     {
-        while (!_theComputer.hasHalted())
+        _theComputer.setInput(direction);
+
+        _theComputer.singleStepExecution();
+
+        if (_theComputer.hasOutput())
         {
-            Coordinate coord = new Coordinate(from.getX(), from.getY()+1);
+            int response = Integer.parseInt(_theComputer.getOutput());
 
-            _theComputer.setInput(new String(DroidMovement.NORTH));
-
-            _theComputer.singleStepExecution();
-
-            if (_theComputer.hasOutput())
+            switch (response)
             {
-                int response = Integer.parseInt(_theComputer.getOutput());
-
-                switch (response)
+                case DroidStatus.ARRIVED:
                 {
-                    case DroidStatus.ARRIVED:
-                    {
-                        _theMap.addContent(coord, TileId.OXYGEN_STATION);
-                        
-                        return true;
-                    }
-                    break;
-                    case DroidStatus.COLLISION:
-                    {
-                        _theMap.addContent(from, TileId.WALL);  // didn't move as we hit a wall
-
-                        return false;
-                    }
-                    break;
-                    case DroidStatus.MOVED:
-                    {
-                        _theMap.addContent(coord, TileId.TRAVERSE);
-
-                        return recursiveSearch(coord);
-                    }
-                    break;
-                    default:
-                        System.out.println("Unknown response: "+response);
+                    _theMap.addContent(to, TileId.OXYGEN_STATION);
+                    
+                    return true;
                 }
+                break;
+                case DroidStatus.COLLISION:
+                {
+                    _theMap.addContent(from, TileId.WALL);  // didn't move as we hit a wall
+
+                    return false;
+                }
+                break;
+                case DroidStatus.MOVED:
+                {
+                    _theMap.addContent(to, TileId.TRAVERSE);
+
+                    return recursiveSearch(to);
+                }
+                break;
+                default:
+                    System.out.println("Unknown response: "+response);
             }
-            else
-                System.out.println("Error - no output after move instruction!");
         }
+        else
+            System.out.println("Error - no output after move instruction!");
 
         return false;
     }
