@@ -8,10 +8,10 @@ public class RepairDroid
     {
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
-        _location = new Coordinate(0, 0);
-        _visitedLocations = new Vector<Coordinate>();
+        _location = new Coordinate(0, 0);  // starting location
+        _theMap = new Map();
 
-        _visitedLocations.add(_location);
+        _theMap.addContent(_location, TileId.TRAVERSE);
     }
 
     public final int moveToOxygenStation ()
@@ -19,7 +19,7 @@ public class RepairDroid
         int numberOfSteps = 0;
 
         // create a map first!
-        
+
         return numberOfSteps;
     }
 
@@ -32,20 +32,12 @@ public class RepairDroid
     {
         boolean found = false;
 
-        /*
-         * This is NOT right at the moment. Braindump and experiment through code!
-         */
-
-        while (!found)
-        {
-
-        }
-
+        
         return numberOfSteps;
     }
 
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _location;
-    private Vector<Coordinate> _visitedLocations;
+    private Map _theMap;
 }
