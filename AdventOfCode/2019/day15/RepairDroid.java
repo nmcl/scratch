@@ -32,8 +32,19 @@ public class RepairDroid
     {
         boolean found = false;
 
-        
-        return numberOfSteps;
+        while (!found && !_theComputer.hasHalted())
+        {
+            _theComputer.setInput(DroidMovement.NORTH);
+
+            _theComputer.singleStepExecution();
+
+            if (_theComputer.hasOutput())
+            {
+                String response = _theComputer.getOutput();
+            }
+            else
+                System.out.println("Error - no output after move instruction!");
+        }
     }
 
     private boolean _debug;
