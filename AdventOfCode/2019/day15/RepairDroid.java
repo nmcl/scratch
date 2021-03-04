@@ -71,14 +71,20 @@ public class RepairDroid
 
         do
         {
+            System.out.println("**Single step execution!");
+
             _theComputer.singleStepExecution();
         }
         while (!_theComputer.waitingForInput());
+
+        System.out.println("**Waiting for input and output is: "+_theComputer.hasOutput());
 
         if (_theComputer.hasOutput())
         {
             int response = Integer.parseInt(_theComputer.getOutput());
 
+            System.out.println("**Response is "+response);
+            
             switch (response)
             {
                 case DroidStatus.ARRIVED:
