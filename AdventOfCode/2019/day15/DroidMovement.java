@@ -22,6 +22,23 @@ public class DroidMovement
         }
     }
 
+    public static final String toString (String direction)
+    {
+        switch (direction)
+        {
+            case "1":
+                return "NORTH";
+            case "2":
+                return "SOUTH";
+            case "3":
+                return "WEST";
+            case "4":
+                return "EAST";
+            default:
+                return "UNKNOWN";
+        }
+    }
+
     private DroidMovement ()  // prevent instantiation
     {
     }
