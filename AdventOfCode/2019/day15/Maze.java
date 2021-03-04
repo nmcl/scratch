@@ -49,6 +49,11 @@ public class Maze
         return tileType(coord).equals(TileId.UNEXPLORED);
     }
 
+    public final boolean isOxygenStation (Coordinate coord)
+    {
+        return tileType(coord).equals(TileId.OXYGEN_STATION);
+    }
+
     public final String tileType (Coordinate coord)
     {
         int index = _map.indexOf(new Tile(coord));
