@@ -14,11 +14,29 @@ public class Maze
     public final void addContent (Coordinate coord, String type)
     {
         System.out.println("**adding content "+type+" at location "+coord);
-        
+
         // don't add if already present
 
         if (!_map.contains(coord))
+        {
+            if (coord.getX() > _maxX)
+                _maxX = coord.getX();
+            else
+            {
+                if (coord.getX() < _minX)
+                    _minX = coord.getX();
+            }
+
+            if (coord.getY() > _maxY)
+                _maxY = coord.getY();
+            else
+            {
+                if (coord.getY() < _minY)
+                    _minY = coord.getY();
+            }
+
             _map.add(new Tile(coord, type));
+        }
     }
 
     public final boolean visited (Coordinate coord)
