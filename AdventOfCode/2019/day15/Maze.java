@@ -39,6 +39,30 @@ public class Maze
         }
     }
 
+    public final boolean isWall (Coordinate coord)
+    {
+        return tileType(coord).equals(TileId.WALL);
+    }
+
+    public final boolean isUnexplored (Coordinate coord)
+    {
+        return tileType(coord).equals(TileId.UNEXPLORED);
+    }
+
+    public final String tileType (Coordinate coord)
+    {
+        int index = _map.indexOf(new Tile(coord));
+
+        if (index != -1)
+        {
+            Tile t = _map.get(index);
+
+            return t.content();
+        }
+        else
+            return TileId.UNEXPLORED;
+    }
+
     public final boolean visited (Coordinate coord)
     {
         return _map.contains(coord);
