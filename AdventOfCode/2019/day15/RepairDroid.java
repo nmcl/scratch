@@ -8,19 +8,23 @@ public class RepairDroid
     {
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
-        _location = new Coordinate(0, 0);  // starting location
+        _currentLocation = new Coordinate(0, 0);  // starting location
         _theMap = new Maze();
 
-        _theMap.addContent(_location, TileId.TRAVERSE);
+        _theMap.addContent(_currentLocation, TileId.TRAVERSE);
+
+        _visited = null;
     }
 
     public final int moveToOxygenStation ()
     {
         int numberOfSteps = 0;
 
+        _visited = new ArrayList<Coordinate>();
+
         // create a map first!
 
-        recursiveSearch(_location);
+        recursiveSearch(_currentLocation);
 
         return numberOfSteps;
     }
@@ -92,7 +96,8 @@ public class RepairDroid
                 case DroidStatus.ARRIVED:
                 {
                     _theMap.addContent(to, TileId.OXYGEN_STATION);
-                    
+                    _currentLocation = to;
+
                     return true;
                 }
                 case DroidStatus.COLLISION:
@@ -104,7 +109,8 @@ public class RepairDroid
                 case DroidStatus.MOVED:
                 {
                     _theMap.addContent(to, TileId.TRAVERSE);
-
+                    _currentLocation = to;
+                    
                     return recursiveSearch(to);
                 }
                 default:
@@ -117,8 +123,14 @@ public class RepairDroid
         return false;
     }
 
+    private final Coordinate getNextPosition (Coordinate coord, int x, int y)
+    {
+        return new Coordinate(coord.getX() + x, coord.getY() + y);
+    }
+
     private boolean _debug;
     private Intcode _theComputer;
-    private Coordinate _location;
+    private Coordinate _currentLocation;
     private Maze _theMap;
+    private List<Coordinate> _visited;
 }
