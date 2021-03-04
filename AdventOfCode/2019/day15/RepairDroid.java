@@ -36,7 +36,21 @@ public class RepairDroid
 
     private boolean recursiveSearch (Coordinate from)
     {
-        while (!_theComputer.hasHalted())
+        /*
+                if (_theMap.isWall(from) || !_theMap.isUnexplored(from))
+            return false;
+        
+        _currentLocation = from;
+        _visited.add(_currentLocation);
+
+        _theMap.addContent(_currentLocation, TileId.TRAVERSE);
+
+        if (_theMap.isOxygenStation(from))
+            return true;
+
+            */
+            
+        //while (!_theComputer.hasHalted())
         {
             Coordinate to = new Coordinate(from.getX(), from.getY()+1);
 
@@ -110,7 +124,7 @@ public class RepairDroid
                 {
                     _theMap.addContent(to, TileId.TRAVERSE);
                     _currentLocation = to;
-                    
+
                     return recursiveSearch(to);
                 }
                 default:
@@ -123,9 +137,16 @@ public class RepairDroid
         return false;
     }
 
-    private final Coordinate getNextPosition (Coordinate coord, int x, int y)
+    private final Coordinate[] getNextPositions (Coordinate coord)
     {
-        return new Coordinate(coord.getX() + x, coord.getY() + y);
+        Coordinate[] coords = new Coordinate[4];
+
+        coords[0] = new Coordinate(coord.getX(), coord.getY() -1);
+        coords[1] = new Coordinate(coord.getX(), coord.getY() +1);
+        coords[2] = new Coordinate(coord.getX() -1, coord.getY());
+        coords[3] = new Coordinate(coord.getX() +1, coord.getY());
+
+        return coords;
     }
 
     private boolean _debug;
