@@ -13,6 +13,8 @@ public class Maze
 
     public final void addContent (Coordinate coord, String type)
     {
+        System.out.println("**adding content "+type+" at location "+coord);
+        
         // don't add if already present
 
         if (!_map.contains(coord))

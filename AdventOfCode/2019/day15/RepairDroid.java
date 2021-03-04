@@ -67,6 +67,8 @@ public class RepairDroid
 
     private boolean tryToMove (String direction, Coordinate from, Coordinate to)
     {
+        System.out.println("**Trying to move from: "+from+" to "+to+" with direction "+DroidMovement.toString(direction));
+
         _theComputer.setInput(direction);
 
         do
@@ -95,7 +97,7 @@ public class RepairDroid
                 }
                 case DroidStatus.COLLISION:
                 {
-                    _theMap.addContent(from, TileId.WALL);  // didn't move as we hit a wall
+                    _theMap.addContent(to, TileId.WALL);  // didn't move as we hit a wall
 
                     return false;
                 }
