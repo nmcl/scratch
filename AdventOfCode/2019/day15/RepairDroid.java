@@ -83,8 +83,8 @@ public class RepairDroid
         {
             int response = Integer.parseInt(_theComputer.getOutput());
 
-            System.out.println("**Response is "+response);
-            
+            System.out.println("**Response is "+DroidStatus.toString(response));
+
             switch (response)
             {
                 case DroidStatus.ARRIVED:
