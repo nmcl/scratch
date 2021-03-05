@@ -34,6 +34,8 @@ public class RepairDroid
         System.out.println(_theMap);
     }
 
+    // need to reset the computer if we backtrack!
+    
     private boolean recursiveSearch (Coordinate from)
     {
         /*
@@ -49,7 +51,7 @@ public class RepairDroid
             return true;
 
             */
-            
+
         //while (!_theComputer.hasHalted())
         {
             Coordinate to = new Coordinate(from.getX(), from.getY()+1);
