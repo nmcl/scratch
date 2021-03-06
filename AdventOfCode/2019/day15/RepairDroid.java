@@ -38,8 +38,7 @@ public class RepairDroid
     
     private boolean recursiveSearch (Coordinate from)
     {
-        /*
-                if (_theMap.isWall(from) || !_theMap.isUnexplored(from))
+        if (_theMap.isWall(from) || _theMap.isExplored(from))
             return false;
         
         _currentLocation = from;
@@ -49,8 +48,6 @@ public class RepairDroid
 
         if (_theMap.isOxygenStation(from))
             return true;
-
-            */
 
         //while (!_theComputer.hasHalted())
         {
@@ -91,13 +88,7 @@ public class RepairDroid
 
         _theComputer.setInput(direction);
 
-        do
-        {
-            System.out.println("**Single step execution!");
-
-            _theComputer.singleStepExecution();
-        }
-        while (!_theComputer.waitingForInput());
+        _theComputer.executeUntilInput();
 
         System.out.println("**Waiting for input and output is: "+_theComputer.hasOutput());
 
