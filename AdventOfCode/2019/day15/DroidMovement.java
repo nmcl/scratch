@@ -5,6 +5,27 @@ public class DroidMovement
     public static final int WEST = 3;
     public static final int EAST = 4;
 
+    public static final int backup (int direction)
+    {
+        switch (direction)
+        {
+            case NORTH:
+                return SOUTH;
+            case SOUTH:
+                return NORTH;
+            case WEST:
+                return EAST;
+            case EAST:
+                return WEST;
+            default:
+            {
+                System.out.println("Error - invalid direction: "+direction);
+
+                return 0;
+            }
+        }
+    }
+
     public static final String toString (int direction)
     {
         switch (direction)
