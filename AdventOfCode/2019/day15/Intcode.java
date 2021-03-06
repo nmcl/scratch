@@ -88,6 +88,23 @@ public class Intcode
     }
 
     /**
+     * Execute until input required.
+     * 
+     * @return the current status.
+     */
+
+    public int executeUntilInput ()
+    {
+        do
+        {
+            singleStepExecution();
+        }
+        while (!waitingForInput());
+
+        return _status;
+    }
+
+    /**
      * Execute one instruction at a time. If input is required and none is provided
      * then change status and pause anyway.
      * 
