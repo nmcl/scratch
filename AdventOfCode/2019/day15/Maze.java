@@ -48,6 +48,11 @@ public class Maze
     {
         return tileType(coord).equals(TileId.UNEXPLORED);
     }
+    
+    public final boolean isExplored (Coordinate coord)
+    {
+        return !isUnexplored(coord);
+    }
 
     public final boolean isOxygenStation (Coordinate coord)
     {
