@@ -40,7 +40,7 @@ public class RepairDroid
     {
         while (!_theComputer.hasHalted())
         {
-            Coordinate[] moves = getNextPositions(from);  // get all possible moves (Coordinates)
+            Coordinate[] moves = getNextPositions();  // get all possible moves (Coordinates)
 
             System.out.println("\n"+_theMap);
 
@@ -86,10 +86,7 @@ public class RepairDroid
         }
 
         _theComputer.setInput(direction);
-
         _theComputer.executeUntilInput();
-
-        System.out.println("**Waiting for input and output is: "+_theComputer.hasOutput());
 
         if (_theComputer.hasOutput())
         {
@@ -133,16 +130,16 @@ public class RepairDroid
         return false;
     }
 
-    private final Coordinate[] getNextPositions (Coordinate coord)
+    private final Coordinate[] getNextPositions ()
     {
         Coordinate[] coords = new Coordinate[4];
 
         // N, E, S, W
 
-        coords[0] = new Coordinate(coord.getX(), coord.getY() -1);
-        coords[1] = new Coordinate(coord.getX() -1, coord.getY());
-        coords[2] = new Coordinate(coord.getX(), coord.getY() +1);
-        coords[3] = new Coordinate(coord.getX() +1, coord.getY());
+        coords[0] = new Coordinate(_currentLocation.getX(), coord.getY() -1);
+        coords[1] = new Coordinate(_currentLocation.getX() -1, coord.getY());
+        coords[2] = new Coordinate(_currentLocation.getX(), coord.getY() +1);
+        coords[3] = new Coordinate(_currentLocation.getX() +1, coord.getY());
 
         return coords;
     }
