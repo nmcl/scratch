@@ -36,8 +36,10 @@ public class RepairDroid
      * Don't move into areas we've already been.
      */
     
-    private boolean explore ()
+    private int explore ()
     {
+        int response = DroidStatus.ERROR;
+
         while (!_theComputer.hasHalted())
         {
             boolean needToBackup = false;
@@ -51,7 +53,9 @@ public class RepairDroid
              * We search N, E, S and then W.
              */
 
-            if (!tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]))
+            response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]);
+
+            if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
             {
                 System.out.println("**Failed to move NORTH");
 
@@ -59,7 +63,9 @@ public class RepairDroid
 
                 backupDirection = DroidMovement.backupDirection(DroidMovement.EAST);
 
-                if (!tryToMove(String.valueOf(DroidMovement.EAST), moves[1]))
+                response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[1]);
+
+                if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                 {
                     System.out.println("**Failed to move EAST");
 
@@ -67,7 +73,9 @@ public class RepairDroid
 
                     backupDirection = DroidMovement.backupDirection(DroidMovement.SOUTH);
 
-                    if (!tryToMove(String.valueOf(DroidMovement.SOUTH), moves[2]))
+                    response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[2]);
+
+                    if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                     {
                         System.out.println("**Failed to move SOUTH");
 
@@ -75,7 +83,9 @@ public class RepairDroid
 
                         backupDirection = DroidMovement.backupDirection(DroidMovement.WEST);
 
-                        if (!tryToMove(String.valueOf(DroidMovement.WEST), moves[3]))
+                        response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[2]);
+
+                        if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                         {
                             System.out.println("**Failed to move WEST");
 
@@ -89,16 +99,14 @@ public class RepairDroid
                 }
             }
 
-            System.out.println("backup direction "+backupDirection);
-            
             if (needToBackup)
-                backtrack(DroidMovement.toString(backupDirection), loc);
+                backtrack(Integer.toString(backupDirection), loc);
         }
 
-        return _theMap.isOxygenStation(_currentLocation);
+        return response;
     }
 
-    private boolean tryToMove (String direction, Coordinate to)
+    private int tryToMove (String direction, Coordinate to)
     {                
         System.out.println("**Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
@@ -108,7 +116,7 @@ public class RepairDroid
         {
             System.out.println("**Been there already.");
 
-            return false;
+            return DroidStatus.VISITED;
         }
 
         _theComputer.setInput(direction);
@@ -127,13 +135,13 @@ public class RepairDroid
                     _theMap.addContent(to, TileId.OXYGEN_STATION);
                     _currentLocation = to;
 
-                    return true;
+                    return response;
                 }
                 case DroidStatus.COLLISION:
                 {
                     _theMap.addContent(to, TileId.WALL);  // didn't move as we hit a wall
 
-                    return false;
+                    return response;
                 }
                 case DroidStatus.MOVED:
                 {
@@ -153,7 +161,7 @@ public class RepairDroid
         else
             System.out.println("Error - no output after move instruction!");
 
-        return false;
+        return DroidStatus.ERROR;  // error!!
     }
 
     private boolean backtrack (String direction, Coordinate to)
