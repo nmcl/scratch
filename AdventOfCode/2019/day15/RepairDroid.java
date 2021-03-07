@@ -9,7 +9,6 @@ public class RepairDroid
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _currentLocation = new Coordinate(0, 0);  // starting location
-        _previousLocation = null;
         _theMap = new Maze();
 
         _theMap.addContent(_currentLocation, TileId.TRAVERSE);
@@ -77,6 +76,8 @@ public class RepairDroid
     {                
         System.out.println("**Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
+        // if we've already been there then don't move!
+
         if (_theMap.isExplored(to))
         {
             System.out.println("**Been there already.");
@@ -120,7 +121,7 @@ public class RepairDroid
                     _theMap.addContent(to, TileId.TRAVERSE);
                     _currentLocation = to;
 
-                    return explore(to);
+                    return explore();
                 }
                 default:
                     System.out.println("Unknown response: "+response);
@@ -149,6 +150,5 @@ public class RepairDroid
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _currentLocation;
-    private Coordinate _previousLocation;
     private Maze _theMap;
 }
