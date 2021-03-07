@@ -89,6 +89,8 @@ public class RepairDroid
                 }
             }
 
+            System.out.println("backup direction "+backupDirection);
+            
             if (needToBackup)
                 backtrack(DroidMovement.toString(backupDirection), loc);
         }
