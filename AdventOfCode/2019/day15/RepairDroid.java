@@ -20,7 +20,7 @@ public class RepairDroid
 
         // create a map first!
 
-        explore(_currentLocation);
+        explore();
 
         return numberOfSteps;
     }
@@ -47,6 +47,10 @@ public class RepairDroid
             /*
              * We search N, E, S and then W.
              */
+
+            //status = tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]);
+
+            //if (status =)
 
             if (!tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]))
             {
@@ -136,10 +140,10 @@ public class RepairDroid
 
         // N, E, S, W
 
-        coords[0] = new Coordinate(_currentLocation.getX(), coord.getY() -1);
-        coords[1] = new Coordinate(_currentLocation.getX() -1, coord.getY());
-        coords[2] = new Coordinate(_currentLocation.getX(), coord.getY() +1);
-        coords[3] = new Coordinate(_currentLocation.getX() +1, coord.getY());
+        coords[0] = new Coordinate(_currentLocation.getX(), _currentLocation.getY() -1);
+        coords[1] = new Coordinate(_currentLocation.getX() -1, _currentLocation.getY());
+        coords[2] = new Coordinate(_currentLocation.getX(), _currentLocation.getY() +1);
+        coords[3] = new Coordinate(_currentLocation.getX() +1, _currentLocation.getY());
 
         return coords;
     }
