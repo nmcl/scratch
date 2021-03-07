@@ -32,12 +32,33 @@ public class DroidMovement
 
         // N, E, S, W
 
-        coords[0] = new Coordinate(coord.getX(), coord.getY() -1);
-        coords[1] = new Coordinate(coord.getX() -1, coord.getY());
-        coords[2] = new Coordinate(coord.getX(), coord.getY() +1);
-        coords[3] = new Coordinate(coord.getX() +1, coord.getY());
+        coords[0] = getPosition(coord, NORTH);
+        coords[1] = getPosition(coord, EAST);
+        coords[2] = getPosition(coord, SOUTH);
+        coords[3] = getPosition(coord, WEST);
 
         return coords;
+    }
+
+    public static final Coordinate getPosition (Coordinate coord, int direction)
+    {
+        switch (direction)
+        {
+            case NORTH:
+                return new Coordinate(coord.getX(), coord.getY() -1);
+            case EAST:
+                return new Coordinate(coord.getX() -1, coord.getY());
+            case SOUTH:
+                return new Coordinate(coord.getX(), coord.getY() +1);
+            case WEST:
+                return new Coordinate(coord.getX() +1, coord.getY());
+            default:
+            {
+                System.out.println("Unknown direction: "+direction);
+
+                return coord;
+            }
+        }
     }
 
     public static final String toString (int direction)
