@@ -44,7 +44,6 @@ public class RepairDroid
         while (!_theComputer.hasHalted())
         {
             boolean needToBackup = false;
-            Coordinate[] moves = DroidMovement.getNextPositions(_currentLocation);  // get all possible moves (Coordinates)
 
             System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
@@ -52,7 +51,7 @@ public class RepairDroid
              * We search N, E, S and then W.
              */
 
-            response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]);
+            response = tryToMove(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
 
             if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
             {
@@ -60,7 +59,7 @@ public class RepairDroid
 
                 System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
-                response = tryToMove(String.valueOf(DroidMovement.EAST), moves[1]);
+                response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
                 if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                 {
@@ -68,7 +67,7 @@ public class RepairDroid
 
                     System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
-                    response = tryToMove(String.valueOf(DroidMovement.SOUTH), moves[2]);
+                    response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
                     if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                     {
@@ -76,7 +75,7 @@ public class RepairDroid
 
                         System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
-                        response = tryToMove(String.valueOf(DroidMovement.WEST), moves[3]);
+                        response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
                         if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                         {
@@ -189,7 +188,7 @@ public class RepairDroid
 
                 if (response == DroidStatus.MOVED)
                 {
-                    _currentLocation = DroidMovement.getPosition(_currentLocation, backupDirection);
+                    _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
 
                     status = DroidStatus.BACKTRACKED;  // different from normal move response
                 }
