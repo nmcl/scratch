@@ -12,15 +12,11 @@ public class RepairDroid
         _theMap = new Maze();
 
         _theMap.addContent(_currentLocation, TileId.TRAVERSE);
-
-        _visited = null;
     }
 
     public final int moveToOxygenStation ()
     {
         int numberOfSteps = 0;
-
-        _visited = new ArrayList<Coordinate>();
 
         // create a map first!
 
@@ -34,10 +30,9 @@ public class RepairDroid
         System.out.println(_theMap);
     }
 
-    // need to reset the computer if we backtrack!
-    
-    private boolean recursiveSearch (Coordinate from)
+    public void foo ()
     {
+                /*
         if (_theMap.isWall(from) || _theMap.isExplored(from))
             return false;
         
@@ -48,32 +43,36 @@ public class RepairDroid
 
         if (_theMap.isOxygenStation(from))
             return true;
+            */
+    }
 
-        //while (!_theComputer.hasHalted())
+    /*
+     * If we run into a wall then try a different direction.
+     * If we can't move other than backwards then do that.
+     * Don't move into areas we've already been.
+     */
+    
+    private boolean recursiveSearch (Coordinate from)
+    {
+        while (!_theComputer.hasHalted())
         {
-            Coordinate to = new Coordinate(from.getX(), from.getY()+1);
+            Coordinate[] moves = getNextPositions(from);
 
             System.out.println("\n"+_theMap);
 
-            if (!tryToMove(String.valueOf(DroidMovement.NORTH), from, to))
+            if (!tryToMove(String.valueOf(DroidMovement.NORTH), from, moves[0]))
             {
-                to = new Coordinate(from.getX(), from.getY()-1);
-
                 System.out.println("\n"+_theMap);
 
-                if (!tryToMove(String.valueOf(DroidMovement.SOUTH), from, to))
+                if (!tryToMove(String.valueOf(DroidMovement.SOUTH), from, moves[1]))
                 {
-                    to = new Coordinate(from.getX()+1, from.getY());
-
                     System.out.println("\n"+_theMap);
 
-                    if (!tryToMove(String.valueOf(DroidMovement.EAST), from, to))
+                    if (!tryToMove(String.valueOf(DroidMovement.EAST), from, moves[2]))
                     {
-                        to = new Coordinate(from.getX()-1, from.getY());
-
                         System.out.println("\n"+_theMap);
 
-                        return tryToMove(String.valueOf(DroidMovement.WEST), from, to);
+                        return tryToMove(String.valueOf(DroidMovement.WEST), from, moves[3]);
                     }
                 }
             }
@@ -83,8 +82,15 @@ public class RepairDroid
     }
 
     private boolean tryToMove (String direction, Coordinate from, Coordinate to)
-    {
+    {                
         System.out.println("**Trying to move from: "+from+" to "+to+" with direction "+DroidMovement.toString(direction));
+
+        if (_theMap.isExplored(to))
+        {
+            System.out.println("**Been there already.");
+
+            return false;
+        }
 
         _theComputer.setInput(direction);
 
@@ -100,7 +106,7 @@ public class RepairDroid
 
             switch (response)
             {
-                case DroidStatus.ARRIVED:
+                case DroidStatus.ARRIVED:  // arrived at the station!!
                 {
                     _theMap.addContent(to, TileId.OXYGEN_STATION);
                     _currentLocation = to;
@@ -115,6 +121,10 @@ public class RepairDroid
                 }
                 case DroidStatus.MOVED:
                 {
+                    /*
+                     * Droid moved so let's try to move again.
+                     */
+
                     _theMap.addContent(to, TileId.TRAVERSE);
                     _currentLocation = to;
 
@@ -146,5 +156,4 @@ public class RepairDroid
     private Intcode _theComputer;
     private Coordinate _currentLocation;
     private Maze _theMap;
-    private List<Coordinate> _visited;
 }
