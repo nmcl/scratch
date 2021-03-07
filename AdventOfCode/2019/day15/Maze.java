@@ -78,6 +78,30 @@ public class Maze
         return _map.contains(coord);
     }
 
+    public String printWithDroid (Coordinate coord)
+    {
+        String str = "--------\n";
+
+        for (int y = _minY; y <= _maxY; y++)
+        {
+            for (int x = _minX; x <= _maxX; x++)
+            {
+                Coordinate loc = new Coordinate(x, y);
+
+                if (loc.equals(coord))
+                    str += TileId.DROID;
+                else
+                    str += tileType(new Coordinate(x, y));
+            }
+
+            str += "\n";
+        }
+
+        str += "--------\n";
+        
+        return str;
+    }
+
     @Override
     public String toString ()
     {
