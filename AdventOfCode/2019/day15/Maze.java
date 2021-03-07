@@ -83,21 +83,10 @@ public class Maze
     {
         String str = "--------\n";
 
-        for (int y = _minY; y < _maxY; y++)
+        for (int y = _minY; y <= _maxY; y++)
         {
-            for (int x = _minX; x < _maxX; x++)
-            {
-                Tile theTile = new Tile(new Coordinate(x, y));
-                int index = _map.indexOf(theTile);
-
-                if (index != -1)
-                {
-                    theTile = _map.get(index);
-                    str += theTile.content();
-                }
-                else
-                    str += TileId.UNEXPLORED;
-            }
+            for (int x = _minX; x <= _maxX; x++)
+                str += tileType(new Coordinate(x, y));
 
             str += "\n";
         }
