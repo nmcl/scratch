@@ -26,21 +26,7 @@ public class DroidMovement
         }
     }
 
-    public static final Coordinate[] getNextPositions (Coordinate coord)
-    {
-        Coordinate[] coords = new Coordinate[4];
-
-        // N, E, S, W
-
-        coords[0] = getPosition(coord, NORTH);
-        coords[1] = getPosition(coord, EAST);
-        coords[2] = getPosition(coord, SOUTH);
-        coords[3] = getPosition(coord, WEST);
-
-        return coords;
-    }
-
-    public static final Coordinate getPosition (Coordinate coord, int direction)
+    public static final Coordinate getNextPosition (Coordinate coord, int direction)
     {
         switch (direction)
         {
