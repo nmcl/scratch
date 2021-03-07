@@ -20,7 +20,7 @@ public class RepairDroid
 
         // create a map first!
 
-        recursiveSearch(_currentLocation);
+        explore(_currentLocation);
 
         return numberOfSteps;
     }
@@ -30,45 +30,33 @@ public class RepairDroid
         System.out.println(_theMap);
     }
 
-    public void foo ()
-    {
-                /*
-        if (_theMap.isWall(from) || _theMap.isExplored(from))
-            return false;
-        
-        _currentLocation = from;
-        _visited.add(_currentLocation);
-
-        _theMap.addContent(_currentLocation, TileId.TRAVERSE);
-
-        if (_theMap.isOxygenStation(from))
-            return true;
-            */
-    }
-
     /*
      * If we run into a wall then try a different direction.
      * If we can't move other than backwards then do that.
      * Don't move into areas we've already been.
      */
     
-    private boolean recursiveSearch (Coordinate from)
+    private boolean explore (Coordinate from)
     {
         while (!_theComputer.hasHalted())
         {
-            Coordinate[] moves = getNextPositions(from);
+            Coordinate[] moves = getNextPositions(from);  // get all possible moves (Coordinates)
 
             System.out.println("\n"+_theMap);
+
+            /*
+             * We search N, E, S and then W.
+             */
 
             if (!tryToMove(String.valueOf(DroidMovement.NORTH), from, moves[0]))
             {
                 System.out.println("\n"+_theMap);
 
-                if (!tryToMove(String.valueOf(DroidMovement.SOUTH), from, moves[1]))
+                if (!tryToMove(String.valueOf(DroidMovement.EAST), from, moves[1]))
                 {
                     System.out.println("\n"+_theMap);
 
-                    if (!tryToMove(String.valueOf(DroidMovement.EAST), from, moves[2]))
+                    if (!tryToMove(String.valueOf(DroidMovement.SOUTH), from, moves[2]))
                     {
                         System.out.println("\n"+_theMap);
 
@@ -128,7 +116,7 @@ public class RepairDroid
                     _theMap.addContent(to, TileId.TRAVERSE);
                     _currentLocation = to;
 
-                    return recursiveSearch(to);
+                    return explore(to);
                 }
                 default:
                     System.out.println("Unknown response: "+response);
@@ -144,9 +132,11 @@ public class RepairDroid
     {
         Coordinate[] coords = new Coordinate[4];
 
+        // N, E, S, W
+
         coords[0] = new Coordinate(coord.getX(), coord.getY() -1);
-        coords[1] = new Coordinate(coord.getX(), coord.getY() +1);
-        coords[2] = new Coordinate(coord.getX() -1, coord.getY());
+        coords[1] = new Coordinate(coord.getX() -1, coord.getY());
+        coords[2] = new Coordinate(coord.getX(), coord.getY() +1);
         coords[3] = new Coordinate(coord.getX() +1, coord.getY());
 
         return coords;
