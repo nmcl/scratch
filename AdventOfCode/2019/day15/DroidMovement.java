@@ -5,7 +5,7 @@ public class DroidMovement
     public static final int WEST = 3;
     public static final int EAST = 4;
 
-    public static final int backup (int direction)
+    public static final int backupDirection (int direction)
     {
         switch (direction)
         {
@@ -24,6 +24,20 @@ public class DroidMovement
                 return 0;
             }
         }
+    }
+
+    public static final Coordinate[] getNextPositions (Coordinate coord)
+    {
+        Coordinate[] coords = new Coordinate[4];
+
+        // N, E, S, W
+
+        coords[0] = new Coordinate(coord.getX(), coord.getY() -1);
+        coords[1] = new Coordinate(coord.getX() -1, coord.getY());
+        coords[2] = new Coordinate(coord.getX(), coord.getY() +1);
+        coords[3] = new Coordinate(coord.getX() +1, coord.getY());
+
+        return coords;
     }
 
     public static final String toString (int direction)
