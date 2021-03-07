@@ -9,6 +9,7 @@ public class RepairDroid
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _currentLocation = new Coordinate(0, 0);  // starting location
+        _previousLocation = null;
         _theMap = new Maze();
 
         _theMap.addContent(_currentLocation, TileId.TRAVERSE);
@@ -36,7 +37,7 @@ public class RepairDroid
      * Don't move into areas we've already been.
      */
     
-    private boolean explore (Coordinate from)
+    private boolean explore ()
     {
         while (!_theComputer.hasHalted())
         {
@@ -48,30 +49,33 @@ public class RepairDroid
              * We search N, E, S and then W.
              */
 
-            if (!tryToMove(String.valueOf(DroidMovement.NORTH), from, moves[0]))
+            if (!tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]))
             {
-                System.out.println("\n"+_theMap);
+                System.out.println("**Failed to move NORTH");
 
-                if (!tryToMove(String.valueOf(DroidMovement.EAST), from, moves[1]))
+                if (!tryToMove(String.valueOf(DroidMovement.EAST), moves[1]))
                 {
-                    System.out.println("\n"+_theMap);
+                    System.out.println("**Failed to move EAST");
 
-                    if (!tryToMove(String.valueOf(DroidMovement.SOUTH), from, moves[2]))
+                    if (!tryToMove(String.valueOf(DroidMovement.SOUTH), moves[2]))
                     {
-                        System.out.println("\n"+_theMap);
+                        System.out.println("**Failed to move SOUTH");
 
-                        return tryToMove(String.valueOf(DroidMovement.WEST), from, moves[3]);
+                        if (!tryToMove(String.valueOf(DroidMovement.WEST), moves[3]))
+                        {
+                            System.out.println("**Failed to move WEST");
+                        }
                     }
                 }
             }
         }
 
-        return false;
+        return _theMap.isOxygenStation(_currentLocation);
     }
 
-    private boolean tryToMove (String direction, Coordinate from, Coordinate to)
+    private boolean tryToMove (String direction, Coordinate to)
     {                
-        System.out.println("**Trying to move from: "+from+" to "+to+" with direction "+DroidMovement.toString(direction));
+        System.out.println("**Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
         if (_theMap.isExplored(to))
         {
@@ -145,5 +149,6 @@ public class RepairDroid
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _currentLocation;
+    private Coordinate _previousLocation;
     private Maze _theMap;
 }
