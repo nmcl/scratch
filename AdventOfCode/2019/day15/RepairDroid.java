@@ -10,6 +10,7 @@ public class RepairDroid
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _currentLocation = new Coordinate(0, 0);  // starting location
         _theMap = new Maze();
+        _trackTaken = new Stack<Integer>();
 
         _theMap.addContent(_currentLocation, TileId.TRAVERSE);
     }
@@ -44,8 +45,6 @@ public class RepairDroid
         {
             boolean needToBackup = false;
             Coordinate[] moves = DroidMovement.getNextPositions(_currentLocation);  // get all possible moves (Coordinates)
-            Coordinate loc = _currentLocation;
-            int backupDirection = DroidMovement.backupDirection(DroidMovement.NORTH);
 
             System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
@@ -61,9 +60,7 @@ public class RepairDroid
 
                 System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
-                backupDirection = DroidMovement.backupDirection(DroidMovement.EAST);
-
-                response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[1]);
+                response = tryToMove(String.valueOf(DroidMovement.EAST), moves[1]);
 
                 if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                 {
@@ -71,9 +68,7 @@ public class RepairDroid
 
                     System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
-                    backupDirection = DroidMovement.backupDirection(DroidMovement.SOUTH);
-
-                    response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[2]);
+                    response = tryToMove(String.valueOf(DroidMovement.SOUTH), moves[2]);
 
                     if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                     {
@@ -81,9 +76,7 @@ public class RepairDroid
 
                         System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
-                        backupDirection = DroidMovement.backupDirection(DroidMovement.WEST);
-
-                        response = tryToMove(String.valueOf(DroidMovement.NORTH), moves[2]);
+                        response = tryToMove(String.valueOf(DroidMovement.WEST), moves[2]);
 
                         if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                         {
@@ -91,16 +84,29 @@ public class RepairDroid
 
                             System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
+                            /*
+                             * At this point we've exhausted all of the options for moving from
+                             * the current location. Therefore, we need to backtrack.
+                             */
+
                             System.out.println("**NEED TO BACKUP");
 
                             needToBackup = true;
                         }
+                        else
+                            _trackTaken.push(DroidMovement.WEST);  // we moved WEST
                     }
+                    else
+                        _trackTaken.push(DroidMovement.SOUTH);  // we moved SOUTH
                 }
+                else
+                    _trackTaken.push(DroidMovement.EAST);  // we moved EAST
             }
+            else
+                _trackTaken.push(DroidMovement.NORTH);  // we moved NORTH
 
             if (needToBackup)
-                backtrack(Integer.toString(backupDirection), loc);
+                return backtrack();
         }
 
         return response;
@@ -164,36 +170,52 @@ public class RepairDroid
         return DroidStatus.ERROR;  // error!!
     }
 
-    private boolean backtrack (String direction, Coordinate to)
+    private int backtrack ()
     {                
-        boolean moved = false;
-
-        System.out.println("**Trying to backup from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
-
-        _theComputer.setInput(direction);
-        _theComputer.executeUntilInput();
-
-        if (_theComputer.hasOutput())
+        int status = DroidStatus.ERROR;
+        
+        if (_trackTaken.size() > 0)
         {
-            int response = Integer.parseInt(_theComputer.getOutput());
+            int backupDirection = _trackTaken.pop();
 
-            if (response == DroidStatus.MOVED)
+            System.out.println("**Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
+
+            _theComputer.setInput(String.valueOf(backupDirection));
+            _theComputer.executeUntilInput();
+
+            if (_theComputer.hasOutput())
             {
-                _currentLocation = to;
+                int response = Integer.parseInt(_theComputer.getOutput());
 
-                moved = true;
+                if (response == DroidStatus.MOVED)
+                {
+                    _currentLocation = DroidMovement.getPosition(_currentLocation, backupDirection);
+
+                    status = DroidStatus.BACKTRACKED;  // different from normal move response
+                }
+                else
+                    System.out.println("**Unexpected backup response: "+response);
             }
             else
-                System.out.println("**Unexpected backup response: "+response);
+                System.out.println("Error - no output after move instruction!");
         }
         else
-            System.out.println("Error - no output after move instruction!");
+            System.out.println("Cannot backtrack!");
 
-        return moved;
+        return status;
+    }
+
+    private final void printTrack ()
+    {
+        Enumeration<Integer> iter = _trackTaken.elements();
+
+        while (iter.hasMoreElements())
+            System.out.println("Moved "+DroidMovement.toString(iter.nextElement()));
     }
 
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _currentLocation;
     private Maze _theMap;
+    private Stack<Integer> _trackTaken;
 }
