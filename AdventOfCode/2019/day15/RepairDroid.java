@@ -64,7 +64,7 @@ public class RepairDroid
 
                 if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                 {
-                    System.out.println("**Failed to move EAST");
+                    System.out.println("**Failed to move WEST");
 
                     System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
@@ -76,11 +76,11 @@ public class RepairDroid
 
                         System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
-                        response = tryToMove(String.valueOf(DroidMovement.WEST), moves[2]);
+                        response = tryToMove(String.valueOf(DroidMovement.WEST), moves[3]);
 
                         if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                         {
-                            System.out.println("**Failed to move WEST");
+                            System.out.println("**Failed to move EAST");
 
                             System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
