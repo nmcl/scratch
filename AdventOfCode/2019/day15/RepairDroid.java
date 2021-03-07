@@ -27,7 +27,7 @@ public class RepairDroid
 
     public void printGrid ()
     {
-        System.out.println(_theMap);
+        System.out.println(_theMap.printWithDroid(_currentLocation));
     }
 
     /*
@@ -40,9 +40,12 @@ public class RepairDroid
     {
         while (!_theComputer.hasHalted())
         {
-            Coordinate[] moves = getNextPositions();  // get all possible moves (Coordinates)
+            boolean needToBackup = false;
+            Coordinate[] moves = DroidMovement.getNextPositions(_currentLocation);  // get all possible moves (Coordinates)
+            Coordinate loc = _currentLocation;
+            int backupDirection = DroidMovement.backupDirection(DroidMovement.NORTH);
 
-            System.out.println("\n"+_theMap);
+            System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
 
             /*
              * We search N, E, S and then W.
@@ -52,29 +55,42 @@ public class RepairDroid
             {
                 System.out.println("**Failed to move NORTH");
 
-                System.out.println("\n"+_theMap);
+                System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+
+                backupDirection = DroidMovement.backupDirection(DroidMovement.EAST);
 
                 if (!tryToMove(String.valueOf(DroidMovement.EAST), moves[1]))
                 {
                     System.out.println("**Failed to move EAST");
 
-                    System.out.println("\n"+_theMap);
+                    System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+
+                    backupDirection = DroidMovement.backupDirection(DroidMovement.SOUTH);
 
                     if (!tryToMove(String.valueOf(DroidMovement.SOUTH), moves[2]))
                     {
                         System.out.println("**Failed to move SOUTH");
 
-                        System.out.println("\n"+_theMap);
+                        System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+
+                        backupDirection = DroidMovement.backupDirection(DroidMovement.WEST);
 
                         if (!tryToMove(String.valueOf(DroidMovement.WEST), moves[3]))
                         {
                             System.out.println("**Failed to move WEST");
 
+                            System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+
                             System.out.println("**NEED TO BACKUP");
+
+                            needToBackup = true;
                         }
                     }
                 }
             }
+
+            if (needToBackup)
+                backupDirection(backupDirection, loc);
         }
 
         return _theMap.isOxygenStation(_currentLocation);
@@ -138,18 +154,32 @@ public class RepairDroid
         return false;
     }
 
-    private final Coordinate[] getNextPositions ()
-    {
-        Coordinate[] coords = new Coordinate[4];
+    private boolean backup (String direction, Coordinate to)
+    {                
+        boolean moved = false;
 
-        // N, E, S, W
+        System.out.println("**Trying to backup from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
-        coords[0] = new Coordinate(_currentLocation.getX(), _currentLocation.getY() -1);
-        coords[1] = new Coordinate(_currentLocation.getX() -1, _currentLocation.getY());
-        coords[2] = new Coordinate(_currentLocation.getX(), _currentLocation.getY() +1);
-        coords[3] = new Coordinate(_currentLocation.getX() +1, _currentLocation.getY());
+        _theComputer.setInput(direction);
+        _theComputer.executeUntilInput();
 
-        return coords;
+        if (_theComputer.hasOutput())
+        {
+            int response = Integer.parseInt(_theComputer.getOutput());
+
+            if (response == DroidStatus.MOVED)
+            {
+                _currentLocation = to;
+
+                moved = true;
+            }
+            else
+                System.out.println("**Unexpected backup response: "+resonse);
+        }
+        else
+            System.out.println("Error - no output after move instruction!");
+
+        return moved;
     }
 
     private boolean _debug;
