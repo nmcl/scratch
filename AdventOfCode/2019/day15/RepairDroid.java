@@ -90,7 +90,7 @@ public class RepairDroid
             }
 
             if (needToBackup)
-                backupDirection(backupDirection, loc);
+                backtrack(DroidMovement.toString(backupDirection), loc);
         }
 
         return _theMap.isOxygenStation(_currentLocation);
@@ -154,7 +154,7 @@ public class RepairDroid
         return false;
     }
 
-    private boolean backup (String direction, Coordinate to)
+    private boolean backtrack (String direction, Coordinate to)
     {                
         boolean moved = false;
 
@@ -174,7 +174,7 @@ public class RepairDroid
                 moved = true;
             }
             else
-                System.out.println("**Unexpected backup response: "+resonse);
+                System.out.println("**Unexpected backup response: "+response);
         }
         else
             System.out.println("Error - no output after move instruction!");
