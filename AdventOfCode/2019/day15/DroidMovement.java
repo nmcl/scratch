@@ -5,23 +5,23 @@ public class DroidMovement
     public static final int WEST = 3;
     public static final int EAST = 4;
 
-    public static final int backup (int direction)
+    public static final Coordinate backup (int direction, Coordinate coord)
     {
         switch (direction)
         {
             case NORTH:
-                return SOUTH;
+                return new Coordinate(coord.getX(), coord.getY() +1);
             case SOUTH:
-                return NORTH;
+                return new Coordinate(coord.getX(), coord.getY() -1);
             case WEST:
-                return EAST;
+                return new Coordinate(coord.getX() -1, coord.getY());
             case EAST:
-                return WEST;
+                return new Coordinate(coord.getX() +1, coord.getY());
             default:
             {
                 System.out.println("Error - invalid direction: "+direction);
 
-                return 0;
+                return coord;
             }
         }
     }
