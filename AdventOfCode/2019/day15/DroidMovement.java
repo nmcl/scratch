@@ -5,7 +5,7 @@ public class DroidMovement
     public static final int WEST = 3;
     public static final int EAST = 4;
 
-    public static final Coordinate backup (int direction, Coordinate coord)
+    public static final int backup (int direction)
     {
         switch (direction)
         {
