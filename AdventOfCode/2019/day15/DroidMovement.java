@@ -10,18 +10,18 @@ public class DroidMovement
         switch (direction)
         {
             case NORTH:
-                return new Coordinate(coord.getX(), coord.getY() +1);
+                return SOUTH;
             case SOUTH:
-                return new Coordinate(coord.getX(), coord.getY() -1);
+                return NORTH;
             case WEST:
-                return new Coordinate(coord.getX() -1, coord.getY());
+                return EAST;
             case EAST:
-                return new Coordinate(coord.getX() +1, coord.getY());
+                return WEST;
             default:
             {
                 System.out.println("Error - invalid direction: "+direction);
 
-                return coord;
+                return 0;
             }
         }
     }
