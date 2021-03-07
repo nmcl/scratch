@@ -48,25 +48,29 @@ public class RepairDroid
              * We search N, E, S and then W.
              */
 
-            //status = tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]);
-
-            //if (status =)
-
             if (!tryToMove(String.valueOf(DroidMovement.NORTH), moves[0]))
             {
                 System.out.println("**Failed to move NORTH");
+
+                System.out.println("\n"+_theMap);
 
                 if (!tryToMove(String.valueOf(DroidMovement.EAST), moves[1]))
                 {
                     System.out.println("**Failed to move EAST");
 
+                    System.out.println("\n"+_theMap);
+
                     if (!tryToMove(String.valueOf(DroidMovement.SOUTH), moves[2]))
                     {
                         System.out.println("**Failed to move SOUTH");
 
+                        System.out.println("\n"+_theMap);
+
                         if (!tryToMove(String.valueOf(DroidMovement.WEST), moves[3]))
                         {
                             System.out.println("**Failed to move WEST");
+
+                            System.out.println("**NEED TO BACKUP");
                         }
                     }
                 }
