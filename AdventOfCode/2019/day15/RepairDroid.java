@@ -12,7 +12,7 @@ public class RepairDroid
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
 
-        _theMap.addContent(_currentLocation, TileId.TRAVERSE);
+        _theMap.addContent(_currentLocation, TileId.DROID;
     }
 
     public final int moveToOxygenStation ()
@@ -28,7 +28,7 @@ public class RepairDroid
 
     public void printGrid ()
     {
-        System.out.println(_theMap.printWithDroid(_currentLocation));
+        System.out.println(_theMap);
     }
 
     /*
@@ -45,7 +45,7 @@ public class RepairDroid
         {
             boolean needToBackup = false;
 
-            System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+            System.out.println("\n"+_theMap);
 
             /*
              * We search N, E, S and then W.
@@ -57,7 +57,7 @@ public class RepairDroid
             {
                 System.out.println("**Failed to move NORTH");
 
-                System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+                System.out.println("\n"+_theMap);
 
                 response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
@@ -65,7 +65,7 @@ public class RepairDroid
                 {
                     System.out.println("**Failed to move WEST");
 
-                    System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+                    System.out.println("\n"+_theMap);
 
                     response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
@@ -73,7 +73,7 @@ public class RepairDroid
                     {
                         System.out.println("**Failed to move SOUTH");
 
-                        System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+                        System.out.println("\n"+_theMap);
 
                         response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
@@ -81,7 +81,7 @@ public class RepairDroid
                         {
                             System.out.println("**Failed to move EAST");
 
-                            System.out.println("\n"+_theMap.printWithDroid(_currentLocation));
+                            System.out.println("\n"+_theMap);
 
                             /*
                              * At this point we've exhausted all of the options for moving from
@@ -137,7 +137,9 @@ public class RepairDroid
             {
                 case DroidStatus.ARRIVED:  // arrived at the station!!
                 {
+                    _theMap.addContent(_currentLocation, TileId.TRAVERSE);
                     _theMap.addContent(to, TileId.OXYGEN_STATION);
+
                     _currentLocation = to;
 
                     return response;
@@ -154,7 +156,9 @@ public class RepairDroid
                      * Droid moved so let's try to move again.
                      */
 
-                    _theMap.addContent(to, TileId.TRAVERSE);
+                    _theMap.addContent(_currentLocation, TileId.TRAVERSE);
+                    _theMap.addContent(to, TileId.DROID);
+
                     _currentLocation = to;
 
                     return explore();
@@ -188,7 +192,11 @@ public class RepairDroid
 
                 if (response == DroidStatus.MOVED)
                 {
+                    _theMap.addContent(_currentLocation, TileId.TRAVERSE);
+
                     _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
+
+                    _theMap.addContent(_currentLocation, TileId.DROID);
 
                     status = DroidStatus.BACKTRACKED;  // different from normal move response
                 }
