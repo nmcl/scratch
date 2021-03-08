@@ -12,7 +12,7 @@ public class RepairDroid
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
 
-        _theMap.addContent(_currentLocation, TileId.DROID;
+        _theMap.addContent(_currentLocation, TileId.DROID);
     }
 
     public final int moveToOxygenStation ()
