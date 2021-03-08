@@ -142,7 +142,7 @@ public class RepairDroid
 
                     _currentLocation = to;
 
-                    _trackTaken.push(Integer.parseInt(direction));
+                    recordJourney(direction);
 
                     return response;
                 }
@@ -163,7 +163,7 @@ public class RepairDroid
 
                     _currentLocation = to;
 
-                    _trackTaken.push(Integer.parseInt(direction));
+                    recordJourney(direction);
 
                     return explore();
                 }
@@ -189,6 +189,8 @@ public class RepairDroid
 
             System.out.println("**Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
+            System.out.println("unrecording direction "+DroidMovement.toString(backupDirection));
+            
             _theComputer.setInput(String.valueOf(backupDirection));
             _theComputer.executeUntilInput();
 
@@ -216,6 +218,13 @@ public class RepairDroid
             System.out.println("Cannot backtrack!");
 
         return status;
+    }
+
+    private void recordJourney (String direction)
+    {
+        System.out.println("recording direction "+DroidMovement.toString(direction));
+
+        _trackTaken.push(Integer.parseInt(direction));
     }
 
     private final void printTrack ()
