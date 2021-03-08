@@ -12,7 +12,7 @@ public class RepairDroid
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
 
-        _theMap.addContent(_currentLocation, TileId.DROID);
+        _theMap.updateTile(_currentLocation, TileId.DROID);
     }
 
     public final int moveToOxygenStation ()
@@ -137,8 +137,8 @@ public class RepairDroid
             {
                 case DroidStatus.ARRIVED:  // arrived at the station!!
                 {
-                    _theMap.addContent(_currentLocation, TileId.TRAVERSE);
-                    _theMap.addContent(to, TileId.OXYGEN_STATION);
+                    _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
+                    _theMap.updateTile(to, TileId.OXYGEN_STATION);
 
                     _currentLocation = to;
 
@@ -146,7 +146,7 @@ public class RepairDroid
                 }
                 case DroidStatus.COLLISION:
                 {
-                    _theMap.addContent(to, TileId.WALL);  // didn't move as we hit a wall
+                    _theMap.updateTile(to, TileId.WALL);  // didn't move as we hit a wall
 
                     return response;
                 }
@@ -156,8 +156,8 @@ public class RepairDroid
                      * Droid moved so let's try to move again.
                      */
 
-                    _theMap.addContent(_currentLocation, TileId.TRAVERSE);
-                    _theMap.addContent(to, TileId.DROID);
+                    _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
+                    _theMap.updateTile(to, TileId.DROID);
 
                     _currentLocation = to;
 
@@ -192,11 +192,11 @@ public class RepairDroid
 
                 if (response == DroidStatus.MOVED)
                 {
-                    _theMap.addContent(_currentLocation, TileId.TRAVERSE);
+                    _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
 
                     _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
 
-                    _theMap.addContent(_currentLocation, TileId.DROID);
+                    _theMap.updateTile(_currentLocation, TileId.DROID);
 
                     status = DroidStatus.BACKTRACKED;  // different from normal move response
                 }
