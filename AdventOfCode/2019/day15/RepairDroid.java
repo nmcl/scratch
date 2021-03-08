@@ -93,16 +93,16 @@ public class RepairDroid
                             needToBackup = true;
                         }
                         else
-                            _trackTaken.push(DroidMovement.WEST);  // we moved WEST
+                            recordJourney(DroidMovement.WEST);  // we moved WEST
                     }
                     else
-                        _trackTaken.push(DroidMovement.SOUTH);  // we moved SOUTH
+                        recordJourney(DroidMovement.SOUTH);  // we moved SOUTH
                 }
                 else
-                    _trackTaken.push(DroidMovement.EAST);  // we moved EAST
+                    recordJourney(DroidMovement.EAST);  // we moved EAST
             }
             else
-                _trackTaken.push(DroidMovement.NORTH);  // we moved NORTH
+                recordJourney(DroidMovement.NORTH);  // we moved NORTH
 
             if (needToBackup)
                 return backtrack();
@@ -142,7 +142,7 @@ public class RepairDroid
 
                     _currentLocation = to;
 
-                    recordJourney(direction);
+                    recordJourney(Integer.parseInt(direction));
 
                     return response;
                 }
@@ -163,7 +163,7 @@ public class RepairDroid
 
                     _currentLocation = to;
 
-                    recordJourney(direction);
+                    recordJourney(Integer.parseInt(direction));
 
                     return explore();
                 }
@@ -190,7 +190,7 @@ public class RepairDroid
             System.out.println("**Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
             System.out.println("unrecording direction "+DroidMovement.toString(backupDirection));
-            
+
             _theComputer.setInput(String.valueOf(backupDirection));
             _theComputer.executeUntilInput();
 
@@ -220,11 +220,11 @@ public class RepairDroid
         return status;
     }
 
-    private void recordJourney (String direction)
+    private void recordJourney (int direction)
     {
         System.out.println("recording direction "+DroidMovement.toString(direction));
 
-        _trackTaken.push(Integer.parseInt(direction));
+        _trackTaken.push(direction);
     }
 
     private final void printTrack ()
