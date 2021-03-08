@@ -142,6 +142,8 @@ public class RepairDroid
 
                     _currentLocation = to;
 
+                    _trackTaken.push(Integer.parseInt(direction));
+
                     return response;
                 }
                 case DroidStatus.COLLISION:
@@ -161,6 +163,8 @@ public class RepairDroid
 
                     _currentLocation = to;
 
+                    _trackTaken.push(Integer.parseInt(direction));
+
                     return explore();
                 }
                 default:
@@ -177,6 +181,8 @@ public class RepairDroid
     {                
         int status = DroidStatus.ERROR;
         
+        System.out.println("**backtrack trace "+_trackTaken.size());
+
         if (_trackTaken.size() > 0)
         {
             int backupDirection = _trackTaken.pop();
