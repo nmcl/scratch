@@ -11,13 +11,14 @@ public class Maze
         _minY = 0;
     }
 
-    public final void addContent (Coordinate coord, String type)
+    public final void updateTile (Coordinate coord, String type)
     {
         System.out.println("**adding content "+type+" at location "+coord);
 
-        // don't add if already present
-
-        if (!_map.contains(coord))
+        Tile t = new Tile(coord, type);
+        int index = _map.indexOf(t);
+        
+        if (index == -1)
         {
             if (coord.getX() > _maxX)
                 _maxX = coord.getX();
@@ -35,8 +36,10 @@ public class Maze
                     _minY = coord.getY();
             }
 
-            _map.add(new Tile(coord, type));
+            _map.add(t);
         }
+        else
+            _map.set(index, t);
     }
 
     public final boolean isWall (Coordinate coord)
