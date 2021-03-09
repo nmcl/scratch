@@ -9,22 +9,21 @@ public class RepairDroid
         _debug = debug;
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _currentLocation = new Coordinate(0, 0);  // starting location
+        _startingPoint = _currentLocation;
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
         _arrived = false;
 
-        _theMap.updateTile(_currentLocation, TileId.DROID);
+        _theMap.updateTile(_currentLocation, TileId.STARTING_POINT);
     }
 
     public final int moveToOxygenStation ()
     {
-        int numberOfSteps = 0;
-
         // create a map first!
 
         explore();
 
-        return numberOfSteps;
+        return _trackTaken.size();
     }
 
     public void printGrid ()
@@ -142,7 +141,7 @@ public class RepairDroid
                     System.out.println("**FOUND OXYGEN!");
 
                     System.out.println("\n"+_theMap);
-                    
+
                     return response;
                 }
                 case DroidStatus.COLLISION:
@@ -157,7 +156,9 @@ public class RepairDroid
                      * Droid moved so let's try to move again.
                      */
 
-                    _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
+                    if (!_currentLocation.equals(_startingPoint))
+                        _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
+                        
                     _theMap.updateTile(to, TileId.DROID);
 
                     _currentLocation = to;
@@ -246,6 +247,7 @@ public class RepairDroid
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _currentLocation;
+    private Coordinate _startingPoint;
     private Maze _theMap;
     private Stack<Integer> _trackTaken;
     private boolean _arrived;
