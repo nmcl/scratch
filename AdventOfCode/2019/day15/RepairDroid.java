@@ -93,16 +93,28 @@ public class RepairDroid
                             needToBackup = true;
                         }
                         else
-                            recordJourney(DroidMovement.WEST);  // we moved WEST
+                        {
+                            if (response == DroidStatus.MOVED)
+                                recordJourney(DroidMovement.WEST);  // we moved WEST
+                        }
                     }
                     else
-                        recordJourney(DroidMovement.SOUTH);  // we moved SOUTH
+                    {
+                        if (response == DroidStatus.MOVED)
+                            recordJourney(DroidMovement.SOUTH);  // we moved SOUTH
+                    }
                 }
                 else
-                    recordJourney(DroidMovement.EAST);  // we moved EAST
+                {
+                    if (response == DroidStatus.MOVED)
+                        recordJourney(DroidMovement.EAST);  // we moved EAST
+                }
             }
             else
-                recordJourney(DroidMovement.NORTH);  // we moved NORTH
+            {
+                if (response == DroidStatus.MOVED)
+                    recordJourney(DroidMovement.NORTH);  // we moved NORTH
+            }
 
             if (needToBackup)
                 return backtrack();
@@ -144,6 +156,8 @@ public class RepairDroid
 
                     recordJourney(Integer.parseInt(direction));
 
+                    System.out.println("**FOUND OXYGEN!");
+
                     return response;
                 }
                 case DroidStatus.COLLISION:
@@ -182,8 +196,6 @@ public class RepairDroid
         int status = DroidStatus.ERROR;
         
         System.out.println("**backtrack trace");
-
-        printTrack();
 
         if (_trackTaken.size() > 0)
         {
