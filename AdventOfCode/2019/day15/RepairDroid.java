@@ -41,7 +41,7 @@ public class RepairDroid
     {
         int response = DroidStatus.ERROR;
 
-        while (!_theComputer.hasHalted())
+        while (!_theComputer.hasHalted() && (response != DroidStatus.ARRIVED))
         {
             boolean needToBackup = false;
 
@@ -53,8 +53,6 @@ public class RepairDroid
 
             response = tryToMove(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
 
-            System.out.println("**1 got back "+DroidStatus.toString(response));
-
             if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
             {
                 System.out.println("**Failed to move NORTH");
@@ -62,8 +60,6 @@ public class RepairDroid
                 System.out.println("\n"+_theMap);
 
                 response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
-
-                System.out.println("**2 got back "+DroidStatus.toString(response));
 
                 if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                 {
@@ -73,8 +69,6 @@ public class RepairDroid
 
                     response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
-                    System.out.println("**3 got back "+DroidStatus.toString(response));
-
                     if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                     {
                         System.out.println("**Failed to move SOUTH");
@@ -82,8 +76,6 @@ public class RepairDroid
                         System.out.println("\n"+_theMap);
 
                         response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
-
-                        System.out.println("**4 got back "+DroidStatus.toString(response));
 
                         if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                         {
@@ -116,8 +108,6 @@ public class RepairDroid
                 return backtrack();
         }
 
-        System.out.println("**replying with "+DroidStatus.toString(response));
-        
         return response;
     }
 
