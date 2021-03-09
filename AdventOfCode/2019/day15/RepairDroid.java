@@ -225,7 +225,7 @@ public class RepairDroid
     private void recordJourney (int direction)
     {
         System.out.println("recording direction "+DroidMovement.toString(direction));
-        System.out.println("backup direction would be "+DroidMovement.backupDirection(direction));
+        System.out.println("backup direction would be "+DroidMovement.toString(DroidMovement.backupDirection(direction)));
         System.out.println("Droid at "+_currentLocation);
 
         _trackTaken.push(direction);
