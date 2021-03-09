@@ -181,11 +181,13 @@ public class RepairDroid
     {                
         int status = DroidStatus.ERROR;
         
-        System.out.println("**backtrack trace "+_trackTaken.size());
+        System.out.println("**backtrack trace");
+
+        printTrack();
 
         if (_trackTaken.size() > 0)
         {
-            int backupDirection = _trackTaken.pop();
+            int backupDirection = DroidMovement.backupDirection(_trackTaken.pop());
 
             System.out.println("**Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
@@ -219,6 +221,10 @@ public class RepairDroid
         else
             System.out.println("Cannot backtrack!");
 
+        System.out.println("backtrack");
+
+        printTrack();
+
         return status;
     }
 
@@ -230,6 +236,8 @@ public class RepairDroid
 
         _trackTaken.push(direction);
 
+        System.out.println("recordJourney");
+
         printTrack();
     }
 
@@ -238,7 +246,7 @@ public class RepairDroid
         Enumeration<Integer> iter = _trackTaken.elements();
 
         System.out.println("Path taken so far ...");
-        
+
         while (iter.hasMoreElements())
             System.out.println("Moved "+DroidMovement.toString(iter.nextElement()));
     }
