@@ -11,6 +11,7 @@ public class RepairDroid
         _currentLocation = new Coordinate(0, 0);  // starting location
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
+        _arrived = false;
 
         _theMap.updateTile(_currentLocation, TileId.DROID);
     }
@@ -39,11 +40,10 @@ public class RepairDroid
     
     private int explore ()
     {
-        int response = DroidStatus.ERROR;
-
-        while (!_theComputer.hasHalted() && (response != DroidStatus.ARRIVED))
+        while (!_theComputer.hasHalted() && !_arrived)
         {
             boolean needToBackup = false;
+            int response = DroidStatus.ERROR;
 
             System.out.println("\n"+_theMap);
 
@@ -143,6 +143,8 @@ public class RepairDroid
                     _currentLocation = to;
 
                     recordJourney(Integer.parseInt(direction));
+
+                    _arrived = true;
 
                     System.out.println("**FOUND OXYGEN!");
 
@@ -248,4 +250,5 @@ public class RepairDroid
     private Coordinate _currentLocation;
     private Maze _theMap;
     private Stack<Integer> _trackTaken;
+    private boolean _arrived;
 }
