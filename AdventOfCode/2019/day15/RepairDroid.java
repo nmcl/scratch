@@ -221,10 +221,6 @@ public class RepairDroid
         else
             System.out.println("Cannot backtrack!");
 
-        System.out.println("backtrack");
-
-        printTrack();
-
         return status;
     }
 
@@ -235,10 +231,6 @@ public class RepairDroid
         System.out.println("Droid at "+_currentLocation);
 
         _trackTaken.push(direction);
-
-        System.out.println("recordJourney");
-
-        printTrack();
     }
 
     private final void printTrack ()
