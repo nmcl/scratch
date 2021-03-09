@@ -93,28 +93,16 @@ public class RepairDroid
                             needToBackup = true;
                         }
                         else
-                        {
-                            if (response == DroidStatus.MOVED)
-                                recordJourney(DroidMovement.WEST);  // we moved WEST
-                        }
+                            recordJourney(DroidMovement.WEST);  // we moved WEST
                     }
                     else
-                    {
-                        if (response == DroidStatus.MOVED)
-                            recordJourney(DroidMovement.SOUTH);  // we moved SOUTH
-                    }
+                        recordJourney(DroidMovement.SOUTH);  // we moved SOUTH
                 }
                 else
-                {
-                    if (response == DroidStatus.MOVED)
-                        recordJourney(DroidMovement.EAST);  // we moved EAST
-                }
+                    recordJourney(DroidMovement.EAST);  // we moved EAST
             }
             else
-            {
-                if (response == DroidStatus.MOVED)
-                    recordJourney(DroidMovement.NORTH);  // we moved NORTH
-            }
+                recordJourney(DroidMovement.NORTH);  // we moved NORTH
 
             if (needToBackup)
                 return backtrack();
