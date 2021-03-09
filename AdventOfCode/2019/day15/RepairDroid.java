@@ -207,6 +207,8 @@ public class RepairDroid
                     _theMap.updateTile(_currentLocation, TileId.DROID);
 
                     status = DroidStatus.BACKTRACKED;  // different from normal move response
+
+                    System.out.println("Droid now at "+_currentLocation);
                 }
                 else
                     System.out.println("**Unexpected backup response: "+response);
@@ -223,6 +225,8 @@ public class RepairDroid
     private void recordJourney (int direction)
     {
         System.out.println("recording direction "+DroidMovement.toString(direction));
+        System.out.println("backup direction would be "+DroidMovement.backupDirection(direction));
+        System.out.println("Droid at "+_currentLocation);
 
         _trackTaken.push(direction);
     }
