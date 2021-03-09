@@ -229,12 +229,16 @@ public class RepairDroid
         System.out.println("Droid at "+_currentLocation);
 
         _trackTaken.push(direction);
+
+        printTrack();
     }
 
     private final void printTrack ()
     {
         Enumeration<Integer> iter = _trackTaken.elements();
 
+        System.out.println("Path taken so far ...");
+        
         while (iter.hasMoreElements())
             System.out.println("Moved "+DroidMovement.toString(iter.nextElement()));
     }
