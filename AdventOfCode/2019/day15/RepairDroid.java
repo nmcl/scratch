@@ -40,10 +40,11 @@ public class RepairDroid
     
     private int explore ()
     {
+        int response = DroidStatus.ERROR;
+
         while (!_theComputer.hasHalted() && !_arrived)
         {
             boolean needToBackup = false;
-            int response = DroidStatus.ERROR;
 
             System.out.println("\n"+_theMap);
 
@@ -92,17 +93,9 @@ public class RepairDroid
 
                             needToBackup = true;
                         }
-                        else
-                            recordJourney(DroidMovement.WEST);  // we moved WEST
                     }
-                    else
-                        recordJourney(DroidMovement.SOUTH);  // we moved SOUTH
                 }
-                else
-                    recordJourney(DroidMovement.EAST);  // we moved EAST
             }
-            else
-                recordJourney(DroidMovement.NORTH);  // we moved NORTH
 
             if (needToBackup)
                 return backtrack();
@@ -148,6 +141,8 @@ public class RepairDroid
 
                     System.out.println("**FOUND OXYGEN!");
 
+                    System.out.println("\n"+_theMap);
+                    
                     return response;
                 }
                 case DroidStatus.COLLISION:
@@ -228,11 +223,14 @@ public class RepairDroid
 
     private void recordJourney (int direction)
     {
-        System.out.println("recording direction "+DroidMovement.toString(direction));
-        System.out.println("backup direction would be "+DroidMovement.toString(DroidMovement.backupDirection(direction)));
-        System.out.println("Droid at "+_currentLocation);
+        if (!_arrived)
+        {
+            System.out.println("recording direction "+DroidMovement.toString(direction));
+            System.out.println("backup direction would be "+DroidMovement.toString(DroidMovement.backupDirection(direction)));
+            System.out.println("Droid at "+_currentLocation);
 
-        _trackTaken.push(direction);
+            _trackTaken.push(direction);
+        }
     }
 
     private final void printTrack ()
