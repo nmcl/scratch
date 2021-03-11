@@ -19,8 +19,6 @@ public class RepairDroid
 
     public final int moveToOxygenStation ()
     {
-        // create a map first!
-
         explore();
 
         return _trackTaken.size();
@@ -45,7 +43,8 @@ public class RepairDroid
         {
             boolean needToBackup = false;
 
-            System.out.println("\n"+_theMap);
+            if (_debug)
+                System.out.println("\n"+_theMap);
 
             /*
              * We search N, E, S and then W.
@@ -55,40 +54,34 @@ public class RepairDroid
 
             if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
             {
-                System.out.println("**Failed to move NORTH");
-
-                System.out.println("\n"+_theMap);
+                if (_debug)
+                    System.out.println("\n"+_theMap);
 
                 response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
                 if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                 {
-                    System.out.println("**Failed to move WEST");
-
-                    System.out.println("\n"+_theMap);
+                    if (_debug)
+                        System.out.println("\n"+_theMap);
 
                     response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
                     if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                     {
-                        System.out.println("**Failed to move SOUTH");
-
-                        System.out.println("\n"+_theMap);
+                        if (_debug)
+                            System.out.println("\n"+_theMap);
 
                         response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
                         if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                         {
-                            System.out.println("**Failed to move EAST");
-
-                            System.out.println("\n"+_theMap);
+                            if (_debug)
+                                System.out.println("\n"+_theMap);
 
                             /*
                              * At this point we've exhausted all of the options for moving from
                              * the current location. Therefore, we need to backtrack.
                              */
-
-                            System.out.println("**NEED TO BACKUP");
 
                             needToBackup = true;
                         }
@@ -104,17 +97,14 @@ public class RepairDroid
     }
 
     private int tryToMove (String direction, Coordinate to)
-    {                
-        System.out.println("**Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
+    {          
+        if (_debug)      
+            System.out.println("Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
         // if we've already been there then don't move!
 
         if (_theMap.isExplored(to))
-        {
-            System.out.println("**Been there already.");
-
             return DroidStatus.VISITED;
-        }
 
         _theComputer.setInput(direction);
         _theComputer.executeUntilInput();
@@ -123,7 +113,8 @@ public class RepairDroid
         {
             int response = Integer.parseInt(_theComputer.getOutput());
 
-            System.out.println("**Response is "+DroidStatus.toString(response));
+            if (_debug)
+                System.out.println("Response is "+DroidStatus.toString(response));
 
             switch (response)
             {
@@ -138,9 +129,12 @@ public class RepairDroid
 
                     _arrived = true;
 
-                    System.out.println("**FOUND OXYGEN!");
+                    if (_debug)
+                    {
+                        System.out.println("FOUND OXYGEN!");
 
-                    System.out.println("\n"+_theMap);
+                        System.out.println("\n"+_theMap);
+                    }
 
                     return response;
                 }
@@ -158,7 +152,7 @@ public class RepairDroid
 
                     if (!_currentLocation.equals(_startingPoint))
                         _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
-                        
+
                     _theMap.updateTile(to, TileId.DROID);
 
                     _currentLocation = to;
@@ -180,16 +174,13 @@ public class RepairDroid
     private int backtrack ()
     {                
         int status = DroidStatus.ERROR;
-        
-        System.out.println("**backtrack trace");
 
         if (_trackTaken.size() > 0)
         {
             int backupDirection = DroidMovement.backupDirection(_trackTaken.pop());
 
-            System.out.println("**Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
-
-            System.out.println("unrecording direction "+DroidMovement.toString(backupDirection));
+            if (_debug)
+                System.out.println("Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
             _theComputer.setInput(String.valueOf(backupDirection));
             _theComputer.executeUntilInput();
@@ -207,8 +198,6 @@ public class RepairDroid
                     _theMap.updateTile(_currentLocation, TileId.DROID);
 
                     status = DroidStatus.BACKTRACKED;  // different from normal move response
-
-                    System.out.println("Droid now at "+_currentLocation);
                 }
                 else
                     System.out.println("**Unexpected backup response: "+response);
@@ -225,13 +214,7 @@ public class RepairDroid
     private void recordJourney (int direction)
     {
         if (!_arrived)
-        {
-            System.out.println("recording direction "+DroidMovement.toString(direction));
-            System.out.println("backup direction would be "+DroidMovement.toString(DroidMovement.backupDirection(direction)));
-            System.out.println("Droid at "+_currentLocation);
-
             _trackTaken.push(direction);
-        }
     }
 
     private final void printTrack ()
