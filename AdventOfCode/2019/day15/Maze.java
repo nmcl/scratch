@@ -13,8 +13,6 @@ public class Maze
 
     public final void updateTile (Coordinate coord, String type)
     {
-        System.out.println("**adding content "+type+" at location "+coord);
-
         Tile t = new Tile(coord, type);
         int index = _map.indexOf(t);
         
