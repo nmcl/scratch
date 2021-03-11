@@ -24,6 +24,11 @@ public class RepairDroid
         return _trackTaken.size();
     }
 
+    public final int mapEntireMaze ()
+    {
+        return 0;
+    }
+
     public void printGrid ()
     {
         System.out.println(_theMap);
