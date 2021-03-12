@@ -60,7 +60,7 @@ public class RepairDroid
         {
             boolean needToBackup = false;
 
-            if (_debug)
+            //if (_debug)
                 System.out.println("\n"+_theMap);
 
             /*
@@ -71,28 +71,28 @@ public class RepairDroid
 
             if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
             {
-                if (_debug)
+                //if (_debug)
                     System.out.println("\n"+_theMap);
 
                 response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
                 if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("\n"+_theMap);
 
                     response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
                     if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                     {
-                        if (_debug)
+                        //if (_debug)
                             System.out.println("\n"+_theMap);
 
                         response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
                         if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
                         {
-                            if (_debug)
+                            //if (_debug)
                                 System.out.println("\n"+_theMap);
 
                             /*
