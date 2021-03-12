@@ -4,6 +4,9 @@ public class RepairDroid
 {
     public static final String INITIAL_INPUT = Integer.toString(DroidMovement.NORTH);
 
+    private static final int EXPLORE_UNTIL_OXYGEN = 1;
+    private static final int EXPLORE_ENTIRE_MAZE = 2;
+
     public RepairDroid (Vector<String> instructions, boolean debug)
     {
         _debug = debug;
@@ -12,21 +15,30 @@ public class RepairDroid
         _startingPoint = _currentLocation;
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
-        _arrived = false;
+        _foundOxygenStation = false;
+        _exploreOption = EXPLORE_UNTIL_OXYGEN;
 
         _theMap.updateTile(_currentLocation, TileId.STARTING_POINT);
     }
 
     public final int moveToOxygenStation ()
     {
+        _exploreOption = EXPLORE_UNTIL_OXYGEN;
+
         explore();
 
         return _trackTaken.size();
     }
 
-    public final int mapEntireMaze ()
+    public final boolean mapEntireMaze ()
     {
-        return 0;
+        boolean mapped = false;
+
+        _exploreOption = EXPLORE_ENTIRE_MAZE;
+
+        explore();
+
+        return mapped;
     }
 
     public void printGrid ()
@@ -44,7 +56,7 @@ public class RepairDroid
     {
         int response = DroidStatus.ERROR;
 
-        while (!_theComputer.hasHalted() && !_arrived)
+        while (!_theComputer.hasHalted() && !stopSearch())
         {
             boolean needToBackup = false;
 
@@ -132,7 +144,7 @@ public class RepairDroid
 
                     recordJourney(Integer.parseInt(direction));
 
-                    _arrived = true;
+                    _foundOxygenStation = true;
 
                     if (_debug)
                     {
@@ -218,7 +230,7 @@ public class RepairDroid
 
     private void recordJourney (int direction)
     {
-        if (!_arrived)
+        if (!stopSearch())
             _trackTaken.push(direction);
     }
 
@@ -232,11 +244,20 @@ public class RepairDroid
             System.out.println("Moved "+DroidMovement.toString(iter.nextElement()));
     }
 
+    private final boolean stopSearch ()
+    {
+        if ((_exploreOption == EXPLORE_UNTIL_OXYGEN) && (_foundOxygenStation))
+            return true;
+        else
+            return false;
+    }
+
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _currentLocation;
     private Coordinate _startingPoint;
     private Maze _theMap;
     private Stack<Integer> _trackTaken;
-    private boolean _arrived;
+    private boolean _foundOxygenStation;
+    private int _exploreOption;
 }
