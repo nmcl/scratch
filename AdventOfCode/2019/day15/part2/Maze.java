@@ -79,6 +79,34 @@ public class Maze
         return _map.contains(coord);
     }
 
+    public final int[] getDimensons ()
+    {
+        int[] dims = new int[4];
+
+        dims[0] = _minX;
+        dims[1] = _maxX;
+        dims[2] = _minY;
+        dims[3] = _maxY;
+
+        return dims;
+    }
+
+    public int unexploredTotal ()
+    {
+        int total = 0;
+
+        for (int y = _minY; y <= _maxY; y++)
+        {
+            for (int x = _minX; x <= _maxX; x++)
+            {
+                if (tileType(new Coordinate(x, y)).equals(TileId.UNEXPLORED))
+                    total++;
+            }
+        }
+
+        return total;
+    }
+
     @Override
     public String toString ()
     {
