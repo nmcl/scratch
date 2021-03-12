@@ -110,6 +110,11 @@ public class RepairDroid
                 return backtrack();
         }
 
+        if (_theComputer.status() == Status.HALTED)
+            response = DroidStatus.HALTED;
+
+        System.out.println("**DroidStatus "+DroidStatus.toString(response));
+
         return response;
     }
 

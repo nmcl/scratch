@@ -5,6 +5,7 @@ public class DroidStatus
     public static final int ARRIVED = 2;
     public static final int VISITED = 3;
     public static final int BACKTRACKED = 4;
+    public static final int HALTED = 5;
     public static final int ERROR = 10;
 
     public static final String toString (int status)
@@ -21,6 +22,8 @@ public class DroidStatus
                 return "VISITED";
             case BACKTRACKED:
                 return "BACKTRACKED";
+            case HALTED:
+                return "HALTED";
             default:
                 return "ERROR";
         }
