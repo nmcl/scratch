@@ -217,7 +217,7 @@ public class RepairDroid
                     status = DroidStatus.BACKTRACKED;  // different from normal move response
                 }
                 else
-                    System.out.println("**Unexpected backup response: "+response);
+                    System.out.println("Unexpected backup response: "+response);
             }
             else
                 System.out.println("Error - no output after move instruction!");
