@@ -38,6 +38,16 @@ public class RepairDroid
 
         explore();
 
+        /*
+         * At this stage we've mostly mapped the maze but
+         * there may be areas remaining so go check them
+         * out.
+         */
+
+        //mapRemainder();
+
+        System.out.println("**unexplored "+_theMap.unexploredTotal());
+
         return mapped;
     }
 
@@ -53,6 +63,81 @@ public class RepairDroid
      */
     
     private int explore ()
+    {
+        int response = DroidStatus.ERROR;
+
+        while (!_theComputer.hasHalted() && !stopSearch())
+        {
+            boolean needToBackup = false;
+
+            //if (_debug)
+                System.out.println("\n"+_theMap);
+
+            /*
+             * We search N, E, S and then W.
+             */
+
+            response = tryToMove(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
+
+            if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+            {
+                //if (_debug)
+                    System.out.println("\n"+_theMap);
+
+                response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
+
+                if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                {
+                    //if (_debug)
+                        System.out.println("\n"+_theMap);
+
+                    response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
+
+                    if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                    {
+                        //if (_debug)
+                            System.out.println("\n"+_theMap);
+
+                        response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
+
+                        if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                        {
+                            //if (_debug)
+                                System.out.println("\n"+_theMap);
+
+                            /*
+                             * At this point we've exhausted all of the options for moving from
+                             * the current location. Therefore, we need to backtrack.
+                             */
+
+                            needToBackup = true;
+                        }
+                    }
+                }
+            }
+
+            if (_theComputer.status() == Status.HALTED)
+                response = DroidStatus.HALTED;
+
+            System.out.println("**DroidStatus "+DroidStatus.toString(response));
+            System.out.println("**search status "+stopSearch());
+            System.out.println("**and "+needToBackup);
+            System.out.println("**and "+Status.toString(_theComputer.status()));
+            System.out.println("**location "+_currentLocation);
+
+            if (needToBackup)
+                return backtrack();
+        }
+
+        if (_theComputer.status() == Status.HALTED)
+            response = DroidStatus.HALTED;
+
+        System.out.println("**DroidStatus "+DroidStatus.toString(response));
+
+        return response;
+    }
+
+    private int mapRemainder ()
     {
         int response = DroidStatus.ERROR;
 
