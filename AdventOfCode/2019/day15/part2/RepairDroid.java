@@ -44,7 +44,7 @@ public class RepairDroid
          * out.
          */
 
-        //mapRemainder();
+        mapRemainder();
 
         System.out.println("**unexplored "+_theMap.unexploredTotal());
 
@@ -148,34 +148,30 @@ public class RepairDroid
             //if (_debug)
                 System.out.println("\n"+_theMap);
 
-            /*
-             * We search N, E, S and then W.
-             */
-
             response = tryToMove(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
 
-            if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+            if (response != DroidStatus.MOVED)
             {
                 //if (_debug)
                     System.out.println("\n"+_theMap);
 
                 response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
-                if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                if (response != DroidStatus.MOVED)
                 {
                     //if (_debug)
                         System.out.println("\n"+_theMap);
 
                     response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
-                    if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                    if (response != DroidStatus.MOVED)
                     {
                         //if (_debug)
                             System.out.println("\n"+_theMap);
 
                         response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
-                        if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                        if (response != DroidStatus.MOVED)
                         {
                             //if (_debug)
                                 System.out.println("\n"+_theMap);
@@ -194,7 +190,7 @@ public class RepairDroid
             if (_theComputer.status() == Status.HALTED)
                 response = DroidStatus.HALTED;
 
-            System.out.println("**DroidStatus "+DroidStatus.toString(response));
+            System.out.println("**Remainer DroidStatus "+DroidStatus.toString(response));
             System.out.println("**search status "+stopSearch());
             System.out.println("**and "+needToBackup);
             System.out.println("**and "+Status.toString(_theComputer.status()));
