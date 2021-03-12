@@ -106,6 +106,15 @@ public class RepairDroid
                 }
             }
 
+            if (_theComputer.status() == Status.HALTED)
+                response = DroidStatus.HALTED;
+
+            System.out.println("**DroidStatus "+DroidStatus.toString(response));
+            System.out.println("**search status "+stopSearch());
+            System.out.println("**and "+needToBackup);
+            System.out.println("**and "+Status.toString(_theComputer.status()));
+            System.out.println("**location "+_currentLocation);
+            
             if (needToBackup)
                 return backtrack();
         }
