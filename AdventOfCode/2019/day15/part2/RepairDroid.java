@@ -58,28 +58,28 @@ public class RepairDroid
 
             response = tryToMove(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
 
-            if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+            if (tryNextLocation(response))
             {
                 //if (_debug)
                     System.out.println("\n"+_theMap);
 
                 response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
-                if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                if (tryNextLocation(response))
                 {
                     //if (_debug)
                         System.out.println("\n"+_theMap);
 
                     response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
-                    if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                    if (tryNextLocation(response))
                     {
                         //if (_debug)
                             System.out.println("\n"+_theMap);
 
                         response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
-                        if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                        if (tryNextLocation(response))
                         {
                             //if (_debug)
                                 System.out.println("\n"+_theMap);
