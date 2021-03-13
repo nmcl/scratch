@@ -255,6 +255,24 @@ public class RepairDroid
             return false;
     }
 
+    private final boolean tryNextLocation (int response)
+    {
+        boolean result = false;
+
+        if (_exploreOption == EXPLORE_UNTIL_OXYGEN)
+        {
+            if ((response != DroidStatus.ARRIVED) && (response != DroidStatus.MOVED))
+                result = true;
+        }
+        else
+        {
+            if (response != DroidStatus.MOVED)
+                result = true;
+        }
+        
+        return result;
+    }
+
     private boolean _debug;
     private Intcode _theComputer;
     private Coordinate _currentLocation;
