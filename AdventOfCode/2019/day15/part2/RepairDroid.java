@@ -125,7 +125,9 @@ public class RepairDroid
     }
 
     private int tryToMove (String direction, Coordinate to)
-    {          
+    {
+        Coordinate c = new Coordinate(-16, -20);  // debug
+
         if (_debug)      
             System.out.println("Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
@@ -228,7 +230,7 @@ public class RepairDroid
                         if (!_currentLocation.equals(_oxygenStation))
                             _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
                     }
-                    
+
                     _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
 
                     _theMap.updateTile(_currentLocation, TileId.DROID);
