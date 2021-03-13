@@ -111,23 +111,20 @@ public class RepairDroid
             System.out.println("**and "+needToBackup);
             System.out.println("**and "+Status.toString(_theComputer.status()));
             System.out.println("**location "+_currentLocation);
+            System.out.println("**backtrack size "+_trackTaken.size());
 
             if (needToBackup)
-                return backtrack();
+                backtrack();
         }
 
         if (_theComputer.status() == Status.HALTED)
             response = DroidStatus.HALTED;
-
-        System.out.println("**DroidStatus "+DroidStatus.toString(response));
 
         return response;
     }
 
     private int tryToMove (String direction, Coordinate to)
     {
-        Coordinate c = new Coordinate(-16, -20);  // debug
-
         if (_debug)      
             System.out.println("Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
@@ -136,9 +133,6 @@ public class RepairDroid
         if (_theMap.isExplored(to))
             return DroidStatus.VISITED;
 
-        if (to.equals(c))
-            direction = "4";
-
         _theComputer.setInput(direction);
         _theComputer.executeUntilInput();
 
@@ -146,7 +140,7 @@ public class RepairDroid
         {
             int response = Integer.parseInt(_theComputer.getOutput());
 
-            //if (_debug)
+            if (_debug)
                 System.out.println("Response is "+DroidStatus.toString(response));
 
             switch (response)
