@@ -58,6 +58,10 @@ public class RemoteControl
         instructions.addAll(Arrays.asList(values));
 
         RepairDroid droid = new RepairDroid(instructions, debug);
+        int steps = droid.moveToOxygenStation();
 
+        // steps?
+        
+        System.out.println("Number of steps to reach oxygen station: "+steps);
     }
 }
