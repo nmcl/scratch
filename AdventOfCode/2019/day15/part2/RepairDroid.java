@@ -183,11 +183,6 @@ public class RepairDroid
                     {
                         if (!_currentLocation.equals(_oxygenStation))
                             _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
-                        else
-                        {
-                            System.out.println("Rwriting oxygen");
-                            _theMap.updateTile(_currentLocation, TileId.OXYGEN_STATION);
-                        }
                     }
 
                     _theMap.updateTile(to, TileId.DROID);
@@ -228,8 +223,12 @@ public class RepairDroid
 
                 if (response == DroidStatus.MOVED)
                 {
-                    _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
-
+                    if (!_currentLocation.equals(_startingPoint))
+                    {
+                        if (!_currentLocation.equals(_oxygenStation))
+                            _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
+                    }
+                    
                     _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
 
                     _theMap.updateTile(_currentLocation, TileId.DROID);
