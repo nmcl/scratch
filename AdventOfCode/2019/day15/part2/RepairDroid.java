@@ -13,6 +13,7 @@ public class RepairDroid
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _currentLocation = new Coordinate(0, 0);  // starting location
         _startingPoint = _currentLocation;
+        _oxygenStation = null;
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
         _foundOxygenStation = false;
@@ -151,14 +152,15 @@ public class RepairDroid
                     _theMap.updateTile(to, TileId.OXYGEN_STATION);
 
                     _currentLocation = to;
+                    _oxygenStation = to;
 
                     recordJourney(Integer.parseInt(direction));
 
                     _foundOxygenStation = true;
 
-                    if (_debug)
+                    //if (_debug)
                     {
-                        System.out.println("FOUND OXYGEN!");
+                        System.out.println("Found Oxygen Station at: "+to);
 
                         System.out.println("\n"+_theMap);
                     }
@@ -178,7 +180,15 @@ public class RepairDroid
                      */
 
                     if (!_currentLocation.equals(_startingPoint))
-                        _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
+                    {
+                        if (!_currentLocation.equals(_oxygenStation))
+                            _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
+                        else
+                        {
+                            System.out.println("Rwriting oxygen");
+                            _theMap.updateTile(_currentLocation, TileId.OXYGEN_STATION);
+                        }
+                    }
 
                     _theMap.updateTile(to, TileId.DROID);
 
@@ -284,6 +294,7 @@ public class RepairDroid
     private Intcode _theComputer;
     private Coordinate _currentLocation;
     private Coordinate _startingPoint;
+    private Coordinate _oxygenStation;
     private Maze _theMap;
     private Stack<Integer> _trackTaken;
     private boolean _foundOxygenStation;
