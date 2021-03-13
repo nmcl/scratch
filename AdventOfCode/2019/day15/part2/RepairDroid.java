@@ -136,6 +136,9 @@ public class RepairDroid
         if (_theMap.isExplored(to))
             return DroidStatus.VISITED;
 
+        if (to.equals(c))
+            direction = "4";
+
         _theComputer.setInput(direction);
         _theComputer.executeUntilInput();
 
@@ -143,7 +146,7 @@ public class RepairDroid
         {
             int response = Integer.parseInt(_theComputer.getOutput());
 
-            if (_debug)
+            //if (_debug)
                 System.out.println("Response is "+DroidStatus.toString(response));
 
             switch (response)
