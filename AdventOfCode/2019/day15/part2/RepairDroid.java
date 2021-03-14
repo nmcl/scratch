@@ -18,6 +18,7 @@ public class RepairDroid
         _trackTaken = new Stack<Integer>();
         _foundOxygenStation = false;
         _exploreOption = EXPLORE_UNTIL_OXYGEN;
+        _stepsTaken = 0;
 
         _theMap.updateTile(_currentLocation, TileId.STARTING_POINT);
     }
@@ -45,9 +46,11 @@ public class RepairDroid
 
     public final Maze getMaze ()
     {
+        System.out.println("**steps "+_stepsTaken);
+        
         return _theMap;
     }
-    
+
     public void printGrid ()
     {
         System.out.println(_theMap);
@@ -160,6 +163,8 @@ public class RepairDroid
 
                     _foundOxygenStation = true;
 
+                    _stepsTaken++;
+
                     if (_debug)
                     {
                         System.out.println("Found Oxygen Station at: "+to);
@@ -193,6 +198,8 @@ public class RepairDroid
 
                     recordJourney(Integer.parseInt(direction));
 
+                    _stepsTaken++;
+                    
                     return explore();
                 }
                 default:
@@ -236,6 +243,8 @@ public class RepairDroid
                     _theMap.updateTile(_currentLocation, TileId.DROID);
 
                     status = DroidStatus.BACKTRACKED;  // different from normal move response
+
+                    _stepsTaken--;
                 }
                 else
                     System.out.println("Unexpected backup response: "+response);
@@ -319,4 +328,5 @@ public class RepairDroid
     private Stack<Integer> _trackTaken;
     private boolean _foundOxygenStation;
     private int _exploreOption;
+    private int _stepsTaken;
 }
