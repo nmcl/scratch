@@ -262,19 +262,30 @@ public class RepairDroid
             System.out.println("Moved "+DroidMovement.toString(iter.nextElement()));
     }
 
+    /*
+     * Should we stop searching?
+     */
+
     private final boolean stopSearch ()
     {
         boolean response = false;
+
+        // if we're looking for the oxygen station and have found it, then STOP!
 
         if ((_exploreOption == EXPLORE_UNTIL_OXYGEN) && (_foundOxygenStation))
             response = true;
         else
         {
-            if (_oxygenStation != null)
+            /*
+             * Are we back at the start *after* finding the oxygen station?
+             */
+
+            if (_foundOxygenStation)
             {
                 if (_currentLocation.equals(_startingPoint))
                     response = true;
             }
+            
         }
 
         return response;
