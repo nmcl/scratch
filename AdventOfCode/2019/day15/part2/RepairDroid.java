@@ -264,10 +264,20 @@ public class RepairDroid
 
     private final boolean stopSearch ()
     {
+        boolean response = false;
+
         if ((_exploreOption == EXPLORE_UNTIL_OXYGEN) && (_foundOxygenStation))
-            return true;
+            response = true;
         else
-            return false;
+        {
+            if (_oxygenStation != null)
+            {
+                if (_currentLocation.equals(_startingPoint))
+                    response = true;
+            }
+        }
+
+        return response;
     }
 
     private final boolean tryNextLocation (int response)
