@@ -8,17 +8,21 @@ public class RemoteControl
     public static void main (String[] args)
     {
         boolean debug = false;
+        boolean stepsToOxygen = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-debug] [-help]");
+                System.out.println("Usage: [-debug] [-steps] [-help]");
                 System.exit(0);
             }
 
             if ("-debug".equals(args[i]))
                 debug = true;
+
+            if ("-steps".equals(args[i]))
+                stepsToOxygen = true;
         }
 
         /*
@@ -58,10 +62,16 @@ public class RemoteControl
         instructions.addAll(Arrays.asList(values));
 
         RepairDroid droid = new RepairDroid(instructions, debug);
-        int steps = droid.moveToOxygenStation();
 
-        System.out.println("Number of steps to reach oxygen station: "+steps);
+        if (stepsToOxygen)
+        {
+            int steps = droid.moveToOxygenStation();
 
-        //droid.mapEntireMaze();
+            System.out.println("Number of steps to reach oxygen station: "+steps);
+        }
+        else
+        {
+            droid.mapEntireMaze();
+        }
     }
 }
