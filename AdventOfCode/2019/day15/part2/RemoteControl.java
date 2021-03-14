@@ -72,6 +72,7 @@ public class RemoteControl
         else
         {
             droid.mapEntireMaze();
+            droid.printGrid();
         }
     }
 }
