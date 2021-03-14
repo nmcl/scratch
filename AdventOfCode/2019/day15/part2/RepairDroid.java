@@ -18,7 +18,6 @@ public class RepairDroid
         _trackTaken = new Stack<Integer>();
         _foundOxygenStation = false;
         _exploreOption = EXPLORE_UNTIL_OXYGEN;
-        _maxSteps = 0;
 
         _theMap.updateTile(_currentLocation, TileId.STARTING_POINT);
     }
@@ -39,6 +38,16 @@ public class RepairDroid
         explore();
     }
 
+    public final Coordinate oxygenStationLocation ()
+    {
+        return _oxygenStation;
+    }
+
+    public final Maze getMaze ()
+    {
+        return _theMap;
+    }
+    
     public void printGrid ()
     {
         System.out.println(_theMap);
@@ -310,5 +319,4 @@ public class RepairDroid
     private Stack<Integer> _trackTaken;
     private boolean _foundOxygenStation;
     private int _exploreOption;
-    private int _maxSteps;
 }
