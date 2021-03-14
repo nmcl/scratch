@@ -18,6 +18,7 @@ public class RepairDroid
         _trackTaken = new Stack<Integer>();
         _foundOxygenStation = false;
         _exploreOption = EXPLORE_UNTIL_OXYGEN;
+        _maxSteps = 0;
 
         _theMap.updateTile(_currentLocation, TileId.STARTING_POINT);
     }
@@ -57,7 +58,7 @@ public class RepairDroid
         {
             boolean needToBackup = false;
 
-            //if (_debug)
+            if (_debug)
                 System.out.println("\n"+_theMap);
 
             /*
@@ -68,28 +69,28 @@ public class RepairDroid
 
             if (tryNextLocation(response))
             {
-                //if (_debug)
+                if (_debug)
                     System.out.println("\n"+_theMap);
 
                 response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
                 if (tryNextLocation(response))
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("\n"+_theMap);
 
                     response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
                     if (tryNextLocation(response))
                     {
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("\n"+_theMap);
 
                         response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
                         if (tryNextLocation(response))
                         {
-                            //if (_debug)
+                            if (_debug)
                                 System.out.println("\n"+_theMap);
 
                             /*
@@ -105,13 +106,6 @@ public class RepairDroid
 
             if (_theComputer.status() == Status.HALTED)
                 response = DroidStatus.HALTED;
-
-            System.out.println("**DroidStatus "+DroidStatus.toString(response));
-            System.out.println("**search status "+stopSearch());
-            System.out.println("**and "+needToBackup);
-            System.out.println("**and "+Status.toString(_theComputer.status()));
-            System.out.println("**location "+_currentLocation);
-            System.out.println("**backtrack size "+_trackTaken.size());
 
             if (needToBackup)
                 backtrack();
@@ -157,7 +151,7 @@ public class RepairDroid
 
                     _foundOxygenStation = true;
 
-                    //if (_debug)
+                    if (_debug)
                     {
                         System.out.println("Found Oxygen Station at: "+to);
 
@@ -240,8 +234,6 @@ public class RepairDroid
             else
                 System.out.println("Error - no output after move instruction!");
         }
-        else
-            System.out.println("Cannot backtrack!");
 
         return status;
     }
@@ -318,4 +310,5 @@ public class RepairDroid
     private Stack<Integer> _trackTaken;
     private boolean _foundOxygenStation;
     private int _exploreOption;
+    private int _maxSteps;
 }
