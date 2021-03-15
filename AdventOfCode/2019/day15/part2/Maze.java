@@ -9,6 +9,8 @@ public class Maze
         _minX = 0;
         _maxY = 0;
         _minY = 0;
+        _oxygenStation = null;
+        _startingPoint = null;
     }
 
     public final void updateTile (Coordinate coord, String type)
@@ -16,6 +18,14 @@ public class Maze
         Tile t = new Tile(coord, type);
         int index = _map.indexOf(t);
         
+        if ((_startingPoint == null) && (TileId.STARTING_POINT.equals(type)))
+            _startingPoint = coord;
+        else
+        {
+            if ((_oxygenStation == null) && (TileId.OXYGEN_STATION.equals(type)))
+                _oxygenStation = coord;
+        }
+
         if (index == -1)
         {
             if (coord.getX() > _maxX)
@@ -38,6 +48,16 @@ public class Maze
         }
         else
             _map.set(index, t);
+    }
+
+    public final Coordinate getStartingPoint ()
+    {
+        return _startingPoint;
+    }
+
+    public final Coordinate getOxygenStation ()
+    {
+        return _oxygenStation;
     }
 
     public final boolean isWall (Coordinate coord)
@@ -130,4 +150,6 @@ public class Maze
     private int _minX;
     private int _maxY;
     private int _minY;
+    private Coordinate _oxygenStation;
+    private Coordinate _startingPoint;
 }

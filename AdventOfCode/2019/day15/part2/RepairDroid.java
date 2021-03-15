@@ -13,7 +13,6 @@ public class RepairDroid
         _theComputer = new Intcode(instructions, INITIAL_INPUT, _debug);
         _currentLocation = new Coordinate(0, 0);  // starting location
         _startingPoint = _currentLocation;
-        _oxygenStation = null;
         _theMap = new Maze();
         _trackTaken = new Stack<Integer>();
         _foundOxygenStation = false;
@@ -36,11 +35,6 @@ public class RepairDroid
         _exploreOption = EXPLORE_ENTIRE_MAZE;
 
         explore();
-    }
-
-    public final Coordinate oxygenStationLocation ()
-    {
-        return _oxygenStation;
     }
 
     public final Maze getMaze ()
@@ -154,7 +148,6 @@ public class RepairDroid
                     _theMap.updateTile(to, TileId.OXYGEN_STATION);
 
                     _currentLocation = to;
-                    _oxygenStation = to;
 
                     recordJourney(Integer.parseInt(direction));
 
@@ -183,7 +176,7 @@ public class RepairDroid
 
                     if (!_currentLocation.equals(_startingPoint))
                     {
-                        if (!_currentLocation.equals(_oxygenStation))
+                        if (!_currentLocation.equals(_theMap.getOxygenStation()))
                             _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
                     }
 
@@ -227,7 +220,7 @@ public class RepairDroid
                 {
                     if (!_currentLocation.equals(_startingPoint))
                     {
-                        if (!_currentLocation.equals(_oxygenStation))
+                        if (!_currentLocation.equals(_theMap.getOxygenStation()))
                             _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
                     }
 
@@ -314,7 +307,6 @@ public class RepairDroid
     private Intcode _theComputer;
     private Coordinate _currentLocation;
     private Coordinate _startingPoint;
-    private Coordinate _oxygenStation;
     private Maze _theMap;
     private Stack<Integer> _trackTaken;
     private boolean _foundOxygenStation;
