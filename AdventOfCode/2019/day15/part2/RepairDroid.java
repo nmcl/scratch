@@ -41,11 +41,6 @@ public class RepairDroid
         return _theMap;
     }
 
-    public void printGrid ()
-    {
-        System.out.println(_theMap);
-    }
-
     /*
      * If we run into a wall then try a different direction.
      * If we can't move other than backwards then do that.
