@@ -72,7 +72,8 @@ public class RemoteControl
         else
         {
             droid.mapEntireMaze();
-            droid.printGrid();
+
+            System.out.println(droid.getMaze());
 
             Coordinate coord = droid.getMaze().getOxygenStation();
             int[] dimensions = droid.getMaze().getDimensons();
