@@ -5,6 +5,8 @@ public class OxygenFiller
         _theMaze = theMaze;
     }
 
+    // trace through the maze until we get back to the start
+    
     public int fillWithOxygen ()
     {
         int steps = 0;
