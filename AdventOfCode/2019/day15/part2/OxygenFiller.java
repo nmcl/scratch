@@ -1,9 +1,13 @@
+import java.util.*;
+
 public class OxygenFiller
 {
     public OxygenFiller (Maze theMaze, boolean debug)
     {
         _theMaze = theMaze;
         _debug = debug;
+        _currentLocation = theMaze.getOxygenStation();  // start at the oxygen station
+        _trackTaken = new Stack<Integer>();
     }
 
     // trace through the maze until we get back to the start
@@ -21,30 +25,22 @@ public class OxygenFiller
      * Don't move into areas we've already been.
      */
     
-    private int fill ()
+    private boolean fill ()
     {
-        int response = DroidStatus.ERROR;
+        boolean response = false;
         boolean needToBackup = false;
 
         /*
          * We search N, E, S and then W.
          */
 
-        response = tryToFill(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
-
-        if (response != DroidStatus.MOVED)
+        if (!tryToFill(DroidMovement.NORTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH)))
         {
-            response = tryToFill(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
-
-            if (response != DroidStatus.MOVED)
+            if (!tryToFill(DroidMovement.EAST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST)))
             {
-                response = tryToFill(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
-
-                if (response != DroidStatus.MOVED)
+                if (!tryToFill(DroidMovement.SOUTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH)))
                 {
-                    response = tryToFill(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
-
-                    if (response != DroidStatus.MOVED)
+                    if (!tryToFill(DroidMovement.WEST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST)))
                     {
                         /*
                          * At this point we've exhausted all of the options for moving from
@@ -59,7 +55,7 @@ public class OxygenFiller
         return response;
     }
 
-    private int tryToFill (String direction, Coordinate to)
+    private boolean tryToFill (int direction, Coordinate to)
     {
         if (_debug)      
             System.out.println("Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
@@ -67,75 +63,62 @@ public class OxygenFiller
         // if we've already been there then don't move!
 
         if (_theMap.isExplored(to))
-            return DroidStatus.VISITED;
+            return false;
 
-        _theComputer.setInput(direction);
-        _theComputer.executeUntilInput();
+        if (_theMap.isWall(to))
+            return false;
+        
+        /*
+         * Oxygen filled space.
+         */
 
-        if (_theComputer.hasOutput())
+         _theMap.updateTile(_currentLocation, TileId.OXYGEN_STATION);
+
+        _currentLocation = to;
+
+        recordJourney(Integer.parseInt(direction));
+                    
+        return fill();
+    }
+
+    private boolean backtrack ()
+    {                
+        boolean status = false;
+
+        if (_trackTaken.size() > 0)
         {
-            int response = Integer.parseInt(_theComputer.getOutput());
+            int backupDirection = DroidMovement.backupDirection(_trackTaken.pop());
 
             if (_debug)
-                System.out.println("Response is "+DroidStatus.toString(response));
+                System.out.println("Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
-            switch (response)
-            {
-                case DroidStatus.ARRIVED:  // arrived at the station!!
+
+                if (response == DroidStatus.MOVED)
                 {
-                    _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
-                    _theMap.updateTile(to, TileId.OXYGEN_STATION);
-
-                    _currentLocation = to;
-
-                    recordJourney(Integer.parseInt(direction));
-
-                    _foundOxygenStation = true;
-
-                    if (_debug)
-                    {
-                        System.out.println("Found Oxygen Station at: "+to);
-
-                        System.out.println("\n"+_theMap);
-                    }
-
-                    return response;
-                }
-                case DroidStatus.COLLISION:
-                {
-                    _theMap.updateTile(to, TileId.WALL);  // didn't move as we hit a wall
-
-                    return response;
-                }
-                case DroidStatus.MOVED:
-                {
-                    /*
-                     * Droid moved so let's try to move again.
-                     */
-
                     if (!_currentLocation.equals(_theMap.getStartingPoint()))
                     {
                         if (!_currentLocation.equals(_theMap.getOxygenStation()))
                             _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
                     }
 
-                    _theMap.updateTile(to, TileId.DROID);
+                    _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
 
-                    _currentLocation = to;
+                    _theMap.updateTile(_currentLocation, TileId.DROID);
 
-                    recordJourney(Integer.parseInt(direction));
-                    
-                    return explore();
+                    status = DroidStatus.BACKTRACKED;  // different from normal move response
                 }
-                default:
-                    System.out.println("Unknown response: "+response);
+                else
+                    System.out.println("Unexpected backup response: "+response);
             }
+            else
+                System.out.println("Error - no output after move instruction!");
         }
-        else
-            System.out.println("Error - no output after move instruction!");
 
-        return DroidStatus.ERROR;  // error!!
+        return status;
+    }
 
     private Maze _theMaze;
     private boolean _debug;
+    private Coordinate _currentLocation;
+    private Stack<Integer> _trackTaken;
 }
