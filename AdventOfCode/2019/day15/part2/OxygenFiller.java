@@ -4,7 +4,7 @@ public class OxygenFiller
 {
     public OxygenFiller (Maze theMaze, boolean debug)
     {
-        _theMaze = theMaze;
+        _theMap = theMaze;
         _debug = debug;
         _currentLocation = theMaze.getOxygenStation();  // start at the oxygen station
         _trackTaken = new Stack<Integer>();
@@ -36,17 +36,30 @@ public class OxygenFiller
 
         if (!tryToFill(DroidMovement.NORTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH)))
         {
+            if (_debug)
+                System.out.println("\n"+_theMap);
+
             if (!tryToFill(DroidMovement.EAST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST)))
             {
+                if (_debug)
+                    System.out.println("\n"+_theMap);
+                
                 if (!tryToFill(DroidMovement.SOUTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH)))
                 {
+                    if (_debug)
+                        System.out.println("\n"+_theMap);
+
                     if (!tryToFill(DroidMovement.WEST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST)))
                     {
+                        if (_debug)
+                            System.out.println("\n"+_theMap);
+
                         /*
                          * At this point we've exhausted all of the options for moving from
                          * the current location. Therefore, we need to backtrack.
                          */
 
+                        backtrack();
                     }
                 }
             }
@@ -76,7 +89,7 @@ public class OxygenFiller
 
         _currentLocation = to;
 
-        recordJourney(Integer.parseInt(direction));
+        recordJourney(direction);
                     
         return fill();
     }
@@ -92,32 +105,20 @@ public class OxygenFiller
             if (_debug)
                 System.out.println("Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
+            _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
 
-                if (response == DroidStatus.MOVED)
-                {
-                    if (!_currentLocation.equals(_theMap.getStartingPoint()))
-                    {
-                        if (!_currentLocation.equals(_theMap.getOxygenStation()))
-                            _theMap.updateTile(_currentLocation, TileId.TRAVERSE);
-                    }
-
-                    _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
-
-                    _theMap.updateTile(_currentLocation, TileId.DROID);
-
-                    status = DroidStatus.BACKTRACKED;  // different from normal move response
-                }
-                else
-                    System.out.println("Unexpected backup response: "+response);
-            }
-            else
-                System.out.println("Error - no output after move instruction!");
+            status = true;
         }
 
         return status;
     }
 
-    private Maze _theMaze;
+    private void recordJourney (int direction)
+    {
+        _trackTaken.push(direction);
+    }
+
+    private Maze _theMap;
     private boolean _debug;
     private Coordinate _currentLocation;
     private Stack<Integer> _trackTaken;
