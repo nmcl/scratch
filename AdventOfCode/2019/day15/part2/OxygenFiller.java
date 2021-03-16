@@ -62,7 +62,7 @@ public class OxygenFiller
                          */
 
                         System.out.println("BACKTRACK");
-                        
+
                         backtrack();
                     }
                 }
@@ -74,8 +74,8 @@ public class OxygenFiller
 
     private boolean tryToFill (int direction, Coordinate to)
     {
-        if (_debug)      
-            System.out.println("Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
+        //if (_debug)      
+            System.out.println("Trying to fill from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
         if (_theMap.isWall(to))
             return false;
@@ -101,7 +101,7 @@ public class OxygenFiller
         {
             int backupDirection = DroidMovement.backupDirection(_trackTaken.pop());
 
-            if (_debug)
+            //if (_debug)
                 System.out.println("Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
             _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
