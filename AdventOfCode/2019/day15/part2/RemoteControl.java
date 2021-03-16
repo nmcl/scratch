@@ -80,6 +80,10 @@ public class RemoteControl
 
             System.out.println("Oxygen station: "+coord);
             System.out.println("Maze dimensions: <"+dimensions[0]+", "+dimensions[2]+"> <"+dimensions[1]+", "+dimensions[3]+">");
+
+            OxygenFiller filler = new OxygenFiller(droid.getMaze(), debug);
+
+            filler.fillWithOxygen();
         }
     }
 }
