@@ -61,6 +61,8 @@ public class OxygenFiller
                          * the current location. Therefore, we need to backtrack.
                          */
 
+                        System.out.println("BACKTRACK");
+                        
                         backtrack();
                     }
                 }
@@ -74,8 +76,6 @@ public class OxygenFiller
     {
         if (_debug)      
             System.out.println("Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
-
-        // if we've already been there then don't move!
 
         if (_theMap.isWall(to))
             return false;
