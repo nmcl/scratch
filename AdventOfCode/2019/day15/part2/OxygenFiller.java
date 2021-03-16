@@ -16,6 +16,8 @@ public class OxygenFiller
     {
         int steps = 0;
 
+        fill();
+
         return steps;
     }
 
@@ -36,22 +38,22 @@ public class OxygenFiller
 
         if (!tryToFill(DroidMovement.NORTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH)))
         {
-            if (_debug)
+            //if (_debug)
                 System.out.println("\n"+_theMap);
 
             if (!tryToFill(DroidMovement.EAST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST)))
             {
-                if (_debug)
+                //if (_debug)
                     System.out.println("\n"+_theMap);
                 
                 if (!tryToFill(DroidMovement.SOUTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH)))
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("\n"+_theMap);
 
                     if (!tryToFill(DroidMovement.WEST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST)))
                     {
-                        if (_debug)
+                        //if (_debug)
                             System.out.println("\n"+_theMap);
 
                         /*
@@ -74,9 +76,6 @@ public class OxygenFiller
             System.out.println("Trying to move from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
         // if we've already been there then don't move!
-
-        if (_theMap.isExplored(to))
-            return false;
 
         if (_theMap.isWall(to))
             return false;
