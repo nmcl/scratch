@@ -24,45 +24,41 @@ public class OxygenFiller
     private int fill ()
     {
         int response = DroidStatus.ERROR;
+        boolean needToBackup = false;
 
-        while (!stopSearch())
+        /*
+         * We search N, E, S and then W.
+         */
+
+        response = tryToMove(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
+
+        if (response != DroidStatus.MOVED)
         {
-            boolean needToBackup = false;
+            response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
 
-            /*
-             * We search N, E, S and then W.
-             */
-
-            response = tryToMove(String.valueOf(DroidMovement.NORTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH));
-
-            if (tryNextLocation(response))
+            if (response != DroidStatus.MOVED)
             {
-                response = tryToMove(String.valueOf(DroidMovement.EAST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST));
+                response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
 
-                if (tryNextLocation(response))
+                if (response != DroidStatus.MOVED)
                 {
-                    response = tryToMove(String.valueOf(DroidMovement.SOUTH), DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH));
+                    response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
 
-                    if (tryNextLocation(response))
+                    if (response != DroidStatus.MOVED)
                     {
-                        response = tryToMove(String.valueOf(DroidMovement.WEST), DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST));
+                        /*
+                            * At this point we've exhausted all of the options for moving from
+                            * the current location. Therefore, we need to backtrack.
+                            */
 
-                        if (tryNextLocation(response))
-                        {
-                            /*
-                             * At this point we've exhausted all of the options for moving from
-                             * the current location. Therefore, we need to backtrack.
-                             */
-
-                            needToBackup = true;
-                        }
+                        needToBackup = true;
                     }
                 }
             }
-
-            if (needToBackup)
-                backtrack();
         }
+
+        if (needToBackup)
+            backtrack();
 
         return response;
     }
