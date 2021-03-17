@@ -84,17 +84,13 @@ public class OxygenFiller
             return false;
 
         if (_theMap.isWall(to))
-        {
-            System.out.println("**IS WALL");
-
             return false;
-        }
         
         /*
          * Oxygen filled space.
          */
 
-         _theMap.updateTile(_currentLocation, TileId.OXYGEN_STATION);
+         _theMap.updateTile(to, TileId.OXYGEN_STATION);
 
         _currentLocation = to;
 
