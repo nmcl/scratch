@@ -77,6 +77,9 @@ public class OxygenFiller
         //if (_debug)      
             System.out.println("Trying to fill from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
+        if (_theMap.isOxygenStation(to))
+            return false;
+
         if (_theMap.isWall(to))
         {
             System.out.println("**IS WALL");
