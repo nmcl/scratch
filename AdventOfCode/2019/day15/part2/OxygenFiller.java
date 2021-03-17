@@ -63,11 +63,14 @@ public class OxygenFiller
 
                         System.out.println("BACKTRACK");
 
-                        backtrack();
+                        needToBackup = true;
                     }
                 }
             }
         }
+
+        if (needToBackup)
+            backtrack();
 
         return response;
     }
