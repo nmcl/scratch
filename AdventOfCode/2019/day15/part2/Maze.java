@@ -111,22 +111,6 @@ public class Maze
         return dims;
     }
 
-    public int unexploredTotal ()
-    {
-        int total = 0;
-
-        for (int y = _minY; y <= _maxY; y++)
-        {
-            for (int x = _minX; x <= _maxX; x++)
-            {
-                if (tileType(new Coordinate(x, y)).equals(TileId.UNEXPLORED))
-                    total++;
-            }
-        }
-
-        return total;
-    }
-
     @Override
     public String toString ()
     {
