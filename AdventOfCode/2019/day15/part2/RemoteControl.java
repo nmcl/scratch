@@ -83,7 +83,7 @@ public class RemoteControl
 
             OxygenFiller filler = new OxygenFiller(droid.getMaze(), debug);
 
-            filler.fillWithOxygen();
+            System.out.println("Number of minutes to fill space with oxygen: "+filler.fillWithOxygen());
         }
     }
 }

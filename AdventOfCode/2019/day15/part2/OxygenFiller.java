@@ -8,17 +8,17 @@ public class OxygenFiller
         _debug = debug;
         _currentLocation = theMaze.getOxygenStation();  // start at the oxygen station
         _trackTaken = new Stack<Integer>();
+        _stepsToWall = 0;
+        _maxStepsToWall = 0;
     }
 
     // trace through the maze until we get back to the start
 
     public int fillWithOxygen ()
     {
-        int steps = 0;
-
         fill();
 
-        return steps;
+        return _maxStepsToWall;
     }
 
     /*
@@ -61,8 +61,6 @@ public class OxygenFiller
                          * the current location. Therefore, we need to backtrack.
                          */
 
-                        System.out.println("BACKTRACK");
-
                         needToBackup = true;
                     }
                 }
@@ -94,10 +92,13 @@ public class OxygenFiller
 
         _currentLocation = to;
 
-        System.out.println("\n"+_theMap);
-
         recordJourney(direction);
                     
+        _stepsToWall++;
+
+        if (_maxStepsToWall < _stepsToWall)
+            _maxStepsToWall = _stepsToWall;
+
         return fill();
     }
 
@@ -114,6 +115,8 @@ public class OxygenFiller
 
             _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
 
+            _stepsToWall--;
+
             status = true;
         }
 
@@ -129,4 +132,6 @@ public class OxygenFiller
     private boolean _debug;
     private Coordinate _currentLocation;
     private Stack<Integer> _trackTaken;
+    private int _stepsToWall;
+    private int _maxStepsToWall;
 }
