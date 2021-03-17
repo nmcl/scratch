@@ -38,22 +38,22 @@ public class OxygenFiller
 
         if (!tryToFill(DroidMovement.NORTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.NORTH)))
         {
-            //if (_debug)
+            if (_debug)
                 System.out.println("\n"+_theMap);
 
             if (!tryToFill(DroidMovement.EAST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.EAST)))
             {
-                //if (_debug)
+                if (_debug)
                     System.out.println("\n"+_theMap);
                 
                 if (!tryToFill(DroidMovement.SOUTH, DroidMovement.getNextPosition(_currentLocation, DroidMovement.SOUTH)))
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("\n"+_theMap);
 
                     if (!tryToFill(DroidMovement.WEST, DroidMovement.getNextPosition(_currentLocation, DroidMovement.WEST)))
                     {
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("\n"+_theMap);
 
                         /*
@@ -75,7 +75,7 @@ public class OxygenFiller
 
     private boolean tryToFill (int direction, Coordinate to)
     {
-        //if (_debug)      
+        if (_debug)      
             System.out.println("Trying to fill from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
         if (_theMap.isOxygenStation(to))
@@ -110,7 +110,7 @@ public class OxygenFiller
         {
             int backupDirection = DroidMovement.backupDirection(_trackTaken.pop());
 
-            //if (_debug)
+            if (_debug)
                 System.out.println("Trying to backup from: "+_currentLocation+" with direction "+DroidMovement.toString(backupDirection));
 
             _currentLocation = DroidMovement.getNextPosition(_currentLocation, backupDirection);
