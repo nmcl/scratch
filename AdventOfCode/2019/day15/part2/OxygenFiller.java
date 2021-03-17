@@ -78,7 +78,11 @@ public class OxygenFiller
             System.out.println("Trying to fill from: "+_currentLocation+" to "+to+" with direction "+DroidMovement.toString(direction));
 
         if (_theMap.isWall(to))
+        {
+            System.out.println("**IS WALL");
+
             return false;
+        }
         
         /*
          * Oxygen filled space.
@@ -87,6 +91,8 @@ public class OxygenFiller
          _theMap.updateTile(_currentLocation, TileId.OXYGEN_STATION);
 
         _currentLocation = to;
+
+        System.out.println("\n"+_theMap);
 
         recordJourney(direction);
                     
