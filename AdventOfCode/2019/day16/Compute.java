@@ -1,4 +1,4 @@
 public class Compute
 {
-    public static final String INPUT_SIGNAL_1 = "12345678";
+    public static final int[] BASE_PATTERN = {0, 1, 0, -1};
 }
