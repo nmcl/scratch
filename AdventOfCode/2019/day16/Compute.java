@@ -15,7 +15,7 @@ public class Compute
         {
             results = processPhase(phaseInput);
 
-            phaseInput = results;
+            //phaseInput = results;
         }
 
         return results;
@@ -29,14 +29,23 @@ public class Compute
 
         for (int i = 0; i < input.length; i++)
         {
-            int[] work = new int[input.length];
+            int value = 0;
 
-            work[i] = input[i] * BASE_PATTERN[basePatternIndex];
+            for (int j = 0; j < input.length; j++)
+            {
+                int[] work = new int[input.length];
 
-            basePatternIndex++;
+                work[j] = input[j] * BASE_PATTERN[basePatternIndex];
 
-            if (basePatternIndex == BASE_PATTERN.length)
-                basePatternIndex = basePatternLowerBounds;
+                basePatternIndex++;
+
+                if (basePatternIndex == BASE_PATTERN.length)
+                    basePatternIndex = basePatternLowerBounds;
+
+                value += work[j];
+            }
+
+            results[i] = value;
         }
 
         return results;
