@@ -9,7 +9,23 @@ public class Compute
 
     public int[] process (int[] input, int numberOfPhases)
     {
-        return null;
+        int[] results = input;
+
+        for (int i = 0; i < numberOfPhases; i++)
+        {
+            results = processPhase(phaseInput);
+
+            phaseInput = results;
+        }
+
+        return results;
+    }
+
+    private int[] processPhase (int[] input)
+    {
+        int[] results = null;
+
+        return results;
     }
 
     boolean _debug;
