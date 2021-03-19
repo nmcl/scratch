@@ -23,7 +23,21 @@ public class Compute
 
     private int[] processPhase (int[] input)
     {
-        int[] results = null;
+        int[] results = new int[input.length];
+        int basePatternIndex = 0;
+        int basePatternLowerBounds = 1;
+
+        for (int i = 0; i < input.length; i++)
+        {
+            int[] work = new int[input.length];
+
+            work[i] = input[i] * BASE_PATTERN[basePatternIndex];
+
+            basePatternIndex++;
+
+            if (basePatternIndex == BASE_PATTERN.length)
+                basePatternIndex = basePatternLowerBounds;
+        }
 
         return results;
     }
