@@ -13,6 +13,9 @@ public class Verifier
         boolean result = false;
         int[] data = convert(INPUT_SIGNAL_1);
 
+        for (int i = 0; i < data.length; i++)
+            System.out.println(data[i]);
+            
         return result;
     }
 
