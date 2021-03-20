@@ -13,7 +13,7 @@ public class Compute
 
         for (int i = 0; i < numberOfPhases; i++)
         {
-            results = processPhase(phaseInput);
+            results = processPhase(input);
 
             //phaseInput = results;
         }
