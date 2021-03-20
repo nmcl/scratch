@@ -37,6 +37,8 @@ public class Compute
 
                 work[j] = input[j] * BASE_PATTERN[basePatternIndex];
 
+                System.out.println(input[j]+"*"+BASE_PATTERN[basePatternIndex]);
+                
                 basePatternIndex++;
 
                 if (basePatternIndex == BASE_PATTERN.length)
