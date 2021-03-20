@@ -11,11 +11,12 @@ public class Verifier
     public boolean verify ()
     {
         boolean result = false;
-        int[] data = convert(INPUT_SIGNAL_1);
+        int[] input = convert(INPUT_SIGNAL_1);
+        int[] data = _fft.process(input, 1);
 
         for (int i = 0; i < data.length; i++)
             System.out.println(data[i]);
-            
+
         return result;
     }
 
