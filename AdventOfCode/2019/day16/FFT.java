@@ -20,7 +20,7 @@ public class FFT
                 verify = true;
         }
 
-        Verifier theVerifier = Verifier(debug);
+        Verifier theVerifier = new Verifier(debug);
 
         theVerifier.verify();
     }
