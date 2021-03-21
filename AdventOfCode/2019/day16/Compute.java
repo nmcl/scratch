@@ -43,13 +43,13 @@ public class Compute
     private int[] processPhase (int[] input)
     {
         int[] results = new int[input.length];
-        int basePatternIndex = 0;
-        int basePatternLoop = 1;
-        int basePatternLowerBounds = 1;
+        int basePatternLowerBounds = 0;
 
         for (int i = 0; i < input.length; i++)
         {
             int value = 0;
+            int basePatternIndex = 1;
+            int basePatternLoop = 0;
 
             for (int j = 0; j < input.length; j++)
             {
@@ -61,6 +61,9 @@ public class Compute
 
                 System.out.println(input[j]+"*"+BASE_PATTERN[basePatternIndex]);
 
+                basePatternLoop++;
+
+                if (basePatternLoop == input.length)
                 basePatternIndex++;
 
                 if (basePatternIndex == BASE_PATTERN.length)
