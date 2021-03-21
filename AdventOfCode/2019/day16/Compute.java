@@ -43,6 +43,8 @@ public class Compute
     private int[] processPhase (int[] input)
     {
         int[] results = new int[input.length];
+
+        /*
         int basePatternLowerBounds = 0;
 
         for (int i = 0; i < input.length; i++)
@@ -61,11 +63,6 @@ public class Compute
 
                 System.out.println(input[j]+"*"+BASE_PATTERN[basePatternIndex]);
 
-                basePatternLoop++;
-
-                if (basePatternLoop == input.length)
-                basePatternIndex++;
-
                 if (basePatternIndex == BASE_PATTERN.length)
                     basePatternIndex = basePatternLowerBounds;
 
@@ -74,9 +71,17 @@ public class Compute
 
             results[i] = value;
         }
+*/
 
         return results;
     }
 
-    boolean _debug;
+    private final int[] getBasePattern (int size)
+    {
+        int[] data = new int[size];
+
+        return data;
+    }
+
+    private boolean _debug;
 }
