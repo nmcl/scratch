@@ -22,6 +22,8 @@ public class Compute
     }
 
     /*
+     * A reminder of the example ...
+     * 
      * 10-1010-10
      * 01100-1-10
      * 00111000
