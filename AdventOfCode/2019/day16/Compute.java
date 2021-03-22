@@ -80,16 +80,20 @@ public class Compute
 
     private final int[] getBasePattern (int phase)
     {
-        int[] data = new int[BASE_PATTERN.length*phase];
+        int[] data = new int[(BASE_PATTERN.length*phase) -1];
         int basePtr = 0;
         int loop = 0;
+        boolean first = true;
 
         for (int i = 0; i < data.length; i++)
         {
+            if (i == 0)
+                loop = 1;
+
             data[i] = BASE_PATTERN[basePtr];
 
             System.out.println("Entry "+i+" is "+data[i]);
-            
+
             loop++;
 
             if (loop == phase)
