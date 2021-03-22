@@ -44,6 +44,8 @@ public class Compute
     {
         int[] results = new int[input.length];
 
+        getBasePattern(3);
+
         /*
         int basePatternLowerBounds = 0;
 
@@ -86,6 +88,8 @@ public class Compute
         {
             data[i] = BASE_PATTERN[basePtr];
 
+            System.out.println("Entry "+i+" is "+data[i]);
+            
             loop++;
 
             if (loop == phase)
