@@ -76,9 +76,15 @@ public class Compute
         return results;
     }
 
-    private final int[] getBasePattern (int size)
+    private final int[] getBasePattern (int phase)
     {
-        int[] data = new int[size];
+        int[] data = new int[BASE_PATTERN.length*phase];
+        int basePtr = 0;
+
+        for (int i = 0; i < phase; i++)
+        {
+            
+        }
 
         return data;
     }
