@@ -24,7 +24,7 @@ public class Compute
     private int[] processPhase (int[] input)
     {
         int[] results = new int[input.length];
-
+/*
         for (int i = 0; i < input.length; i++)
         {
             int[] basePattern = getBasePattern(i+1);
@@ -37,7 +37,9 @@ public class Compute
 
                 System.out.println(input[j]+"*"+basePattern[j]);
             }
-        }
+        }*/
+
+        getBasePattern(1);
 
         return results;
     }
@@ -74,7 +76,7 @@ public class Compute
 
             data[i] = BASE_PATTERN[basePtr];
 
-            if (_debug)
+            //if (_debug)
                 System.out.println("Base pattern entry "+i+" is "+data[i]);
 
             loop++;
