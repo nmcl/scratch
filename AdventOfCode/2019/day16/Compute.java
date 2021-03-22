@@ -80,10 +80,19 @@ public class Compute
     {
         int[] data = new int[BASE_PATTERN.length*phase];
         int basePtr = 0;
+        int loop = 0;
 
-        for (int i = 0; i < phase; i++)
+        for (int i = 0; i < data.length; i++)
         {
-            
+            data[i] = BASE_PATTERN[basePtr];
+
+            loop++;
+
+            if (loop == phase)
+            {
+                loop = 0;
+                basePtr++;
+            }
         }
 
         return data;
