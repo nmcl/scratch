@@ -83,7 +83,6 @@ public class Compute
         int[] data = new int[(BASE_PATTERN.length*phase) -1];
         int basePtr = 0;
         int loop = 0;
-        boolean first = true;
 
         for (int i = 0; i < data.length; i++)
         {
@@ -92,7 +91,8 @@ public class Compute
 
             data[i] = BASE_PATTERN[basePtr];
 
-            System.out.println("Entry "+i+" is "+data[i]);
+            if (_debug)
+                System.out.println("Base pattern entry "+i+" is "+data[i]);
 
             loop++;
 
