@@ -14,8 +14,6 @@ public class Compute
         for (int i = 0; i < numberOfPhases; i++)
         {
             results = processPhase(input);
-
-            //phaseInput = results;
         }
 
         return results;
