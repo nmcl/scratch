@@ -37,7 +37,7 @@ public class Compute
             }
         }*/
 
-        getBasePattern(1);
+        getBasePattern(1); //??
 
         return results;
     }
