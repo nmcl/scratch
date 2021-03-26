@@ -22,12 +22,12 @@ public class Compute
     private int[] processPhase (int[] input)
     {
         int[] results = new int[input.length];
-/*
+
         for (int i = 0; i < input.length; i++)
         {
-            int[] basePattern = getBasePattern(i+1);
+            int[] basePattern = getBasePattern(i+1, input.length);
 
-            for (int j = 0; i < basePattern.length; j++)
+            for (int j = 0; j < basePattern.length; j++)
             {
                 int[] work = new int[input.length];
 
@@ -35,12 +35,7 @@ public class Compute
 
                 System.out.println(input[j]+"*"+basePattern[j]);
             }
-        }*/
-
-        getBasePattern(1, input.length);
-        getBasePattern(2, input.length);
-        getBasePattern(3, input.length);
-        getBasePattern(4, input.length);
+        }
 
         return results;
     }
@@ -76,7 +71,7 @@ public class Compute
         {
             data[i] = BASE_PATTERN[basePtr];
 
-            //if (_debug)
+            if (_debug)
                 System.out.println("Base pattern entry "+i+" is "+data[i]);
 
             loop++;
@@ -92,7 +87,7 @@ public class Compute
         }
 
         // crop the first element
-        
+
         int[] toReturn = new int[size];
 
         for (int j = 0; j < size; j++)
