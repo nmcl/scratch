@@ -2,6 +2,8 @@ public class Compute
 {
     public static final int[] BASE_PATTERN = {0, 1, 0, -1};
 
+    public static final int[] BASE_PATTERN_PHASE_1 = {1, 0, -1, 0, 1, 0, -1, 0};
+
     public Compute (boolean debug)
     {
         _debug = debug;
@@ -66,6 +68,8 @@ public class Compute
         int[] data = new int[(BASE_PATTERN.length*phase) -1];
         int basePtr = 0;
         int loop = 0;
+
+        System.out.println("data size "+data.length);
 
         for (int i = 0; i < data.length; i++)
         {
