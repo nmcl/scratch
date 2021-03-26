@@ -39,6 +39,8 @@ public class Compute
 
         getBasePattern(1, input.length);
         getBasePattern(2, input.length);
+        getBasePattern(3, input.length);
+        getBasePattern(4, input.length);
 
         return results;
     }
@@ -64,17 +66,14 @@ public class Compute
 
     private final int[] getBasePattern (int phase, int size)
     {
-        int[] data = new int[size];
-        int basePtr = 1;
+        int[] data = new int[size+1];
+        int basePtr = 0;
         int loop = 0;
 
         System.out.println("\nbase pattern ...");
-        
+
         for (int i = 0; i < data.length; i++)
         {
-            //if (i == 0)
-            //    loop = 1;
-
             data[i] = BASE_PATTERN[basePtr];
 
             //if (_debug)
@@ -92,7 +91,14 @@ public class Compute
             }
         }
 
-        return data;
+        // crop the first element
+        
+        int[] toReturn = new int[size];
+
+        for (int j = 0; j < size; j++)
+            toReturn[j] = data[j+1];
+
+        return toReturn;
     }
 
     private boolean _debug;
