@@ -26,6 +26,7 @@ public class Compute
         for (int i = 0; i < input.length; i++)
         {
             int[] basePattern = getBasePattern(i+1, input.length);
+            int runningTotal = 0;
 
             for (int j = 0; j < basePattern.length; j++)
             {
@@ -34,7 +35,13 @@ public class Compute
                 work[j] = input[j] * basePattern[j];
 
                 System.out.println(input[j]+"*"+basePattern[j]);
+
+                runningTotal += work[j];
             }
+
+            results[i] = Math.abs(runningTotal);
+
+            System.out.println("Final result: "+results[i]);
         }
 
         return results;
