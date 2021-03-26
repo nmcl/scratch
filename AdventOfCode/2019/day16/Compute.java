@@ -2,8 +2,6 @@ public class Compute
 {
     public static final int[] BASE_PATTERN = {0, 1, 0, -1};
 
-    public static final int[] BASE_PATTERN_PHASE_1 = {1, 0, -1, 0, 1, 0, -1, 0};
-
     public Compute (boolean debug)
     {
         _debug = debug;
@@ -39,7 +37,8 @@ public class Compute
             }
         }*/
 
-        getBasePattern(1);
+        getBasePattern(1, input.length);
+        getBasePattern(2, input.length);
 
         return results;
     }
@@ -63,18 +62,18 @@ public class Compute
      * 00001111100000-1-1-1-1-1  --> miss first digit [000001111100000-1-1-1-1-1]
      */
 
-    private final int[] getBasePattern (int phase)
+    private final int[] getBasePattern (int phase, int size)
     {
-        int[] data = new int[(BASE_PATTERN.length*phase) -1];
-        int basePtr = 0;
+        int[] data = new int[size];
+        int basePtr = 1;
         int loop = 0;
 
-        System.out.println("data size "+data.length);
-
+        System.out.println("\nbase pattern ...");
+        
         for (int i = 0; i < data.length; i++)
         {
-            if (i == 0)
-                loop = 1;
+            //if (i == 0)
+            //    loop = 1;
 
             data[i] = BASE_PATTERN[basePtr];
 
@@ -87,6 +86,9 @@ public class Compute
             {
                 loop = 0;
                 basePtr++;
+
+                if (basePtr == BASE_PATTERN.length)
+                    basePtr = 0;
             }
         }
 
