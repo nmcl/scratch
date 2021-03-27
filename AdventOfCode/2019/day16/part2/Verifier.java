@@ -18,62 +18,7 @@ public class Verifier
     public final boolean verify ()
     {
         boolean result = true;
-        int[] input = Util.convert(INPUT_SIGNAL_1);
-        int[] data = _fft.process(input, 1);
-        
-        for (int i = 0; (i < data.length) && result; i++)
-        {
-            if (data[i] != INPUT_PHASE_1[i])
-                result = false;
-        }
-
-        if (result)
-        {
-            if (_debug)
-                System.out.println("Verified INPUT_PHASE_1");
-
-            data = _fft.process(input, 2);
-
-            for (int i = 0; (i < data.length) && result; i++)
-            {
-                if (data[i] != INPUT_PHASE_2[i])
-                  result = false;
-            }
-
-            if (result)
-            {
-                if (_debug)
-                    System.out.println("Verified INPUT_PHASE_2");
-
-                data = _fft.process(input, 3);
-
-                for (int i = 0; (i < data.length) && result; i++)
-                {
-                    if (data[i] != INPUT_PHASE_3[i])
-                        result = false;
-                }
-
-                if (result)
-                {
-                    if (_debug)
-                        System.out.println("Verified INPUT_PHASE_3");
-
-                    data = _fft.process(input, 4);
-
-                    for (int i = 0; (i < data.length) && result; i++)
-                    {
-                        if (data[i] != INPUT_PHASE_4[i])
-                            result = false;
-                    }
-
-                    if (result)
-                    {
-                        if (_debug)
-                            System.out.println("Verified INPUT_PHASE_4");
-                    }
-                }
-            }
-        }
+        int[] signal = Util.replicate(INPUT_SIGNAL_1, Util.REPEAT_SIZE);
 
         return result;
     }
