@@ -15,20 +15,7 @@ public class Verifier
         _fft = new Compute(_debug);
     }
 
-    public boolean verify ()
-    {
-        if (verifyFirst())
-        {
-            if (verifySecond())
-                return true;
-            else
-                return false;
-        }
-        else
-            return false;
-    }
-
-    private final boolean verifyFirst ()
+    public final boolean verify ()
     {
         boolean result = true;
         int[] input = Util.convert(INPUT_SIGNAL_1);
@@ -84,57 +71,6 @@ public class Verifier
                         if (_debug)
                             System.out.println("Verified INPUT_PHASE_4");
                     }
-                }
-            }
-        }
-
-        return result;
-    }
-
-    private final boolean verifySecond ()
-    {
-        boolean result = true;
-        int[] input = Util.convert(INPUT_SIGNAL_2);
-        int[] data = _fft.process(input, 100);
-        
-        for (int i = 0; (i < SIGNAL_2_OUTPUT.length) && result; i++)
-        {
-            if (SIGNAL_2_OUTPUT[i] != data[i])
-                result = false;
-        }
-
-        if (result)
-        {
-            if (_debug)
-                System.out.println("Verified "+INPUT_SIGNAL_2);
-
-            input = Util.convert(INPUT_SIGNAL_3);
-            data = _fft.process(input, 100);
-
-            for (int i = 0; (i < SIGNAL_3_OUTPUT.length) && result; i++)
-            {
-                if (SIGNAL_3_OUTPUT[i] != data[i])
-                    result = false;
-            }
-
-            if (result)
-            {
-                if (_debug)
-                    System.out.println("Verified "+INPUT_SIGNAL_3);
-
-                input = Util.convert(INPUT_SIGNAL_4);
-                data = _fft.process(input, 100);
-
-                for (int i = 0; (i < SIGNAL_4_OUTPUT.length) && result; i++)
-                {
-                    if (SIGNAL_4_OUTPUT[i] != data[i])
-                        result = false;
-                }
-
-                if (result)
-                {
-                    if (_debug)
-                        System.out.println("Verified "+INPUT_SIGNAL_4);
                 }
             }
         }
