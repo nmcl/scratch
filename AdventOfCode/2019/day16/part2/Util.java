@@ -1,7 +1,8 @@
 public class Util
 {
     public static final int OFFSET = 7;
-
+    public static final int REPEAT_SIZE = 10000;
+    
     public static int[] convert (String input)
     {
         int[] result = new int[input.length()];
