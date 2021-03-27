@@ -34,7 +34,8 @@ public class Compute
 
                 work[j] = input[j] * basePattern[j];
 
-                System.out.println(input[j]+"*"+basePattern[j]);
+                if (_debug)
+                    System.out.println(input[j]+"*"+basePattern[j]);
 
                 runningTotal += work[j];
             }
