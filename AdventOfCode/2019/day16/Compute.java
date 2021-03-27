@@ -39,9 +39,9 @@ public class Compute
                 runningTotal += work[j];
             }
 
-            results[i] = Math.abs(runningTotal);
+            results[i] = Math.abs(runningTotal)%10;
 
-            System.out.println("Final result: "+results[i]);
+            System.out.println("Final result: "+(esults[i]);
         }
 
         return results;
@@ -98,11 +98,7 @@ public class Compute
         int[] toReturn = new int[size];
 
         for (int j = 0; j < size; j++)
-        {
-            System.out.println("GOT "+data[j+1]%10);
-
-            toReturn[j] = data[j+1] % 10;
-        }
+            toReturn[j] = data[j+1];
 
         return toReturn;
     }
