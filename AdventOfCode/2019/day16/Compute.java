@@ -98,7 +98,11 @@ public class Compute
         int[] toReturn = new int[size];
 
         for (int j = 0; j < size; j++)
-            toReturn[j] = data[j+1];
+        {
+            System.out.println("GOT "+data[j+1]%10);
+
+            toReturn[j] = data[j+1] % 10;
+        }
 
         return toReturn;
     }
