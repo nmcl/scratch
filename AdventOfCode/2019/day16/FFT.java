@@ -21,7 +21,11 @@ public class FFT
         }
 
         Verifier theVerifier = new Verifier(debug);
+        boolean verified = theVerifier.verify();
 
-        theVerifier.verify();
+        if (verified)
+            System.out.println("Verified ok.");
+        else
+            System.out.println("Verify failed.");
     }
 }
