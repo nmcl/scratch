@@ -6,6 +6,8 @@ public class Verifier
     public static final int[] INPUT_PHASE_3 = {0, 3, 4, 1, 5, 5, 1, 8};
     public static final int[] INPUT_PHASE_4 = {0, 1, 0, 2, 9, 4, 9, 8};
 
+    public static String INPUT_SIGNAL_2 = "80871224585914546619083218645595";
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -13,6 +15,19 @@ public class Verifier
     }
 
     public boolean verify ()
+    {
+        if (verifyFirst())
+        {
+            if (verifySecond())
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+
+    private final boolean verifyFirst ()
     {
         boolean result = true;
         int[] input = convert(INPUT_SIGNAL_1);
@@ -26,7 +41,8 @@ public class Verifier
 
         if (result)
         {
-            System.out.println("Verified INPUT_PHASE_1");
+            if (_debug)
+                System.out.println("Verified INPUT_PHASE_1");
 
             data = _fft.process(data, 2);
 
@@ -38,7 +54,8 @@ public class Verifier
 
             if (result)
             {
-                System.out.println("Verified INPUT_PHASE_2");
+                if (_debug)
+                    System.out.println("Verified INPUT_PHASE_2");
 
                 data = _fft.process(data, 3);
 
@@ -50,7 +67,8 @@ public class Verifier
 
                 if (result)
                 {
-                    System.out.println("Verified INPUT_PHASE_3");
+                    if (_debug)
+                        System.out.println("Verified INPUT_PHASE_3");
 
                     data = _fft.process(data, 4);
 
@@ -62,11 +80,26 @@ public class Verifier
 
                     if (result)
                     {
-                        System.out.println("Verified INPUT_PHASE_4");
+                        if (_debug)
+                            System.out.println("Verified INPUT_PHASE_4");
                     }
                 }
             }
         }
+
+        return result;
+    }
+
+    private final boolean verifySecond ()
+    {
+        boolean result = false;
+        int[] input = convert(INPUT_SIGNAL_2);
+        int[] data = _fft.process(input, 100);
+        
+        for (int i = 0; i < data.length; i++)
+            System.out.print(data[i]);
+
+        System.out.println();
 
         return result;
     }
