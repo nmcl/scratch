@@ -40,8 +40,6 @@ public class Compute
             }
 
             results[i] = Math.abs(runningTotal)%10;
-
-            System.out.println("Final result: "+(esults[i]);
         }
 
         return results;
@@ -71,8 +69,6 @@ public class Compute
         int[] data = new int[size+1];
         int basePtr = 0;
         int loop = 0;
-
-        System.out.println("\nbase pattern ...");
 
         for (int i = 0; i < data.length; i++)
         {
