@@ -41,10 +41,10 @@ public class Verifier
 
         if (result)
         {
-            //if (_debug)
+            if (_debug)
                 System.out.println("Verified INPUT_PHASE_1");
 
-            data = _fft.process(data, 2);
+            data = _fft.process(input, 2);
 
             for (int i = 0; (i < data.length) && result; i++)
             {
@@ -54,10 +54,10 @@ public class Verifier
 
             if (result)
             {
-                //if (_debug)
+                if (_debug)
                     System.out.println("Verified INPUT_PHASE_2");
 
-                data = _fft.process(data, 3);
+                data = _fft.process(input, 3);
 
                 for (int i = 0; (i < data.length) && result; i++)
                 {
@@ -67,10 +67,10 @@ public class Verifier
 
                 if (result)
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Verified INPUT_PHASE_3");
 
-                    data = _fft.process(data, 4);
+                    data = _fft.process(input, 4);
 
                     for (int i = 0; (i < data.length) && result; i++)
                     {
@@ -80,7 +80,7 @@ public class Verifier
 
                     if (result)
                     {
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("Verified INPUT_PHASE_4");
                     }
                 }
