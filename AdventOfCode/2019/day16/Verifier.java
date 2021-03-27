@@ -111,7 +111,8 @@ public class Verifier
 
         if (result)
         {
-            System.out.println("Verified "+INPUT_SIGNAL_2);
+            if (_debug)
+                System.out.println("Verified "+INPUT_SIGNAL_2);
 
             input = convert(INPUT_SIGNAL_3);
             data = _fft.process(input, 100);
@@ -124,7 +125,8 @@ public class Verifier
 
             if (result)
             {
-                System.out.println("Verified "+INPUT_SIGNAL_3);
+                if (_debug)
+                    System.out.println("Verified "+INPUT_SIGNAL_3);
 
                 input = convert(INPUT_SIGNAL_4);
                 data = _fft.process(input, 100);
@@ -137,7 +139,8 @@ public class Verifier
 
                 if (result)
                 {
-                    System.out.println("Verified "+INPUT_SIGNAL_4);
+                    if (_debug)
+                        System.out.println("Verified "+INPUT_SIGNAL_4);
                 }
             }
         }
