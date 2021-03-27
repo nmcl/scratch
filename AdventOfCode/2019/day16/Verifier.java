@@ -2,6 +2,7 @@ public class Verifier
 {
     public static final String INPUT_SIGNAL_1 = "12345678";
     public static final int[] INPUT_PHASE_1 = {4, 8, 2, 2, 6, 1, 5, 8};
+    public static final int[] INPUT_PHASE_2 = {3, 4, 0, 4, 0, 4, 3, 8};
 
     public Verifier (boolean debug)
     {
@@ -23,7 +24,15 @@ public class Verifier
 
         if (result)
         {
-            
+            System.out.println("Verified INPUT_PHASE_1");
+
+            data = _fft.process(data, 2);
+
+            for (int i = 0; (i < data.length) && result; i++)
+            {
+                if (data[i] != INPUT_PHASE_2[i])
+                  result = false;
+            }
         }
 
         return result;
