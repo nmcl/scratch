@@ -1,6 +1,7 @@
 public class Verifier
 {
     public static final String INPUT_SIGNAL_1 = "12345678";
+    public static final int[] INPUT_PHASE_1 = {4, 8, 2, 2, 6, 1, 5, 8};
 
     public Verifier (boolean debug)
     {
@@ -10,12 +11,20 @@ public class Verifier
 
     public boolean verify ()
     {
-        boolean result = false;
+        boolean result = true;
         int[] input = convert(INPUT_SIGNAL_1);
         int[] data = _fft.process(input, 1);
+        
+        for (int i = 0; (i < data.length) && result; i++)
+        {
+            if (data[i] != INPUT_PHASE_1[i])
+                result = false;
+        }
 
-        for (int i = 0; i < data.length; i++)
-            System.out.println(data[i]);
+        if (result)
+        {
+            
+        }
 
         return result;
     }
