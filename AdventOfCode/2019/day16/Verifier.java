@@ -7,6 +7,7 @@ public class Verifier
     public static final int[] INPUT_PHASE_4 = {0, 1, 0, 2, 9, 4, 9, 8};
 
     public static String INPUT_SIGNAL_2 = "80871224585914546619083218645595";
+    public static int[] SIGNAL_2_OUTPUT = {2, 4, 1, 7, 6, 1, 7, 6};
 
     public Verifier (boolean debug)
     {
@@ -92,14 +93,15 @@ public class Verifier
 
     private final boolean verifySecond ()
     {
-        boolean result = false;
+        boolean result = true;
         int[] input = convert(INPUT_SIGNAL_2);
         int[] data = _fft.process(input, 100);
         
-        for (int i = 0; i < data.length; i++)
-            System.out.print(data[i]);
-
-        System.out.println();
+        for (int i = 0; (i < SIGNAL_2_OUTPUT.length) && result; i++)
+        {
+            if (SIGNAL_2_OUTPUT[i] != data[i])
+                result = false;
+        }
 
         return result;
     }
