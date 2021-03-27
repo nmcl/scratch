@@ -9,6 +9,9 @@ public class Verifier
     public static String INPUT_SIGNAL_2 = "80871224585914546619083218645595";
     public static int[] SIGNAL_2_OUTPUT = {2, 4, 1, 7, 6, 1, 7, 6};
 
+    public static String INPUT_SIGNAL_3 = "19617804207202209144916044189917";
+    public static int[] SIGNAL_3_OUTPUT = {7, 3, 7, 4, 5, 4, 1, 8};
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -101,6 +104,20 @@ public class Verifier
         {
             if (SIGNAL_2_OUTPUT[i] != data[i])
                 result = false;
+        }
+
+        if (result)
+        {
+            System.out.println("Verified "+INPUT_SIGNAL_2);
+            
+            input = convert(INPUT_SIGNAL_3);
+            data = _fft.process(input, 100);
+
+            for (int i = 0; (i < SIGNAL_3_OUTPUT.length) && result; i++)
+            {
+                if (SIGNAL_3_OUTPUT[i] != data[i])
+                    result = false;
+            }
         }
 
         return result;
