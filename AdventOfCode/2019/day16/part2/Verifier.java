@@ -18,7 +18,11 @@ public class Verifier
     public final boolean verify ()
     {
         boolean result = true;
-        int[] signal = Util.replicate(INPUT_SIGNAL_1, Util.REPEAT_SIZE);
+        int[] signal = Util.replicate(INPUT_SIGNAL_1, 1);//Util.REPEAT_SIZE);
+        int[] data = _fft.process(signal, Util.PHASES);
+        long offset = Util.offset(INPUT_SIGNAL_1);
+
+        System.out.println("**offset "+offset);
 
         return result;
     }
