@@ -1,19 +1,13 @@
 public class Verifier
 {
-    public static final String INPUT_SIGNAL_1 = "12345678";
-    public static final int[] INPUT_PHASE_1 = {4, 8, 2, 2, 6, 1, 5, 8};
-    public static final int[] INPUT_PHASE_2 = {3, 4, 0, 4, 0, 4, 3, 8};
-    public static final int[] INPUT_PHASE_3 = {0, 3, 4, 1, 5, 5, 1, 8};
-    public static final int[] INPUT_PHASE_4 = {0, 1, 0, 2, 9, 4, 9, 8};
+    public static final String INPUT_SIGNAL_1 = "03036732577212944063491565474664";
+    public static final int[] SIGNAL_1_RESULT = {8, 4, 4, 6, 2, 0, 2, 6};
 
-    public static String INPUT_SIGNAL_2 = "80871224585914546619083218645595";
-    public static int[] SIGNAL_2_OUTPUT = {2, 4, 1, 7, 6, 1, 7, 6};
+    public static final String INPUT_SIGNAL_2 = "02935109699940807407585447034323";
+    public static final int[] SIGNAL_2_RESULT = {7, 8, 7, 2, 5, 2, 7, 0};
 
-    public static String INPUT_SIGNAL_3 = "19617804207202209144916044189917";
-    public static int[] SIGNAL_3_OUTPUT = {7, 3, 7, 4, 5, 4, 1, 8};
-
-    public static String INPUT_SIGNAL_4 = "69317163492948606335995924319873";
-    public static int[] SIGNAL_4_OUTPUT = {5, 2, 4, 3, 2, 1, 3, 3};
+    public static final String INPUT_SIGNAL_3 = "03081770884921959731165446850517";
+    public static final int[] SIGNAL_3_RESULT = {5, 3, 5, 5, 3, 7, 3, 1};
 
     public Verifier (boolean debug)
     {
