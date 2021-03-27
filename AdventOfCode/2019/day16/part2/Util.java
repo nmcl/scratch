@@ -2,7 +2,9 @@ public class Util
 {
     public static final int OFFSET = 7;
     public static final int REPEAT_SIZE = 10000;
-    
+    public static final int PHASES = 100;
+    public static final int MESSAGE_SIZE = 8;
+
     public static int[] convert (String input)
     {
         int[] result = new int[input.length()];
@@ -32,17 +34,17 @@ public class Util
         return toReturn;
     }
 
-    public static int[] offset (String input)
+    public static long offset (String input)
     {
         int[] data = convert(input);
-        int[] offset = new int[OFFSET];
+        String offsetStr = input.substring(0, Util.OFFSET);
 
-        for (int i = 0; i < OFFSET; i++)
-        {
-            offset[i] = data[i];
-        }
+        return Long.parseLong(offsetStr);
+    }
 
-        return offset;
+    public static int[] message (int[] input, long offset)
+    {
+        return null;
     }
 
     private Util ()
