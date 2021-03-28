@@ -17,8 +17,9 @@ public class Verifier
 
     /*
      * Computing 100*signal should be the same as computing the 100th instance (A)
-     * and the 1st instance (B). Then the total is 99*A + B. In theory. Need to
-     * test this out with a value of n < 100.
+     * and the 1st instance (B), as that is the only one which has a different
+     * base? Then the total is 99*A + B. In theory. Need to test this out with a
+     * value of n < 100.
      */
 
     public final boolean verify ()
