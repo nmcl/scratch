@@ -33,9 +33,6 @@ public class Verifier
             System.out.println("Offset for "+INPUT_SIGNAL_1+" is "+offset);
 
         System.out.println();
-        Util.printSignal(signal, INPUT_SIGNAL_1.length());
-
-        System.out.println();
         Util.printSignal(data, INPUT_SIGNAL_1.length());
 
         return result;
