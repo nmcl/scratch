@@ -1,7 +1,7 @@
 public class Util
 {
     public static final int OFFSET = 7;
-    public static final int REPEAT_SIZE = 3;//10000;
+    public static final int REPEAT_SIZE = 100;//10000;
     public static final int PHASES = 100;
     public static final int MESSAGE_SIZE = 8;
 
