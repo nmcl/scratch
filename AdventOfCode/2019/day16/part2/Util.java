@@ -49,14 +49,12 @@ public class Util
 
     public static void printSignal (int[] signal, int split)
     {
-        System.out.println("split: "+split);
-
         for (int i = 0; i < signal.length; i++)
         {
-            System.out.print(signal[i]);
-
             if ((split > 0) && ((i > 0) && (i % split == 0)))
                 System.out.println();
+
+            System.out.print(signal[i]);
         }
 
         System.out.println();
