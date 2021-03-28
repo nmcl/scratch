@@ -19,6 +19,13 @@ public class Compute
         return results;
     }
 
+    public int[] fastProcess (int[] input, int numberOfPhases)
+    {
+        int[] results = input;
+
+        return input;
+    }
+
     private int[] processPhase (int[] input)
     {
         int[] results = new int[input.length];
