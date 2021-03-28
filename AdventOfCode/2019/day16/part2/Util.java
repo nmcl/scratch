@@ -1,7 +1,7 @@
 public class Util
 {
     public static final int OFFSET = 7;
-    public static final int REPEAT_SIZE = 10000;
+    public static final int REPEAT_SIZE = 3;//10000;
     public static final int PHASES = 100;
     public static final int MESSAGE_SIZE = 8;
 
@@ -47,8 +47,22 @@ public class Util
         return null;
     }
 
+    public static void printSignal (int[] signal, int split)
+    {
+        System.out.println("split: "+split);
+
+        for (int i = 0; i < signal.length; i++)
+        {
+            System.out.print(signal[i]);
+
+            if ((split > 0) && ((i > 0) && (i % split == 0)))
+                System.out.println();
+        }
+
+        System.out.println();
+    }
+
     private Util ()
     {
     }
-    
 }
