@@ -22,7 +22,8 @@ public class Verifier
         int[] data = _fft.process(signal, Util.PHASES);
         long offset = Util.offset(INPUT_SIGNAL_1);
 
-        System.out.println("**offset "+offset);
+        //if (_debug)
+            System.out.println("Offset for "+INPUT_SIGNAL_1+" is "+offset);
 
         return result;
     }
