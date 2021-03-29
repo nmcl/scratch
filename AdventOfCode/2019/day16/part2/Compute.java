@@ -39,8 +39,6 @@ public class Compute
 
     public int[] fastProcess (int[] input, int numberOfPhases)
     {
-        //int[] results = input;
-
         for (int i = 1; i <= numberOfPhases; i++)
         {
             int result = 0;
