@@ -39,6 +39,30 @@ public class Verifier
                 result = false;
         }
 
+        if (result)
+        {
+            signal = Util.replicate(INPUT_SIGNAL_2, Util.REPEAT_SIZE);
+            data = _fft.fastProcess(signal, Util.PHASES);
+            offset = Util.offset(INPUT_SIGNAL_2);
+
+            if (_debug)
+                System.out.println("Offset for "+INPUT_SIGNAL_2+" is "+offset);
+
+            message = Util.message(data, offset);
+
+            if (_debug)
+            {
+                System.out.println();
+                Util.printSignal(message, Util.MESSAGE_SIZE);
+            }
+
+            for (int i = 0; (i < Util.MESSAGE_SIZE) && result; i++)
+            {
+                if (message[i] != SIGNAL_2_RESULT[i])
+                    result = false;
+            }
+        }
+
         return result;
     }
     
