@@ -19,7 +19,7 @@ public class Verifier
     {
         boolean result = true;
         int[] signal = Util.replicate(INPUT_SIGNAL_1, Util.REPEAT_SIZE);
-        int[] data = _fft.process(signal, Util.PHASES);
+        int[] data = _fft.fastProcess(signal, Util.PHASES);
         long offset = Util.offset(INPUT_SIGNAL_1);
 
         //if (_debug)
