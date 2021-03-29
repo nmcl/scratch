@@ -39,7 +39,21 @@ public class Compute
 
     public int[] fastProcess (int[] input, int numberOfPhases)
     {
-        int[] results = input;
+        //int[] results = input;
+
+        for (int i = 1; i <= numberOfPhases; i++)
+        {
+            int result = 0;
+
+            for (int index = input.length - 1; index >= 0; index--)
+            {
+                result += input[index];
+
+                result = Math.abs(result%10);
+
+                input[index] = result;
+            }
+        }
 
         return input;
     }
