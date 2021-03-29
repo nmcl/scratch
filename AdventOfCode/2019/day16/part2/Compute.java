@@ -19,6 +19,24 @@ public class Compute
         return results;
     }
 
+    /*
+     * https://work.njae.me.uk/2019/12/20/advent-of-code-2019-day-16/
+     * 
+     * "The second-from-last digit in the new message is the last digit in the new message
+     * plus the second-from-last digit in the old message (mod 10). The third-from-last digit in
+     * the new message is the second-from-last digit in the new message plus the third-from-last
+     * digit in the old message.
+     * 
+     * In other words, a message that ends abcdef will become a message that ends ghijkl, like this:
+     *
+     * a+b+c+d+e+f = g = a+h
+     * b+c+d+e+f = h = b+i
+     * c+d+e+f = i = c+j
+     * d+e+f = j = d+k
+     * e+f = k = e+l
+     * f = l
+     */
+
     public int[] fastProcess (int[] input, int numberOfPhases)
     {
         int[] results = input;
