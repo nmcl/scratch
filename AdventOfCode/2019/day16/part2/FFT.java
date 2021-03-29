@@ -66,14 +66,21 @@ public class FFT
             }
 
             Compute fft = new Compute(debug);
-            int[] input = Util.convert(line);
-            int[] data = fft.process(input, 100);
+            int[] signal = Util.replicate(line, Util.REPEAT_SIZE);
+            int[] data = fft.fastProcess(signal, Util.PHASES);
+            int offset = Util.offset(line);
 
-            System.out.print("First 8 digits: ");
+            if (debug)
+                System.out.println("Offset for "+line+" is "+offset);
 
-            for (int i = 0; i < 8; i++)
+            int[] message = Util.message(data, offset);
+
+
+            System.out.print("Message: ");
+
+            for (int i = 0; i < Util.MESSAGE_SIZE; i++)
             {
-                System.out.print(data[i]);
+                System.out.print(message[i]);
             }
 
             System.out.println();
