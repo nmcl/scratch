@@ -20,13 +20,24 @@ public class Verifier
         boolean result = true;
         int[] signal = Util.replicate(INPUT_SIGNAL_1, Util.REPEAT_SIZE);
         int[] data = _fft.fastProcess(signal, Util.PHASES);
-        long offset = Util.offset(INPUT_SIGNAL_1);
+        int offset = Util.offset(INPUT_SIGNAL_1);
 
-        //if (_debug)
+        if (_debug)
             System.out.println("Offset for "+INPUT_SIGNAL_1+" is "+offset);
 
-        System.out.println();
-        Util.printSignal(data, INPUT_SIGNAL_1.length());
+        int[] message = Util.message(data, offset);
+
+        if (_debug)
+        {
+            System.out.println();
+            Util.printSignal(message, Util.MESSAGE_SIZE);
+        }
+
+        for (int i = 0; (i < Util.MESSAGE_SIZE) && result; i++)
+        {
+            if (message[i] != SIGNAL_1_RESULT[i])
+                result = false;
+        }
 
         return result;
     }
