@@ -1,7 +1,7 @@
 public class Util
 {
     public static final int OFFSET = 7;
-    public static final int REPEAT_SIZE = 100;//10000;
+    public static final int REPEAT_SIZE = 10000;
     public static final int PHASES = 100;
     public static final int MESSAGE_SIZE = 8;
 
@@ -34,17 +34,22 @@ public class Util
         return toReturn;
     }
 
-    public static long offset (String input)
+    public static int offset (String input)
     {
         int[] data = convert(input);
         String offsetStr = input.substring(0, Util.OFFSET);
 
-        return Long.parseLong(offsetStr);
+        return Integer.parseInt(offsetStr);
     }
 
-    public static int[] message (int[] input, long offset)
+    public static int[] message (int[] input, int offset)
     {
-        return null;
+        int[] message = new int[MESSAGE_SIZE];
+
+        for (int i = 0; i < MESSAGE_SIZE; i++)
+            message[i] = input[offset+i];
+
+        return message;
     }
 
     public static void printSignal (int[] signal, int split)
