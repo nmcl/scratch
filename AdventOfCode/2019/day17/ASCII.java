@@ -1,4 +1,6 @@
-// Aft Scaffolding Control and Information Interface
+/*
+ * Aft Scaffolding Control and Information Interface.class ASCII
+ */
 
 public class ASCII 
 {
@@ -19,6 +21,8 @@ public class ASCII
             if ("-debug".equals(args[i]))
                 debug = true;
         }
+
+        String[] values = IntcodeUtil.readValues(INSTRUCTIONS);
     }
 
     private ASCII ()
