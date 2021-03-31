@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Camera
 {
     public Camera (Vector<String> values, String initialInput, boolean debug)
