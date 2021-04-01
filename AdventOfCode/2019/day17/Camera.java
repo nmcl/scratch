@@ -8,6 +8,11 @@ public class Camera
         _debug = debug;
     }
 
+    public final void takePicture ()
+    {
+
+    }
+    
     @Override
     public String toString ()
     {
