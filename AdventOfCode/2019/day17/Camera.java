@@ -2,9 +2,7 @@ import java.util.*;
 
 public class Camera
 {
-  
-
-    public static final String INITIAL_INPUT = "";
+    private static final String INITIAL_INPUT = "";
 
     public Camera (Vector<String> values, boolean debug)
     {
@@ -26,6 +24,11 @@ public class Camera
                 _scaffolding.addData(output);
             }
         }
+    }
+
+    public final void scanForIntersections ()
+    {
+        
     }
     
     @Override
