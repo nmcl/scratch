@@ -3,7 +3,7 @@ import java.io.*;
 
 public class IntcodeUtil
 {
-    public static final String[] readValues (String inputFile)
+    public static final Vector<String> readValues (String inputFile)
     {
         /*
          * Open the data file and read it in.
@@ -37,7 +37,11 @@ public class IntcodeUtil
             }
         }
 
-        return values;
+        Vector<String> instructions = new Vector<String>();
+
+        instructions.addAll(Arrays.asList(values));
+
+        return instructions;
     }
 
     private IntcodeUtil ()
