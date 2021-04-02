@@ -1,5 +1,5 @@
 /*
- * Aft Scaffolding Control and Information Interface.class ASCII
+ * Aft Scaffolding Control and Information Interface.
  */
 
 public class ASCII 
