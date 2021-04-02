@@ -14,13 +14,19 @@ public class Scaffold
     public Scaffold (boolean debug)
     {
         _image = new Vector<String>();
+        _numberOfLines = 0;
         _debug = debug;
     }
 
     public void addData (String value)
     {
         if ((SCAFFOLDING_CODE.equals(value)) || (OPEN_SPACE_CODE.equals(value)) || (NEW_LINE_CODE.equals(value)))
+        {
             _image.add(value);
+
+            if (NEW_LINE_CODE.equals(value))
+                _numberOfLines++;
+        }
         else
         {
             if (VacuumRobot.isRobotCode(value))
@@ -35,7 +41,7 @@ public class Scaffold
 
     public void scanForIntersections ()
     {
-        
+
     }
 
     @Override
@@ -74,5 +80,6 @@ public class Scaffold
     }
 
     private Vector<String> _image;
+    private int _numberOfLines;
     private boolean _debug;
 }
