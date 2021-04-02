@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
  * Aft Scaffolding Control and Information Interface.
  */
@@ -22,7 +24,7 @@ public class ASCII
                 debug = true;
         }
 
-        String[] values = IntcodeUtil.readValues(INSTRUCTIONS);
+        Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
         Camera theCamera = new Camera(values, debug);
 
         theCamera.takePicture();
