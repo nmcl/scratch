@@ -28,6 +28,8 @@ public class ASCII
         Camera theCamera = new Camera(values, debug);
 
         theCamera.takePicture();
+
+        System.out.println(theCamera);
     }
 
     private ASCII ()
