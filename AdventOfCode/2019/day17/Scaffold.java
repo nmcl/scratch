@@ -9,7 +9,7 @@ public class Scaffold
 
     public static final String SCAFFOLDING_CODE = "35";
     public static final String OPEN_SPACE_CODE = "46";
-    public static final String NEW_LINE = "10";
+    public static final String NEW_LINE_CODE = "10";
 
     public Scaffold (boolean debug)
     {
@@ -19,12 +19,17 @@ public class Scaffold
 
     public void addData (String value)
     {
-        if ((SCAFFOLDING_CODE.equals(value)) || (OPEN_SPACE_CODE.equals(value)) || (NEW_LINE.equals(value)))
+        if ((SCAFFOLDING_CODE.equals(value)) || (OPEN_SPACE_CODE.equals(value)) || (NEW_LINE_CODE.equals(value)))
             _image.add(value);
         else
         {
-            if (_debug)
-                System.out.println("Invalid code: "+value);
+            if (VacuumRobot.isRobotCode(value))
+                _image.add(value);
+            else
+            {
+                if (_debug)
+                    System.out.println("Invalid code: "+value);
+            }
         }
     }
 
@@ -50,8 +55,13 @@ public class Scaffold
                     str += OPEN_SPACE;
                 }
                 break;
-                default:
+                case NEW_LINE_CODE:
+                {
                     str += "\n";
+                }
+                break;
+                default:
+                    str += VacuumRobot.print(val);
             }
         }
 
