@@ -12,13 +12,13 @@ public class Camera
 
     public Camera (Vector<String> values, boolean debug)
     {
-        _computer = new Intcode(values, INITIAL_INPUT, debug);
+        _theComputer = new Intcode(values, INITIAL_INPUT, debug);
         _debug = debug;
     }
 
     public final void takePicture ()
     {
-        while (!_computer.hasHalted())
+        while (!_theComputer.hasHalted())
         {
             _theComputer.singleStepExecution();
 
@@ -39,6 +39,6 @@ public class Camera
         return str;
     }
 
-    private Intcode _computer;
+    private Intcode _theComputer;
     private boolean _debug;
 }
