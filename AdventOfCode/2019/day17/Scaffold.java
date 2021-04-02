@@ -33,6 +33,11 @@ public class Scaffold
         }
     }
 
+    public void scanForIntersections ()
+    {
+        
+    }
+
     @Override
     public String toString ()
     {
