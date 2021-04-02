@@ -2,17 +2,14 @@ import java.util.*;
 
 public class Camera
 {
-    // ASCII codes.
-
-    public static final int SCAFFOLDING_CODE = 35;
-    public static final int OPEN_SPACE_CODE = 46;
-    public static final int NEW_LINE = 10;
+  
 
     public static final String INITIAL_INPUT = "";
 
     public Camera (Vector<String> values, boolean debug)
     {
         _theComputer = new Intcode(values, INITIAL_INPUT, debug);
+        _scaffolding = new Scaffold(debug);
         _debug = debug;
     }
 
@@ -26,7 +23,7 @@ public class Camera
             {
                 String output = _theComputer.getOutput();
 
-                System.out.println(output);
+                _scaffolding.addData(output);
             }
         }
     }
@@ -34,11 +31,10 @@ public class Camera
     @Override
     public String toString ()
     {
-        String str = "";
-
-        return str;
+        return _scaffolding.toString();
     }
 
     private Intcode _theComputer;
+    private Scaffold _scaffolding;
     private boolean _debug;
 }
