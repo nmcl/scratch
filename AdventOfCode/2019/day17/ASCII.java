@@ -23,6 +23,9 @@ public class ASCII
         }
 
         String[] values = IntcodeUtil.readValues(INSTRUCTIONS);
+        Camera theCamera = new Camera(values, debug);
+
+        theCamera.takePicture();
     }
 
     private ASCII ()
