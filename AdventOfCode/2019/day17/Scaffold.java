@@ -47,7 +47,7 @@ public class Scaffold
         String[] lines = scannedLines();
         int lineLength = lines[0].length();
 
-        if (_debug)
+        //if (_debug)
         {
             System.out.println("Number of lines: "+lines.length);
             System.out.println("Line length: "+lineLength);
@@ -62,6 +62,8 @@ public class Scaffold
                 int left = j-1;
                 int right = j+1;
 
+                System.out.println("using "+lineAbove+" "+lineBelow+" "+left+" "+right);
+                
                 if ((lineAbove >= 0) && (lineBelow < lines.length) && (left >= 0) && (right < lineLength))
                 {
                     if (lines[lineAbove].charAt(j) == SCAFFOLDING_CHAR)
