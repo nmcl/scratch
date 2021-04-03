@@ -5,6 +5,8 @@ public class Scaffold
     public static final String SCAFFOLDING = "#";
     public static final String OPEN_SPACE = ".";
 
+    public static final char SCAFFOLDING_CHAR = '#';
+
     // ASCII codes.
 
     public static final String SCAFFOLDING_CODE = "35";
@@ -48,13 +50,24 @@ public class Scaffold
         {
             for (int j = 0; j < lineLength; j++)
             {
-                int up = i-1;
-                int down = i+1;
+                int lineAbove = i-1;
+                int lineBelow = i+1;
                 int left = j-1;
                 int right = j+1;
 
-                if ((up >= 0) && (down < lineLength) && (left >= 0) && (right < lineLength))
+                if ((lineAbove >= 0) && (lineBelow < lines.length) && (left >= 0) && (right < lineLength))
                 {
+                    if (lines[lineAbove].charAt(j) == SCAFFOLDING_CHAR)
+                    {
+                        if (lines[lineBelow].charAt(j) == SCAFFOLDING_CHAR)
+                        {
+                            if (lines[i].charAt(left) == SCAFFOLDING_CHAR)
+                            {
+                                if (lines[i].charAt(right) == SCAFFOLDING_CHAR)
+                                    System.out.println("Intersection");
+                            }
+                        }
+                    }
                 }
             }
         }
