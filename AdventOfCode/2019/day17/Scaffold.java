@@ -42,93 +42,7 @@ public class Scaffold
         }
     }
 
-    public void scanForIntersections ()
-    {
-        String[] lines = scannedLines();
-        int lineLength = lines[0].length(); // all lines are the same length
-
-        if (_debug)
-        {
-            System.out.println("Number of lines: "+lines.length);
-            System.out.println("Line length: "+lineLength);
-        }
-        
-        for (int i = 0; i < lines.length -1; i++)
-        {
-            if (_debug)
-                System.out.println("Line "+i+" is "+lines[i]);
-
-            for (int j = 0; j < lineLength; j++)
-            {
-                if (lines[i].charAt(j) == SCAFFOLDING_CHAR)
-                {
-                    int lineAbove = i-1;
-                    int lineBelow = i+1;
-                    int left = j-1;
-                    int right = j+1;
-
-                    if ((lineAbove >= 0) && (lineBelow < lines.length -1) && (left >= 0) && (right < lineLength))
-                    {
-                        if (lines[lineAbove].charAt(j) == SCAFFOLDING_CHAR)
-                        {
-                            if (lines[lineBelow].charAt(j) == SCAFFOLDING_CHAR)
-                            {
-                                if (lines[i].charAt(left) == SCAFFOLDING_CHAR)
-                                {
-                                    if (lines[i].charAt(right) == SCAFFOLDING_CHAR)
-                                    {
-                                        String str = lines[i];
-
-                                        lines[i] = str.substring(0, j) + Scaffold.INTERSECTION_CHAR + str.substring(j+1);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < lines.length; i++)
-            System.out.println(lines[i]);
-    }
-
-    @Override
-    public String toString ()
-    {
-        Enumeration<String> iter = _image.elements();
-        String str = "";
-
-        while (iter.hasMoreElements())
-        {
-            String val = iter.nextElement();
-
-            switch (val)
-            {
-                case SCAFFOLDING_CODE:
-                {
-                    str += SCAFFOLDING;
-                }
-                break;
-                case OPEN_SPACE_CODE:
-                {
-                    str += OPEN_SPACE;
-                }
-                break;
-                case NEW_LINE_CODE:
-                {
-                    str += "\n";
-                }
-                break;
-                default:
-                    str += VacuumRobot.print(val);
-            }
-        }
-
-        return str;
-    }
-
-    private String[] scannedLines ()
+    public final String[] scannedLines ()
     {
         String[] lines = new String[_numberOfLines];
         Enumeration<String> iter = _image.elements();
@@ -174,6 +88,51 @@ public class Scaffold
         }
 
         return lines;
+    }
+
+    public final Vector<String> getImage ()
+    {
+        return _image;
+    }
+
+    public final int numberOfLines ()
+    {
+        return _numberOfLines;
+    }
+
+    @Override
+    public String toString ()
+    {
+        Enumeration<String> iter = _image.elements();
+        String str = "";
+
+        while (iter.hasMoreElements())
+        {
+            String val = iter.nextElement();
+
+            switch (val)
+            {
+                case SCAFFOLDING_CODE:
+                {
+                    str += SCAFFOLDING;
+                }
+                break;
+                case OPEN_SPACE_CODE:
+                {
+                    str += OPEN_SPACE;
+                }
+                break;
+                case NEW_LINE_CODE:
+                {
+                    str += "\n";
+                }
+                break;
+                default:
+                    str += VacuumRobot.print(val);
+            }
+        }
+
+        return str;
     }
 
     private final int numberOfLineElements ()
