@@ -6,6 +6,7 @@ public class Scaffold
     public static final String OPEN_SPACE = ".";
 
     public static final char SCAFFOLDING_CHAR = '#';
+    public static final char INTERSECTION_CHAR = 'O';
 
     // ASCII codes.
 
@@ -46,8 +47,11 @@ public class Scaffold
         String[] lines = scannedLines();
         int lineLength = lines[0].length();
 
-        System.out.println("number of lines: "+lines.length);
-        System.out.println("and: "+lineLength);
+        if (_debug)
+        {
+            System.out.println("Number of lines: "+lines.length);
+            System.out.println("Line length: "+lineLength);
+        }
         
         for (int i = 0; i < lines.length; i++)
         {
@@ -58,8 +62,6 @@ public class Scaffold
                 int left = j-1;
                 int right = j+1;
 
-                System.out.println("checking "+lineAbove+" "+lineBelow+" "+left+" "+right);
-
                 if ((lineAbove >= 0) && (lineBelow < lines.length) && (left >= 0) && (right < lineLength))
                 {
                     if (lines[lineAbove].charAt(j) == SCAFFOLDING_CHAR)
@@ -69,13 +71,22 @@ public class Scaffold
                             if (lines[i].charAt(left) == SCAFFOLDING_CHAR)
                             {
                                 if (lines[i].charAt(right) == SCAFFOLDING_CHAR)
+                                {
                                     System.out.println("Intersection");
+
+                                    String str = lines[i];
+
+                                    lines[i] = str.substring(0, j) + Scaffold.INTERSECTION_CHAR + str.substring(j+1);
+                                }
                             }
                         }
                     }
                 }
             }
         }
+
+        for (int i = 0; i < lines.length; i++)
+            System.out.println(lines[i]);
     }
 
     @Override
