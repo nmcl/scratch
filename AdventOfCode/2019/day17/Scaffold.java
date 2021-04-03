@@ -62,10 +62,10 @@ public class Scaffold
                 int left = j-1;
                 int right = j+1;
 
-                System.out.println("using "+lineAbove+" "+lineBelow+" "+left+" "+right);
-                
                 if ((lineAbove >= 0) && (lineBelow < lines.length) && (left >= 0) && (right < lineLength))
                 {
+                    System.out.println("using "+lineAbove+" "+lineBelow+" "+left+" "+right);
+                
                     if (lines[lineAbove].charAt(j) == SCAFFOLDING_CHAR)
                     {
                         if (lines[lineBelow].charAt(j) == SCAFFOLDING_CHAR)
