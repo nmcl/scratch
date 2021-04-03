@@ -45,40 +45,42 @@ public class Scaffold
     public void scanForIntersections ()
     {
         String[] lines = scannedLines();
-        int lineLength = lines[0].length();
+        int lineLength = lines[0].length(); // all lines are the same length
 
-        //if (_debug)
+        if (_debug)
         {
             System.out.println("Number of lines: "+lines.length);
             System.out.println("Line length: "+lineLength);
         }
         
-        for (int i = 0; i < lines.length; i++)
+        for (int i = 0; i < lines.length -1; i++)
         {
+            if (_debug)
+                System.out.println("Line "+i+" is "+lines[i]);
+
             for (int j = 0; j < lineLength; j++)
             {
-                int lineAbove = i-1;
-                int lineBelow = i+1;
-                int left = j-1;
-                int right = j+1;
-
-                if ((lineAbove >= 0) && (lineBelow < lines.length) && (left >= 0) && (right < lineLength))
+                if (lines[i].charAt(j) == SCAFFOLDING_CHAR)
                 {
-                    System.out.println("using "+lineAbove+" "+lineBelow+" "+left+" "+right);
-                
-                    if (lines[lineAbove].charAt(j) == SCAFFOLDING_CHAR)
+                    int lineAbove = i-1;
+                    int lineBelow = i+1;
+                    int left = j-1;
+                    int right = j+1;
+
+                    if ((lineAbove >= 0) && (lineBelow < lines.length -1) && (left >= 0) && (right < lineLength))
                     {
-                        if (lines[lineBelow].charAt(j) == SCAFFOLDING_CHAR)
+                        if (lines[lineAbove].charAt(j) == SCAFFOLDING_CHAR)
                         {
-                            if (lines[i].charAt(left) == SCAFFOLDING_CHAR)
+                            if (lines[lineBelow].charAt(j) == SCAFFOLDING_CHAR)
                             {
-                                if (lines[i].charAt(right) == SCAFFOLDING_CHAR)
+                                if (lines[i].charAt(left) == SCAFFOLDING_CHAR)
                                 {
-                                    System.out.println("Intersection");
+                                    if (lines[i].charAt(right) == SCAFFOLDING_CHAR)
+                                    {
+                                        String str = lines[i];
 
-                                    String str = lines[i];
-
-                                    lines[i] = str.substring(0, j) + Scaffold.INTERSECTION_CHAR + str.substring(j+1);
+                                        lines[i] = str.substring(0, j) + Scaffold.INTERSECTION_CHAR + str.substring(j+1);
+                                    }
                                 }
                             }
                         }
