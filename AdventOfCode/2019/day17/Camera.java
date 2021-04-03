@@ -26,9 +26,55 @@ public class Camera
         }
     }
 
-    public final void scanForIntersections ()
+    public void scanForIntersections ()
     {
-        _scaffolding.scanForIntersections();
+        String[] lines = _scaffolding.scannedLines();
+        int lineLength = lines[0].length(); // all lines are the same length
+
+        if (_debug)
+        {
+            System.out.println("Number of lines: "+lines.length);
+            System.out.println("Line length: "+lineLength);
+        }
+        
+        for (int i = 0; i < lines.length -1; i++)
+        {
+            if (_debug)
+                System.out.println("Line "+i+" is "+lines[i]);
+
+            for (int j = 0; j < lineLength; j++)
+            {
+                if (lines[i].charAt(j) == Scaffold.SCAFFOLDING_CHAR)
+                {
+                    int lineAbove = i-1;
+                    int lineBelow = i+1;
+                    int left = j-1;
+                    int right = j+1;
+
+                    if ((lineAbove >= 0) && (lineBelow < lines.length -1) && (left >= 0) && (right < lineLength))
+                    {
+                        if (lines[lineAbove].charAt(j) == Scaffold.SCAFFOLDING_CHAR)
+                        {
+                            if (lines[lineBelow].charAt(j) == Scaffold.SCAFFOLDING_CHAR)
+                            {
+                                if (lines[i].charAt(left) == Scaffold.SCAFFOLDING_CHAR)
+                                {
+                                    if (lines[i].charAt(right) == Scaffold.SCAFFOLDING_CHAR)
+                                    {
+                                        String str = lines[i];
+
+                                        lines[i] = str.substring(0, j) + Scaffold.INTERSECTION_CHAR + str.substring(j+1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < lines.length; i++)
+            System.out.println(lines[i]);
     }
     
     @Override
