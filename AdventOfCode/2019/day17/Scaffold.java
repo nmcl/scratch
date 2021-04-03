@@ -46,6 +46,9 @@ public class Scaffold
         String[] lines = scannedLines();
         int lineLength = lines[0].length();
 
+        System.out.println("number of lines: "+lines.length);
+        System.out.println("and: "+lineLength);
+        
         for (int i = 0; i < lines.length; i++)
         {
             for (int j = 0; j < lineLength; j++)
@@ -54,6 +57,8 @@ public class Scaffold
                 int lineBelow = i+1;
                 int left = j-1;
                 int right = j+1;
+
+                System.out.println("checking "+lineAbove+" "+lineBelow+" "+left+" "+right);
 
                 if ((lineAbove >= 0) && (lineBelow < lines.length) && (left >= 0) && (right < lineLength))
                 {
@@ -134,7 +139,6 @@ public class Scaffold
                 break;
                 case NEW_LINE_CODE:
                 {
-                    str = "";
                     endOfLine = true;
                 }
                 break;
@@ -146,6 +150,11 @@ public class Scaffold
             {
                 lines[lineNumber] = str;
                 lineNumber++;
+
+                if (_debug)
+                    System.out.println("Line: "+str);
+
+                str = "";
             }
         }
 
