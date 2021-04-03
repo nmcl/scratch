@@ -28,7 +28,7 @@ public class Camera
 
     public final void scanForIntersections ()
     {
-        
+        _scaffolding.scanForIntersections();
     }
     
     @Override
