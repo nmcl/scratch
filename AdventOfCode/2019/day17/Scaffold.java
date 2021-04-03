@@ -41,7 +41,7 @@ public class Scaffold
 
     public void scanForIntersections ()
     {
-
+        int sizeOfLines = numberOfLineElements();
     }
 
     @Override
@@ -77,6 +77,25 @@ public class Scaffold
         }
 
         return str;
+    }
+
+    private final int numberOfLineElements ()
+    {
+        int sizeOfLines = 0;
+        Enumeration<String> iter = _image.elements();
+        boolean done = false;
+
+        while (iter.hasMoreElements() && !done)
+        {
+            sizeOfLines++;
+
+            String entry = iter.nextElement();
+
+            if (NEW_LINE_CODE.equals(entry))
+                done = true;
+        }
+
+        return sizeOfLines;
     }
 
     private Vector<String> _image;
