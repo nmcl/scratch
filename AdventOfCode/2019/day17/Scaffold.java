@@ -42,6 +42,22 @@ public class Scaffold
     public void scanForIntersections ()
     {
         String[] lines = scannedLines();
+        int lineLength = lines[0].length();
+
+        for (int i = 0; i < lines.length; i++)
+        {
+            for (int j = 0; j < lineLength; j++)
+            {
+                int up = i-1;
+                int down = i+1;
+                int left = j-1;
+                int right = j+1;
+
+                if ((up >= 0) && (down < lineLength) && (left >= 0) && (right < lineLength))
+                {
+                }
+            }
+        }
     }
 
     @Override
