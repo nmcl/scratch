@@ -30,6 +30,8 @@ public class ASCII
         theCamera.takePicture();
 
         System.out.println(theCamera);
+        
+        theCamera.scanForIntersections();
     }
 
     private ASCII ()
