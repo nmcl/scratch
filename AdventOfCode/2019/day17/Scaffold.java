@@ -42,6 +42,14 @@ public class Scaffold
     public void scanForIntersections ()
     {
         int sizeOfLines = numberOfLineElements();
+        String[][] lines = new String[_numberOfLines][sizeOfLines];
+        int lineNumber = 0;
+        Enumeration<String> iter = _image.elements();
+
+        while (lineNumber < _numberOfLines)
+        {
+            int lineEntry = 0;
+        }
     }
 
     @Override
