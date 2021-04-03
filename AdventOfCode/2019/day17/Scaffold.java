@@ -41,15 +41,7 @@ public class Scaffold
 
     public void scanForIntersections ()
     {
-        int sizeOfLines = numberOfLineElements();
-        String[][] lines = new String[_numberOfLines][sizeOfLines];
-        int lineNumber = 0;
-        Enumeration<String> iter = _image.elements();
-
-        while (lineNumber < _numberOfLines)
-        {
-            int lineEntry = 0;
-        }
+        String[] lines = scannedLines();
     }
 
     @Override
@@ -85,6 +77,50 @@ public class Scaffold
         }
 
         return str;
+    }
+
+    private String[] scannedLines ()
+    {
+        String[] lines = new String[_numberOfLines];
+        Enumeration<String> iter = _image.elements();
+        int lineNumber = 0;
+        String str = "";
+
+        while (iter.hasMoreElements())
+        {
+            String val = iter.nextElement();
+            boolean endOfLine = false;
+
+            switch (val)
+            {
+                case SCAFFOLDING_CODE:
+                {
+                    str += SCAFFOLDING;
+                }
+                break;
+                case OPEN_SPACE_CODE:
+                {
+                    str += OPEN_SPACE;
+                }
+                break;
+                case NEW_LINE_CODE:
+                {
+                    str = "";
+                    endOfLine = true;
+                }
+                break;
+                default:
+                    str += VacuumRobot.print(val);
+            }
+
+            if (endOfLine)
+            {
+                lines[lineNumber] = str;
+                lineNumber++;
+            }
+        }
+
+        return lines;
     }
 
     private final int numberOfLineElements ()
