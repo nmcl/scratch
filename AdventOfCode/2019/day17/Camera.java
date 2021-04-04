@@ -26,10 +26,11 @@ public class Camera
         }
     }
 
-    public void scanForIntersections ()
+    public Vector<Coordinate> scanForIntersections ()
     {
         String[] lines = _scaffolding.scannedLines();
         int lineLength = lines[0].length(); // all lines are the same length
+        Vector<Coordinate> intersections = new Vector<Coordinate>();
 
         if (_debug)
         {
@@ -75,6 +76,8 @@ public class Camera
 
         for (int i = 0; i < lines.length; i++)
             System.out.println(lines[i]);
+
+        return intersections;
     }
     
     @Override
