@@ -26,6 +26,23 @@ public class Camera
         }
     }
 
+    public Vector<Integer> getAlignmentParameters ()
+    {
+        Vector<Integer> params = new Vector<Integer>();
+        Vector<Coordinate> intersections = scanForIntersections();
+        Enumeration<Coordinate> ptr = intersections.elements();
+
+        while (ptr.hasMoreElements())
+        {
+            Coordinate coord = ptr.nextElement();
+            int alignmentParam = (coord.getX() -1) * (coord.getY() -1);
+
+            params.add(alignmentParam);
+        }
+
+        return params;
+    }
+
     public Vector<Coordinate> scanForIntersections ()
     {
         String[] lines = _scaffolding.scannedLines();
