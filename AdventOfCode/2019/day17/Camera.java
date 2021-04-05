@@ -37,7 +37,8 @@ public class Camera
             Coordinate coord = ptr.nextElement();
             int alignmentParam = coord.getX() * coord.getY();
 
-            System.out.println("Alignment Parameter: "+alignmentParam+" from "+coord);
+            if (_debug)
+                System.out.println("Alignment Parameter: "+alignmentParam+" from "+coord);
 
             params.add(alignmentParam);
         }

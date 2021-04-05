@@ -28,15 +28,18 @@ public class ASCII
         Camera theCamera = new Camera(values, debug);
 
         theCamera.takePicture();
-
-        System.out.println(theCamera);
         
-        Vector<Coordinate> intersections = theCamera.scanForIntersections();
-        Enumeration<Coordinate> iter = intersections.elements();
-
-        while (iter.hasMoreElements())
+        if (debug)
         {
-            System.out.println("Intersection at: "+iter.nextElement());
+            System.out.println(theCamera);
+
+            Vector<Coordinate> intersections = theCamera.scanForIntersections();
+            Enumeration<Coordinate> iter = intersections.elements();
+
+            while (iter.hasMoreElements())
+            {
+                System.out.println("Intersection at: "+iter.nextElement());
+            }
         }
 
         Vector<Integer> alignmentParameters = theCamera.getAlignmentParameters();
