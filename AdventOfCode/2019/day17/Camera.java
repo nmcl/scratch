@@ -35,10 +35,10 @@ public class Camera
         while (ptr.hasMoreElements())
         {
             Coordinate coord = ptr.nextElement();
-            int alignmentParam = (coord.getX() -1) * (coord.getY() -1);
+            int alignmentParam = coord.getX() * coord.getY();
 
-            System.out.println("Alignment Parameter: "+alignmentParam);
-            
+            System.out.println("Alignment Parameter: "+alignmentParam+" from "+coord);
+
             params.add(alignmentParam);
         }
 
