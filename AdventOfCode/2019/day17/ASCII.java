@@ -38,6 +38,17 @@ public class ASCII
         {
             System.out.println("Intersection at: "+iter.nextElement());
         }
+
+        Vector<Integer> alignmentParameters = theCamera.getAlignmentParameters();
+        Enumeration<Integer> ptr = alignmentParameters.elements();
+        int sum = 0;
+
+        while (iter.hasMoreElements())
+        {
+            sum += ptr.nextElement();
+        }
+
+        System.out.println("Sum of the alignment parameters: "+sum);
     }
 
     private ASCII ()
