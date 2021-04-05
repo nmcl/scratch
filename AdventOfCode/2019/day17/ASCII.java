@@ -43,7 +43,7 @@ public class ASCII
         Enumeration<Integer> ptr = alignmentParameters.elements();
         int sum = 0;
 
-        while (iter.hasMoreElements())
+        while (ptr.hasMoreElements())
         {
             sum += ptr.nextElement();
         }
