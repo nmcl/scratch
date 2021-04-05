@@ -66,7 +66,7 @@ public class Camera
 
                                         lines[i] = str.substring(0, j) + Scaffold.INTERSECTION_CHAR + str.substring(j+1);
 
-                                        intersections.add(new Coordinate(i, j));
+                                        intersections.add(new Coordinate(j, i));
                                     }
                                 }
                             }
