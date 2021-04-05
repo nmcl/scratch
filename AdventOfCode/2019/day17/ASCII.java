@@ -31,7 +31,13 @@ public class ASCII
 
         System.out.println(theCamera);
         
-        theCamera.scanForIntersections();
+        Vector<Coordinate> intersections = theCamera.scanForIntersections();
+        Enumeration<Coordinate> iter = intersections.elements();
+
+        while (iter.hasMoreElements())
+        {
+            System.out.println("Intersection at: "+iter.nextElement());
+        }
     }
 
     private ASCII ()
