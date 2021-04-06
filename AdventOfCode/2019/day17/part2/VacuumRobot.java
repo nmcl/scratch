@@ -14,6 +14,12 @@ public class VacuumRobot
     public static final String LEFT_CODE = "62";
     public static final String TUMBLING_CODE = "88";
 
+    // instructions
+
+    public static final String LEFT = "L";
+    public sttaic final String RIGHT = "R";
+    public static final String NEW_LINE = "\n";
+    
     public VacuumRobot (boolean debug)
     {
         _debug = debug;
