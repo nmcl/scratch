@@ -42,16 +42,7 @@ public class ASCII
             }
         }
 
-        Vector<Integer> alignmentParameters = theCamera.getAlignmentParameters();
-        Enumeration<Integer> ptr = alignmentParameters.elements();
-        int sum = 0;
-
-        while (ptr.hasMoreElements())
-        {
-            sum += ptr.nextElement();
-        }
-
-        System.out.println("Sum of the alignment parameters: "+sum);
+        Robot theRobot = new Robot(theCamera.scannedLines, debug);
     }
 
     private ASCII ()
