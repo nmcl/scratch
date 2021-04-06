@@ -6,7 +6,7 @@ import java.util.*;
 
 public class ASCII 
 {
-    public static final String INSTRUCTIONS = "instructions.txt";
+    public static final String INSTRUCTIONS = "program.txt";
 
     public static void main (String[] args)
     {
