@@ -20,7 +20,7 @@ public class VacuumRobot
     public static final String RIGHT_COMMAND = "R";
     public static final String NEW_LINE = "\n";
 
-    public VacuumRobot (boolean debug)
+    public VacuumRobot (String[] scannedLines, boolean debug)
     {
         _debug = debug;
     }
