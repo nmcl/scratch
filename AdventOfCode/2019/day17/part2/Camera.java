@@ -7,7 +7,7 @@ public class Camera
     public Camera (Vector<String> values, boolean debug)
     {
         _theComputer = new Intcode(values, INITIAL_INPUT, debug);
-        _scaffolding = new Scaffold(debug);
+        _theImage = new Image(debug);
         _debug = debug;
     }
 
@@ -21,7 +21,7 @@ public class Camera
             {
                 String output = _theComputer.getOutput();
 
-                _scaffolding.addData(output);
+                _theImage.addData(output);
             }
         }
     }
@@ -48,7 +48,7 @@ public class Camera
 
     public Vector<Coordinate> scanForIntersections ()
     {
-        String[] lines = _scaffolding.scannedLines();
+        String[] lines = _theImage.scannedLines();
         int lineLength = lines[0].length(); // all lines are the same length
         Vector<Coordinate> intersections = new Vector<Coordinate>();
 
@@ -105,10 +105,10 @@ public class Camera
     @Override
     public String toString ()
     {
-        return _scaffolding.toString();
+        return _theImage.toString();
     }
 
     private Intcode _theComputer;
-    private Scaffold _scaffolding;
+    private Image _theImage;
     private boolean _debug;
 }

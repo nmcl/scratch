@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Scaffold
+public class Image
 {
     public static final String SCAFFOLDING = "#";
     public static final String OPEN_SPACE = ".";
@@ -14,7 +14,7 @@ public class Scaffold
     public static final String OPEN_SPACE_CODE = "46";
     public static final String NEW_LINE_CODE = "10";
 
-    public Scaffold (boolean debug)
+    public Image (boolean debug)
     {
         _image = new Vector<String>();
         _numberOfLines = 0;
