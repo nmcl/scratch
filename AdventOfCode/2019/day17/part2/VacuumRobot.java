@@ -1,10 +1,10 @@
 public class VacuumRobot
 {
-    public static final String UP = "^";
-    public static final String DOWN = "v";
-    public static final String RIGHT = "<";
-    public static final String LEFT = ">";
-    public static final String TUMBLING = "X";
+    public static final String FACING_UP = "^";
+    public static final String FACING_DOWN = "v";
+    public static final String FACING_RIGHT = "<";
+    public static final String FACING_LEFT = ">";
+    public static final String FACING_TUMBLING = "X";
 
     // ASCII codes.
 
@@ -16,29 +16,29 @@ public class VacuumRobot
 
     // instructions
 
-    public static final String LEFT = "L";
-    public sttaic final String RIGHT = "R";
+    public static final String LEFT_COMMAND = "L";
+    public static final String RIGHT_COMMAND = "R";
     public static final String NEW_LINE = "\n";
-    
+
     public VacuumRobot (boolean debug)
     {
         _debug = debug;
     }
 
-    public static final String print (String code)
+    public static final String printCode (String code)
     {
         switch (code)
         {
             case UP_CODE:
-                return UP;
+                return FACING_UP;
             case DOWN_CODE:
-                return DOWN;
+                return FACING_DOWN;
             case RIGHT_CODE:
-                return RIGHT;
+                return FACING_RIGHT;
             case LEFT_CODE:
-                return LEFT;
+                return FACING_LEFT;
             default:
-                return TUMBLING;
+                return FACING_TUMBLING;
         }
     }
 

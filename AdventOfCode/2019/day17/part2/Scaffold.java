@@ -72,7 +72,7 @@ public class Scaffold
                 }
                 break;
                 default:
-                    str += VacuumRobot.print(val);
+                    str += VacuumRobot.printCode(val);
             }
 
             if (endOfLine)
@@ -128,7 +128,7 @@ public class Scaffold
                 }
                 break;
                 default:
-                    str += VacuumRobot.print(val);
+                    str += VacuumRobot.printCode(val);
             }
         }
 
