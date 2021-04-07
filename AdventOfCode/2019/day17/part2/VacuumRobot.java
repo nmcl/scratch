@@ -25,6 +25,11 @@ public class VacuumRobot
         _debug = debug;
     }
 
+    private void convertToPath ()
+    {
+        
+    }
+
     public static final String printCode (String code)
     {
         switch (code)
