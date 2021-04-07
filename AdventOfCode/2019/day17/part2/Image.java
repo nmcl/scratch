@@ -1,5 +1,10 @@
 import java.util.*;
 
+/*
+ * TODO change this to use Cell instead of String. Then the
+ * VacuumRobot wouldn't need to do the conversion.
+ */
+
 public class Image
 {
     public Image (boolean debug)
