@@ -11,6 +11,8 @@ public class VacuumRobot
     public VacuumRobot (String[] scannedLines, boolean debug)
     {
         _thePath = new Vector<Cell>();
+        _maxX = 0;
+        _maxY = 0;
         _debug = debug;
 
         convertToPath(scannedLines);
@@ -20,11 +22,15 @@ public class VacuumRobot
     {
         int lineLength = lines[0].length(); // all lines are the same length
 
+        _maxY = lines.length;
+        _maxX = lineLength;
+
         for (int y = 0; y < lines.length -1; y++)
         {
             for (int x = 0; x < lineLength; x++)
             {
-                boolean isScaffold = (lines[y].charAt(x) == Scaffold.SCAFFOLDING_CHAR);
+                char currChar = lines[y].charAt(x);
+                boolean isScaffold = (currChar == CellId.SCAFFOLDING_CHAR) || (CellId.isRobotCode(""+currChar));
                 Cell theCell = new Cell(new Coordinate(x, y), isScaffold, _debug);
 
                 if (_debug)
@@ -35,6 +41,18 @@ public class VacuumRobot
         }
     }
 
+    private void printCells ()
+    {
+        Enumeration<Cell> iter = _thePath.elements();
+
+        while (iter.hasMoreElements())
+        {
+
+        }
+    }
+
     private Vector<Cell> _thePath;
+    private int _maxX;
+    private int _maxY;
     private boolean _debug;
 }
