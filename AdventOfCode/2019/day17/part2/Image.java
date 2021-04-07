@@ -25,7 +25,7 @@ public class Image
         }
         else
         {
-            if (VacuumRobot.isRobotCode(value))
+            if (CellId.isRobotCode(value))
                 _image.add(value);
             else
             {
@@ -65,7 +65,7 @@ public class Image
                 }
                 break;
                 default:
-                    str += VacuumRobot.printCode(val);
+                    str += CellId.printRobotCode(val);
             }
 
             if (endOfLine)
@@ -121,7 +121,7 @@ public class Image
                 }
                 break;
                 default:
-                    str += VacuumRobot.printCode(val);
+                    str += CellId.printRobotCode(val);
             }
         }
 

@@ -26,6 +26,38 @@ public class CellId
     public static final String OPEN_SPACE_CODE = "46";
     public static final String NEW_LINE_CODE = "10";
 
+    public static final String printRobotCode (String code)
+    {
+        switch (code)
+        {
+            case CellId.ROBOT_UP_CODE:
+                return CellId.ROBOT_FACING_UP;
+            case CellId.ROBOT_DOWN_CODE:
+                return CellId.ROBOT_FACING_DOWN;
+            case CellId.ROBOT_RIGHT_CODE:
+                return CellId.ROBOT_FACING_RIGHT;
+            case CellId.ROBOT_LEFT_CODE:
+                return CellId.ROBOT_FACING_LEFT;
+            default:
+                return CellId.ROBOT_FACING_TUMBLING;
+        }
+    }
+
+    public static final boolean isRobotCode (String code)
+    {
+        switch (code)
+        {
+            case CellId.ROBOT_UP_CODE:
+            case CellId.ROBOT_DOWN_CODE:
+            case CellId.ROBOT_RIGHT_CODE:
+            case CellId.ROBOT_LEFT_CODE:
+            case CellId.ROBOT_TUMBLING_CODE:
+                return true;
+            default:
+                return false;
+        }
+    }
+    
     private CellId ()
     {
     }
