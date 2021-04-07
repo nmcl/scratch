@@ -16,9 +16,23 @@ public class VacuumRobot
         convertToPath(scannedLines);
     }
 
-    private void convertToPath (String[] scannedLines)
+    private void convertToPath (String[] lines)
     {
+        int lineLength = lines[0].length(); // all lines are the same length
 
+        for (int y = 0; y < lines.length -1; y++)
+        {
+            for (int x = 0; x < lineLength; x++)
+            {
+                boolean isScaffold = (lines[y].charAt(x) == Scaffold.SCAFFOLDING_CHAR);
+                Cell theCell = new Cell(new Coordinate(x, y), isScaffold, _debug);
+
+                if (_debug)
+                    System.out.println(theCell);
+
+                _thePath.add(theCell);
+            }
+        }
     }
 
     private Vector<Cell> _thePath;
