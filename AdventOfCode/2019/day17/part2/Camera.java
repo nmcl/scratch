@@ -102,6 +102,11 @@ public class Camera
         return intersections;
     }
     
+    public final Image getImage ()
+    {
+        return _theImage;
+    }
+    
     @Override
     public String toString ()
     {
