@@ -1,19 +1,5 @@
 public class VacuumRobot
 {
-    public static final String FACING_UP = "^";
-    public static final String FACING_DOWN = "v";
-    public static final String FACING_RIGHT = "<";
-    public static final String FACING_LEFT = ">";
-    public static final String FACING_TUMBLING = "X";
-
-    // ASCII codes.
-
-    public static final String UP_CODE = "94";
-    public static final String DOWN_CODE = "118";
-    public static final String RIGHT_CODE = "60";
-    public static final String LEFT_CODE = "62";
-    public static final String TUMBLING_CODE = "88";
-
     // instructions
 
     public static final String LEFT_COMMAND = "L";
@@ -23,11 +9,13 @@ public class VacuumRobot
     public VacuumRobot (String[] scannedLines, boolean debug)
     {
         _debug = debug;
+
+        convertToPath();
     }
 
     private void convertToPath ()
     {
-        
+
     }
 
     public static final String printCode (String code)

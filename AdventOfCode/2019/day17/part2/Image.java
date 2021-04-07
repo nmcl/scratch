@@ -2,18 +2,6 @@ import java.util.*;
 
 public class Image
 {
-    public static final String SCAFFOLDING = "#";
-    public static final String OPEN_SPACE = ".";
-
-    public static final char SCAFFOLDING_CHAR = '#';
-    public static final char INTERSECTION_CHAR = 'O';
-
-    // ASCII codes.
-
-    public static final String SCAFFOLDING_CODE = "35";
-    public static final String OPEN_SPACE_CODE = "46";
-    public static final String NEW_LINE_CODE = "10";
-
     public Image (boolean debug)
     {
         _image = new Vector<String>();
