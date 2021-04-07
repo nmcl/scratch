@@ -11,11 +11,11 @@ public class Image
 
     public void addData (String value)
     {
-        if ((SCAFFOLDING_CODE.equals(value)) || (OPEN_SPACE_CODE.equals(value)) || (NEW_LINE_CODE.equals(value)))
+        if ((CellId.SCAFFOLDING_CODE.equals(value)) || (CellId.OPEN_SPACE_CODE.equals(value)) || (CellId.NEW_LINE_CODE.equals(value)))
         {
             _image.add(value);
 
-            if (NEW_LINE_CODE.equals(value))
+            if (CellId.NEW_LINE_CODE.equals(value))
                 _numberOfLines++;
         }
         else
@@ -44,17 +44,17 @@ public class Image
 
             switch (val)
             {
-                case SCAFFOLDING_CODE:
+                case CellId.SCAFFOLDING_CODE:
                 {
-                    str += SCAFFOLDING;
+                    str += CellId.SCAFFOLDING;
                 }
                 break;
-                case OPEN_SPACE_CODE:
+                case CellId.OPEN_SPACE_CODE:
                 {
-                    str += OPEN_SPACE;
+                    str += CellId.OPEN_SPACE;
                 }
                 break;
-                case NEW_LINE_CODE:
+                case CellId.NEW_LINE_CODE:
                 {
                     endOfLine = true;
                 }
@@ -100,17 +100,17 @@ public class Image
 
             switch (val)
             {
-                case SCAFFOLDING_CODE:
+                case CellId.SCAFFOLDING_CODE:
                 {
-                    str += SCAFFOLDING;
+                    str += CellId.SCAFFOLDING;
                 }
                 break;
-                case OPEN_SPACE_CODE:
+                case CellId.OPEN_SPACE_CODE:
                 {
-                    str += OPEN_SPACE;
+                    str += CellId.OPEN_SPACE;
                 }
                 break;
-                case NEW_LINE_CODE:
+                case CellId.NEW_LINE_CODE:
                 {
                     str += "\n";
                 }
@@ -135,7 +135,7 @@ public class Image
 
             String entry = iter.nextElement();
 
-            if (NEW_LINE_CODE.equals(entry))
+            if (CellId.NEW_LINE_CODE.equals(entry))
                 done = true;
         }
 

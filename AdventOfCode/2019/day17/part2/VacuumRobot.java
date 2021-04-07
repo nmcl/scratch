@@ -22,16 +22,16 @@ public class VacuumRobot
     {
         switch (code)
         {
-            case UP_CODE:
-                return FACING_UP;
-            case DOWN_CODE:
-                return FACING_DOWN;
-            case RIGHT_CODE:
-                return FACING_RIGHT;
-            case LEFT_CODE:
-                return FACING_LEFT;
+            case CellId.ROBOT_UP_CODE:
+                return CellId.ROBOT_FACING_UP;
+            case CellId.ROBOT_DOWN_CODE:
+                return CellId.ROBOT_FACING_DOWN;
+            case CellId.ROBOT_RIGHT_CODE:
+                return CellId.ROBOT_FACING_RIGHT;
+            case CellId.ROBOT_LEFT_CODE:
+                return CellId.ROBOT_FACING_LEFT;
             default:
-                return FACING_TUMBLING;
+                return CellId.ROBOT_FACING_TUMBLING;
         }
     }
 
@@ -39,11 +39,11 @@ public class VacuumRobot
     {
         switch (code)
         {
-            case UP_CODE:
-            case DOWN_CODE:
-            case RIGHT_CODE:
-            case LEFT_CODE:
-            case TUMBLING_CODE:
+            case CellId.ROBOT_UP_CODE:
+            case CellId.ROBOT_DOWN_CODE:
+            case CellId.ROBOT_RIGHT_CODE:
+            case CellId.ROBOT_LEFT_CODE:
+            case CellId.ROBOT_TUMBLING_CODE:
                 return true;
             default:
                 return false;
