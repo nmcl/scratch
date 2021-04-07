@@ -65,7 +65,7 @@ public class Camera
 
             for (int j = 0; j < lineLength; j++)
             {
-                if (lines[i].charAt(j) == Scaffold.SCAFFOLDING_CHAR)
+                if (lines[i].charAt(j) == CellId.SCAFFOLDING_CHAR)
                 {
                     int lineAbove = i-1;
                     int lineBelow = i+1;
@@ -74,17 +74,17 @@ public class Camera
 
                     if ((lineAbove >= 0) && (lineBelow < lines.length -1) && (left >= 0) && (right < lineLength))
                     {
-                        if (lines[lineAbove].charAt(j) == Scaffold.SCAFFOLDING_CHAR)
+                        if (lines[lineAbove].charAt(j) == CellId.SCAFFOLDING_CHAR)
                         {
-                            if (lines[lineBelow].charAt(j) == Scaffold.SCAFFOLDING_CHAR)
+                            if (lines[lineBelow].charAt(j) == CellId.SCAFFOLDING_CHAR)
                             {
-                                if (lines[i].charAt(left) == Scaffold.SCAFFOLDING_CHAR)
+                                if (lines[i].charAt(left) == CellId.SCAFFOLDING_CHAR)
                                 {
-                                    if (lines[i].charAt(right) == Scaffold.SCAFFOLDING_CHAR)
+                                    if (lines[i].charAt(right) == CellId.SCAFFOLDING_CHAR)
                                     {
                                         String str = lines[i];
 
-                                        lines[i] = str.substring(0, j) + Scaffold.INTERSECTION_CHAR + str.substring(j+1);
+                                        lines[i] = str.substring(0, j) + CellId.INTERSECTION_CHAR + str.substring(j+1);
 
                                         intersections.add(new Coordinate(j, i));
                                     }
@@ -106,7 +106,7 @@ public class Camera
     {
         return _theImage;
     }
-    
+
     @Override
     public String toString ()
     {
