@@ -4,11 +4,17 @@
 
 public class Cell
 {
-    public Cell (Coordinate coord, String cellType, boolean debug)
+    public Cell (Coordinate coord, boolean isScaffold, boolean debug)
     {
         _coord = coord;
-        _scaffold = CellId.SCAFFOLDING.equals(cellType);
+        _scaffold = isScaffold;
         _debug = debug;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return "Cell at "+_coord+" is "+((_scaffold) ? "scaffolding" : "not scaffolding");
     }
 
     private Coordinate _coord;
