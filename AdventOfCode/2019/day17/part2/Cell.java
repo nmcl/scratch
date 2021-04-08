@@ -4,20 +4,25 @@
 
 public class Cell
 {
-    public Cell (Coordinate coord, String content, boolean debug)
+    public Cell (Coordinate coord, String contents, boolean debug)
     {
         _coord = coord;
-        _content = content;
+        _contents = contents;
         _debug = debug;
+    }
+
+    public final String getContents ()
+    {
+        return _contents;
     }
 
     @Override
     public String toString ()
     {
-        return "Cell at "+_coord+" is "+((_scaffold) ? "scaffolding" : "not scaffolding");
+        return "Cell at "+_coord+" is "+_contents;
     }
 
     private Coordinate _coord;
-    private String _content
+    private String _contents;
     private boolean _debug;
 }
