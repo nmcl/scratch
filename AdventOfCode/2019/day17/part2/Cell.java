@@ -4,10 +4,10 @@
 
 public class Cell
 {
-    public Cell (Coordinate coord, boolean isScaffold, boolean debug)
+    public Cell (Coordinate coord, String content, boolean debug)
     {
         _coord = coord;
-        _scaffold = isScaffold;
+        _content = content;
         _debug = debug;
     }
 
@@ -18,6 +18,6 @@ public class Cell
     }
 
     private Coordinate _coord;
-    private boolean _scaffold;
+    private String _content
     private boolean _debug;
 }
