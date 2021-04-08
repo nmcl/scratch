@@ -18,6 +18,26 @@ public class VacuumRobot
         convertToPath(scannedLines);
     }
 
+    public void printCells ()
+    {
+        Enumeration<Cell> iter = _thePath.elements();
+        int index = 1;
+
+        System.out.println("Dimensions < "+_maxX+", "+_maxY+" >");
+
+        while (iter.hasMoreElements())
+        {
+            System.out.print(iter.nextElement().getContents());
+
+            if (index++ == _maxX)
+            {
+                System.out.println();
+
+                index = 1;
+            }
+        }
+    }
+
     private void convertToPath (String[] lines)
     {
         int lineLength = lines[0].length(); // all lines are the same length
@@ -29,25 +49,13 @@ public class VacuumRobot
         {
             for (int x = 0; x < lineLength; x++)
             {
-                char currChar = lines[y].charAt(x);
-                boolean isScaffold = (currChar == CellId.SCAFFOLDING_CHAR) || (CellId.isRobotCode(""+currChar));
-                Cell theCell = new Cell(new Coordinate(x, y), isScaffold, _debug);
+                Cell theCell = new Cell(new Coordinate(x, y), String.valueOf(lines[y].charAt(x)), _debug);
 
                 if (_debug)
                     System.out.println(theCell);
 
                 _thePath.add(theCell);
             }
-        }
-    }
-
-    private void printCells ()
-    {
-        Enumeration<Cell> iter = _thePath.elements();
-
-        while (iter.hasMoreElements())
-        {
-
         }
     }
 
