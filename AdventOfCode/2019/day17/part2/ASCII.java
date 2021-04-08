@@ -43,6 +43,8 @@ public class ASCII
         }
 
         VacuumRobot theRobot = new VacuumRobot(theCamera.getImage().scannedLines(), debug);
+
+        theRobot.printCells();
     }
 
     private ASCII ()
