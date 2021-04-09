@@ -30,6 +30,11 @@ public class Map
     public boolean isScaffold (Coordinate coord)
     {
         Cell temp = new Cell(coord);
+        int index = _theMap.indexOf(temp);
+
+        temp = _theMap.get(index);
+
+        return (temp.getContents().equals(CellId.SCAFFOLDING));
     }
 
     @Override
