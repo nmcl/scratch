@@ -21,7 +21,12 @@ public class VacuumRobot
         _computer = new Intcode(instructions, INITIAL_INPUT, debug);
         _debug = debug;
 
-        convertToPath(scannedLines);
+        createScaffolding(scannedLines);
+
+        /*
+         * "Force the vacuum robot to wake up by changing the value in your
+         * ASCII program at address 0 from 1 to 2."
+         */
 
         _computer.changeInstruction(OVERRIDE_LOCATION, OVERRIDE_CODE);
     }
@@ -46,7 +51,7 @@ public class VacuumRobot
         }
     }
 
-    private void convertToPath (String[] lines)
+    private void createScaffolding (String[] lines)
     {
         int lineLength = lines[0].length(); // all lines are the same length
 
