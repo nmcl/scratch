@@ -42,9 +42,10 @@ public class ASCII
             }
         }
 
-        VacuumRobot theRobot = new VacuumRobot(theCamera.getImage().scannedLines(), IntcodeUtil.readValues(INSTRUCTIONS), debug);
+        Map theMap = new Map(theCamera.getImage(), debug);
+        VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
-        theRobot.printCells();
+        System.out.println(theMap);
     }
 
     private ASCII ()
