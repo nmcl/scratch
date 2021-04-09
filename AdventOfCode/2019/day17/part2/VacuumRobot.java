@@ -8,14 +8,22 @@ public class VacuumRobot
     public static final String RIGHT_COMMAND = "R";
     public static final String NEW_LINE = "\n";
 
-    public VacuumRobot (String[] scannedLines, boolean debug)
+    private static final String INITIAL_INPUT = "";
+    private static final String OVERRIDE_CODE = "2";
+
+    private static final int OVERRIDE_LOCATION = 0;
+
+    public VacuumRobot (String[] scannedLines, Vector<String> instructions, boolean debug)
     {
         _thePath = new Vector<Cell>();
         _maxX = 0;
         _maxY = 0;
+        _computer = new Intcode(instructions, INITIAL_INPUT, debug);
         _debug = debug;
 
         convertToPath(scannedLines);
+
+        _computer.changeInstruction(OVERRIDE_LOCATION, OVERRIDE_CODE);
     }
 
     public void printCells ()
@@ -62,5 +70,6 @@ public class VacuumRobot
     private Vector<Cell> _thePath;
     private int _maxX;
     private int _maxY;
+    private Intcode _computer;
     private boolean _debug;
 }
