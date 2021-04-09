@@ -16,6 +16,11 @@ public class Cell
         return _contents;
     }
 
+    public final Coordinate position ()
+    {
+        return _coord;
+    }
+
     @Override
     public String toString ()
     {
