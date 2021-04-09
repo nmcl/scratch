@@ -15,7 +15,7 @@ public class VacuumRobot
 
     public VacuumRobot (String[] scannedLines, Vector<String> instructions, boolean debug)
     {
-        _thePath = new Vector<Cell>();
+        _theMap = new Vector<Cell>();
         _maxX = 0;
         _maxY = 0;
         _computer = new Intcode(instructions, INITIAL_INPUT, debug);
@@ -33,7 +33,7 @@ public class VacuumRobot
 
     public void printCells ()
     {
-        Enumeration<Cell> iter = _thePath.elements();
+        Enumeration<Cell> iter = _theMap.elements();
         int index = 1;
 
         System.out.println("Dimensions < "+_maxX+", "+_maxY+" >");
@@ -67,12 +67,12 @@ public class VacuumRobot
                 if (_debug)
                     System.out.println(theCell);
 
-                _thePath.add(theCell);
+                    _theMap.add(theCell);
             }
         }
     }
 
-    private Vector<Cell> _thePath;
+    private Vector<Cell> _theMap;
     private int _maxX;
     private int _maxY;
     private Intcode _computer;
