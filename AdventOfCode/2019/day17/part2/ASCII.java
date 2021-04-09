@@ -42,7 +42,7 @@ public class ASCII
             }
         }
 
-        VacuumRobot theRobot = new VacuumRobot(theCamera.getImage().scannedLines(), debug);
+        VacuumRobot theRobot = new VacuumRobot(theCamera.getImage().scannedLines(), IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
         theRobot.printCells();
     }
