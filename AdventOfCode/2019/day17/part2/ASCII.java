@@ -26,8 +26,7 @@ public class ASCII
 
         Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
         Camera theCamera = new Camera(values, debug);
-
-        theCamera.takePicture();
+        Image theImage = theCamera.takePicture();
         
         if (debug)
         {
@@ -42,7 +41,7 @@ public class ASCII
             }
         }
 
-        Map theMap = new Map(theCamera.getImage(), debug);
+        Map theMap = new Map(theImage, debug);
         VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
         System.out.println(theMap);

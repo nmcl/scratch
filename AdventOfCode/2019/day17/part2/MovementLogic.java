@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class MovementLogic
 {
     public static final int ROUTINE_A = 0;
@@ -7,9 +5,9 @@ public class MovementLogic
     public static final int ROUTINE_C = 2;
     public static final int ROUTINE_D = 3;
 
-    public MovementLogic (Vector<Cell> map)
+    public MovementLogic (Map theMap)
     {
-        _theMap = map;
+        _theMap = theMap;
     }
 
     public static void createMovementFunctions ()
@@ -22,5 +20,5 @@ public class MovementLogic
         
     }
 
-    private Vector<Cell> _theMap;
+    private Map _theMap;
 }

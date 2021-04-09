@@ -11,7 +11,7 @@ public class Camera
         _debug = debug;
     }
 
-    public final void takePicture ()
+    public final Image takePicture ()
     {
         while (!_theComputer.hasHalted())
         {
@@ -24,6 +24,8 @@ public class Camera
                 _theImage.addData(output);
             }
         }
+
+        return _theImage;
     }
 
     public Vector<Integer> getAlignmentParameters ()
@@ -100,11 +102,6 @@ public class Camera
             System.out.println(lines[i]);
 
         return intersections;
-    }
-    
-    public final Image getImage ()
-    {
-        return _theImage;
     }
 
     @Override
