@@ -12,6 +12,21 @@ public class Map
         createMapFromImage(img.scannedLines());
     }
 
+    public Coordinate findStartingPoint ()
+    {
+        Enumeration<Cell> iter = _theMap.elements();
+
+        while (iter.hasMoreElements())
+        {
+            Cell cur = iter.nextElement();
+
+            if (cur.getContents().equals(CellId.ROBOT_FACING_UP))
+                return cur.position();
+        }
+
+        return null;
+    }
+
     @Override
     public String toString ()
     {
