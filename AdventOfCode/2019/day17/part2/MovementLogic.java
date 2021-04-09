@@ -39,10 +39,5 @@ public class MovementLogic
             System.out.println("Robot not found!");
     }
 
-    private Coordinate rightMove (Coordinate coord)
-    {
-        return new Coordinate(coord.)
-    }
-
     private Map _theMap;
 }
