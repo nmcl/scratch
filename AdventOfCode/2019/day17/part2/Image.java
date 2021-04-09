@@ -128,25 +128,6 @@ public class Image
         return str;
     }
 
-    private final int numberOfLineElements ()
-    {
-        int sizeOfLines = 0;
-        Enumeration<String> iter = _image.elements();
-        boolean done = false;
-
-        while (iter.hasMoreElements() && !done)
-        {
-            sizeOfLines++;
-
-            String entry = iter.nextElement();
-
-            if (CellId.NEW_LINE_CODE.equals(entry))
-                done = true;
-        }
-
-        return sizeOfLines;
-    }
-
     private Vector<String> _image;
     private int _numberOfLines;
     private boolean _debug;
