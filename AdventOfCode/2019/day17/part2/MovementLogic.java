@@ -5,6 +5,9 @@ public class MovementLogic
     public static final int ROUTINE_C = 2;
     public static final int ROUTINE_D = 3;
 
+    public static final String MOVE_LEFT = "L";
+    public static final String MOVE_RIGHT = "R";
+
     public MovementLogic (Map theMap)
     {
         _theMap = theMap;
@@ -20,16 +23,25 @@ public class MovementLogic
         
     }
 
+    /*
+     * Create path using only L and R.
+     */
+
     private void createPath ()
     {
-        Coordinate start = _theMap.findStartingPoint();
-
-        if (start != null)
+        Coordinate currentPosition = new Coordinate(_theMap.findStartingPoint());
+        
+        if (currentPosition != null)
         {
-
+            
         }
         else
             System.out.println("Robot not found!");
+    }
+
+    private Coordinate rightMove (Coordinate coord)
+    {
+        return new Coordinate(coord.)
     }
 
     private Map _theMap;
