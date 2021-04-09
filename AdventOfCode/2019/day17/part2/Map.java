@@ -27,6 +27,11 @@ public class Map
         return null;
     }
 
+    public boolean isScaffold (Coordinate coord)
+    {
+        Cell temp = new Cell(coord);
+    }
+
     @Override
     public String toString ()
     {
