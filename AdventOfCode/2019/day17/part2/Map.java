@@ -9,7 +9,7 @@ public class Map
         _maxY = 0;
         _debug = debug;
 
-        createScaffolding(img.scannedLines());
+        createMapFromImage(img.scannedLines());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Map
         return str;
     }
 
-    private void createScaffolding (String[] lines)
+    private void createMapFromImage (String[] lines)
     {
         int lineLength = lines[0].length(); // all lines are the same length
 
