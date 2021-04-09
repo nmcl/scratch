@@ -1,4 +1,4 @@
-public class MovementProgram
+public class MovementLogic
 {
     public static final int ROUTINE_A = 0;
     public static final int ROUTINE_B = 1;
@@ -15,7 +15,7 @@ public class MovementProgram
         
     }
 
-    private MovementProgram ()
+    private MovementLogic ()
     {
     }
 }
