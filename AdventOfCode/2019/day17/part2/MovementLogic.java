@@ -10,14 +10,26 @@ public class MovementLogic
         _theMap = theMap;
     }
 
-    public static void createMovementFunctions ()
+    public void createMovementFunctions ()
     {
 
     }
 
-    public static void createMovementRoutine ()
+    public void createMovementRoutine ()
     {
         
+    }
+
+    private void createPath ()
+    {
+        Coordinate start = _theMap.findStartingPoint();
+
+        if (start != null)
+        {
+
+        }
+        else
+            System.out.println("Robot not found!");
     }
 
     private Map _theMap;
