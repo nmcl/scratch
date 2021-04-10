@@ -2,8 +2,8 @@ public class VacuumRobot
 {
     public static final String UP = "^";
     public static final String DOWN = "v";
-    public static final String RIGHT = "<";
-    public static final String LEFT = ">";
+    public static final String LEFT = "<";
+    public static final String RIGHT = ">";
     public static final String TUMBLING = "X";
 
     // ASCII codes.
