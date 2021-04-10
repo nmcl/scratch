@@ -21,7 +21,7 @@ public class MovementLogic
 
     public void createMovementFunctions ()
     {
-
+        createPath();
     }
 
     public void createMovementRoutine ()
