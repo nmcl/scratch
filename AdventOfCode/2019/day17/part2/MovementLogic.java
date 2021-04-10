@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MovementLogic
 {
     public static final int ROUTINE_A = 0;
@@ -8,9 +10,11 @@ public class MovementLogic
     public static final String MOVE_LEFT = "L";
     public static final String MOVE_RIGHT = "R";
 
-    public MovementLogic (Map theMap)
+    public MovementLogic (Map theMap, boolean debug)
     {
         _theMap = theMap;
+        _path = new Stack<String>();
+        _debug = debug;
     }
 
     public void createMovementFunctions ()
@@ -40,4 +44,6 @@ public class MovementLogic
     }
 
     private Map _theMap;
+    private Stack<String> _path;
+    private boolean _debug;
 }
