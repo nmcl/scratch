@@ -45,6 +45,8 @@ public class ASCII
         VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
         System.out.println(theMap);
+
+        MovementLogic ml = new MovementLogic(theMap, debug);
     }
 
     private ASCII ()
