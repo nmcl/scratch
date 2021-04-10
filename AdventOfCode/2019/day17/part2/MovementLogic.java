@@ -14,6 +14,7 @@ public class MovementLogic
     {
         _theMap = theMap;
         _path = new Stack<String>();
+        _robotFacing = CellId.ROBOT_FACING_UP;
         _debug = debug;
     }
 
@@ -37,13 +38,40 @@ public class MovementLogic
         
         if (currentPosition != null)
         {
-            
+            // try R then L
+
         }
         else
             System.out.println("Robot not found!");
     }
 
+    private Coordinate leftPosition (Coordinate coord)
+    {
+        int x = coord.getX();
+        int y = coord.getY();
+
+        switch (_robotFacing)
+        {
+            case CellId.ROBOT_FACING_DOWN:
+            {
+                x++;
+            }
+            break;
+            case CellId.ROBOT_FACING_UP:
+            {
+
+            }
+            case CellId.ROBOT_FACING_LEFT:
+            {
+
+            }
+            case CellId.ROBOT_FACING_RIGHT:
+            default:
+        }
+    }
+
     private Map _theMap;
     private Stack<String> _path;
+    private String _robotFacing;
     private boolean _debug;
 }
