@@ -2,8 +2,8 @@ public class CellId
 {
     public static final String ROBOT_FACING_UP = "^";
     public static final String ROBOT_FACING_DOWN = "v";
-    public static final String ROBOT_FACING_RIGHT = "<";
-    public static final String ROBOT_FACING_LEFT = ">";
+    public static final String ROBOT_FACING_LEFT = "<";
+    public static final String ROBOT_FACING_RIGHT = ">";
     public static final String ROBOT_FACING_TUMBLING = "X";
 
     // ASCII codes.
