@@ -47,6 +47,8 @@ public class ASCII
         System.out.println(theMap);
 
         MovementLogic ml = new MovementLogic(theMap, debug);
+
+        ml.createMovementFunctions();
     }
 
     private ASCII ()
