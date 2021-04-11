@@ -15,6 +15,7 @@ public class MovementLogic
         _theMap = theMap;
         _path = new Stack<String>();
         _robotFacing = CellId.ROBOT_FACING_UP;
+        _currentMoveDirection = "";
         _currentPosition = new Coordinate(_theMap.findStartingPoint());
         _debug = debug;
     }
@@ -77,7 +78,8 @@ public class MovementLogic
 
         if (_theMap.isScaffold(coord))
         {
-            _path.push(MOVE_RIGHT);
+            _currentMoveDirection = MOVE_RIGHT;
+            _path.push(_currentMoveDirection);
             _currentPosition = coord;
 
             return tryMoveRight();
@@ -97,7 +99,8 @@ public class MovementLogic
 
         if (_theMap.isScaffold(coord))
         {
-            _path.push(MOVE_LEFT);
+            _currentMoveDirection = MOVE_LEFT;
+            _path.push(_currentMoveDirection);
             _currentPosition = coord;
 
             return tryMoveLeft();
@@ -176,9 +179,15 @@ public class MovementLogic
         return new Coordinate(x, y);
     }
 
+    private final void changeDirection ()
+    {
+        
+    }
+
     private Map _theMap;
     private Stack<String> _path;
     private String _robotFacing;
+    private String _currentMoveDirection;
     private Coordinate _currentPosition;
     private boolean _debug;
 }
