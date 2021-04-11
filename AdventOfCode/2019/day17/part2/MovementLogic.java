@@ -56,14 +56,14 @@ public class MovementLogic
         if (_currentPosition != null)
         {
             /*
-             * Try R then L.
+             * Try L then R.
              * 
              * Robot always starts facing up. Don't change facing until
              * we run into a "wall" (open space, i.e., scaffolding).
              */
 
-            if (!tryMoveRight())
-                tryMoveLeft();
+            if (!tryMoveLeft())
+                tryMoveRight();
         }
         else
             System.out.println("Robot not found!");
@@ -73,6 +73,8 @@ public class MovementLogic
     {
         Coordinate coord = rightPosition(_currentPosition);
 
+        System.out.println("tryMoveRight: "+coord);
+
         if (_theMap.isScaffold(coord))
         {
             _path.push(MOVE_RIGHT);
@@ -80,13 +82,18 @@ public class MovementLogic
 
             return tryMoveRight();
         }
-        else
+        {
+            System.out.println("Right change facing!");
+            
             return false;
+        }
     }
 
     private boolean tryMoveLeft ()
     {
         Coordinate coord = leftPosition(_currentPosition);
+
+        System.out.println("tryMoveLeft: "+coord);
 
         if (_theMap.isScaffold(coord))
         {
@@ -96,7 +103,11 @@ public class MovementLogic
             return tryMoveLeft();
         }
         else
+        {
+            System.out.println("Left change facing!");
+
             return false;
+        }
     }
 
     private final Coordinate rightPosition (Coordinate coord)
