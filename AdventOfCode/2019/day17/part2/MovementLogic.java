@@ -33,7 +33,7 @@ public class MovementLogic
 
             try
             {
-                pathElement.pop();
+                _path.pop();
             }
             catch (Exception ex)
             {
