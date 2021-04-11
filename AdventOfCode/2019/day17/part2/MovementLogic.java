@@ -55,7 +55,12 @@ public class MovementLogic
     {
         if (_currentPosition != null)
         {
-            // try R then L
+            /*
+             * Try R then L.
+             * 
+             * Robot always starts facing up. Don't change facing until
+             * we run into a "wall" (open space, i.e., scaffolding).
+             */
 
             if (!tryMoveRight())
                 tryMoveLeft();
