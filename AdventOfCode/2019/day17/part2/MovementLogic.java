@@ -22,6 +22,24 @@ public class MovementLogic
     public void createMovementFunctions ()
     {
         createPath();
+
+        String pathElement = _path.pop();
+
+        System.out.println("Path:");
+
+        while (pathElement != null)
+        {
+            System.out.println(pathElement);
+
+            try
+            {
+                pathElement.pop();
+            }
+            catch (Exception ex)
+            {
+                pathElement = null;
+            }
+        }
     }
 
     public void createMovementRoutine ()
