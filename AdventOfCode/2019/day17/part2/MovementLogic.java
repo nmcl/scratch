@@ -84,6 +84,7 @@ public class MovementLogic
 
             return tryMoveRight();
         }
+        else
         {
             System.out.println("Right change facing!");
             
