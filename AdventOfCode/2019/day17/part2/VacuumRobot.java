@@ -22,6 +22,8 @@ public class VacuumRobot
         /*
          * "Force the vacuum robot to wake up by changing the value in your
          * ASCII program at address 0 from 1 to 2."
+         * 
+         * Check it's 1 before changing? Maybe add a test-and-set/override?
          */
 
         _computer.changeInstruction(OVERRIDE_LOCATION, OVERRIDE_CODE);
