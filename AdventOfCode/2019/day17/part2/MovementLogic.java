@@ -114,6 +114,14 @@ public class MovementLogic
         }
     }
 
+    private final void changeDirection ()
+    {
+        /*
+         * Look at current move direction/heading. Then change
+         * by checking R, L or back?
+         */
+    }
+
     private final Coordinate rightPosition (Coordinate coord)
     {
         int x = coord.getX();
@@ -178,11 +186,6 @@ public class MovementLogic
         }
 
         return new Coordinate(x, y);
-    }
-
-    private final void changeDirection ()
-    {
-        
     }
 
     private Map _theMap;
