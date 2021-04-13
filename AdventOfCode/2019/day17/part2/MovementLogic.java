@@ -63,16 +63,18 @@ public class MovementLogic
              * we run into a "wall" (open space, i.e., scaffolding).
              */
 
-            if (!tryMoveLeft())
-                tryMoveRight();
+            if (!tryMoveLeft(_currentPosition))
+                tryMoveRight(_currentPosition);
         }
         else
             System.out.println("Robot not found!");
     }
 
-    private boolean tryMoveRight ()
+    private boolean tryMoveRight (Coordinate curr)
     {
-        Coordinate coord = rightPosition(_currentPosition);
+        // go as far right as we can from current location
+
+        Coordinate coord = rightPosition(curr);
 
         System.out.println("tryMoveRight: "+coord);
 
@@ -92,9 +94,11 @@ public class MovementLogic
         }
     }
 
-    private boolean tryMoveLeft ()
+    private boolean tryMoveLeft (Coordinate curr)
     {
-        Coordinate coord = leftPosition(_currentPosition);
+        // go as far left as we can from current location
+
+        Coordinate coord = leftPosition(curr);
 
         System.out.println("tryMoveLeft: "+coord);
 
@@ -102,9 +106,8 @@ public class MovementLogic
         {
             _currentMoveDirection = MOVE_LEFT;
             _path.push(_currentMoveDirection);
-            _currentPosition = coord;
 
-            return tryMoveLeft();
+            return tryMoveLeft(coord);
         }
         else
         {
@@ -126,12 +129,17 @@ public class MovementLogic
 
          if (_currentMoveDirection.equals(MOVE_LEFT))
          {
+            
             nextPosition = leftPosition(coord);
 
             if (_theMap.isScaffold(nextPosition))
+            {
                 _currentPosition = nextPosition;
+            }
             else
+            {
                 _currentPosition = rightPosition(coord);
+            }
          }
          else
          {
@@ -139,6 +147,90 @@ public class MovementLogic
          }
 
          createPath();
+    }
+
+    private final String changeFacing (String facing, boolean wasMovingLeft, boolean faceLeft)
+    {
+        String nFacing = null;
+
+        switch (facing)
+        {
+            case CellId.ROBOT_FACING_DOWN:
+            {
+                if (wasMovingLeft)
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_UP;
+                    else
+                        nFacing = CellId.ROBOT_FACING_DOWN;
+                }
+                else
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_DOWN;
+                    else
+                        nFacing = CellId.ROBOT_FACING_UP;
+                }
+            }
+            break;
+            case CellId.ROBOT_FACING_UP:
+            {
+                if (wasMovingLeft)
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_DOWN;
+                    else
+                        nFacing = CellId.ROBOT_FACING_UP;
+                }
+                else
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_UP;
+                    else
+                        nFacing = CellId.ROBOT_FACING_DOWN;
+                }
+            }
+            break;
+            case CellId.ROBOT_FACING_LEFT:
+            {
+                if (wasMovingLeft)
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_RIGHT;
+                    else
+                        nFacing = CellId.ROBOT_FACING_LEFT;
+                }
+                else
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_LEFT;
+                    else
+                        nFacing = CellId.ROBOT_FACING_RIGHT;
+                }
+            }
+            break;
+            case CellId.ROBOT_FACING_RIGHT:
+            default:
+            {
+                if (wasMovingLeft)
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_LEFT;
+                    else
+                        nFacing = CellId.ROBOT_FACING_RIGHT;
+                }
+                else
+                {
+                    if (faceLeft)
+                        nFacing = CellId.ROBOT_FACING_RIGHT;
+                    else
+                        nFacing = CellId.ROBOT_FACING_LEFT;
+                }
+            }
+            break;
+        }
+
+        return nFacing;
     }
 
     private final Coordinate rightPosition (Coordinate coord)
