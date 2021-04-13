@@ -52,7 +52,7 @@ public class MovementLogic
      * Create path using only L and R.
      */
 
-    private void createPath ()
+    private boolean createPath ()
     {
         if (_currentPosition != null)
         {
@@ -65,9 +65,15 @@ public class MovementLogic
 
             if (!tryMoveLeft(_currentPosition))
                 tryMoveRight(_currentPosition);
+
+            return true;
         }
         else
+        {
             System.out.println("Robot not found!");
+
+            return false;
+        }
     }
 
     private boolean tryMoveLeft (Coordinate curr)
@@ -89,7 +95,7 @@ public class MovementLogic
         {
             System.out.println("Left change facing!");
 
-            return false;
+            return changeDirection(curr);
         }
     }
 
@@ -107,17 +113,17 @@ public class MovementLogic
             _path.push(_currentMoveDirection);
             _currentPosition = coord;
 
-            return tryMoveRight();
+            return tryMoveRight(coord);
         }
         else
         {
             System.out.println("Right change facing!");
             
-            return false;
+            return changeDirection(curr);
         }
     }
 
-    private final void changeDirection (Coordinate coord)
+    private final boolean changeDirection (Coordinate coord)
     {
         /*
          * Look at current move direction/heading. Then change
@@ -125,28 +131,38 @@ public class MovementLogic
          * don't need to worry about infinit loops and backtracking.
          */
 
-         Coordinate nextPosition = null;
-
          if (_currentMoveDirection.equals(MOVE_LEFT))
          {
-            
-            nextPosition = leftCoordinate(coord);
+            Coordinate nextPosition = leftCoordinate(coord);
 
             if (_theMap.isScaffold(nextPosition))
             {
+                _robotFacing = changeFacing(_robotFacing, true, true);
                 _currentPosition = nextPosition;
             }
             else
             {
+                _robotFacing = changeFacing(_robotFacing, true, false);
                 _currentPosition = rightCoordinate(coord);
             }
          }
          else
          {
+            Coordinate nextPosition = rightCoordinate(coord);
 
+            if (_theMap.isScaffold(nextPosition))
+            {
+                _robotFacing = changeFacing(_robotFacing, false, true);
+                _currentPosition = nextPosition;
+            }
+            else
+            {
+                _robotFacing = changeFacing(_robotFacing, false, false);
+                _currentPosition = rightCoordinate(coord);
+            }
          }
 
-         createPath();
+         return createPath();
     }
 
     private final String changeFacing (String facing, boolean wasMovingLeft, boolean faceLeft)
