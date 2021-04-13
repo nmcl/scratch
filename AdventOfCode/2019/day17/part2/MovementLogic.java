@@ -70,11 +70,34 @@ public class MovementLogic
             System.out.println("Robot not found!");
     }
 
+    private boolean tryMoveLeft (Coordinate curr)
+    {
+        // go as far left as we can from current location
+
+        Coordinate coord = leftCoordinate(curr);
+
+        System.out.println("tryMoveLeft: "+coord);
+
+        if (_theMap.isScaffold(coord))
+        {
+            _currentMoveDirection = MOVE_LEFT;
+            _path.push(_currentMoveDirection);
+
+            return tryMoveLeft(coord);
+        }
+        else
+        {
+            System.out.println("Left change facing!");
+
+            return false;
+        }
+    }
+
     private boolean tryMoveRight (Coordinate curr)
     {
         // go as far right as we can from current location
 
-        Coordinate coord = rightPosition(curr);
+        Coordinate coord = rightCoordinate(curr);
 
         System.out.println("tryMoveRight: "+coord);
 
@@ -94,29 +117,6 @@ public class MovementLogic
         }
     }
 
-    private boolean tryMoveLeft (Coordinate curr)
-    {
-        // go as far left as we can from current location
-
-        Coordinate coord = leftPosition(curr);
-
-        System.out.println("tryMoveLeft: "+coord);
-
-        if (_theMap.isScaffold(coord))
-        {
-            _currentMoveDirection = MOVE_LEFT;
-            _path.push(_currentMoveDirection);
-
-            return tryMoveLeft(coord);
-        }
-        else
-        {
-            System.out.println("Left change facing!");
-
-            return false;
-        }
-    }
-
     private final void changeDirection (Coordinate coord)
     {
         /*
@@ -130,7 +130,7 @@ public class MovementLogic
          if (_currentMoveDirection.equals(MOVE_LEFT))
          {
             
-            nextPosition = leftPosition(coord);
+            nextPosition = leftCoordinate(coord);
 
             if (_theMap.isScaffold(nextPosition))
             {
@@ -138,7 +138,7 @@ public class MovementLogic
             }
             else
             {
-                _currentPosition = rightPosition(coord);
+                _currentPosition = rightCoordinate(coord);
             }
          }
          else
@@ -233,7 +233,7 @@ public class MovementLogic
         return nFacing;
     }
 
-    private final Coordinate rightPosition (Coordinate coord)
+    private final Coordinate rightCoordinate (Coordinate coord)
     {
         int x = coord.getX();
         int y = coord.getY();
@@ -266,7 +266,7 @@ public class MovementLogic
         return new Coordinate(x, y);
     }
 
-    private final Coordinate leftPosition (Coordinate coord)
+    private final Coordinate leftCoordinate (Coordinate coord)
     {
         int x = coord.getX();
         int y = coord.getY();
