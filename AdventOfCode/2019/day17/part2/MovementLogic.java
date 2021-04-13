@@ -114,12 +114,31 @@ public class MovementLogic
         }
     }
 
-    private final void changeDirection ()
+    private final void changeDirection (Coordinate coord)
     {
         /*
          * Look at current move direction/heading. Then change
-         * by checking R, L or back?
+         * by checking R, L. The scaffolding map is such that we
+         * don't need to worry about infinit loops and backtracking.
          */
+
+         Coordinate nextPosition = null;
+
+         if (_currentMoveDirection.equals(MOVE_LEFT))
+         {
+            nextPosition = leftPosition(coord);
+
+            if (_theMap.isScaffold(nextPosition))
+                _currentPosition = nextPosition;
+            else
+                _currentPosition = rightPosition(coord);
+         }
+         else
+         {
+
+         }
+
+         createPath();
     }
 
     private final Coordinate rightPosition (Coordinate coord)
