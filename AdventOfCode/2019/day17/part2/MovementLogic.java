@@ -64,6 +64,8 @@ public class MovementLogic
              * refer movement directions as L or R.
              */
 
+             // only change facing when we start to move off again
+             
             if (!tryMoveLeft(_currentPosition))
                 tryMoveRight(_currentPosition);
 
