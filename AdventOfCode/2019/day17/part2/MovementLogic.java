@@ -59,8 +59,9 @@ public class MovementLogic
             /*
              * Try L then R.
              * 
-             * Robot always starts facing up. Don't change facing until
-             * we run into a "wall" (open space, i.e., scaffolding).
+             * Robot always starts facing up. Change facing when we
+             * start to move but remember initial facing so we can
+             * refer movement directions as L or R.
              */
 
             if (!tryMoveLeft(_currentPosition))
@@ -86,6 +87,8 @@ public class MovementLogic
 
         if (_theMap.isScaffold(coord))
         {
+            changeFacing(MOVE_LEFT);
+
             _currentMoveDirection = MOVE_LEFT;
             _path.push(_currentMoveDirection);
 
@@ -109,9 +112,10 @@ public class MovementLogic
 
         if (_theMap.isScaffold(coord))
         {
+            changeFacing(MOVE_RIGHT);
+
             _currentMoveDirection = MOVE_RIGHT;
             _path.push(_currentMoveDirection);
-            _currentPosition = coord;
 
             return tryMoveRight(coord);
         }
@@ -123,138 +127,49 @@ public class MovementLogic
         }
     }
 
-    private final boolean changeDirection (Coordinate coord)
+    private void changeFacing (String moveDirection)
     {
-        /*
-         * Look at current move direction/heading. Then change
-         * by checking R, L. The scaffolding map is such that we
-         * don't need to worry about infinit loops and backtracking.
-         */
-
-         System.out.println("Changing direction at: "+coord);
-
-         // CHANGE FACING BEFORE GETTING COORD!!
-
-         if (_currentMoveDirection.equals(MOVE_LEFT))
-         {
-            Coordinate nextPosition = leftCoordinate(coord);
-
-            System.out.println("Next (left) position could be: "+nextPosition+" and facing "+_robotFacing);
-
-            if (_theMap.isScaffold(nextPosition))
-            {
-                _robotFacing = changeFacing(_robotFacing, true, true);
-                _currentPosition = nextPosition;
-            }
-            else
-            {
-                _robotFacing = changeFacing(_robotFacing, true, false);
-                _currentPosition = rightCoordinate(coord);
-            }
-         }
-         else
-         {
-            Coordinate nextPosition = rightCoordinate(coord);
-
-            System.out.println("Next (right) position could be: "+nextPosition);
-
-            if (_theMap.isScaffold(nextPosition))
-            {
-                _robotFacing = changeFacing(_robotFacing, false, true);
-                _currentPosition = nextPosition;
-            }
-            else
-            {
-                _robotFacing = changeFacing(_robotFacing, false, false);
-                _currentPosition = rightCoordinate(coord);
-            }
-         }
-
-         return createPath();
-    }
-
-    private final String changeFacing (String facing, boolean wasMovingLeft, boolean faceLeft)
-    {
-        String nFacing = null;
-
-        switch (facing)
+        switch (_robotFacing)
         {
-            case CellId.ROBOT_FACING_DOWN:
-            {
-                if (wasMovingLeft)
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_UP;
-                    else
-                        nFacing = CellId.ROBOT_FACING_DOWN;
-                }
-                else
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_DOWN;
-                    else
-                        nFacing = CellId.ROBOT_FACING_UP;
-                }
-            }
-            break;
             case CellId.ROBOT_FACING_UP:
             {
-                if (wasMovingLeft)
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_DOWN;
-                    else
-                        nFacing = CellId.ROBOT_FACING_UP;
-                }
+                if (moveDirection.equals(MOVE_LEFT))
+                    _robotFacing = CellId.ROBOT_FACING_LEFT;
                 else
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_UP;
-                    else
-                        nFacing = CellId.ROBOT_FACING_DOWN;
-                }
+                    _robotFacing = CellId.ROBOT_FACING_RIGHT;
+            }
+            break;
+            case CellId.ROBOT_FACING_DOWN:
+            {
+                if (moveDirection.equals(MOVE_LEFT))
+                    _robotFacing = CellId.ROBOT_FACING_RIGHT;
+                else
+                    _robotFacing = CellId.ROBOT_FACING_LEFT;
             }
             break;
             case CellId.ROBOT_FACING_LEFT:
             {
-                if (wasMovingLeft)
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_RIGHT;
-                    else
-                        nFacing = CellId.ROBOT_FACING_LEFT;
-                }
+                if (moveDirection.equals(MOVE_LEFT))
+                    _robotFacing = CellId.ROBOT_FACING_DOWN;
                 else
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_LEFT;
-                    else
-                        nFacing = CellId.ROBOT_FACING_RIGHT;
-                }
+                    _robotFacing = CellId.ROBOT_FACING_UP;
             }
             break;
             case CellId.ROBOT_FACING_RIGHT:
             default:
             {
-                if (wasMovingLeft)
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_LEFT;
-                    else
-                        nFacing = CellId.ROBOT_FACING_RIGHT;
-                }
+                if (moveDirection.equals(MOVE_LEFT))
+                    _robotFacing = CellId.ROBOT_FACING_UP;
                 else
-                {
-                    if (faceLeft)
-                        nFacing = CellId.ROBOT_FACING_RIGHT;
-                    else
-                        nFacing = CellId.ROBOT_FACING_LEFT;
-                }
+                    _robotFacing = CellId.ROBOT_FACING_DOWN;
             }
             break;
         }
+    }
 
-        return nFacing;
+    private final boolean changeDirection (Coordinate coord)
+    {
+        
     }
 
     private final Coordinate rightCoordinate (Coordinate coord)
