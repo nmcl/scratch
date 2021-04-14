@@ -133,6 +133,8 @@ public class MovementLogic
 
          System.out.println("Changing direction at: "+coord);
 
+         // CHANGE FACING BEFORE GETTING COORD!!
+
          if (_currentMoveDirection.equals(MOVE_LEFT))
          {
             Coordinate nextPosition = leftCoordinate(coord);
