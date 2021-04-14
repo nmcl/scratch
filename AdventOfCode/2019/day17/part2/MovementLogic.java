@@ -137,7 +137,7 @@ public class MovementLogic
          {
             Coordinate nextPosition = leftCoordinate(coord);
 
-            System.out.println("Next (left) position could be: "+nextPosition);
+            System.out.println("Next (left) position could be: "+nextPosition+" and facing "+_robotFacing);
 
             if (_theMap.isScaffold(nextPosition))
             {
