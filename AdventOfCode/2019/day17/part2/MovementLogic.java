@@ -93,7 +93,7 @@ public class MovementLogic
         }
         else
         {
-            System.out.println("Left change facing!");
+            System.out.println("Left change facing! "+curr);
 
             return changeDirection(curr);
         }
@@ -117,7 +117,7 @@ public class MovementLogic
         }
         else
         {
-            System.out.println("Right change facing!");
+            System.out.println("Right change facing! "+curr);
             
             return changeDirection(curr);
         }
@@ -131,9 +131,13 @@ public class MovementLogic
          * don't need to worry about infinit loops and backtracking.
          */
 
+         System.out.println("Changing direction at: "+coord);
+
          if (_currentMoveDirection.equals(MOVE_LEFT))
          {
             Coordinate nextPosition = leftCoordinate(coord);
+
+            System.out.println("Next (left) position could be: "+nextPosition);
 
             if (_theMap.isScaffold(nextPosition))
             {
@@ -149,6 +153,8 @@ public class MovementLogic
          else
          {
             Coordinate nextPosition = rightCoordinate(coord);
+
+            System.out.println("Next (right) position could be: "+nextPosition);
 
             if (_theMap.isScaffold(nextPosition))
             {
