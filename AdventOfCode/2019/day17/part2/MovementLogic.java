@@ -54,6 +54,8 @@ public class MovementLogic
 
     private boolean createPath ()
     {
+        System.out.println("createPath from: "+_currentPosition);
+        
         if (_currentPosition != null)
         {
             /*
@@ -65,7 +67,7 @@ public class MovementLogic
              */
 
              // only change facing when we start to move off again
-             
+
             if (!tryMoveLeft(_currentPosition))
                 tryMoveRight(_currentPosition);
 
