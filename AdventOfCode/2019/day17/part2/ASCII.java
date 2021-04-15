@@ -44,6 +44,8 @@ public class ASCII
         Map theMap = new Map(theImage, debug);
         VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
+        // print the camera's image/map
+        
         System.out.println(theMap);
 
         MovementLogic ml = new MovementLogic(theMap, debug);
