@@ -5,6 +5,10 @@ import java.util.*;
  * VacuumRobot wouldn't need to do the conversion.
  */
 
+ /**
+  * The camera's scanned image.
+  */
+
 public class Image
 {
     public Image (boolean debug)
