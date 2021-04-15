@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Camera
 {
-    private static final String INITIAL_INPUT = "";
+    private static final String INITIAL_INPUT = "";  // no input
 
     public Camera (Vector<String> values, boolean debug)
     {
