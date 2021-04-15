@@ -1,5 +1,7 @@
 public class CellId
 {
+    // Robot facing characters
+    
     public static final String ROBOT_FACING_UP = "^";
     public static final String ROBOT_FACING_DOWN = "v";
     public static final String ROBOT_FACING_LEFT = "<";
