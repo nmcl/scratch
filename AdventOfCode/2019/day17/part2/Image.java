@@ -6,7 +6,8 @@ import java.util.*;
  */
 
  /**
-  * The camera's scanned image.
+  * The camera's scanned image. Can then be used
+  * to make a Map.
   */
 
 public class Image
