@@ -66,12 +66,10 @@ public class MovementLogic
              * refer movement directions as L or R.
              */
 
-             --> start here!
-             
              // only change facing when we start to move off again
 
-            if (!tryMoveLeft(_currentPosition))
-                tryMoveRight(_currentPosition);
+            if (!tryMoveLeft(_currentPosition, true))
+                tryMoveRight(_currentPosition, true);
 
             return true;
         }
@@ -83,7 +81,12 @@ public class MovementLogic
         }
     }
 
-    private boolean tryMoveLeft (Coordinate curr)
+    /**
+     * isStart == is this the first time we are heading in this direction? If
+     * so then change facing.
+     */
+
+    private boolean tryMoveLeft (Coordinate curr, boolean isStart)
     {
         // go as far left as we can from current location
 
@@ -93,12 +96,13 @@ public class MovementLogic
 
         if (_theMap.isScaffold(coord))
         {
-            changeFacing(MOVE_LEFT);
+            if (isStart)
+                changeFacing(MOVE_LEFT);  // only do it once per move!
 
             _currentMoveDirection = MOVE_LEFT;
             _path.push(_currentMoveDirection);
 
-            return tryMoveLeft(coord);
+            return tryMoveLeft(coord, false);
         }
         else
         {
@@ -108,7 +112,7 @@ public class MovementLogic
         }
     }
 
-    private boolean tryMoveRight (Coordinate curr)
+    private boolean tryMoveRight (Coordinate curr, boolean isStart)
     {
         // go as far right as we can from current location
 
@@ -118,12 +122,13 @@ public class MovementLogic
 
         if (_theMap.isScaffold(coord))
         {
-            changeFacing(MOVE_RIGHT);
+            if (isStart)
+                changeFacing(MOVE_RIGHT);
 
             _currentMoveDirection = MOVE_RIGHT;
             _path.push(_currentMoveDirection);
 
-            return tryMoveRight(coord);
+            return tryMoveRight(coord, false);
         }
         else
         {
