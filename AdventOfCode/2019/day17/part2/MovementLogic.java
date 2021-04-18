@@ -108,7 +108,9 @@ public class MovementLogic
         {
             System.out.println("Left change facing! "+curr);
 
-            return changeDirection(curr);
+            //return changeDirection(curr);
+
+            return false;
         }
     }
 
@@ -134,7 +136,9 @@ public class MovementLogic
         {
             System.out.println("Right change facing! "+curr);
             
-            return changeDirection(curr);
+            //return changeDirection(curr);
+
+            return false;
         }
     }
 
@@ -177,11 +181,11 @@ public class MovementLogic
             break;
         }
     }
-
+/*
     private final boolean changeDirection (Coordinate coord)
     {
         
-    }
+    }*/
 
     private final Coordinate rightCoordinate (Coordinate coord)
     {
