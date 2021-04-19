@@ -103,13 +103,12 @@ public class MovementLogic
         }
         else
         {
+            System.out.println("Not scaffolding at "+coord);
             System.out.println("Left change facing! "+curr);
 
             changeFacing(MOVE_LEFT);
 
-            //return changeDirection(curr);
-
-            return false;
+            return createPath();
         }
     }
 
@@ -130,13 +129,12 @@ public class MovementLogic
         }
         else
         {
+            System.out.println("Not scaffolding at "+coord);
             System.out.println("Right change facing! "+curr);
             
             changeFacing(MOVE_RIGHT);
 
-            //return changeDirection(curr);
-
-            return false;
+            return createPath();
         }
     }
 
@@ -180,17 +178,12 @@ public class MovementLogic
         }
     }
 
-    /*
-
-    private final boolean changeDirection (Coordinate coord)
-    {
-        
-    }*/
-
     private final Coordinate rightCoordinate (Coordinate coord)
     {
         int x = coord.getX();
         int y = coord.getY();
+
+        System.out.println("rightCoordinate facing: "+_robotFacing+" and position: "+coord);
 
         switch (_robotFacing)
         {
@@ -206,13 +199,13 @@ public class MovementLogic
             break;
             case CellId.ROBOT_FACING_LEFT:
             {
-                y++;
+                y--;
             }
             break;
             case CellId.ROBOT_FACING_RIGHT:
             default:
             {
-                y--;
+                y++;
             }
             break;
         }
@@ -225,7 +218,7 @@ public class MovementLogic
         int x = coord.getX();
         int y = coord.getY();
 
-        System.out.println("leftCoordinate "+_robotFacing);
+        System.out.println("leftCoordinate facing: "+_robotFacing+" and position: "+coord);
 
         switch (_robotFacing)
         {
@@ -241,13 +234,13 @@ public class MovementLogic
             break;
             case CellId.ROBOT_FACING_LEFT:
             {
-                y--;
+                y++;
             }
             break;
             case CellId.ROBOT_FACING_RIGHT:
             default:
             {
-                y++;
+                y--;
             }
             break;
         }
