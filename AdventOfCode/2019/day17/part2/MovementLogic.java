@@ -68,8 +68,8 @@ public class MovementLogic
 
              // only change facing when we start to move off again
 
-            if (!tryMoveLeft(_currentPosition, true))
-                tryMoveRight(_currentPosition, true);
+            if (!tryMoveLeft(_currentPosition))
+                tryMoveRight(_currentPosition);
 
             return true;
         }
@@ -86,27 +86,26 @@ public class MovementLogic
      * so then change facing.
      */
 
-    private boolean tryMoveLeft (Coordinate curr, boolean isStart)
+    private boolean tryMoveLeft (Coordinate curr)
     {
         // go as far left as we can from current location
 
         Coordinate coord = leftCoordinate(curr);
 
-        System.out.println("tryMoveLeft: "+coord);
+        System.out.println("tryMoveLeft: "+coord+" with facing: "+_robotFacing);
 
         if (_theMap.isScaffold(coord))
         {
-            if (isStart)
-                changeFacing(MOVE_LEFT);  // only do it once per move!
-
             _currentMoveDirection = MOVE_LEFT;
             _path.push(_currentMoveDirection);
 
-            return tryMoveLeft(coord, false);
+            return tryMoveLeft(coord);
         }
         else
         {
             System.out.println("Left change facing! "+curr);
+
+            changeFacing(MOVE_LEFT);
 
             //return changeDirection(curr);
 
@@ -114,30 +113,27 @@ public class MovementLogic
         }
     }
 
-    private boolean tryMoveRight (Coordinate curr, boolean isStart)
+    private boolean tryMoveRight (Coordinate curr)
     {
         // go as far right as we can from current location
 
         Coordinate coord = rightCoordinate(curr);
 
-        System.out.println("tryMoveRight: "+coord);
-
-        System.exit(0);
+        System.out.println("tryMoveRight: "+coord+" with facing: "+_robotFacing);
         
         if (_theMap.isScaffold(coord))
         {
-            if (isStart)
-                changeFacing(MOVE_RIGHT);
-
             _currentMoveDirection = MOVE_RIGHT;
             _path.push(_currentMoveDirection);
 
-            return tryMoveRight(coord, false);
+            return tryMoveRight(coord);
         }
         else
         {
             System.out.println("Right change facing! "+curr);
             
+            changeFacing(MOVE_RIGHT);
+
             //return changeDirection(curr);
 
             return false;
@@ -183,7 +179,9 @@ public class MovementLogic
             break;
         }
     }
-/*
+
+    /*
+
     private final boolean changeDirection (Coordinate coord)
     {
         
@@ -226,6 +224,8 @@ public class MovementLogic
     {
         int x = coord.getX();
         int y = coord.getY();
+
+        System.out.println("leftCoordinate "+_robotFacing);
 
         switch (_robotFacing)
         {
