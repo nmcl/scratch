@@ -28,6 +28,11 @@ public class Cell
         return _contents;
     }
 
+    public final void setContents (String contents)
+    {
+        _contents = contents;
+    }
+    
     public final Coordinate position ()
     {
         return _coord;
