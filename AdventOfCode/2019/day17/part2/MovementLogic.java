@@ -13,6 +13,7 @@ public class MovementLogic
     public MovementLogic (Map theMap, boolean debug)
     {
         _theMap = theMap;
+        _robotTrack = new Map(_theMap);
         _path = new Stack<String>();
         _robotFacing = CellId.ROBOT_FACING_UP;
         _currentMoveDirection = "";
@@ -98,6 +99,10 @@ public class MovementLogic
         {
             _currentMoveDirection = MOVE_LEFT;
             _path.push(_currentMoveDirection);
+            
+            _robotTrack.changeElement(coord, _robotFacing);
+
+            System.out.println("\n"+_robotTrack);
 
             return tryMoveLeft(coord);
         }
@@ -131,6 +136,10 @@ public class MovementLogic
             _currentMoveDirection = MOVE_RIGHT;
             _path.push(_currentMoveDirection);
 
+            _robotTrack.changeElement(coord, _robotFacing);
+
+            System.out.println("\n"+_robotTrack);
+            
             return tryMoveRight(coord);
         }
         else
@@ -145,7 +154,7 @@ public class MovementLogic
             changeFacing(MOVE_RIGHT);
 
             System.out.println(" and now facing: "+_robotFacing);
-            
+
             return createPath();
         }
     }
@@ -261,6 +270,7 @@ public class MovementLogic
     }
 
     private Map _theMap;
+    private Map _robotTrack;
     private Stack<String> _path;
     private String _robotFacing;
     private String _currentMoveDirection;
