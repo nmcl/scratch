@@ -55,7 +55,7 @@ public class MovementLogic
     private boolean createPath ()
     {
         System.out.println("createPath from: "+_currentPosition);
-        
+
         if (_currentPosition != null)
         {
             /*
@@ -122,6 +122,8 @@ public class MovementLogic
 
         System.out.println("tryMoveRight: "+coord);
 
+        System.exit(0);
+        
         if (_theMap.isScaffold(coord))
         {
             if (isStart)
