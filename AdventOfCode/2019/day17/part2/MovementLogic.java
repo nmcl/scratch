@@ -82,11 +82,6 @@ public class MovementLogic
         }
     }
 
-    /**
-     * isStart == is this the first time we are heading in this direction? If
-     * so then change facing.
-     */
-
     private boolean tryMoveLeft (Coordinate curr)
     {
         // go as far left as we can from current location
