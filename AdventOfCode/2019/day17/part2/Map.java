@@ -12,9 +12,21 @@ public class Map
         _theMap = new Vector<Cell>();
         _maxX = 0;
         _maxY = 0;
+        _originalImage = img;
         _debug = debug;
 
         createMapFromImage(img.scannedLines());
+    }
+
+    public Map (Map toCopy)
+    {
+        _theMap = new Vector<Cell>();
+        _maxX = 0;
+        _maxY = 0;
+        _originalImage = toCopy._originalImage;
+        _debug = toCopy._debug;
+
+        createMapFromImage(_originalImage.scannedLines());
     }
 
     public Coordinate findStartingPoint ()
@@ -40,6 +52,16 @@ public class Map
         temp = _theMap.get(index);
 
         return (temp.getContents().equals(CellId.SCAFFOLDING));
+    }
+
+    public void changeElement (Coordinate coord, String type)
+    {
+        Cell temp = new Cell(coord);
+        int index = _theMap.indexOf(temp);
+
+        temp = _theMap.get(index);
+
+        temp.setContents(type);
     }
 
     @Override
@@ -88,5 +110,6 @@ public class Map
     private Vector<Cell> _theMap;
     private int _maxX;
     private int _maxY;
+    private Image _originalImage;
     private boolean _debug;
 }
