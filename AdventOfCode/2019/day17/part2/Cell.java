@@ -16,6 +16,13 @@ public class Cell
         this(coord, CellId.OPEN_SPACE, false); // some defaults
     }
 
+    public Cell (Cell toCopy)
+    {
+        _coord = new Coordinate(toCopy._coord);
+        _contents = new String(toCopy._contents);
+        _debug = toCopy._debug;
+    }
+
     public final String getContents ()
     {
         return _contents;
