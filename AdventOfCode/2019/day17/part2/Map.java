@@ -54,16 +54,6 @@ public class Map
         return (temp.getContents().equals(CellId.SCAFFOLDING));
     }
 
-    public void changeElement (Coordinate coord, String type)
-    {
-        Cell temp = new Cell(coord);
-        int index = _theMap.indexOf(temp);
-
-        temp = _theMap.get(index);
-
-        temp.setContents(type);
-    }
-
     @Override
     public String toString ()
     {
@@ -86,7 +76,7 @@ public class Map
         return str;
     }
 
-    private void createMapFromImage (String[] lines)
+    protected void createMapFromImage (String[] lines)
     {
         int lineLength = lines[0].length(); // all lines are the same length
 
@@ -107,9 +97,18 @@ public class Map
         }
     }
 
-    private Vector<Cell> _theMap;
-    private int _maxX;
-    private int _maxY;
-    private Image _originalImage;
-    private boolean _debug;
+    protected Map ()
+    {
+        _theMap = new Vector<Cell>();
+        _maxX = 0;
+        _maxY = 0;
+        _originalImage = null;
+        _debug = false;
+    }
+
+    protected Vector<Cell> _theMap;
+    protected int _maxX;
+    protected int _maxY;
+    protected Image _originalImage;
+    protected boolean _debug;
 }
