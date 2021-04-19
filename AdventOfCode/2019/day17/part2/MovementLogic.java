@@ -106,7 +106,13 @@ public class MovementLogic
             System.out.println("Not scaffolding at "+coord);
             System.out.println("Left change facing! "+curr);
 
+            _currentPosition = curr;
+
+            System.out.print("Was facing: "+_robotFacing);
+
             changeFacing(MOVE_LEFT);
+
+            System.out.println(" and now facing: "+_robotFacing);
 
             return createPath();
         }
@@ -132,8 +138,14 @@ public class MovementLogic
             System.out.println("Not scaffolding at "+coord);
             System.out.println("Right change facing! "+curr);
             
+            _currentPosition = curr;
+
+            System.out.print("Was facing: "+_robotFacing);
+
             changeFacing(MOVE_RIGHT);
 
+            System.out.println(" and now facing: "+_robotFacing);
+            
             return createPath();
         }
     }
