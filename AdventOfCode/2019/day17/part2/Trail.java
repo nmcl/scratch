@@ -12,7 +12,7 @@ public class Trail extends Map
         super.createMapFromImage(_originalImage.scannedLines());
     }
 
-    public boolean trailTrodden (Coordinate coord)
+    public boolean visited (Coordinate coord)
     {
         Cell temp = new Cell(coord);
         int index = super._theMap.indexOf(temp);
