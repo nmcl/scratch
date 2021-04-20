@@ -67,12 +67,12 @@ public class MovementLogic
              * refer movement directions as L or R.
              */
 
-             // only change facing when we start to move off again
-
-            if (!tryMoveLeft(_currentPosition))
-                tryMoveRight(_currentPosition);
-
-            return true;
+            if (!tryToMove(MOVE_LEFT, leftCoordinate(_currentPosition)))
+            {
+                return tryToMove(MOVE_RIGHT, rightCoordinate(_currentPosition));
+            }
+            else
+                return true;
         }
         else
         {
@@ -82,82 +82,27 @@ public class MovementLogic
         }
     }
 
-    private boolean tryMoveLeft (Coordinate curr)
+    private boolean tryToMove (String direction, Coordinate coord)
     {
-        // go as far left as we can from current location
+        System.out.println("tryMove: "+coord+" with direction: "+direction);
 
-        Coordinate coord = leftCoordinate(curr);
-
-        System.out.println("tryMoveLeft: "+coord+" with facing: "+_robotFacing);
+        if (_robotTrack.visited(coord))
+            return false;
 
         if (_theMap.isScaffold(coord))
         {
-            _currentMoveDirection = MOVE_LEFT;
+            _currentMoveDirection = direction;
             _path.push(_currentMoveDirection);
             
-            _robotTrack.changeElement(coord, MOVE_LEFT);
+            _robotTrack.changeElement(coord, _robotFacing);
+            _currentPosition = coord;
 
             System.out.println("\n"+_robotTrack);
 
-            return tryMoveLeft(coord);
-        }
-        else
-        {
-            System.out.println("Not scaffolding at "+coord);
-            System.out.println("Left change facing! "+curr);
-
-            _currentPosition = curr;
-
-            System.out.print("Was facing: "+_robotFacing);
-
-            do
-            {
-                changeFacing(MOVE_LEFT);
-
-                coord = leftCoordinate(_currentPosition);
-
-            } while (_robotTrack.visited(coord));
-
-            System.out.println(" and now facing: "+_robotFacing);
-
             return createPath();
         }
-    }
-
-    private boolean tryMoveRight (Coordinate curr)
-    {
-        // go as far right as we can from current location
-
-        Coordinate coord = rightCoordinate(curr);
-
-        System.out.println("tryMoveRight: "+coord+" with facing: "+_robotFacing);
-        
-        if (_theMap.isScaffold(coord))
-        {
-            _currentMoveDirection = MOVE_RIGHT;
-            _path.push(_currentMoveDirection);
-
-            _robotTrack.changeElement(coord, MOVE_RIGHT);
-
-            System.out.println("\n"+_robotTrack);
-            
-            return tryMoveRight(coord);
-        }
         else
-        {
-            System.out.println("Not scaffolding at "+coord);
-            System.out.println("Right change facing! "+curr);
-            
-            _currentPosition = curr;
-
-            System.out.print("Was facing: "+_robotFacing);
-
-            changeFacing(MOVE_RIGHT);
-
-            System.out.println(" and now facing: "+_robotFacing);
-
-            return createPath();
-        }
+            return false;
     }
 
     private void changeFacing (String moveDirection)
