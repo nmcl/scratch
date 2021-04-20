@@ -69,6 +69,8 @@ public class MovementLogic
 
             if (!tryToMove(MOVE_LEFT, leftCoordinate(_currentPosition)))
             {
+                changeFacing(MOVE_LEFT);
+                
                 return tryToMove(MOVE_RIGHT, rightCoordinate(_currentPosition));
             }
             else
