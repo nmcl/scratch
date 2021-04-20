@@ -110,7 +110,13 @@ public class MovementLogic
 
             System.out.print("Was facing: "+_robotFacing);
 
-            changeFacing(MOVE_LEFT);
+            do
+            {
+                changeFacing(MOVE_LEFT);
+
+                coord = leftCoordinate(_currentPosition);
+
+            } while (_robotTrack.visited(coord));
 
             System.out.println(" and now facing: "+_robotFacing);
 
