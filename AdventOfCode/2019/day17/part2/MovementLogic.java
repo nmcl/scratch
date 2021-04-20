@@ -95,7 +95,7 @@ public class MovementLogic
             _currentMoveDirection = MOVE_LEFT;
             _path.push(_currentMoveDirection);
             
-            _robotTrack.changeElement(coord, _robotFacing);
+            _robotTrack.changeElement(coord, MOVE_LEFT);
 
             System.out.println("\n"+_robotTrack);
 
@@ -137,7 +137,7 @@ public class MovementLogic
             _currentMoveDirection = MOVE_RIGHT;
             _path.push(_currentMoveDirection);
 
-            _robotTrack.changeElement(coord, _robotFacing);
+            _robotTrack.changeElement(coord, MOVE_RIGHT);
 
             System.out.println("\n"+_robotTrack);
             
