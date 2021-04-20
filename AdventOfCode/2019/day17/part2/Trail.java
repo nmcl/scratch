@@ -21,14 +21,11 @@ public class Trail extends Map
 
         switch (temp.getContents())
         {
-            case CellId.ROBOT_FACING_UP:
-            case CellId.ROBOT_FACING_DOWN:
-            case CellId.ROBOT_FACING_LEFT:
-            case CellId.ROBOT_FACING_RIGHT:
-                return true;
             case CellId.SCAFFOLDING:
+            case CellId.OPEN_SPACE:
+                return false;
             default:
-                return false;               
+                return true;               
         }
     }
 
