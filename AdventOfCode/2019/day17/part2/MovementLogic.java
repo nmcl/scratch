@@ -69,8 +69,6 @@ public class MovementLogic
 
             if (!tryToMove(MOVE_LEFT, leftCoordinate(_currentPosition)))
             {
-                changeFacing(MOVE_LEFT);
-                
                 return tryToMove(MOVE_RIGHT, rightCoordinate(_currentPosition));
             }
             else
@@ -96,7 +94,7 @@ public class MovementLogic
             _currentMoveDirection = direction;
             _path.push(_currentMoveDirection);
             
-            _robotTrack.changeElement(coord, _robotFacing);
+            _robotTrack.changeElement(coord, _currentMoveDirection);
             _currentPosition = coord;
 
             System.out.println("\n"+_robotTrack);
@@ -104,16 +102,41 @@ public class MovementLogic
             return createPath();
         }
         else
-            return false;
+        {
+            System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
+
+            changeFacing();
+
+            System.out.println("Robot now facing "+_robotFacing);
+
+            return tryToMove(getNextDirection(), coord);
+        }
     }
 
-    private void changeFacing (String moveDirection)
+    private String getNextDirection ()
+    {
+        Coordinate coord = leftCoordinate(_currentPosition);
+
+        if (_robotTrack.visited(coord))
+        {
+            coord = rightCoordinate(_currentPosition);
+
+            if (_robotTrack.visited(coord))
+                return null;
+            else
+                return MOVE_RIGHT;
+        }
+        else
+            return MOVE_LEFT;
+    }
+
+    private void changeFacing ()
     {
         switch (_robotFacing)
         {
             case CellId.ROBOT_FACING_UP:
             {
-                if (moveDirection.equals(MOVE_LEFT))
+                if (_currentMoveDirection.equals(MOVE_LEFT))
                     _robotFacing = CellId.ROBOT_FACING_LEFT;
                 else
                     _robotFacing = CellId.ROBOT_FACING_RIGHT;
@@ -121,7 +144,7 @@ public class MovementLogic
             break;
             case CellId.ROBOT_FACING_DOWN:
             {
-                if (moveDirection.equals(MOVE_LEFT))
+                if (_currentMoveDirection.equals(MOVE_LEFT))
                     _robotFacing = CellId.ROBOT_FACING_RIGHT;
                 else
                     _robotFacing = CellId.ROBOT_FACING_LEFT;
@@ -129,7 +152,7 @@ public class MovementLogic
             break;
             case CellId.ROBOT_FACING_LEFT:
             {
-                if (moveDirection.equals(MOVE_LEFT))
+                if (_currentMoveDirection.equals(MOVE_LEFT))
                     _robotFacing = CellId.ROBOT_FACING_DOWN;
                 else
                     _robotFacing = CellId.ROBOT_FACING_UP;
@@ -138,7 +161,7 @@ public class MovementLogic
             case CellId.ROBOT_FACING_RIGHT:
             default:
             {
-                if (moveDirection.equals(MOVE_LEFT))
+                if (_currentMoveDirection.equals(MOVE_LEFT))
                     _robotFacing = CellId.ROBOT_FACING_UP;
                 else
                     _robotFacing = CellId.ROBOT_FACING_DOWN;
