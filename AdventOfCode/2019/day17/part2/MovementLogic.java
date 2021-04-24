@@ -105,7 +105,7 @@ public class MovementLogic
         {
             System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
 
-            changeFacing();  // is this working?
+            changeFacing();
 
             System.out.println("Robot now facing "+_robotFacing);
 
