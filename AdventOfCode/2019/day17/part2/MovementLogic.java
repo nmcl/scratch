@@ -140,7 +140,7 @@ public class MovementLogic
 
         System.out.println("Left coordinate would be: "+coord);
 
-        if (_robotTrack.visited(coord))
+        if (_robotTrack.visited(coord) || !_robotTrack.isScaffold(coord))
         {
             System.out.println("Visited so try right ...");
 
@@ -156,7 +156,7 @@ public class MovementLogic
         else
         {
             System.out.println("Not visited.");
-            
+
             return MOVE_LEFT;
         }
     }
