@@ -29,6 +29,23 @@ public class Trail extends Map
         }
     }
 
+    public boolean path (Coordinate coord)
+    {
+        Cell temp = new Cell(coord);
+        int index = super._theMap.indexOf(temp);
+
+        temp = super._theMap.get(index);
+
+        switch (temp.getContents())
+        {
+            case CellId.MOVE_LEFT:
+            case CellId.MOVE_RIGHT:
+                return true;
+            default:
+                return false;               
+        }
+    }
+
     public void changeElement (Coordinate coord, String type)
     {
         Cell temp = new Cell(coord);
