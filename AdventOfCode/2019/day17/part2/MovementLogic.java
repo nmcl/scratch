@@ -87,10 +87,16 @@ public class MovementLogic
         System.out.println("tryMove: "+coord+" with direction: "+direction);
 
         if (_robotTrack.visited(coord))
+        {
+            System.out.println("Robot already visited this location.");
+
             return false;
+        }
 
         if (_theMap.isScaffold(coord))
         {
+            System.out.println("Is scaffolding!");
+            
             _currentMoveDirection = direction;
             _path.push(_currentMoveDirection);
             
