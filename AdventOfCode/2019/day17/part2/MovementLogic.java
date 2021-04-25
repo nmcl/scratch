@@ -134,11 +134,19 @@ public class MovementLogic
 
     private String getNextDirection ()
     {
+        System.out.println("Getting next direction to move from: "+_currentPosition);
+
         Coordinate coord = leftCoordinate(_currentPosition);
+
+        System.out.println("Left coordinate would be: "+coord);
 
         if (_robotTrack.visited(coord))
         {
+            System.out.println("Visited so try right ...");
+
             coord = rightCoordinate(_currentPosition);
+
+            System.out.println("Right coordinate would be: "+coord);
 
             if (_robotTrack.visited(coord))
                 return null;
@@ -146,7 +154,11 @@ public class MovementLogic
                 return MOVE_RIGHT;
         }
         else
+        {
+            System.out.println("Not visited.");
+            
             return MOVE_LEFT;
+        }
     }
 
     private void changeFacing ()
