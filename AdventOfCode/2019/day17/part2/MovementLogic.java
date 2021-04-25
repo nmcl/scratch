@@ -83,6 +83,9 @@ public class MovementLogic
     {
         System.out.println("tryMove: "+coord+" with direction: "+direction);
 
+        if (_robotTrack.path(coord))
+            System.out.println("CROSSING PATH!!");
+
         if (_robotTrack.visited(coord))
         {
             System.out.println("Robot already visited this location.");
