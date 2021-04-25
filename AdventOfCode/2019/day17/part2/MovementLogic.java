@@ -93,10 +93,12 @@ public class MovementLogic
             return false;
         }
 
+        System.out.println("Location not visited ... yet.");
+
         if (_theMap.isScaffold(coord))
         {
             System.out.println("Is scaffolding!");
-            
+
             _currentMoveDirection = direction;
             _path.push(_currentMoveDirection);
             
@@ -109,6 +111,8 @@ public class MovementLogic
         }
         else
         {
+            System.out.println("Not scaffolding!");
+            
             System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
 
             changeFacing();
