@@ -1,3 +1,8 @@
+/**
+ * The Camera Image or representations of the "maze" are made
+ * up of Cells and the values are maintained by this class.
+ */
+
 public class CellId
 {
     // Robot facing characters
@@ -27,6 +32,11 @@ public class CellId
     public static final String SCAFFOLDING_CODE = "35";
     public static final String OPEN_SPACE_CODE = "46";
     public static final String NEW_LINE_CODE = "10";
+
+    // Robot movement command.
+
+    public static final String MOVE_LEFT = "L";
+    public static final String MOVE_RIGHT = "R";
 
     public static final String printRobotCode (String code)
     {
