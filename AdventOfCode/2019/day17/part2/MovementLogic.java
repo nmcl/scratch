@@ -112,14 +112,23 @@ public class MovementLogic
         else
         {
             System.out.println("Not scaffolding!");
-            
+
             System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
 
             changeFacing();
 
             System.out.println("Robot now facing "+_robotFacing);
 
-            return tryToMove(getNextDirection(), coord);
+            String nextDirection = getNextDirection();
+
+            System.out.println("Next direction to try with new facing: "+nextDirection);
+
+            if (MOVE_LEFT.equals(nextDirection))
+                coord = leftCoordinate(_currentPosition);
+            else
+                coord = rightCoordinate(_currentPosition);
+
+            return tryToMove(nextDirection, coord);
         }
     }
 
