@@ -14,6 +14,11 @@ public class Trail extends Map
 
     public boolean visited (Coordinate coord)
     {
+        System.out.println("visited? "+coord);
+        
+        if (!valid(coord))
+            return false;
+
         Cell temp = new Cell(coord);
         int index = super._theMap.indexOf(temp);
 
@@ -31,6 +36,9 @@ public class Trail extends Map
 
     public boolean path (Coordinate coord)
     {
+        if (!valid(coord))
+            return false;
+
         Cell temp = new Cell(coord);
         int index = super._theMap.indexOf(temp);
 
