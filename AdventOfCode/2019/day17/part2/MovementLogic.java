@@ -97,8 +97,6 @@ public class MovementLogic
 
         System.out.println("Location not visited ... yet.");
 
-        System.out.println("Is the end? "+_theMap.theEnd(coord));
-        
         if (_theMap.isScaffold(coord))
         {
             System.out.println("Is scaffolding!");
@@ -123,6 +121,8 @@ public class MovementLogic
             System.out.println("Not scaffolding!");
 
             System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
+
+            System.out.println("Is the end? "+_theMap.theEnd(_currentPosition));
 
             changeFacing();
 
