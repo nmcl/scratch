@@ -46,6 +46,9 @@ public class Map
 
     public boolean isScaffold (Coordinate coord)
     {
+        if (!valid(coord))
+            return false;
+
         Cell temp = new Cell(coord);
         int index = _theMap.indexOf(temp);
 
@@ -74,6 +77,20 @@ public class Map
         }
 
         return str;
+    }
+
+    protected boolean valid (Coordinate coord)
+    {
+        if (coord != null)
+        {
+            if ((coord.getX() >= 0) && (coord.getY() >= 0))
+            {
+                if ((coord.getX() <= _maxX) && (coord.getY() <= _maxY))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     protected void createMapFromImage (String[] lines)
