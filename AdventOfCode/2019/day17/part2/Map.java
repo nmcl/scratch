@@ -57,6 +57,28 @@ public class Map
         return (temp.getContents().equals(CellId.SCAFFOLDING));
     }
 
+    public boolean theEnd (Coordinate coord)
+    {
+        Coordinate nCoord = new Coordinate(coord.getX(), coord.getY()+1);
+        Coordinate sCoord = new Coordinate(coord.getX(), coord.getY()-1);
+        Coordinate eCoord = new Coordinate(coord.getX()+1, coord.getY());
+        Coordinate wCoord = new Coordinate(coord.getX()-1, coord.getY());
+
+        if (valid(nCoord) && (!isScaffold(nCoord)))
+        {
+            if (valid(sCoord) && (!isScaffold(sCoord)))
+            {
+                if (valid(eCoord) && (!isScaffold(eCoord)))
+                {
+                    if (valid(wCoord) && (!isScaffold(wCoord)))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public String toString ()
     {
