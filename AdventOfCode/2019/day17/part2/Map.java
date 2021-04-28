@@ -81,6 +81,8 @@ public class Map
 
     protected boolean valid (Coordinate coord)
     {
+        System.out.println("Comparing "+coord+" and "+_maxX+" "+_maxY);
+
         if (coord != null)
         {
             if ((coord.getX() >= 0) && (coord.getY() >= 0))
@@ -97,7 +99,7 @@ public class Map
     {
         int lineLength = lines[0].length(); // all lines are the same length
 
-        _maxY = lines.length;
+        _maxY = lines.length -1;
         _maxX = lineLength;
 
         for (int y = 0; y < lines.length -1; y++)
