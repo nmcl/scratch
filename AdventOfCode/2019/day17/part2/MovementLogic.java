@@ -82,6 +82,7 @@ public class MovementLogic
     private boolean tryToMove (String direction, Coordinate coord)
     {
         System.out.println("tryMove: "+coord+" with direction: "+direction);
+        System.out.println("and current position: "+_currentPosition);
 
         if (_robotTrack.path(coord))
             System.out.println("CROSSING PATH!!");
@@ -107,7 +108,12 @@ public class MovementLogic
 
             System.out.println("\n"+_robotTrack);
 
-            return createPath();
+            if (CellId.MOVE_LEFT.equals(direction))
+                coord = leftCoordinate(_currentPosition);
+            else
+                coord = rightCoordinate(_currentPosition);
+
+            return tryToMove(direction, coord);
         }
         else
         {
