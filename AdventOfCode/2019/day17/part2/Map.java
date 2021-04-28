@@ -57,26 +57,43 @@ public class Map
         return (temp.getContents().equals(CellId.SCAFFOLDING));
     }
 
+    public boolean isOpenSpace (Coordinate coord)
+    {
+        if (!valid(coord))
+            return false;
+
+        Cell temp = new Cell(coord);
+        int index = _theMap.indexOf(temp);
+
+        temp = _theMap.get(index);
+
+        return (temp.getContents().equals(CellId.OPEN_SPACE));
+    }
+
     public boolean theEnd (Coordinate coord)
     {
+        int numberOfExits = 0;
+
         Coordinate nCoord = new Coordinate(coord.getX(), coord.getY()+1);
         Coordinate sCoord = new Coordinate(coord.getX(), coord.getY()-1);
         Coordinate eCoord = new Coordinate(coord.getX()+1, coord.getY());
         Coordinate wCoord = new Coordinate(coord.getX()-1, coord.getY());
 
-        if (valid(nCoord) && (!isScaffold(nCoord)))
-        {
-            if (valid(sCoord) && (!isScaffold(sCoord)))
-            {
-                if (valid(eCoord) && (!isScaffold(eCoord)))
-                {
-                    if (valid(wCoord) && (!isScaffold(wCoord)))
-                        return true;
-                }
-            }
-        }
+        if (!isOpenSpace(nCoord))
+            numberOfExits++;
+        
+        if (!isOpenSpace(sCoord))
+            numberOfExits++;
+        
+        if (!isOpenSpace(eCoord))
+            numberOfExits++;
 
-        return false;
+        if (!isOpenSpace(wCoord))
+            numberOfExits++;
+
+        System.out.println("Number of exits for "+coord+" is "+numberOfExits);
+
+        return (numberOfExits == 1);
     }
 
     @Override
