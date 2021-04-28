@@ -84,8 +84,9 @@ public class MovementLogic
         System.out.println("tryMove: "+coord+" with direction: "+direction);
         System.out.println("and current position: "+_currentPosition);
 
-        if (_robotTrack.path(coord))
-            System.out.println("CROSSING PATH!!");
+        /*
+         * Already visited? Might be sufficient to just check .path
+         */
 
         if (_robotTrack.visited(coord) && !_robotTrack.path(coord))
         {
@@ -206,6 +207,10 @@ public class MovementLogic
             break;
         }
     }
+
+    /*
+     * Map/Trail can deal with invalid Coordinates.
+     */
 
     private final Coordinate rightCoordinate (Coordinate coord)
     {
