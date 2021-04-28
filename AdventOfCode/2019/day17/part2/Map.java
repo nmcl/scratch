@@ -85,7 +85,7 @@ public class Map
         {
             if ((coord.getX() >= 0) && (coord.getY() >= 0))
             {
-                if ((coord.getX() <= _maxX) && (coord.getY() <= _maxY))
+                if ((coord.getX() < _maxX) && (coord.getY() < _maxY))
                     return true;
             }
         }
