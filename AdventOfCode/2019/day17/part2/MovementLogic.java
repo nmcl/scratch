@@ -87,7 +87,7 @@ public class MovementLogic
         if (_robotTrack.path(coord))
             System.out.println("CROSSING PATH!!");
 
-        if (_robotTrack.visited(coord))
+        if (_robotTrack.visited(coord) && !_robotTrack.path(coord))
         {
             System.out.println("Robot already visited this location.");
 
