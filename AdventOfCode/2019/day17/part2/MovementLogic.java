@@ -97,6 +97,8 @@ public class MovementLogic
 
         System.out.println("Location not visited ... yet.");
 
+        System.out.println("Is the end? "+_theMap.theEnd(coord));
+        
         if (_theMap.isScaffold(coord))
         {
             System.out.println("Is scaffolding!");
