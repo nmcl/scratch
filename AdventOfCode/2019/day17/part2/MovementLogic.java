@@ -115,7 +115,8 @@ public class MovementLogic
 
             System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
 
-            System.out.println("Is the end? "+_theMap.theEnd(_currentPosition));
+            if (_theMap.theEnd(_currentPosition))
+                return false;
 
             changeFacing();
 
