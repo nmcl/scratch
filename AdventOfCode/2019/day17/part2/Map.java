@@ -70,7 +70,7 @@ public class Map
         temp = _theMap.get(index);
 
         System.out.println("got "+temp.getContents());
-        
+
         return (temp.getContents().equals(CellId.OPEN_SPACE));
     }
 
@@ -96,10 +96,7 @@ public class Map
             numberOfExits++;
 
         System.out.println("Number of exits for "+coord+" is "+numberOfExits);
-
-        if (numberOfExits == 1)
-            System.exit(0);
-
+        
         return (numberOfExits == 1);
     }
 
