@@ -7,6 +7,12 @@ public class MovementLogic
     public static final int ROUTINE_C = 2;
     public static final int ROUTINE_D = 3;
 
+    private static final int MOVED_OK = 0;
+    private static final int MOVE_FINISHED = 1;
+    private static final int DIRECTION_BLOCKED = 2;
+    private static final int MOVE_ERROR = 3;
+    private static final int LOCATION_VISITED = 4;
+
     public MovementLogic (Map theMap, boolean debug)
     {
         _theMap = theMap;
@@ -50,7 +56,7 @@ public class MovementLogic
      * Create path using only L and R.
      */
 
-    private boolean createPath ()
+    private int createPath ()
     {
         System.out.println("createPath from: "+_currentPosition);
 
@@ -64,22 +70,22 @@ public class MovementLogic
              * refer movement directions as L or R.
              */
 
-            if (!tryToMove(CellId.MOVE_LEFT, leftCoordinate(_currentPosition)))
+            if (tryToMove(CellId.MOVE_LEFT, leftCoordinate(_currentPosition)) != MOVE_FINISHED)
             {
                 return tryToMove(CellId.MOVE_RIGHT, rightCoordinate(_currentPosition));
             }
             else
-                return true;
+                return MOVE_FINISHED;
         }
         else
         {
             System.out.println("Robot not found!");
 
-            return false;
+            return MOVE_ERROR;
         }
     }
 
-    private boolean tryToMove (String direction, Coordinate coord)
+    private int tryToMove (String direction, Coordinate coord)
     {
         System.out.println("tryMove: "+coord+" with direction: "+direction);
         System.out.println("and current position: "+_currentPosition);
@@ -92,7 +98,7 @@ public class MovementLogic
         {
             System.out.println("Robot already visited this location.");
 
-            return false;
+            return LOCATION_VISITED;
         }
 
         System.out.println("Location not visited ... yet.");
@@ -116,7 +122,7 @@ public class MovementLogic
             System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
 
             if (_theMap.theEnd(_currentPosition))
-                return false;
+                return MOVE_FINISHED;
 
             changeFacing();
 
