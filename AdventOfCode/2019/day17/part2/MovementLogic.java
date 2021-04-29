@@ -108,13 +108,6 @@ public class MovementLogic
             _currentPosition = coord;
 
             System.out.println("\n"+_robotTrack);
-
-            if (CellId.MOVE_LEFT.equals(direction))
-                coord = leftCoordinate(_currentPosition);
-            else
-                coord = rightCoordinate(_currentPosition);
-
-            return tryToMove(direction, coord);
         }
         else
         {
@@ -132,13 +125,15 @@ public class MovementLogic
 
             System.out.println("Next direction to try with new facing: "+nextDirection);
 
-            if (CellId.MOVE_LEFT.equals(nextDirection))
-                coord = leftCoordinate(_currentPosition);
-            else
-                coord = rightCoordinate(_currentPosition);
-
-            return tryToMove(nextDirection, coord);
+            direction = nextDirection;
         }
+
+        if (CellId.MOVE_LEFT.equals(direction))
+            coord = leftCoordinate(_currentPosition);
+        else
+            coord = rightCoordinate(_currentPosition);
+
+        return tryToMove(direction, coord);
     }
 
     private String getNextDirection ()
