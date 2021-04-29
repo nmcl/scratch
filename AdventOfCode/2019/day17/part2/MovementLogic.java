@@ -38,7 +38,7 @@ public class MovementLogic
 
             try
             {
-                _path.pop();
+                pathElement = _path.pop();
             }
             catch (Exception ex)
             {
@@ -110,6 +110,8 @@ public class MovementLogic
             _currentMoveDirection = direction;
             _path.push(_currentMoveDirection);
             
+            System.out.println("Pushing "+_currentMoveDirection);
+
             _robotTrack.changeElement(coord, _currentMoveDirection);
             _currentPosition = coord;
 
