@@ -80,6 +80,8 @@ public class MovementLogic
                     {
                         commands.add(str);
 
+                        System.out.println("Command: "+str);
+                        
                         str = pathElement;
                         currentDirection = pathElement;
                     }
