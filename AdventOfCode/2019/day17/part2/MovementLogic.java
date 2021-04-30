@@ -28,28 +28,70 @@ public class MovementLogic
     {
         createPath();
 
-        String pathElement = _path.pop();
+        if (_debug)
+        {
+            String pathElement = _path.pop();
 
-        System.out.println("Path:");
+            System.out.println("Path:");
+
+            while (pathElement != null)
+            {
+                System.out.println(pathElement);
+
+                try
+                {
+                    pathElement = _path.pop();
+                }
+                catch (Exception ex)
+                {
+                    pathElement = null;
+                }
+            }
+        }
+
+        Vector<String> commands = getCommands();
+    }
+
+    public void createMovementRoutine ()
+    {
+        
+    }
+
+    private Vector<String> getCommands ()
+    {
+        Vector<String> commands = new Vector<String>();
+        String pathElement = _path.pop();
+        String currentDirection = null;
+        String str = "";
 
         while (pathElement != null)
         {
-            System.out.println(pathElement);
-
             try
             {
                 pathElement = _path.pop();
+
+                if (currentDirection == null)
+                    currentDirection = pathElement;
+                else
+                {
+                    if (currentDirection.equals(pathElement))
+                        str += pathElement;
+                    else
+                    {
+                        commands.add(str);
+
+                        str = pathElement;
+                        currentDirection = pathElement;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 pathElement = null;
             }
         }
-    }
 
-    public void createMovementRoutine ()
-    {
-        
+        return commands;
     }
 
     /*
