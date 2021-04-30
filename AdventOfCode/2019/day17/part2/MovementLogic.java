@@ -59,7 +59,7 @@ public class MovementLogic
 
     private Vector<String> getCommands ()
     {
-        Vector<String> commands = new Vector<String>();
+        Vector<String> tempCommands = new Vector<String>();  // we will have to reverse them!
         String pathElement = _path.pop();
         String currentDirection = null;
         String str = "";
@@ -78,10 +78,7 @@ public class MovementLogic
                         str += pathElement;
                     else
                     {
-                        commands.add(str);
-
-                        System.out.println("Command: "+str);
-                        
+                        tempCommands.add(str);
                         str = pathElement;
                         currentDirection = pathElement;
                     }
@@ -92,6 +89,18 @@ public class MovementLogic
                 pathElement = null;
             }
         }
+
+        Vector<String> commands = new Vector<String>();
+
+        for (int i = tempCommands.size() -1; i >= 0; i--)
+        {
+            commands.add(tempCommands.get(i));
+        }
+
+        Enumeration<String> iter = commands.elements();
+
+        while (iter.hasMoreElements())
+            System.out.println("Command: "+iter.nextElement());
 
         return commands;
     }
