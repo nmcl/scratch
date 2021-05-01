@@ -41,7 +41,6 @@ public class MovementLogic
     {
         Vector<String> commands = new Vector<String>(_path.size());
         String pathElement = null;
-        int index = _path.size() -1;
 
         /*
          * Pop the track to reverse it and get commands from the
@@ -53,10 +52,8 @@ public class MovementLogic
             try
             {
                 pathElement = _path.pop();
-
-                commands.add(index, pathElement);
-
-                index--;
+                
+                commands.add(pathElement);
             }
             catch (Exception ex)
             {
@@ -65,12 +62,10 @@ public class MovementLogic
 
         } while (pathElement != null);
 
-        Enumeration<String> iter = commands.elements();
-
-        System.out.println("Listing ...");
-        
-        while (iter.hasMoreElements())
-            System.out.println("Commands: "+iter.nextElement());
+        for (int i = commands.size() -1; i >= 0; i--)
+        {
+            System.out.println("Commands: "+commands.elementAt(i));
+        }
 
         return commands;
     }
