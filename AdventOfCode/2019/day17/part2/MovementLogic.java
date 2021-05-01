@@ -1,5 +1,70 @@
 import java.util.*;
 
+/*
+ * Commands: L,4
+Commands: L,4
+Commands: L,6
+Commands: R,10
+Commands: L,6
+
+== A
+
+Commands: L,4
+Commands: L,4
+Commands: L,6
+Commands: R,10
+Commands: L,6
+
+== A
+
+Commands: L,12
+Commands: L,6
+Commands: R,10
+Commands: L,6
+Commands: R,8
+Commands: R,10
+Commands: L,6
+
+== B
+
+Commands: R,8
+Commands: R,10
+Commands: L,6
+
+== C
+
+Commands: L,4
+Commands: L,4
+Commands: L,6
+Commands: R,10
+Commands: L,6
+
+== A
+
+Commands: R,8
+Commands: R,10
+Commands: L,6
+
+== C
+
+Commands: L,12
+Commands: L,6
+Commands: R,10
+Commands: L,6
+Commands: R,8
+Commands: R,10
+Commands: L,6
+
+== B
+
+Commands: L,12
+Commands: L,6
+Commands: R,10
+Commands: L,6
+
+== B
+ */
+
 public class MovementLogic
 {
     public static final int ROUTINE_A = 0;
@@ -92,6 +157,7 @@ public class MovementLogic
             for (int i = commands.size() -1; i >= 0; i--)
             {
                 System.out.println("Commands: "+commands.elementAt(i));
+                //System.out.print(commands.elementAt(i));
             }
         }
 
