@@ -31,7 +31,25 @@ public class MovementLogic
     {
         createPath();
 
+        /*
+         * Now convert the path into a series of commands
+         * such as L,4 or R,8.
+         */
+
         Vector<String> commands = getCommands();
+
+        /*
+         * Now turn the series of commands into functions
+         * A, B and C based on repeated commands.
+         * 
+         * Assume there are only 3 possible varieties of these commands.
+         * This means one function always starts at the beginning.
+         * One function always ends at the ending (!) assuming it's not a repeat
+         * of the first.
+         * Then using both the first and the last fragment to find the third
+         * and can split the entire sequence into functions.
+         */
+
     }
 
     public void createMovementRoutine ()
