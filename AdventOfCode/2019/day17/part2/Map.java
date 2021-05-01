@@ -59,7 +59,8 @@ public class Map
 
     public boolean isOpenSpace (Coordinate coord)
     {
-        System.out.println("Checking space "+coord);
+        if (_debug)
+            System.out.println("Checking space "+coord);
 
         if (!valid(coord))
             return false;
@@ -95,7 +96,8 @@ public class Map
         if (!isOpenSpace(wCoord))
             numberOfExits++;
 
-        System.out.println("Number of exits for "+coord+" is "+numberOfExits);
+        if (_debug)
+            System.out.println("Number of exits for "+coord+" is "+numberOfExits);
         
         return (numberOfExits == 1);
     }
