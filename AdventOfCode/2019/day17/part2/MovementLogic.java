@@ -67,10 +67,11 @@ Commands: L,6
 
 public class MovementLogic
 {
+    public static final int NUMBER_OF_FUNCTIONS = 3;
+
     public static final int ROUTINE_A = 0;
     public static final int ROUTINE_B = 1;
     public static final int ROUTINE_C = 2;
-    public static final int ROUTINE_D = 3;
 
     public static final int MAX_CHARACTERS = 20;
 
@@ -118,11 +119,46 @@ public class MovementLogic
          * execute before it gets to end of the route.
          */
 
+        String fullCommand = "";
+
+        for (int i = commands.size() -1; i >= 0; i--)
+        {
+            fullCommand += commands.elementAt(i);
+        }
+
+        System.out.println("Full command "+fullCommand);
+
+        String[] functions = new String[NUMBER_OF_FUNCTIONS];
+
+        /*
+         * Find repeated strings. Assume minimum of 2 commands.
+         */
+
+        int start = 0;
+        int numberOfCommands = 2;
+        int functionIndex = 0;
+
+        for (int i = 0; i < NUMBER_OF_FUNCTIONS; i++)
+        {
+            String repeat = getRepeatString(commands, 0, 2);
+        }
     }
 
     public void createMovementRoutine ()
     {
         
+    }
+
+    private String getRepeatString (Vector<String> commands, int start, int number)
+    {
+        String str = "";
+
+        for (int i = start; i < number; i++)
+        {
+            str += commands.elementAt(i);
+        }
+
+        return str;
     }
 
     private Vector<String> getCommands ()
@@ -152,12 +188,11 @@ public class MovementLogic
 
         } while (pathElement != null);
 
-        //if (_debug)
+        if (_debug)
         {
             for (int i = commands.size() -1; i >= 0; i--)
             {
                 System.out.println("Commands: "+commands.elementAt(i));
-                //System.out.print(commands.elementAt(i));
             }
         }
 
