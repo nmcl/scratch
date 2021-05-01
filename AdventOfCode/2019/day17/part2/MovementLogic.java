@@ -39,10 +39,14 @@ public class MovementLogic
 
     private Vector<String> getCommands ()
     {
-        Vector<String> commands = new Vector<String>();
+        Vector<String> commands = new Vector<String>(_path.size());
         String pathElement = null;
-        String currentDirection = null;
-        String str = "";
+        int index = _path.size() -1;
+
+        /*
+         * Pop the track to reverse it and get commands from the
+         * starting position.
+         */
 
         do
         {
@@ -50,22 +54,9 @@ public class MovementLogic
             {
                 pathElement = _path.pop();
 
-                if (currentDirection == null)
-                    currentDirection = pathElement;
-                else
-                {
-                    if (currentDirection.equals(pathElement))
-                        str += pathElement;
-                    else
-                    {
-                        commands.add(str);
+                commands.add(index, pathElement);
 
-                        System.out.println("Command: "+str);
-                        
-                        str = pathElement;
-                        currentDirection = pathElement;
-                    }
-                }
+                index--;
             }
             catch (Exception ex)
             {
@@ -73,6 +64,13 @@ public class MovementLogic
             }
 
         } while (pathElement != null);
+
+        Enumeration<String> iter = commands.elements();
+
+        System.out.println("Listing ...");
+        
+        while (iter.hasMoreElements())
+            System.out.println("Commands: "+iter.nextElement());
 
         return commands;
     }
@@ -133,7 +131,7 @@ public class MovementLogic
             System.out.println("Is scaffolding!");
 
             _currentMoveDirection = direction;
-            
+
             _routeTaken += _currentMoveDirection;
 
             _robotTrack.changeElement(coord, _currentMoveDirection);
