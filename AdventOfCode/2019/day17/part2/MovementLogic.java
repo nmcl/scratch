@@ -134,7 +134,16 @@ public class MovementLogic
          * Find repeated strings. Assume minimum of 2 commands.
          */
 
-        System.out.println("got "+getFunction(commands, fullCommand, 0, 2));
+        int start = 0;
+
+        for (int i = 0; i < NUMBER_OF_FUNCTIONS; i++)
+        {
+            functions[i] = getFunction(commands, fullCommand, start, 2);
+
+            System.out.println("got "+functions[i]);
+
+            start += functions[i].length();
+        }
     }
 
     public void createMovementRoutine ()
@@ -146,7 +155,7 @@ public class MovementLogic
     {
         String repeat = getCommandString(commands, start, numberOfCommands);
 
-        if (fullCommand.contains(repeat))
+        if (fullCommand.indexOf(repeat, repeat.length()) != -1)
         {
             System.out.println("Repeat: "+repeat);
 
