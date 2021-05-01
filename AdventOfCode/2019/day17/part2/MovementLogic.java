@@ -267,7 +267,8 @@ public class MovementLogic
         int x = coord.getX();
         int y = coord.getY();
 
-        System.out.println("rightCoordinate facing: "+_robotFacing+" and position: "+coord);
+        if (_debug)
+            System.out.println("rightCoordinate facing: "+_robotFacing+" and position: "+coord);
 
         switch (_robotFacing)
         {
@@ -302,7 +303,8 @@ public class MovementLogic
         int x = coord.getX();
         int y = coord.getY();
 
-        System.out.println("leftCoordinate facing: "+_robotFacing+" and position: "+coord);
+        if (_debug)
+            System.out.println("leftCoordinate facing: "+_robotFacing+" and position: "+coord);
 
         switch (_robotFacing)
         {
