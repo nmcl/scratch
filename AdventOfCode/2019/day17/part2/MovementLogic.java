@@ -42,12 +42,12 @@ public class MovementLogic
          * Now turn the series of commands into functions
          * A, B and C based on repeated commands.
          * 
-         * Assume there are only 3 possible varieties of these commands.
+         * There are only 3 possible functions.
          * This means one function always starts at the beginning.
          * One function always ends at the ending (!) assuming it's not a repeat
          * of the first.
          * Then using both the first and the last fragment to find the third
-         * and can split the entire sequence into functions.
+         * and split the entire sequence into functions.
          */
 
     }
