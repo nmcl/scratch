@@ -18,6 +18,7 @@ public class MovementLogic
         _theMap = theMap;
         _robotTrack = new Trail(_theMap);
         _path = new Stack<String>();
+        _routeTaken = "";
         _robotFacing = CellId.ROBOT_FACING_UP;
         _currentMoveDirection = "";
         _currentPosition = new Coordinate(_theMap.findStartingPoint());
@@ -27,27 +28,6 @@ public class MovementLogic
     public void createMovementFunctions ()
     {
         createPath();
-
-        if (_debug)
-        {
-            String pathElement = _path.pop();
-
-            System.out.println("Path:");
-
-            while (pathElement != null)
-            {
-                System.out.println(pathElement);
-
-                try
-                {
-                    pathElement = _path.pop();
-                }
-                catch (Exception ex)
-                {
-                    pathElement = null;
-                }
-            }
-        }
 
         Vector<String> commands = getCommands();
     }
@@ -153,9 +133,8 @@ public class MovementLogic
             System.out.println("Is scaffolding!");
 
             _currentMoveDirection = direction;
-            _path.push(_currentMoveDirection);
             
-            System.out.println("Pushing "+_currentMoveDirection);
+            _routeTaken += _currentMoveDirection;
 
             _robotTrack.changeElement(coord, _currentMoveDirection);
             _currentPosition = coord;
@@ -221,6 +200,12 @@ public class MovementLogic
 
     private void changeFacing ()
     {
+        _path.push(_routeTaken);
+
+        System.out.println("Pushing: "+_routeTaken);
+
+        _routeTaken = "";
+
         switch (_robotFacing)
         {
             case CellId.ROBOT_FACING_UP:
@@ -338,6 +323,7 @@ public class MovementLogic
     private Map _theMap;
     private Trail _robotTrack;
     private Stack<String> _path;
+    private String _routeTaken;
     private String _robotFacing;
     private String _currentMoveDirection;
     private Coordinate _currentPosition;
