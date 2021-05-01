@@ -48,6 +48,9 @@ public class MovementLogic
          * of the first.
          * Then using both the first and the last fragment to find the third
          * and split the entire sequence into functions.
+         * 
+         * Also it's possible to give the Robot more commands than it can
+         * execute before it gets to end of the route.
          */
 
     }
@@ -153,7 +156,7 @@ public class MovementLogic
             _currentMoveDirection = direction;
 
             System.out.println("Moving "+_currentMoveDirection);
-            
+
             _routeTaken += _currentMoveDirection;
 
             _robotTrack.changeElement(coord, _currentMoveDirection);
@@ -166,6 +169,12 @@ public class MovementLogic
             System.out.println("Not scaffolding!");
 
             System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
+
+            _path.push(_routeTaken);
+
+            System.out.println("Pushing: "+_routeTaken);
+    
+            _routeTaken = "";
 
             if (_theMap.theEnd(_currentPosition))
                 return MOVE_FINISHED;
@@ -220,12 +229,6 @@ public class MovementLogic
 
     private void changeFacing ()
     {
-        _path.push(_routeTaken);
-
-        System.out.println("Pushing: "+_routeTaken);
-
-        _routeTaken = "";
-
         switch (_robotFacing)
         {
             case CellId.ROBOT_FACING_UP:
