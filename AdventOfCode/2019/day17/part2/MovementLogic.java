@@ -134,14 +134,7 @@ public class MovementLogic
          * Find repeated strings. Assume minimum of 2 commands.
          */
 
-        int start = 0;
-        int numberOfCommands = 2;
-        int functionIndex = 0;
-
-        for (int i = 0; i < NUMBER_OF_FUNCTIONS; i++)
-        {
-            String repeat = getRepeatString(commands, 0, 2);
-        }
+        System.out.println("got "+getFunction(commands, fullCommand, 0, 2));
     }
 
     public void createMovementRoutine ()
@@ -149,7 +142,28 @@ public class MovementLogic
         
     }
 
-    private String getRepeatString (Vector<String> commands, int start, int number)
+    private String getFunction (Vector<String> commands, String fullCommand, int start, int numberOfCommands)
+    {
+        String repeat = getCommandString(commands, start, numberOfCommands);
+
+        if (fullCommand.contains(repeat))
+        {
+            System.out.println("Repeat: "+repeat);
+
+            String next = getFunction(commands, fullCommand, start, numberOfCommands +1);
+
+            if (next == null)
+                return repeat;
+            else
+                return next;
+        }
+        else
+            System.out.println("Does not repeat: "+repeat);
+
+        return null;
+    }
+
+    private String getCommandString (Vector<String> commands, int start, int number)
     {
         String str = "";
 
