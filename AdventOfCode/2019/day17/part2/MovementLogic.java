@@ -169,8 +169,10 @@ public class MovementLogic
 
         for (int i = start; i < number; i++)
         {
-            str += commands.elementAt(i);
+            str += commands.elementAt(commands.size() - 1 - i);
         }
+
+        System.out.println("**returning "+str+" from "+start+" and "+number);
 
         return str;
     }
