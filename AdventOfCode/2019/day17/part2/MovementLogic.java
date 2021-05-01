@@ -8,7 +8,7 @@ public class MovementLogic
     public static final int ROUTINE_D = 3;
 
     public static final int MAX_CHARACTERS = 20;
-    
+
     private static final int MOVED_OK = 0;
     private static final int MOVE_FINISHED = 1;
     private static final int DIRECTION_BLOCKED = 2;
@@ -55,7 +55,9 @@ public class MovementLogic
             {
                 pathElement = _path.pop();
 
-                commands.add(pathElement);
+                String str = pathElement.charAt(0)+","+pathElement.length();
+
+                commands.add(str);
             }
             catch (Exception ex)
             {
@@ -64,7 +66,7 @@ public class MovementLogic
 
         } while (pathElement != null);
 
-        if (_debug)
+        //if (_debug)
         {
             for (int i = commands.size() -1; i >= 0; i--)
             {
