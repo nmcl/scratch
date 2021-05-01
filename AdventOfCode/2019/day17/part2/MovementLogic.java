@@ -152,6 +152,8 @@ public class MovementLogic
 
             _currentMoveDirection = direction;
 
+            System.out.println("Moving "+_currentMoveDirection);
+            
             _routeTaken += _currentMoveDirection;
 
             _robotTrack.changeElement(coord, _currentMoveDirection);
