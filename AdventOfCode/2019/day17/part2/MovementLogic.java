@@ -59,12 +59,12 @@ public class MovementLogic
 
     private Vector<String> getCommands ()
     {
-        Vector<String> commands = new Vector<String>();  // we will have to reverse them!
-        String pathElement = _path.pop();
+        Vector<String> commands = new Vector<String>();
+        String pathElement = null;
         String currentDirection = null;
         String str = "";
 
-        while (pathElement != null)
+        do
         {
             try
             {
@@ -91,7 +91,8 @@ public class MovementLogic
             {
                 pathElement = null;
             }
-        }
+
+        } while (pathElement != null);
 
         return commands;
     }
