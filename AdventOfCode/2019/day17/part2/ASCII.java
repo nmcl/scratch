@@ -51,9 +51,6 @@ public class ASCII
         MovementLogic ml = new MovementLogic(theMap, debug);
 
         ml.createMovementFunctions();
-
-        System.out.println("\n\n");
-        String str = "L,4L,4L,6R,10L,6L,4L,4L,6R,10L,6L,12L,6R,10L,6R,8R,10L,6R,8R,10L,6L,4L,4L,6R,10L,6R,8R,10L,6L,12L,6R,10L,6R,8R,10L,6L,12L,6R,10L,6";
     }
 
     private ASCII ()
