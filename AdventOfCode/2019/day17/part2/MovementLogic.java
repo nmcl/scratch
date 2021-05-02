@@ -140,7 +140,7 @@ public class MovementLogic
         {
             functions[i] = getFunction(commands, fullCommand, start, 2);
 
-            System.out.println("got "+functions[i]);
+            System.out.println("Function "+i+" is "+functions[i]);
 
             start += functions[i].length();
         }
