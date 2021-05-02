@@ -137,13 +137,17 @@ public class MovementLogic
          */
 
         int commandStart = 0;
-        int stringStart = 0;
+        int startStart = 0;
         String str = fullCommand;
 
         do
         {
-            if (stringStart != 0)
-                str = fullCommand.substring(stringStart);
+            System.out.println("startStart "+startStart);
+
+            if (startStart != 0)
+                str = fullCommand.substring(startStart);
+
+            System.out.println("str is "+str);
 
             Function func = getFunction(commands, str, commandStart, 2);
 
@@ -152,7 +156,7 @@ public class MovementLogic
             System.out.println("Function is "+func+"\n");
 
             commandStart += func.numberOfCommands();
-            stringStart += func.getLength();
+            startStart += func.getLength();
 
         } while (str != null);
     }
@@ -175,7 +179,7 @@ public class MovementLogic
     private Function getFunction (Vector<String> commands, String fullCommand, int start, int numberOfCommands)
     {
         System.out.println("getFunction searching "+fullCommand);
-        
+
         String repeat = getCommandString(commands, start, numberOfCommands);
 
         if (fullCommand.indexOf(repeat, repeat.length()) != -1)
