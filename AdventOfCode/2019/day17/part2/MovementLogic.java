@@ -140,7 +140,7 @@ public class MovementLogic
         {
             functions[i] = getFunction(commands, fullCommand, start, 2);
 
-            System.out.println("Function "+i+" is "+functions[i]);
+            System.out.println("Function "+i+" is "+functions[i]+"\n");
 
             start += functions[i].length();
         }
@@ -178,10 +178,14 @@ public class MovementLogic
 
         for (int i = start; i < number; i++)
         {
-            str += commands.elementAt(commands.size() - 1 - i);
+            int commandNumber = commands.size() - 1 - i;
+
+            System.out.println("Adding command "+commandNumber);
+
+            str += commands.elementAt(commandNumber);
         }
 
-        System.out.println("**returning "+str+" from "+start+" and "+number);
+        System.out.println("**Command string: "+str+" from "+start+" and "+number);
 
         return str;
     }
