@@ -13,6 +13,11 @@ public class Function
         return _command;
     }
 
+    public int getLength ()
+    {
+        return ((_command == null) ? 0 : _command.length());
+    }
+    
     public int numberOfCommands ()
     {
         return _numberOfCommands;
@@ -21,7 +26,7 @@ public class Function
     @Override
     public String toString ()
     {
-        return "Command: "+_command;
+        return _command;
     }
 
     @Override
