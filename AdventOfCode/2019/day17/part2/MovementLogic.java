@@ -174,24 +174,24 @@ public class MovementLogic
      * the unique instances afterwards.
      * 
      * fullCommand is the String to search.
-     * start is the command from which to begin the search.
+     * startingCommand is the command from which to begin the search.
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private Function getFunction (Vector<String> commands, String commandString, int start, int numberOfCommands)
+    private Function getFunction (Vector<String> commands, String commandString, int startingCommand, int numberOfCommands)
     {
-        System.out.println("getFunction searching "+commandString);
+        System.out.println("getFunction searching "+commandString+" with "+numberOfCommands);
 
-        String repeat = getCommandString(commands, start, numberOfCommands);
+        String repeat = getCommandString(commands, startingCommand, numberOfCommands);
 
         if (commandString.indexOf(repeat, repeat.length()) != -1)
         {
             System.out.println("Repeat: "+repeat);
 
-            Function next = getFunction(commands, commandString, start, numberOfCommands +1);
+            Function next = getFunction(commands, commandString, startingCommand, numberOfCommands +1);
 
             if (next == null)
-                return new Function(repeat, numberOfCommands);
+                return new Function(repeat, numberOfCommands - startingCommand);
             else
                 return next;
         }
