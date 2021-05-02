@@ -158,6 +158,8 @@ public class MovementLogic
             commandStart += func.numberOfCommands();
             startStart += func.getLength();
 
+            System.out.println("Commands used: "+commandStart);
+
         } while (str != null);
     }
 
@@ -176,17 +178,17 @@ public class MovementLogic
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private Function getFunction (Vector<String> commands, String fullCommand, int start, int numberOfCommands)
+    private Function getFunction (Vector<String> commands, String commandString, int start, int numberOfCommands)
     {
-        System.out.println("getFunction searching "+fullCommand);
+        System.out.println("getFunction searching "+commandString);
 
         String repeat = getCommandString(commands, start, numberOfCommands);
 
-        if (fullCommand.indexOf(repeat, repeat.length()) != -1)
+        if (commandString.indexOf(repeat, repeat.length()) != -1)
         {
             System.out.println("Repeat: "+repeat);
 
-            Function next = getFunction(commands, fullCommand, start, numberOfCommands +1);
+            Function next = getFunction(commands, commandString, start, numberOfCommands +1);
 
             if (next == null)
                 return new Function(repeat, numberOfCommands);
