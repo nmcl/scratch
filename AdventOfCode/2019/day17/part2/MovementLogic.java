@@ -128,6 +128,8 @@ public class MovementLogic
 
         System.out.println("Full command "+fullCommand);
 
+        Vector<String> allFunctions = new Vector<String>();
+
         String[] functions = new String[NUMBER_OF_FUNCTIONS];
 
         /*
@@ -135,15 +137,22 @@ public class MovementLogic
          */
 
         int start = 0;
+        String str = fullCommand;
 
-        for (int i = 0; i < NUMBER_OF_FUNCTIONS; i++)
+        do
         {
-            functions[i] = getFunction(commands, fullCommand, start, 2);
+            if (start != 0)
+                str = fullCommand.substring(start);
 
-            System.out.println("Function "+i+" is "+functions[i]+"\n");
+            String func = getFunction(commands, str, 2);
 
-            start += functions[i].length();
-        }
+            allFunctions.add(func);
+
+            System.out.println("Function is "+func+"\n");
+
+            start += func.length();
+
+        } while (str != null);
     }
 
     public void createMovementRoutine ()
@@ -151,7 +160,17 @@ public class MovementLogic
         
     }
 
-    private String getFunction (Vector<String> commands, String fullCommand, int start, int numberOfCommands)
+    /*
+     * Return a repeating function. Will return all repeating
+     * functions given the input so we need to later figure out
+     * the unique instances afterwards.
+     * 
+     * fullCommand is the String to search.
+     * start is the point in the String from where to begin the search.
+     * numberOfCommands is the number of commands to pull together.
+     */
+
+    private String getFunction (Vector<String> commands, String fullCommand, int numberOfCommands)
     {
         String repeat = getCommandString(commands, start, numberOfCommands);
 
@@ -175,6 +194,8 @@ public class MovementLogic
     private String getCommandString (Vector<String> commands, int start, int number)
     {
         String str = "";
+
+        System.out.println("getCommandString "+start+" and "+number);
 
         for (int i = start; i < number; i++)
         {
