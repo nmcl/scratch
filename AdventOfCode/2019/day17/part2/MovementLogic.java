@@ -128,7 +128,7 @@ public class MovementLogic
 
         System.out.println("Full command "+fullCommand);
 
-        Vector<String> allFunctions = new Vector<String>();
+        Vector<Function> allFunctions = new Vector<Function>();
 
         String[] functions = new String[NUMBER_OF_FUNCTIONS];
 
@@ -144,13 +144,13 @@ public class MovementLogic
             if (start != 0)
                 str = fullCommand.substring(start);
 
-            String func = getFunction(commands, str, 2);
+            Function func = getFunction(commands, str, start, 2);
 
             allFunctions.add(func);
 
             System.out.println("Function is "+func+"\n");
 
-            start += func.length();
+            start += func.getLength();
 
         } while (str != null);
     }
@@ -166,11 +166,11 @@ public class MovementLogic
      * the unique instances afterwards.
      * 
      * fullCommand is the String to search.
-     * start is the point in the String from where to begin the search.
+     * start is the command from which to begin the search.
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private String getFunction (Vector<String> commands, String fullCommand, int numberOfCommands)
+    private Function getFunction (Vector<String> commands, String fullCommand, int start, int numberOfCommands)
     {
         String repeat = getCommandString(commands, start, numberOfCommands);
 
@@ -178,10 +178,10 @@ public class MovementLogic
         {
             System.out.println("Repeat: "+repeat);
 
-            String next = getFunction(commands, fullCommand, start, numberOfCommands +1);
+            Function next = getFunction(commands, fullCommand, start, numberOfCommands +1);
 
             if (next == null)
-                return repeat;
+                return new Function(repeat, numberOfCommands);
             else
                 return next;
         }
