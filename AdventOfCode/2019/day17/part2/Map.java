@@ -68,11 +68,7 @@ public class Map
         Cell temp = new Cell(coord);
         int index = _theMap.indexOf(temp);
 
-        temp = _theMap.get(index);
-
-        System.out.println("got "+temp.getContents());
-
-        return (temp.getContents().equals(CellId.OPEN_SPACE));
+        return (_theMap.get(index).getContents().equals(CellId.OPEN_SPACE));
     }
 
     public boolean theEnd (Coordinate coord)
@@ -126,8 +122,6 @@ public class Map
 
     protected boolean valid (Coordinate coord)
     {
-        System.out.println("Comparing "+coord+" and "+_maxX+" "+_maxY);
-
         if (coord != null)
         {
             if ((coord.getX() >= 0) && (coord.getY() >= 0))

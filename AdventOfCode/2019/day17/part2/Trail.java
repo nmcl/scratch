@@ -14,8 +14,6 @@ public class Trail extends Map
 
     public boolean visited (Coordinate coord)
     {
-        System.out.println("visited? "+coord);
-        
         if (!valid(coord))
             return false;
 
