@@ -6,6 +6,12 @@ public class Function
     {
         _command = command;
         _numberOfCommands = numberOfCommands;
+
+        if ((command == null) || (command.equals("")))
+        {
+            System.out.println("OOPS");
+            System.exit(0);
+        }
     }
 
     public String getCommand ()
