@@ -123,15 +123,17 @@ public class FunctionRoutine
          */
 
         int commandStart = 0;
-        int startStart = 0;
+        int startString = 0;
         String str = fullCommand;
+
+        System.out.println("fullCommand length "+fullCommand.length());
 
         do
         {
-            System.out.println("startStart "+startStart);
+            System.out.println("startString "+startString);
 
-            if (startStart != 0)
-                str = fullCommand.substring(startStart);
+            if (startString != 0)
+                str = fullCommand.substring(startString);
 
             System.out.println("str is "+str);
 
@@ -142,7 +144,7 @@ public class FunctionRoutine
             System.out.println("Function is "+func+"\n");
 
             commandStart += func.numberOfCommands();
-            startStart += func.getLength();
+            startString += func.getLength();
 
             System.out.println("Commands used: "+commandStart);
 
