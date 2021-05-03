@@ -40,7 +40,8 @@ public class MovementLogic
 
     private int createPath ()
     {
-        System.out.println("createPath from: "+_currentPosition);
+        if (_debug)
+            System.out.println("createPath from: "+_currentPosition);
 
         if (_currentPosition != null)
         {
