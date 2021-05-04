@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.function.Function;
 
 /*
  * Commands: L,4
@@ -79,7 +78,7 @@ public class FunctionRoutine
     public FunctionRoutine (Stack<String> pathTaken, boolean debug)
     {
         _path = pathTaken;
-        _functions = new Vector<Function>();
+        _functions = new Vector<MovementRoutine>();
         _debug = debug;
     }
 
@@ -135,7 +134,7 @@ public class FunctionRoutine
 
             System.out.println("str is "+str);
 
-            Function func = getFunction(commands, str, commandStart, 2);
+            MovementRoutine func = getFunction(commands, str, commandStart, 2);
 
             _functions.add(func);
 
@@ -159,16 +158,16 @@ public class FunctionRoutine
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private Function getFunction (Vector<String> commands, String commandString, int startingCommand, int numberOfCommands)
+    private MovementRoutine getFunction (Vector<String> commands, String commandString, int startingCommand, int numberOfCommands)
     {
         System.out.println("getFunction searching "+commandString+" with "+numberOfCommands);
 
         String repeat = getCommandString(commands, startingCommand, numberOfCommands);
-        Function next = new Function(repeat, numberOfCommands);
+        MovementRoutine next = new MovementRoutine(repeat, numberOfCommands);
 
         if (_functions.indexOf(next) != -1) // already found repeating commands/Function
             return next;
-            
+
         if (commandString.indexOf(repeat, repeat.length()) != -1)
         {
             System.out.println("Repeat: "+repeat);
@@ -176,7 +175,7 @@ public class FunctionRoutine
             next = getFunction(commands, commandString, startingCommand, numberOfCommands +1);
 
             if (next == null)
-                return new Function(repeat, numberOfCommands - startingCommand);
+                return new MovementRoutine(repeat, numberOfCommands - startingCommand);
             else
                 return next;
         }
@@ -245,6 +244,6 @@ public class FunctionRoutine
     }
 
     private Stack<String> _path;
-    private VectoFunction<T,R>on> _functions;
+    private Vector<MovementRoutine>_functions;
     private boolean _debug;
 }

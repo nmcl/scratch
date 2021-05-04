@@ -1,8 +1,8 @@
 import java.util.Objects;
 
-public class Function
+public class MovementRoutine
 {
-    public Function (String command, int numberOfCommands)
+    public MovementRoutine (String command, int numberOfCommands)
     {
         _command = command;
         _numberOfCommands = numberOfCommands;
@@ -52,7 +52,7 @@ public class Function
         
         if (getClass() == obj.getClass())
         {
-            Function temp = (Function) obj;
+            MovementRoutine temp = (MovementRoutine) obj;
 
             return (_command.equals(temp._command));
         }
