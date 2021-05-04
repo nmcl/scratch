@@ -161,6 +161,8 @@ public class FunctionRoutine
 
             System.out.println("Total commands used so far: "+commandStart);
 
+            System.out.println("left "+str);
+
         } while (str != null);
     }
 
