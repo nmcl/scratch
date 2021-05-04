@@ -165,8 +165,14 @@ public class FunctionRoutine
         String repeat = getCommandString(commands, startingCommand, numberOfCommands);
         MovementRoutine next = new MovementRoutine(repeat, numberOfCommands);
 
+        System.out.println("**checking "+next);
+        
         if (_functions.indexOf(next) != -1) // already found repeating commands/Function
+        {
+            System.out.println("Function "+next+" is a duplicate!|");
+
             return next;
+        }
 
         if (commandString.indexOf(repeat, repeat.length()) != -1)
         {
