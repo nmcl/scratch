@@ -159,7 +159,7 @@ public class FunctionRoutine
             commandStart += func.numberOfCommands();
             startString += func.getLength();
 
-            System.out.println("Commands used: "+commandStart);
+            System.out.println("Total commands used so far: "+commandStart);
 
         } while (str != null);
     }
@@ -197,7 +197,7 @@ public class FunctionRoutine
             next = getFunction(commands, commandString, startingCommand, numberOfCommands +1);
 
             if (next == null)
-                return new MovementRoutine(repeat, numberOfCommands - startingCommand);
+                return new MovementRoutine(repeat, numberOfCommands);
             else
                 return next;
         }
