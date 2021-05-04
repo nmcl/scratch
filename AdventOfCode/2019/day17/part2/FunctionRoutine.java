@@ -7,6 +7,8 @@ Commands: L,6
 Commands: R,10
 Commands: L,6
 
+L,4L,4L,6R,10L,6
+
 == A
 
 Commands: L,4
@@ -14,6 +16,8 @@ Commands: L,4
 Commands: L,6
 Commands: R,10
 Commands: L,6
+
+L,4L,4L,6R,10L,6
 
 == A
 
@@ -25,11 +29,15 @@ Commands: R,8
 Commands: R,10
 Commands: L,6
 
+L,12L,6R,10L,6R,8R,10L,6
+
 == B
 
 Commands: R,8
 Commands: R,10
 Commands: L,6
+
+R,8R,10L,6
 
 == C
 
@@ -39,11 +47,15 @@ Commands: L,6
 Commands: R,10
 Commands: L,6
 
+L,4L,4L,6R,10L,6
+
 == A
 
 Commands: R,8
 Commands: R,10
 Commands: L,6
+
+R,8R,10L,6
 
 == C
 
@@ -55,12 +67,16 @@ Commands: R,8
 Commands: R,10
 Commands: L,6
 
+L,12L,6R,10L,6R,8R,10L,6
+
 == B
 
 Commands: L,12
 Commands: L,6
 Commands: R,10
 Commands: L,6
+
+L,12L,6R,10L,6
 
 == B
  */
