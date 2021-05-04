@@ -7,6 +7,8 @@ public class MovementRoutine
         _command = command;
         _numberOfCommands = numberOfCommands;
 
+        System.out.println("NumberOfCommands "+numberOfCommands);
+
         if ((command == null) || (command.equals("")))
         {
             System.out.println("OOPS");
