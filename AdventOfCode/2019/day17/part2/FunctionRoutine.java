@@ -160,16 +160,16 @@ public class FunctionRoutine
 
     private MovementRoutine getFunction (Vector<String> commands, String commandString, int startingCommand, int numberOfCommands)
     {
-        System.out.println("getFunction searching "+commandString+" with "+numberOfCommands);
+        System.out.println("getFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         String repeat = getCommandString(commands, startingCommand, numberOfCommands);
         MovementRoutine next = new MovementRoutine(repeat, numberOfCommands);
 
         System.out.println("**checking "+next);
-        
+
         if (_functions.indexOf(next) != -1) // already found repeating commands/Function
         {
-            System.out.println("Function "+next+" is a duplicate!|");
+            System.out.println("Function "+next+" is a duplicate!");
 
             return next;
         }
@@ -195,9 +195,9 @@ public class FunctionRoutine
     {
         String str = "";
 
-        System.out.println("getCommandString "+start+" and "+number);
+        System.out.println("getCommandString starting command "+start+" and number "+number);
 
-        for (int i = start; i < number; i++)
+        for (int i = start; i < (start + number); i++)
         {
             int commandNumber = commands.size() - 1 - i;
 
@@ -206,7 +206,7 @@ public class FunctionRoutine
             str += commands.elementAt(commandNumber);
         }
 
-        System.out.println("**Command string: "+str+" from "+start+" and "+number);
+        System.out.println("**Command string created: "+str);
 
         return str;
     }
