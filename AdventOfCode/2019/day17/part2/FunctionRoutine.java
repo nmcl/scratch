@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.function.Function;
 
 /*
  * Commands: L,4
@@ -78,6 +79,7 @@ public class FunctionRoutine
     public FunctionRoutine (Stack<String> pathTaken, boolean debug)
     {
         _path = pathTaken;
+        _functions = new Vector<Function>();
         _debug = debug;
     }
 
@@ -114,10 +116,6 @@ public class FunctionRoutine
 
         System.out.println("Full command "+fullCommand);
 
-        Vector<Function> allFunctions = new Vector<Function>();
-
-        String[] functions = new String[NUMBER_OF_FUNCTIONS];
-
         /*
          * Find repeated strings. Assume minimum of 2 commands.
          */
@@ -139,7 +137,7 @@ public class FunctionRoutine
 
             Function func = getFunction(commands, str, commandStart, 2);
 
-            allFunctions.add(func);
+            _functions.add(func);
 
             System.out.println("Function is "+func+"\n");
 
@@ -166,12 +164,16 @@ public class FunctionRoutine
         System.out.println("getFunction searching "+commandString+" with "+numberOfCommands);
 
         String repeat = getCommandString(commands, startingCommand, numberOfCommands);
+        Function next = new Function(repeat, numberOfCommands);
 
+        if (_functions.indexOf(next) != -1) // already found repeating commands/Function
+            return next;
+            
         if (commandString.indexOf(repeat, repeat.length()) != -1)
         {
             System.out.println("Repeat: "+repeat);
 
-            Function next = getFunction(commands, commandString, startingCommand, numberOfCommands +1);
+            next = getFunction(commands, commandString, startingCommand, numberOfCommands +1);
 
             if (next == null)
                 return new Function(repeat, numberOfCommands - startingCommand);
@@ -243,5 +245,6 @@ public class FunctionRoutine
     }
 
     private Stack<String> _path;
+    private VectoFunction<T,R>on> _functions;
     private boolean _debug;
 }
