@@ -204,7 +204,7 @@ public class FunctionRoutine
                 return next;
         }
         else
-            System.out.println("Does not repeat: "+repeat);
+            System.out.println("Does not repeat: "+repeat);  // -->> OOPS!
 
         return null;
     }
