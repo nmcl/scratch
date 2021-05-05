@@ -95,18 +95,18 @@ public class FunctionRoutine
     {
         _path = pathTaken;
         _functions = new Vector<MovementRoutine>();
-        _debug = debug;
-    }
 
-    public void createMovementFunctions ()
-    {
         /*
          * Now convert the path into a series of commands
          * such as L,4 or R,8.
          */
 
-        Vector<String> commands = getCommands();
+        _commands = getCommands();
+        _debug = debug;
+    }
 
+    public void createMovementFunctions ()
+    {
         /*
          * Now turn the series of commands into functions
          * A, B and C based on repeated commands.
@@ -124,9 +124,9 @@ public class FunctionRoutine
 
         String fullCommand = "";
 
-        for (int i = commands.size() -1; i >= 0; i--)
+        for (int i = _commands.size() -1; i >= 0; i--)
         {
-            fullCommand += commands.elementAt(i);
+            fullCommand += _commands.elementAt(i);
         }
 
         System.out.println("Full command "+fullCommand);
@@ -150,7 +150,7 @@ public class FunctionRoutine
 
             System.out.println("str is "+str);
 
-            MovementRoutine func = getFunction(commands, str, commandStart, 2);
+            MovementRoutine func = getUniqueFunction(str, commandStart, 2);
 
             _functions.add(func);
 
@@ -176,12 +176,20 @@ public class FunctionRoutine
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private MovementRoutine getFunction (Vector<String> commands, String commandString, int startingCommand, int numberOfCommands)
+    private MovementRoutine getUniqueFunction (String commandString, int startingCommand, int numberOfCommands)
     {
-        System.out.println("getFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("getUniqueFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        String repeat = getCommandString(commands, startingCommand, numberOfCommands);
-        MovementRoutine next = new MovementRoutine(repeat, numberOfCommands);
+        String repeat = findRepeatRoutine(commandString, startingCommand, numberOfCommands);
+
+        /*
+
+        do
+        {
+            next = findRoutine(commandString, startingCommand, numberOfCommands);
+
+            String repeat = getCommandString(startingCommand, numberOfCommands);
+        
 
         System.out.println("**checking "+next);
 
@@ -205,11 +213,32 @@ public class FunctionRoutine
         }
         else
             System.out.println("Does not repeat: "+repeat);  // -->> OOPS!
-
+*/
         return null;
     }
 
-    private String getCommandString (Vector<String> commands, int start, int number)
+    private String findRepeatRoutine (String commandString, int startingCommand, int numberOfCommands)
+    {
+        System.out.println("findRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
+
+        String repeat = getCommandString(startingCommand, numberOfCommands);
+
+        if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+        {
+            System.out.println("Repeat: "+repeat);
+
+            String nextString = findRepeatRoutine(commandString, startingCommand, numberOfCommands +1);
+
+            if (nextString != null)
+                repeat = nextString;
+        }
+        else
+            System.out.println("Does not repeat: "+repeat);
+
+        return repeat;
+    }
+
+    private String getCommandString (int start, int number)
     {
         String str = "";
 
@@ -217,11 +246,11 @@ public class FunctionRoutine
 
         for (int i = start; i < (start + number); i++)
         {
-            int commandNumber = commands.size() - 1 - i;
+            int commandNumber = _commands.size() - 1 - i;
 
             System.out.println("Adding command "+commandNumber);
 
-            str += commands.elementAt(commandNumber);
+            str += _commands.elementAt(commandNumber);
         }
 
         System.out.println("**Command string created: "+str);
@@ -269,5 +298,6 @@ public class FunctionRoutine
 
     private Stack<String> _path;
     private Vector<MovementRoutine>_functions;
+    private Vector<String> _commands;
     private boolean _debug;
 }
