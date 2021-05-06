@@ -16,6 +16,11 @@ public class MovementRoutine
         }
     }
 
+    public boolean contains (MovementRoutine compare)
+    {
+        return (_command.indexOf(compare.getCommand()) != -1);
+    }
+
     public String getCommand ()
     {
         return _command;
