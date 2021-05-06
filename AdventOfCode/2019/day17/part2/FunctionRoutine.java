@@ -141,9 +141,8 @@ public class FunctionRoutine
         if (func != null)
         {
             int commandStart = func.numberOfCommands();
-            int beginIndex = func.getLength();
     
-            str = fullCommand.substring(beginIndex);
+            str = str.replace(func.getCommand(), "");
     
             func = getLastMovementRoutine(str, 2);
 
@@ -153,10 +152,9 @@ public class FunctionRoutine
 
             if (func != null)
             {
-                int endIndex = fullCommand.length() - func.getLength();
                 int commandEnd = func.numberOfCommands();
 
-                str = fullCommand.substring(beginIndex, endIndex);
+                str = str.replace(func.getCommand(), "");
 
                 func = getMovementRoutine(str, commandStart, commandEnd, 2);
             }
@@ -349,6 +347,8 @@ public class FunctionRoutine
         System.out.println("findLastRoutine searching "+commandString+" with "+numberOfCommands+" commands");
 
         String repeat = getLastCommandString(numberOfCommands);
+
+        System.out.println("Scanning for "+repeat);
 
         if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
         {
