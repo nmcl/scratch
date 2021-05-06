@@ -182,7 +182,7 @@ public class FunctionRoutine
 
         MovementRoutine routine = findRepeatRoutine(commandString, startingCommand, numberOfCommands);
 
-        System.out.println("**got back "+repeat);
+        System.out.println("**got back "+routine);
 
         if (routine == null)
         {
@@ -191,9 +191,18 @@ public class FunctionRoutine
             routine = new MovementRoutine(repeat, _commands.size() - startingCommand);
 
             /*
-             * Not a repeat but maybe it's part of an existing function?
+             * Not a repeat but maybe it's part of an existing function? Or maybe
+             * an existing routine is within the String?
              */
 
+            Vector<MovementRoutine> embedded = findEmbeddedRoutine(routine);
+
+            if (embedded == null)
+                embedded = findPartialRoutine(routine);
+            else
+            {
+                // could be multiple
+            }
         }
         else
         {
