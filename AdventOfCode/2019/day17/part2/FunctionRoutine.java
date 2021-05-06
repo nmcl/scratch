@@ -103,14 +103,14 @@ public class FunctionRoutine
          * A, B and C based on repeated commands.
          * 
          * There are only 3 possible functions.
+         * 
          * This means one function always starts at the beginning.
+         * 
          * One function always ends at the ending (!) assuming it's not a repeat
          * of the first.
+         * 
          * Then using both the first and the last fragment to find the third
          * and split the entire sequence into functions.
-         * 
-         * Also it's possible to give the Robot more commands than it can
-         * execute before it gets to end of the route.
          */
 
         String fullCommand = "";
