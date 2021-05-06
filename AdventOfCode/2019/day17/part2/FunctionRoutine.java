@@ -197,12 +197,14 @@ public class FunctionRoutine
 
             Vector<MovementRoutine> embedded = findEmbeddedRoutine(routine);
 
-            if (embedded.size() == 0)
-                embedded = findPartialRoutine(routine);
-            else
+            if (routine.numberOfCommands() > 0)
             {
-                // could be multiple
+                routine = findRoutineFromPartial(routine);
             }
+            else
+                routine = embedded.elementAt(embedded.size() -1);  // the last entry;
+            
+            return routine;
         }
         else
         {
@@ -216,8 +218,21 @@ public class FunctionRoutine
             
             return routine;
         }
+    }
 
-        return null;
+    private MovementRoutine findRoutineFromPartial (MovementRoutine toCheck)  // return the full routine one way or another
+    {
+        Enumeration<MovementRoutine> iter = _functions.elements();
+
+        while (iter.hasMoreElements())
+        {
+            MovementRoutine temp = iter.nextElement();
+
+            if (toCheck.containsRoutine(temp))  // since no duplicates we know this can only happen once per function
+                return temp;
+        }
+
+        return toCheck;
     }
 
     private Vector<MovementRoutine> findEmbeddedRoutine (MovementRoutine toCheck)
@@ -229,8 +244,8 @@ public class FunctionRoutine
         {
             MovementRoutine temp = iter.nextElement();
 
-            if (toCheck.contains(temp))  // since no duplicates we know this can only happen once per function
-                toCheck.remove(temp);
+            if (toCheck.containsRoutine(temp))  // since no duplicates we know this can only happen once per function
+                toCheck.removeRoutine(temp);  // update the routine contents along the way
         }
 
         return toReturn;
