@@ -105,7 +105,7 @@ public class FunctionRoutine
         _debug = debug;
     }
 
-    public void createMovementFunctions ()
+    public Vector<MovementRoutine> createMovementFunctions ()
     {
         /*
          * Now turn the series of commands into functions
@@ -164,6 +164,8 @@ public class FunctionRoutine
             System.out.println("startString "+startString);
 
         } while (startString < fullCommand.length());
+
+        return _functions;
     }
 
     /*
