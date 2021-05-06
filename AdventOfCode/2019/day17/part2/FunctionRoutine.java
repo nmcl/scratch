@@ -181,7 +181,18 @@ public class FunctionRoutine
         System.out.println("getUniqueFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         String repeat = findRepeatRoutine(commandString, startingCommand, numberOfCommands);
+        boolean nonRepeating = false;
+        
+        System.out.println("**got back "+repeat);
 
+        if (repeat == null)
+        {
+            nonRepeating = true;
+            
+            repeat = getRemainingRoutine(startingCommand);
+        }
+
+        MovementRoutine 
         /*
 
         do
@@ -217,6 +228,26 @@ public class FunctionRoutine
         return null;
     }
 
+    private String getRemainingRoutine (int start)
+    {
+        String str = "";
+
+        System.out.println("getRemainingRoutine pulling remaining commands from "+start);
+
+        for (int i = start; i < _commands.size(); i++)
+        {
+            int commandNumber = _commands.size() - 1 - i;
+
+            System.out.println("Adding command "+commandNumber);
+
+            str += _commands.elementAt(commandNumber);
+        }
+
+        System.out.println("**Command string created: "+str);
+
+        return str;
+    }
+
     private String findRepeatRoutine (String commandString, int startingCommand, int numberOfCommands)
     {
         System.out.println("findRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
@@ -227,15 +258,12 @@ public class FunctionRoutine
         {
             System.out.println("Repeat: "+repeat);
 
-            String nextString = findRepeatRoutine(commandString, startingCommand, numberOfCommands +1);
-
-            if (nextString != null)
-                repeat = nextString;
+            return findRepeatRoutine(commandString, startingCommand, numberOfCommands +1);
         }
         else
             System.out.println("Does not repeat: "+repeat);
 
-        return repeat;
+        return null;
     }
 
     private String getCommandString (int start, int number)
