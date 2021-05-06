@@ -114,15 +114,7 @@ public class FunctionRoutine
          * and split the entire sequence into functions.
          */
 
-        String fullCommand = "";
-
-        for (int i = _commands.size() -1; i >= 0; i--)
-        {
-            fullCommand += _commands.elementAt(i);
-
-            if (i != 0)
-                fullCommand += ",";
-        }
+        String fullCommand = getCommandString();
 
         System.out.println("Full command "+fullCommand);
 
@@ -130,15 +122,13 @@ public class FunctionRoutine
          * Find repeated strings. Assume minimum of 2 commands.
          */
 
-        String str = fullCommand;
-
         _functions = new Vector<MovementRoutine>();
 
         System.out.println("fullCommand length "+fullCommand.length());
 
-        System.out.println("search string is "+str);
+        System.out.println("search string is "+fullCommand);
 
-        MovementRoutine func = getFirstMovementRoutine(str, 2);
+        MovementRoutine func = getFirstMovementRoutine(fullCommand, 2);
 
         System.out.println("First function is "+func+"\n");
 
@@ -146,11 +136,15 @@ public class FunctionRoutine
         {
             // int commandStart = func.numberOfCommands();
     
-            str = str.replace(func.getCommand(), "");
+            fullCommand = fullCommand.replace(func.getCommand(), "");
     
-            recreateCommands(str);
+            recreateCommands(fullCommand);
 
-            func = getLastMovementRoutine(str, 2);
+            fullCommand = getCommandString();
+
+            System.out.println("fullCommand now "+fullCommand);
+            
+            func = getLastMovementRoutine(fullCommand, 2);
 
             System.out.println("Last function is "+func+"\n");
 
@@ -399,6 +393,8 @@ public class FunctionRoutine
 
     private void recreateCommands (String sequence)
     {
+        System.out.println("Recreating commands from "+sequence);
+
         _commands = new Vector<String>();
 
         StringTokenizer tokeniser = new StringTokenizer(sequence, ",");
@@ -451,6 +447,21 @@ public class FunctionRoutine
                 System.out.println("Commands: "+_commands.elementAt(i));
             }
         }
+    }
+
+    private String getCommandString ()
+    {
+        String fullCommand = "";
+
+        for (int i = _commands.size() -1; i >= 0; i--)
+        {
+            fullCommand += _commands.elementAt(i);
+
+            if (i != 0)
+                fullCommand += ",";
+        }
+
+        return fullCommand;
     }
 
     private Stack<String> _path;
