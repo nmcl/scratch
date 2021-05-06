@@ -16,9 +16,15 @@ public class MovementRoutine
         }
     }
 
-    public boolean contains (MovementRoutine compare)
+    public boolean containsRoutine (MovementRoutine compare)
     {
         return (_command.indexOf(compare.getCommand()) != -1);
+    }
+
+    public void removeRoutine (MovementRoutine compare)
+    {
+        _command.replace(compare.getCommand(), "");
+        _numberOfCommands -= compare.numberOfCommands();
     }
 
     public String getCommand ()
