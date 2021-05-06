@@ -180,19 +180,34 @@ public class FunctionRoutine
     {
         System.out.println("getUniqueFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        String repeat = findRepeatRoutine(commandString, startingCommand, numberOfCommands);
-        boolean nonRepeating = false;
-        
+        MovementRoutine routine = findRepeatRoutine(commandString, startingCommand, numberOfCommands);
+
         System.out.println("**got back "+repeat);
 
-        if (repeat == null)
+        if (routine == null)
         {
-            nonRepeating = true;
+            String repeat = getRemainingRoutine(startingCommand);
+
+            routine = new MovementRoutine(repeat, _commands.size() - startingCommand);
+
+            /*
+             *
+             */
             
-            repeat = getRemainingRoutine(startingCommand);
+        }
+        else
+        {
+            /*
+             * Is this a unique function? If so, add it to
+             * the list.
+             */
+
+             if (!_functions.contains(routine))
+                _functions.add(routine);
+            
+            return routine;
         }
 
-        MovementRoutine 
         /*
 
         do
@@ -248,7 +263,7 @@ public class FunctionRoutine
         return str;
     }
 
-    private String findRepeatRoutine (String commandString, int startingCommand, int numberOfCommands)
+    private MovementRoutine findRepeatRoutine (String commandString, int startingCommand, int numberOfCommands)
     {
         System.out.println("findRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
 
@@ -258,7 +273,12 @@ public class FunctionRoutine
         {
             System.out.println("Repeat: "+repeat);
 
-            return findRepeatRoutine(commandString, startingCommand, numberOfCommands +1);
+            MovementRoutine next = findRepeatRoutine(commandString, startingCommand, numberOfCommands +1);
+
+            if (next == null)
+                return new MovementRoutine(repeat, numberOfCommands);
+            else
+                return next;
         }
         else
             System.out.println("Does not repeat: "+repeat);
