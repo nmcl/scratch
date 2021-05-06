@@ -92,7 +92,8 @@ public class FunctionRoutine
          * such as L,4 or R,8.
          */
 
-        _commands = getCommands();
+        createCommands();
+
         _debug = debug;
     }
 
@@ -140,16 +141,18 @@ public class FunctionRoutine
 
         if (func != null)
         {
-            int commandStart = func.numberOfCommands();
+            // int commandStart = func.numberOfCommands();
     
             str = str.replace(func.getCommand(), "");
     
+            recreateCommands(str);
+
             func = getLastMovementRoutine(str, 2);
 
             System.out.println("Last function is "+func+"\n");
 
             System.exit(0);
-
+/*
             if (func != null)
             {
                 int commandEnd = func.numberOfCommands();
@@ -157,7 +160,7 @@ public class FunctionRoutine
                 str = str.replace(func.getCommand(), "");
 
                 func = getMovementRoutine(str, commandStart, commandEnd, 2);
-            }
+            }*/
         }
 
         return _functions;
@@ -385,10 +388,30 @@ public class FunctionRoutine
         return str;
     }
 
-    private Vector<String> getCommands ()
+    private void recreateCommands (String sequence)
     {
-        Vector<String> commands = new Vector<String>(_path.size());
+        _commands = new Vector<String>();
+
+        StringTokenizer tokeniser = new StringTokenizer(sequence, ",");
+
+        while (tokeniser.hasMoreTokens())
+        {
+            String token1 = tokeniser.nextToken();
+            String token2 = tokeniser.nextToken();
+
+            String str = token1+","+token2;
+
+            System.out.println("created "+str);
+
+            _commands.add(str);
+        }
+    }
+
+    private void createCommands ()
+    {
         String pathElement = null;
+
+        _commands = new Vector<String>(_path.size());
 
         /*
          * Pop the track to reverse it and get commands from the
@@ -403,7 +426,7 @@ public class FunctionRoutine
 
                 String str = pathElement.charAt(0)+","+pathElement.length();
 
-                commands.add(str);
+                _commands.add(str);
             }
             catch (Exception ex)
             {
@@ -414,13 +437,11 @@ public class FunctionRoutine
 
         if (_debug)
         {
-            for (int i = commands.size() -1; i >= 0; i--)
+            for (int i = _commands.size() -1; i >= 0; i--)
             {
-                System.out.println("Commands: "+commands.elementAt(i));
+                System.out.println("Commands: "+_commands.elementAt(i));
             }
         }
-
-        return commands;
     }
 
     private Stack<String> _path;
