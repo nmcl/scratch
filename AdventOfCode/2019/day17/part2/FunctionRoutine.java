@@ -1,17 +1,14 @@
 import java.util.*;
 
 /*
- * Commands: L,4
+ *
+Commands: L,4
 Commands: L,4
 Commands: L,6
 Commands: R,10
 Commands: L,6
 
-L,4L,4L,6R,10L,6
-
-16
-
-== A
+= A
 
 Commands: L,4
 Commands: L,4
@@ -19,82 +16,60 @@ Commands: L,6
 Commands: R,10
 Commands: L,6
 
-L,4L,4L,6R,10L,6
-
-16
-
-== A
-
-Commands: L,12
-Commands: L,6
-Commands: R,10
-Commands: L,6
-Commands: R,8
-Commands: R,10
-Commands: L,6
-
-L,12L,6R,10L,6R,8R,10L,6
-
-24
-
-== B
-
-Commands: R,8
-Commands: R,10
-Commands: L,6
-
-R,8R,10L,6
-
-10
-
-== C
-
-Commands: L,4
-Commands: L,4
-Commands: L,6
-Commands: R,10
-Commands: L,6
-
-L,4L,4L,6R,10L,6
-
-16
-
-== A
-
-Commands: R,8
-Commands: R,10
-Commands: L,6
-
-R,8R,10L,6
-
-10
-
-== C
-
-Commands: L,12
-Commands: L,6
-Commands: R,10
-Commands: L,6
-Commands: R,8
-Commands: R,10
-Commands: L,6
-
-L,12L,6R,10L,6R,8R,10L,6
-
-14
-
-== B
+= A
 
 Commands: L,12
 Commands: L,6
 Commands: R,10
 Commands: L,6
 
-L,12L,6R,10L,6
+= B
 
-14
+Commands: R,8
+Commands: R,10
+Commands: L,6
 
-== B
+= C
+
+Commands: R,8
+Commands: R,10
+Commands: L,6
+
+= C
+
+Commands: L,4
+Commands: L,4
+Commands: L,6
+Commands: R,10
+Commands: L,6
+
+= A
+
+Commands: R,8
+Commands: R,10
+Commands: L,6
+
+= C
+
+Commands: L,12
+Commands: L,6
+Commands: R,10
+Commands: L,6
+
+= B
+
+Commands: R,8
+Commands: R,10
+Commands: L,6
+
+= C
+
+Commands: L,12
+Commands: L,6
+Commands: R,10
+Commands: L,6
+
+= B
  */
 
 public class FunctionRoutine
@@ -166,7 +141,7 @@ public class FunctionRoutine
 
             System.out.println("str is "+str);
 
-            MovementRoutine func = getUniqueFunction(str, commandStart, 2);
+            MovementRoutine func = getMovementRoutine(str, commandStart, 2);
 
             _functions.add(func);
 
@@ -194,7 +169,7 @@ public class FunctionRoutine
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private MovementRoutine getUniqueFunction (String commandString, int startingCommand, int numberOfCommands)
+    private MovementRoutine getMovementRoutine (String commandString, int startingCommand, int numberOfCommands)
     {
         System.out.println("getUniqueFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
