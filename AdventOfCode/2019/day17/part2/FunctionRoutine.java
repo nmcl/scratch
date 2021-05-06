@@ -161,9 +161,9 @@ public class FunctionRoutine
 
             System.out.println("Total commands used so far: "+commandStart);
 
-            System.out.println("left "+str);
+            System.out.println("startString "+startString);
 
-        } while (str != null);
+        } while (startString < fullCommand.length());
     }
 
     /*
@@ -197,6 +197,8 @@ public class FunctionRoutine
 
             Vector<MovementRoutine> embedded = findEmbeddedRoutine(routine);
 
+            System.out.println("After checking, commands used "+routine.numberOfCommands());
+
             if (routine.numberOfCommands() > 0)
             {
                 routine = findRoutineFromPartial(routine);
@@ -228,8 +230,14 @@ public class FunctionRoutine
         {
             MovementRoutine temp = iter.nextElement();
 
-            if (toCheck.containsRoutine(temp))  // since no duplicates we know this can only happen once per function
+            System.out.println("Comparing "+temp+" with "+toCheck);
+
+            if (temp.containsRoutine(toCheck))  // since no duplicates we know this can only happen once per function
+            {
+                System.out.println("Found full routine "+temp+" for partial routine "+toCheck);
+
                 return temp;
+            }
         }
 
         return toCheck;
