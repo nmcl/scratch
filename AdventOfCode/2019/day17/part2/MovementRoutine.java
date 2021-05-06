@@ -23,7 +23,9 @@ public class MovementRoutine
 
     public void removeRoutine (MovementRoutine compare)
     {
-        _command.replace(compare.getCommand(), "");
+        System.out.println("Removing "+compare.getCommand()+" from "+_command);
+
+        _command = _command.replace(compare.getCommand(), "");
         _numberOfCommands -= compare.numberOfCommands();
     }
 
