@@ -6,18 +6,12 @@ public class MovementRoutine
     {
         _command = command;
         _numberOfCommands = numberOfCommands;
-
-        System.out.println("NumberOfCommands "+numberOfCommands);
-
-        if ((command == null) || (command.equals("")))
-        {
-            System.out.println("OOPS");
-            System.exit(0);
-        }
     }
 
     public boolean containsRoutine (MovementRoutine compare)
     {
+        System.out.println("contains "+compare.getCommand().contains(_command));
+
         return (_command.indexOf(compare.getCommand()) != -1);
     }
 
