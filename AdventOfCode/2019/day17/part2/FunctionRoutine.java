@@ -85,7 +85,7 @@ public class FunctionRoutine
     public FunctionRoutine (Stack<String> pathTaken, boolean debug)
     {
         _path = pathTaken;
-        _functions = new Vector<MovementRoutine>();
+        _functions = null;
 
         /*
          * Now convert the path into a series of commands
@@ -126,80 +126,66 @@ public class FunctionRoutine
          * Find repeated strings. Assume minimum of 2 commands.
          */
 
-        int commandStart = 0;
-        int startString = 0;
         String str = fullCommand;
+
+        _functions = new Vector<MovementRoutine>();
 
         System.out.println("fullCommand length "+fullCommand.length());
 
-        do
+        System.out.println("search string is "+str);
+
+        MovementRoutine func = getFirstMovementRoutine(str, 2);
+
+        System.out.println("First function is "+func+"\n");
+
+        if (func != null)
         {
-            System.out.println("startString "+startString);
+            int commandStart = func.numberOfCommands();
+            int beginIndex = func.getLength();
+    
+            str = fullCommand.substring(beginIndex);
+    
+            func = getLastMovementRoutine(str, 2);
 
-            if (startString != 0)
-                str = fullCommand.substring(startString);
+            System.out.println("Last function is "+func+"\n");
 
-            System.out.println("str is "+str);
+            System.exit(0);
 
-            MovementRoutine func = getMovementRoutine(str, commandStart, 2);
+            if (func != null)
+            {
+                int endIndex = fullCommand.length() - func.getLength();
+                int commandEnd = func.numberOfCommands();
 
-            _functions.add(func);
+                str = fullCommand.substring(beginIndex, endIndex);
 
-            System.out.println("Function is "+func+"\n");
-
-            commandStart += func.numberOfCommands();
-            startString += func.getLength();
-
-            System.out.println("Total commands used so far: "+commandStart);
-
-            System.out.println("startString "+startString);
-
-        } while (startString < fullCommand.length());
+                func = getMovementRoutine(str, commandStart, commandEnd, 2);
+            }
+        }
 
         return _functions;
     }
 
     /*
-     * Return a repeating function. Will return all repeating
-     * functions given the input so we need to later figure out
-     * the unique instances afterwards.
+     * Return the first repeating function.
      * 
      * fullCommand is the String to search.
      * startingCommand is the command from which to begin the search.
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private MovementRoutine getMovementRoutine (String commandString, int startingCommand, int numberOfCommands)
+    private MovementRoutine getFirstMovementRoutine (String commandString, int numberOfCommands)
     {
-        System.out.println("getUniqueFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("getFirstMovementRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        MovementRoutine routine = findRepeatRoutine(commandString, startingCommand, numberOfCommands);
+        MovementRoutine routine = getMovementRoutine(commandString, 0, _commands.size(), numberOfCommands);
 
         System.out.println("**got back "+routine);
 
         if (routine == null)
         {
-            String repeat = getRemainingRoutine(startingCommand);
+            System.out.println("Error - no repeating function!");
 
-            routine = new MovementRoutine(repeat, _commands.size() - startingCommand);
-
-            /*
-             * Not a repeat but maybe it's part of an existing function? Or maybe
-             * an existing routine is within the String?
-             */
-
-            Vector<MovementRoutine> embedded = findEmbeddedRoutine(routine);
-
-            System.out.println("After checking, commands used "+routine.numberOfCommands());
-
-            if (routine.numberOfCommands() > 0)
-            {
-                routine = findRoutineFromPartial(routine);
-            }
-            else
-                routine = embedded.elementAt(embedded.size() -1);  // the last entry;
-            
-            return routine;
+            return null;
         }
         else
         {
@@ -215,25 +201,80 @@ public class FunctionRoutine
         }
     }
 
-    private MovementRoutine findRoutineFromPartial (MovementRoutine toCheck)  // return the full routine one way or another
+    private MovementRoutine getLastMovementRoutine (String commandString, int numberOfCommands)
     {
-        Enumeration<MovementRoutine> iter = _functions.elements();
+        System.out.println("getLastMovementRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        while (iter.hasMoreElements())
+        MovementRoutine routine = findLastRepeatRoutine(commandString, numberOfCommands);
+
+        System.out.println("**got back "+routine);
+
+        if (routine == null)
         {
-            MovementRoutine temp = iter.nextElement();
+            System.out.println("Error - no repeating function!");
 
-            System.out.println("Comparing "+temp+" with "+toCheck);
-
-            if (temp.containsRoutine(toCheck))  // since no duplicates we know this can only happen once per function
-            {
-                System.out.println("Found full routine "+temp+" for partial routine "+toCheck);
-
-                return temp;
-            }
+            return null;
         }
+        else
+        {
+            /*
+             * Is this a unique function? If so, add it to
+             * the list.
+             */
 
-        return toCheck;
+             if (!_functions.contains(routine))
+                _functions.add(routine);
+            
+            return routine;
+        }
+    }
+
+    private MovementRoutine getMovementRoutine (String commandString, int startingCommand, int endCommand, int numberOfCommands)
+    {
+        System.out.println("getUniqueFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+
+        MovementRoutine routine = findRepeatRoutine(commandString, startingCommand, endCommand, numberOfCommands);
+
+        System.out.println("**got back "+routine);
+
+        if (routine == null)
+        {/*
+            String repeat = getRemainingRoutine(startingCommand);
+
+            routine = new MovementRoutine(repeat, _commands.size() - startingCommand);
+
+            *
+             * Not a repeat but maybe it's part of an existing function? Or maybe
+             * an existing routine is within the String?
+             *
+
+            Vector<MovementRoutine> embedded = findEmbeddedRoutine(routine);
+
+            System.out.println("After checking, commands used "+routine.numberOfCommands());
+
+            if (routine.numberOfCommands() > 0)
+            {
+                routine = findRoutineFromPartial(routine);
+            }
+            else
+                routine = embedded.elementAt(embedded.size() -1);  // the last entry;
+            
+            return routine;*/
+
+            return null;
+        }
+        else
+        {
+            /*
+             * Is this a unique function? If so, add it to
+             * the list.
+             */
+
+             if (!_functions.contains(routine))
+                _functions.add(routine);
+            
+            return routine;
+        }
     }
 
     private Vector<MovementRoutine> findEmbeddedRoutine (MovementRoutine toCheck)
@@ -257,45 +298,28 @@ public class FunctionRoutine
         return toReturn;
     }
 
-    private String getRemainingRoutine (int start)
-    {
-        String str = "";
-
-        System.out.println("getRemainingRoutine pulling remaining commands from "+start);
-
-        for (int i = start; i < _commands.size(); i++)
-        {
-            int commandNumber = _commands.size() - 1 - i;
-
-            System.out.println("Adding command "+commandNumber);
-
-            str += _commands.elementAt(commandNumber);
-        }
-
-        System.out.println("**Command string created: "+str);
-
-        return str;
-    }
-
-    private MovementRoutine findRepeatRoutine (String commandString, int startingCommand, int numberOfCommands)
+    private MovementRoutine findRepeatRoutine (String commandString, int startingCommand, int endCommand, int numberOfCommands)
     {
         System.out.println("findRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        String repeat = getCommandString(startingCommand, numberOfCommands);
-
-        if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+        if (numberOfCommands < (startingCommand + endCommand))
         {
-            System.out.println("Repeat: "+repeat);
+            String repeat = getCommandString(startingCommand, numberOfCommands);
 
-            MovementRoutine next = findRepeatRoutine(commandString, startingCommand, numberOfCommands +1);
+            if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+            {
+                System.out.println("Repeat: "+repeat);
 
-            if (next == null)
-                return new MovementRoutine(repeat, numberOfCommands);
+                MovementRoutine next = findRepeatRoutine(commandString, startingCommand, endCommand, numberOfCommands +1);
+
+                if (next == null)
+                    return new MovementRoutine(repeat, numberOfCommands);
+                else
+                    return next;
+            }
             else
-                return next;
+                System.out.println("Does not repeat: "+repeat);
         }
-        else
-            System.out.println("Does not repeat: "+repeat);
 
         return null;
     }
@@ -320,7 +344,30 @@ public class FunctionRoutine
         return str;
     }
 
-    private String getLastCommandString (int start, int numberOfCommands)
+    private MovementRoutine findLastRepeatRoutine (String commandString, int numberOfCommands)
+    {
+        System.out.println("findRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
+
+        String repeat = getLastCommandString(numberOfCommands);
+
+        if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+        {
+            System.out.println("Repeat: "+repeat);
+
+            MovementRoutine next = findLastRepeatRoutine(commandString, numberOfCommands +1);
+
+            if (next == null)
+                return new MovementRoutine(repeat, numberOfCommands);
+            else
+                return next;
+        }
+        else
+            System.out.println("Does not repeat: "+repeat);
+
+        return null;
+    }
+
+    private String getLastCommandString (int numberOfCommands)
     {
         String str = "";
 
@@ -339,7 +386,6 @@ public class FunctionRoutine
 
         return str;
     }
-
 
     private Vector<String> getCommands ()
     {
