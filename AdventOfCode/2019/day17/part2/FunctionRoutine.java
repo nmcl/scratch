@@ -346,7 +346,7 @@ public class FunctionRoutine
 
     private MovementRoutine findLastRepeatRoutine (String commandString, int numberOfCommands)
     {
-        System.out.println("findRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("findLastRoutine searching "+commandString+" with "+numberOfCommands+" commands");
 
         String repeat = getLastCommandString(numberOfCommands);
 
@@ -373,13 +373,11 @@ public class FunctionRoutine
 
         System.out.println("getLastCommandString using "+numberOfCommands+" commands");
 
-        for (int i = _commands.size() -numberOfCommands -1; i < _commands.size(); i++)
+        for (int i = numberOfCommands -1; i >= 0; i--)
         {
-            int commandNumber = i;
+            System.out.println("Adding command "+i);
 
-            System.out.println("Adding command "+commandNumber);
-
-            str += _commands.elementAt(commandNumber);
+            str += _commands.elementAt(i);
         }
 
         System.out.println("**Last command string created: "+str);
