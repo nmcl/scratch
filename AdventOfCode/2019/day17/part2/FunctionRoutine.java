@@ -342,7 +342,7 @@ public class FunctionRoutine
 
             str += _commands.elementAt(commandNumber);
 
-            if (i < (start + numberOfCommands))
+            if ((i+1) < (start + numberOfCommands))
                 str += ",";
         }
 
