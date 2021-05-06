@@ -300,13 +300,13 @@ public class FunctionRoutine
         return null;
     }
 
-    private String getCommandString (int start, int number)
+    private String getCommandString (int start, int numberOfCommands)
     {
         String str = "";
 
-        System.out.println("getCommandString starting command "+start+" and number "+number);
+        System.out.println("getCommandString starting command "+start+" and number "+numberOfCommands);
 
-        for (int i = start; i < (start + number); i++)
+        for (int i = start; i < (start + numberOfCommands); i++)
         {
             int commandNumber = _commands.size() - 1 - i;
 
@@ -319,6 +319,27 @@ public class FunctionRoutine
 
         return str;
     }
+
+    private String getLastCommandString (int start, int numberOfCommands)
+    {
+        String str = "";
+
+        System.out.println("getLastCommandString using "+numberOfCommands+" commands");
+
+        for (int i = _commands.size() -numberOfCommands -1; i < _commands.size(); i++)
+        {
+            int commandNumber = i;
+
+            System.out.println("Adding command "+commandNumber);
+
+            str += _commands.elementAt(commandNumber);
+        }
+
+        System.out.println("**Last command string created: "+str);
+
+        return str;
+    }
+
 
     private Vector<String> getCommands ()
     {
