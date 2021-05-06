@@ -119,6 +119,9 @@ public class FunctionRoutine
         for (int i = _commands.size() -1; i >= 0; i--)
         {
             fullCommand += _commands.elementAt(i);
+
+            if (i != 0)
+                fullCommand += ",";
         }
 
         System.out.println("Full command "+fullCommand);
@@ -338,6 +341,9 @@ public class FunctionRoutine
             System.out.println("Adding command "+commandNumber);
 
             str += _commands.elementAt(commandNumber);
+
+            if (i < (start + numberOfCommands))
+                str += ",";
         }
 
         System.out.println("**Command string created: "+str);
@@ -381,6 +387,9 @@ public class FunctionRoutine
             System.out.println("Adding command "+i);
 
             str += _commands.elementAt(i);
+
+            if (i != 0)
+                str += ",";
         }
 
         System.out.println("**Last command string created: "+str);
