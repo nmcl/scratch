@@ -197,7 +197,7 @@ public class FunctionRoutine
 
             Vector<MovementRoutine> embedded = findEmbeddedRoutine(routine);
 
-            if (embedded == null)
+            if (embedded.size() == 0)
                 embedded = findPartialRoutine(routine);
             else
             {
@@ -217,39 +217,23 @@ public class FunctionRoutine
             return routine;
         }
 
-        /*
-
-        do
-        {
-            next = findRoutine(commandString, startingCommand, numberOfCommands);
-
-            String repeat = getCommandString(startingCommand, numberOfCommands);
-        
-
-        System.out.println("**checking "+next);
-
-        if (_functions.indexOf(next) != -1) // already found repeating commands/Function
-        {
-            System.out.println("Function "+next+" is a duplicate!");
-
-            return next;
-        }
-
-        if (commandString.indexOf(repeat, repeat.length()) != -1)
-        {
-            System.out.println("Repeat: "+repeat);
-
-            next = getFunction(commands, commandString, startingCommand, numberOfCommands +1);
-
-            if (next == null)
-                return new MovementRoutine(repeat, numberOfCommands);
-            else
-                return next;
-        }
-        else
-            System.out.println("Does not repeat: "+repeat);  // -->> OOPS!
-*/
         return null;
+    }
+
+    private Vector<MovementRoutine> findEmbeddedRoutine (MovementRoutine toCheck)
+    {
+        Vector<MovementRoutine> toReturn = new Vector<MovementRoutine>();
+        Enumeration<MovementRoutine> iter = _functions.elements();
+
+        while (iter.hasMoreElements())
+        {
+            MovementRoutine temp = iter.nextElement();
+
+            if (toCheck.contains(temp))  // since no duplicates we know this can only happen once per function
+                toCheck.remove(temp);
+        }
+
+        return toReturn;
     }
 
     private String getRemainingRoutine (int start)
