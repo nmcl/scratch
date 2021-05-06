@@ -245,7 +245,12 @@ public class FunctionRoutine
             MovementRoutine temp = iter.nextElement();
 
             if (toCheck.containsRoutine(temp))  // since no duplicates we know this can only happen once per function
+            {
                 toCheck.removeRoutine(temp);  // update the routine contents along the way
+
+                System.out.println("Found embedded routine "+temp);
+                System.out.println("Remaining "+toCheck);
+            }
         }
 
         return toReturn;
