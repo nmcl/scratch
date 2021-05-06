@@ -191,9 +191,9 @@ public class FunctionRoutine
             routine = new MovementRoutine(repeat, _commands.size() - startingCommand);
 
             /*
-             *
+             * Not a repeat but maybe it's part of an existing function?
              */
-            
+
         }
         else
         {
