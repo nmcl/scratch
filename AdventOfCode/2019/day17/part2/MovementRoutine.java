@@ -41,7 +41,7 @@ public class MovementRoutine
     @Override
     public String toString ()
     {
-        return _command;
+        return "MovementRoutine: "+_command+" and size: "+getLength();
     }
 
     @Override
