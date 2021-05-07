@@ -143,12 +143,12 @@ public class FunctionRoutine
             fullCommand = getCommandString();
 
             System.out.println("fullCommand now "+fullCommand);
-            
+
             func = getLastMovementRoutine(fullCommand, 2);
 
             System.out.println("Last function is "+func+"\n");
 
-            System.exit(0);
+            System.exit(0);  // REMOVE!
 /*
             if (func != null)
             {
