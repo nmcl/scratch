@@ -134,8 +134,6 @@ public class FunctionRoutine
 
         if (func != null)
         {
-            // int commandStart = func.numberOfCommands();
-    
             fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
     
             recreateCommands(fullCommand);
@@ -148,20 +146,27 @@ public class FunctionRoutine
 
             System.out.println("Last function is "+func+"\n");
 
-            fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
-
-            System.out.println("fullCommand now "+fullCommand);
-
-            System.exit(0);  // REMOVE!
-/*
             if (func != null)
             {
-                int commandEnd = func.numberOfCommands();
+                fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
 
-                str = str.replace(func.getCommand(), "");
+                System.out.println("fullCommand now "+fullCommand);
 
-                func = getMovementRoutine(str, commandStart, commandEnd, 2);
-            }*/
+                recreateCommands(fullCommand);
+
+                func = getFirstMovementRoutine(fullCommand, 2);
+
+                if (func != null)
+                {
+                    System.out.println("Second function is "+func+"\n");
+
+                    fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
+
+                    fullCommand = fullCommand.replace(",,", ""); 
+
+                    System.out.println("fullCommand now "+fullCommand+" and "+fullCommand.length());
+                }
+            }
         }
 
         return _functions;
