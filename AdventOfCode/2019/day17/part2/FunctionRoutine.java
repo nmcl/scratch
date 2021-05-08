@@ -395,6 +395,13 @@ public class FunctionRoutine
     {
         System.out.println("Recreating commands from "+sequence);
 
+        System.out.println("Current list");
+
+        Enumeration<String> iter = _commands.elements();
+
+        while (iter.hasMoreElements())
+            System.out.println(iter.nextElement());
+            
         _commands = new Vector<String>();
 
         StringTokenizer tokeniser = new StringTokenizer(sequence, ",");
