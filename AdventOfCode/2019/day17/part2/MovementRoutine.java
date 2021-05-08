@@ -6,11 +6,22 @@ public class MovementRoutine
     {
         _command = command;
         _numberOfCommands = numberOfCommands;
+        _name = "";
     }
 
     public String getCommand ()
     {
         return _command;
+    }
+
+    public String getName ()
+    {
+        return _name;
+    }
+
+    public void setName (String name)
+    {
+        _name = name;
     }
 
     public int getLength ()
@@ -26,7 +37,7 @@ public class MovementRoutine
     @Override
     public String toString ()
     {
-        return "MovementRoutine: "+_command+" and size: "+getLength();
+        return "MovementRoutine "+_name+": "+_command+" and size: "+getLength();
     }
 
     @Override
@@ -56,4 +67,5 @@ public class MovementRoutine
 
     private String _command;
     private int _numberOfCommands;
+    private String _name;
 }
