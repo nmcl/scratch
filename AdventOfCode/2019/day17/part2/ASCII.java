@@ -50,7 +50,7 @@ public class ASCII
 
         MovementLogic ml = new MovementLogic(theMap, debug);
 
-        ml.createMovementFunctions();
+        Vector<MovementRoutine> functions = ml.createMovementFunctions();
     }
 
     private ASCII ()
