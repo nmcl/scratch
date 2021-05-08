@@ -401,7 +401,7 @@ public class FunctionRoutine
 
         while (iter.hasMoreElements())
             System.out.println(iter.nextElement());
-            
+
         _commands = new Vector<String>();
 
         StringTokenizer tokeniser = new StringTokenizer(sequence, ",");
@@ -417,6 +417,13 @@ public class FunctionRoutine
 
             _commands.add(str);
         }
+
+        System.out.println("New list");
+
+        iter = _commands.elements();
+
+        while (iter.hasMoreElements())
+            System.out.println(iter.nextElement());
     }
 
     private void createCommands ()
