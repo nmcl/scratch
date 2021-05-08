@@ -228,40 +228,14 @@ public class FunctionRoutine
         System.out.println("**getMovementRoutine got back "+routine);
 
         if (routine == null)
-        {/*
-            String repeat = getRemainingRoutine(startingCommand);
-
-            routine = new MovementRoutine(repeat, _commands.size() - startingCommand);
-
-            *
-             * Not a repeat but maybe it's part of an existing function? Or maybe
-             * an existing routine is within the String?
-             *
-
-            Vector<MovementRoutine> embedded = findEmbeddedRoutine(routine);
-
-            System.out.println("After checking, commands used "+routine.numberOfCommands());
-
-            if (routine.numberOfCommands() > 0)
-            {
-                routine = findRoutineFromPartial(routine);
-            }
-            else
-                routine = embedded.elementAt(embedded.size() -1);  // the last entry;
-            
-            return routine;*/
+        {
+            System.out.println("Error - no repeating function!");
 
             return null;
         }
         else
         {
-            /*
-             * Is this a unique function? If so, add it to
-             * the list.
-             */
-
-             if (!_functions.contains(routine))
-                _functions.add(routine);
+            _functions.add(routine);
             
             return routine;
         }
