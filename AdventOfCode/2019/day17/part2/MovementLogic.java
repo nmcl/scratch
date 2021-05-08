@@ -22,7 +22,7 @@ public class MovementLogic
         _debug = debug;
     }
 
-    public Vector<MovementRoutine> createMovementFunctions ()
+    public Vector<MovementFunction> createMovementFunctions ()
     {
         createPath();
 
@@ -31,7 +31,7 @@ public class MovementLogic
         return routine.createMovementFunctions();
     }
 
-    public void createMovementRoutine (Vector<MovementRoutine> functions)
+    public void createMovementRoutine (Vector<MovementFunction> functions)
     {
         
     }

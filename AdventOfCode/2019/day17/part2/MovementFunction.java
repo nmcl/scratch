@@ -1,8 +1,8 @@
 import java.util.Objects;
 
-public class MovementRoutine
+public class MovementFunction
 {
-    public MovementRoutine (String command, int numberOfCommands)
+    public MovementFunction (String command, int numberOfCommands)
     {
         _command = command;
         _numberOfCommands = numberOfCommands;
@@ -37,7 +37,7 @@ public class MovementRoutine
     @Override
     public String toString ()
     {
-        return "MovementRoutine "+_name+": "+_command+" and size: "+getLength();
+        return "MovementFunction "+_name+": "+_command+" and size: "+getLength();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MovementRoutine
         
         if (getClass() == obj.getClass())
         {
-            MovementRoutine temp = (MovementRoutine) obj;
+            MovementFunction temp = (MovementFunction) obj;
 
             return (_command.equals(temp._command));
         }

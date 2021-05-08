@@ -23,7 +23,7 @@ public class FunctionRoutine
         _debug = debug;
     }
 
-    public Vector<MovementRoutine> createMovementFunctions ()
+    public Vector<MovementFunction> createMovementFunctions ()
     {
         /*
          * Now turn the series of commands into functions
@@ -48,13 +48,13 @@ public class FunctionRoutine
          * Find repeated strings. Assume minimum of 2 commands.
          */
 
-        _functions = new Vector<MovementRoutine>();
+        _functions = new Vector<MovementFunction>();
 
         System.out.println("fullCommand length "+fullCommand.length());
 
         System.out.println("search string is "+fullCommand);
 
-        MovementRoutine func = getFirstMovementRoutine(fullCommand, 2);
+        MovementFunction func = getFirstMovementFunction(fullCommand, 2);
 
         func.setName(ROUTINE_A);
 
@@ -70,7 +70,7 @@ public class FunctionRoutine
 
             System.out.println("fullCommand now "+fullCommand);
 
-            func = getLastMovementRoutine(fullCommand, 2);
+            func = getLastMovementFunction(fullCommand, 2);
 
             func.setName(ROUTINE_B);
 
@@ -84,7 +84,7 @@ public class FunctionRoutine
 
                 recreateCommands(fullCommand);
 
-                func = getFirstMovementRoutine(fullCommand, 2);
+                func = getFirstMovementFunction(fullCommand, 2);
 
                 func.setName(ROUTINE_C);
 
@@ -113,20 +113,20 @@ public class FunctionRoutine
      * numberOfCommands is the number of commands to pull together.
      */
 
-    private MovementRoutine getFirstMovementRoutine (String commandString, int numberOfCommands)
+    private MovementFunction getFirstMovementFunction (String commandString, int numberOfCommands)
     {
-        System.out.println("getFirstMovementRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("getFirstMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        return getMovementRoutine(commandString, 0, _commands.size(), numberOfCommands);
+        return getMovementFunction(commandString, 0, _commands.size(), numberOfCommands);
     }
 
-    private MovementRoutine getLastMovementRoutine (String commandString, int numberOfCommands)
+    private MovementFunction getLastMovementFunction (String commandString, int numberOfCommands)
     {
-        System.out.println("getLastMovementRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("getLastMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        MovementRoutine routine = findLastRepeatRoutine(commandString, numberOfCommands);
+        MovementFunction routine = findLastRepeatFunction(commandString, numberOfCommands);
 
-        System.out.println("**etLastMovementRoutine got back "+routine);
+        System.out.println("**etLastMovementFunction got back "+routine);
 
         if (routine == null)
         {
@@ -142,13 +142,13 @@ public class FunctionRoutine
         }
     }
 
-    private MovementRoutine getMovementRoutine (String commandString, int startingCommand, int endCommand, int numberOfCommands)
+    private MovementFunction getMovementFunction (String commandString, int startingCommand, int endCommand, int numberOfCommands)
     {
-        System.out.println("getMovementRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("getMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        MovementRoutine routine = findRepeatRoutine(commandString, startingCommand, endCommand, numberOfCommands);
+        MovementFunction routine = findRepeatFunction(commandString, startingCommand, endCommand, numberOfCommands);
 
-        System.out.println("**getMovementRoutine got back "+routine);
+        System.out.println("**getMovementFunction got back "+routine);
 
         if (routine == null)
         {
@@ -164,9 +164,9 @@ public class FunctionRoutine
         }
     }
 
-    private MovementRoutine findRepeatRoutine (String commandString, int startingCommand, int endCommand, int numberOfCommands)
+    private MovementFunction findRepeatFunction (String commandString, int startingCommand, int endCommand, int numberOfCommands)
     {
-        System.out.println("findRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("findRepeatFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         if (numberOfCommands < (startingCommand + endCommand))
         {
@@ -178,10 +178,10 @@ public class FunctionRoutine
                 {
                     System.out.println("Repeat: "+repeat);
 
-                    MovementRoutine next = findRepeatRoutine(commandString, startingCommand, endCommand, numberOfCommands +1);
+                    MovementFunction next = findRepeatFunction(commandString, startingCommand, endCommand, numberOfCommands +1);
 
                     if (next == null)
-                        return new MovementRoutine(repeat, numberOfCommands);
+                        return new MovementFunction(repeat, numberOfCommands);
                     else
                         return next;
                 }
@@ -218,9 +218,9 @@ public class FunctionRoutine
         return str;
     }
 
-    private MovementRoutine findLastRepeatRoutine (String commandString, int numberOfCommands)
+    private MovementFunction findLastRepeatFunction (String commandString, int numberOfCommands)
     {
-        System.out.println("findLastRoutine searching "+commandString+" with "+numberOfCommands+" commands");
+        System.out.println("findLastRepeatFunction searching "+commandString+" with "+numberOfCommands+" commands");
 
         String repeat = getLastCommandString(numberOfCommands);
 
@@ -232,10 +232,10 @@ public class FunctionRoutine
             {
                 System.out.println("Repeat: "+repeat);
 
-                MovementRoutine next = findLastRepeatRoutine(commandString, numberOfCommands +1);
+                MovementFunction next = findLastRepeatFunction(commandString, numberOfCommands +1);
 
                 if (next == null)
-                    return new MovementRoutine(repeat, numberOfCommands);
+                    return new MovementFunction(repeat, numberOfCommands);
                 else
                     return next;
             }
@@ -361,7 +361,7 @@ public class FunctionRoutine
     }
 
     private Stack<String> _path;
-    private Vector<MovementRoutine>_functions;
+    private Vector<MovementFunction>_functions;
     private Vector<String> _commands;
     private boolean _debug;
 }

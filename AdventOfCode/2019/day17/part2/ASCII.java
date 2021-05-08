@@ -50,7 +50,7 @@ public class ASCII
 
         MovementLogic ml = new MovementLogic(theMap, debug);
 
-        Vector<MovementRoutine> functions = ml.createMovementFunctions();
+        Vector<MovementFunction> functions = ml.createMovementFunctions();
 
         if (functions.size() != MovementLogic.NUMBER_OF_FUNCTIONS)
             System.out.println("Got the wrong number of functions: "+functions.size());
