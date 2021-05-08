@@ -8,6 +8,8 @@ public class MovementLogic
     private static final int MOVE_ERROR = 3;
     private static final int LOCATION_VISITED = 4;
 
+    public static final int NUMBER_OF_FUNCTIONS = 3;
+
     public MovementLogic (Map theMap, boolean debug)
     {
         _theMap = theMap;
@@ -20,16 +22,16 @@ public class MovementLogic
         _debug = debug;
     }
 
-    public void createMovementFunctions ()
+    public Vector<MovementRoutine> createMovementFunctions ()
     {
         createPath();
 
         FunctionRoutine routine = new FunctionRoutine(_path, _debug);
 
-        routine.createMovementFunctions();
+        return routine.createMovementFunctions();
     }
 
-    public void createMovementRoutine ()
+    public void createMovementRoutine (Vector<MovementRoutine> functions)
     {
         
     }
