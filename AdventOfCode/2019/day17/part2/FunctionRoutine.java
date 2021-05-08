@@ -148,6 +148,10 @@ public class FunctionRoutine
 
             System.out.println("Last function is "+func+"\n");
 
+            fullCommand = fullCommand.replace(func.getCommand(), "");
+
+            System.out.println("fullCommand now "+fullCommand);
+            
             System.exit(0);  // REMOVE!
 /*
             if (func != null)
@@ -177,7 +181,7 @@ public class FunctionRoutine
 
         MovementRoutine routine = getMovementRoutine(commandString, 0, _commands.size(), numberOfCommands);
 
-        System.out.println("**got back "+routine);
+        System.out.println("**getFirstMovementRoutine got back "+routine);
 
         if (routine == null)
         {
@@ -205,7 +209,7 @@ public class FunctionRoutine
 
         MovementRoutine routine = findLastRepeatRoutine(commandString, numberOfCommands);
 
-        System.out.println("**got back "+routine);
+        System.out.println("**etLastMovementRoutine got back "+routine);
 
         if (routine == null)
         {
@@ -229,11 +233,11 @@ public class FunctionRoutine
 
     private MovementRoutine getMovementRoutine (String commandString, int startingCommand, int endCommand, int numberOfCommands)
     {
-        System.out.println("getUniqueFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+        System.out.println("getMovementRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         MovementRoutine routine = findRepeatRoutine(commandString, startingCommand, endCommand, numberOfCommands);
 
-        System.out.println("**got back "+routine);
+        System.out.println("**getMovementRoutine got back "+routine);
 
         if (routine == null)
         {/*
@@ -304,19 +308,24 @@ public class FunctionRoutine
         {
             String repeat = getCommandString(startingCommand, numberOfCommands);
 
-            if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+            if (repeat.length() <= MAX_CHARACTERS)
             {
-                System.out.println("Repeat: "+repeat);
+                if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+                {
+                    System.out.println("Repeat: "+repeat);
 
-                MovementRoutine next = findRepeatRoutine(commandString, startingCommand, endCommand, numberOfCommands +1);
+                    MovementRoutine next = findRepeatRoutine(commandString, startingCommand, endCommand, numberOfCommands +1);
 
-                if (next == null)
-                    return new MovementRoutine(repeat, numberOfCommands);
+                    if (next == null)
+                        return new MovementRoutine(repeat, numberOfCommands);
+                    else
+                        return next;
+                }
                 else
-                    return next;
+                    System.out.println("Does not repeat: "+repeat);
             }
             else
-                System.out.println("Does not repeat: "+repeat);
+                System.out.println("Command string too long.");
         }
 
         return null;
@@ -353,19 +362,24 @@ public class FunctionRoutine
 
         System.out.println("Scanning for "+repeat);
 
-        if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+        if (repeat.length() <= MAX_CHARACTERS)
         {
-            System.out.println("Repeat: "+repeat);
+            if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
+            {
+                System.out.println("Repeat: "+repeat);
 
-            MovementRoutine next = findLastRepeatRoutine(commandString, numberOfCommands +1);
+                MovementRoutine next = findLastRepeatRoutine(commandString, numberOfCommands +1);
 
-            if (next == null)
-                return new MovementRoutine(repeat, numberOfCommands);
+                if (next == null)
+                    return new MovementRoutine(repeat, numberOfCommands);
+                else
+                    return next;
+            }
             else
-                return next;
+                System.out.println("Does not repeat: "+repeat);
         }
         else
-            System.out.println("Does not repeat: "+repeat);
+            System.out.println("Command string too long.");
 
         return null;
     }
