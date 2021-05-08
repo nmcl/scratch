@@ -179,22 +179,7 @@ public class FunctionRoutine
     {
         System.out.println("getFirstMovementRoutine searching "+commandString+" with "+numberOfCommands+" number of commands");
 
-        MovementRoutine routine = getMovementRoutine(commandString, 0, _commands.size(), numberOfCommands);
-
-        System.out.println("**getFirstMovementRoutine got back "+routine);
-
-        if (routine == null)
-        {
-            System.out.println("Error - no repeating function!");
-
-            return null;
-        }
-        else
-        {
-            _functions.add(routine);
-            
-            return routine;
-        }
+        return getMovementRoutine(commandString, 0, _commands.size(), numberOfCommands);
     }
 
     private MovementRoutine getLastMovementRoutine (String commandString, int numberOfCommands)
