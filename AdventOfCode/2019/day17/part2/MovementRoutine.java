@@ -10,15 +10,11 @@ public class MovementRoutine
 
     public boolean containsRoutine (MovementRoutine compare)
     {
-        System.out.println("contains "+compare.getCommand().contains(_command));
-
         return (_command.indexOf(compare.getCommand()) != -1);
     }
 
     public void removeRoutine (MovementRoutine compare)
     {
-        System.out.println("Removing "+compare.getCommand()+" from "+_command);
-
         _command = _command.replace(compare.getCommand(), "");
         _numberOfCommands -= compare.numberOfCommands();
     }
