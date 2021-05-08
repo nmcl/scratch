@@ -172,8 +172,6 @@ public class FunctionRoutine
             }
         }
 
-        System.out.println("Function number: "+_functions.size());
-        
         return _functions;
     }
 
