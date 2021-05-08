@@ -395,14 +395,7 @@ public class FunctionRoutine
     {
         System.out.println("Recreating commands from "+sequence);
 
-        System.out.println("Current list");
-
-        Enumeration<String> iter = _commands.elements();
-
-        while (iter.hasMoreElements())
-            System.out.println(iter.nextElement());
-
-        _commands = new Vector<String>();
+        Stack<String> temp = new Stack<String>();
 
         StringTokenizer tokeniser = new StringTokenizer(sequence, ",");
 
@@ -415,15 +408,26 @@ public class FunctionRoutine
 
             System.out.println("created "+str);
 
-            _commands.add(str);
+            temp.push(str);
         }
 
-        System.out.println("New list");
+        _commands = new Vector<String>();
 
-        iter = _commands.elements();
+        boolean end = false;
 
-        while (iter.hasMoreElements())
-            System.out.println(iter.nextElement());
+        while (!end)
+        {
+            try
+            {
+                String command = temp.pop();
+
+                _commands.add(command);
+            }
+            catch (Exception ex)
+            {
+                end = true;
+            }
+        }
     }
 
     private void createCommands ()
