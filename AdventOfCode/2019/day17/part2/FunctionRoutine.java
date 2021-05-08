@@ -74,13 +74,11 @@ Commands: L,6
 
 public class FunctionRoutine
 {
-    public static final int NUMBER_OF_FUNCTIONS = 3;
-
-    public static final int ROUTINE_A = 0;
-    public static final int ROUTINE_B = 1;
-    public static final int ROUTINE_C = 2;
-
     public static final int MAX_CHARACTERS = 20;
+
+    public static final String ROUTINE_A = "A";
+    public static final String ROUTINE_B = "B";
+    public static final String ROUTINE_C = "C";
 
     public FunctionRoutine (Stack<String> pathTaken, boolean debug)
     {
@@ -130,6 +128,8 @@ public class FunctionRoutine
 
         MovementRoutine func = getFirstMovementRoutine(fullCommand, 2);
 
+        func.setName(ROUTINE_A);
+
         System.out.println("First function is "+func+"\n");
 
         if (func != null)
@@ -144,6 +144,8 @@ public class FunctionRoutine
 
             func = getLastMovementRoutine(fullCommand, 2);
 
+            func.setName(ROUTINE_B);
+
             System.out.println("Last function is "+func+"\n");
 
             if (func != null)
@@ -156,6 +158,8 @@ public class FunctionRoutine
 
                 func = getFirstMovementRoutine(fullCommand, 2);
 
+                func.setName(ROUTINE_C);
+
                 if (func != null)
                 {
                     System.out.println("Second function is "+func+"\n");
@@ -163,8 +167,6 @@ public class FunctionRoutine
                     fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
 
                     fullCommand = fullCommand.replace(",,", ""); // remove duplicates
-
-                    System.out.println("fullCommand now "+fullCommand+" and "+fullCommand.length());
 
                     if (fullCommand.length() != 0)
                         System.out.println("Commands still remaining!");
