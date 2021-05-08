@@ -8,17 +8,6 @@ public class MovementRoutine
         _numberOfCommands = numberOfCommands;
     }
 
-    public boolean containsRoutine (MovementRoutine compare)
-    {
-        return (_command.indexOf(compare.getCommand()) != -1);
-    }
-
-    public void removeRoutine (MovementRoutine compare)
-    {
-        _command = _command.replace(compare.getCommand(), "");
-        _numberOfCommands -= compare.numberOfCommands();
-    }
-
     public String getCommand ()
     {
         return _command;
