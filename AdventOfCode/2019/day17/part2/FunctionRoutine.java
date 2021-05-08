@@ -136,7 +136,7 @@ public class FunctionRoutine
         {
             // int commandStart = func.numberOfCommands();
     
-            fullCommand = fullCommand.replace(func.getCommand(), "");
+            fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
     
             recreateCommands(fullCommand);
 
@@ -148,10 +148,10 @@ public class FunctionRoutine
 
             System.out.println("Last function is "+func+"\n");
 
-            fullCommand = fullCommand.replace(func.getCommand(), "");
+            fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
 
             System.out.println("fullCommand now "+fullCommand);
-            
+
             System.exit(0);  // REMOVE!
 /*
             if (func != null)
@@ -191,13 +191,7 @@ public class FunctionRoutine
         }
         else
         {
-            /*
-             * Is this a unique function? If so, add it to
-             * the list.
-             */
-
-             if (!_functions.contains(routine))
-                _functions.add(routine);
+            _functions.add(routine);
             
             return routine;
         }
@@ -219,13 +213,7 @@ public class FunctionRoutine
         }
         else
         {
-            /*
-             * Is this a unique function? If so, add it to
-             * the list.
-             */
-
-             if (!_functions.contains(routine))
-                _functions.add(routine);
+            _functions.add(routine);
             
             return routine;
         }
@@ -277,27 +265,6 @@ public class FunctionRoutine
             
             return routine;
         }
-    }
-
-    private Vector<MovementRoutine> findEmbeddedRoutine (MovementRoutine toCheck)
-    {
-        Vector<MovementRoutine> toReturn = new Vector<MovementRoutine>();
-        Enumeration<MovementRoutine> iter = _functions.elements();
-
-        while (iter.hasMoreElements())
-        {
-            MovementRoutine temp = iter.nextElement();
-
-            if (toCheck.containsRoutine(temp))  // since no duplicates we know this can only happen once per function
-            {
-                toCheck.removeRoutine(temp);  // update the routine contents along the way
-
-                System.out.println("Found embedded routine "+temp);
-                System.out.println("Remaining "+toCheck);
-            }
-        }
-
-        return toReturn;
     }
 
     private MovementRoutine findRepeatRoutine (String commandString, int startingCommand, int endCommand, int numberOfCommands)
