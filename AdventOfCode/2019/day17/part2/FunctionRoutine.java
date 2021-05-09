@@ -95,6 +95,13 @@ public class FunctionRoutine
 
                 func = getFirstMovementFunction(fullCommand, 2);
 
+                /*
+                 * This could return null if the remaining string has more than
+                 * one way to break it up and we choose the coarsest option which
+                 * means we only need 2 functions. In which case we should go back
+                 * and try with less commands.
+                 */
+
                 func.setName(ROUTINE_C);
 
                 if (func != null)
