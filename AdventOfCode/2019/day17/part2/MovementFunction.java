@@ -4,7 +4,7 @@ public class MovementFunction
 {
     public MovementFunction (String command, int numberOfCommands)
     {
-        _command = command;
+        _command = command+"\n";
         _numberOfCommands = numberOfCommands;
         _name = "";
     }
