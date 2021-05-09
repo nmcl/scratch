@@ -67,13 +67,13 @@ public class FunctionRoutine
 
         MovementFunction func = getFirstMovementFunction(fullCommand, 2);
 
-        func.setName(ROUTINE_A);
-
         if (_debug)
             System.out.println("First function is "+func+"\n");
 
         if (func != null)
         {
+            func.setName(ROUTINE_A);
+
             fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
     
             recreateCommands(fullCommand);
@@ -82,13 +82,13 @@ public class FunctionRoutine
 
             func = getLastMovementFunction(fullCommand, 2);
 
-            func.setName(ROUTINE_B);
-
             if (_debug)
                 System.out.println("Last function is "+func+"\n");
 
             if (func != null)
             {
+                func.setName(ROUTINE_B);
+
                 fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
 
                 recreateCommands(fullCommand);
@@ -102,10 +102,10 @@ public class FunctionRoutine
                  * and try with less commands.
                  */
 
-                func.setName(ROUTINE_C);
-
                 if (func != null)
                 {
+                    func.setName(ROUTINE_C);
+
                     if (_debug)
                         System.out.println("Second function is "+func+"\n");
 
