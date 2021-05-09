@@ -18,7 +18,7 @@ public class MovementRoutine
          */
 
         String str = FunctionRoutine.ROUTINE_A;
-        String searchStr = _fullCommand;
+        String searchStr = _fullCommand.substring(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand().length()+1);
         int index = _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
 
         System.out.println("index "+index);
@@ -60,7 +60,7 @@ public class MovementRoutine
                 {
                     System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand());
 
-                    if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand()))
+                    if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand()))
                     {
                         str += ","+FunctionRoutine.ROUTINE_C;
 
