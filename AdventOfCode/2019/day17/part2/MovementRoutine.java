@@ -40,7 +40,8 @@ public class MovementRoutine
 
                 index += _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
 
-                searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength()+1);
+                if (searchStr.length() > _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength())
+                    searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength()+1);
             }
             else
             {
@@ -54,7 +55,8 @@ public class MovementRoutine
 
                     index += _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength();
 
-                    searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength()+1);
+                    if (searchStr.length() > _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength())
+                        searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength()+1);
                 }
                 else
                 {
@@ -68,7 +70,8 @@ public class MovementRoutine
 
                         index += _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength();
 
-                        searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength()+1);
+                        if (searchStr.length() > _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength())
+                            searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength()+1);
                     }
                     else
                     {
