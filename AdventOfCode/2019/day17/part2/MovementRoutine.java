@@ -20,8 +20,13 @@ public class MovementRoutine
         String str = FunctionRoutine.ROUTINE_A;
         int index = _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
 
+        System.out.println("index "+index);
+        System.out.println("fullCommand "+_fullCommand.length());
+
         while (index < _fullCommand.length())
         {
+            System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand());
+
             if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand(), index))
             {
                 str += ","+FunctionRoutine.ROUTINE_A;
@@ -30,6 +35,8 @@ public class MovementRoutine
             }
             else
             {
+                System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand());
+
                 if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand(), index))
                 {
                     str += str += ","+FunctionRoutine.ROUTINE_B;
@@ -38,6 +45,8 @@ public class MovementRoutine
                 }
                 else
                 {
+                    System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand());
+
                     if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand(), index))
                     {
                         str += str += ","+FunctionRoutine.ROUTINE_C;
@@ -45,7 +54,11 @@ public class MovementRoutine
                         index += _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength();
                     }
                     else
+                    {
                         System.out.println("Error, no functions found in commannd string "+_fullCommand);
+
+                        System.exit(0);
+                    }
                 }
             }
         }
