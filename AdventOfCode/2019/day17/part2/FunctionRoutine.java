@@ -46,7 +46,8 @@ public class FunctionRoutine
 
         String fullCommand = getCommandString();
 
-        System.out.println("Full command "+fullCommand);
+        if (_debug)
+            System.out.println("Full command "+fullCommand);
 
         /*
          * Find repeated strings. Assume minimum of 2 commands.
@@ -54,15 +55,12 @@ public class FunctionRoutine
 
         _functions = new Vector<MovementFunction>();
 
-        System.out.println("fullCommand length "+fullCommand.length());
-
-        System.out.println("search string is "+fullCommand);
-
         MovementFunction func = getFirstMovementFunction(fullCommand, 2);
 
         func.setName(ROUTINE_A);
 
-        System.out.println("First function is "+func+"\n");
+        if (_debug)
+            System.out.println("First function is "+func+"\n");
 
         if (func != null)
         {
@@ -72,19 +70,16 @@ public class FunctionRoutine
 
             fullCommand = getCommandString();
 
-            System.out.println("fullCommand now "+fullCommand);
-
             func = getLastMovementFunction(fullCommand, 2);
 
             func.setName(ROUTINE_B);
 
-            System.out.println("Last function is "+func+"\n");
+            if (_debug)
+                System.out.println("Last function is "+func+"\n");
 
             if (func != null)
             {
                 fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
-
-                System.out.println("fullCommand now "+fullCommand);
 
                 recreateCommands(fullCommand);
 
@@ -94,7 +89,8 @@ public class FunctionRoutine
 
                 if (func != null)
                 {
-                    System.out.println("Second function is "+func+"\n");
+                    if (_debug)
+                        System.out.println("Second function is "+func+"\n");
 
                     fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
 
@@ -134,18 +130,18 @@ public class FunctionRoutine
 
     private MovementFunction getFirstMovementFunction (String commandString, int numberOfCommands)
     {
-        System.out.println("getFirstMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+        if (_debug)
+            System.out.println("getFirstMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         return getMovementFunction(commandString, 0, _commands.size(), numberOfCommands);
     }
 
     private MovementFunction getLastMovementFunction (String commandString, int numberOfCommands)
     {
-        System.out.println("getLastMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+        if (_debug)
+            System.out.println("getLastMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         MovementFunction routine = findLastRepeatFunction(commandString, numberOfCommands);
-
-        System.out.println("**etLastMovementFunction got back "+routine);
 
         if (routine == null)
         {
@@ -163,11 +159,10 @@ public class FunctionRoutine
 
     private MovementFunction getMovementFunction (String commandString, int startingCommand, int endCommand, int numberOfCommands)
     {
-        System.out.println("getMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+        if (_debug)
+            System.out.println("getMovementFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         MovementFunction routine = findRepeatFunction(commandString, startingCommand, endCommand, numberOfCommands);
-
-        System.out.println("**getMovementFunction got back "+routine);
 
         if (routine == null)
         {
@@ -185,7 +180,8 @@ public class FunctionRoutine
 
     private MovementFunction findRepeatFunction (String commandString, int startingCommand, int endCommand, int numberOfCommands)
     {
-        System.out.println("findRepeatFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
+        if (_debug)
+            System.out.println("findRepeatFunction searching "+commandString+" with "+numberOfCommands+" number of commands");
 
         if (numberOfCommands < (startingCommand + endCommand))
         {
@@ -195,8 +191,6 @@ public class FunctionRoutine
             {
                 if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
                 {
-                    System.out.println("Repeat: "+repeat);
-
                     MovementFunction next = findRepeatFunction(commandString, startingCommand, endCommand, numberOfCommands +1);
 
                     if (next == null)
@@ -218,13 +212,9 @@ public class FunctionRoutine
     {
         String str = "";
 
-        System.out.println("getCommandString starting command "+start+" and number "+numberOfCommands);
-
         for (int i = start; i < (start + numberOfCommands); i++)
         {
             int commandNumber = _commands.size() - 1 - i;
-
-            System.out.println("Adding command "+commandNumber);
 
             str += _commands.elementAt(commandNumber);
 
@@ -232,25 +222,23 @@ public class FunctionRoutine
                 str += ",";
         }
 
-        System.out.println("**Command string created: "+str);
-
         return str;
     }
 
     private MovementFunction findLastRepeatFunction (String commandString, int numberOfCommands)
     {
-        System.out.println("findLastRepeatFunction searching "+commandString+" with "+numberOfCommands+" commands");
+        if (_debug)
+            System.out.println("findLastRepeatFunction searching "+commandString+" with "+numberOfCommands+" commands");
 
         String repeat = getLastCommandString(numberOfCommands);
 
-        System.out.println("Scanning for "+repeat);
+        if (_debug)
+            System.out.println("Scanning for "+repeat);
 
         if (repeat.length() <= MAX_CHARACTERS)
         {
             if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
             {
-                System.out.println("Repeat: "+repeat);
-
                 MovementFunction next = findLastRepeatFunction(commandString, numberOfCommands +1);
 
                 if (next == null)
@@ -271,27 +259,19 @@ public class FunctionRoutine
     {
         String str = "";
 
-        System.out.println("getLastCommandString using "+numberOfCommands+" commands");
-
         for (int i = numberOfCommands -1; i >= 0; i--)
         {
-            System.out.println("Adding command "+i);
-
             str += _commands.elementAt(i);
 
             if (i != 0)
                 str += ",";
         }
 
-        System.out.println("**Last command string created: "+str);
-
         return str;
     }
 
     private void recreateCommands (String sequence)
     {
-        System.out.println("Recreating commands from "+sequence);
-
         Stack<String> temp = new Stack<String>();
 
         StringTokenizer tokeniser = new StringTokenizer(sequence, ",");
@@ -300,10 +280,7 @@ public class FunctionRoutine
         {
             String token1 = tokeniser.nextToken();
             String token2 = tokeniser.nextToken();
-
             String str = token1+","+token2;
-
-            System.out.println("created "+str);
 
             temp.push(str);
         }
