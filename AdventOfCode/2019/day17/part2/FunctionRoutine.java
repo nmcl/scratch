@@ -8,6 +8,10 @@ public class FunctionRoutine
     public static final String ROUTINE_B = "B";
     public static final String ROUTINE_C = "C";
 
+    public static final int ROUTINE_A_INDEX = 0;
+    public static final int ROUTINE_B_INDEX = 1;
+    public static final int ROUTINE_C_INDEX = 2;
+
     public FunctionRoutine (Stack<String> pathTaken, boolean debug)
     {
         _path = pathTaken;
@@ -94,7 +98,7 @@ public class FunctionRoutine
 
                     fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
 
-                    fullCommand = fullCommand.replace(",,", ""); // remove duplicates
+                    fullCommand = fullCommand.replace(",", ""); // remove duplicates
 
                     if (fullCommand.length() != 0)
                         System.out.println("Commands still remaining!");
