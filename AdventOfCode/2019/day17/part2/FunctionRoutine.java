@@ -98,10 +98,10 @@ public class FunctionRoutine
 
                     fullCommand = fullCommand.replace(func.getCommand(), "");  // remove repeating commands
 
-                    fullCommand = fullCommand.replace(",", ""); // remove duplicates
+                    fullCommand = fullCommand.replace(",,", ""); // remove duplicates
 
                     if (fullCommand.length() != 0)
-                        System.out.println("Commands still remaining!");
+                        System.out.println("Commands still remaining! "+fullCommand);
                 }
             }
         }
