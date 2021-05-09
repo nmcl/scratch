@@ -105,6 +105,21 @@ public class FunctionRoutine
         return _functions;
     }
 
+    public final String getCommandString ()
+    {
+        String fullCommand = "";
+
+        for (int i = _commands.size() -1; i >= 0; i--)
+        {
+            fullCommand += _commands.elementAt(i);
+
+            if (i != 0)
+                fullCommand += ",";
+        }
+
+        return fullCommand;
+    }
+
     /*
      * Return the first repeating function.
      * 
@@ -343,21 +358,6 @@ public class FunctionRoutine
                 System.out.println("Commands: "+_commands.elementAt(i));
             }
         }
-    }
-
-    private String getCommandString ()
-    {
-        String fullCommand = "";
-
-        for (int i = _commands.size() -1; i >= 0; i--)
-        {
-            fullCommand += _commands.elementAt(i);
-
-            if (i != 0)
-                fullCommand += ",";
-        }
-
-        return fullCommand;
     }
 
     private Stack<String> _path;
