@@ -14,6 +14,11 @@ public class FunctionRoutine
 
     public FunctionRoutine (Stack<String> pathTaken, boolean debug)
     {
+        this(pathTaken, MAX_CHARACTERS, debug);
+    }
+
+    public FunctionRoutine (Stack<String> pathTaken, int maxCharacters, boolean debug)
+    {
         _path = pathTaken;
         _functions = null;
 
@@ -24,15 +29,24 @@ public class FunctionRoutine
 
         createCommands();
 
+        _maxCharacters = maxCharacters;
+        
         _debug = debug;
     }
 
     public FunctionRoutine (String sequence, boolean debug)
     {
+        this(sequence, MAX_CHARACTERS, debug);
+    }
+
+    public FunctionRoutine (String sequence, int maxCharacters, boolean debug)
+    {
         _path = null;
         _functions = null;
 
         recreateCommands(sequence);
+
+        _maxCharacters = maxCharacters;
 
         _debug = debug;
     }
@@ -204,7 +218,7 @@ public class FunctionRoutine
         {
             String repeat = getCommandString(startingCommand, numberOfCommands);
 
-            if (repeat.length() <= MAX_CHARACTERS)
+            if (repeat.length() <= _maxCharacters)
             {
                 if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
                 {
@@ -258,7 +272,7 @@ public class FunctionRoutine
         if (_debug)
             System.out.println("Scanning for "+repeat);
 
-        if (repeat.length() <= MAX_CHARACTERS)
+        if (repeat.length() <= _maxCharacters)
         {
             if (commandString.indexOf(repeat, repeat.length()) != -1)  // it repeats so try another command
             {
@@ -370,5 +384,6 @@ public class FunctionRoutine
     private Stack<String> _path;
     private Vector<MovementFunction>_functions;
     private Vector<String> _commands;
+    private int _maxCharacters;
     private boolean _debug;
 }
