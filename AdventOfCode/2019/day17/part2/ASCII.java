@@ -56,10 +56,15 @@ public class ASCII
             System.out.println("Got the wrong number of functions: "+functions.size());
         else
         {
-            for (int i = 0; i < MovementLogic.NUMBER_OF_FUNCTIONS; i++)
+            if (debug)
             {
-                System.out.println("Function "+(i+1)+" is "+functions.elementAt(i));
+                for (int i = 0; i < MovementLogic.NUMBER_OF_FUNCTIONS; i++)
+                {
+                    System.out.println("Function "+(i+1)+" is "+functions.elementAt(i));
+                }
             }
+
+            System.out.println("Routine is "+ml.getMainRoutine(functions));
         }
     }
 
