@@ -199,10 +199,16 @@ public class FunctionRoutine
                         return next;
                 }
                 else
-                    System.out.println("Does not repeat: "+repeat);
+                {
+                    if (_debug)
+                        System.out.println("Does not repeat: "+repeat);
+                }
             }
             else
-                System.out.println("Command string too long.");
+            {
+                if (_debug)
+                    System.out.println("Command string too long.");
+            }
         }
 
         return null;
@@ -250,7 +256,10 @@ public class FunctionRoutine
                 System.out.println("Does not repeat: "+repeat);
         }
         else
-            System.out.println("Command string too long.");
+        {
+            if (_debug)
+                System.out.println("Command string too long.");
+        }
 
         return null;
     }

@@ -78,8 +78,11 @@ public class MovementLogic
 
     private int tryToMove (String direction, Coordinate coord)
     {
-        System.out.println("tryMove: "+coord+" with direction: "+direction);
-        System.out.println("and current position: "+_currentPosition);
+        if (_debug)
+        {
+            System.out.println("tryMove: "+coord+" with direction: "+direction);
+            System.out.println("and current position: "+_currentPosition);
+        }
 
         /*
          * Already visited? Might be sufficient to just check .path
@@ -87,38 +90,40 @@ public class MovementLogic
 
         if (_robotTrack.visited(coord) && !_robotTrack.path(coord))
         {
-            System.out.println("Robot already visited this location.");
+            if (_debug)
+                System.out.println("Robot already visited this location.");
 
             return LOCATION_VISITED;
         }
 
-        System.out.println("Location not visited ... yet.");
+        if (_debug)
+            System.out.println("Location not visited ... yet.");
 
         if (_theMap.isScaffold(coord))
         {
-            System.out.println("Is scaffolding!");
+            if (_debug)
+                System.out.println("Is scaffolding!");
 
             _currentMoveDirection = direction;
-
-            System.out.println("Moving "+_currentMoveDirection);
-
             _routeTaken += _currentMoveDirection;
 
             _robotTrack.changeElement(coord, _currentMoveDirection);
             _currentPosition = coord;
 
-            System.out.println("\n"+_robotTrack);
+            if (_debug)
+                System.out.println("\n"+_robotTrack);
         }
         else
         {
-            System.out.println("Not scaffolding!");
+            if (_debug)
+            {
+                System.out.println("Not scaffolding!");
 
-            System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
+                System.out.println("Robot was facing "+_robotFacing+" and moving "+direction);
+            }
 
             _path.push(_routeTaken);
 
-            System.out.println("Pushing: "+_routeTaken);
-    
             _routeTaken = "";
 
             if (_theMap.theEnd(_currentPosition))
@@ -126,13 +131,10 @@ public class MovementLogic
 
             changeFacing();
 
-            System.out.println("Robot now facing "+_robotFacing);
+            if (_debug)
+                System.out.println("Robot now facing "+_robotFacing);
 
-            String nextDirection = getNextDirection();
-
-            System.out.println("Next direction to try with new facing: "+nextDirection);
-
-            direction = nextDirection;
+            direction = getNextDirection();
         }
 
         if (CellId.MOVE_LEFT.equals(direction))
@@ -145,19 +147,23 @@ public class MovementLogic
 
     private String getNextDirection ()
     {
-        System.out.println("Getting next direction to move from: "+_currentPosition);
+        if (_debug)
+            System.out.println("Getting next direction to move from: "+_currentPosition);
 
         Coordinate coord = leftCoordinate(_currentPosition);
 
-        System.out.println("Left coordinate would be: "+coord);
+        if (_debug)
+            System.out.println("Left coordinate would be: "+coord);
 
         if (_robotTrack.visited(coord) || !_robotTrack.isScaffold(coord))
         {
-            System.out.println("Visited so try right ...");
+            if (_debug)
+                System.out.println("Visited so try right ...");
 
             coord = rightCoordinate(_currentPosition);
 
-            System.out.println("Right coordinate would be: "+coord);
+            if (_debug)
+                System.out.println("Right coordinate would be: "+coord);
 
             if (_robotTrack.visited(coord))
                 return null;
@@ -166,7 +172,8 @@ public class MovementLogic
         }
         else
         {
-            System.out.println("Not visited.");
+            if (_debug)
+                System.out.println("Not visited.");
 
             return CellId.MOVE_LEFT;
         }
