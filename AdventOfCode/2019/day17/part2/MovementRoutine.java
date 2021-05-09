@@ -21,22 +21,17 @@ public class MovementRoutine
         String searchStr = _fullCommand.substring(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand().length()+1);
         int index = _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
 
-        System.out.println("index "+index);
-        System.out.println("fullCommand "+_fullCommand.length());
-
         while (index < _fullCommand.length())
         {
-            System.out.println("index "+index);
-
-            System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand());
-
-            System.out.println("search string is "+searchStr);
+            if (_debug)
+                System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand());
 
             if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand()))
             {
                 str += ","+FunctionRoutine.ROUTINE_A;
 
-                System.out.println("Found "+str);
+                if (_debug)
+                    System.out.println("Found "+str);
 
                 index += _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
 
@@ -45,13 +40,15 @@ public class MovementRoutine
             }
             else
             {
-                System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand());
+                if (_debug)
+                    System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand());
 
                 if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand()))
                 {
                     str += ","+FunctionRoutine.ROUTINE_B;
 
-                    System.out.println("Found "+str);
+                    if (_debug)
+                        System.out.println("Found "+str);
 
                     index += _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength();
 
@@ -60,13 +57,15 @@ public class MovementRoutine
                 }
                 else
                 {
-                    System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand());
+                    if (_debug)
+                        System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand());
 
                     if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand()))
                     {
                         str += ","+FunctionRoutine.ROUTINE_C;
 
-                        System.out.println("Found "+str);
+                        if (_debug)
+                            System.out.println("Found "+str);
 
                         index += _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength();
 
