@@ -18,6 +18,7 @@ public class MovementRoutine
          */
 
         String str = FunctionRoutine.ROUTINE_A;
+        String searchStr = _fullCommand;
         int index = _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
 
         System.out.println("index "+index);
@@ -25,33 +26,49 @@ public class MovementRoutine
 
         while (index < _fullCommand.length())
         {
+            System.out.println("index "+index);
+
             System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand());
 
-            if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand(), index))
+            System.out.println("search string is "+searchStr);
+
+            if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand()))
             {
                 str += ","+FunctionRoutine.ROUTINE_A;
 
+                System.out.println("Found "+str);
+
                 index += _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
+
+                searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength()+1);
             }
             else
             {
                 System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand());
 
-                if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand(), index))
+                if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand()))
                 {
-                    str += str += ","+FunctionRoutine.ROUTINE_B;
+                    str += ","+FunctionRoutine.ROUTINE_B;
+
+                    System.out.println("Found "+str);
 
                     index += _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength();
+
+                    searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength()+1);
                 }
                 else
                 {
                     System.out.println("Searching for "+_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand());
 
-                    if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand(), index))
+                    if (searchStr.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand()))
                     {
-                        str += str += ","+FunctionRoutine.ROUTINE_C;
+                        str += ","+FunctionRoutine.ROUTINE_C;
+
+                        System.out.println("Found "+str);
 
                         index += _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength();
+
+                        searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength()+1);
                     }
                     else
                     {
