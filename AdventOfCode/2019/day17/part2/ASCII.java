@@ -54,6 +54,13 @@ public class ASCII
 
         if (functions.size() != MovementLogic.NUMBER_OF_FUNCTIONS)
             System.out.println("Got the wrong number of functions: "+functions.size());
+        else
+        {
+            for (int i = 0; i < MovementLogic.NUMBER_OF_FUNCTIONS; i++)
+            {
+                System.out.println("Function "+(i+1)+" is "+functions.elementAt(i));
+            }
+        }
     }
 
     private ASCII ()
