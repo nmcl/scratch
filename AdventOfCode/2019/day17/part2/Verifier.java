@@ -24,33 +24,8 @@ public class Verifier
                 debug = true;
         }
 
-        Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
-        Camera theCamera = new Camera(values, debug);
-        Image theImage = theCamera.takePicture();
-        
-        if (debug)
-        {
-            System.out.println(theCamera);
-
-            Vector<Coordinate> intersections = theCamera.scanForIntersections();
-            Enumeration<Coordinate> iter = intersections.elements();
-
-            while (iter.hasMoreElements())
-            {
-                System.out.println("Intersection at: "+iter.nextElement());
-            }
-        }
-
-        Map theMap = new Map(theImage, debug);
-        VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
-
-        // print the camera's image/map
-        
-        System.out.println(theMap);
-
-        MovementLogic ml = new MovementLogic(theMap, debug);
-
-        Vector<MovementFunction> functions = ml.createMovementFunctions();
+        FunctionRoutine fr = new FunctionRoutine(EXAMPLE, debug);
+        Vector<MovementFunction> functions = fr.createMovementFunctions();
 
         if (functions.size() != MovementLogic.NUMBER_OF_FUNCTIONS)
             System.out.println("Got the wrong number of functions: "+functions.size());
@@ -64,11 +39,13 @@ public class Verifier
                 }
             }
 
-            System.out.println("Routine is "+ml.getMainRoutine(functions));
+            MovementRoutine mr = new MovementRoutine(EXAMPLE, functions, debug);
+
+            System.out.println("Routine is "+mr.getMainRoutine());
         }
     }
 
-    private ASCII ()
+    private Verifier ()
     {
     }
 }
