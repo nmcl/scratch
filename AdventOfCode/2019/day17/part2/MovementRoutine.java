@@ -17,7 +17,38 @@ public class MovementRoutine
          * after the first.
          */
 
-        String str = "A";
+        String str = FunctionRoutine.ROUTINE_A;
+        int index = _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
+
+        while (index < _fullCommand.length())
+        {
+            if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand(), index))
+            {
+                str += ","+FunctionRoutine.ROUTINE_A;
+
+                index += _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
+            }
+            else
+            {
+                if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand(), index))
+                {
+                    str += str += ","+FunctionRoutine.ROUTINE_B;
+
+                    index += _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength();
+                }
+                else
+                {
+                    if (_fullCommand.startsWith(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand(), index))
+                    {
+                        str += str += ","+FunctionRoutine.ROUTINE_C;
+
+                        index += _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength();
+                    }
+                    else
+                        System.out.println("Error, no functions found in commannd string "+_fullCommand);
+                }
+            }
+        }
 
         return str;
     }
