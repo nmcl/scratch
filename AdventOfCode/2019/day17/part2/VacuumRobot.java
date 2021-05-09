@@ -51,6 +51,11 @@ public class VacuumRobot
             _computer.setInput("n\n");
     }
 
+    public void sweep ()
+    {
+        _computer.executeProgram();
+    }
+
     private Map _theMap;
     private Intcode _computer;
     private boolean _debug;
