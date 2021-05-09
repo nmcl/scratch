@@ -12,7 +12,7 @@ public class Verifier
     public static void main (String[] args)
     {
         boolean debug = false;
-        int maxCharacters = FunctionRoutine.MAX_CHARACTERS;
+        int maxCharacters = 14;  // it just works!
 
         for (int i = 0; i < args.length; i++)
         {
