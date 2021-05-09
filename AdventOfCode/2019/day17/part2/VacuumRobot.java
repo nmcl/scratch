@@ -29,6 +29,28 @@ public class VacuumRobot
         _computer.changeInstruction(OVERRIDE_LOCATION, OVERRIDE_CODE);
     }
 
+    public void setMainMovementRoutine (String sequence)
+    {
+        _computer.setInput(sequence+"\n");
+
+        _computer.executeUntilInput();
+    }
+
+    public void setFunctions (String funcA, String funcB, String funcC)
+    {
+        _computer.setInput(funcA+"\n"+funcB+"\n"+funcC+"\n");
+
+        _computer.executeUntilInput();
+    }
+
+    public void setContinuousVideo (boolean video)
+    {
+        if (video)
+            _computer.setInput("y\n");
+        else
+            _computer.setInput("n\n");
+    }
+
     private Map _theMap;
     private Intcode _computer;
     private boolean _debug;
