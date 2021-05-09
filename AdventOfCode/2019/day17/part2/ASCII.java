@@ -42,7 +42,6 @@ public class ASCII
         }
 
         Map theMap = new Map(theImage, debug);
-        VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
         // print the camera's image/map
         
@@ -64,7 +63,18 @@ public class ASCII
                 }
             }
 
-            System.out.println("Routine is "+ml.getMainRoutine(functions));
+            String mainRoutine = ml.getMainRoutine(functions);
+
+            System.out.println("Routine is "+mainRoutine);
+
+            VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
+
+            theRobot.setMainMovementRoutine(mainRoutine);
+            theRobot.setFunctions(functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX),
+                                  functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX), functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX));
+            theRobot.setContinuousVideo(false);
+
+            theRobot.sweep();
         }
     }
 
