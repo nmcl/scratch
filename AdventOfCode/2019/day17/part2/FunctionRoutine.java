@@ -27,6 +27,16 @@ public class FunctionRoutine
         _debug = debug;
     }
 
+    public FunctionRoutine (String sequence, boolean debug)
+    {
+        _path = null;
+        _functions = null;
+
+        recreateCommands(sequence);
+
+        _debug = debug;
+    }
+
     public Vector<MovementFunction> createMovementFunctions ()
     {
         /*
