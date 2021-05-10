@@ -70,8 +70,8 @@ public class ASCII
             VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
             theRobot.setMainMovementRoutine(mainRoutine);
-            theRobot.setFunctions(functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX),
-                                  functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX), functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX));
+            theRobot.setFunctions(functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getCommand(),
+                                  functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand(), functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand());
             theRobot.setContinuousVideo(false);
 
             theRobot.sweep();
