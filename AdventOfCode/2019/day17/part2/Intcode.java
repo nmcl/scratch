@@ -12,7 +12,10 @@ public class Intcode
         _instructionPointer = 0;
         _output = new Vector<String>();
         _memory = new Vector<String>(values);
-        _input = initialInput;
+        _input = new Vector<String>();
+        
+        _input.add(initialInput);
+
         _status = Status.CREATED;
         _relativeBase = 0;
     }
@@ -49,21 +52,31 @@ public class Intcode
 
     public final void setInput (String input)
     {
-        _input = input;
+        _input.add(input);
     }
 
     public final String getInput ()
     {
-        return _input;
+        try
+        {
+            return _input.elementAt(0);
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 
     public final String consumeInput ()
     {
-        String toReturn = _input;
-
-        _input = null;
-
-        return toReturn;
+        try
+        {
+            return _input.remove(0);
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 
     public final void changeInstruction (int entry, String value)
@@ -493,7 +506,7 @@ public class Intcode
     private int _instructionPointer;
     private Vector<String> _output;
     private Vector<String> _memory;
-    private String _input;
+    private Vector<String> _input;
     private int _status;
     private int _relativeBase;
 
