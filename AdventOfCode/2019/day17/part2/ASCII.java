@@ -67,6 +67,8 @@ public class ASCII
 
             System.out.println("Routine is "+mainRoutine);
 
+            debug = true;  // force debug!
+            
             VacuumRobot theRobot = new VacuumRobot(theMap, IntcodeUtil.readValues(INSTRUCTIONS), debug);
 
             theRobot.setMainMovementRoutine(mainRoutine);
