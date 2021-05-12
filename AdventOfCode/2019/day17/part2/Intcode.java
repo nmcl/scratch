@@ -311,8 +311,6 @@ public class Intcode
                     * in the position given by the third parameter. Otherwise, it stores 0.
                     */
 
-                    System.out.println("got "+getValue(_instructionPointer+1, modes[0], false));
-
                 long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
                 long param2 = Long.valueOf(getValue(_instructionPointer+2, modes[1], false));
                 int param3 = Integer.valueOf(getValue(_instructionPointer+3, modes[2], true));
