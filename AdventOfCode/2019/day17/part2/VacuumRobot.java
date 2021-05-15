@@ -82,8 +82,6 @@ public class VacuumRobot
         while (_computer.hasOutput())
         {
             dustCollected = _computer.getOutput();
-
-            System.out.println("output "+dustCollected);
         }
 
         return Long.parseLong(dustCollected);

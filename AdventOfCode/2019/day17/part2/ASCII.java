@@ -76,7 +76,7 @@ public class ASCII
 
             long dustCollected = theRobot.sweep();
 
-            System.out.println("Amount of dust collected: "+dustCollected);
+            System.out.println("\nAmount of dust collected: "+dustCollected);
         }
     }
 

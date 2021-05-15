@@ -68,3 +68,5 @@ Commands: R,10
 Commands: L,6
 
 = B
+
+A,A,B,C,C,A,C,B,C,B
