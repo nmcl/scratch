@@ -34,30 +34,36 @@ public class VacuumRobot
 
     public void setMainMovementRoutine (String sequence)
     {
-        char[] str = convertToAscii(sequence);
+        long[] converted = convertToAscii(sequence);
 
-        System.out.println("adding "+str);
-
-        _computer.setInput(str);
+        _computer.addInput(IntcodeUtil.convert(converted));
+        _computer.setInput(NEW_LINE_ASCII);
     }
 
     public void setFunctions (String funcA, String funcB, String funcC)
     {
-        String funcAC = convertToAscii(funcA);
-        String funcBC = convertToAscii(funcB);
-        String funcCC = convertToAscii(funcC);
+        long[] funcAC = convertToAscii(funcA);
+        long[] funcBC = convertToAscii(funcB);
+        long[] funcCC = convertToAscii(funcC);
 
-        System.out.println("adding "+funcAC+" "+funcBC+" "+funcCC);
+        _computer.addInput(IntcodeUtil.convert(funcAC));
+        _computer.setInput(NEW_LINE_ASCII);
 
-        _computer.setInput(funcAC+funcBC+funcCC);
+        _computer.addInput(IntcodeUtil.convert(funcBC));
+        _computer.setInput(NEW_LINE_ASCII);
+
+        _computer.addInput(IntcodeUtil.convert(funcCC));
+        _computer.setInput(NEW_LINE_ASCII);
     }
 
     public void setContinuousVideo (boolean video)
     {
         if (video)
-            _computer.setInput("y\n");
+            _computer.setInput("y");
         else
-            _computer.setInput("n\n");
+            _computer.setInput("n");
+
+        _computer.setInput(NEW_LINE_ASCII);
     }
 
     public void sweep ()
