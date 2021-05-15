@@ -74,7 +74,9 @@ public class ASCII
                                   functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getCommand(), functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getCommand());
             theRobot.setContinuousVideo(false);
 
-            theRobot.sweep();
+            long dustCollected = theRobot.sweep();
+
+            System.out.println("Amount of dust collected: "+dustCollected);
         }
     }
 
