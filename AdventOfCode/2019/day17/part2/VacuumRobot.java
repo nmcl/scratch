@@ -44,7 +44,13 @@ public class VacuumRobot
 
     public void setFunctions (String funcA, String funcB, String funcC)
     {
-        _computer.setInput(funcA+"\n"+funcB+"\n"+funcC+"\n");
+        String funcAC = convertToAscii(funcA);
+        String funcBC = convertToAscii(funcB);
+        String funcCC = convertToAscii(funcC);
+
+        System.out.println("adding "+funcAC+" "+funcBC+" "+funcCC);
+
+        _computer.setInput(funcAC+funcBC+funcCC);
 
         _computer.executeUntilInput();
     }
