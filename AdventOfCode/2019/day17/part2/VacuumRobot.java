@@ -14,7 +14,7 @@ public class VacuumRobot
 
     private static char SEPARATOR = ',';
     private static long SEPARATOR_ASCII = 44;
-    private static long NEW_LINE_ASCII = 10;
+    private static String NEW_LINE_ASCII = "10";
 
     public VacuumRobot (Map map, Vector<String> instructions, boolean debug)
     {
