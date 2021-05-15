@@ -6,7 +6,6 @@ public class VacuumRobot
 
     public static final String LEFT_COMMAND = "L";
     public static final String RIGHT_COMMAND = "R";
-    public static final String NEW_LINE = "\n";
 
     private static final String INITIAL_INPUT = "";
     private static final String OVERRIDE_CODE = "2";
@@ -14,6 +13,7 @@ public class VacuumRobot
     private static final int OVERRIDE_LOCATION = 0;
 
     private static char SEPARATOR = ',';
+    private static int NEW_LINE = 10;
 
     public VacuumRobot (Map map, Vector<String> instructions, boolean debug)
     {
@@ -33,7 +33,11 @@ public class VacuumRobot
 
     public void setMainMovementRoutine (String sequence)
     {
-        _computer.setInput(sequence+"\n");
+        String str = convertToAscii(sequence);
+
+        System.out.println("adding "+str);
+
+        _computer.setInput(str);
 
         _computer.executeUntilInput();
     }
@@ -70,6 +74,8 @@ public class VacuumRobot
             else
                 converted += SEPARATOR;
         }
+
+        converted += SEPARATOR + "" + NEW_LINE;
 
         return converted;
     }
