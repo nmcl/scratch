@@ -13,6 +13,8 @@ public class VacuumRobot
 
     private static final int OVERRIDE_LOCATION = 0;
 
+    private static char SEPARATOR = ',';
+
     public VacuumRobot (Map map, Vector<String> instructions, boolean debug)
     {
         _theMap = map;
@@ -54,6 +56,22 @@ public class VacuumRobot
     public void sweep ()
     {
         _computer.executeProgram();
+    }
+
+    private String convertToAscii (String sequence)
+    {
+        String converted = "";
+        char[] asArray = sequence.toCharArray();
+
+        for (int i = 0; i < asArray.length; i++)
+        {
+            if (asArray[i] != SEPARATOR)
+                converted += (int) asArray[i];
+            else
+                converted += SEPARATOR;
+        }
+
+        return converted;
     }
 
     private Map _theMap;
