@@ -7,7 +7,7 @@ public class VacuumRobot
     public static final String LEFT_COMMAND = "L";
     public static final String RIGHT_COMMAND = "R";
 
-    private static final String INITIAL_INPUT = "";
+    private static final String INITIAL_INPUT = null;
     private static final String OVERRIDE_CODE = "2";
 
     private static final int OVERRIDE_LOCATION = 0;
