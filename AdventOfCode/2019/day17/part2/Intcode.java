@@ -14,7 +14,8 @@ public class Intcode
         _memory = new Vector<String>(values);
         _input = new Vector<String>();
         
-        _input.add(initialInput);
+        if (initialInput != null)
+            _input.add(initialInput);
 
         _status = Status.CREATED;
         _relativeBase = 0;
