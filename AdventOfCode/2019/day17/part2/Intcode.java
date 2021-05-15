@@ -51,7 +51,7 @@ public class Intcode
         return _output.remove(0);
     }
 
-    public final void setInput (String input)
+    public final void setInput (String input)   // maybe rename to addInput?
     {
         _input.add(input);
     }
