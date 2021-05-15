@@ -66,9 +66,25 @@ public class VacuumRobot
         _computer.setInput(NEW_LINE_ASCII);
     }
 
-    public void sweep ()
+    public long sweep ()
     {
         _computer.executeProgram();
+
+        /*
+         * The amount of dust collected should be the last output
+         * from the computer.
+         */
+
+        String dustCollected = null;
+
+        while (_computer.hasOutput())
+        {
+            dustCollected = _computer.getOutput();
+
+            System.out.println("output "+dustCollected);
+        }
+
+        return Long.parseLong(dustCollected);
     }
 
     private long[] convertToAscii (String sequence)
