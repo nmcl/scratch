@@ -15,6 +15,8 @@ public class VacuumRobot
     private static char SEPARATOR = ',';
     private static long SEPARATOR_ASCII = 44;
     private static String NEW_LINE_ASCII = "10";
+    private static String Y_ASCII = "121";
+    private static String N_ASCII = "110";
 
     public VacuumRobot (Map map, Vector<String> instructions, boolean debug)
     {
@@ -59,9 +61,9 @@ public class VacuumRobot
     public void setContinuousVideo (boolean video)
     {
         if (video)
-            _computer.setInput("y");
+            _computer.setInput(""+Y_ASCII);
         else
-            _computer.setInput("n");
+            _computer.setInput(""+N_ASCII);
 
         _computer.setInput(NEW_LINE_ASCII);
     }
