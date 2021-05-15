@@ -13,7 +13,8 @@ public class VacuumRobot
     private static final int OVERRIDE_LOCATION = 0;
 
     private static char SEPARATOR = ',';
-    private static int NEW_LINE = 10;
+    private static long SEPARATOR_ASCII = 44;
+    private static long NEW_LINE_ASCII = 10;
 
     public VacuumRobot (Map map, Vector<String> instructions, boolean debug)
     {
@@ -33,13 +34,11 @@ public class VacuumRobot
 
     public void setMainMovementRoutine (String sequence)
     {
-        String str = convertToAscii(sequence);
+        char[] str = convertToAscii(sequence);
 
         System.out.println("adding "+str);
 
         _computer.setInput(str);
-
-        _computer.executeUntilInput();
     }
 
     public void setFunctions (String funcA, String funcB, String funcC)
@@ -51,8 +50,6 @@ public class VacuumRobot
         System.out.println("adding "+funcAC+" "+funcBC+" "+funcCC);
 
         _computer.setInput(funcAC+funcBC+funcCC);
-
-        _computer.executeUntilInput();
     }
 
     public void setContinuousVideo (boolean video)
@@ -68,20 +65,18 @@ public class VacuumRobot
         _computer.executeProgram();
     }
 
-    private String convertToAscii (String sequence)
+    private long[] convertToAscii (String sequence)
     {
-        String converted = "";
+        long[] converted = new long[sequence.length()];
         char[] asArray = sequence.toCharArray();
 
         for (int i = 0; i < asArray.length; i++)
         {
             if (asArray[i] != SEPARATOR)
-                converted += (int) asArray[i];
+                converted[i] = (long) asArray[i];
             else
-                converted += SEPARATOR;
+                converted[i] = SEPARATOR_ASCII;
         }
-
-        converted += SEPARATOR + "" + NEW_LINE;
 
         return converted;
     }
