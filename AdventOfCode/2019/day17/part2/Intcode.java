@@ -226,6 +226,8 @@ public class Intcode
                     {
                         int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
+                        System.out.println("input "+getInput());
+
                         if (_debug)
                             System.out.println("Storing "+getInput()+" at position "+param1);
 
@@ -251,6 +253,8 @@ public class Intcode
                     */
 
                 long param1 = Long.valueOf(getValue(_instructionPointer+1, modes[0], false));
+
+            System.out.println("output "+param1);
 
                 if (_debug)
                     System.out.println("Adding value "+param1+" to output state.");
