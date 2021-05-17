@@ -3,6 +3,16 @@ import java.io.*;
 
 public class IntcodeUtil
 {
+    public static String[] convert (long[] input)
+    {
+        String[] converted = new String[input.length];
+
+        for (int i = 0; i < input.length; i++)
+            converted[i] = Long.toString(input[i]);
+
+        return converted;
+    }
+
     public static final Vector<String> readValues (String inputFile)
     {
         /*

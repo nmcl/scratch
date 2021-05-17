@@ -30,13 +30,12 @@ public class MovementLogic
         FunctionRoutine routine = new FunctionRoutine(_path, _debug);
 
         _fullCommand = routine.getCommandString();
-
+        
         return routine.createMovementFunctions();
     }
 
     public String getMainRoutine (Vector<MovementFunction> functions)
     {
-        FunctionRoutine routine = new FunctionRoutine(_path, _debug);
         MovementRoutine mr = new MovementRoutine(_fullCommand, functions, _debug);
 
         return mr.getMainRoutine();

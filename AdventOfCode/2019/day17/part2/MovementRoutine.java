@@ -33,7 +33,7 @@ public class MovementRoutine
                 if (_debug)
                     System.out.println("Found "+str);
 
-                index += _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength();
+                index += _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength() +1;
 
                 if (searchStr.length() > _functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength())
                     searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_A_INDEX).getLength()+1);
@@ -50,7 +50,7 @@ public class MovementRoutine
                     if (_debug)
                         System.out.println("Found "+str);
 
-                    index += _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength();
+                    index += _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength() +1;
 
                     if (searchStr.length() > _functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength())
                         searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_B_INDEX).getLength()+1);
@@ -67,7 +67,7 @@ public class MovementRoutine
                         if (_debug)
                             System.out.println("Found "+str);
 
-                        index += _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength();
+                        index += _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength() +1;
 
                         if (searchStr.length() > _functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength())
                             searchStr = searchStr.substring(_functions.elementAt(FunctionRoutine.ROUTINE_C_INDEX).getLength()+1);

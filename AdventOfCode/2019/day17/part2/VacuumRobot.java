@@ -6,12 +6,17 @@ public class VacuumRobot
 
     public static final String LEFT_COMMAND = "L";
     public static final String RIGHT_COMMAND = "R";
-    public static final String NEW_LINE = "\n";
 
-    private static final String INITIAL_INPUT = "";
+    private static final String INITIAL_INPUT = null;
     private static final String OVERRIDE_CODE = "2";
 
     private static final int OVERRIDE_LOCATION = 0;
+
+    private static char SEPARATOR = ',';
+    private static long SEPARATOR_ASCII = 44;
+    private static String NEW_LINE_ASCII = "10";
+    private static String Y_ASCII = "121";
+    private static String N_ASCII = "110";
 
     public VacuumRobot (Map map, Vector<String> instructions, boolean debug)
     {
@@ -31,29 +36,71 @@ public class VacuumRobot
 
     public void setMainMovementRoutine (String sequence)
     {
-        _computer.setInput(sequence+"\n");
+        long[] converted = convertToAscii(sequence);
 
-        _computer.executeUntilInput();
+        _computer.addInput(IntcodeUtil.convert(converted));
+        _computer.setInput(NEW_LINE_ASCII);
     }
 
     public void setFunctions (String funcA, String funcB, String funcC)
     {
-        _computer.setInput(funcA+"\n"+funcB+"\n"+funcC+"\n");
+        long[] funcAC = convertToAscii(funcA);
+        long[] funcBC = convertToAscii(funcB);
+        long[] funcCC = convertToAscii(funcC);
 
-        _computer.executeUntilInput();
+        _computer.addInput(IntcodeUtil.convert(funcAC));
+        _computer.setInput(NEW_LINE_ASCII);
+
+        _computer.addInput(IntcodeUtil.convert(funcBC));
+        _computer.setInput(NEW_LINE_ASCII);
+
+        _computer.addInput(IntcodeUtil.convert(funcCC));
+        _computer.setInput(NEW_LINE_ASCII);
     }
 
     public void setContinuousVideo (boolean video)
     {
         if (video)
-            _computer.setInput("y\n");
+            _computer.setInput(""+Y_ASCII);
         else
-            _computer.setInput("n\n");
+            _computer.setInput(""+N_ASCII);
+
+        _computer.setInput(NEW_LINE_ASCII);
     }
 
-    public void sweep ()
+    public long sweep ()
     {
         _computer.executeProgram();
+
+        /*
+         * The amount of dust collected should be the last output
+         * from the computer.
+         */
+
+        String dustCollected = null;
+
+        while (_computer.hasOutput())
+        {
+            dustCollected = _computer.getOutput();
+        }
+
+        return Long.parseLong(dustCollected);
+    }
+
+    private long[] convertToAscii (String sequence)
+    {
+        long[] converted = new long[sequence.length()];
+        char[] asArray = sequence.toCharArray();
+
+        for (int i = 0; i < asArray.length; i++)
+        {
+            if (asArray[i] != SEPARATOR)
+                converted[i] = (long) asArray[i];
+            else
+                converted[i] = SEPARATOR_ASCII;
+        }
+
+        return converted;
     }
 
     private Map _theMap;
