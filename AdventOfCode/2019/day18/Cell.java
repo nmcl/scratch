@@ -4,7 +4,7 @@
 
 public class Cell
 {
-    public Cell (Coordinate coord, String contents, boolean debug)
+    public Cell (Coordinate coord, char contents, boolean debug)
     {
         _coord = coord;
         _contents = contents;
@@ -13,22 +13,15 @@ public class Cell
 
     public Cell (Coordinate coord)
     {
-        this(coord, CellId.OPEN_SPACE, false); // some defaults
+        this(coord, CellId.OPEN_PASSAGE, false); // some defaults
     }
 
-    public Cell (Cell toCopy)
-    {
-        _coord = new Coordinate(toCopy._coord);
-        _contents = new String(toCopy._contents);
-        _debug = toCopy._debug;
-    }
-
-    public final String getContents ()
+    public final char getContents ()
     {
         return _contents;
     }
 
-    public final void setContents (String contents)
+    public final void setContents (char contents)
     {
         _contents = contents;
     }
@@ -70,6 +63,6 @@ public class Cell
     }
 
     private Coordinate _coord;
-    private String _contents;
+    private char _contents;
     private boolean _debug;
 }
