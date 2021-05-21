@@ -1,8 +1,7 @@
 import java.util.*;
 
 /**
- * Take an image from the camera and turn it into a map
- * which can be used to move around.
+ * A map of the tunnel system.
  */
 
 public class Map
