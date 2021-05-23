@@ -11,6 +11,11 @@ public class Cell
         _debug = debug;
     }
     
+    public final char getContents ()
+    {
+        return _contents;
+    }
+    
     public final Coordinate position ()
     {
         return _coord;
@@ -18,19 +23,29 @@ public class Cell
 
     public boolean isEntrance ()
     {
-        return false;
+        return (_contents == CellId.ENTRANCE);
     }
 
     public boolean isDoor ()
     {
-        return false;
+        return Character.isLowerCase(_contents);
     }
 
     public boolean isKey ()
     {
-        return false;
+        return Character.isUpperCase(_contents);
     }
-    
+
+    public boolean isWall ()
+    {
+        return (_contents == CellId.STONE_WALL);
+    }
+
+    public boolean isPassage ()
+    {
+        return (_contents == CellId.OPEN_PASSAGE);
+    }
+
     @Override
     public int hashCode ()
     {
