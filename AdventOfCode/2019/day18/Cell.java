@@ -15,16 +15,6 @@ public class Cell
     {
         this(coord, CellId.OPEN_PASSAGE, false); // some defaults
     }
-
-    public final char getContents ()
-    {
-        return _contents;
-    }
-
-    public final void setContents (char contents)
-    {
-        _contents = contents;
-    }
     
     public final Coordinate position ()
     {
