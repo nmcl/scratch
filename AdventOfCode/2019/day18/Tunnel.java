@@ -8,12 +8,13 @@ public class Tunnel
     {
         String dataFile = TUNNEL_DATA;
         boolean debug = false;
+        boolean veify = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-data <file>] [-debug] [-help]");
+                System.out.println("Usage: [-data <file>] [-verify] [-debug] [-help]");
                 System.exit(0);
             }
             
@@ -22,6 +23,9 @@ public class Tunnel
 
             if ("-debug".equals(args[i]))
                 debug = true;
+
+            if ("-verify".equals(args[i]))
+                verify = true;
         }
 
         Vector<String> input = Util.readMap(dataFile);
