@@ -19,7 +19,7 @@ public class Map
     {
         Enumeration<Cell> iter = _theMap.elements();
         int index = 1;
-        String str = "Map:\n";
+        String str = "Map:\n\n";
 
         while (iter.hasMoreElements())
         {
