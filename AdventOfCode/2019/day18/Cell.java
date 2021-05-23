@@ -10,17 +10,27 @@ public class Cell
         _contents = contents;
         _debug = debug;
     }
-
-    public Cell (Coordinate coord)
-    {
-        this(coord, CellId.OPEN_PASSAGE, false); // some defaults
-    }
     
     public final Coordinate position ()
     {
         return _coord;
     }
 
+    public boolean isEntrance ()
+    {
+        return false;
+    }
+
+    public boolean isDoor ()
+    {
+        return false;
+    }
+
+    public boolean isKey ()
+    {
+        return false;
+    }
+    
     @Override
     public int hashCode ()
     {
