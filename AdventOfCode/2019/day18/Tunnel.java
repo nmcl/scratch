@@ -8,7 +8,7 @@ public class Tunnel
     {
         String dataFile = TUNNEL_DATA;
         boolean debug = false;
-        boolean veify = false;
+        boolean verify = false;
 
         for (int i = 0; i < args.length; i++)
         {
@@ -28,9 +28,11 @@ public class Tunnel
                 verify = true;
         }
 
-        Vector<String> input = Util.readMap(dataFile);
-        Map theMap = new Map(input, debug);
+        if (verify)
+        {
+            Verifier theVerifier = new Verifier(debug);
 
-        System.out.println(theMap);
+            theVerifier.verify();
+        }
     }
 }
