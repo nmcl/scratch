@@ -13,13 +13,13 @@ public class Map
 
         createMap(input);
     }
-/*
+
     @Override
     public String toString ()
     {
         Enumeration<Cell> iter = _theMap.elements();
         int index = 1;
-        String str = "";
+        String str = "Map:\n";
 
         while (iter.hasMoreElements())
         {
@@ -34,13 +34,14 @@ public class Map
         }
 
         return str;
-    }*/
+    }
 
     protected void createMap (Vector<String> input)
     {
-        int lineLength = input.get(0).length(); // all lines are the same length
         Enumeration<String> iter = input.elements();
         int y = -1;
+
+        _maxX = input.get(0).length(); // all lines are the same length
 
         while (iter.hasMoreElements())
         {
@@ -48,7 +49,7 @@ public class Map
 
             String line = iter.nextElement();
 
-            for (int x = 0; x < line.length(); x++)
+            for (int x = 0; x < _maxX; x++)
             {
                 Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x), _debug);
 
@@ -58,8 +59,12 @@ public class Map
                 _theMap.add(theCell);
             }
         }
+
+        _maxY = y;
     }
 
-    protected Vector<Cell> _theMap;
-    protected boolean _debug;
+    private Vector<Cell> _theMap;
+    private int _maxX;
+    private int _maxY;
+    private boolean _debug;
 }
