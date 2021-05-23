@@ -13,13 +13,13 @@ public class Map
 
         createMap(input);
     }
-
+/*
     @Override
     public String toString ()
     {
         Enumeration<Cell> iter = _theMap.elements();
         int index = 1;
-        String str = "Map dimensions < "+_maxX+", "+_maxY+" >\n";
+        String str = "";
 
         while (iter.hasMoreElements())
         {
@@ -34,23 +34,9 @@ public class Map
         }
 
         return str;
-    }
+    }*/
 
-    protected boolean valid (Coordinate coord)
-    {
-        if (coord != null)
-        {
-            if ((coord.getX() >= 0) && (coord.getY() >= 0))
-            {
-                if ((coord.getX() < _maxX) && (coord.getY() < _maxY))
-                    return true;
-            }
-        }
-
-        return false;
-    }
-
-    protected void createMapFromImage (Vector<String> input)
+    protected void createMap (Vector<String> input)
     {
         int lineLength = input.get(0).length(); // all lines are the same length
         Enumeration<String> iter = input.elements();
@@ -64,7 +50,7 @@ public class Map
 
             for (int x = 0; x < line.length(); x++)
             {
-                Cell theCell = new Cell(new Coordinate(x, y), String.valueOf(line[y].charAt(x)), _debug);
+                Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x), _debug);
 
                 if (_debug)
                     System.out.println(theCell);
