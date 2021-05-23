@@ -19,7 +19,7 @@ public class Map
     {
         Enumeration<Cell> iter = _theMap.elements();
         int index = 1;
-        String str = "Map:\n\n";
+        String str = "Map <"+(_maxX+1)+", "+(_maxY+1)+">:\n\n";
 
         while (iter.hasMoreElements())
         {
