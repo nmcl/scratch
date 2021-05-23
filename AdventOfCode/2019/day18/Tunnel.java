@@ -1,6 +1,7 @@
 public class Tunnel
 {
-    public static final String TUNNEL_DATA = "tunnel.txt"
+    public static final String TUNNEL_DATA = "tunnel.txt";
+    
     public static final void main (String[] args)
     {
         String dataFile = TUNNEL_DATA;
