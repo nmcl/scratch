@@ -50,18 +50,21 @@ public class Map
         return false;
     }
 
-    protected void createMapFromImage (String[] lines)
+    protected void createMapFromImage (Vector<String> input)
     {
-        int lineLength = lines[0].length(); // all lines are the same length
+        int lineLength = input.get(0).length(); // all lines are the same length
+        Enumeration<String> iter = input.elements();
+        int y = -1;
 
-        _maxY = lines.length -1;
-        _maxX = lineLength;
-
-        for (int y = 0; y < lines.length -1; y++)
+        while (iter.hasMoreElements())
         {
-            for (int x = 0; x < lineLength; x++)
+            y++;
+
+            String line = iter.nextElement();
+
+            for (int x = 0; x < line.length(); x++)
             {
-                Cell theCell = new Cell(new Coordinate(x, y), String.valueOf(lines[y].charAt(x)), _debug);
+                Cell theCell = new Cell(new Coordinate(x, y), String.valueOf(line[y].charAt(x)), _debug);
 
                 if (_debug)
                     System.out.println(theCell);
