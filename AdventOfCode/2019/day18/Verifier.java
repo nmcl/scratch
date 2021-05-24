@@ -3,10 +3,15 @@ import java.util.*;
 public class Verifier
 {
     private static final String EXAMPLE1_FILE = "example1.txt";
+    private static final int EXAMPLE1_STEPS = 8;
     private static final String EXAMPLE2_FILE = "example2.txt";
+    private static final int EXAMPLE2_STEPS = 86;
     private static final String EXAMPLE3_FILE = "example3.txt";
+    private static final int EXAMPLE3_STEPS = 132;
     private static final String EXAMPLE4_FILE = "example4.txt";
+    private static final int EXAMPLE4_STEPS = 136;
     private static final String EXAMPLE5_FILE = "example5.txt";
+    private static final int EXAMPLE5_STEPS = 81;
 
     public Verifier (boolean debug)
     {
