@@ -14,6 +14,21 @@ public class Map
         createMap(input);
     }
 
+    public Coordinate getEntrance ()
+    {
+        Enumeration<Cell> iter = _theMap.elements();
+
+        while (iter.hasMoreElements())
+        {
+            Cell theCell = iter.nextElement();
+
+            if (theCell.isEntrance())
+                return theCell.position();
+        }
+
+        return null;  // oops!!
+    }
+
     @Override
     public String toString ()
     {
