@@ -1,9 +1,5 @@
 import java.util.*;
 
-/*
- * Aft Scaffolding Control and Information Interface.
- */
-
 public class Verifier 
 {
     public static final String EXAMPLE = "R,8,R,8,R,4,R,4,R,8,L,6,L,2,R,4,R,4,R,8,R,8,R,8,L,6,L,2";
