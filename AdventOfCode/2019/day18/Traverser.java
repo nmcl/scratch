@@ -10,6 +10,8 @@
  *   next door then collect the key for shortest path.
  */
 
+ // do a BF search?
+ 
 public class Traverser
 {
     public Traverser (Map theMap, boolean debug)
