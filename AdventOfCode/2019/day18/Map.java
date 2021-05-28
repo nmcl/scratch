@@ -51,7 +51,7 @@ public class Map
         return str;
     }
 
-    protected void createMap (Vector<String> input)
+    private void createMap (Vector<String> input)
     {
         Enumeration<String> iter = input.elements();
         int y = -1;
@@ -77,6 +77,8 @@ public class Map
 
         _maxY = y;
     }
+
+
 
     private Vector<Cell> _theMap;
     private int _maxX;
