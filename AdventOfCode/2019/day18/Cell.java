@@ -15,7 +15,7 @@ public class Cell
     {
         return _contents;
     }
-    
+
     public final Coordinate position ()
     {
         return _coord;
@@ -65,7 +65,7 @@ public class Cell
         {
             Cell temp = (Cell) obj;
 
-            return temp.position().equals(position());
+            return temp.position().equals(position());  // we just compare on position not content
         }
 
         return false;
