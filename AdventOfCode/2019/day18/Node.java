@@ -1,13 +1,22 @@
+/*
+ * A Node wraps a Cell from the Map and includes
+ * links to the neighbouring Nodes.
+ */
+
 public class Node
 {
-    public Node (String value, int steps)
+    public Node (Cell theCell, Node up, Node down, Node left, Node right)
     {
-        _data = value;
-        _steps = steps;
+        _theCell = theCell;
+        _up = up;
+        _down = down;
+        _left = left;
+        _right = right;
     }
 
-    private String _data;
-    private int _steps;
+    private Cell _theCell;
+    private Node _up;
+    private Node _down;
     private Node _left;
     private Node _right;
 }
