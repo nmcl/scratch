@@ -68,6 +68,9 @@ public class Map
             {
                 Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x), _debug);
 
+                if (theCell.isEntrance)
+                    _entrance = theCell.position();  // should be only one!
+
                 if (_debug)
                     System.out.println(theCell);
 
@@ -78,10 +81,15 @@ public class Map
         _maxY = y;
     }
 
-
+    private void createGraph ()
+    {
+        // start at entrance and work outwards
+        
+    }
 
     private Vector<Cell> _theMap;
     private int _maxX;
     private int _maxY;
+    private Coordinate _entrance;
     private boolean _debug;
 }
