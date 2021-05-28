@@ -83,18 +83,74 @@ public class Map
 
     private void createGraph ()
     {
-        Node root = null;
-        int y = 0;
-        int x = 0;
-        
-        for (int y = 0; y < _maxY; y++)
+        Enumeration<Cell> iter = _theMap.elements();
+        Vector<Node> allNodes = new Vector<Node>();
+
+        // first pass ...
+
+        while (iter.hasMoreElements())
         {
-            for (int x = 0; x < _maxX; x++)
-            {
-                Node current = new Node(_)
-            }
+            Cell c = iter.nextElement();
+
+            allNodes.add(new Node(c));
         }
 
+        /*
+         * We now have a list of disconnected Nodes. Let's
+         * connect them into a graph.
+         */
+
+        Enumeration reti = allNodes.elements();
+        
+        while (reti.hasMoreElements())
+        {
+            Node n = reti.nextElement();
+            Coordinate coord = n.getCell.position();
+            Coordinate up = getUpPosition(coord);
+            Coordinate down = getDownPosition(coord);
+            Coordinate left = getLeftPosition(coord);
+            Coordinate right = getRightPosition(coord);
+        }
+    }
+
+    private Coordinate getUpPosition (Coordinate coord)
+    {
+        Coordinate pos = new Coordinate(coord.getX(), coord.getY() +1);
+
+        if (pos.getY() < _maxY)
+            return pos;
+        else
+            return null;
+    }
+
+    private Coordinate getDownPosition (Coordinate coord)
+    {
+        Coordinate pos = new Coordinate(coord.getX(), coord.getY() -1);
+
+        if (pos.getX() >= 0)
+            return pos;
+        else
+            return null;
+    }
+
+    private Coordinate getLeftPosition (Coordinate coord)
+    {
+        Coordinate pos = new Coordinate(coord.getX() -1, coord.getY());
+
+        if (pos.getX() >= 0)
+            return pos;
+        else
+            return null;
+    }
+
+    private Coordinate getRightPosition (Coordinate coord)
+    {
+        Coordinate pos = new Coordinate(coord.getX() +1, coord.getY());
+
+        if (pos.getY() < _maxX)
+            return pos;
+        else
+            return null;
     }
 
     private Vector<Cell> _theMap;
