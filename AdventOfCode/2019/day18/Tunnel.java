@@ -37,7 +37,7 @@ public class Tunnel
         else
         {
             Vector<String> input = Util.readMap(TUNNEL_DATA);
-            Map theMap = new Map(input, _debug);
+            Map theMap = new Map(input, debug);
 
             System.out.println(theMap);
         }
