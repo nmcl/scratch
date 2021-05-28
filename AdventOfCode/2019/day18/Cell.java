@@ -4,6 +4,11 @@
 
 public class Cell
 {
+    public Cell (Coordinate coord)
+    {
+        this(coord, CellId.OPEN_PASSAGE, false); // some default values
+    }
+
     public Cell (Coordinate coord, char contents, boolean debug)
     {
         _coord = coord;
