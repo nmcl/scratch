@@ -83,8 +83,18 @@ public class Map
 
     private void createGraph ()
     {
-        // start at entrance and work outwards
+        Node root = null;
+        int y = 0;
+        int x = 0;
         
+        for (int y = 0; y < _maxY; y++)
+        {
+            for (int x = 0; x < _maxX; x++)
+            {
+                Node current = new Node(_)
+            }
+        }
+
     }
 
     private Vector<Cell> _theMap;
