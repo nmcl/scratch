@@ -14,6 +14,31 @@ public class Node
         _right = right;
     }
 
+    @Override
+    public int hashCode ()
+    {
+        return _theCell.hashCode();
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Node temp = (Node) obj;
+
+            return temp._theCell.equals(_theCell);
+        }
+
+        return false;
+    }
+
     private Cell _theCell;
     private Node _up;
     private Node _down;
