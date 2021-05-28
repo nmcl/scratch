@@ -5,6 +5,11 @@
 
 public class Node
 {
+    public Node (Cell theCell)
+    {
+        this(theCell, null, null, null, null);
+    }
+
     public Node (Cell theCell, Node up, Node down, Node left, Node right)
     {
         _theCell = theCell;
@@ -12,6 +17,11 @@ public class Node
         _down = down;
         _left = left;
         _right = right;
+    }
+
+    public Cell getCell ()
+    {
+        return _theCell;
     }
 
     @Override
