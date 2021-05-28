@@ -36,7 +36,10 @@ public class Tunnel
         }
         else
         {
-            
+            Vector<String> input = Util.readMap(TUNNEL_DATA);
+            Map theMap = new Map(input, _debug);
+
+            System.out.println(theMap);
         }
     }
 }
