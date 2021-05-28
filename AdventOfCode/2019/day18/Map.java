@@ -110,6 +110,8 @@ public class Map
             Coordinate down = getDownPosition(coord);
             Coordinate left = getLeftPosition(coord);
             Coordinate right = getRightPosition(coord);
+
+            // create or find Nodes. Replace dummy Nodes in the list.
         }
     }
 
