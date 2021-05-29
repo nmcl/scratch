@@ -116,17 +116,17 @@ public class Map
 
             // create or find Nodes. Replace dummy Nodes in the list.
 
-            int upIndex = graph.indexOf(new Node(up));
-            Node upNode = ((upIndex == -1) ? null : graph.elementAt(upIndex));
+            int upIndex = allNodes.indexOf(new Node(up));
+            Node upNode = ((upIndex == -1) ? null : allNodes.elementAt(upIndex));
 
-            int downIndex = graph.indexOf(new Node(down));
-            Node downNode = ((downIndex == -1) ? null : graph.elementAt(downIndex));
+            int downIndex = allNodes.indexOf(new Node(down));
+            Node downNode = ((downIndex == -1) ? null : allNodes.elementAt(downIndex));
 
-            int leftIndex = graph.indexOf(new Node(left));
-            Node leftNode = ((leftIndex == -1) ? null : graph.elementAt(leftIndex));
+            int leftIndex = allNodes.indexOf(new Node(left));
+            Node leftNode = ((leftIndex == -1) ? null : allNodes.elementAt(leftIndex));
 
-            int rightIndex = graph.indexOf(new Node(right));
-            Node rightNode = ((rightIndex == -1) ? null : graph.elementAt(rightIndex));
+            int rightIndex = allNodes.indexOf(new Node(right));
+            Node rightNode = ((rightIndex == -1) ? null : allNodes.elementAt(rightIndex));
         }
     }
 
