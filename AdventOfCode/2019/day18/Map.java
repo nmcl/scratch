@@ -1,7 +1,5 @@
 import java.util.*;
 
-import org.w3c.dom.Node;
-
 /**
  * A map of the tunnel system.
  */
@@ -70,7 +68,7 @@ public class Map
             {
                 Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x), _debug);
 
-                if (theCell.isEntrance)
+                if (theCell.isEntrance())
                     _entrance = theCell.position();  // should be only one!
 
                 if (_debug)
@@ -103,12 +101,12 @@ public class Map
          * connect them into a graph.
          */
 
-        Enumeration reti = allNodes.elements();
+        Enumeration<Node> reti = allNodes.elements();
         
         while (reti.hasMoreElements())
         {
             Node n = reti.nextElement();
-            Coordinate coord = n.getCell.position();
+            Coordinate coord = n.getCell().position();
             Coordinate up = getUpPosition(coord);
             Coordinate down = getDownPosition(coord);
             Coordinate left = getLeftPosition(coord);
