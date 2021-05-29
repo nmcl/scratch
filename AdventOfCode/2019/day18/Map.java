@@ -1,5 +1,7 @@
 import java.util.*;
 
+import org.w3c.dom.Node;
+
 /**
  * A map of the tunnel system.
  */
@@ -85,6 +87,7 @@ public class Map
     {
         Enumeration<Cell> iter = _theMap.elements();
         Vector<Node> allNodes = new Vector<Node>();
+        Vector<Node> graph = new Vector<Node>();
 
         // first pass ...
 
@@ -112,11 +115,18 @@ public class Map
             Coordinate right = getRightPosition(coord);
 
             // create or find Nodes. Replace dummy Nodes in the list.
-            // ??
 
-            int upIndex = allNodes.indexOf(new Node(up));
-            Node upNode = null;
+            int upIndex = graph.indexOf(new Node(up));
+            Node upNode = ((upIndex == -1) ? null : graph.elementAt(upIndex));
 
+            int downIndex = graph.indexOf(new Node(down));
+            Node downNode = ((downIndex == -1) ? null : graph.elementAt(downIndex));
+
+            int leftIndex = graph.indexOf(new Node(left));
+            Node leftNode = ((leftIndex == -1) ? null : graph.elementAt(leftIndex));
+
+            int rightIndex = graph.indexOf(new Node(right));
+            Node rightNode = ((rightIndex == -1) ? null : graph.elementAt(rightIndex));
         }
     }
 
