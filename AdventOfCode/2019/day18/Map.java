@@ -113,6 +113,10 @@ public class Map
 
             // create or find Nodes. Replace dummy Nodes in the list.
             // ??
+
+            int upIndex = allNodes.indexOf(new Node(up));
+            Node upNode = null;
+
         }
     }
 
