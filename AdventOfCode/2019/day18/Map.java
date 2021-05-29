@@ -112,6 +112,7 @@ public class Map
             Coordinate right = getRightPosition(coord);
 
             // create or find Nodes. Replace dummy Nodes in the list.
+            // ??
         }
     }
 
