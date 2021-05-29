@@ -5,6 +5,11 @@
 
 public class Node
 {
+    public Node (Coordinate coord)
+    {
+        this(new Cell(coord));
+    }
+    
     public Node (Cell theCell)
     {
         this(theCell, null, null, null, null);
