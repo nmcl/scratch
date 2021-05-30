@@ -81,6 +81,8 @@ public class Map
         _maxY = y;
     }
 
+    // from the map create a graph
+    
     private void createGraph ()
     {
         Enumeration<Cell> iter = _theMap.elements();
