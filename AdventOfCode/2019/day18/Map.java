@@ -83,7 +83,7 @@ public class Map
 
     // from the map create a graph
 
-    private void createGraph ()
+    public void createGraph ()  // temporary public!
     {
         Enumeration<Cell> iter = _theMap.elements();
         Vector<Node> allNodes = new Vector<Node>();
