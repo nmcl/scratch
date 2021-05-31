@@ -26,7 +26,7 @@ public class Map
                 return theCell.position();
         }
 
-        return null;  // oops!!
+        return null;  // oops!! shouldn't happen.
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Map
     }
 
     // from the map create a graph
-    
+
     private void createGraph ()
     {
         Enumeration<Cell> iter = _theMap.elements();
