@@ -1,6 +1,10 @@
 import java.util.*;
 import java.io.*;
 
+/*
+ * Varius utilities.
+ */
+
 public class Util
 {
     public static final Vector<String> readMap (String inputFile)
