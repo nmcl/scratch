@@ -51,6 +51,8 @@ public class Map
         return str;
     }
 
+    // create the map from input
+    
     private void createMap (Vector<String> input)
     {
         Enumeration<String> iter = input.elements();
