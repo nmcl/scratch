@@ -89,82 +89,26 @@ public class Map
     {
         Node[][] nodeMap = new Node[_maxX][_maxY];
         Enumeration<Cell> iter = _theMap.elements();
+        int x = 0;
+        int y = 0;
 
-
-
-        
-        Vector<Node> graph = new Vector<Node>();
-        
         while (iter.hasMoreElements())
         {
-            Cell c = iter.nextElement();
+            nodeMap[x][y] = new Node(iter.nextElement());
 
-            Coordinate coord = c.position();
-            Coordinate up = getUpPosition(coord);
-            Coordinate down = getDownPosition(coord);
-            Coordinate left = getLeftPosition(coord);
-            Coordinate right = getRightPosition(coord);
+            x++;
+            y++;
 
-            /*
-             * Check to see if the Node is already part.
-             */
+            if (x == _maxX)
+                x = 0;
 
-            int upIndex = graph.indexOf(new Node(up));
-            Node upNode = ((upIndex == -1) ? null : allNodes.elementAt(upIndex));
-
-            int downIndex = allNodes.indexOf(new Node(down));
-            Node downNode = ((downIndex == -1) ? null : allNodes.elementAt(downIndex));
-
-            int leftIndex = allNodes.indexOf(new Node(left));
-            Node leftNode = ((leftIndex == -1) ? null : allNodes.elementAt(leftIndex));
-
-            int rightIndex = allNodes.indexOf(new Node(right));
-            Node rightNode = ((rightIndex == -1) ? null : allNodes.elementAt(rightIndex));
-
-            Node theNode = new Node(n.getCell(), upNode, downNode, leftNode, rightNode);
-
-            graph.add(theNode);
+            if (y == _maxY)
+                y = 0;
         }
-    }
 
-    private Coordinate getUpPosition (Coordinate coord)
-    {
-        Coordinate pos = new Coordinate(coord.getX(), coord.getY() +1);
 
-        if (pos.getY() < _maxY)
-            return pos;
-        else
-            return null;
-    }
-
-    private Coordinate getDownPosition (Coordinate coord)
-    {
-        Coordinate pos = new Coordinate(coord.getX(), coord.getY() -1);
-
-        if (pos.getX() >= 0)
-            return pos;
-        else
-            return null;
-    }
-
-    private Coordinate getLeftPosition (Coordinate coord)
-    {
-        Coordinate pos = new Coordinate(coord.getX() -1, coord.getY());
-
-        if (pos.getX() >= 0)
-            return pos;
-        else
-            return null;
-    }
-
-    private Coordinate getRightPosition (Coordinate coord)
-    {
-        Coordinate pos = new Coordinate(coord.getX() +1, coord.getY());
-
-        if (pos.getY() < _maxX)
-            return pos;
-        else
-            return null;
+        
+        }
     }
 
     private Vector<Cell> _theMap;
