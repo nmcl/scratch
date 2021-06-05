@@ -85,13 +85,15 @@ public class Map
 
     // from the map create a graph
 
-    public void createGraph ()  // temporary public!
+    public void createGraph ()  // temporary public for testing!
     {
         Enumeration<Cell> iter = _theMap.elements();
         Vector<Node> allNodes = new Vector<Node>();
         Vector<Node> graph = new Vector<Node>();
 
-        // first pass ...
+        /*
+         * Turn the list of Cells into a list of Nodes.
+         */
 
         while (iter.hasMoreElements())
         {
