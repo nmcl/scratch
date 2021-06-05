@@ -70,6 +70,8 @@ public class Map
             {
                 Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x), _debug);
 
+                System.out.println("Created cell "+theCell);
+
                 if (theCell.isEntrance())
                     _entrance = theCell.position();  // should be only one!
 
@@ -96,6 +98,8 @@ public class Map
         {
             nodeMap[x][y] = new Node(iter.nextElement());
 
+            System.out.println("Node at "+x+", "+y+" is "+nodeMap[x][y]);
+            
             x++;
             y++;
 
