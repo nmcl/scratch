@@ -24,6 +24,40 @@ public class Node
     }
 
     @Override
+    public String toString ()
+    {
+        String str = "Node: "+_theCell+"\nUp link: ";
+
+        if (_up == null)
+            str += "empty";
+        else
+            str += _up.getCell().position();
+
+        str += "\nDown link: ";
+
+        if (_down == null)
+            str += "empty";
+        else
+            str += _down.getCell().position();
+
+        str += "\nLeft link: ";
+
+        if (_left == null)
+            str += "empty";
+        else
+            str += _left.getCell().position();
+
+        str += "\nRight link: ";
+
+        if (_right == null)
+            str += "empty";
+        else
+            str += _right.getCell().position();
+
+        return str;
+    }
+
+    @Override
     public int hashCode ()
     {
         return _theCell.hashCode();
