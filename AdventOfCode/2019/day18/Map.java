@@ -34,7 +34,7 @@ public class Map
     {
         Enumeration<Cell> iter = _theMap.elements();
         int index = 1;
-        String str = "Map <"+(_maxX+1)+", "+(_maxY+1)+">:\n\n";
+        String str = "Map <"+_maxX+", "+_maxY+">:\n\n";
 
         while (iter.hasMoreElements())
         {
@@ -80,7 +80,7 @@ public class Map
             }
         }
 
-        _maxY = y;
+        _maxY = y+1;
     }
 
     // from the map create a graph
@@ -94,6 +94,8 @@ public class Map
 
         while (iter.hasMoreElements())
         {
+            System.out.println(x+", "+y);
+
             nodeMap[x][y] = new Node(iter.nextElement());
 
             x++;
