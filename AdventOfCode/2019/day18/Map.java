@@ -106,8 +106,12 @@ public class Map
                 y = 0;
         }
 
-
-        
+        for (int i = 0; i < _maxX; i++)
+        {
+            for (int j = 0; j < _maxY; j++)
+            {
+                
+            }
         }
     }
 
