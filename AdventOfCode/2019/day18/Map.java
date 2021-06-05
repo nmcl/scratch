@@ -130,6 +130,14 @@ public class Map
                 nodeMap[i][j].setLinks(up, down, left, right);
             }
         }
+
+        for (x = 0; x < _maxX; x++)
+        {
+            for (y = 0; y < _maxY; y++)
+            {
+                System.out.println(nodeMap[x][y]);
+            }
+        }
     }
 
     private Vector<Cell> _theMap;
