@@ -25,6 +25,8 @@ public class Verifier
 
         System.out.println(theMap);
 
+        theMap.createGraph();
+        
         return false;
     }
 
