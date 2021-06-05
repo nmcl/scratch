@@ -110,7 +110,24 @@ public class Map
         {
             for (int j = 0; j < _maxY; j++)
             {
+                Node up = null;
+                Node down = null;
+                Node left = null;
+                Node right = null;
+
+                if (i -1 >= 0)
+                    left = nodeMap[i-1][j];
                 
+                if (i +1 < _maxX)
+                    right = nodeMap[i +1][j];
+
+                if (j -1 >= 0)
+                    up = nodeMap[i][j -1];
+
+                if (j +1 < _maxY)
+                    down = nodeMap[i][j +1];
+
+                nodeMap[i][j].setLinks(up, down, left, right);
             }
         }
     }
