@@ -5,23 +5,29 @@
 
 public class Node
 {
-    public Node (Coordinate coord)
-    {
-        this(new Cell(coord));
-    }
-    
     public Node (Cell theCell)
     {
-        this(theCell, null, null, null, null);
+        _theCell = theCell;
     }
 
-    public Node (Cell theCell, Node up, Node down, Node left, Node right)
+    public void setUp (Node n)
     {
-        _theCell = theCell;
-        _up = up;
-        _down = down;
-        _left = left;
-        _right = right;
+        _up = n;
+    }
+
+    public void setDown (Node n)
+    {
+        _down = n;
+    }
+
+    public void setLeft (Node n)
+    {
+        _left = n;
+    }
+
+    public void setRight (Node n)
+    {
+        _right = n;
     }
 
     public Cell getCell ()
@@ -54,9 +60,9 @@ public class Node
         return false;
     }
 
-    private Cell _theCell;
-    private Node _up;
-    private Node _down;
-    private Node _left;
-    private Node _right;
+    private Cell _theCell = null;
+    private Node _up = null;
+    private Node _down = null;
+    private Node _left = null;
+    private Node _right = null;
 }
