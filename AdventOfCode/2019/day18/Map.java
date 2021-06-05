@@ -70,8 +70,6 @@ public class Map
             {
                 Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x), _debug);
 
-                System.out.println("Created cell "+theCell);
-
                 if (theCell.isEntrance())
                     _entrance = theCell.position();  // should be only one!
 
@@ -98,16 +96,13 @@ public class Map
         {
             nodeMap[x][y] = new Node(iter.nextElement());
 
-            System.out.println("Node at "+x+", "+y+" is "+nodeMap[x][y]);
-            
             x++;
-            y++;
 
             if (x == _maxX)
+            {
                 x = 0;
-
-            if (y == _maxY)
-                y = 0;
+                y++;
+            }
         }
 
         for (int i = 0; i < _maxX; i++)
