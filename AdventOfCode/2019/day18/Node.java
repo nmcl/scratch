@@ -10,24 +10,12 @@ public class Node
         _theCell = theCell;
     }
 
-    public void setUp (Node n)
+    public void setLinks (Node up, Node down, Node left, Node right)
     {
-        _up = n;
-    }
-
-    public void setDown (Node n)
-    {
-        _down = n;
-    }
-
-    public void setLeft (Node n)
-    {
-        _left = n;
-    }
-
-    public void setRight (Node n)
-    {
-        _right = n;
+        _up = up;
+        _down = down;
+        _left = left;
+        _right = right;
     }
 
     public Cell getCell ()
