@@ -9,6 +9,7 @@ public class Map
     public Map (Vector<String> input, boolean debug)
     {
         _theMap = new Vector<Cell>();
+        _nodeMap = null;
         _debug = debug;
 
         createMap(input);
@@ -16,17 +17,7 @@ public class Map
 
     public Coordinate getEntrance ()
     {
-        Enumeration<Cell> iter = _theMap.elements();
-
-        while (iter.hasMoreElements())
-        {
-            Cell theCell = iter.nextElement();
-
-            if (theCell.isEntrance())
-                return theCell.position();
-        }
-
-        return null;  // oops!! shouldn't happen.
+        return _entrance;
     }
 
     @Override
@@ -85,16 +76,17 @@ public class Map
 
     // from the map create a graph
 
-    public void createGraph ()  // temporary public for testing!
+    Node createGraph ()  // temporary public for testing!
     {
-        Node[][] nodeMap = new Node[_maxX][_maxY];
         Enumeration<Cell> iter = _theMap.elements();
         int x = 0;
         int y = 0;
 
+        _nodeMap = new Node[_maxX][_maxY];
+
         while (iter.hasMoreElements())
         {
-            nodeMap[x][y] = new Node(iter.nextElement());
+            _nodeMap[x][y] = new Node(iter.nextElement());
 
             x++;
 
@@ -115,31 +107,37 @@ public class Map
                 Node right = null;
 
                 if (i -1 >= 0)
-                    left = nodeMap[i-1][j];
+                    left = _nodeMap[i-1][j];
                 
                 if (i +1 < _maxX)
-                    right = nodeMap[i +1][j];
+                    right = _nodeMap[i +1][j];
 
                 if (j -1 >= 0)
-                    up = nodeMap[i][j -1];
+                    up = _nodeMap[i][j -1];
 
                 if (j +1 < _maxY)
-                    down = nodeMap[i][j +1];
+                    down = _nodeMap[i][j +1];
 
-                nodeMap[i][j].setLinks(up, down, left, right);
+                _nodeMap[i][j].setLinks(up, down, left, right);
             }
         }
 
-        for (x = 0; x < _maxX; x++)
+        if (_debug)
         {
-            for (y = 0; y < _maxY; y++)
+            for (x = 0; x < _maxX; x++)
             {
-                System.out.println("\n"+nodeMap[x][y]);
+                for (y = 0; y < _maxY; y++)
+                {
+                    System.out.println("\n"+_nodeMap[x][y]);
+                }
             }
         }
+
+        return _nodeMap[_entrance.getX()][_entrance.getY()];
     }
 
     private Vector<Cell> _theMap;
+    private Node[][] _nodeMap;
     private int _maxX;
     private int _maxY;
     private Coordinate _entrance;
