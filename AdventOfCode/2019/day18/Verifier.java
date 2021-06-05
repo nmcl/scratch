@@ -25,7 +25,9 @@ public class Verifier
 
         System.out.println(theMap);
 
-        theMap.createGraph();
+        Node start = theMap.createGraph();
+
+        System.out.println("Starting point in graph: "+start);
         
         return false;
     }
