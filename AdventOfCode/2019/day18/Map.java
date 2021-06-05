@@ -94,8 +94,6 @@ public class Map
 
         while (iter.hasMoreElements())
         {
-            System.out.println(x+", "+y);
-
             nodeMap[x][y] = new Node(iter.nextElement());
 
             x++;
@@ -136,7 +134,7 @@ public class Map
         {
             for (y = 0; y < _maxY; y++)
             {
-                System.out.println(nodeMap[x][y]);
+                System.out.println("\n"+nodeMap[x][y]);
             }
         }
     }
