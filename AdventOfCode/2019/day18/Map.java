@@ -87,40 +87,29 @@ public class Map
 
     public void createGraph ()  // temporary public for testing!
     {
+        Node[][] nodeMap = new Node[_maxX][_maxY];
         Enumeration<Cell> iter = _theMap.elements();
-        Vector<Node> allNodes = new Vector<Node>();
+
+
+
+        
         Vector<Node> graph = new Vector<Node>();
-
-        /*
-         * Turn the list of Cells into a list of Nodes.
-         */
-
+        
         while (iter.hasMoreElements())
         {
             Cell c = iter.nextElement();
 
-            allNodes.add(new Node(c));
-        }
-
-        /*
-         * We now have a list of disconnected Nodes. Let's
-         * connect them into a graph.
-         */
-
-        Enumeration<Node> reti = allNodes.elements();
-        
-        while (reti.hasMoreElements())
-        {
-            Node n = reti.nextElement();
-            Coordinate coord = n.getCell().position();
+            Coordinate coord = c.position();
             Coordinate up = getUpPosition(coord);
             Coordinate down = getDownPosition(coord);
             Coordinate left = getLeftPosition(coord);
             Coordinate right = getRightPosition(coord);
 
-            // create or find Nodes. Replace dummy Nodes in the list.
+            /*
+             * Check to see if the Node is already part.
+             */
 
-            int upIndex = allNodes.indexOf(new Node(up));
+            int upIndex = graph.indexOf(new Node(up));
             Node upNode = ((upIndex == -1) ? null : allNodes.elementAt(upIndex));
 
             int downIndex = allNodes.indexOf(new Node(down));
@@ -131,6 +120,10 @@ public class Map
 
             int rightIndex = allNodes.indexOf(new Node(right));
             Node rightNode = ((rightIndex == -1) ? null : allNodes.elementAt(rightIndex));
+
+            Node theNode = new Node(n.getCell(), upNode, downNode, leftNode, rightNode);
+
+            graph.add(theNode);
         }
     }
 
