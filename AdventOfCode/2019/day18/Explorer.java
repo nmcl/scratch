@@ -2,10 +2,12 @@ public class Explorer
 {
     public static final int MAXIMUM_KEYS = 26;
 
-    public Explorer ()
+    public Explorer (Node start, boolean debug)
     {
+        _start = start;
         _keys = new char[MAXIMUM_KEYS];
         _keysFound = 0;
+        _debug = debug;
     }
 
     @Override
@@ -26,6 +28,8 @@ public class Explorer
             return "No keys found.";
     }
 
+    private Node _start;
     private char[] _keys;
     private int _keysFound;
+    private boolean _debug;
 }
