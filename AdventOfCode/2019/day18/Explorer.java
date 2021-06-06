@@ -28,6 +28,14 @@ public class Explorer
             return "No keys found.";
     }
 
+    private void backtrack ()
+    {
+        /*
+         * Decrement the number of steps as we go
+         * back on our path.
+         */
+    }
+
     private Node _start;
     private char[] _keys;
     private int _keysFound;
