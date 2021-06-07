@@ -36,6 +36,11 @@ public class Explorer
          */
     }
 
+    // Encode the key set as a bitmask to make comparisons fast.
+    // go for all keys in sane direction until we hit a door that
+    // we can't pass then change direction.
+    // BFS from current location to next key.
+    
     private Node _start;
     private char[] _keys;
     private int _keysFound;
