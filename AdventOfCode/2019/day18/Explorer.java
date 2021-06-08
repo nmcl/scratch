@@ -7,12 +7,10 @@
 
 public class Explorer
 {
-    public static final int MAXIMUM_KEYS = 26;
-
-    public Explorer (Node start, boolean debug)
+    public Explorer (Map theMap, boolean debug)
     {
-        _start = start;
-        _keys = new char[MAXIMUM_KEYS];
+        _theMap = theMap;
+        _keys = new char[_theMap.numberOfKeys()];
         _keysFound = 0;
         _debug = debug;
     }
@@ -48,7 +46,7 @@ public class Explorer
      * However, it's not critical at this stage.
      */
 
-    private Node _start;
+    private Map _theMap;
     private char[] _keys;
     private int _keysFound;
     private boolean _debug;
