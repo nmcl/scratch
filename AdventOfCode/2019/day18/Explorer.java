@@ -43,8 +43,10 @@ public class Explorer
          */
     }
 
-    // Encode the key set as a bitmask to make comparisons fast.
-
+    /*
+     * Could encode the key set as a bitmask to make comparisons fast.
+     * However, it's not critical at this stage.
+     */
 
     private Node _start;
     private char[] _keys;
