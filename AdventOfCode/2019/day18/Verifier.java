@@ -29,6 +29,10 @@ public class Verifier
 
         System.out.println("Starting point in graph: "+start);
         
+        Explorer exp = new Explorer(theMap, _debug);
+
+        System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+
         return false;
     }
 
