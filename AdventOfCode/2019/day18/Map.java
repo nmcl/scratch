@@ -10,6 +10,8 @@ public class Map
     {
         _theMap = new Vector<Cell>();
         _nodeMap = null;
+        _numberOfKeys = 0;
+        _numberOfDoors = 0;
         _debug = debug;
 
         createMap(input);
@@ -149,5 +151,7 @@ public class Map
     private int _maxX;
     private int _maxY;
     private Coordinate _entrance;
+    private int _numberOfKeys;
+    private int _numberOfDoors;
     private boolean _debug;
 }
