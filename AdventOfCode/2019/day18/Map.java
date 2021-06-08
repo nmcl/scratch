@@ -70,6 +70,16 @@ public class Map
 
                 if (theCell.isEntrance())
                     _entrance = theCell.position();  // should be only one!
+                else
+                {
+                    if (theCell.isKey())
+                        _numberOfKeys++;
+                    else
+                    {
+                        if (theCell.isDoor())
+                            _numberOfDoors++;
+                    }
+                }
 
                 if (_debug)
                     System.out.println(theCell);
