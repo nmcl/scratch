@@ -85,7 +85,10 @@ public class Map
                     if (theCell.isKey())
                         _keys.add(theCell.getContents());
                     else
-                        _doors.add(theCell.getContents());
+                    {
+                        if (theCell.isDoor())
+                            _doors.add(theCell.getContents());
+                    }
                 }
 
                 if (_debug)
@@ -170,7 +173,5 @@ public class Map
     private Coordinate _entrance;
     private Vector<Character> _keys;
     private Vector<Character> _doors;
-    private int _numberOfKeys;
-    private int _numberOfDoors;
     private boolean _debug;
 }
