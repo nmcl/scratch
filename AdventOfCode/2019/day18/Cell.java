@@ -26,6 +26,11 @@ public class Cell
         return _coord;
     }
 
+    public void setContents (char c)
+    {
+        _contents = c;
+    }
+
     public boolean isEntrance ()
     {
         return (_contents == CellId.ENTRANCE);
