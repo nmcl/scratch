@@ -27,6 +27,16 @@ public class Map
         return createGraph();
     }
 
+    public int numberOfDoors ()
+    {
+        return _numberOfDoors;
+    }
+
+    public int numberOfKeys ()
+    {
+        return _numberOfKeys;
+    }
+    
     @Override
     public String toString ()
     {
