@@ -10,8 +10,8 @@ public class Map
     {
         _theMap = new Vector<Cell>();
         _nodeMap = null;
-        _keys = null;
-        _doors = null;
+        _keys = new Vector<Character>();
+        _doors = new Vector<Character>();
         _debug = debug;
 
         createMap(input);
@@ -29,12 +29,12 @@ public class Map
 
     public int numberOfDoors ()
     {
-        return ((_doors == null) ? 0 : _doors.length);
+        return _doors.size();
     }
 
     public int numberOfKeys ()
     {
-        return ((_keys == null) ? 0 : _keys.length);
+        return _keys.size();
     }
 
     @Override
@@ -64,8 +64,6 @@ public class Map
     private void createMap (Vector<String> input)
     {
         Enumeration<String> iter = input.elements();
-        Vector<char> doors = new Vector<char>();
-        Vector<char> keys = new Vector<char>();
         int y = -1;
 
         _maxX = input.get(0).length(); // all lines are the same length
@@ -85,12 +83,9 @@ public class Map
                 else
                 {
                     if (theCell.isKey())
-                        _numberOfKeys++;
+                        _keys.add(theCell.getContents());
                     else
-                    {
-                        if (theCell.isDoor())
-                            _numberOfDoors++;
-                    }
+                        _doors.add(theCell.getContents());
                 }
 
                 if (_debug)
@@ -173,8 +168,8 @@ public class Map
     private int _maxX;
     private int _maxY;
     private Coordinate _entrance;
-    private char[] _keys;
-    private char[] _doors;
+    private Vector<Character> _keys;
+    private Vector<Character> _doors;
     private int _numberOfKeys;
     private int _numberOfDoors;
     private boolean _debug;
