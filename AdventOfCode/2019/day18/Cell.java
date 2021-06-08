@@ -21,14 +21,14 @@ public class Cell
         return _contents;
     }
 
-    public final Coordinate position ()
-    {
-        return _coord;
-    }
-
     public void setContents (char c)
     {
         _contents = c;
+    }
+
+    public final Coordinate position ()
+    {
+        return _coord;
     }
 
     public boolean isEntrance ()
