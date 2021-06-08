@@ -38,12 +38,12 @@ public class Cell
 
     public boolean isDoor ()
     {
-        return Character.isLowerCase(_contents);
+        return Character.isUpperCase(_contents);
     }
 
     public boolean isKey ()
     {
-        return Character.isUpperCase(_contents);
+        return Character.isLowerCase(_contents);
     }
 
     public boolean isWall ()
