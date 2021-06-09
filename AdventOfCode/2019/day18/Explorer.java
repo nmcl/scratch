@@ -33,14 +33,6 @@ public class Explorer
             return "No keys found.";
     }
 
-    private void backtrack ()
-    {
-        /*
-         * Decrement the number of steps as we go
-         * back on our path.
-         */
-    }
-
     /*
      * Could encode the key set as a bitmask to make comparisons fast.
      * However, it's not critical at this stage.
