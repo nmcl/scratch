@@ -33,6 +33,8 @@ public class Explorer
             return "No keys found.";
     }
 
+    // imsert Maze mapper?
+    
     /*
      * Could encode the key set as a bitmask to make comparisons fast.
      * However, it's not critical at this stage.
