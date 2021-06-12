@@ -66,7 +66,7 @@ public class Map
         Enumeration<String> iter = input.elements();
         int y = -1;
 
-        _maxX = input.get(0).length(); // all lines are the same length
+        _maxX = input.get(0).length(); // all lines are the same length (check?)
 
         while (iter.hasMoreElements())
         {
