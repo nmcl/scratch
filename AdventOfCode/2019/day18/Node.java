@@ -10,16 +10,36 @@ public class Node
         _theCell = theCell;
     }
 
-    public boolean getVisited ()
+    public boolean hasBeenVisited ()
     {
         return _visited;
     }
 
-    public void setVisited ()
+    public void markAsVisited ()
     {
         _visited = true;
     }
     
+    public Node getUp ()
+    {
+        return _up;
+    }
+
+    public Node getDown ()
+    {
+        return _down;
+    }
+
+    public Node getLeft ()
+    {
+        return _left;
+    }
+
+    public Node getRight ()
+    {
+        return _right;
+
+    }
     public void setLinks (Node up, Node down, Node left, Node right)
     {
         _up = up;
