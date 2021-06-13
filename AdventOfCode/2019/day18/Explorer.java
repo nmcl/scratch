@@ -36,8 +36,9 @@ public class Explorer
         Node start = _theMap.getStartingNode();
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
 
-        System.out.println("Starting at "+start);
+        System.out.println("Starting at "+start.getCell());
 
+        start.markAsVisited();
         traverse(start, queue);
 
         while (!queue.isEmpty())
@@ -58,7 +59,7 @@ public class Explorer
 
         if (next != null)
         {
-            System.out.println("Visiting up: "+next);
+            System.out.println("Visiting up: "+next.getCell());
 
             next.markAsVisited();
 
@@ -69,7 +70,7 @@ public class Explorer
 
         if (next != null)
         {
-            System.out.println("Visiting down: "+next);
+            System.out.println("Visiting down: "+next.getCell());
 
             next.markAsVisited();
 
@@ -80,7 +81,7 @@ public class Explorer
 
         if (next != null)
         {
-            System.out.println("Visiting left: "+next);
+            System.out.println("Visiting left: "+next.getCell());
 
             next.markAsVisited();
 
@@ -91,7 +92,7 @@ public class Explorer
 
         if (next != null)
         {
-            System.out.println("Visiting right: "+next);
+            System.out.println("Visiting right: "+next.getCell());
 
             next.markAsVisited();
 
