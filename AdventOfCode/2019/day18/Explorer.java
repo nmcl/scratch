@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
  * We need to get all of the keys. We only need to open doors if they prevent
  * us from getting to a key.
@@ -31,9 +33,18 @@ public class Explorer
 
     public void moveAroundMap ()  // May move this to a test class (derived from Explorer)
     {
+        Node start = _theMap.getStartingNode();
+        ArrayDeque<Node> queue = new ArrayDeque<Node>();
 
+        System.out.println("Starting at "+start);
+
+        queue.add(start);
     }
-     
+    
+    private boolean traverse (Node curr, ArrayDeque<Node> queue)
+    {
+        
+    }
 
     @Override
     public String toString ()
