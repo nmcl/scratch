@@ -38,7 +38,12 @@ public class Explorer
 
         System.out.println("Starting at "+start);
 
-        queue.add(start);
+        traverse(start, queue);
+
+        while (!queue.isEmpty())
+        {
+            traverse(queue.remove(), queue);
+        }
     }
     
     /*
@@ -47,12 +52,51 @@ public class Explorer
      * (iii) - Repeat (i) and (ii) until the queue is empty.
      */
 
-    private boolean traverse (Node curr, ArrayDeque<Node> queue)
+    private void traverse (Node curr, ArrayDeque<Node> queue)
     {
         Node next = curr.tryAdjacentNode(Node.UP_NODE);
 
-        if (next)
-        queue.add(curr);
+        if (next != null)
+        {
+            System.out.println("Visiting up: "+next);
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
+
+        next = curr.tryAdjacentNode(Node.DOWN_NODE);
+
+        if (next != null)
+        {
+            System.out.println("Visiting down: "+next);
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
+
+        next = curr.tryAdjacentNode(Node.LEFT_NODE);
+
+        if (next != null)
+        {
+            System.out.println("Visiting left: "+next);
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
+
+        next = curr.tryAdjacentNode(Node.RIGHT_NODE);
+
+        if (next != null)
+        {
+            System.out.println("Visiting right: "+next);
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
     }
 
     @Override
