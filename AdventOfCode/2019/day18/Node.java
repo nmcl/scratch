@@ -5,6 +5,11 @@
 
 public class Node
 {
+    public static final int UP_NODE = 0;
+    public static final int DOWN_NODE = 1;
+    public static final int LEFT_NODE = 2;
+    public static final int RIGHT_NODE = 3;
+
     public Node (Cell theCell)
     {
         _theCell = theCell;
@@ -20,32 +25,60 @@ public class Node
         _visited = true;
     }
     
-    public Node getUp ()
+    public Node tryAdjacentNode (int direction)
     {
-        return _up;
+        Node nextNode = null;
+
+        switch (direction)
+        {
+            case UP_NODE:
+                nextNode = _up;
+                break;
+            case DOWN_NODE:
+                nextNode = _down;
+                break;
+            case LEFT_NODE:
+                nextNode = _left;
+                break;
+            case RIGHT_NODE:
+            default:  // assumption! could give error message
+                nextNode = _right;
+                break;
+        }
+        
+        if (nextNode != null)
+        {
+            if (!nextNode.hasBeenVisited())
+            {
+                if (nextNode.traversable())
+                    return nextNode;
+            }
+        }
+
+        return null;
     }
 
-    public Node getDown ()
-    {
-        return _down;
-    }
-
-    public Node getLeft ()
-    {
-        return _left;
-    }
-
-    public Node getRight ()
-    {
-        return _right;
-
-    }
     public void setLinks (Node up, Node down, Node left, Node right)
     {
         _up = up;
         _down = down;
         _left = left;
         _right = right;
+    }
+
+    /*
+     * Only check space is not a wall (for now).
+     */
+
+    public boolean traversable ()
+    {
+        if (_theCell != null)
+        {
+            if (!_theCell.isWall())
+                return true;
+        }
+
+        return false;
     }
 
     public Cell getCell ()
