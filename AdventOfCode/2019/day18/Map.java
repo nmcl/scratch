@@ -24,6 +24,9 @@ public class Map
 
     public Node getStartingNode ()
     {
+        if (_nodeMap != null)
+            return _nodeMap[_entrance.getX()][_entrance.getY()];
+
         return createGraph();
     }
 
@@ -101,13 +104,14 @@ public class Map
         _maxY = y+1;
     }
 
-     // from the map create a graph
+     /*
+      * From the map create a graph.
+      *
+      * Note, at the moment we don't use the graph!
+      */
 
      private Node createGraph ()  // temporary public for testing!
      {
-         if (_nodeMap != null)
-            return _nodeMap[_entrance.getX()][_entrance.getY()];
-
          Enumeration<Cell> iter = _theMap.elements();
          int x = 0;
          int y = 0;
