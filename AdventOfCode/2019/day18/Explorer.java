@@ -43,13 +43,16 @@ public class Explorer
     
     /*
      * (i)   - Visit the adjacent unvisited Node. Mark it as visited. Print contents. Insert it in the queue.
-     * (ii)  − If no adjacent Node is found, remove the first Node from the queue unless empty, when we stop.
-     * (iii) - Repeat (i)and (ii) until the queue is empty.
+     * (ii)  − If no adjacent Node is found, remove the first Node from the queue if possible.
+     * (iii) - Repeat (i) and (ii) until the queue is empty.
      */
 
     private boolean traverse (Node curr, ArrayDeque<Node> queue)
     {
+        Node next = curr.tryAdjacentNode(Node.UP_NODE);
 
+        if (next)
+        queue.add(curr);
     }
 
     @Override
