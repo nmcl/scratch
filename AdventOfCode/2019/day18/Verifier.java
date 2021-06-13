@@ -33,8 +33,10 @@ public class Verifier
 
         System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
 
-        exp.moveAroundMap();
+        System.out.println("\nTraversing map ...");
         
+        exp.moveAroundMap();
+
         return false;
     }
 
