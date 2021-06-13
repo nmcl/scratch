@@ -24,6 +24,17 @@ public class Explorer
         _debug = debug;
     }
 
+    /*
+     * May insert Maze mapper from previous Days. But for now
+     * let's see what a BF search produces.
+     */
+
+    public void moveAroundMap ()  // May move this to a test class (derived from Explorer)
+    {
+
+    }
+     
+
     @Override
     public String toString ()
     {
@@ -42,8 +53,6 @@ public class Explorer
             return "No keys found.";
     }
 
-    // imsert Maze mapper?
-    
     /*
      * Could encode the key set as a bitmask to make comparisons fast.
      * However, it's not critical at this stage.
