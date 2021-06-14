@@ -106,8 +106,6 @@ public class Map
 
      /*
       * From the map create a graph.
-      *
-      * Note, at the moment we don't use the graph!
       */
 
      private Node createGraph ()  // temporary public for testing!
