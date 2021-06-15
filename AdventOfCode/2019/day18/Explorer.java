@@ -38,7 +38,7 @@ public class Explorer
 
         System.out.println("Starting at "+start.getCell());
 
-        start.markAsVisited();
+        start.markAsVisited();  // we start here but don't add to queue
         traverse(start, queue);
 
         while (!queue.isEmpty())
