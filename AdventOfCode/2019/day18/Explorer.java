@@ -147,6 +147,16 @@ public class Explorer
         return null;
     }
 
+    private boolean hasKeyForDoor (char door)
+    {
+        for (int i = 0; i < _keys.length; i++)
+        {
+            if (((int)_keys[i] - (int)door) == CellId.DOOR_CODE)
+                return true;
+        }
+
+        return false;
+    }
 
     /*
      * Could encode the key set as a bitmask to make comparisons fast.
