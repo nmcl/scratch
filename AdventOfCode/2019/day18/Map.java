@@ -30,6 +30,11 @@ public class Map
         return createGraph();
     }
 
+    public void reset ()
+    {
+        
+    }
+
     public int numberOfDoors ()
     {
         return _doors.size();
