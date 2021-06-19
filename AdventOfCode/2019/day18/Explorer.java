@@ -23,6 +23,7 @@ public class Explorer
         _theMap = theMap;
         _keys = new char[_theMap.numberOfKeys()];
         _keysFound = 0;
+        _currentLocation = _theMap.getStartingNode();
         _debug = debug;
     }
 
@@ -38,13 +39,12 @@ public class Explorer
     * - each time we find a key, reset the starting point
     */
 
-    public void moveAroundMap ()  // May move this to a test class (derived from Explorer)
+    public void findKeys ()  // May move this to a test class (derived from Explorer)
     {
         Node start = _theMap.getStartingNode();
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
-        String path = start.getCell().getContents();
 
-        System.out.println("Starting at "+path);
+        System.out.println("Starting at "+start.getCell().getContents());
 
         start.markAsVisited();  // we start here but don't add to queue
         traverse(start, queue);
@@ -156,5 +156,6 @@ public class Explorer
     private Map _theMap;
     private char[] _keys;
     private int _keysFound;
+    private Node _currentLocation;
     private boolean _debug;
 }
