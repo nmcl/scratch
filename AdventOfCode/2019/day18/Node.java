@@ -57,11 +57,7 @@ public class Node
         _right = right;
     }
 
-    /*
-     * Only check space is not a wall (for now).
-     */
-
-    public boolean traversable ()
+    public boolean isWall ()
     {
         if (_theCell != null)
         {
