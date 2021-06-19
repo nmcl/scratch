@@ -139,8 +139,11 @@ public class Explorer
         {
             if (!nextNode.hasBeenVisited())
             {
-                if (nextNode.traversable())
-                    return nextNode;
+                if (nextNode.getCell() != null)
+                {
+                    if (!nextNode.getCell().isWall())
+                        return nextNode;
+                }
             }
         }
 
