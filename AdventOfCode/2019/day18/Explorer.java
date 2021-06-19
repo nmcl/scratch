@@ -24,6 +24,7 @@ public class Explorer
         _keys = new char[_theMap.numberOfKeys()];
         _keysFound = 0;
         _currentLocation = _theMap.getStartingNode();
+        _numberOfSteps = 0;
         _debug = debug;
     }
 
@@ -39,7 +40,7 @@ public class Explorer
     * - each time we find a key, reset the starting point
     */
 
-    public void findKeys ()  // May move this to a test class (derived from Explorer)
+    public int findKeys ()  // May move this to a test class (derived from Explorer)
     {
         Node start = _theMap.getStartingNode();
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
@@ -53,6 +54,8 @@ public class Explorer
         {
             traverse(queue.remove(), queue);
         }
+
+        return _numberOfSteps;
     }
     
     @Override
@@ -157,5 +160,6 @@ public class Explorer
     private char[] _keys;
     private int _keysFound;
     private Node _currentLocation;
+    private int _numberOfSteps;
     private boolean _debug;
 }
