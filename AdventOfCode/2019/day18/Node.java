@@ -57,17 +57,6 @@ public class Node
         _right = right;
     }
 
-    public boolean isWall ()
-    {
-        if (_theCell != null)
-        {
-            if (!_theCell.isWall())
-                return true;
-        }
-
-        return false;
-    }
-
     public Cell getCell ()
     {
         return _theCell;
