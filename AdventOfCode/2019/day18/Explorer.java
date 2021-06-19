@@ -26,17 +26,25 @@ public class Explorer
         _debug = debug;
     }
 
-    /*
-     * May insert Maze mapper from previous Days. But for now
-     * let's see what a BF search produces.
-     */
+   /*
+    * Algorithm:
+    *
+    * - initial starting point @
+    * - move to find key
+    * - if we hit a door ...
+    *      if we have the key, keep going
+    *      if we do not have the key, we can't get through the door so we
+    *      need to stop going in that direction and find the key.
+    * - each time we find a key, reset the starting point
+    */
 
     public void moveAroundMap ()  // May move this to a test class (derived from Explorer)
     {
         Node start = _theMap.getStartingNode();
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
+        String path = start.getCell().getContents();
 
-        System.out.println("Starting at "+start.getCell());
+        System.out.println("Starting at "+path);
 
         start.markAsVisited();  // we start here but don't add to queue
         traverse(start, queue);
@@ -73,13 +81,18 @@ public class Explorer
 
     private void traverse (Node curr, ArrayDeque<Node> queue)
     {
-        Node next = tryAdjacentNode(curr, Node.UP_NODE);
+        Node next = tryAdjacentNode(curr, Node.UP_NODE);  // only return non-null if not visited
 
         if (next != null)
         {
             System.out.println("Visiting up: "+curr.getCell().getContents()+" "+next.getCell().getContents());
 
             next.markAsVisited();
+
+            if (next.getCell().isKey())
+            {
+
+            }
 
             queue.add(next);
         }
