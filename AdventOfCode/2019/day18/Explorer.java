@@ -32,17 +32,19 @@ public class Explorer
     * Algorithm:
     *
     * - initial starting point @
-    * - move to find key
+    * - move to find next key
     * - if we hit a door ...
     *      if we have the key, keep going
     *      if we do not have the key, we can't get through the door so we
     *      need to stop going in that direction and find the key.
-    * - each time we find a key, reset the starting point
+    * - each time we find a key, reset the starting point and remember
+    *   to reset the visited bit in each Node.
+    * - keep going until we hit a door or find all keys
     */
 
     public int findKeys ()  // May move this to a test class (derived from Explorer)
     {
-        Node start = _theMap.getStartingNode();
+        Node start = _currentLocation;
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
 
         System.out.println("Starting at "+start.getCell().getContents());
@@ -91,11 +93,6 @@ public class Explorer
             System.out.println("Visiting up: "+curr.getCell().getContents()+" "+next.getCell().getContents());
 
             next.markAsVisited();
-
-            if (next.getCell().isKey())
-            {
-
-            }
 
             queue.add(next);
         }
