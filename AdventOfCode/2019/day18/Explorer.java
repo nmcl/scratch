@@ -47,59 +47,6 @@ public class Explorer
         }
     }
     
-    /*
-     * (i)   - Visit the adjacent unvisited Node. Mark it as visited. Print contents. Insert it in the queue.
-     * (ii)  − If no adjacent Node is found, remove the first Node from the queue if possible.
-     * (iii) - Repeat (i) and (ii) until the queue is empty.
-     */
-
-    private void traverse (Node curr, ArrayDeque<Node> queue)
-    {
-        Node next = curr.tryAdjacentNode(Node.UP_NODE);
-
-        if (next != null)
-        {
-            System.out.println("Visiting up: "+curr.getCell().getContents()+" "+next.getCell().getContents());
-
-            next.markAsVisited();
-
-            queue.add(next);
-        }
-
-        next = curr.tryAdjacentNode(Node.DOWN_NODE);
-
-        if (next != null)
-        {
-            System.out.println("Visiting down: "+curr.getCell().getContents()+" "+next.getCell().getContents());
-
-            next.markAsVisited();
-
-            queue.add(next);
-        }
-
-        next = curr.tryAdjacentNode(Node.LEFT_NODE);
-
-        if (next != null)
-        {
-            System.out.println("Visiting left: "+curr.getCell().getContents()+" "+next.getCell().getContents());
-
-            next.markAsVisited();
-
-            queue.add(next);
-        }
-
-        next = curr.tryAdjacentNode(Node.RIGHT_NODE);
-
-        if (next != null)
-        {
-            System.out.println("Visiting right: "+curr.getCell().getContents()+" "+next.getCell().getContents());
-
-            next.markAsVisited();
-
-            queue.add(next);
-        }
-    }
-
     @Override
     public String toString ()
     {
@@ -117,6 +64,76 @@ public class Explorer
         else
             return "No keys found.";
     }
+
+    /*
+     * (i)   - Visit the adjacent unvisited Node. Mark it as visited. Print contents. Insert it in the queue.
+     * (ii)  − If no adjacent Node is found, remove the first Node from the queue if possible.
+     * (iii) - Repeat (i) and (ii) until the queue is empty.
+     */
+
+    private void traverse (Node curr, ArrayDeque<Node> queue)
+    {
+        Node next = tryAdjacentNode(curr, Node.UP_NODE);
+
+        if (next != null)
+        {
+            System.out.println("Visiting up: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
+
+        next = tryAdjacentNode(curr, Node.DOWN_NODE);
+
+        if (next != null)
+        {
+            System.out.println("Visiting down: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
+
+        next = tryAdjacentNode(curr, Node.LEFT_NODE);
+
+        if (next != null)
+        {
+            System.out.println("Visiting left: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
+
+        next = tryAdjacentNode(curr, Node.RIGHT_NODE);
+
+        if (next != null)
+        {
+            System.out.println("Visiting right: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+
+            next.markAsVisited();
+
+            queue.add(next);
+        }
+    }
+
+    private Node tryAdjacentNode (Node curr, int direction)
+    {
+        Node nextNode = curr.getAdjacentNode(direction);
+
+        if (nextNode != null)
+        {
+            if (!nextNode.hasBeenVisited())
+            {
+                if (nextNode.traversable())
+                    return nextNode;
+            }
+        }
+
+        return null;
+    }
+
 
     /*
      * Could encode the key set as a bitmask to make comparisons fast.

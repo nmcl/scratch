@@ -25,7 +25,7 @@ public class Node
         _visited = true;
     }
     
-    public Node tryAdjacentNode (int direction)
+    public Node getAdjacentNode (int direction)
     {
         Node nextNode = null;
 
@@ -46,16 +46,7 @@ public class Node
                 break;
         }
         
-        if (nextNode != null)
-        {
-            if (!nextNode.hasBeenVisited())
-            {
-                if (nextNode.traversable())
-                    return nextNode;
-            }
-        }
-
-        return null;
+        return nextNode;
     }
 
     public void setLinks (Node up, Node down, Node left, Node right)
