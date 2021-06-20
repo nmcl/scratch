@@ -94,6 +94,8 @@ public class Explorer
 
             next.markAsVisited();
 
+            if (next.getCell().isDoor())
+
             queue.add(next);
         }
 
@@ -142,7 +144,9 @@ public class Explorer
                 if (nextNode.getCell() != null)
                 {
                     if (!nextNode.getCell().isWall())
+                    {
                         return nextNode;
+                    }
                 }
             }
         }
@@ -152,10 +156,16 @@ public class Explorer
 
     private boolean hasKeyForDoor (char door)
     {
+        System.out.println("Found door "+door);
+
         for (int i = 0; i < _keys.length; i++)
         {
             if (((int)_keys[i] - (int)door) == CellId.DOOR_CODE)
+            {
+                System.out.println("Have key "+_keys[i]);
+
                 return true;
+            }
         }
 
         return false;
