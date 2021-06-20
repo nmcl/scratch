@@ -137,6 +137,13 @@ public class Explorer
     {
         Node nextNode = curr.getAdjacentNode(direction);
 
+        /*
+         * If it's a wall then we can't move in that direction.
+         * If it's a key, then grab it.
+         * If it's a door, we check to see if we have the right key
+         * and if not, we don't move in that direction for now.
+         */
+
         if (nextNode != null)
         {
             if (!nextNode.hasBeenVisited())
@@ -145,7 +152,7 @@ public class Explorer
                 {
                     if (!nextNode.getCell().isWall())
                     {
-  
+                        
                         return nextNode;
                     }
                 }
