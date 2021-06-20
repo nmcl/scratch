@@ -94,7 +94,7 @@ public class Explorer
 
             next.markAsVisited();
 
-            if (next.getCell().isDoor())
+            // if a door or key we could change content to . afterwards
 
             queue.add(next);
         }
@@ -145,6 +145,7 @@ public class Explorer
                 {
                     if (!nextNode.getCell().isWall())
                     {
+  
                         return nextNode;
                     }
                 }
