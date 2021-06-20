@@ -28,6 +28,24 @@ public class Explorer
         _debug = debug;
     }
 
+    @Override
+    public String toString ()
+    {
+        if (_keysFound > 0)
+        {
+            String str = "Keys found: ";
+
+            for (int i = 0; i < _keysFound; i++)
+            {
+                str += ", "+_keys[i];
+            }
+
+            return str;
+        }
+        else
+            return "No keys found.";
+    }
+
    /*
     * Algorithm:
     *
@@ -58,24 +76,6 @@ public class Explorer
         }
 
         return _numberOfSteps;
-    }
-    
-    @Override
-    public String toString ()
-    {
-        if (_keysFound > 0)
-        {
-            String str = "Keys found: ";
-
-            for (int i = 0; i < _keysFound; i++)
-            {
-                str += ", "+_keys[i];
-            }
-
-            return str;
-        }
-        else
-            return "No keys found.";
     }
 
     /*
