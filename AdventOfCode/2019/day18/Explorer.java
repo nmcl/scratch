@@ -67,6 +67,7 @@ public class Explorer
 
         System.out.println("Starting at "+start.getCell().getContents());
 
+        start.markAsVisited();
         queue.add(start);
 
         while (!queue.isEmpty())
