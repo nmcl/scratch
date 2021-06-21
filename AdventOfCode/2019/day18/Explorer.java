@@ -66,14 +66,6 @@ public class Explorer
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
 
         System.out.println("Starting at "+start.getCell().getContents());
-/*
-        start.markAsVisited();  // we start here but don't add to queue
-        traverse(start, queue);
-
-        while (!queue.isEmpty())
-        {
-            traverse(queue.remove(), queue);
-        }*/
 
         queue.add(start);
 
@@ -192,7 +184,7 @@ public class Explorer
                             char door = nextNode.getCell().getContents();
                             boolean haveKey = hasKeyForDoor(door);
 
-                            System.out.println("Do we have the key for door "+door+" "+haveKey);
+                            System.out.println("We "+((haveKey) ? "do" : "do not")+" have key for door "+door);
 
                             // STOP and try other direction!
 
