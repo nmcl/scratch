@@ -60,7 +60,7 @@ public class Explorer
     * - keep going until we hit a door or find all keys
     */
 
-    public int findKeys ()  // May move this to a test class (derived from Explorer)
+    public int findAllKeys ()  // May move this to a test class (derived from Explorer)
     {
         Node start = _currentLocation;
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
@@ -159,6 +159,16 @@ public class Explorer
         {
             // can't get through the door so we need to reset.
         }
+    }
+
+    // REMEMBER _currentLocation?
+
+    private boolean findKey (char door)
+    {
+        ArrayDeque<Node> queue = new ArrayDeque<Node>();
+        boolean found = false;
+
+        // reset marked.
     }
 
     private Node tryAdjacentNode (Node curr, int direction) throws DoorLockedException
