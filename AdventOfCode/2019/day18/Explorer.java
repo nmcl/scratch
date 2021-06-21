@@ -152,6 +152,12 @@ public class Explorer
                 {
                     if (!nextNode.getCell().isWall())
                     {
+                        if (nextNode.getCell().isDoor())
+                        {
+                            char door = nextNode.getCell().getContents();
+
+                            System.out.println("Do we have the key for door "+door+" "+hasKeyForDoor(door));
+                        }
                         
                         return nextNode;
                     }
