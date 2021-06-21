@@ -35,7 +35,7 @@ public class Verifier
 
         System.out.println("\nTraversing map ...");
         
-        exp.findKeys();
+        exp.findAllKeys();
 
         System.out.println("\n");
 
@@ -54,7 +54,7 @@ public class Verifier
 
         System.out.println("\nTraversing map ...");
         
-        exp.findKeys();
+        exp.findAllKeys();
 
         return false;
     }
