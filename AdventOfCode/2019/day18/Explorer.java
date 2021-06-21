@@ -94,8 +94,6 @@ public class Explorer
 
             next.markAsVisited();
 
-            // if a door or key we could change content to . afterwards
-
             queue.add(next);
         }
 
@@ -159,8 +157,21 @@ public class Explorer
 
                             System.out.println("Do we have the key for door "+door+" "+haveKey);
 
-                            if (haveKey)
+                            // STOP and try other direction!
+
+                            if (!haveKey)
                                 return null;
+                            else
+                            {
+                                nextNode.getCell().setContents(CellId.OPEN_PASSAGE);
+                            }
+                        }
+
+                        if (nextNode.getCell().isKey())
+                        {
+                            addKey(nextNode.getCell().getContents());
+
+                            nextNode.getCell().setContents(CellId.OPEN_PASSAGE);
                         }
 
                         return nextNode;
@@ -187,6 +198,14 @@ public class Explorer
         }
 
         return false;
+    }
+
+    private void addKey (char key)
+    {
+        System.out.println("Adding key "+key);
+
+        _keys[_keysFound] = key;
+        _keysFound++;
     }
 
     /*
