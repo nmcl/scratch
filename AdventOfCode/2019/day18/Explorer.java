@@ -155,10 +155,14 @@ public class Explorer
                         if (nextNode.getCell().isDoor())
                         {
                             char door = nextNode.getCell().getContents();
+                            boolean haveKey = hasKeyForDoor(door);
 
-                            System.out.println("Do we have the key for door "+door+" "+hasKeyForDoor(door));
+                            System.out.println("Do we have the key for door "+door+" "+haveKey);
+
+                            if (haveKey)
+                                return null;
                         }
-                        
+
                         return nextNode;
                     }
                 }
