@@ -86,52 +86,82 @@ public class Explorer
 
     private void traverse (Node curr, ArrayDeque<Node> queue)
     {
-        Node next = tryAdjacentNode(curr, Node.UP_NODE);  // only return non-null if not visited
-
-        if (next != null)
+        Node next = null;
+        
+        try
         {
-            System.out.println("Visiting up: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+            next = tryAdjacentNode(curr, Node.UP_NODE);  // only return non-null if not visited
 
-            next.markAsVisited();
+            if (next != null)
+            {
+                System.out.println("Visiting up: "+curr.getCell().getContents()+" "+next.getCell().getContents());
 
-            queue.add(next);
+                next.markAsVisited();
+
+                queue.add(next);
+            }
+        }
+        catch (DoorLockedException ex)
+        {
+            // can't get through the door so we need to reset.
         }
 
-        next = tryAdjacentNode(curr, Node.DOWN_NODE);
-
-        if (next != null)
+        try
         {
-            System.out.println("Visiting down: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+            next = tryAdjacentNode(curr, Node.DOWN_NODE);
 
-            next.markAsVisited();
+            if (next != null)
+            {
+                System.out.println("Visiting down: "+curr.getCell().getContents()+" "+next.getCell().getContents());
 
-            queue.add(next);
+                next.markAsVisited();
+
+                queue.add(next);
+            }
+        }
+        catch (DoorLockedException ex)
+        {
+            // can't get through the door so we need to reset.
         }
 
-        next = tryAdjacentNode(curr, Node.LEFT_NODE);
-
-        if (next != null)
+        try
         {
-            System.out.println("Visiting left: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+            next = tryAdjacentNode(curr, Node.LEFT_NODE);
 
-            next.markAsVisited();
+            if (next != null)
+            {
+                System.out.println("Visiting left: "+curr.getCell().getContents()+" "+next.getCell().getContents());
 
-            queue.add(next);
+                next.markAsVisited();
+
+                queue.add(next);
+            }
+        }
+        catch (DoorLockedException ex)
+        {
+            // can't get through the door so we need to reset.
         }
 
-        next = tryAdjacentNode(curr, Node.RIGHT_NODE);
-
-        if (next != null)
+        try
         {
-            System.out.println("Visiting right: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+            next = tryAdjacentNode(curr, Node.RIGHT_NODE);
 
-            next.markAsVisited();
+            if (next != null)
+            {
+                System.out.println("Visiting right: "+curr.getCell().getContents()+" "+next.getCell().getContents());
 
-            queue.add(next);
+                next.markAsVisited();
+
+                queue.add(next);
+            }
+        }
+        catch (DoorLockedException ex)
+        {
+            // can't get through the door so we need to reset.
         }
     }
 
-    private Node tryAdjacentNode (Node curr, int direction)
+    private Node tryAdjacentNode (Node curr, int direction) throws DoorLockedException
     {
         Node nextNode = curr.getAdjacentNode(direction);
 
@@ -160,7 +190,7 @@ public class Explorer
                             // STOP and try other direction!
 
                             if (!haveKey)
-                                return null;
+                                throw new DoorLockedException("No key for door "+door);
                             else
                             {
                                 nextNode.getCell().setContents(CellId.OPEN_PASSAGE);
