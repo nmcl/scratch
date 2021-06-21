@@ -169,6 +169,8 @@ public class Explorer
         boolean found = false;
 
         // reset marked.
+
+        return found;
     }
 
     private Node tryAdjacentNode (Node curr, int direction) throws DoorLockedException
