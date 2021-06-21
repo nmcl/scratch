@@ -167,6 +167,10 @@ public class Explorer
      * From the current location, start searching for the specific
      * key. We do this because we ran into a door through which we 
      * can't go at the moment.
+     * 
+     * Then pick up from the position we got the key and keep searching
+     * for the rest of the keys, i.e., don't go back to the door until
+     * we run into it again.
      */
 
     private boolean findKey (char door)
