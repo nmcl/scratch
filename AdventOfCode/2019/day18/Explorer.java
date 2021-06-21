@@ -66,9 +66,16 @@ public class Explorer
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
 
         System.out.println("Starting at "+start.getCell().getContents());
-
+/*
         start.markAsVisited();  // we start here but don't add to queue
         traverse(start, queue);
+
+        while (!queue.isEmpty())
+        {
+            traverse(queue.remove(), queue);
+        }*/
+
+        queue.add(start);
 
         while (!queue.isEmpty())
         {
