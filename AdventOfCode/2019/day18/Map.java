@@ -32,7 +32,11 @@ public class Map
 
     public void reset ()
     {
-        
+        for (int i = 0; i < _maxX; i++)
+        {
+            for (int j = 0; j < _maxY; j++)
+                _nodeMap[i][j].markAsNotVisited();
+        }
     }
 
     public int numberOfDoors ()
