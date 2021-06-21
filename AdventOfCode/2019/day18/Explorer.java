@@ -72,7 +72,13 @@ public class Explorer
 
         while (!queue.isEmpty())
         {
-            traverse(queue.remove(), queue);
+            Node pos = queue.remove();
+
+            _currentLocation = pos;
+
+            System.out.println("Moving on to "+_currentLocation);
+
+            traverse(pos, queue);
         }
 
         return _numberOfSteps;
@@ -160,9 +166,6 @@ public class Explorer
             // can't get through the door so we need to reset.
         }
     }
-
-    // REMEMBER _currentLocation?
-
     /*
      * From the current location, start searching for the specific
      * key. We do this because we ran into a door through which we 
@@ -181,6 +184,21 @@ public class Explorer
         // reset marked.
 
         _theMap.reset();
+
+        // need to ensure position for this sweep is right!!
+        
+        queue.insert(_currentLocation);
+
+        while (!found)
+        {
+            Node pos = queue.remove();
+
+            _currentLocation = pos;
+
+            System.out.println("Moving on to "+_currentLocation);
+
+            traverse(pos, queue);
+        }
 
         return found;
     }
