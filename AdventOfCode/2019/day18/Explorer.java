@@ -190,7 +190,7 @@ public class Explorer
                             // STOP and try other direction!
 
                             if (!haveKey)
-                                throw new DoorLockedException("No key for door "+door);
+                                throw new DoorLockedException("No key for door "+door, door);
                             else
                             {
                                 nextNode.getCell().setContents(CellId.OPEN_PASSAGE);
