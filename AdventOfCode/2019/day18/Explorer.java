@@ -94,7 +94,7 @@ public class Explorer
 
             if (next != null)
             {
-                System.out.println("Visiting up: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+                System.out.println("Visiting up from "+curr.getCell()+": "+next.getCell());
 
                 next.markAsVisited();
 
@@ -112,7 +112,7 @@ public class Explorer
 
             if (next != null)
             {
-                System.out.println("Visiting down: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+                System.out.println("Visiting down from "+curr.getCell()+": "+next.getCell());
 
                 next.markAsVisited();
 
@@ -130,7 +130,7 @@ public class Explorer
 
             if (next != null)
             {
-                System.out.println("Visiting left: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+                System.out.println("Visiting left of "+curr.getCell()+": "+next.getCell());
 
                 next.markAsVisited();
 
@@ -148,7 +148,7 @@ public class Explorer
 
             if (next != null)
             {
-                System.out.println("Visiting right: "+curr.getCell().getContents()+" "+next.getCell().getContents());
+                System.out.println("Visiting right of "+curr.getCell()+": "+next.getCell());
 
                 next.markAsVisited();
 
