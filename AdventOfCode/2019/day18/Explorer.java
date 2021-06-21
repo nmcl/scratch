@@ -163,12 +163,20 @@ public class Explorer
 
     // REMEMBER _currentLocation?
 
+    /*
+     * From the current location, start searching for the specific
+     * key. We do this because we ran into a door through which we 
+     * can't go at the moment.
+     */
+
     private boolean findKey (char door)
     {
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
         boolean found = false;
 
         // reset marked.
+
+        _theMap.reset();
 
         return found;
     }
