@@ -25,6 +25,11 @@ public class Node
         _visited = true;
     }
     
+    public void markAsNotVisited ()
+    {
+        _visited = false;
+    }
+
     public Node getAdjacentNode (int direction)
     {
         Node nextNode = null;
@@ -41,9 +46,10 @@ public class Node
                 nextNode = _left;
                 break;
             case RIGHT_NODE:
-            default:  // assumption! could give error message
                 nextNode = _right;
                 break;
+            default:
+                System.out.println("Error direction "+direction+" not recognised!");
         }
         
         return nextNode;
