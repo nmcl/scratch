@@ -186,7 +186,8 @@ public class Explorer
         _theMap.reset();
 
         // need to ensure position for this sweep is right!!
-        
+        // specifically, is it _currentLocation?
+
         queue.insert(_currentLocation);
 
         while (!found)
