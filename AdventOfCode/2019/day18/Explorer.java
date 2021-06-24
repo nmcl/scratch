@@ -90,7 +90,7 @@ public class Explorer
      * (iii) - Repeat (i) and (ii) until the queue is empty.
      */
 
-    private void traverse (Node curr, ArrayDeque<Node> queue)
+    private void traverse (Node curr, ArrayDeque<Node> queue) throws DoorLockedException
     {
         Node next = null;
         
