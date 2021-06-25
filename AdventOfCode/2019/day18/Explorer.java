@@ -78,7 +78,14 @@ public class Explorer
 
             System.out.println("Moving on to "+_currentLocation);
 
-            traverse(pos, queue);
+            try
+            {
+                traverse(pos, queue);
+            }
+            catch (DoorLockedException ex)
+            {
+                ex.printStackTrace();
+            }
         }
 
         return _numberOfSteps;
