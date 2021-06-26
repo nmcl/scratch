@@ -68,29 +68,34 @@ public class Explorer
         System.out.println("Starting at "+start.getCell().getContents());
 
         start.markAsVisited();
-        queue.add(start);
 
-        while (!queue.isEmpty())
+        /*
+         * (i)   - Visit the adjacent unvisited Node. Mark it as visited. Print contents. Insert it in the queue.
+         * (ii)  − If no adjacent Node is found, remove the first Node from the queue if possible.
+         * (iii) - Repeat (i) and (ii) until the queue is empty.
+         */
+
+        try
         {
-            Node pos = queue.remove();
+            addRoutes(start, queue);
+        }
+        catch (DoorNotFoundException ex)
+        {
+        }
 
-            _currentLocation = pos;
+        if (queue.size() > 0)
+        {
 
-            System.out.println("Moving on to "+_currentLocation);
-
-            traverse(pos, queue);
         }
 
         return _numberOfSteps;
     }
 
     /*
-     * (i)   - Visit the adjacent unvisited Node. Mark it as visited. Print contents. Insert it in the queue.
-     * (ii)  − If no adjacent Node is found, remove the first Node from the queue if possible.
-     * (iii) - Repeat (i) and (ii) until the queue is empty.
+     * Get all possible routes from the current Node. Add them to the queue.
      */
 
-    private void traverse (Node curr, ArrayDeque<Node> queue) throws DoorLockedException
+    private void addRoutes (Node curr, ArrayDeque<Node> queue) throws DoorLockedException
     {
         Node next = null;
 
