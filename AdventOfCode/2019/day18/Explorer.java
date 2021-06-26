@@ -83,6 +83,11 @@ public class Explorer
         {
         }
 
+        /*
+         * Now we have the possible routes from the start, let's
+         * iterate. Drop routes that we can't pass through (yet).
+         */
+
         while (queue.size() > 0)
         {
             Node curr = queue.remove();
