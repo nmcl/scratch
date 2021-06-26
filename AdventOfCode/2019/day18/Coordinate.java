@@ -12,6 +12,12 @@ public class Coordinate
         _y = y;
     }
 
+    public List<Coordinate> directions ()
+    {
+        return List.of(new Coordinate(_x+1, _y), new Coordinate(_x-1, _y),
+                        new Coordinate(_x, _y+1), new Coordinate(_x, _y-1));
+    }
+
     public final int getX ()
     {
         return _x;
