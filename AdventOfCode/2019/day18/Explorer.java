@@ -90,7 +90,7 @@ public class Explorer
      * (iii) - Repeat (i) and (ii) until the queue is empty.
      */
 
-    private void traverse (Node curr, ArrayDeque<Node> queue) throws DoorLockedException
+    private void traverse (Node curr, ArrayDeque<Node> queue)
     {
         Node next = null;
         
@@ -204,7 +204,7 @@ public class Explorer
         return found;
     }
 
-    private Node tryAdjacentNode (Node curr, int direction)
+    private Node tryAdjacentNode (Node curr, int direction) throws DoorLockedException
     {
         Node nextNode = curr.getAdjacentNode(direction);
 
