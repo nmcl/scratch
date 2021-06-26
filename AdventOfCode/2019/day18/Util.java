@@ -20,7 +20,7 @@ public class Util
     public static final String keycode (Set<Character> keys)
     {
         String str = "";
-        Iteractor<Character> iter = keys.iterator();
+        Iterator<Character> iter = keys.iterator();
 
         while (iter.hasNext())
         {
