@@ -21,7 +21,7 @@ public class Map
         return _entrance;
     }
 
-    public boolean validMove (Coordinate coord)
+    public boolean validPosition (Coordinate coord)
     {
         if ((coord.getX() >= 0) && (coord.getY() >= 0))
         {
@@ -40,11 +40,6 @@ public class Map
         }
 
         return false;
-    }
-
-    public int numberOfDoors ()
-    {
-        return _doors.size();
     }
 
     public int numberOfKeys ()
