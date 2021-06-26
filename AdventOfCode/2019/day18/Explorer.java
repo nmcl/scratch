@@ -78,14 +78,7 @@ public class Explorer
 
             System.out.println("Moving on to "+_currentLocation);
 
-            try
-            {
-                traverse(pos, queue);
-            }
-            catch (DoorLockedException ex)
-            {
-                ex.printStackTrace();
-            }
+            traverse(pos, queue);
         }
 
         return _numberOfSteps;
@@ -195,7 +188,7 @@ public class Explorer
         // need to ensure position for this sweep is right!!
         // specifically, is it _currentLocation?
 
-        queue.insert(_currentLocation);
+        queue.add(_currentLocation);
 
         while (!found)
         {
@@ -211,7 +204,7 @@ public class Explorer
         return found;
     }
 
-    private Node tryAdjacentNode (Node curr, int direction) throws DoorLockedException
+    private Node tryAdjacentNode (Node curr, int direction)
     {
         Node nextNode = curr.getAdjacentNode(direction);
 
