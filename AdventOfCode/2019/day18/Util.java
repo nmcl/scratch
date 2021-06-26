@@ -7,6 +7,31 @@ import java.io.*;
 
 public class Util
 {
+    public static final boolean isDoor (char content)
+    {
+        return Character.isUpperCase(content);
+    }
+
+    public static final boolean isKey (char content)
+    {
+        return Character.isLowerCase(content);
+    }
+
+    public static final String keycode (Set<Character> keys)
+    {
+        String str = "";
+        Iteractor<Character> iter = keys.iterator();
+
+        while (iter.hasNext())
+        {
+            Character c = iter.next();
+
+            str += c;
+        }
+
+        return str;
+    }
+
     public static final Vector<String> readMap (String inputFile)
     {
         /*
