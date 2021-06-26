@@ -25,10 +25,6 @@ public class Verifier
 
         System.out.println(theMap);
 
-        Node start = theMap.getStartingNode();
-
-        System.out.println("Starting point in graph: "+start);
-        
         Explorer exp = new Explorer(theMap, _debug);
 
         System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
@@ -36,25 +32,6 @@ public class Verifier
         System.out.println("\nTraversing map ...");
         
         exp.findAllKeys();
-/*
-        System.out.println("\n");
-
-        input = Util.readMap(EXAMPLE2_FILE);
-        theMap = new Map(input, _debug);
-
-        System.out.println(theMap);
-
-        start = theMap.getStartingNode();
-
-        System.out.println("Starting point in graph: "+start);
-        
-        exp = new Explorer(theMap, _debug);
-
-        System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
-
-        System.out.println("\nTraversing map ...");
-        
-        exp.findAllKeys();*/
 
         return false;
     }
