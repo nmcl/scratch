@@ -36,7 +36,7 @@ public class Verifier
         System.out.println("\nTraversing map ...");
         
         exp.findAllKeys();
-
+/*
         System.out.println("\n");
 
         input = Util.readMap(EXAMPLE2_FILE);
@@ -54,7 +54,7 @@ public class Verifier
 
         System.out.println("\nTraversing map ...");
         
-        exp.findAllKeys();
+        exp.findAllKeys();*/
 
         return false;
     }
