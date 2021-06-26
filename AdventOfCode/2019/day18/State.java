@@ -1,3 +1,5 @@
+import java.util.Set;
+
 public class State
 {
     public State (Coordinate coord, Set<Character> keys, int steps)
