@@ -55,7 +55,7 @@ public class Explorer
 
             for (Coordinate nextPosition : theState.getPosition().directions())
             {
-                if (_theMap.validPosition(nextPosition))
+                if (!_theMap.validPosition(nextPosition))
                     continue;
 
                 char content = _theMap.getContent(nextPosition);
