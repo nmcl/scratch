@@ -1,4 +1,4 @@
-import java.util.Objects;
+import java.util.*;
 
 /*
  * Represents a <x, y> coordinate for a piece of a wire.
