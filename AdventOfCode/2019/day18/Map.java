@@ -24,6 +24,9 @@ public class Map
     public char getContent (Coordinate coord)
     {
         int index = _theMap.indexOf(new Cell(coord));
+
+        System.out.println("Coord "+coord+" index "+index);
+        
         Cell theCell = _theMap.get(index);
 
         return theCell.getContents();  // assume no error
