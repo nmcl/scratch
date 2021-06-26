@@ -90,10 +90,15 @@ public class Explorer
      * (iii) - Repeat (i) and (ii) until the queue is empty.
      */
 
-    private void traverse (Node curr, ArrayDeque<Node> queue)
+    private void traverse (Node curr, ArrayDeque<Node> queue) throws DoorLockedException
     {
         Node next = null;
-        
+
+        /*
+         * Try all directions and only stop this traversal if
+         * we get locked doors throughout.
+         */
+
         try
         {
             next = tryAdjacentNode(curr, Node.UP_NODE);  // only return non-null if not visited
@@ -109,7 +114,6 @@ public class Explorer
         }
         catch (DoorLockedException ex)
         {
-            // can't get through the door so we need to reset.
         }
 
         try
@@ -127,7 +131,6 @@ public class Explorer
         }
         catch (DoorLockedException ex)
         {
-            // can't get through the door so we need to reset.
         }
 
         try
@@ -145,27 +148,20 @@ public class Explorer
         }
         catch (DoorLockedException ex)
         {
-            // can't get through the door so we need to reset.
         }
 
-        try
+        next = tryAdjacentNode(curr, Node.RIGHT_NODE);
+
+        if (next != null)
         {
-            next = tryAdjacentNode(curr, Node.RIGHT_NODE);
+            System.out.println("Visiting right of "+curr.getCell()+": "+next.getCell());
 
-            if (next != null)
-            {
-                System.out.println("Visiting right of "+curr.getCell()+": "+next.getCell());
+            next.markAsVisited();
 
-                next.markAsVisited();
-
-                queue.add(next);
-            }
-        }
-        catch (DoorLockedException ex)
-        {
-            // can't get through the door so we need to reset.
+            queue.add(next);
         }
     }
+
     /*
      * From the current location, start searching for the specific
      * key. We do this because we ran into a door through which we 
