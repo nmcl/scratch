@@ -42,6 +42,38 @@ public class Explorer
     * - keep going until we hit a door or find all keys
     */
 
+    public int findAllKeys ()
+    {
+        _states.offer(new State(_start, Collections.emptySet(), 0));
+
+        while (_states.size() > 0)
+        {
+            State state = _states.pop();
+            
+            if (_state.numberOfKeys() == _totalNumnberOfKeys)
+                return state.numberOfSteps();
+
+            for (Coordinate nextPosition : state.getPosition().directions())
+            {
+                if (!isValidPosition(nextPosition, map))
+                    continue;
+                var mapValue = nextPosition.getValueFrom(map);
+                if (isUpperCase(mapValue) && !state.keys.contains(toLowerCase(mapValue)))
+                    continue;
+                var keys = state.keys;
+                if (isLowerCase(mapValue)) {
+                    keys = new HashSet<>(keys);
+                    keys.add(mapValue);
+                }
+                var nextState = new State(nextPosition, keys, state.steps+1);
+                if (!visitedState.add(nextState.identifier))
+                    continue;
+                states.add(nextState);
+            }
+        }
+        throw new RuntimeException("Cannot find route");
+    }
+
     private Map _theMap;
     private Coordinate _start;
     private int _totalNumnberOfKeys;
