@@ -24,7 +24,7 @@ public class Explorer
         _start = _theMap.getEntrance();
         _totalNumnberOfKeys = _theMap.numberOfKeys();
         _states = new ArrayDeque<State>();
-        _visited = new Vector<State>();
+        _visited = new Vector<String>();
         _debug = debug;
     }
 
@@ -48,22 +48,22 @@ public class Explorer
 
         while (_states.size() > 0)
         {
-            State state = _states.pop();
+            State theState = _states.pop();
             
-            if (_state.numberOfKeys() == _totalNumnberOfKeys)
-                return state.numberOfSteps();
+            if (theState.numberOfKeys() == _totalNumnberOfKeys)
+                return theState.numberOfSteps();
 
-            for (Coordinate nextPosition : state.getPosition().directions())
+            for (Coordinate nextPosition : theState.getPosition().directions())
             {
                 if (_theMap.validPosition(nextPosition))
                     continue;
 
                 char content = _theMap.getContent(nextPosition);
 
-                if (Util.isDoor(content)) && !_state.hasKey(content))
+                if (Util.isDoor(content) && !theState.hasKey(content))
                     continue;
 
-                Set<Character> keys = _state.getKeys();
+                Set<Character> keys = theState.getKeys();
 
                 if (Util.isKey(content))
                 {
@@ -71,9 +71,9 @@ public class Explorer
                     keys.add(content);
                 }
 
-                State nextState = new State(nextPosition, keys, _state.numberOfSteps()+1);
+                State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
 
-                if (!_visited.add(nextState.getIdentifier())
+                if (!_visited.add(nextState.getIdentifier()))
                     continue;
 
                 _states.add(nextState);
