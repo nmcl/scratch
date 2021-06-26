@@ -79,16 +79,48 @@ public class Explorer
         {
             addRoutes(start, queue);
         }
-        catch (DoorNotFoundException ex)
+        catch (DoorLockedException ex)
         {
         }
 
-        if (queue.size() > 0)
+        while (queue.size() > 0)
         {
+            Node curr = queue.remove();
 
+            work(curr);
         }
 
         return _numberOfSteps;
+    }
+
+    private void work (Node curr)
+    {
+        ArrayDeque<Node> queue = new ArrayDeque<Node>();
+
+        System.out.println("Continuing at "+curr.getCell().getContents());
+
+        curr.markAsVisited();
+
+        /*
+         * (i)   - Visit the adjacent unvisited Node. Mark it as visited. Print contents. Insert it in the queue.
+         * (ii)  − If no adjacent Node is found, remove the first Node from the queue if possible.
+         * (iii) - Repeat (i) and (ii) until the queue is empty.
+         */
+
+        try
+        {
+            addRoutes(curr, queue);
+        }
+        catch (DoorLockedException ex)
+        {
+        }
+
+        while (queue.size() > 0)
+        {
+            Node next = queue.remove();
+
+            work(next);
+        }
     }
 
     /*
@@ -176,7 +208,7 @@ public class Explorer
      * for the rest of the keys, i.e., don't go back to the door until
      * we run into it again.
      */
-
+/*
     private boolean findKey (char door)
     {
         ArrayDeque<Node> queue = new ArrayDeque<Node>();
@@ -199,11 +231,11 @@ public class Explorer
 
             System.out.println("Moving on to "+_currentLocation);
 
-            traverse(pos, queue);
+            addRoutes(pos, queue);
         }
 
         return found;
-    }
+    }*/
 
     private Node tryAdjacentNode (Node curr, int direction) throws DoorLockedException
     {
