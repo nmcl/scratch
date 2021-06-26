@@ -55,29 +55,38 @@ public class Explorer
 
             for (Coordinate nextPosition : state.getPosition().directions())
             {
-                if (!isValidPosition(nextPosition, map))
+                if (_theMap.validPosition(nextPosition))
                     continue;
-                var mapValue = nextPosition.getValueFrom(map);
-                if (isUpperCase(mapValue) && !state.keys.contains(toLowerCase(mapValue)))
+
+                char content = _theMap.getContent(nextPosition);
+
+                if (Util.isDoor(content)) && !_state.hasKey(content))
                     continue;
-                var keys = state.keys;
-                if (isLowerCase(mapValue)) {
+
+                Set<Character> keys = _state.getKeys();
+
+                if (Util.isKey(content))
+                {
                     keys = new HashSet<>(keys);
-                    keys.add(mapValue);
+                    keys.add(content);
                 }
-                var nextState = new State(nextPosition, keys, state.steps+1);
-                if (!visitedState.add(nextState.identifier))
+
+                State nextState = new State(nextPosition, keys, _state.numberOfSteps()+1);
+
+                if (!_visited.add(nextState.getIdentifier())
                     continue;
-                states.add(nextState);
+
+                _states.add(nextState);
             }
         }
-        throw new RuntimeException("Cannot find route");
+        
+        return -1;
     }
 
     private Map _theMap;
     private Coordinate _start;
     private int _totalNumnberOfKeys;
     private ArrayDeque<State> _states;
-    private Vector<State> _visited;
+    private Vector<String> _visited;
     private boolean _debug;
 }
