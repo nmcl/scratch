@@ -21,6 +21,27 @@ public class Map
         return _entrance;
     }
 
+    public boolean validMove (Coordinate coord)
+    {
+        if ((coord.getX() >= 0) && (coord.getY() >= 0))
+        {
+            if ((coord.getX() < _maxX) && (coord.getY() < _maxY))
+            {
+                int index = _theMap.indexOf(new Cell(coord));
+
+                if (index != -1)
+                {
+                    Cell theCell = _theMap.get(index);
+
+                    if (theCell != null)
+                        return !theCell.isWall();
+                }
+            }
+        }
+
+        return false;
+    }
+
     public int numberOfDoors ()
     {
         return _doors.size();
