@@ -23,7 +23,7 @@ public class Map
 
     public char getContent (Coordinate coord)
     {
-        int index = _theMap.indexOf(new Cell(coord))
+        int index = _theMap.indexOf(new Cell(coord));
         Cell theCell = _theMap.get(index);
 
         return theCell.getContents();  // assume no error
@@ -53,6 +53,11 @@ public class Map
     public int numberOfKeys ()
     {
         return _keys.size();
+    }
+
+    public int numberOfDoors ()
+    {
+        return _doors.size();
     }
 
     @Override
@@ -94,7 +99,7 @@ public class Map
 
             for (int x = 0; x < _maxX; x++)
             {
-                Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x), _debug);
+                Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x));
 
                 if (theCell.isEntrance())
                     _entrance = theCell.position();  // should be only one!
