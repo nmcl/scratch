@@ -21,6 +21,14 @@ public class Map
         return _entrance;
     }
 
+    public char getContent (Coordinate coord)
+    {
+        int index = _theMap.indexOf(new Cell(coord))
+        Cell theCell = _theMap.get(index);
+
+        return theCell.getContents();  // assume no error
+    }
+
     public boolean validPosition (Coordinate coord)
     {
         if ((coord.getX() >= 0) && (coord.getY() >= 0))
