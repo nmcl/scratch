@@ -1,19 +1,9 @@
-/*
- * A cell in the image taken by the Camera.
- */
-
 public class Cell
 {
-    public Cell (Coordinate coord)
-    {
-        this(coord, CellId.OPEN_PASSAGE, false); // some default values
-    }
-
-    public Cell (Coordinate coord, char contents, boolean debug)
+    public Cell (Coordinate coord, char contents)
     {
         _coord = coord;
         _contents = contents;
-        _debug = debug;
     }
     
     public final char getContents ()
@@ -89,5 +79,4 @@ public class Cell
 
     private Coordinate _coord;
     private char _contents;
-    private boolean _debug;
 }
