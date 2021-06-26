@@ -1,5 +1,10 @@
 public class Cell
 {
+    public Cell (Coordinate coord)
+    {
+        this(coord, CellId.OPEN_PASSAGE);
+    }
+    
     public Cell (Coordinate coord, char contents)
     {
         _coord = coord;
