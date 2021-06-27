@@ -55,7 +55,7 @@ public class Explorer
             State theState = _states.pop();
             
             System.out.println("totalKeys "+_totalNumnberOfKeys);
-            System.out.println("State keys "+theState.numberOfSteps());
+            System.out.println("State keys "+theState.numberOfKeys());
 
             if (theState.numberOfKeys() == _totalNumnberOfKeys)
                 return theState.numberOfSteps();
@@ -94,7 +94,7 @@ public class Explorer
                     continue;
 
                 System.out.println("there");
-                
+
                 _states.add(nextState);
             }
         }
