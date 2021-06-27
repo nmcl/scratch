@@ -45,13 +45,18 @@ public class Explorer
     public int findAllKeys ()
     {
         System.out.println("starting at "+_start);
-        
+
         _states.offer(new State(_start, Collections.emptySet(), 0));
 
         while (_states.size() > 0)
         {
+            System.out.println("states size "+_states.size());
+
             State theState = _states.pop();
             
+            System.out.println("totalKeys "+_totalNumnberOfKeys);
+            System.out.println("State keys "+theState.numberOfSteps());
+
             if (theState.numberOfKeys() == _totalNumnberOfKeys)
                 return theState.numberOfSteps();
 
