@@ -62,18 +62,28 @@ public class Explorer
 
             for (Coordinate nextPosition : theState.getPosition().directions())
             {
+                System.out.println("nextPosition "+nextPosition);
+
                 if (!_theMap.validPosition(nextPosition))
                     continue;
 
+                System.out.println("valid");
+
                 char content = _theMap.getContent(nextPosition);
+
+                System.out.println("content "+content);
 
                 if (Util.isDoor(content) && !theState.hasKey(content))
                     continue;
+
+                System.out.println("here");
 
                 Set<Character> keys = theState.getKeys();
 
                 if (Util.isKey(content))
                 {
+                    System.out.println("is key");
+
                     keys = new HashSet<>(keys);
                     keys.add(content);
                 }
@@ -83,6 +93,8 @@ public class Explorer
                 if (!_visited.add(nextState.getIdentifier()))
                     continue;
 
+                System.out.println("there");
+                
                 _states.add(nextState);
             }
         }
