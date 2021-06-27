@@ -44,6 +44,8 @@ public class Explorer
 
     public int findAllKeys ()
     {
+        System.out.println("starting at "+_start);
+        
         _states.offer(new State(_start, Collections.emptySet(), 0));
 
         while (_states.size() > 0)
