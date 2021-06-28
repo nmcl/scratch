@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 /*
- * Various utilities.
+ * Various utilities. Some are fairly simple.
  */
 
 public class Util
