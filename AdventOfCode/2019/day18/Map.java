@@ -21,6 +21,10 @@ public class Map
         return _entrance;
     }
 
+    /**
+     * Return the content of the Cell represented by the Coordinate.
+     */
+
     public char getContent (Coordinate coord)
     {
         int index = _theMap.indexOf(new Cell(coord));
