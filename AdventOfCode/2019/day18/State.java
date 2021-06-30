@@ -1,5 +1,12 @@
 import java.util.Set;
 
+/*
+ * Instances of this class are used to record the current
+ * search pattern through the tunnels. We need to remember
+ * the starting point, the keys we've found and the number
+ * of steps to this stage.
+ */
+
 public class State
 {
     public State (Coordinate coord, Set<Character> keys, int steps)
