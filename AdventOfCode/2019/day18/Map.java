@@ -33,6 +33,10 @@ public class Map
         return theCell.getContents();  // assume no error
     }
 
+    /*
+     * Is this Coordinate in range and can be moved into?
+     */
+
     public boolean validPosition (Coordinate coord)
     {
         if ((coord.getX() >= 0) && (coord.getY() >= 0))
