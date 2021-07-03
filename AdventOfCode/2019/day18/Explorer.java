@@ -94,7 +94,10 @@ public class Explorer
                 State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
 
                 if (_visited.contains(nextState))
+                {
+                    System.out.println("already added");
                     continue;
+                }
                 else
                     _visited.add(nextState);
 
