@@ -44,11 +44,6 @@ public class State
         return _keys;
     }
 
-    public String getIdentifier ()
-    {
-        return _id;
-    }
-
     @Override
     public int hashCode ()
     {
@@ -75,6 +70,12 @@ public class State
         }
 
         return false;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return "State: "+_coord+", "+_id+", "+_steps;
     }
 
     private Coordinate _coord;
