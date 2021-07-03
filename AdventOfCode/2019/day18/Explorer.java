@@ -65,7 +65,10 @@ public class Explorer
                 System.out.println("nextPosition "+nextPosition);
 
                 if (!_theMap.validPosition(nextPosition))
+                {
+                    System.out.println(nextPosition+" is invalid");
                     continue;
+                }
 
                 System.out.println("valid");
 
@@ -98,7 +101,11 @@ public class Explorer
                 System.out.println("there");
 
                 _states.add(nextState);
+
+                System.out.println("Adding state "+nextState);
             }
+
+            System.out.println("State sizes here "+ _states.size());
         }
         
         System.out.println("No route found!!");
