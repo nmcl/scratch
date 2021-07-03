@@ -64,53 +64,51 @@ public class Explorer
             {
                 System.out.println("nextPosition "+nextPosition);
 
-                if (!_theMap.validPosition(nextPosition))
+                if (_theMap.validPosition(nextPosition))
                 {
-                    System.out.println(nextPosition+" is invalid");
-                    continue;
-                }
+                    System.out.println("valid");
 
-                System.out.println("valid");
+                    char content = _theMap.getContent(nextPosition);
 
-                char content = _theMap.getContent(nextPosition);
+                    System.out.println("content "+content);
 
-                System.out.println("content "+content);
+                    if (Util.isDoor(content) && !theState.hasKey(content))
+                    {
+                        System.out.println("Is a door and we don't have the key!");
+                        continue;
+                    }
 
-                if (Util.isDoor(content) && !theState.hasKey(content))
-                {
-                    System.out.println("Is a door and we don't have the key!");
-                    continue;
-                }
+                    System.out.println("here");
 
-                System.out.println("here");
+                    Set<Character> keys = theState.getKeys();
 
-                Set<Character> keys = theState.getKeys();
+                    if (Util.isKey(content))
+                    {
+                        System.out.println("is key");
 
-                if (Util.isKey(content))
-                {
-                    System.out.println("is key");
+                        keys = new HashSet<Character>(keys);
+                        keys.add(content);
+                    }
 
-                    keys = new HashSet<Character>(keys);
-                    keys.add(content);
-                }
+                    State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
 
-                State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
+                    System.out.println("nextState "+nextState);
 
-                System.out.println("nextState "+nextState);
+                    if (!_allStates.contains(nextState))
+                    {
+                        _allStates.add(nextState);
 
-                if (_allStates.contains(nextState))
-                {
-                    System.out.println("already added");
-                    continue;
+                        System.out.println("there");
+
+                        _states.add(nextState);
+
+                        System.out.println("Adding state "+nextState);
+                    }
+                    else
+                        System.out.println("already added");
                 }
                 else
-                    _allStates.add(nextState);
-
-                System.out.println("there");
-
-                _states.add(nextState);
-
-                System.out.println("Adding state "+nextState);
+                    System.out.println(nextPosition+" is invalid");
             }
 
             System.out.println("State sizes here "+ _states.size());
