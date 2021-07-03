@@ -90,6 +90,8 @@ public class Explorer
 
                 State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
 
+                System.out.println("identifier "+nextState.getIdentifier());
+                
                 if (!_visited.add(nextState.getIdentifier()))
                     continue;
 
