@@ -31,8 +31,10 @@ public class Verifier
 
         System.out.println("\nTraversing map ...");
         
-        exp.findAllKeys();
+        int steps = exp.findAllKeys();
 
+        System.out.println("Steps: "+steps);
+        
         return false;
     }
 
