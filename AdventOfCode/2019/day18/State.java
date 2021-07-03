@@ -36,7 +36,7 @@ public class State
     {
         char key = Character.toLowerCase(door);
 
-        return _keys.contains(door);
+        return _keys.contains(key);
     }
 
     public Set<Character> getKeys ()
