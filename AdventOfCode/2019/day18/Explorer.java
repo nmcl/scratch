@@ -101,6 +101,8 @@ public class Explorer
             }
         }
         
+        System.out.println("No route foudn!!");
+
         return -1;
     }
 
