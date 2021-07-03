@@ -24,7 +24,7 @@ public class Explorer
         _start = _theMap.getEntrance();
         _totalNumnberOfKeys = _theMap.numberOfKeys();
         _states = new ArrayDeque<State>();
-        _visited = new Vector<String>();
+        _visited = new Vector<State>();
         _debug = debug;
     }
 
@@ -90,10 +90,10 @@ public class Explorer
 
                 State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
 
-                System.out.println("identifier "+nextState.getIdentifier());
-                
-                if (!_visited.add(nextState.getIdentifier()))
+                if (_visited.contains(nextState))
                     continue;
+                else
+                    _visited.add(nextState);
 
                 System.out.println("there");
 
@@ -108,6 +108,6 @@ public class Explorer
     private Coordinate _start;
     private int _totalNumnberOfKeys;
     private ArrayDeque<State> _states;
-    private Vector<String> _visited;
+    private Vector<State> _visited;
     private boolean _debug;
 }
