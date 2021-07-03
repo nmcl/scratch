@@ -19,7 +19,7 @@ public class Util
 
     public static final String keycode (Set<Character> keys)
     {
-        String str = "";
+        String str = "[";
         Iterator<Character> iter = keys.iterator();
 
         while (iter.hasNext())
@@ -29,6 +29,8 @@ public class Util
             str += c;
         }
 
+        str += "]";
+        
         return str;
     }
 
