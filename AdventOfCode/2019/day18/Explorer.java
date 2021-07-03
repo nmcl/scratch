@@ -44,7 +44,8 @@ public class Explorer
 
     public int findAllKeys ()
     {
-        System.out.println("starting at "+_start);
+        if (_debug)
+            System.out.println("Starting search at "+_start);
 
         _states.offer(new State(_start, Collections.emptySet(), 0));
 
@@ -74,38 +75,40 @@ public class Explorer
 
                     if (Util.isDoor(content) && !theState.hasKey(content))
                     {
-                        System.out.println("Is a door and we don't have the key!");
-                        continue;
-                    }
-
-                    System.out.println("here");
-
-                    Set<Character> keys = theState.getKeys();
-
-                    if (Util.isKey(content))
-                    {
-                        System.out.println("is key");
-
-                        keys = new HashSet<Character>(keys);
-                        keys.add(content);
-                    }
-
-                    State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
-
-                    System.out.println("nextState "+nextState);
-
-                    if (!_allStates.contains(nextState))
-                    {
-                        _allStates.add(nextState);
-
-                        System.out.println("there");
-
-                        _states.add(nextState);
-
-                        System.out.println("Adding state "+nextState);
+                        if (_debug)
+                            System.out.println("Is a door and we don't have the key!");
                     }
                     else
-                        System.out.println("already added");
+                    {
+                        System.out.println("here");
+
+                        Set<Character> keys = theState.getKeys();
+
+                        if (Util.isKey(content))
+                        {
+                            System.out.println("is key");
+
+                            keys = new HashSet<Character>(keys);
+                            keys.add(content);
+                        }
+
+                        State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
+
+                        System.out.println("nextState "+nextState);
+
+                        if (!_allStates.contains(nextState))
+                        {
+                            _allStates.add(nextState);
+
+                            System.out.println("there");
+
+                            _states.add(nextState);
+
+                            System.out.println("Adding state "+nextState);
+                        }
+                        else
+                            System.out.println("already added");
+                    }
                 }
                 else
                     System.out.println(nextPosition+" is invalid");
