@@ -49,6 +49,34 @@ public class State
         return _id;
     }
 
+    @Override
+    public int hashCode ()
+    {
+        return _coord.hashCode();
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            State temp = (State) obj;
+
+            if (temp._coord.equals(_coord))
+            {
+                return temp._keys.containsAll(_keys);
+            }
+        }
+
+        return false;
+    }
+
     private Coordinate _coord;
     private Set<Character> _keys;
     private int _steps;
