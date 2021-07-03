@@ -24,7 +24,7 @@ public class Explorer
         _start = _theMap.getEntrance();
         _totalNumnberOfKeys = _theMap.numberOfKeys();
         _states = new ArrayDeque<State>();
-        _visited = new Vector<State>();
+        _allStates = new Vector<State>();
         _debug = debug;
     }
 
@@ -90,7 +90,7 @@ public class Explorer
                 {
                     System.out.println("is key");
 
-                    keys = new HashSet<>(keys);
+                    keys = new HashSet<Character>(keys);
                     keys.add(content);
                 }
 
@@ -98,13 +98,13 @@ public class Explorer
 
                 System.out.println("nextState "+nextState);
 
-                if (_visited.contains(nextState))
+                if (_allStates.contains(nextState))
                 {
                     System.out.println("already added");
                     continue;
                 }
                 else
-                    _visited.add(nextState);
+                    _allStates.add(nextState);
 
                 System.out.println("there");
 
@@ -125,6 +125,6 @@ public class Explorer
     private Coordinate _start;
     private int _totalNumnberOfKeys;
     private ArrayDeque<State> _states;
-    private Vector<State> _visited;
+    private Vector<State> _allStates;
     private boolean _debug;
 }
