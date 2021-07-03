@@ -77,7 +77,10 @@ public class Explorer
                 System.out.println("content "+content);
 
                 if (Util.isDoor(content) && !theState.hasKey(content))
+                {
+                    System.out.println("Is a door and we don't have the key!");
                     continue;
+                }
 
                 System.out.println("here");
 
@@ -94,7 +97,7 @@ public class Explorer
                 State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
 
                 System.out.println("nextState "+nextState);
-                
+
                 if (_visited.contains(nextState))
                 {
                     System.out.println("already added");
