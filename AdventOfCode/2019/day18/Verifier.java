@@ -33,7 +33,7 @@ public class Verifier
         
         int steps = exp.findAllKeys();
 
-        System.out.println("Steps: "+steps);
+        System.out.println("Number of steps to find all keys: "+steps);
         
         return false;
     }
