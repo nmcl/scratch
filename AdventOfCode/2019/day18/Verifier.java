@@ -42,6 +42,16 @@ public class Verifier
             theMap = new Map(input, _debug);
 
             System.out.println("\n"+theMap);
+
+            exp = new Explorer(theMap, _debug);
+
+            System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+
+            System.out.println("\nTraversing map ...");
+
+            steps = exp.findAllKeys();
+
+            System.out.println("Number of steps to find all keys: "+steps);
         }
         else
             System.out.println("Error for "+EXAMPLE1_FILE+" - number of steps: "+steps);
