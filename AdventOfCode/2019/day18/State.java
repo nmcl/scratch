@@ -1,4 +1,4 @@
-import java.util.Set;
+import java.util.*;
 
 /*
  * Instances of this class are used to record the current
@@ -9,10 +9,19 @@ import java.util.Set;
 
 public class State
 {
-    public State (State current, Character key)
+    public State (State current, Coordinate pos)
     {
-        _coord = current._coord;
+        this(current, pos, null);
+    }
+
+    public State (State current, Coordinate pos, Character key)
+    {
+        _coord = pos;
         _keys = new HashSet<Character>(current._keys);
+
+        if (key != null)
+            _keys.add(key);
+
         _steps = current._steps +1;
         _id = Util.keycode(_keys);
     }
