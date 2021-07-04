@@ -26,7 +26,7 @@ public class State
         {
             if (Util.isKey(content))
             {
-                System.out.println("is key");
+                //System.out.println("is key");
 
                 _keys.add(content);
             }
