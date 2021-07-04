@@ -47,7 +47,7 @@ public class Explorer
         if (_debug)
             System.out.println("Starting search at "+_start);
 
-        _states.offer(new State(_start, Collections.emptySet(), 0));
+        _states.offer(new State(_start));
 
         while (_states.size() > 0)
         {
@@ -82,17 +82,8 @@ public class Explorer
                     {
                         System.out.println("here");
 
-                        State nextState = null;
+                        State nextState = new State(theState, nextPosition, content);
 
-                        if (Util.isKey(content))
-                        {
-                            System.out.println("is key");
-
-                            nextState = new State(theState, nextPosition, content);
-                        }
-                        else
-                            nextState = new State(theState, nextPosition);
-                            
                         System.out.println("nextState "+nextState);
 
                         if (!_allStates.contains(nextState))
