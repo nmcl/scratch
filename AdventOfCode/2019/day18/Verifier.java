@@ -33,7 +33,18 @@ public class Verifier
         
         int steps = exp.findAllKeys();
 
-        System.out.println("Number of steps to find all keys: "+steps);
+        if (steps == EXAMPLE1_STEPS)
+        {
+            System.out.println("Number of steps to find all keys: "+steps);
+
+            input = Util.readMap(EXAMPLE2_FILE);
+
+            theMap = new Map(input, _debug);
+
+            System.out.println("\n"+theMap);
+        }
+        else
+            System.out.println("Error for "+EXAMPLE1_FILE+" - number of steps: "+steps);
         
         return false;
     }
