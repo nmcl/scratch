@@ -45,33 +45,31 @@ public class Explorer
     public int findAllKeys ()
     {
         if (_debug)
+        {
             System.out.println("Starting search at "+_start);
+            System.out.println("totalKeys "+_totalNumnberOfKeys);
+        }
 
         _states.offer(new State(_start));
 
         while (_states.size() > 0)
         {
-            System.out.println("states size "+_states.size());
-
             State theState = _states.pop();
             
-            System.out.println("totalKeys "+_totalNumnberOfKeys);
-            System.out.println("State keys "+theState.numberOfKeys());
+            if (_debug)
+                System.out.println("State keys "+theState.numberOfKeys());
 
             if (theState.numberOfKeys() == _totalNumnberOfKeys)
                 return theState.numberOfSteps();
 
             for (Coordinate nextPosition : theState.getPosition().directions())
             {
-                System.out.println("nextPosition "+nextPosition);
+                if (_debug)
+                    System.out.println("nextPosition "+nextPosition);
 
                 if (_theMap.validPosition(nextPosition))
                 {
-                    System.out.println("valid");
-
                     char content = _theMap.getContent(nextPosition);
-
-                    System.out.println("content "+content);
 
                     if (Util.isDoor(content) && !theState.hasKey(content))
                     {
@@ -80,34 +78,28 @@ public class Explorer
                     }
                     else
                     {
-                        System.out.println("here");
-
                         State nextState = new State(theState, nextPosition, content);
 
-                        System.out.println("nextState "+nextState);
+                        if (_debug)
+                            System.out.println("nextState "+nextState);
 
                         if (!_allStates.contains(nextState))
                         {
                             _allStates.add(nextState);
-
-                            System.out.println("there");
-
                             _states.add(nextState);
-
-                            System.out.println("Adding state "+nextState);
                         }
-                        else
-                            System.out.println("already added");
                     }
                 }
                 else
-                    System.out.println(nextPosition+" is invalid");
+                {
+                    if (_debug)
+                        System.out.println(nextPosition+" is invalid");
+                }
             }
-
-            System.out.println("State sizes here "+ _states.size());
         }
         
-        System.out.println("No route found!!");
+        if (_debug)
+            System.out.println("No route found!!");
 
         return -1;
     }
