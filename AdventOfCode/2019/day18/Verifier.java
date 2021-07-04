@@ -35,7 +35,7 @@ public class Verifier
 
         if (steps == EXAMPLE1_STEPS)
         {
-            System.out.println("Number of steps to find all keys: "+steps);
+            System.out.println("Verified. Number of steps to find all keys: "+steps);
 
             input = Util.readMap(EXAMPLE2_FILE);
 
@@ -51,7 +51,12 @@ public class Verifier
 
             steps = exp.findAllKeys();
 
-            System.out.println("Number of steps to find all keys: "+steps);
+            if (steps == EXAMPLE2_STEPS)
+            {
+                System.out.println("Verified. Number of steps to find all keys: "+steps);
+            }
+            else
+                System.out.println("Error for "+EXAMPLE2_FILE+" - number of steps: "+steps);
         }
         else
             System.out.println("Error for "+EXAMPLE1_FILE+" - number of steps: "+steps);
