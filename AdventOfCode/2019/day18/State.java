@@ -9,29 +9,31 @@ import java.util.*;
 
 public class State
 {
-    public State (State current, Coordinate pos)
+    public State (Coordinate coord)
     {
-        this(current, pos, null);
+        _coord = coord;
+        _keys = Collections.emptySet();
+        _steps = 0;
+        _id = Util.keycode(_keys);
     }
 
-    public State (State current, Coordinate pos, Character key)
+    public State (State current, Coordinate pos, Character content)
     {
         _coord = pos;
         _keys = new HashSet<Character>(current._keys);
 
-        if (key != null)
-            _keys.add(key);
+        if (content != null)
+        {
+            if (Util.isKey(content))
+            {
+                System.out.println("is key");
+
+                _keys.add(content);
+            }
+        }
 
         _steps = current._steps +1;
         _id = Util.keycode(_keys);
-    }
-
-    public State (Coordinate coord, Set<Character> keys, int steps)
-    {
-        _coord = coord;
-        _keys = keys;
-        _steps = steps;
-        _id = Util.keycode(keys);
     }
 
     public Coordinate getPosition ()
