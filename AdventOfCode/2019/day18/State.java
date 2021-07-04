@@ -9,6 +9,14 @@ import java.util.Set;
 
 public class State
 {
+    public State (State current, Character key)
+    {
+        _coord = current._coord;
+        _keys = new HashSet<Character>(current._keys);
+        _steps = current._steps +1;
+        _id = Util.keycode(_keys);
+    }
+
     public State (Coordinate coord, Set<Character> keys, int steps)
     {
         _coord = coord;
