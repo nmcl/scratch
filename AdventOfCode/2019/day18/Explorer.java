@@ -82,18 +82,17 @@ public class Explorer
                     {
                         System.out.println("here");
 
-                        Set<Character> keys = theState.getKeys();
+                        State nextState = null;
 
                         if (Util.isKey(content))
                         {
                             System.out.println("is key");
 
-                            keys = new HashSet<Character>(keys);
-                            keys.add(content);
+                            nextState = new State(theState, nextPosition, content);
                         }
-
-                        State nextState = new State(nextPosition, keys, theState.numberOfSteps()+1);
-
+                        else
+                            nextState = new State(theState, nextPosition);
+                            
                         System.out.println("nextState "+nextState);
 
                         if (!_allStates.contains(nextState))
