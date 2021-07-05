@@ -101,9 +101,7 @@ public class Verifier
         System.out.println("\nTraversing map ...");
 
         steps = exp.findAllKeys();
-
-        System.out.println("iters "+exp.getIter());
-
+        
         if (steps != EXAMPLE4_STEPS)
         {
             System.out.println("Error for "+EXAMPLE4_FILE+" - number of steps: "+steps);
