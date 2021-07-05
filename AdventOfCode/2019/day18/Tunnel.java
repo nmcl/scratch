@@ -32,7 +32,10 @@ public class Tunnel
         {
             Verifier theVerifier = new Verifier(debug);
 
-            theVerifier.verify();
+            if (theVerifier.verify())
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Verify failed.");
         }
         else
         {
