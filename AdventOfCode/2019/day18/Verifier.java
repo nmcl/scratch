@@ -102,7 +102,14 @@ public class Verifier
 
         steps = exp.findAllKeys();
 
-        System.out.println("Error for "+EXAMPLE4_FILE+" - number of steps: "+steps);
+        if (steps != EXAMPLE4_STEPS)
+        {
+            System.out.println("Error for "+EXAMPLE4_FILE+" - number of steps: "+steps);
+
+            return false;
+        }
+
+        System.out.println("Verified. Number of steps to find all keys: "+steps);
 
         return true;
     }
