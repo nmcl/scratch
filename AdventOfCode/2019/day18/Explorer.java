@@ -69,7 +69,7 @@ public class Explorer
 
             if (_iter % PERIODICITY == 0)
                 System.out.println("Current state: "+theState);
-                
+
             if (_debug)
                 System.out.println("State keys "+theState.numberOfKeys());
 
