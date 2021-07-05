@@ -18,20 +18,17 @@ import java.util.*;
 
 public class Explorer
 {
+    private static final int PERIODICITY = 50000;
+
     public Explorer (Map theMap, boolean debug)
     {
         _theMap = theMap;
         _start = _theMap.getEntrance();
         _totalNumnberOfKeys = _theMap.numberOfKeys();
-        _states = new ArrayDeque<State>();
-        _allStates = new Vector<State>();
+        _states = null;
+        _allStates = null;
         _iter = 0;
         _debug = debug;
-    }
-
-    public final int getIter ()
-    {
-        return _iter;
     }
 
    /*
@@ -50,6 +47,10 @@ public class Explorer
 
     public int findAllKeys ()
     {
+        _states = new ArrayDeque<State>();
+        _allStates = new Vector<State>();
+        _iter = 0;
+
         if (_debug)
         {
             System.out.println("Starting search at "+_start);
@@ -65,7 +66,10 @@ public class Explorer
             State theState = _states.pop();
             
             _iter++;
-            
+
+            if (_iter % PERIODICITY == 0)
+                System.out.println("Current state: "+theState);
+                
             if (_debug)
                 System.out.println("State keys "+theState.numberOfKeys());
 
