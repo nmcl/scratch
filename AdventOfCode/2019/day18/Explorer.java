@@ -25,7 +25,13 @@ public class Explorer
         _totalNumnberOfKeys = _theMap.numberOfKeys();
         _states = new ArrayDeque<State>();
         _allStates = new Vector<State>();
+        _iter = 0;
         _debug = debug;
+    }
+
+    public final int getIter ()
+    {
+        return _iter;
     }
 
    /*
@@ -53,10 +59,12 @@ public class Explorer
         _states.offer(new State(_start));
 
         // for long running searches we should maybe print out the status periodically.
-        
+
         while (_states.size() > 0)
         {
             State theState = _states.pop();
+            
+            _iter++;
             
             if (_debug)
                 System.out.println("State keys "+theState.numberOfKeys());
@@ -111,5 +119,6 @@ public class Explorer
     private int _totalNumnberOfKeys;
     private ArrayDeque<State> _states;
     private Vector<State> _allStates;
+    private int _iter;
     private boolean _debug;
 }
