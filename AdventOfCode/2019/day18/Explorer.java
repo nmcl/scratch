@@ -52,6 +52,8 @@ public class Explorer
 
         _states.offer(new State(_start));
 
+        // for long running searches we should maybe print out the status periodically.
+        
         while (_states.size() > 0)
         {
             State theState = _states.pop();
