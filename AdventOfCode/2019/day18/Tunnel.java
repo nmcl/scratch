@@ -44,7 +44,7 @@ public class Tunnel
 
             System.out.println(theMap);
     
-            Explorer exp = new Explorer(theMap, _debug);
+            Explorer exp = new Explorer(theMap, debug);
     
             System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
     
