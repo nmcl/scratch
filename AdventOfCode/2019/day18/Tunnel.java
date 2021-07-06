@@ -43,6 +43,16 @@ public class Tunnel
             Map theMap = new Map(input, debug);
 
             System.out.println(theMap);
+    
+            Explorer exp = new Explorer(theMap, _debug);
+    
+            System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+    
+            System.out.println("\nTraversing map ...");
+            
+            int steps = exp.findAllKeys();
+
+            System.out.println("Verified. Number of steps to find all keys: "+steps);
         }
     }
 }
