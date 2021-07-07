@@ -1,7 +1,6 @@
 import java.util.Vector;
 
-public class Verifier
-{
+public class Verifier {
     private static final String EXAMPLE1_FILE = "example1.txt";
     private static final int EXAMPLE1_STEPS = 8;
     private static final String EXAMPLE2_FILE = "example2.txt";
@@ -10,16 +9,12 @@ public class Verifier
     private static final int EXAMPLE3_STEPS = 132;
     private static final String EXAMPLE4_FILE = "example4.txt";
     private static final int EXAMPLE4_STEPS = 136;
-    private static final String EXAMPLE5_FILE = "example5.txt";
-    private static final int EXAMPLE5_STEPS = 81;
 
-    public Verifier (boolean debug)
-    {
+    public Verifier(boolean debug) {
         _debug = debug;
     }
 
-    public boolean verify ()
-    {
+    public boolean verify() {
         Vector<String> input = Util.readMap(EXAMPLE1_FILE);
         Map theMap = new Map(input, _debug);
 
@@ -27,112 +22,107 @@ public class Verifier
 
         Explorer exp = new Explorer(theMap, _debug);
 
-        System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+        System.out.println("Number of keys and doors: " + theMap.numberOfKeys() + ", " + theMap.numberOfDoors());
 
         System.out.println("\nTraversing map ...");
-        
+
         int steps = exp.findAllKeys();
 
-        if (steps != EXAMPLE1_STEPS)
-        {
-            System.out.println("Error for "+EXAMPLE1_FILE+" - number of steps: "+steps);
+        if (steps != EXAMPLE1_STEPS) {
+            System.out.println("Error for " + EXAMPLE1_FILE + " - number of steps: " + steps);
 
             return false;
         }
 
-        System.out.println("Verified. Number of steps to find all keys: "+steps);
+        System.out.println("Verified. Number of steps to find all keys: " + steps);
 
         input = Util.readMap(EXAMPLE2_FILE);
 
         theMap = new Map(input, _debug);
 
-        System.out.println("\n"+theMap);
+        System.out.println("\n" + theMap);
 
         exp = new Explorer(theMap, _debug);
 
-        System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+        System.out.println("Number of keys and doors: " + theMap.numberOfKeys() + ", " + theMap.numberOfDoors());
 
         System.out.println("\nTraversing map ...");
 
         steps = exp.findAllKeys();
 
-        if (steps != EXAMPLE2_STEPS)
-        {
-            System.out.println("Error for "+EXAMPLE2_FILE+" - number of steps: "+steps);
+        if (steps != EXAMPLE2_STEPS) {
+            System.out.println("Error for " + EXAMPLE2_FILE + " - number of steps: " + steps);
 
             return false;
         }
 
-        System.out.println("Verified. Number of steps to find all keys: "+steps);
-        
+        System.out.println("Verified. Number of steps to find all keys: " + steps);
+
         input = Util.readMap(EXAMPLE3_FILE);
 
         theMap = new Map(input, _debug);
 
-        System.out.println("\n"+theMap);
+        System.out.println("\n" + theMap);
 
         exp = new Explorer(theMap, _debug);
 
-        System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+        System.out.println("Number of keys and doors: " + theMap.numberOfKeys() + ", " + theMap.numberOfDoors());
 
         System.out.println("\nTraversing map ...");
 
         steps = exp.findAllKeys();
 
-        if (steps != EXAMPLE3_STEPS)
-        {
-            System.out.println("Error for "+EXAMPLE3_FILE+" - number of steps: "+steps);
+        if (steps != EXAMPLE3_STEPS) {
+            System.out.println("Error for " + EXAMPLE3_FILE + " - number of steps: " + steps);
 
             return false;
         }
 
-        System.out.println("Verified. Number of steps to find all keys: "+steps);
+        System.out.println("Verified. Number of steps to find all keys: " + steps);
 
         input = Util.readMap(EXAMPLE4_FILE);
 
         theMap = new Map(input, _debug);
 
-        System.out.println("\n"+theMap);
+        System.out.println("\n" + theMap);
 
         exp = new Explorer(theMap, _debug);
 
-        System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+        System.out.println("Number of keys and doors: " + theMap.numberOfKeys() + ", " + theMap.numberOfDoors());
 
         System.out.println("\nTraversing map ...");
 
         steps = exp.findAllKeys();
 
-        if (steps != EXAMPLE4_STEPS)
-        {
-            System.out.println("Error for "+EXAMPLE4_FILE+" - number of steps: "+steps);
+        if (steps != EXAMPLE4_STEPS) {
+            System.out.println("Error for " + EXAMPLE4_FILE + " - number of steps: " + steps);
 
             return false;
         }
 
-        System.out.println("Verified. Number of steps to find all keys: "+steps);
+        System.out.println("Verified. Number of steps to find all keys: " + steps);
 
         input = Util.readMap(EXAMPLE5_FILE);
 
         theMap = new Map(input, _debug);
 
-        System.out.println("\n"+theMap);
+        System.out.println("\n" + theMap);
 
         exp = new Explorer(theMap, _debug);
 
-        System.out.println("Number of keys and doors: "+theMap.numberOfKeys()+", "+theMap.numberOfDoors());
+        System.out.println("Number of keys and doors: " + theMap.numberOfKeys() + ", " + theMap.numberOfDoors());
 
         System.out.println("\nTraversing map ...");
 
         steps = exp.findAllKeys();
 
-        if (steps != EXAMPLE5_STEPS)
-        {
-            System.out.println("Error for "+EXAMPLE5_FILE+" - number of steps: "+steps);
+        if (steps != EXAMPLE5_STEPS) {
+            System.out.println("Error for " + EXAMPLE5_FILE + " - number of steps: " + steps);
 
             return false;
         }
 
-        System.out.println("Verified. Number of steps to find all keys: "+steps);
+        System.out.println("Verified. Number of steps to find all keys: " + steps);
 
         return true;
     }
