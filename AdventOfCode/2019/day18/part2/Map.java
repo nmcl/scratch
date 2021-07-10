@@ -9,9 +9,10 @@ import java.util.*;
 
 public class Map
 {
-    public Map(Vector<String> input, boolean debug)
+    public Map (Vector<String> input, boolean debug)
     {
         _theMap = new Vector<Cell>();
+        _entrances = new Vector<Coordinate>();
         _keys = new Vector<Character>();
         _doors = new Vector<Character>();
         _debug = debug;
@@ -19,16 +20,16 @@ public class Map
         createMap(input);
     }
 
-    public Coordinate getEntrance()
+    public Vector<Coordinate> getEntrances ()
     {
-        return _entrance;
+        return _entrances;
     }
 
     /**
      * Return the content of the Cell represented by the Coordinate.
      */
 
-    public char getContent(Coordinate coord)
+    public char getContent (Coordinate coord)
     {
         int index = _theMap.indexOf(new Cell(coord));
         Cell theCell = _theMap.get(index);
@@ -40,7 +41,7 @@ public class Map
      * Is this Coordinate in range and can be moved into?
      */
 
-    public boolean validPosition(Coordinate coord)
+    public boolean validPosition (Coordinate coord)
     {
         if ((coord.getX() >= 0) && (coord.getY() >= 0))
         {
@@ -60,18 +61,18 @@ public class Map
         return false;
     }
 
-    public int numberOfKeys()
+    public int numberOfKeys ()
     {
         return _keys.size();
     }
 
-    public int numberOfDoors()
+    public int numberOfDoors ()
     {
         return _doors.size();
     }
 
     @Override
-    public String toString()
+    public String toString ()
     {
         Enumeration<Cell> iter = _theMap.elements();
         int index = 1;
@@ -94,7 +95,7 @@ public class Map
 
     // create the map from input
 
-    private void createMap(Vector<String> input)
+    private void createMap (Vector<String> input)
     {
         Enumeration<String> iter = input.elements();
         int y = -1;
@@ -112,7 +113,7 @@ public class Map
                 Cell theCell = new Cell(new Coordinate(x, y), line.charAt(x));
 
                 if (theCell.isEntrance())
-                    _entrance = theCell.position(); // should be only one!
+                    _entrances.add(theCell.position());
                 else
                 {
                     if (theCell.isKey())
@@ -137,7 +138,7 @@ public class Map
     private Vector<Cell> _theMap;
     private int _maxX;
     private int _maxY;
-    private Coordinate _entrance;
+    private Vector<Coordinate> _entrances;
     private Vector<Character> _keys;
     private Vector<Character> _doors;
     private boolean _debug;
