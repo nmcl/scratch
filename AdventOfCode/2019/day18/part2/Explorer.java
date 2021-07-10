@@ -23,10 +23,10 @@ public class Explorer
     public Explorer (Map theMap, boolean debug)
     {
         _theMap = theMap;
-        _start = _theMap.getEntrance();
         _totalNumnberOfKeys = _theMap.numberOfKeys();
         _states = null;
         _allStates = null;
+        _startPositions = theMap.getEntrances();
         _iter = 0;
         _debug = debug;
     }
@@ -50,6 +50,14 @@ public class Explorer
         _states = new ArrayDeque<State>();
         _allStates = new Vector<State>();
         _iter = 0;
+        Vector<Coordinate> startingPoints = _theMap.getEntrances();
+
+        if (startingPoints.size() != 4)
+        {
+            System.out.println("Error - wrong number of entrances: "+startingPoints.size());
+
+            return -1;
+        }
 
         if (_debug)
         {
@@ -119,10 +127,10 @@ public class Explorer
     }
 
     private Map _theMap;
-    private Coordinate _start;
     private int _totalNumnberOfKeys;
     private ArrayDeque<State> _states;
     private Vector<State> _allStates;
+    private Vector<Coordinate> _startPositions;
     private int _iter;
     private boolean _debug;
 }
