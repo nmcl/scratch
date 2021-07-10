@@ -50,19 +50,19 @@ public class Explorer
         _allStates = new Vector<State>();
         _iter = 0;
 
-        if (startingPoints.size() != 4)
+        if (_theMap.getEntrances().size() != 4)
         {
-            System.out.println("Error - wrong number of entrances: "+startingPoints.size());
+            System.out.println("Error - wrong number of entrances: "+_theMap.getEntrances().size());
 
             return -1;
         }
 
         if (_debug)
         {
-            System.out.println("Starting search at "+_start);
+            //System.out.println("Starting search at "+_start);
             System.out.println("totalKeys "+_totalNumnberOfKeys);
         }
-
+/*
         _states.offer(new State(_start));
 
         // for long running searches we should maybe print out the status periodically.
@@ -117,11 +117,25 @@ public class Explorer
                 }
             }
         }
-        
+        */
         if (_debug)
             System.out.println("No route found!!");
 
         return -1;
+    }
+
+    private ArrayList<HashMap<Coordinate, Coordinate>> pathsBetweenKeys ()
+    {
+        return null;
+    }
+
+    private void shortestPath (Coordinate from, Coordinate to)
+    {
+    }
+
+    private Set<Character> traverse (Coordinate pos, HashMap<Coordinate, Coordinate> track)
+    {
+        return null;
     }
 
     private Map _theMap;
