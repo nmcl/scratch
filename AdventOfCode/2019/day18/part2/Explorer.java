@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Explorer
 {
-    private static final int PERIODICITY = 50000;
+    private static final int PERIODICITY = 50000;  // manually worked out value
 
     public Explorer (Map theMap, boolean debug)
     {
