@@ -5,6 +5,9 @@ import java.util.*;
  * has already had the single entrance converted
  * to 4 in this part. If not we'll need to do that
  * convrsion on the fly (TO DO).
+ * 
+ * Split into 4 Maps and work each robot until it
+ * has to wait for another, then swap between them?
  */
 
 public class Map
@@ -13,6 +16,7 @@ public class Map
     {
         _theMap = new Vector<Cell>();
         _entrances = new Vector<Coordinate>();
+        _locationsOfKeys = new Vector<Coordinate>();
         _keys = new Vector<Character>();
         _doors = new Vector<Character>();
         _debug = debug;
@@ -117,7 +121,10 @@ public class Map
                 else
                 {
                     if (theCell.isKey())
+                    {
+                        _locationsOfKeys.add(theCell.position());
                         _keys.add(theCell.getContents());
+                    }
                     else
                     {
                         if (theCell.isDoor())
@@ -139,6 +146,7 @@ public class Map
     private int _maxX;
     private int _maxY;
     private Vector<Coordinate> _entrances;
+    private Vector<Coordinate> _locationsOfKeys;
     private Vector<Character> _keys;
     private Vector<Character> _doors;
     private boolean _debug;
