@@ -26,7 +26,6 @@ public class Explorer
         _totalNumnberOfKeys = _theMap.numberOfKeys();
         _states = null;
         _allStates = null;
-        _startPositions = theMap.getEntrances();
         _iter = 0;
         _debug = debug;
     }
@@ -50,7 +49,6 @@ public class Explorer
         _states = new ArrayDeque<State>();
         _allStates = new Vector<State>();
         _iter = 0;
-        Vector<Coordinate> startingPoints = _theMap.getEntrances();
 
         if (startingPoints.size() != 4)
         {
@@ -130,7 +128,6 @@ public class Explorer
     private int _totalNumnberOfKeys;
     private ArrayDeque<State> _states;
     private Vector<State> _allStates;
-    private Vector<Coordinate> _startPositions;
     private int _iter;
     private boolean _debug;
 }
