@@ -29,6 +29,11 @@ public class Map
         return _entrances;
     }
 
+    public Vector<Coordinate> getKeyLocations ()
+    {
+        return _locationsOfKeys;
+    }
+
     /**
      * Return the content of the Cell represented by the Coordinate.
      */
