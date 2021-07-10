@@ -1,9 +1,10 @@
 import java.util.*;
 
 /**
- * A map of the tunnel system.
- * 
- * Split it into sub-maps?
+ * A map of the tunnel system. Assume the data
+ * has already had the single entrance converted
+ * to 4 in this part. If not we'll need to do that
+ * convrsion on the fly (TO DO).
  */
 
 public class Map
