@@ -1,4 +1,4 @@
-public java.util.*;
+import java.util.*;
 
 public class Route
 {
@@ -40,7 +40,7 @@ public class Route
         {
             Route temp = (Route) obj;
 
-            return ((_start.equals(temp._start)) && (_end.equals(temp._end));
+            return ((_start.equals(temp._start)) && (_end.equals(temp._end)));
         }
 
         return false;
