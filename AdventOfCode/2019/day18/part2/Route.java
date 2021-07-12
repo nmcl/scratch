@@ -12,7 +12,27 @@ public class Route
         _start = start;
         _end = end;
         _stepsTaken = stepsTaken;
-        _doors = new Vector<Character>();
+        _theDoors = new Vector<Character>();
+    }
+
+    public Coordinate getStart ()
+    {
+        return _start;
+    }
+
+    public Coordinate getEnd ()
+    {
+        return _end;
+    }
+
+    public int getStepsTaken ()
+    {
+        return _stepsTaken;
+    }
+
+    public Vector<Character> getDoors ()
+    {
+        return _theDoors;
     }
 
     @Override
@@ -49,5 +69,5 @@ public class Route
     private Coordinate _start;
     private Coordinate _end;
     private int _stepsTaken;
-    private Vector<Character> _doors;
+    private Vector<Character> _theDoors;  // because we can :)
 }
