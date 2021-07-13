@@ -1,5 +1,10 @@
 import java.util.*;
 
+/*
+ * Track the route from A to B, how many steps to get there
+ * and any doors we must pass through on the way.
+ */
+
 public class Route
 {
     public Route (Coordinate start, Coordinate end)
