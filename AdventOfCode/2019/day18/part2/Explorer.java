@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.*;
 
 /*
  * We need to get all of the keys. We only need to open doors if they prevent
@@ -126,16 +127,100 @@ public class Explorer
 
     private ArrayList<HashMap<Coordinate, Coordinate>> pathsBetweenKeys ()
     {
-        return null;
+        ArrayList allPaths = new ArrayList<HashMap<Route, Route>>();
+        Enumeration<Coordinate> iter1 = _theMap.getEntrances().elements();
+
+        while (iter1.hasMoreElements())
+        {
+            Coordinate startCoord = iter1.nextElement();
+            HashMap<Route, Route> paths = new HashMap<Route, Route>();
+            Enumeration<Coordinate> iter2 = _theMap.getKeyLocations().elements();
+
+            while (iter2.hasMoreElements())
+            {
+                Coordinate keyCoord = iter2.nextElement();
+
+                shortestPath(startCoord, keyCoord).ifPresent(p -> paths.put(p, p));
+            }
+
+            List<Coordinate> keyLocationsPerRegion = paths.keySet().stream().map(p -> p.getEnd()).collect(Collectors.toList());
+
+            for (Coordinate from : keyLocationsPerRegion)
+            {
+                for (Coordinate to: _theMap.getKeyLocations())
+                {
+                    if (Objects.equals(from, to)) continue;
+
+                    shortestPath(from, to).ifPresent(p -> paths.put(p, p));
+                }
+            }
+
+            allPaths.add(paths);
+        }
+
+        return allPaths;
     }
 
-    private void shortestPath (Coordinate from, Coordinate to)
+    private Optional<Route> shortestPath (Coordinate from, Coordinate to)
     {
+        HashMap<Coordinate, Integer> stepsTaken = new HashMap<Coordinate, Integer>();
+        HashMap<Coordinate, Coordinate> track = new HashMap<Coordinate, Coordinate>();
+        PriorityQueue<Coordinate> coords = new PriorityQueue<Coordinate>((Comparator.comparingInt(pos -> cost(stepsTaken, pos, to))));
+
+        stepsTaken.put(from, 0);
+        coords.offer(from);
+
+        while (coords.size() > 0)
+        {
+            Coordinate pos = coords.poll();
+            int steps = stepsTaken.get(pos);
+
+            if (pos.equals(to))
+            {
+                Coordinate coord = coords.poll();
+
+                if (coord.equals(to))
+                {
+                    Route theRoute = new Route(from, to, steps, traverse(coord, track));
+
+                    return Optional.of(theRoute);
+                }
+            }
+            else
+            {
+                pos.directions().stream()
+                        .filter(next -> _theMap.validPosition(next) && !stepsTaken.containsKey(next))
+                        .forEach(next -> {
+                            stepsTaken.put(next, steps + 1);
+                            track.put(next, pos);
+                            coords.offer(next);
+                        });
+                    }
+        }
+
+        return Optional.empty();
     }
 
     private Set<Character> traverse (Coordinate pos, HashMap<Coordinate, Coordinate> track)
     {
-        return null;
+        HashSet<Character> requiredKeys = new HashSet<Character>();
+
+        while (track.containsKey(pos))
+        {
+            pos = track.get(pos);
+
+            char value = _theMap.getContent(pos);
+
+            if (Util.isDoor(value))
+                requiredKeys.add(value);
+        }
+
+        return requiredKeys;
+    }
+
+    private int cost (HashMap<Coordinate, Integer> stepsToLocation, Coordinate start, Coordinate destination)
+    {
+        return stepsToLocation.get(start) + start.distanceTo(destination);
     }
 
     private Map _theMap;
