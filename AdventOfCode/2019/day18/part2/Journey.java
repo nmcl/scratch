@@ -42,7 +42,7 @@ public class Journey
 
             if (temp._locations.size() == _locations.sizze())
             {
-                for (int i = 0; i < temp._locations.size())
+                for (int i = 0; i < temp._locations.size(); i++)
                 {
                     if (!_temp._locations.get(i).equals(_location.get(i)))
                         return false;
@@ -61,7 +61,7 @@ public class Journey
     @Override
     public String toString()
     {
-        return identifier + " - steps: " + steps;
+        return "Journey "+_id+ ", " + steps;
     }
 
     private List<Position> _locations;
