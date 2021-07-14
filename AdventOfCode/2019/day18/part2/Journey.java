@@ -44,14 +44,11 @@ public class Journey
             {
                 for (int i = 0; i < temp._locations.size(); i++)
                 {
-                    if (!_temp._locations.get(i).equals(_location.get(i)))
+                    if (!temp._locations.get(i).equals(_location.get(i)))
                         return false;
                 }
-
-                if (temp._coord.equals(_coord))
-                {
-                    return temp._keys.containsAll(_keys);
-                }
+                    
+                return temp._keys.containsAll(_keys);
             }
         }
 
@@ -61,10 +58,10 @@ public class Journey
     @Override
     public String toString()
     {
-        return "Journey "+_id+ ", " + steps;
+        return "Journey < "+_id+ ", " + _steps+" >";
     }
 
-    private List<Position> _locations;
+    private List<Coordinate> _locations;
     private Set<Character> _keys;
     private int _steps;
     private String _id;
