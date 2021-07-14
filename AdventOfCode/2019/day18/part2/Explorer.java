@@ -125,9 +125,9 @@ public class Explorer
         return -1;
     }
 
-    private ArrayList<HashMap<Coordinate, Coordinate>> pathsBetweenKeys ()
+    private ArrayList<HashMap<Route, Route>> pathsBetweenKeys ()
     {
-        ArrayList allPaths = new ArrayList<HashMap<Route, Route>>();
+        ArrayList<HashMap<Route, Route>> allPaths = new ArrayList<HashMap<Route, Route>>();
         Enumeration<Coordinate> iter1 = _theMap.getEntrances().elements();
 
         while (iter1.hasMoreElements())
