@@ -51,7 +51,7 @@ public class Explorer
         _allStates = new Vector<State>();
         _iter = 0;
 
-        if (_theMap.getEntrances().size() != 4)
+        if (_theMap.getEntrances().size() != Util.TOTAL_NUMBER_OF_ROBOTS)
         {
             System.out.println("Error - wrong number of entrances: "+_theMap.getEntrances().size());
 
@@ -60,7 +60,13 @@ public class Explorer
 
         if (_debug)
         {
-            //System.out.println("Starting search at "+_start);
+            Vector<Coordinate> startingLocations = _theMap.getEntrances();
+            
+            for (int i = 0; i < Util.TOTAL_NUMBER_OF_ROBOTS; i++)
+            {
+                System.out.println("Robot "+i+" starting search at "+startingLocations.get(i));
+            }
+
             System.out.println("totalKeys "+_totalNumnberOfKeys);
         }
 /*
