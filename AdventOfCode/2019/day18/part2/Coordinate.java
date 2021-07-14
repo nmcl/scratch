@@ -28,6 +28,11 @@ public class Coordinate
         return _y;
     }
 
+    public int distanceTo (Coordinate to)
+    {
+        return Math.abs(_x - to._x) + Math.abs(_y - to._y);
+    }
+
     @Override
     public String toString ()
     {
