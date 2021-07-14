@@ -69,62 +69,7 @@ public class Explorer
 
             System.out.println("totalKeys "+_totalNumnberOfKeys);
         }
-/*
-        _states.offer(new State(_start));
 
-        // for long running searches we should maybe print out the status periodically.
-
-        while (_states.size() > 0)
-        {
-            State theState = _states.pop();
-            
-            _iter++;
-
-            if (_iter % PERIODICITY == 0)
-                System.out.println("Current state: "+theState);
-
-            if (_debug)
-                System.out.println("State keys "+theState.numberOfKeys());
-
-            if (theState.numberOfKeys() == _totalNumnberOfKeys)
-                return theState.numberOfSteps();
-
-            for (Coordinate nextPosition : theState.getPosition().directions())
-            {
-                if (_debug)
-                    System.out.println("nextPosition "+nextPosition);
-
-                if (_theMap.validPosition(nextPosition))
-                {
-                    char content = _theMap.getContent(nextPosition);
-
-                    if (Util.isDoor(content) && !theState.hasKey(content))
-                    {
-                        if (_debug)
-                            System.out.println("Is a door and we don't have the key!");
-                    }
-                    else
-                    {
-                        State nextState = new State(theState, nextPosition, content);
-
-                        if (_debug)
-                            System.out.println("nextState "+nextState);
-
-                        if (!_allStates.contains(nextState))
-                        {
-                            _allStates.add(nextState);
-                            _states.add(nextState);
-                        }
-                    }
-                }
-                else
-                {
-                    if (_debug)
-                        System.out.println(nextPosition+" is invalid");
-                }
-            }
-        }
-        */
         if (_debug)
             System.out.println("No route found!!");
 
