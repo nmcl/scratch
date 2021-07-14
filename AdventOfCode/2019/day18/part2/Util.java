@@ -7,6 +7,8 @@ import java.io.*;
 
 public class Util
 {
+    public static final int TOTAL_NUMBER_OF_ROBOTS = 4;
+    
     public static final boolean isDoor (char content)
     {
         return Character.isUpperCase(content);
