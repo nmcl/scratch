@@ -7,17 +7,12 @@ import java.util.*;
 
 public class Route
 {
-    public Route (Coordinate start, Coordinate end)
-    {
-        this(start, end, 0);
-    }
-
-    public Route (Coordinate start, Coordinate end, int stepsTaken)
+    public Route (Coordinate start, Coordinate end, int stepsTaken, Set<Character> doors)
     {
         _start = start;
         _end = end;
         _stepsTaken = stepsTaken;
-        _theDoors = new Vector<Character>();
+        _theDoors = doors;
     }
 
     public Coordinate getStart ()
@@ -35,7 +30,7 @@ public class Route
         return _stepsTaken;
     }
 
-    public Vector<Character> getDoors ()
+    public Set<Character> getDoors ()
     {
         return _theDoors;
     }
@@ -43,7 +38,7 @@ public class Route
     @Override
     public String toString ()
     {
-        return "Route < "+_start+", "+_end+", "+_stepsTaken+", "+_doors+" >";
+        return "Route < "+_start+", "+_end+", "+_stepsTaken+", "+_theDoors+" >";
     }
 
     @Override
@@ -74,5 +69,5 @@ public class Route
     private Coordinate _start;
     private Coordinate _end;
     private int _stepsTaken;
-    private Vector<Character> _theDoors;  // because we can :)
+    private Set<Character> _theDoors;  // because we can :)
 }
