@@ -40,11 +40,11 @@ public class Journey
 
             // assume order matters for equality too!
 
-            if (temp._locations.size() == _locations.sizze())
+            if (temp._locations.size() == _locations.size())
             {
                 for (int i = 0; i < temp._locations.size(); i++)
                 {
-                    if (!temp._locations.get(i).equals(_location.get(i)))
+                    if (!temp._locations.get(i).equals(_locations.get(i)))
                         return false;
                 }
                     
