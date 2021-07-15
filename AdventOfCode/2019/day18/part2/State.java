@@ -7,6 +7,8 @@ import java.util.*;
  * of steps to this stage.
  */
 
+ // may not be needed in part 2.
+ 
 public class State
 {
     public State (Coordinate coord)
