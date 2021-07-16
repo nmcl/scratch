@@ -11,9 +11,9 @@ import java.util.*;
 
 public class Journey
 {
-    public Journey (List<Coordinate> robotLocation, Set<Character> keys, int steps)
+    public Journey (List<Coordinate> entrances, Set<Character> keys, int steps)
     {
-        _locations = robotLocation;
+        _locations = entrances;
         _keys = keys;
         _steps = steps;
         _id = Util.keycode(_keys);
