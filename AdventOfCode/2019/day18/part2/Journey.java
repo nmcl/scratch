@@ -29,6 +29,11 @@ public class Journey
         return _locations.get(robot);
     }
 
+    public final List<Coordinate> getAllRobotLocations ()
+    {
+        return _locations;
+    }
+
     public final Set<Character> getKeys ()
     {
         return _keys;
@@ -43,7 +48,7 @@ public class Journey
     {
         return _id;
     }
-    
+
     @Override
     public int hashCode ()
     {
