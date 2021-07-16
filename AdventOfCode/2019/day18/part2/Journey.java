@@ -39,6 +39,11 @@ public class Journey
         return _steps;
     }
 
+    public final String getId ()
+    {
+        return _id;
+    }
+    
     @Override
     public int hashCode ()
     {
