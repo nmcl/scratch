@@ -11,6 +11,11 @@ import java.util.*;
 
 public class Journey
 {
+    public Journey (List<Coordinate> entrances)
+    {
+        this(entrances, Collections.emptySet(), 0);
+    }
+
     public Journey (List<Coordinate> entrances, Set<Character> keys, int steps)
     {
         _locations = entrances;
