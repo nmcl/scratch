@@ -24,6 +24,11 @@ public class Journey
         _id = Util.keycode(_keys);
     }
 
+    public final Coordinate getRobotLocation (int robot)
+    {
+        return _locations.get(robot);
+    }
+
     public final Set<Character> getKeys ()
     {
         return _keys;
