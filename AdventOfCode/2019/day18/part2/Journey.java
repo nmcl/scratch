@@ -19,6 +19,16 @@ public class Journey
         _id = Util.keycode(_keys);
     }
 
+    public final Set<Character> getKeys ()
+    {
+        return _keys;
+    }
+
+    public final int getSteps ()
+    {
+        return _steps;
+    }
+
     @Override
     public int hashCode ()
     {
