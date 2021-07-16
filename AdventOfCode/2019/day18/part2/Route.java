@@ -7,6 +7,11 @@ import java.util.*;
 
 public class Route
 {
+    public Route (Coordinate start, Coordinate end)
+    {
+        this(start, end, 0, null);
+    }
+
     public Route (Coordinate start, Coordinate end, int stepsTaken, Set<Character> doors)
     {
         _start = start;
@@ -60,7 +65,7 @@ public class Route
         {
             Route temp = (Route) obj;
 
-            return ((_start.equals(temp._start)) && (_end.equals(temp._end)));
+            return ((_start.equals(temp._start)) && (_end.equals(temp._end))); // only compare positions
         }
 
         return false;
