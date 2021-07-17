@@ -34,6 +34,11 @@ public class Journey
         return _locations;
     }
 
+    public final boolean foundKeys (int totalKeys)
+    {
+        return (_keys.size() == totalKeys);
+    }
+
     public final Set<Character> getKeys ()
     {
         return _keys;
