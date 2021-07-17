@@ -19,6 +19,11 @@ public class Util
         return Character.isLowerCase(content);
     }
 
+    public static final int cost (HashMap<Coordinate, Integer> stepsToLocation, Coordinate start, Coordinate destination)
+    {
+        return stepsToLocation.get(start) + start.distanceTo(destination);
+    }
+
     public static final String keycode (Set<Character> keys)
     {
         String str = "[";
