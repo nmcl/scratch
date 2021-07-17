@@ -54,6 +54,21 @@ public class Journey
         return _id;
     }
 
+    public final Journey nextJourney (int robotId, Coordinate nextRobotPosition, HashMap<Route, Route> paths, Map theMap)
+    {
+        Route temp = new Route(getRobotLocation(robotId), nextRobotPosition);
+        int steps = paths.get(temp).getStepsTaken();
+        ArrayList<Coordinate> nextRobotPositions = new ArrayList<Coordinate>(getAllRobotLocations());
+
+        nextRobotPositions.set(robotId, nextRobotPosition);
+
+        HashSet<Character> keys = new HashSet<Character>(getKeys());
+
+        keys.add(theMap.getContent(nextRobotPosition));
+
+        return new Journey(nextRobotPositions, keys, getSteps() + steps);
+    }
+
     @Override
     public int hashCode ()
     {
