@@ -25,8 +25,6 @@ public class Explorer
     {
         _theMap = theMap;
         _totalNumnberOfKeys = _theMap.numberOfKeys();
-        _states = null;
-        _allStates = null;
         _iter = 0;
         _debug = debug;
     }
@@ -47,8 +45,6 @@ public class Explorer
 
     public int findAllKeys ()
     {
-        _states = new ArrayDeque<State>();
-        _allStates = new Vector<State>();
         _iter = 0;
 
         if (_theMap.getEntrances().size() != Util.TOTAL_NUMBER_OF_ROBOTS)
@@ -70,10 +66,83 @@ public class Explorer
             System.out.println("totalKeys "+_totalNumnberOfKeys);
         }
 
+        ArrayList<HashMap<Route, Route>> realmPaths = pathsBetweenKeys();
+        List<List<Coordinate>> keyLocationsPerRealms = keysForRealm(realmPaths);
+        PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
+        HashMap<String, Integer> minimumSteps = new HashMap<String, Integer>();
+
+        journeys.offer(new Journey(_theMap.getEntrances()));
+
+        while (journeys.size() > 0)
+        {
+            Journey currentJourney = journeys.poll();
+
+            _iter++;
+
+            if (_iter % PERIODICITY == 0)
+                System.out.println("Processing: "+currentJourney);
+
+            if (currentJourney.foundKeys(_theMap.numberOfKeys()))
+                return currentJourney.getSteps();
+
+            for (int robotId = 0; robotId < Util.TOTAL_NUMBER_OF_ROBOTS; robotId++)
+            {
+                Coordinate robotLocation = currentJourney.getRobotLocation(robotId);
+                HashMap<Route, Route> pathsForRobot = realmPaths.get(robotId);
+
+                for (Coordinate nextCoord : keyLocationsPerRealms.get(robotId))
+                {
+                    if (validMove(currentJourney, currentJourney.getRobotLocation(robotId), nextCoord, pathsForRobot))
+                    {
+                        Journey theNextJourney = currentJourney.nextJourney(robotId, nextCoord, pathsForRobot, _theMap);
+
+                        if (theNextJourney.getSteps() < minimumSteps.getOrDefault(theNextJourney.getId(), Integer.MAX_VALUE))
+                        {
+                            minimumSteps.put(theNextJourney.getId(), theNextJourney.getSteps());
+
+                            journeys.offer(theNextJourney);
+                        }
+                    }
+                }
+            }
+        }
+
         if (_debug)
             System.out.println("No route found!!");
 
         return -1;
+    }
+
+    private boolean validMove (Journey theJourney, Coordinate from, Coordinate next, HashMap<Route, Route> paths)
+    {
+        Route path = paths.get(new Route(from, next));
+
+        if (path != null)
+        {
+            Character value = _theMap.getContent(next);
+
+            if (!theJourney.hasKey(value))
+            {
+                for (char door: path.getDoors())
+                {
+                    if (!theJourney.hasKey(Util.keyForDoor(door)))
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private List<List<Coordinate>> keysForRealm (List<HashMap<Route, Route>> realmPaths)
+    {
+        return realmPaths.stream()
+                .map(paths ->
+                        paths.keySet().stream()
+                                .map(p -> p.getEnd())
+                                .collect(Collectors.toList())).collect(Collectors.toList());
     }
 
     private ArrayList<HashMap<Route, Route>> pathsBetweenKeys ()
@@ -116,7 +185,7 @@ public class Explorer
     {
         HashMap<Coordinate, Integer> stepsTaken = new HashMap<Coordinate, Integer>();
         HashMap<Coordinate, Coordinate> track = new HashMap<Coordinate, Coordinate>();
-        PriorityQueue<Coordinate> coords = new PriorityQueue<Coordinate>((Comparator.comparingInt(pos -> cost(stepsTaken, pos, to))));
+        PriorityQueue<Coordinate> coords = new PriorityQueue<Coordinate>((Comparator.comparingInt(pos -> Util.cost(stepsTaken, pos, to))));
 
         stepsTaken.put(from, 0);
         coords.offer(from);
@@ -169,15 +238,8 @@ public class Explorer
         return requiredKeys;
     }
 
-    private int cost (HashMap<Coordinate, Integer> stepsToLocation, Coordinate start, Coordinate destination)
-    {
-        return stepsToLocation.get(start) + start.distanceTo(destination);
-    }
-
     private Map _theMap;
     private int _totalNumnberOfKeys;
-    private ArrayDeque<State> _states;
-    private Vector<State> _allStates;
     private int _iter;
     private boolean _debug;
 }
