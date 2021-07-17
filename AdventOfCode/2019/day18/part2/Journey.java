@@ -39,6 +39,11 @@ public class Journey
         return (_keys.size() == totalKeys);
     }
 
+    public final boolean hasKey (Character key)
+    {
+        return getKeys().contains(key);
+    }
+
     public final Set<Character> getKeys ()
     {
         return _keys;
