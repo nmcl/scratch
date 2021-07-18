@@ -73,10 +73,14 @@ public class Explorer
 
         journeys.offer(new Journey(_theMap.getEntrances()));
 
+        System.out.println("initial routes "+journeys.size());
+
         while (journeys.size() > 0)
         {
             Journey currentJourney = journeys.poll();
 
+            System.out.println("Working on "+currentJourney);
+            
             _iter++;
 
             if (_iter % PERIODICITY == 0)
