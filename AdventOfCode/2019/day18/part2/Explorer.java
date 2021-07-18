@@ -67,6 +67,9 @@ public class Explorer
         }
 
         ArrayList<HashMap<Route, Route>> realmPaths = pathsBetweenKeys();
+
+        System.out.println("paths "+realmPaths);
+
         List<List<Coordinate>> keyLocationsPerRealm = keysForRealm(realmPaths);
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
         HashMap<String, Integer> minimumSteps = new HashMap<String, Integer>();
@@ -158,6 +161,8 @@ public class Explorer
 
     private List<List<Coordinate>> keysForRealm (List<HashMap<Route, Route>> realmPaths)
     {
+        System.out.println("checking "+realmPaths);
+
         return realmPaths.stream()
                 .map(paths ->
                         paths.keySet().stream()
@@ -173,6 +178,9 @@ public class Explorer
         while (iter1.hasMoreElements())
         {
             Coordinate startCoord = iter1.nextElement();
+
+            System.out.println("scanning "+startCoord);
+
             HashMap<Route, Route> paths = new HashMap<Route, Route>();
             Enumeration<Coordinate> iter2 = _theMap.getKeyLocations().elements();
 
