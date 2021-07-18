@@ -96,12 +96,17 @@ public class Explorer
             for (int robotId = 0; robotId < Util.TOTAL_NUMBER_OF_ROBOTS; robotId++)
             {
                 System.out.println("robot "+robotId);
-                
+
                 Coordinate robotLocation = currentJourney.getRobotLocation(robotId);
+
+                System.out.println("robotLocation "+robotLocation);
+
                 HashMap<Route, Route> pathsForRobot = realmPaths.get(robotId);
 
                 for (Coordinate nextCoord : keyLocationsPerRealms.get(robotId))
                 {
+                    System.out.println("nextPosition "+nextCoord);
+
                     if (validMove(currentJourney, currentJourney.getRobotLocation(robotId), nextCoord, pathsForRobot))
                     {
                         Journey theNextJourney = currentJourney.nextJourney(robotId, nextCoord, pathsForRobot, _theMap);
