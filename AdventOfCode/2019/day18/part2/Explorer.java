@@ -80,17 +80,23 @@ public class Explorer
             Journey currentJourney = journeys.poll();
 
             System.out.println("Working on "+currentJourney);
-            
+
             _iter++;
 
             if (_iter % PERIODICITY == 0)
                 System.out.println("Processing: "+currentJourney);
 
             if (currentJourney.foundKeys(_theMap.numberOfKeys()))
+            {
+                System.out.println("keys found");
+
                 return currentJourney.getSteps();
+            }
 
             for (int robotId = 0; robotId < Util.TOTAL_NUMBER_OF_ROBOTS; robotId++)
             {
+                System.out.println("robot "+robotId);
+                
                 Coordinate robotLocation = currentJourney.getRobotLocation(robotId);
                 HashMap<Route, Route> pathsForRobot = realmPaths.get(robotId);
 
