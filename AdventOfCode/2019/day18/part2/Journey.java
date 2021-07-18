@@ -21,7 +21,7 @@ public class Journey
         _locations = entrances;
         _keys = keys;
         _steps = steps;
-        _id = Util.keycode(_keys);
+        _id = entrances.toString()+Util.keycode(_keys);
     }
 
     public final Coordinate getRobotLocation (int robot)
