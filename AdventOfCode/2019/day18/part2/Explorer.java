@@ -199,7 +199,7 @@ public class Explorer
             {
                 Coordinate coord = coords.poll();
 
-                if (coord.equals(to))
+                if (to.equals(coord))
                 {
                     Route theRoute = new Route(from, to, steps, traverse(coord, track));
 
