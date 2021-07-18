@@ -72,7 +72,7 @@ public class Explorer
         HashMap<String, Integer> minimumSteps = new HashMap<String, Integer>();
 
         System.out.println("keys per realm "+keyLocationsPerRealm.size());
-        
+
         journeys.offer(new Journey(_theMap.getEntrances()));
 
         System.out.println("initial routes "+journeys.size());
@@ -105,6 +105,8 @@ public class Explorer
 
                 HashMap<Route, Route> pathsForRobot = realmPaths.get(robotId);
 
+                System.out.println("got "+keyLocationsPerRealm.get(robotId));
+                
                 for (Coordinate nextCoord : keyLocationsPerRealm.get(robotId))
                 {
                     System.out.println("nextPosition "+nextCoord);
