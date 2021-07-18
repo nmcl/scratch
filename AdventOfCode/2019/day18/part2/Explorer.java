@@ -67,7 +67,7 @@ public class Explorer
         }
 
         ArrayList<HashMap<Route, Route>> realmPaths = pathsBetweenKeys();
-        List<List<Coordinate>> keyLocationsPerRealms = keysForRealm(realmPaths);
+        List<List<Coordinate>> keyLocationsPerRealm = keysForRealm(realmPaths);
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
         HashMap<String, Integer> minimumSteps = new HashMap<String, Integer>();
 
@@ -103,7 +103,7 @@ public class Explorer
 
                 HashMap<Route, Route> pathsForRobot = realmPaths.get(robotId);
 
-                for (Coordinate nextCoord : keyLocationsPerRealms.get(robotId))
+                for (Coordinate nextCoord : keyLocationsPerRealm.get(robotId))
                 {
                     System.out.println("nextPosition "+nextCoord);
 
