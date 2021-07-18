@@ -71,6 +71,8 @@ public class Explorer
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
         HashMap<String, Integer> minimumSteps = new HashMap<String, Integer>();
 
+        System.out.println("keys per realm "+keyLocationsPerRealm.size());
+        
         journeys.offer(new Journey(_theMap.getEntrances()));
 
         System.out.println("initial routes "+journeys.size());
