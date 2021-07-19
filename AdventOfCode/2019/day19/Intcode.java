@@ -55,9 +55,19 @@ public class Intcode
         return _output.remove(0);
     }
 
+    public final Vector<String> getOutputs ()
+    {
+        return _output;
+    }
+
     public final void setInput (String input)
     {
         _input.add(input);
+    }
+
+    public void setInputs (String... input)
+    {
+        Arrays.stream(input).forEach(n -> setInput(n));
     }
 
     public final String getInput ()
@@ -70,6 +80,11 @@ public class Intcode
         {
             return null;
         }
+    }
+
+    public final Vector<String> getInputs ()
+    {
+        return _input;
     }
 
     public final String consumeInput ()
