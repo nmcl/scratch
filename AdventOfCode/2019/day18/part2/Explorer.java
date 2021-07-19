@@ -189,9 +189,11 @@ public class Explorer
                 Coordinate keyCoord = iter2.nextElement();
 
                 System.out.println("keyCoord "+keyCoord);
-                
+
                 shortestPath(startCoord, keyCoord).ifPresent(p -> paths.put(p, p));
             }
+
+            System.out.println("paths "+paths);
 
             List<Coordinate> keyLocationsPerRegion = paths.keySet().stream().map(p -> p.getEnd()).collect(Collectors.toList());
 
@@ -217,24 +219,26 @@ public class Explorer
         HashMap<Coordinate, Coordinate> track = new HashMap<Coordinate, Coordinate>();
         PriorityQueue<Coordinate> coords = new PriorityQueue<Coordinate>((Comparator.comparingInt(pos -> Util.cost(stepsTaken, pos, to))));
 
+        System.out.println("shortest path "+from+" "+to);
+
         stepsTaken.put(from, 0);
         coords.offer(from);
+
+        System.out.println("coords "+coords);
 
         while (coords.size() > 0)
         {
             Coordinate pos = coords.poll();
             int steps = stepsTaken.get(pos);
 
+            System.out.println("comparing "+pos+" "+to);
+
             if (pos.equals(to))
             {
-                Coordinate coord = coords.poll();
+                Set<Character> doors = traverse(pos, track);
+                Route shortestRoute = new Route(from, to, steps, doors);
 
-                if (to.equals(coord))
-                {
-                    Route theRoute = new Route(from, to, steps, traverse(coord, track));
-
-                    return Optional.of(theRoute);
-                }
+                return Optional.of(shortestRoute);
             }
             else
             {
