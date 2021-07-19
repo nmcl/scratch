@@ -22,6 +22,9 @@ public class Map
         _debug = debug;
 
         createMap(input);
+
+        if (_entrances.size() == 1)
+            transformEntrance();
     }
 
     public Vector<Coordinate> getEntrances ()
@@ -145,6 +148,25 @@ public class Map
         }
 
         _maxY = y + 1;
+    }
+
+    /*
+     * Transform the single entrace ...
+     * 
+     * ...
+     * .@.
+     * ...
+     * 
+     * to ...
+     * 
+     * @#@
+     * ###
+     * @#@
+     */
+
+    private void transformEntrance ()
+    {
+
     }
 
     private Vector<Cell> _theMap;
