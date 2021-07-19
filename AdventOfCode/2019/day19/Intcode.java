@@ -62,12 +62,15 @@ public class Intcode
 
     public final void setInput (String input)
     {
+        System.out.println("adding "+input);
         _input.add(input);
     }
 
-    public void setInputs (String... input)
+    public void setInputs (long... input)
     {
-        Arrays.stream(input).forEach(n -> setInput(n));
+        System.out.println("got "+input);
+        
+        Arrays.stream(input).forEach(n -> setInput(Long.toString(n)));
     }
 
     public final String getInput ()
