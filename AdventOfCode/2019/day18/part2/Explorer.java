@@ -179,7 +179,7 @@ public class Explorer
         {
             Coordinate startCoord = iter1.nextElement();
 
-            System.out.println("scanning "+startCoord);
+            System.out.println("coord "+startCoord);
 
             HashMap<Route, Route> paths = new HashMap<Route, Route>();
             Enumeration<Coordinate> iter2 = _theMap.getKeyLocations().elements();
@@ -188,6 +188,8 @@ public class Explorer
             {
                 Coordinate keyCoord = iter2.nextElement();
 
+                System.out.println("keyCoord "+keyCoord);
+                
                 shortestPath(startCoord, keyCoord).ifPresent(p -> paths.put(p, p));
             }
 
