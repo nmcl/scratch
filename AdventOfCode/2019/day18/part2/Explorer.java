@@ -67,25 +67,18 @@ public class Explorer
         }
 
         ArrayList<HashMap<Route, Route>> realmPaths = pathsBetweenKeys();
-
-        System.out.println("paths "+realmPaths);
-
         List<List<Coordinate>> keyLocationsPerRealm = keysForRealm(realmPaths);
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
         HashMap<String, Integer> minimumSteps = new HashMap<String, Integer>();
 
-        System.out.println("keys per realm "+keyLocationsPerRealm.size());
-        System.out.println("and "+keyLocationsPerRealm);
-
         journeys.offer(new Journey(_theMap.getEntrances()));
-
-        System.out.println("initial routes "+journeys.size());
 
         while (journeys.size() > 0)
         {
             Journey currentJourney = journeys.poll();
 
-            System.out.println("Working on "+currentJourney);
+            if (_debug)
+                System.out.println("Working on "+currentJourney);
 
             _iter++;
 
@@ -93,28 +86,15 @@ public class Explorer
                 System.out.println("Processing: "+currentJourney);
 
             if (currentJourney.foundKeys(_theMap.numberOfKeys()))
-            {
-                System.out.println("keys found");
-
                 return currentJourney.getSteps();
-            }
 
             for (int robotId = 0; robotId < Util.TOTAL_NUMBER_OF_ROBOTS; robotId++)
             {
-                System.out.println("robot "+robotId);
-
                 Coordinate robotLocation = currentJourney.getRobotLocation(robotId);
-
-                System.out.println("robotLocation "+robotLocation);
-
                 HashMap<Route, Route> pathsForRobot = realmPaths.get(robotId);
-
-                System.out.println("got "+keyLocationsPerRealm.get(robotId));
 
                 for (Coordinate nextCoord : keyLocationsPerRealm.get(robotId))
                 {
-                    System.out.println("nextPosition "+nextCoord);
-
                     if (validMove(currentJourney, currentJourney.getRobotLocation(robotId), nextCoord, pathsForRobot))
                     {
                         Journey theNextJourney = currentJourney.nextJourney(robotId, nextCoord, pathsForRobot, _theMap);
@@ -160,8 +140,6 @@ public class Explorer
 
     private List<List<Coordinate>> keysForRealm (List<HashMap<Route, Route>> realmPaths)
     {
-        System.out.println("checking "+realmPaths);
-
         return realmPaths.stream()
                 .map(paths ->
                         paths.keySet().stream()
@@ -177,9 +155,6 @@ public class Explorer
         while (iter1.hasMoreElements())
         {
             Coordinate startCoord = iter1.nextElement();
-
-            System.out.println("coord "+startCoord);
-
             HashMap<Route, Route> paths = new HashMap<Route, Route>();
             Enumeration<Coordinate> iter2 = _theMap.getKeyLocations().elements();
 
@@ -187,12 +162,11 @@ public class Explorer
             {
                 Coordinate keyCoord = iter2.nextElement();
 
-                System.out.println("keyCoord "+keyCoord);
-
                 shortestPath(startCoord, keyCoord).ifPresent(p -> paths.put(p, p));
             }
 
-            System.out.println("paths "+paths);
+            if (_debug)
+                System.out.println("Paths "+paths);
 
             List<Coordinate> keyLocationsPerRegion = paths.keySet().stream().map(p -> p.getEnd()).collect(Collectors.toList());
 
@@ -218,19 +192,16 @@ public class Explorer
         HashMap<Coordinate, Coordinate> track = new HashMap<Coordinate, Coordinate>();
         PriorityQueue<Coordinate> coords = new PriorityQueue<Coordinate>((Comparator.comparingInt(pos -> Util.cost(stepsTaken, pos, to))));
 
-        System.out.println("shortest path "+from+" "+to);
+        if (_debug)
+            System.out.println("Determining shortest path "+from+" "+to);
 
         stepsTaken.put(from, 0);
         coords.offer(from);
-
-        System.out.println("coords "+coords);
 
         while (coords.size() > 0)
         {
             Coordinate pos = coords.poll();
             int steps = stepsTaken.get(pos);
-
-            System.out.println("comparing "+pos+" "+to);
 
             if (pos.equals(to))
             {
