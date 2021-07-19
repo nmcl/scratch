@@ -166,7 +166,38 @@ public class Map
 
     private void transformEntrance ()
     {
+        Cell[] theCells = new Cell[9];
+        int index = 0;
+        Coordinate theEntrance = _entrances.get(0);  // assume only one!
 
+        for (int x = -1; x < 2; x++)
+        {
+            for (int y = -1; y < 2; y++)
+            {
+                Cell tempCell = new Cell(new Coordinate(theEntrance.getX() + x, theEntrance.getY() + y));
+                int contains = _theMap.indexOf(tempCell);
+
+                if (contains != -1)
+                {
+                    theCells[index] = _theMap.get(contains);
+                    theCells[index].setContents(CellId.STONE_WALL);
+                }
+                else
+                    theCells[index] = null;
+            }
+        }
+
+        if (theCells[0] != null)
+            theCells[0].setContents(CellId.ENTRANCE);
+
+        if (theCells[2] != null)
+            theCells[2].setContents(CellId.ENTRANCE);
+
+        if (theCells[6] != null)
+            theCells[6].setContents(CellId.ENTRANCE);
+
+        if (theCells[8] != null)
+            theCells[8].setContents(CellId.ENTRANCE);
     }
 
     private Vector<Cell> _theMap;
