@@ -32,8 +32,13 @@ public class TractorBeam
                 Intcode computer = new Intcode(values, debug);
 
 		        computer.setInputs(""+y, ""+x);
+
+                System.out.println("executing");
+
 		        computer.executeProgram();
 
+                System.out.println("done");
+                
                 Vector<String> outputs = computer.getOutputs();
                 Enumeration<String> iter = outputs.elements();
 
@@ -46,6 +51,8 @@ public class TractorBeam
                 }
 		    }
 	    }
+
+        System.out.println("count "+count);
     }
 
     private TractorBeam ()
