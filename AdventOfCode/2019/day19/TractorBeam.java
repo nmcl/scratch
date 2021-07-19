@@ -37,7 +37,7 @@ public class TractorBeam
 
                 System.out.println("executing");
 
-		        computer.executeProgram();
+		        computer.executeUntilInput();
 
                 System.out.println("done");
 
