@@ -40,6 +40,28 @@ public class Verifier
 
         System.out.println("Verified. Number of steps to find all keys: " + steps);
 
+        input = Util.readMap(EXAMPLE2_FILE);
+        theMap = new Map(input, _debug);
+
+        System.out.println(theMap);
+
+        exp = new Explorer(theMap, _debug);
+
+        System.out.println("Number of keys and doors: " + theMap.numberOfKeys() + ", " + theMap.numberOfDoors());
+
+        System.out.println("\nTraversing map ...");
+
+        steps = exp.findAllKeys();
+
+        if (steps != EXAMPLE2_STEPS)
+        {
+            System.out.println("Error for " + EXAMPLE2_FILE + " - number of steps: " + steps);
+
+            return false;
+        }
+
+        System.out.println("Verified. Number of steps to find all keys: " + steps);
+
         return true;
     }
 
