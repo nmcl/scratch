@@ -74,7 +74,7 @@ public class Intcode
     {
         try
         {
-            return _input.elementAt(0);
+            return _input.get(0);
         }
         catch (Exception ex)
         {
