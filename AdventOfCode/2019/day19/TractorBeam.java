@@ -16,4 +16,8 @@ public class TractorBeam
                 debug = true;
         }
     }
+
+    private TractorBeam ()
+    {
+    }
 }
