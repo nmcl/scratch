@@ -1,5 +1,11 @@
+import java.util.*;
+
 public class TractorBeam
 {
+    public static final String INSTRUCTIONS = "instructions.txt";
+
+    public static final int SPACE_SIZE = 50;
+
     public static final void main (String[] args)
     {
         boolean debug = false;
@@ -15,6 +21,9 @@ public class TractorBeam
             if ("-debug".equals(args[i]))
                 debug = true;
         }
+
+        Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
+        Intcode computer = new Intcode(values, debug);
     }
 
     private TractorBeam ()
