@@ -24,7 +24,8 @@ public class Tunnel {
                 verify = true;
         }
 
-        if (verify) {
+        if (verify)
+        {
             Verifier theVerifier = new Verifier(debug);
 
             if (theVerifier.verify())
@@ -33,7 +34,9 @@ public class Tunnel {
                 System.out.println("Verify failed.");
 
             System.exit(0);
-        } else {
+        }
+        else
+        {
             Vector<String> input = Util.readMap(TUNNEL_DATA);
             Map theMap = new Map(input, debug);
 
