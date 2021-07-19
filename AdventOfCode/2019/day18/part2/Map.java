@@ -170,6 +170,8 @@ public class Map
         int index = 0;
         Coordinate theEntrance = _entrances.get(0);  // assume only one!
 
+        System.out.println("Entrance "+theEntrance);
+
         for (int x = -1; x < 2; x++)
         {
             for (int y = -1; y < 2; y++)
@@ -184,6 +186,8 @@ public class Map
                 }
                 else
                     theCells[index] = null;
+
+                index++;
             }
         }
 
