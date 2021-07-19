@@ -24,7 +24,7 @@ public class Explorer
     {
         _theMap = theMap;
         _start = _theMap.getEntrance();
-        _totalNumnberOfKeys = _theMap.numberOfKeys();
+        _totalNumberOfKeys = _theMap.numberOfKeys();
         _states = null;
         _allStates = null;
         _iter = 0;
@@ -54,7 +54,7 @@ public class Explorer
         if (_debug)
         {
             System.out.println("Starting search at "+_start);
-            System.out.println("totalKeys "+_totalNumnberOfKeys);
+            System.out.println("totalKeys "+_totalNumberOfKeys);
         }
 
         _states.offer(new State(_start));
@@ -73,7 +73,7 @@ public class Explorer
             if (_debug)
                 System.out.println("State keys "+theState.numberOfKeys());
 
-            if (theState.numberOfKeys() == _totalNumnberOfKeys)
+            if (theState.numberOfKeys() == _totalNumberOfKeys)
                 return theState.numberOfSteps();
 
             for (Coordinate nextPosition : theState.getPosition().directions())
@@ -120,7 +120,7 @@ public class Explorer
 
     private Map _theMap;
     private Coordinate _start;
-    private int _totalNumnberOfKeys;
+    private int _totalNumberOfKeys;
     private ArrayDeque<State> _states;
     private Vector<State> _allStates;
     private int _iter;
