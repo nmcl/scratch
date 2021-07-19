@@ -130,8 +130,7 @@ public class Explorer
             }
         }
 
-        if (_debug)
-            System.out.println("No route found!!");
+        System.out.println("No route found!!");
 
         return -1;
     }
