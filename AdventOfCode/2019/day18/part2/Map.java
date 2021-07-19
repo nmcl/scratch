@@ -191,17 +191,31 @@ public class Map
             }
         }
 
+        _entrances = new Vector<Coordinate>();
+
         if (theCells[0] != null)
+        {
             theCells[0].setContents(CellId.ENTRANCE);
+            _entrances.add(theCells[0].position());
+        }
 
         if (theCells[2] != null)
+        {
             theCells[2].setContents(CellId.ENTRANCE);
+            _entrances.add(theCells[2].position());
+        }
 
         if (theCells[6] != null)
+        {
             theCells[6].setContents(CellId.ENTRANCE);
+            _entrances.add(theCells[6].position());
+        }
 
         if (theCells[8] != null)
+        {
             theCells[8].setContents(CellId.ENTRANCE);
+            _entrances.add(theCells[8].position());
+        }
     }
 
     private Vector<Cell> _theMap;
