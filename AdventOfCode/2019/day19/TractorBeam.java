@@ -31,14 +31,16 @@ public class TractorBeam
             {
                 Intcode computer = new Intcode(values, debug);
 
-		        computer.setInputs(""+y, ""+x);
+		        computer.setInputs(y, x);
+
+                System.out.println("inputs "+computer.getInputs());
 
                 System.out.println("executing");
 
 		        computer.executeProgram();
 
                 System.out.println("done");
-                
+
                 Vector<String> outputs = computer.getOutputs();
                 Enumeration<String> iter = outputs.elements();
 
