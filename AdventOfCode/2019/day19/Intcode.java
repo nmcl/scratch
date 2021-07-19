@@ -6,6 +6,11 @@ public class Intcode
     public static final String DELIMITER = ",";
     public static final String INITIALISED_MEMORY = "0";
 
+    public Intcode (Vector<String> values, boolean debug)
+    {
+        this(values, null, debug);
+    }
+
     public Intcode (Vector<String> values, String initialInput, boolean debug)
     {
         _debug = debug;
