@@ -24,7 +24,7 @@ public class Explorer
     public Explorer (Map theMap, boolean debug)
     {
         _theMap = theMap;
-        _totalNumnberOfKeys = _theMap.numberOfKeys();
+        _totalNumberOfKeys = _theMap.numberOfKeys();
         _iter = 0;
         _debug = debug;
     }
@@ -63,7 +63,7 @@ public class Explorer
                 System.out.println("Robot "+i+" starting search at "+startingLocations.get(i));
             }
 
-            System.out.println("totalKeys "+_totalNumnberOfKeys);
+            System.out.println("totalKeys "+_totalNumberOfKeys);
         }
 
         ArrayList<HashMap<Route, Route>> realmPaths = pathsBetweenKeys();
@@ -272,7 +272,7 @@ public class Explorer
     }
 
     private Map _theMap;
-    private int _totalNumnberOfKeys;
+    private int _totalNumberOfKeys;
     private int _iter;
     private boolean _debug;
 }
