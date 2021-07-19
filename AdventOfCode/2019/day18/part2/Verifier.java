@@ -18,6 +18,21 @@ public class Verifier
 
     public boolean verify()
     {
+        if (check(EXAMPLE1_FILE, EXAMPLE1_STEPS))
+        {
+            if (check(EXAMPLE2_FILE, EXAMPLE2_STEPS))
+            {
+                if (check(EXAMPLE3_FILE, EXAMPLE3_STEPS))
+                {
+                    if (check(EXAMPLE4_FILE, EXAMPLE4_STEPS))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+
+        /*
         Vector<String> input = Util.readMap(EXAMPLE1_FILE);
         Map theMap = new Map(input, _debug);
 
@@ -100,6 +115,33 @@ public class Verifier
         if (steps != EXAMPLE4_STEPS)
         {
             System.out.println("Error for " + EXAMPLE4_FILE + " - number of steps: " + steps);
+
+            return false;
+        }
+
+        System.out.println("Verified. Number of steps to find all keys: " + steps);
+
+        return true;*/
+    }
+
+    private boolean check (String file, int outcome)
+    {
+        Vector<String> input = Util.readMap(file);
+        Map theMap = new Map(input, _debug);
+
+        System.out.println(theMap);
+
+        Explorer exp = new Explorer(theMap, _debug);
+
+        System.out.println("Number of keys and doors: " + theMap.numberOfKeys() + ", " + theMap.numberOfDoors());
+
+        System.out.println("\nTraversing map ...");
+
+        int steps = exp.findAllKeys();
+
+        if (steps != outcome)
+        {
+            System.out.println("Error for " + file + " - number of steps: " + steps);
 
             return false;
         }
