@@ -23,7 +23,29 @@ public class TractorBeam
         }
 
         Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
-        Intcode computer = new Intcode(values, debug);
+        int count = 0;
+
+	    for (int x = 0; x < SPACE_SIZE; x++)
+        {
+	        for (int y = 0; y < SPACE_SIZE; y++)
+            {
+                Intcode computer = new Intcode(values, debug);
+
+		        computer.setInputs(""+y, ""+x);
+		        computer.executeProgram();
+
+                Vector<String> outputs = computer.getOutputs();
+                Enumeration<String> iter = outputs.elements();
+
+                while (iter.hasMoreElements())
+                {
+                    String value = iter.nextElement();
+
+                    if (DroneStatus.BEING_PULLED.equals(value))
+                        count++;
+                }
+		    }
+	    }
     }
 
     private TractorBeam ()
