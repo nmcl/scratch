@@ -31,7 +31,7 @@ public class TractorBeam
             {
                 Intcode computer = new Intcode(values, debug);
 
-		        computer.setInputs(y, x);
+		        computer.setInputs(""+y, ""+x);
 
                 System.out.println("inputs "+computer.getInputs());
 
