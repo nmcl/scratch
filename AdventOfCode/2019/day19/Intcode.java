@@ -277,7 +277,7 @@ public class Intcode
 
                 _status = Status.PAUSED;
 
-                    return _status;
+                return _status;
             }
             case Instructions.JUMP_IF_TRUE:
             {
