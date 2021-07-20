@@ -413,7 +413,7 @@ public class Intcode
 
                 _relativeBase += param1;
 
-                //if (_debug)
+                if (_debug)
                     System.out.println("Relative base now "+_relativeBase);
 
                 _instructionPointer += 2;
