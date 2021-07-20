@@ -450,6 +450,8 @@ public class Intcode
 
     private void setOutput (long param1)
     {
+        System.out.println("adding output "+param1);
+        
         _output.add(Long.toString(param1));
     }
 
