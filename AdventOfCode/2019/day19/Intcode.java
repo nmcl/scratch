@@ -19,7 +19,8 @@ public class Intcode
         _memory = new Vector<String>(values);
         _input = new Vector<String>();
         
-        _input.add(initialInput);
+        if (initialInput != null)  // cannot have null as a valid input!
+            _input.add(initialInput);
 
         _status = Status.CREATED;
         _relativeBase = 0;
@@ -62,22 +63,16 @@ public class Intcode
 
     public final void setInput (String input)
     {
-        System.out.println("adding input "+input);
-        
         _input.add(input);
     }
 
     public void setInputs (String... input)
     {
-        System.out.println("setInputs "+input);
-
         Arrays.stream(input).forEach(n -> setInput(n));
     }
 
     public final String getInput ()
     {
-        System.out.println("_input size "+_input.size());
-
         try
         {
             return _input.get(0);
@@ -168,7 +163,7 @@ public class Intcode
         int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
 
-        //if (_debug)
+        if (_debug)
         {
             System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
                                     " ("+opcode+")"+" with parameter modes ...");
@@ -246,7 +241,7 @@ public class Intcode
                     {
                         int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("Storing "+getInput()+" at position "+param1);
 
                         setValue(param1, consumeInput());
@@ -255,7 +250,7 @@ public class Intcode
                     }
                     else
                     {
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("Waiting for input.");
 
                         _status = Status.WAITING_FOR_INPUT;
