@@ -38,8 +38,6 @@ public class TractorBeam
                 Vector<String> outputs = computer.getOutputs();
                 Enumeration<String> iter = outputs.elements();
 
-                System.out.println("outputs: "+outputs.size());
-                
                 while (iter.hasMoreElements())
                 {
                     String value = iter.nextElement();
@@ -50,7 +48,7 @@ public class TractorBeam
 		    }
 	    }
 
-        System.out.println("count "+count);
+        System.out.println("Points affected by tractor beam: "+count);
     }
 
     private TractorBeam ()
