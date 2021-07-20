@@ -161,12 +161,11 @@ public class Intcode
         int opcode = Integer.valueOf(str);
         int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
-        System.out.println("instruction "+opcode);
-        
-        if (_debug)
+
+        //if (_debug)
         {
             System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
-                                    " with parameter modes ...");
+                                    " ("+opcode+")"+" with parameter modes ...");
 
             ParameterMode.printModes(modes);
         }
