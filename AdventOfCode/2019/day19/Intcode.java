@@ -271,7 +271,7 @@ public class Intcode
                 if (_debug)
                     System.out.println("Adding value "+param1+" to output state.");
 
-                _output.add(Long.toString(param1));
+                setOutput(param1);
 
                 _instructionPointer += 2;  // move the pointer on.
 
@@ -446,6 +446,11 @@ public class Intcode
         _status = Status.RUNNING;
 
         return _status;
+    }
+
+    private void setOutput (long param1)
+    {
+        _output.add(Long.toString(param1));
     }
 
     // these methods ensure capacity is available
