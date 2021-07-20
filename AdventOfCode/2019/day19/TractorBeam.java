@@ -33,15 +33,13 @@ public class TractorBeam
 
                 computer.setInputs(""+y, ""+x);
 
-                System.out.println("executing");
-
 		        computer.executeProgram();
-
-                System.out.println("done");
 
                 Vector<String> outputs = computer.getOutputs();
                 Enumeration<String> iter = outputs.elements();
 
+                System.out.println("outputs: "+outputs.size());
+                
                 while (iter.hasMoreElements())
                 {
                     String value = iter.nextElement();
