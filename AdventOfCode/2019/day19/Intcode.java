@@ -165,7 +165,7 @@ public class Intcode
         System.out.println("instruction "+_memory.elementAt(_instructionPointer));
         System.out.println("base "+_relativeBase);
 
-        if (_debug)
+        //if (_debug)
         {
             System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
                                     " ("+opcode+")"+" with parameter modes ...");
