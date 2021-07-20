@@ -162,6 +162,8 @@ public class Intcode
         int opcode = Integer.valueOf(str);
         int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
+        System.out.println("instruction "+_memory.elementAt(_instructionPointer));
+        System.out.println("base "+_relativeBase);
 
         if (_debug)
         {
