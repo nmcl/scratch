@@ -62,16 +62,22 @@ public class Intcode
 
     public final void setInput (String input)
     {
+        System.out.println("adding input "+input);
+        
         _input.add(input);
     }
 
     public void setInputs (String... input)
     {
+        System.out.println("setInputs "+input);
+
         Arrays.stream(input).forEach(n -> setInput(n));
     }
 
     public final String getInput ()
     {
+        System.out.println("_input size "+_input.size());
+
         try
         {
             return _input.get(0);
@@ -240,7 +246,7 @@ public class Intcode
                     {
                         int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
-                        if (_debug)
+                        //if (_debug)
                             System.out.println("Storing "+getInput()+" at position "+param1);
 
                         setValue(param1, consumeInput());
@@ -249,7 +255,7 @@ public class Intcode
                     }
                     else
                     {
-                        if (_debug)
+                        //if (_debug)
                             System.out.println("Waiting for input.");
 
                         _status = Status.WAITING_FOR_INPUT;
@@ -412,7 +418,7 @@ public class Intcode
 
                 _relativeBase += param1;
 
-                if (_debug)
+                //if (_debug)
                     System.out.println("Relative base now "+_relativeBase);
 
                 _instructionPointer += 2;
