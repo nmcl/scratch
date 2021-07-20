@@ -63,8 +63,6 @@ public class Intcode
 
     public final void setInput (String input)
     {
-        System.out.println("setInput "+input);
-        
         _input.add(input);
     }
 
@@ -77,8 +75,6 @@ public class Intcode
     {
         try
         {
-            System.out.println("getInput "+_input.get(0));
-
             return _input.get(0);
         }
         catch (Exception ex)
@@ -167,9 +163,8 @@ public class Intcode
         int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
         System.out.println("instruction "+_memory.elementAt(_instructionPointer));
-        System.out.println("base "+_relativeBase);
 
-        //if (_debug)
+        if (_debug)
         {
             System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
                                     " ("+opcode+")"+" with parameter modes ...");
@@ -247,7 +242,7 @@ public class Intcode
                     {
                         int param1 = Integer.valueOf(getValue(_instructionPointer+1, modes[0], true));
 
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("Storing "+getInput()+" at position "+param1);
 
                         setValue(param1, consumeInput());
@@ -256,7 +251,7 @@ public class Intcode
                     }
                     else
                     {
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("Waiting for input.");
 
                         _status = Status.WAITING_FOR_INPUT;
