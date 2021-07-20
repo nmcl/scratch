@@ -162,8 +162,6 @@ public class Intcode
         int opcode = Integer.valueOf(str);
         int[] modes = ParameterMode.getModes(_memory.elementAt(_instructionPointer));
 
-        System.out.println("instruction "+_memory.elementAt(_instructionPointer));
-
         if (_debug)
         {
             System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
@@ -450,8 +448,6 @@ public class Intcode
 
     private void setOutput (long param1)
     {
-        System.out.println("adding output "+param1);
-        
         _output.add(Long.toString(param1));
     }
 
