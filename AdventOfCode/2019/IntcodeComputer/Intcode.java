@@ -6,6 +6,11 @@ public class Intcode
     public static final String DELIMITER = ",";
     public static final String INITIALISED_MEMORY = "0";
 
+    public Intcode (Vector<String> values, boolean debug)
+    {
+        this(values, null, debug);
+    }
+
     public Intcode (Vector<String> values, String initialInput, boolean debug)
     {
         _debug = debug;
@@ -14,7 +19,8 @@ public class Intcode
         _memory = new Vector<String>(values);
         _input = new Vector<String>();
         
-        _input.add(initialInput);
+        if (initialInput != null)  // cannot have null as a valid input!
+            _input.add(initialInput);
 
         _status = Status.CREATED;
         _relativeBase = 0;
@@ -50,21 +56,36 @@ public class Intcode
         return _output.remove(0);
     }
 
+    public final Vector<String> getOutputs ()
+    {
+        return _output;
+    }
+
     public final void setInput (String input)
     {
         _input.add(input);
+    }
+
+    public void setInputs (String... input)
+    {
+        Arrays.stream(input).forEach(n -> setInput(n));
     }
 
     public final String getInput ()
     {
         try
         {
-            return _input.elementAt(0);
+            return _input.get(0);
         }
         catch (Exception ex)
         {
             return null;
         }
+    }
+
+    public final Vector<String> getInputs ()
+    {
+        return _input;
     }
 
     public final String consumeInput ()
@@ -144,7 +165,7 @@ public class Intcode
         if (_debug)
         {
             System.out.println("\nWorking on element "+_instructionPointer+" which is command "+Instructions.commandToString(opcode)+
-                                    " with parameter modes ...");
+                                    " ("+opcode+")"+" with parameter modes ...");
 
             ParameterMode.printModes(modes);
         }
@@ -248,13 +269,13 @@ public class Intcode
                 if (_debug)
                     System.out.println("Adding value "+param1+" to output state.");
 
-                _output.add(Long.toString(param1));
+                setOutput(param1);
 
                 _instructionPointer += 2;  // move the pointer on.
 
                 _status = Status.PAUSED;
 
-                    return _status;
+                return _status;
             }
             case Instructions.JUMP_IF_TRUE:
             {
@@ -423,6 +444,11 @@ public class Intcode
         _status = Status.RUNNING;
 
         return _status;
+    }
+
+    private void setOutput (long param1)
+    {
+        _output.add(Long.toString(param1));
     }
 
     // these methods ensure capacity is available
