@@ -4,7 +4,7 @@ public class TractorBeam
 {
     public static final String INSTRUCTIONS = "instructions.txt";
 
-    public static final int SPACE_SIZE = 50;
+    public static final int SPACE_SIZE = 100;
 
     public static final void main (String[] args)
     {
