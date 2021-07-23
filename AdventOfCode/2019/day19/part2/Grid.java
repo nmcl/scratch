@@ -5,7 +5,7 @@ public class Grid
     public Grid (Vector<String> instructions, boolean debug)
     {
         _input = instructions;
-        _debug = debub;
+        _debug = debug;
     }
 
     private Coordinate leftCoordinate (int y, int x)
