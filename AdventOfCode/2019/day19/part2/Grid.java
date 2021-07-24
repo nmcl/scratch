@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Grid
 {
+    public static final int GRID_FUDGE = 2000;
+
     public Grid (Vector<String> instructions, boolean debug)
     {
         _input = instructions;
@@ -18,18 +20,16 @@ public class Grid
 
     private final void findSquare ()
     {
-        int startY = 10;
+        int startY = 100;  // far enough in
         int startX = 0;
 
         Coordinate leftCoord = leftCoordinate(startY, startX);
         Coordinate rightCoord = rightCoordinate(leftCoord.getY(), leftCoord.getX());
 
-        for (int i = startY + 1; i < 3000; i++)
+        for (int i = startY + 1; i < GRID_FUDGE; i++)
         {
             leftCoord = leftCoordinate(i, leftCoord.getX());
             rightCoord = rightCoordinate(i, rightCoord.getX());
-
-            System.out.println("adding "+leftCoord+" "+rightCoord);
 
             _theGrid.add(new CoordinatePair(leftCoord, rightCoord));
         }
@@ -38,8 +38,6 @@ public class Grid
     private Coordinate leftCoordinate (int y, int x)
     {
         Intcode computer = new Intcode(_input, _debug);
-
-        System.out.println("leftPointer "+x+" "+y);
 
         computer.setInputs(""+x, ""+y);
         computer.executeProgram();
@@ -65,8 +63,6 @@ public class Grid
     private Coordinate rightCoordinate (int y, int x)
     {
         Intcode computer = new Intcode(_input, _debug);
-
-        System.out.println("rightPointer "+x+" "+y);
 
         computer.setInputs(""+x, ""+y);
         computer.executeProgram();
