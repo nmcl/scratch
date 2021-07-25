@@ -1,10 +1,5 @@
 public class Tile
 {
-    public Tile (Coordinate coord)
-    {
-        this(coord, TileId.UNEXPLORED);
-    }
-
     public Tile (Coordinate coord, String type)
     {
         _position = coord;
