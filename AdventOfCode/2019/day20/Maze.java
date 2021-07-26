@@ -6,7 +6,7 @@ public class Maze
     public Maze (String data, boolean debug)
     {
         _theMaze = new Vector<Tile>();
-        
+
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
 
@@ -15,21 +15,23 @@ public class Maze
 
     public String toString ()
     {
-        int xAxis = 0;
         Enumeration<Tile> iter = _theMaze.elements();
-        String str = "";
+        String str = "Maze < "+_width+", "+_height+" >\n";
+        int y = 0;
 
         while (iter.hasMoreElements())
         {
             Tile theEntry = iter.nextElement();
 
-            if (theEntry.position().getX() != xAxis)
+            str += theEntry.toString();
+
+            y++;
+
+            if (y == _width)
             {
-                xAxis = theEntry.position().getX();
+                y = 0;
                 str += "\n";
             }
-
-            str += theEntry.toString();
         }
 
         return str;
@@ -60,8 +62,10 @@ public class Maze
                         case TileId.SPACE:
                         case TileId.PASSAGE:
                             _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
+                            break;
                         default:
                             _theMaze.add(new Tile(new Coordinate(i, _height), TileId.SPACE));
+                            break;
                     }
                 }
 
