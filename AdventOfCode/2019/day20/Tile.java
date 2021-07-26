@@ -1,12 +1,12 @@
 public class Tile
 {
-    public Tile (Coordinate coord, String type)
+    public Tile (Coordinate coord, char type)
     {
         _position = coord;
         _type = type;
     }
 
-    public final String content ()
+    public final char content ()
     {
         return _type;
     }
@@ -19,7 +19,7 @@ public class Tile
     @Override
     public String toString ()
     {
-        return _type;
+        return Character.toString(_type);
     }
 
     @Override
@@ -50,5 +50,5 @@ public class Tile
     }
 
     private Coordinate _position;
-    private String _type;
+    private char _type;
 }
