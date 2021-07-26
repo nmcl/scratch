@@ -3,10 +3,12 @@ import java.io.*;
 
 public class Maze
 {
-    public Maze (String data)
+    public Maze (String data, boolean debug)
     {
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
+
+        _debug = debug;
     }
 
     public String toString ()
@@ -19,9 +21,9 @@ public class Maze
         {
             Tile theEntry = iter.nextElement();
 
-            if (theEntry.getPosition().getX() != xAxis)
+            if (theEntry.position().getX() != xAxis)
             {
-                xAxis = theEntry.getPosition().getX();
+                xAxis = theEntry.position().getX();
                 str += "\n";
             }
 
@@ -87,4 +89,5 @@ public class Maze
     private Vector<Tile> _theMaze;
     private int _height = 0;
     private int _width = 0;
+    private boolean _debug;
 }
