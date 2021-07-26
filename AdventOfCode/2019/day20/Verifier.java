@@ -10,5 +10,14 @@ public class Verifier
         _debug = debug;
     }
 
+    public boolean verify ()
+    {
+        Maze theMaze = new Maze(EXAMPLE_1, _debug);
+
+        System.out.println(theMaze);
+
+        return true;
+    }
+
     private boolean _debug;
 }
