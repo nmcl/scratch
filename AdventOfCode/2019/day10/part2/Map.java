@@ -177,7 +177,6 @@ public class Map
                 }
 
                 _height++;
-
             }
         }
         catch (Throwable ex)
