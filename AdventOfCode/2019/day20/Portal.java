@@ -1,11 +1,11 @@
-public class Door extends Tile
+public class Portal extends Tile
 {
     public static final String START = "AA";
     public static final String EXIT = "ZZ";
 
-    public Door (Coordinate position, boolean horizontalRepresentation)
+    public Portal (Coordinate position, boolean horizontalRepresentation)
     {
-        super(position, TileId.DOOR);
+        super(position, TileId.PORTAL);
         
         _location = position;
         _horizontal = horizontalRepresentation;
