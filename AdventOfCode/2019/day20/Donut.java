@@ -21,5 +21,15 @@ public class Donut
             if ("-verify".equals(args[i]))
                 verify = true;
         }
+
+        if (verify)
+        {
+            Verifier theVerifier = new Verifier(debug);
+
+            if (theVerifier.verify())
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Failed to verify.");
+        }
     }
 }
