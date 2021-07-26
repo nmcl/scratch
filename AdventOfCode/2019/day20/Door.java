@@ -1,5 +1,8 @@
 public class Door
 {
+    public static final String START = "AA";
+    public static final String EXIT = "ZZ";
+    
     public Door (Coordinate position, boolean horizontalRepresentation)
     {
         _location = position;
