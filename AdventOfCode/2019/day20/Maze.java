@@ -9,6 +9,11 @@ public class Maze
             System.out.println("Error in loading data file: "+data);
     }
 
+    public String toString ()
+    {
+
+    }
+    
     private final boolean loadData (String file)
     {
         BufferedReader reader = null;
