@@ -1,8 +1,8 @@
 public class TileId
 {
-    public static final String WALL = "#";
-    public static final String SPACE = " ";
-    public static final String PASSAGE = ".";
+    public static final char WALL = '#';
+    public static final char SPACE = ' ';
+    public static final char PASSAGE = '.';
 
     private TileId ()  // prevent instantiation!
     {
