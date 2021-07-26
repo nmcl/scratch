@@ -63,6 +63,29 @@ public class Map
         return sortTargetsBySweepAngleThenDistance(laserLocation, filterAsteroids());
     }
 
+    @Override
+    public String toString ()
+    {
+        int xAxis = 0;
+        Enumeration<MapEntry> iter = _theMap.elements();
+        String str = "";
+
+        while (iter.hasMoreElements())
+        {
+            MapEntry theEntry = iter.nextElement();
+
+            if (theEntry.getPosition().getX() != xAxis)
+            {
+                xAxis = theEntry.getPosition().getX();
+                str += "\n";
+            }
+
+            str += theEntry.toString();
+        }
+
+        return str;
+    }
+
     private final long detectableAsteroids (Vector<Asteroid> theList, Asteroid from)
     {
         return theList.stream()
@@ -197,29 +220,6 @@ public class Map
         }
 
         return valid;
-    }
-
-    @Override
-    public String toString ()
-    {
-        int xAxis = 0;
-        Enumeration<MapEntry> iter = _theMap.elements();
-        String str = "";
-
-        while (iter.hasMoreElements())
-        {
-            MapEntry theEntry = iter.nextElement();
-
-            if (theEntry.getPosition().getX() != xAxis)
-            {
-                xAxis = theEntry.getPosition().getX();
-                str += "\n";
-            }
-
-            str += theEntry.toString();
-        }
-
-        return str;
     }
 
     private Vector<MapEntry> _theMap;
