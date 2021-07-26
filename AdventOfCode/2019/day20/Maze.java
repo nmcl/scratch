@@ -13,7 +13,17 @@ public class Maze
         _debug = debug;
     }
 
+    public String printWithPortals ()
+    {
+        return print(false);
+    }
+
     public String toString ()
+    {
+        return print(true);
+    }
+
+    private String print (boolean ignorePortals)
     {
         Enumeration<Tile> iter = _theMaze.elements();
         String str = "Maze < "+_width+", "+_height+" >\n";
@@ -23,7 +33,19 @@ public class Maze
         {
             Tile theEntry = iter.nextElement();
 
-            str += theEntry.toString();
+            /*
+             * Print without portals?
+             */
+
+            if (ignorePortals)
+            {
+                if (TileId.PORTAL != theEntry.content())
+                    str += theEntry.toString();
+                else
+                    str += TileId.SPACE;
+            }
+            else
+                str += theEntry.toString();
 
             y++;
 
@@ -64,7 +86,7 @@ public class Maze
                             _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
                             break;
                         default:
-                            _theMaze.add(new Tile(new Coordinate(i, _height), TileId.SPACE));
+                            _theMaze.add(new Portal(new Coordinate(i, _height), true));
                             break;
                     }
                 }
