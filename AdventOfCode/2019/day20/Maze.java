@@ -11,7 +11,24 @@ public class Maze
 
     public String toString ()
     {
+        int xAxis = 0;
+        Enumeration<Tile> iter = _theMaze.elements();
+        String str = "";
 
+        while (iter.hasMoreElements())
+        {
+            Tile theEntry = iter.nextElement();
+
+            if (theEntry.getPosition().getX() != xAxis)
+            {
+                xAxis = theEntry.getPosition().getX();
+                str += "\n";
+            }
+
+            str += theEntry.toString();
+        }
+
+        return str;
     }
     
     private final boolean loadData (String file)
