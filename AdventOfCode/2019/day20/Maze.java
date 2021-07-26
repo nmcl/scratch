@@ -5,6 +5,8 @@ public class Maze
 {
     public Maze (String data, boolean debug)
     {
+        _theMaze = new Vector<Tile>();
+        
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
 
