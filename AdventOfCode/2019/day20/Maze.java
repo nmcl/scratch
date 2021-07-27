@@ -7,7 +7,7 @@ public class Maze
     {
         _theMaze = new Vector<Tile>();
         _thePortals = new Vector<Portal>();
-        
+
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
 
@@ -87,7 +87,7 @@ public class Maze
                             _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
                             break;
                         default:
-                            _theMaze.add(new Portal(new Coordinate(i, _height), true));
+                            _theMaze.add(new Portal(new Coordinate(i, _height), asChar[i]));
                             break;
                     }
                 }
@@ -112,7 +112,15 @@ public class Maze
             }
         }
 
+        if (valid)
+            reparsePortals();
+
         return valid;
+    }
+
+    private void reparsePortals ()
+    {
+        
     }
 
     private Vector<Tile> _theMaze;
