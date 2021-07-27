@@ -3,14 +3,14 @@ public class Portal extends Tile
     public static final String START = "AA";
     public static final String EXIT = "ZZ";
 
-    public Portal (Coordinate position, boolean horizontalRepresentation)
+    public Portal (Coordinate position, char portalId)
     {
         super(position, TileId.PORTAL);
         
         _location = position;
-        _horizontal = horizontalRepresentation;
+        _portalName = portalId;
     }
 
     private Coordinate _location;
-    private boolean _horizontal;
+    private char _portalName;
 }
