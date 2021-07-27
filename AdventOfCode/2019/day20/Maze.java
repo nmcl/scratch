@@ -6,7 +6,8 @@ public class Maze
     public Maze (String data, boolean debug)
     {
         _theMaze = new Vector<Tile>();
-
+        _thePortals = new Vector<Portal>();
+        
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
 
@@ -115,6 +116,7 @@ public class Maze
     }
 
     private Vector<Tile> _theMaze;
+    private Vector<Portal> _thePortals;
     private int _height = 0;
     private int _width = 0;
     private boolean _debug;
