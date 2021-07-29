@@ -120,7 +120,7 @@ public class Maze
 
     private void reparsePortals ()
     {
-        
+
     }
 
     private Vector<Tile> _theMaze;
