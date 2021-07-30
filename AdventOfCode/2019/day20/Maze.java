@@ -16,15 +16,15 @@ public class Maze
 
     public String printWithPortals ()
     {
-        return print(false);
+        return createRepresentation(false);
     }
 
     public String toString ()
     {
-        return print(true);
+        return createRepresentation(true);
     }
 
-    private String print (boolean ignorePortals)
+    private String createRepresentation (boolean ignorePortals)
     {
         Enumeration<Tile> iter = _theMaze.elements();
         String str = "Maze < "+_width+", "+_height+" >\n";
