@@ -6,9 +6,5 @@ public class Portal extends Tile
     public Portal (Coordinate position, char portalId)
     {
         super(position, TileId.PORTAL);
-
-        _horizontal = horizontalRepresentation;
     }
-
-    private boolean _horizontal;
 }
