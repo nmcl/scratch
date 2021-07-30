@@ -16,7 +16,7 @@ public class Verifier
 
         System.out.println(theMaze);
 
-        theMaze.printWithPortals();
+        System.out.println(theMaze.printWithPortals());
 
         return true;
     }
