@@ -134,6 +134,11 @@ public class Maze
         return valid;
     }
 
+    /*
+     * We have two Portal instances per real Portal. Need to create one
+     * instance.
+     */
+
     private void reparsePortals ()
     {
 
