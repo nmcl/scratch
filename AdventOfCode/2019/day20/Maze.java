@@ -99,6 +99,8 @@ public class Maze
                         break;
                         default:  // add to Portal list
                         {
+                            // have portal at the PASSAGE and have that instance print it?
+                            
                             Portal p = new Portal(new Coordinate(i, _height), asChar[i]);
 
                             _theMaze.add(p);
