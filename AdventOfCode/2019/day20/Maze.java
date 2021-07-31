@@ -95,7 +95,7 @@ public class Maze
                         case TileId.PASSAGE:
                             _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
                             break;
-                        default:
+                        default:  // add to Portal list
                             _theMaze.add(new Portal(new Coordinate(i, _height), asChar[i]));
                             break;
                     }
