@@ -100,7 +100,7 @@ public class Maze
                         default:  // add to Portal list
                         {
                             // have portal at the PASSAGE and have that instance print it?
-                            
+
                             Portal p = new Portal(new Coordinate(i, _height), asChar[i]);
 
                             _theMaze.add(p);
@@ -143,7 +143,12 @@ public class Maze
 
     private void reparsePortals ()
     {
+        Enumeration<Portal> iter = _thePortals.elements();
 
+        while (iter.hasMoreElements())
+        {
+            System.out.println("Portal: "+iter.nextElement().getId());
+        }
     }
 
     private Vector<Tile> _theMaze;
