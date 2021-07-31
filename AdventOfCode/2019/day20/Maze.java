@@ -46,7 +46,16 @@ public class Maze
                     str += TileId.SPACE;
             }
             else
-                str += theEntry.toString();
+            {
+                if (TileId.PORTAL == theEntry.content())
+                {
+                    Portal p = (Portal) theEntry;
+
+                    str += p.getId();
+                }
+                else
+                    str += theEntry.toString();
+            }
 
             y++;
 
