@@ -48,7 +48,7 @@ public class Tile
         {
             Tile temp = (Tile) obj;
 
-            return _position.equals(temp._position);
+            return _position.equals(temp._position);  // only compare position not type.
         }
 
         return false;
