@@ -157,8 +157,24 @@ public class Maze
 
         while (iter.hasMoreElements())
         {
-            System.out.println("Portal: "+iter.nextElement().getId());
+            Portal p = iter.nextElement();
+
+            System.out.println("Portal: "+p.getId());
+
+            Coordinate coord = p.getPosition();
         }
+    }
+
+    private Tile[] adjacentTiles (Coordinate coord)
+    {
+        Tile up = new Tile(new Coordinate(coord.getX(), coord.getY() +1));
+        Tile down = new Tile(new Coordinate(coord.getX(), coord.getY() -1));
+        Tile left = new Tile(new Coordinate(coord.getX() -1, coord.getY()));
+        Tile right = new Tile(new Coordinate(coord.getX() +1, coord.getY()));
+
+        Tile[] tiles = new Tile[4];
+
+        tiles[0] = 
     }
 
     private Vector<Tile> _theMaze;
