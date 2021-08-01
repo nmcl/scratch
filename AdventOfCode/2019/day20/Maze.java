@@ -183,7 +183,8 @@ public class Maze
         {
             int index = _theMaze.indexOf(tiles[i]);
 
-            System.out.println("Adjacent "+i+" at "+tiles[i].position()+" index "+index);
+            if (_debug)
+                System.out.println("Adjacent to "+coord+" at position "+i+" at "+tiles[i].position()+" index "+index);
 
             if (index != -1)
                 tiles[i] = _theMaze.elementAt(index);
