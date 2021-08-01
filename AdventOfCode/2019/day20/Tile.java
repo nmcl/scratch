@@ -56,6 +56,6 @@ public class Tile
         return false;
     }
 
-    private Coordinate _position;
-    private char _type;
+    protected Coordinate _position;
+    protected char _type;
 }
