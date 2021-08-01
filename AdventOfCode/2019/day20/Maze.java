@@ -165,7 +165,14 @@ public class Maze
 
             for (int i = 0; i < tiles.length; i++)
             {
-                System.out.println("Adjacent tile: "+i+" is "+tiles[i]);
+                if ((tiles[i] != null) && (tiles[i].content() == TileId.PORTAL))
+                {
+                    Portal p1 = (Portal) tiles[i];
+
+                    System.out.println("Adjacent tile: "+i+" is "+p1.getId());
+                }
+                else
+                    System.out.println("Adjacent tile: "+i+" is "+tiles[i]);
             }
         }
     }
