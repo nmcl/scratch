@@ -103,10 +103,10 @@ public class Maze
 
                             Portal p = new Portal(new Coordinate(i, _height), asChar[i]);
 
-                            System.out.println("Portal at "+p.position());
-
                             _theMaze.add(p);
                             _thePortals.add(p);
+
+                            System.out.println("Portal at "+p.position()+" and "+_theMaze.indexOf(p));
                         }
                         break;
                     }
