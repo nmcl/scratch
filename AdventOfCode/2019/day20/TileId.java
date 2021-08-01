@@ -26,7 +26,7 @@ public class TileId
                 return "UNKNOWN";
         }
     }
-    
+
     private TileId ()  // prevent instantiation!
     {
     }
