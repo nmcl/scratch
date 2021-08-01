@@ -161,20 +161,30 @@ public class Maze
 
             System.out.println("Portal: "+p.getId());
 
-            Coordinate coord = p.getPosition();
+            Coordinate coord = p.position();
         }
     }
 
     private Tile[] adjacentTiles (Coordinate coord)
     {
-        Tile up = new Tile(new Coordinate(coord.getX(), coord.getY() +1));
-        Tile down = new Tile(new Coordinate(coord.getX(), coord.getY() -1));
-        Tile left = new Tile(new Coordinate(coord.getX() -1, coord.getY()));
-        Tile right = new Tile(new Coordinate(coord.getX() +1, coord.getY()));
-
         Tile[] tiles = new Tile[4];
 
-        tiles[0] = 
+        tiles[0] = new Tile(new Coordinate(coord.getX(), coord.getY() +1));
+        tiles[1] = new Tile(new Coordinate(coord.getX(), coord.getY() -1));
+        tiles[2] = new Tile(new Coordinate(coord.getX() -1, coord.getY()));
+        tiles[3] = new Tile(new Coordinate(coord.getX() +1, coord.getY()));
+
+        for (int i = 0; i < 4; i++)
+        {
+            int index = _theMaze.indexOf(tiles[i]);
+
+            if (index != -1)
+                tiles[i] = _theMaze.elementAt(index);
+            else
+                tiles[i] = null;
+        }
+        
+        return tiles;
     }
 
     private Vector<Tile> _theMaze;
