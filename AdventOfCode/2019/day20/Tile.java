@@ -41,8 +41,6 @@ public class Tile
 
         if (this == obj)
             return true;
-        
-        // only check location not content
 
         if (getClass() == obj.getClass())
         {
