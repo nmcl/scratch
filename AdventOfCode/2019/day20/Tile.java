@@ -1,5 +1,10 @@
 public class Tile
 {
+    public Tile (Coordinate coord)
+    {
+        this(coord, TileId.SPACE);  // a default.
+    }
+
     public Tile (Coordinate coord, char type)
     {
         _position = coord;
