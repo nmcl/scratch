@@ -181,8 +181,8 @@ public class Maze
     {
         Tile[] tiles = new Tile[4];
 
-        tiles[TileId.UP] = new Portal(new Coordinate(coord.getX(), coord.getY() +1));
-        tiles[TileId.DOWN] = new Portal(new Coordinate(coord.getX(), coord.getY() -1));
+        tiles[TileId.DOWN] = new Portal(new Coordinate(coord.getX(), coord.getY() +1));
+        tiles[TileId.UP] = new Portal(new Coordinate(coord.getX(), coord.getY() -1));
         tiles[TileId.LEFT] = new Portal(new Coordinate(coord.getX() -1, coord.getY()));
         tiles[TileId.RIGHT] = new Portal(new Coordinate(coord.getX() +1, coord.getY()));
 
