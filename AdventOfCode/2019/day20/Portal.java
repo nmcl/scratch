@@ -34,6 +34,8 @@ public class Portal extends Tile
     @Override
     public boolean equals (Object obj)
     {
+        System.out.println("Portal comparing");
+
         if (obj == null)
             return false;
 
@@ -46,7 +48,7 @@ public class Portal extends Tile
         {
             Portal temp = (Portal) obj;
 
-            System.out.println("comparing "+_position+" and "+temp._position);
+            System.out.println("Portal comparing "+_position+" and "+temp._position);
 
             return _position.equals(temp._position);  // only compare position not type.
         }
