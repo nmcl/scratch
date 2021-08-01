@@ -47,9 +47,7 @@ public class Tile
         if (getClass() == obj.getClass())
         {
             Tile temp = (Tile) obj;
-
-            System.out.println("comparing "+_position+" and "+temp._position);
-
+            
             return _position.equals(temp._position);  // only compare position not type.
         }
 
