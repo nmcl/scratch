@@ -13,6 +13,11 @@ public class Portal extends Tile
     public static final String START = "AA";
     public static final String EXIT = "ZZ";
 
+    public Portal (Coordinate position)
+    {
+        this(position, (char) Character.UNASSIGNED);
+    }
+
     public Portal (Coordinate position, char portalId)
     {
         super(position, TileId.PORTAL);
@@ -29,6 +34,27 @@ public class Portal extends Tile
     public final String getName ()
     {
         return _portalName;
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        // only check location not content
+
+        if (getClass() == obj.getClass())
+        {
+            Portal temp = (Portal) obj;
+            
+            return _position.equals(temp._position);  // only compare position not type.
+        }
+
+        return false;
     }
     
     private char _portalId;
