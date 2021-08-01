@@ -105,8 +105,6 @@ public class Maze
 
                             _theMaze.add(p);
                             _thePortals.add(p);
-
-                            System.out.println("Portal at "+p.position()+" and "+_theMaze.indexOf(p));
                         }
                         break;
                     }
@@ -180,6 +178,15 @@ public class Maze
         tiles[1] = new Tile(new Coordinate(coord.getX(), coord.getY() -1));
         tiles[2] = new Tile(new Coordinate(coord.getX() -1, coord.getY()));
         tiles[3] = new Tile(new Coordinate(coord.getX() +1, coord.getY()));
+
+        Enumeration<Tile> t = _theMaze.elements();
+
+        while (t.hasMoreElements())
+        {
+            Tile a = t.nextElement();
+
+            System.out.println("Element at "+a.position()+" is "+a.content());
+        }
 
         for (int i = 0; i < 4; i++)
         {
