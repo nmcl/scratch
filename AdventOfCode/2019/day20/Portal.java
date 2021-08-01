@@ -44,13 +44,11 @@ public class Portal extends Tile
 
         if (this == obj)
             return true;
-        
-        // only check location not content
 
-        if (getClass() == obj.getClass())
+        if ((getClass() == obj.getClass()) || (super.getClass() == obj.getClass()))
         {
-            Portal temp = (Portal) obj;
-            
+            Tile temp = (Tile) obj;
+
             return _position.equals(temp._position);  // only compare position not type.
         }
 
