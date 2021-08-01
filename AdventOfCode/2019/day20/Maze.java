@@ -174,19 +174,10 @@ public class Maze
     {
         Tile[] tiles = new Tile[4];
 
-        tiles[0] = new Tile(new Coordinate(coord.getX(), coord.getY() +1));
-        tiles[1] = new Tile(new Coordinate(coord.getX(), coord.getY() -1));
-        tiles[2] = new Tile(new Coordinate(coord.getX() -1, coord.getY()));
-        tiles[3] = new Tile(new Coordinate(coord.getX() +1, coord.getY()));
-
-        Enumeration<Tile> t = _theMaze.elements();
-
-        while (t.hasMoreElements())
-        {
-            Tile a = t.nextElement();
-
-            System.out.println("Element at "+a.position()+" is "+a.content());
-        }
+        tiles[0] = new Portal(new Coordinate(coord.getX(), coord.getY() +1));
+        tiles[1] = new Portal(new Coordinate(coord.getX(), coord.getY() -1));
+        tiles[2] = new Portal(new Coordinate(coord.getX() -1, coord.getY()));
+        tiles[3] = new Portal(new Coordinate(coord.getX() +1, coord.getY()));
 
         for (int i = 0; i < 4; i++)
         {
