@@ -103,6 +103,8 @@ public class Maze
 
                             Portal p = new Portal(new Coordinate(i, _height), asChar[i]);
 
+                            System.out.println("Portal at "+p.position());
+
                             _theMaze.add(p);
                             _thePortals.add(p);
                         }
@@ -159,7 +161,7 @@ public class Maze
         {
             Portal p = iter.nextElement();
 
-            System.out.println("Portal: "+p.getId());
+            System.out.println("Portal: "+p.getId()+" at "+p.position());
 
             Tile[] tiles = adjacentTiles(p.position());
 
@@ -182,6 +184,8 @@ public class Maze
         for (int i = 0; i < 4; i++)
         {
             int index = _theMaze.indexOf(tiles[i]);
+
+            System.out.println("Adjacent "+i+" at "+tiles[i].position());
 
             if (index != -1)
                 tiles[i] = _theMaze.elementAt(index);
