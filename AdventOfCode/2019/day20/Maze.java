@@ -161,7 +161,12 @@ public class Maze
 
             System.out.println("Portal: "+p.getId());
 
-            Coordinate coord = p.position();
+            Tile[] tiles = adjacentTiles(p.position());
+
+            for (int i = 0; i < tiles.length; i++)
+            {
+                System.out.println("Adjacent tile: "+i+" is "+tiles[i]);
+            }
         }
     }
 
