@@ -169,10 +169,10 @@ public class Maze
                 {
                     Portal p1 = (Portal) tiles[i];
 
-                    System.out.println("Adjacent tile: "+i+" is "+p1.getId());
+                    System.out.println("Adjacent tile: "+TileId.position(i)+" is "+p1.getId());
                 }
                 else
-                    System.out.println("Adjacent tile: "+i+" is "+tiles[i]);
+                    System.out.println("Adjacent tile: "+TileId.position(i)+" is "+tiles[i]);
             }
         }
     }
@@ -181,17 +181,17 @@ public class Maze
     {
         Tile[] tiles = new Tile[4];
 
-        tiles[0] = new Portal(new Coordinate(coord.getX(), coord.getY() +1));
-        tiles[1] = new Portal(new Coordinate(coord.getX(), coord.getY() -1));
-        tiles[2] = new Portal(new Coordinate(coord.getX() -1, coord.getY()));
-        tiles[3] = new Portal(new Coordinate(coord.getX() +1, coord.getY()));
+        tiles[TileId.UP] = new Portal(new Coordinate(coord.getX(), coord.getY() +1));
+        tiles[TileId.DOWN] = new Portal(new Coordinate(coord.getX(), coord.getY() -1));
+        tiles[TileId.LEFT] = new Portal(new Coordinate(coord.getX() -1, coord.getY()));
+        tiles[TileId.RIGHT] = new Portal(new Coordinate(coord.getX() +1, coord.getY()));
 
         for (int i = 0; i < 4; i++)
         {
             int index = _theMaze.indexOf(tiles[i]);
 
             if (_debug)
-                System.out.println("Adjacent to "+coord+" at position "+i+" at "+tiles[i].position()+" index "+index);
+                System.out.println("Adjacent to "+coord+" at position "+TileId.position(i)+" at "+tiles[i].position());
 
             if (index != -1)
                 tiles[i] = _theMaze.elementAt(index);
