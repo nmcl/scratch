@@ -161,7 +161,7 @@ public class Maze
         {
             Portal p = iter.nextElement();
 
-            System.out.println("Portal: "+p.getId()+" at "+p.position());
+            System.out.println("\nPortal: "+p.getId()+" at "+p.position());
 
             Tile[] tiles = adjacentTiles(p.position());
 
@@ -185,7 +185,7 @@ public class Maze
         {
             int index = _theMaze.indexOf(tiles[i]);
 
-            System.out.println("Adjacent "+i+" at "+tiles[i].position());
+            System.out.println("Adjacent "+i+" at "+tiles[i].position()+" index "+index);
 
             if (index != -1)
                 tiles[i] = _theMaze.elementAt(index);
