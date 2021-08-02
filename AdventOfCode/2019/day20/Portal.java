@@ -8,6 +8,12 @@
  * Portal.
  */
 
+ /*
+  * When printing, leep a reference to each latter of the Portal for each
+  * coordinate. In fact the Portal print method should take this coordinate
+  * and print our accordingly.
+  */
+
 public class Portal extends Tile
 {
     public static final String START = "AA";
