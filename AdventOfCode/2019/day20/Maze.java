@@ -6,7 +6,7 @@ public class Maze
     public Maze (String data, boolean debug)
     {
         _theMaze = new Vector<Tile>();
-        _thePortals = new Vector<Portal>();
+        _thePortals = new Vector<SemiPortal>();
 
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
@@ -40,16 +40,16 @@ public class Maze
 
             if (ignorePortals)
             {
-                if (TileId.PORTAL != theEntry.content())
+                if (TileId.SEMI_PORTAL != theEntry.content())
                     str += theEntry.toString();
                 else
                     str += TileId.SPACE;
             }
             else
             {
-                if (TileId.PORTAL == theEntry.content())
+                if (TileId.SEMI_PORTAL == theEntry.content())
                 {
-                    Portal p = (Portal) theEntry;
+                    SemiPortal p = (SemiPortal) theEntry;
 
                     str += p.getId();
                 }
@@ -101,7 +101,7 @@ public class Maze
                         {
                             // have portal at the PASSAGE and have that instance print it?
 
-                            Portal p = new Portal(new Coordinate(i, _height), asChar[i]);
+                            SemiPortal p = new SemiPortal(new Coordinate(i, _height), asChar[i]);
 
                             _theMaze.add(p);
                             _thePortals.add(p);
@@ -153,11 +153,11 @@ public class Maze
 
     private void reparsePortals ()
     {
-        Enumeration<Portal> iter = _thePortals.elements();
+        Enumeration<SemiPortal> iter = _thePortals.elements();
 
         while (iter.hasMoreElements())
         {
-            Portal p = iter.nextElement();
+            SemiPortal p = iter.nextElement();
 
             System.out.println("\nPortal: "+p.getId()+" at "+p.position());
 
@@ -167,7 +167,7 @@ public class Maze
             {
                 if ((tiles[i] != null) && (tiles[i].content() == TileId.PORTAL))
                 {
-                    Portal p1 = (Portal) tiles[i];
+                    SemiPortal p1 = (SemiPortal) tiles[i];
 
                     System.out.println("Adjacent tile: "+TileId.position(i)+" is "+p1.getId());
                 }
@@ -181,10 +181,10 @@ public class Maze
     {
         Tile[] tiles = new Tile[4];
 
-        tiles[TileId.DOWN] = new Portal(new Coordinate(coord.getX(), coord.getY() +1));
-        tiles[TileId.UP] = new Portal(new Coordinate(coord.getX(), coord.getY() -1));
-        tiles[TileId.LEFT] = new Portal(new Coordinate(coord.getX() -1, coord.getY()));
-        tiles[TileId.RIGHT] = new Portal(new Coordinate(coord.getX() +1, coord.getY()));
+        tiles[TileId.DOWN] = new SemiPortal(new Coordinate(coord.getX(), coord.getY() +1));
+        tiles[TileId.UP] = new SemiPortal(new Coordinate(coord.getX(), coord.getY() -1));
+        tiles[TileId.LEFT] = new SemiPortal(new Coordinate(coord.getX() -1, coord.getY()));
+        tiles[TileId.RIGHT] = new SemiPortal(new Coordinate(coord.getX() +1, coord.getY()));
 
         for (int i = 0; i < 4; i++)
         {
@@ -203,7 +203,7 @@ public class Maze
     }
 
     private Vector<Tile> _theMaze;
-    private Vector<Portal> _thePortals;
+    private Vector<SemiPortal> _thePortals;
     private int _height = 0;
     private int _width = 0;
     private boolean _debug;
