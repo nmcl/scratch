@@ -8,45 +8,45 @@
  * Portal.
  */
 
-/*
- * When printing, leep a reference to each latter of the Portal for each
- * coordinate. In fact the Portal print method should take this coordinate
- * and print our accordingly.
- */
-
 public class SemiPortal extends Tile
 {
     public static final String START = "AA";
     public static final String EXIT = "ZZ";
 
-    public SemiPortal(Coordinate position) {
+    public SemiPortal(Coordinate position)
+    {
         this(position, (char) Character.UNASSIGNED);
     }
 
-    public SemiPortal(Coordinate position, char portalId) {
+    public SemiPortal(Coordinate position, char portalId)
+    {
         super(position, TileId.PORTAL);
 
         _portalId = portalId;
         _portalName = "*" + portalId + "*"; // a default name initially.
     }
 
-    public final char getId() {
+    public final char getId()
+    {
         return _portalId;
     }
 
-    public final String getName() {
+    public final String getName()
+    {
         return _portalName;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         if (obj == null)
             return false;
 
         if (this == obj)
             return true;
 
-        if ((getClass() == obj.getClass()) || (super.getClass() == obj.getClass())) {
+        if ((getClass() == obj.getClass()) || (super.getClass() == obj.getClass()))
+        {
             Tile temp = (Tile) obj;
 
             return _position.equals(temp._position); // only compare position not type.
