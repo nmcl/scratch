@@ -17,20 +17,14 @@ public class SemiPortal extends Tile
 
     public SemiPortal(Coordinate position, char portalId)
     {
-        super(position, TileId.PORTAL);
+        super(position, TileId.SEMI_PORTAL);
 
         _portalId = portalId;
-        _portalName = "*" + portalId + "*"; // a default name initially.
     }
 
     public final char getId()
     {
         return _portalId;
-    }
-
-    public final String getName()
-    {
-        return _portalName;
     }
 
     @Override
@@ -53,5 +47,4 @@ public class SemiPortal extends Tile
     }
 
     private char _portalId;
-    private String _portalName;
 }
