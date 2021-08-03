@@ -1,11 +1,8 @@
 /*
  * A Portal is two letters but as we scan in the information about
  * the Donut and Portals we only get to read one letter at a time.
- * 
- * Assume there are always 3 spaces around the first letter in the Portal
- * name. Assume there are always 2 spaces around the second letter, then
- * the first letter and a passage which represents the real location of the
- * Portal.
+ * A SemiPortal is half of a Portal representation which we use temporarily
+ * while reading in the data.
  */
 
 public class SemiPortal extends Tile
