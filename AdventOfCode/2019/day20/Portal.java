@@ -19,27 +19,25 @@ public class Portal extends Tile
     public static final String START = "AA";
     public static final String EXIT = "ZZ";
 
-    public Portal (Coordinate position)
+    public Portal (Coordinate first, Coordinate second, String name)
     {
-        this(position, (char) Character.UNASSIGNED);
+        super(first, TileId.PORTAL);
+
+        _secondPosition = second;
+        _portalName = name;
     }
 
-    public Portal (Coordinate position, char portalId)
-    {
-        super(position, TileId.PORTAL);
-
-        _portalId = portalId;
-        _portalName = "*"+portalId+"*";  // a default name initially.
-    }
-
-    public final char getId ()
-    {
-        return _portalId;
-    }
-
-    public final String getName ()
+    public final String getFullName ()
     {
         return _portalName;
+    }
+
+    public final char getName (Coordinate coord)
+    {
+        if (_position.equals(coord))
+            return _portalName.charAt(0);
+        else
+            return _portalName.charAt(1);
     }
 
     @Override
@@ -61,6 +59,6 @@ public class Portal extends Tile
         return false;
     }
     
-    private char _portalId;
+    private Coordinate _secondPosition;
     private String _portalName;
 }
