@@ -2,14 +2,12 @@
  * A Portal is two letters but as we scan in the information about
  * the Donut and Portals we only get to read one letter at a time.
  * A SemiPortal is half of a Portal representation which we use temporarily
- * while reading in the data.
+ * while reading in the data. Once we've read in the entire Maze, we do
+ * some processing and will replace the SemiPortal with a Portal instance.
  */
 
 public class SemiPortal extends Tile
 {
-    public static final String START = "AA";
-    public static final String EXIT = "ZZ";
-
     public SemiPortal(Coordinate position)
     {
         this(position, (char) Character.UNASSIGNED);
