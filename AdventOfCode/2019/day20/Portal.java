@@ -19,11 +19,12 @@ public class Portal extends Tile
     public static final String START = "AA";
     public static final String EXIT = "ZZ";
 
-    public Portal (Coordinate first, Coordinate second, String name)
+    public Portal (Coordinate first, Coordinate second, Tile passage, String name)
     {
         super(first, TileId.PORTAL);
 
         _secondPosition = second;
+        _passage = passage;
         _portalName = name;
     }
 
@@ -60,5 +61,6 @@ public class Portal extends Tile
     }
     
     private Coordinate _secondPosition;
+    private Tile _passage;
     private String _portalName;
 }
