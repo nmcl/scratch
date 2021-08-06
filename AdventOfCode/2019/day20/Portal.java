@@ -61,6 +61,6 @@ public class Portal extends Tile
     }
     
     private Coordinate _secondPosition;
-    private Tile _passage;
+    private Tile _passage;  // the passage we're actually "attached" to.`
     private String _portalName;
 }
