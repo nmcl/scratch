@@ -1,8 +1,8 @@
 public class Wormhole
 {
-    public Wormhole (String name, Coordinate location)
+    public Wormhole (char first, char second, Coordinate location)
     {
-        _name = name;
+        _name = first + second;
         _position = location;
     }
 
