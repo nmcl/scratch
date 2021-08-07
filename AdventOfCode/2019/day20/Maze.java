@@ -23,6 +23,16 @@ public class Maze
         return createRepresentation(true);
     }
 
+    public final int[] getXDimensions ()
+    {
+        return new int[] { _minX, _maxX };
+    }
+
+    public final int[] getYDimensions ()
+    {
+        return new int[] { _minY, _maxY };
+    }
+
     private String createRepresentation (boolean ignorePortals)
     {
         Enumeration<Tile> iter = _theMaze.elements();
@@ -72,8 +82,6 @@ public class Maze
     {
         BufferedReader reader = null;
         boolean valid = true;
-        int width = 0;
-        int height = 0;
 
         try
         {
@@ -84,10 +92,10 @@ public class Maze
             {
                 char[] asChar = line.toCharArray();  // all lines are the same length
                 
-                if (width == 0)
-                    width = asChar.length;
+                if (_width == 0)
+                    _width = asChar.length;
 
-                for (int i = 0; i < width; i++)
+                for (int i = 0; i < _width; i++)
                 {
                     switch (asChar[i])
                     {
@@ -100,6 +108,11 @@ public class Maze
                         case TileId.SPACE:
                         {
                             _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
+
+                            _minX = Math.min(_minX, i);
+                            _maxX = Math.max(_maxX, i);
+                            _minY = Math.min(_minY, _height);
+                            _maxY = Math.max(_maxY, _height);
                         }
                         break;
                         default:  // add to Portal list
@@ -115,7 +128,7 @@ public class Maze
                 }
             }
 
-            height++;
+            _height++;
         }
         catch (Throwable ex)
         {
@@ -157,53 +170,7 @@ public class Maze
 
     private void reparsePortals ()
     {
-        Enumeration<Portal> iter = _thePortals.elements();
 
-        while (iter.hasMoreElements())
-        {
-            Portal p = iter.nextElement();
-
-            System.out.println("\nPortal: "+p.getId()+" at "+p.position());
-
-            Tile[] tiles = adjacentTiles(p.position());
-
-            for (int i = 0; i < tiles.length; i++)
-            {
-                if ((tiles[i] != null) && (tiles[i].content() == TileId.PORTAL))
-                {
-                    Portal p1 = (Portal) tiles[i];
-
-                    System.out.println("Adjacent tile: "+TileId.position(i)+" is "+p1.getId());
-                }
-                else
-                    System.out.println("Adjacent tile: "+TileId.position(i)+" is "+tiles[i]);
-            }
-        }
-    }
-
-    private Tile[] adjacentTiles (Coordinate coord)
-    {
-        Tile[] tiles = new Tile[4];
-
-        tiles[TileId.DOWN] = new Portal(new Coordinate(coord.getX(), coord.getY() +1));
-        tiles[TileId.UP] = new Portal(new Coordinate(coord.getX(), coord.getY() -1));
-        tiles[TileId.LEFT] = new Portal(new Coordinate(coord.getX() -1, coord.getY()));
-        tiles[TileId.RIGHT] = new Portal(new Coordinate(coord.getX() +1, coord.getY()));
-
-        for (int i = 0; i < 4; i++)
-        {
-            int index = _theMaze.indexOf(tiles[i]);
-
-            //if (_debug)
-                System.out.println("Adjacent to "+coord+" at position "+TileId.position(i)+" at "+tiles[i].position()+" is "+index);
-
-            if (index != -1)
-                tiles[i] = _theMaze.elementAt(index);
-            else
-                tiles[i] = null;
-        }
-        
-        return tiles;
     }
 
     private Vector<Tile> _theMaze;
@@ -211,5 +178,7 @@ public class Maze
     private int _maxX = 0;
     private int _minY = Integer.MAX_VALUE;
     private int _maxY = 0;
+    private int _width = 0;
+    private int _height = 0;
     private boolean _debug;
 }
