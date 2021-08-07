@@ -1,9 +1,9 @@
 /*
  * A Portal is two letters but as we scan in the information about
  * the Donut and Portals we only get to read one letter at a time.
- * A SemiPortal is half of a Portal representation which we use temporarily
+ * A Portal is half of a Portal representation which we use temporarily
  * while reading in the data. Once we've read in the entire Maze, we do
- * some processing and will replace the SemiPortal with a Portal instance.
+ * some processing and find the whole Portal which we'll call a Wormhole for now.
  */
 
 public class Portal extends Tile
