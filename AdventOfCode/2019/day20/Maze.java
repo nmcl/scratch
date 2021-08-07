@@ -140,7 +140,7 @@ public class Maze
      * We have two Portal instances per real Portal. Need to create one
      * instance.
      * 
-     * To fine the Portal, seach for the first letter (or any letter) and then
+     * To find the Portal, seach for the first letter (or any letter) and then
      * use the Coordinate of its location to look at the 4 squares around it.
      * Assume there are always 3 spaces around the first letter in the Portal
      * name. Assume there are always 2 spaces around the second letter, then
