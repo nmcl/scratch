@@ -1,8 +1,8 @@
 public class Wormhole
 {
-    public Wormhole (char first, char second, Coordinate location)
+    public Wormhole (Tile first, Tile second, Coordinate location)
     {
-        _name = "" + first + second;
+        _name = "" + ((Portal) first).getId() + ((Portal) second).getId();
         _position = location;
     }
 
