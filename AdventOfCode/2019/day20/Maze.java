@@ -6,7 +6,6 @@ public class Maze
     public Maze (String data, boolean debug)
     {
         _theMaze = new Vector<Tile>();
-        _thePortals = new Vector<Portal>();
 
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
@@ -27,7 +26,7 @@ public class Maze
     private String createRepresentation (boolean ignorePortals)
     {
         Enumeration<Tile> iter = _theMaze.elements();
-        String str = "Maze < "+_width+", "+_height+" >\n";
+        String str = "Maze < "+_minX+", "+_maxX+", "+_minY+", "+_maxY+" >\n";
         int y = 0;
 
         while (iter.hasMoreElements())
@@ -73,6 +72,8 @@ public class Maze
     {
         BufferedReader reader = null;
         boolean valid = true;
+        int width = 0;
+        int height = 0;
 
         try
         {
@@ -83,16 +84,20 @@ public class Maze
             {
                 char[] asChar = line.toCharArray();  // all lines are the same length
                 
-                if (_width == 0)
-                    _width = asChar.length;
+                if (width == 0)
+                    width = asChar.length;
 
-                for (int i = 0; i < _width; i++)
+                for (int i = 0; i < width; i++)
                 {
                     switch (asChar[i])
                     {
                         case TileId.WALL:
-                        case TileId.SPACE:
                         case TileId.PASSAGE:
+                        {
+                            _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
+                        }
+                        break;
+                        case TileId.SPACE:
                         {
                             _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
                         }
@@ -104,14 +109,13 @@ public class Maze
                             Portal p = new Portal(new Coordinate(i, _height), asChar[i]);
 
                             _theMaze.add(p);
-                            _thePortals.add(p);
                         }
                         break;
                     }
                 }
-
-                _height++;
             }
+
+            height++;
         }
         catch (Throwable ex)
         {
@@ -203,8 +207,9 @@ public class Maze
     }
 
     private Vector<Tile> _theMaze;
-    private Vector<Portal> _thePortals;
-    private int _height = 0;
-    private int _width = 0;
+    private int _minX = Integer.MAX_VALUE;
+    private int _maxX = 0;
+    private int _minY = Integer.MAX_VALUE;
+    private int _maxY = 0;
     private boolean _debug;
 }
