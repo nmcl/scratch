@@ -5,8 +5,6 @@ public class Maze
 {
     public Maze (String data, boolean debug)
     {
-        _theMaze = new Vector<Tile>();
-
         if (!loadData(data))
             System.out.println("Error in loading data file: "+data);
 
@@ -35,44 +33,39 @@ public class Maze
 
     private String createRepresentation (boolean ignorePortals)
     {
-        Enumeration<Tile> iter = _theMaze.elements();
         String str = "Maze < "+_minX+", "+_maxX+", "+_minY+", "+_maxY+" >\n";
-        int y = 0;
 
-        while (iter.hasMoreElements())
+        for (int x = 0; x < _width; x++)
         {
-            Tile theEntry = iter.nextElement();
-
-            /*
-             * Print without portals?
-             */
-
-            if (ignorePortals)
+            for (int y = 0; y < _height; y++)
             {
-                if (TileId.PORTAL != theEntry.content())
-                    str += theEntry.toString();
-                else
-                    str += TileId.SPACE;
-            }
-            else
-            {
-                if (TileId.PORTAL == theEntry.content())
+                Tile theEntry = _theMaze[x][y];
+
+                /*
+                * Print without portals?
+                */
+
+                if (ignorePortals)
                 {
-                    Portal p = (Portal) theEntry;
-
-                    str += p.getId();
+                    if (TileId.PORTAL != theEntry.content())
+                        str += theEntry.toString();
+                    else
+                        str += TileId.SPACE;
                 }
                 else
-                    str += theEntry.toString();
+                {
+                    if (TileId.PORTAL == theEntry.content())
+                    {
+                        Portal p = (Portal) theEntry;
+
+                        str += p.getId();
+                    }
+                    else
+                        str += theEntry.toString();
+                }
             }
 
-            y++;
-
-            if (y == _width)
-            {
-                y = 0;
-                str += "\n";
-            }
+            str += "\n";
         }
 
         return str;
@@ -82,6 +75,7 @@ public class Maze
     {
         BufferedReader reader = null;
         boolean valid = true;
+        Vector<Tile> map = new Vector<Tile>();
 
         try
         {
@@ -102,12 +96,12 @@ public class Maze
                         case TileId.WALL:
                         case TileId.PASSAGE:
                         {
-                            _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
+                            map.add(new Tile(new Coordinate(i, _height), asChar[i]));
                         }
                         break;
                         case TileId.SPACE:
                         {
-                            _theMaze.add(new Tile(new Coordinate(i, _height), asChar[i]));
+                            map.add(new Tile(new Coordinate(i, _height), asChar[i]));
 
                             _minX = Math.min(_minX, i);
                             _maxX = Math.max(_maxX, i);
@@ -121,7 +115,7 @@ public class Maze
 
                             Portal p = new Portal(new Coordinate(i, _height), asChar[i]);
 
-                            _theMaze.add(p);
+                            map.add(p);
                         }
                         break;
                     }
@@ -144,6 +138,29 @@ public class Maze
             }
             catch (Throwable ex)
             {
+            }
+        }
+        
+        /*
+         * Convert to 2d array.
+         */
+
+        _theMaze = new Tile[_width][_height];
+
+        Enumeration<Tile> iter = map.elements();
+        int x = 0;
+        int y = 0;
+
+        while (iter.hasMoreElements())
+        {
+            _theMaze[x][y] = iter.nextElement();
+
+            x++;
+            
+            if (x > _width)
+            {
+                x = 0;
+                y++;
             }
         }
 
@@ -173,7 +190,7 @@ public class Maze
 
     }
 
-    private Vector<Tile> _theMaze;
+    private Tile[][] _theMaze = null;
     private int _minX = Integer.MAX_VALUE;
     private int _maxX = 0;
     private int _minY = Integer.MAX_VALUE;
