@@ -35,11 +35,11 @@ public class Maze
     {
         String str = "Maze < "+_minX+", "+_maxX+", "+_minY+", "+_maxY+" >\n";
 
-        for (int x = 0; x < _width; x++)
+        for (int y = 0; y < _height; y++)
         {
-            for (int y = 0; y < _height; y++)
+            for (int x = 0; x < _width; x++)
             {
-                Tile theEntry = _theMaze[x][y];
+                Tile theEntry = _theMaze[y][x];
 
                 /*
                 * Print without portals?
@@ -120,9 +120,9 @@ public class Maze
                         break;
                     }
                 }
-            }
 
-            _height++;
+                _height++;
+            }
         }
         catch (Throwable ex)
         {
@@ -145,7 +145,9 @@ public class Maze
          * Convert to 2d array.
          */
 
-        _theMaze = new Tile[_width][_height];
+        _theMaze = new Tile[_height][_width];
+
+        System.out.println("got "+_height+" "+_width);
 
         Enumeration<Tile> iter = map.elements();
         int x = 0;
@@ -153,11 +155,14 @@ public class Maze
 
         while (iter.hasMoreElements())
         {
-            _theMaze[x][y] = iter.nextElement();
+            _theMaze[y][x] = iter.nextElement();
+
+            if (_debug)
+                System.out.println("Assigning "+y+" "+x+" "+_theMaze[y][x]);
 
             x++;
             
-            if (x > _width)
+            if (x >= _width)
             {
                 x = 0;
                 y++;
