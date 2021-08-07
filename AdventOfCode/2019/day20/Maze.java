@@ -180,18 +180,18 @@ public class Maze
 
     private void reparsePortals ()
     {
-        _wormholes = new Vector<Wormhole>();
+        _innerWormholes = new Vector<Wormhole>();
 
         for (int x = _minX; x <= _maxX -1; x++)
         {
             if ((_theMaze[_minY][x].content() == TileId.PORTAL) && (_theMaze[_minY +1][x].content() == TileId.PORTAL))
             {
-                _wormholes.add(new Wormhole(((Portal) _theMaze[_minY][x]).getId(), ((Portal) _theMaze[_minY +1][x]).getId(), new Coordinate(x, _minY -1)));
+                _innerWormholes.add(new Wormhole(((Portal) _theMaze[_minY][x]).getId(), ((Portal) _theMaze[_minY +1][x]).getId(), new Coordinate(x, _minY -1)));
             }
 
             if ((_theMaze[_maxY -1][x].content() == TileId.PORTAL) && (_theMaze[_maxY][x].content() == TileId.PORTAL))
             {
-                _wormholes.add(new Wormhole(((Portal) _theMaze[_maxY -1][x]).getId(), ((Portal) _theMaze[_maxY][x]).getId(), new Coordinate(x, _maxY +1)));
+                _innerWormholes.add(new Wormhole(((Portal) _theMaze[_maxY -1][x]).getId(), ((Portal) _theMaze[_maxY][x]).getId(), new Coordinate(x, _maxY +1)));
             }
         }
 
@@ -199,18 +199,18 @@ public class Maze
         {
             if ((_theMaze[y][_minX].content() == TileId.PORTAL) && (_theMaze[y][_minY +1].content() == TileId.PORTAL))
             {
-                _wormholes.add(new Wormhole(((Portal) _theMaze[y][_minX]).getId(), ((Portal) _theMaze[y][_minY +1]).getId(), new Coordinate(_minX -1, y)));
+                _innerWormholes.add(new Wormhole(((Portal) _theMaze[y][_minX]).getId(), ((Portal) _theMaze[y][_minY +1]).getId(), new Coordinate(_minX -1, y)));
             }
 
             if ((_theMaze[y][_maxX -1].content() == TileId.PORTAL) && (_theMaze[y][_maxX].content() == TileId.PORTAL))
             {
-                _wormholes.add(new Wormhole(((Portal) _theMaze[y][_maxX -1]).getId(), ((Portal) _theMaze[y][_maxX]).getId(), new Coordinate(_maxX +1, y)));
+                _innerWormholes.add(new Wormhole(((Portal) _theMaze[y][_maxX -1]).getId(), ((Portal) _theMaze[y][_maxX]).getId(), new Coordinate(_maxX +1, y)));
             }
         }
     }
 
     private Tile[][] _theMaze = null;
-    private Vector<Wormhole> _wormholes = null;
+    private Vector<Wormhole> _innerWormholes = null;
     private int _minX = Integer.MAX_VALUE;
     private int _maxX = 0;
     private int _minY = Integer.MAX_VALUE;
