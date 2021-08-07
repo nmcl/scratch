@@ -4,7 +4,6 @@ public class TileId
     public static final char SPACE = ' ';
     public static final char PASSAGE = '.';
     public static final char PORTAL = '%';
-    public static final char SEMI_PORTAL = '@';
 
     public static final int UP = 0;
     public static final int DOWN = 1;
