@@ -1,48 +1,32 @@
 /*
  * A Portal is two letters but as we scan in the information about
  * the Donut and Portals we only get to read one letter at a time.
- * 
- * Assume there are always 3 spaces around the first letter in the Portal
- * name. Assume there are always 2 spaces around the second letter, then
- * the first letter and a passage which represents the real location of the
- * Portal.
+ * A SemiPortal is half of a Portal representation which we use temporarily
+ * while reading in the data. Once we've read in the entire Maze, we do
+ * some processing and will replace the SemiPortal with a Portal instance.
  */
-
- /*
-  * When printing, leep a reference to each latter of the Portal for each
-  * coordinate. In fact the Portal print method should take this coordinate
-  * and print our accordingly.
-  */
 
 public class Portal extends Tile
 {
-    public static final String START = "AA";
-    public static final String EXIT = "ZZ";
-
-    public Portal (Coordinate first, Coordinate second, Tile passage, String name)
+    public Portal(Coordinate position)
     {
-        super(first, TileId.PORTAL);
-
-        _secondPosition = second;
-        _passage = passage;
-        _portalName = name;
+        this(position, (char) Character.UNASSIGNED);
     }
 
-    public final String getFullName ()
+    public Portal(Coordinate position, char portalId)
     {
-        return _portalName;
+        super(position, TileId.PORTAL);
+
+        _portalId = portalId;
     }
 
-    public final char getName (Coordinate coord)
+    public final char getId()
     {
-        if (_position.equals(coord))
-            return _portalName.charAt(0);
-        else
-            return _portalName.charAt(1);
+        return _portalId;
     }
 
     @Override
-    public boolean equals (Object obj)
+    public boolean equals(Object obj)
     {
         if (obj == null)
             return false;
@@ -54,13 +38,11 @@ public class Portal extends Tile
         {
             Tile temp = (Tile) obj;
 
-            return _position.equals(temp._position);  // only compare position not type.
+            return _position.equals(temp._position); // only compare position not type.
         }
 
         return false;
     }
-    
-    private Coordinate _secondPosition;
-    private Tile _passage;  // the passage we're actually "attached" to.`
-    private String _portalName;
+
+    private char _portalId;
 }
