@@ -180,6 +180,11 @@ public class Maze
 
     private void reparsePortals ()
     {
+        /*
+         * We have inner portals/wormholes (inside the circle) and outer. Find them
+         * and then hook them up.
+         */
+
         _innerWormholes = new Vector<Wormhole>();
 
         for (int x = _minX; x <= _maxX -1; x++)
