@@ -213,6 +213,8 @@ public class Maze
             }
         }
 
+        // now the outer ones ...
+        
         _outerWormholes = new Vector<Wormhole>();
 
         for (int x = 2; x < _width -2; x++)
