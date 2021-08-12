@@ -1,3 +1,7 @@
+/*
+ * A wormhole represents the connection between two Portals.
+ */
+
 public class Wormhole
 {
     public Wormhole (Tile first, Tile second, Coordinate location)
