@@ -34,6 +34,23 @@ public class Maze
         return _outerWormholes;
     }
 
+    public boolean isPassage (Coordinate coord)
+    {
+        int x = coord.getX();
+        int y = coord.getY();
+
+        if ((x >= 0) && (y >= 0))
+        {
+            if ((x <= _width) && (y <= _height))
+            {
+                if (_theMaze[x][y].content() == TileId.PASSAGE)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     private final String createRepresentation (boolean ignorePortals)
     {
         String str = "Maze < "+_minX+", "+_maxX+", "+_minY+", "+_maxY+" >\n";
