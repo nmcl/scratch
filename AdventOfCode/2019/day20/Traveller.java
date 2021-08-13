@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.*;
 
 public class Traveller
 {
@@ -41,8 +42,29 @@ public class Traveller
                 innerRoutes.add(new Route(innerLocation, toCheck.getLocation()));
             }
         }
+        
+        Vector<Coordinate> outerCoordinates = Util.extractCoordinates(outerWormholes);
+        Vector<Coordinate> innerCoordinates = Util.extractCoordinates(innerWormholes);
+        Vector<Coordinate> theCollection = new Vector<Coordinate>();
+
+        theCollection.addAll(outerCoordinates);
+        theCollection.addAll(innerCoordinates);
+
+        Enumeration<Coordinate> theIter = theCollection.elements();
+
+        while (theIter.hasMoreElements())
+        {
+            Coordinate coord = theIter.nextElement();
+
+            routesForEachCoordinate.computeIfAbsent(coord, (k) -> new ArrayList<>()).addAll(findAllPaths(coord, theCollection));
+        }
 
         return routesForEachCoordinate;
+    }
+
+    private List<Route> findAllPaths (Coordinate start, Iterable<Coordinate> allLocations)
+    {
+        return null;
     }
 
     private Maze _theMaze;
