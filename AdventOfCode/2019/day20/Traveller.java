@@ -15,7 +15,9 @@ public class Traveller
         Vector<Wormhole> innerWormholes = _theMaze.innerWormholes();
         Wormhole start = Util.findWormhole(outerWormholes, Maze.START);
         Wormhole end = Util.findWormhole(outerWormholes, Maze.END);
-        
+
+        // MISSING LOGIC. THINK ABOUT IT MORE!
+
         return -1;
     }
 
