@@ -21,6 +21,16 @@ public class Maze
         return createRepresentation(true);
     }
 
+    public final Vector<Wormhole> innerWormholes ()
+    {
+        return _innerWormholes;
+    }
+
+    public final Vector<Wormhole> outerWormholes ()
+    {
+        return _outerWormholes;
+    }
+
     private final String createRepresentation (boolean ignorePortals)
     {
         String str = "Maze < "+_minX+", "+_maxX+", "+_minY+", "+_maxY+" >\n";
