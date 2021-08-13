@@ -27,6 +27,17 @@ public class Util
         return null;
     }
 
+    public static final Vector<Coordinate> extractCoordinates (Vector<Wormhole> wormholes)
+    {
+        Vector<Coordinate> coords = new Vector<Coordinate>();
+        Enumeration<Wormhole> iter = wormholes.elements();
+
+        while (iter.hasMoreElements())
+            coords.add(iter.nextElement().getLocation());
+
+        return coords;
+    }
+
     private Util ()
     {
     }
