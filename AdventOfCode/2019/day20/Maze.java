@@ -3,6 +3,9 @@ import java.io.*;
 
 public class Maze
 {
+    public static final String START = "AA";
+    public static final String END = "ZZ";
+    
     public Maze (String data, boolean debug)
     {
         if (!loadData(data))
