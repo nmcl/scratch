@@ -21,7 +21,7 @@ public class Maze
         return createRepresentation(true);
     }
 
-    private String createRepresentation (boolean ignorePortals)
+    private final String createRepresentation (boolean ignorePortals)
     {
         String str = "Maze < "+_minX+", "+_maxX+", "+_minY+", "+_maxY+" >\n";
 
