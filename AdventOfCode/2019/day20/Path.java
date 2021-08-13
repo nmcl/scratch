@@ -1,0 +1,52 @@
+import java.util.Objects;
+
+public class Path
+{
+    public Path (Coordinate start, Coordinate end)
+    {
+        this(start, end, 0);
+    }
+
+    public Path (Coordinate start, Coordinate end, int steps)
+    {
+        _start = start;
+        _end = end;
+        _numberOfSteps = steps;
+    }
+    
+    @Override
+    public String toString ()
+    {
+        return "< "+_start+", "+_end+", "+_numberOfSteps+" >";
+    }
+
+    @Override
+    public int hashCode ()
+    {
+        return Objects.hash(_start, _end);
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Path temp = (Path) obj;
+
+            if (_start.equals(temp._start) && (_end.equals(temp._end)))
+                return true;
+        }
+
+        return false;
+    }
+
+    private Coordinate _start;
+    private Coordinate _end;
+    private int _numberOfSteps;
+}
