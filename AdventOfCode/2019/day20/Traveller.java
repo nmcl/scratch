@@ -18,21 +18,6 @@ public class Traveller
         return -1;
     }
 
-    private Wormhole findWormhole (Vector<Wormhole> wormholes, String name)
-    {
-        Enumeration<Wormhole> iter = wormholes.elements();
-
-        while (iter.hasMoreElements())
-        {
-            Wormhole hole = iter.nextElement();
-
-            if (hole.getName().equals(name))
-                return hole;
-        }
-
-        return null;
-    }
-
     private Maze _theMaze;
     private boolean _debug;
 }
