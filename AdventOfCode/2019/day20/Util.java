@@ -12,7 +12,7 @@ public class Util
         return stepsToLocation.get(start) + start.distanceTo(destination);
     }
 
-    private Wormhole findWormhole (Vector<Wormhole> wormholes, String name)
+    public static final Wormhole findWormhole (Vector<Wormhole> wormholes, String name)
     {
         Enumeration<Wormhole> iter = wormholes.elements();
 
