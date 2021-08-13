@@ -10,6 +10,16 @@ public class Wormhole
         _position = location;
     }
 
+    public final String getName ()
+    {
+        return _name;
+    }
+
+    public final Coordinate getLocation ()
+    {
+        return _position;
+    }
+
     private String _name;
     private Coordinate _position;
 }
