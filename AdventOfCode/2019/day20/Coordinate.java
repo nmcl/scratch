@@ -1,4 +1,4 @@
-import java.util.Objects;
+import java.util.*;
 
 /*
  * Represents a <x, y> coordinate for a piece of a wire.
@@ -6,16 +6,16 @@ import java.util.Objects;
 
 public class Coordinate
 {
-    public Coordinate (Coordinate coord)
-    {
-        _x = coord._x;
-        _y = coord._y;
-    }
-
     public Coordinate (int x, int y)
     {
         _x = x;
         _y = y;
+    }
+
+    public List<Coordinate> directions ()
+    {
+        return List.of(new Coordinate(_x+1, _y), new Coordinate(_x-1, _y),
+                        new Coordinate(_x, _y+1), new Coordinate(_x, _y-1));
     }
 
     public final int getX ()
@@ -26,6 +26,11 @@ public class Coordinate
     public final int getY ()
     {
         return _y;
+    }
+
+    public int distanceTo (Coordinate to)
+    {
+        return Math.abs(_x - to._x) + Math.abs(_y - to._y);
     }
 
     @Override
