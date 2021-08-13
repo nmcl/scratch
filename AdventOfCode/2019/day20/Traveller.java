@@ -56,16 +56,30 @@ public class Traveller
         {
             Coordinate coord = theIter.nextElement();
 
-            routesForEachCoordinate.computeIfAbsent(coord, (k) -> new ArrayList<>()).addAll(findAllPaths(coord, theCollection));
+            routesForEachCoordinate.computeIfAbsent(coord, (k) -> new ArrayList<>()).addAll(findAllRoutes(coord, theCollection));
         }
 
         return routesForEachCoordinate;
     }
 
-    private List<Route> findAllPaths (Coordinate start, Iterable<Coordinate> allLocations)
+    private List<Route> findAllRoutes (Coordinate start, Iterable<Coordinate> allLocations)
     {
-        return null;
+        ArrayList<Route> allRoutes = new ArrayList<Route>();
+
+        for (Coordinate to: allLocations)
+        {
+            if (!start.equals(to))
+                shortestPath(start, to).ifPresent(allRoutes::add);
+        }
+
+        return allRoutes;
     }
+
+    Optional<Route> shortestPath (Coordinate start, Coordinate to)
+    {
+        return Optional.empty();
+    }
+
 
     private Maze _theMaze;
     private boolean _debug;
