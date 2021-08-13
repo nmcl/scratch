@@ -1,13 +1,13 @@
 import java.util.Objects;
 
-public class Path
+public class Route
 {
-    public Path (Coordinate start, Coordinate end)
+    public Route (Coordinate start, Coordinate end)
     {
         this(start, end, 0);
     }
 
-    public Path (Coordinate start, Coordinate end, int steps)
+    public Route (Coordinate start, Coordinate end, int steps)
     {
         _start = start;
         _end = end;
@@ -37,7 +37,7 @@ public class Path
         
         if (getClass() == obj.getClass())
         {
-            Path temp = (Path) obj;
+            Route temp = (Route) obj;
 
             if (_start.equals(temp._start) && (_end.equals(temp._end)))
                 return true;
