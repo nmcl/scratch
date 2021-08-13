@@ -6,6 +6,16 @@ public class Journey
         _steps = steps;
     }
 
+    public final Coordinate getLocation ()
+    {
+        return _coord;
+    }
+    
+    public final int getSteps ()
+    {
+        return _steps;
+    }
+
     private Coordinate _coord;
     private int _steps;
 }
