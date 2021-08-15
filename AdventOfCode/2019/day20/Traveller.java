@@ -32,7 +32,7 @@ public class Traveller
             Wormhole toCheck = iter.next();
             int index = innerWormholes.indexOf(toCheck);
 
-            if (index != -1)
+            if (index != -1) // not present?
             {
                 Coordinate innerLocation = innerWormholes.elementAt(index).getLocation();
                 List<Route> outerRoutes = routesForEachCoordinate.computeIfAbsent(toCheck.getLocation(), (k) -> new ArrayList<>());
