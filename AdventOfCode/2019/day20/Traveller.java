@@ -1,6 +1,11 @@
 import java.util.*;
 import java.util.stream.*;
 
+/*
+ * The Traveller represents the entity moving through
+ * the Maze.
+ */
+
 public class Traveller
 {
     public Traveller (Maze maze, boolean debug)
