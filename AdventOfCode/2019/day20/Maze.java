@@ -162,7 +162,7 @@ public class Maze
         }
         
         /*
-         * Convert to 2d array.
+         * Convert to 2d array. Easier to manipulate.
          */
 
         _theMaze = new Tile[_height][_width];

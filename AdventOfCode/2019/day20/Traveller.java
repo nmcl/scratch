@@ -1,6 +1,11 @@
 import java.util.*;
 import java.util.stream.*;
 
+/*
+ * The Traveller represents the entity moving through
+ * the Maze.
+ */
+
 public class Traveller
 {
     public Traveller (Maze maze, boolean debug)
@@ -32,7 +37,7 @@ public class Traveller
             Wormhole toCheck = iter.next();
             int index = innerWormholes.indexOf(toCheck);
 
-            if (index != -1)
+            if (index != -1) // not present?
             {
                 Coordinate innerLocation = innerWormholes.elementAt(index).getLocation();
                 List<Route> outerRoutes = routesForEachCoordinate.computeIfAbsent(toCheck.getLocation(), (k) -> new ArrayList<>());
