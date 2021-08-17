@@ -178,12 +178,15 @@ public class Maze
             }
         }
 
+        /*
+         * Could merge this loop into the one above (or the case statement) but
+         * it becomes harder to read (and debug!)
+         */
+
         for (y = 3; y < _height -3; y++)
         {
             for (x = 3; x < _width -3; x++)
             {
-                System.out.println("maze "+y+" "+x+" "+_theMaze[y][x].content());
-                
                 if (_theMaze[y][x].content() == TileId.SPACE)
                 {
                     _minX = Math.min(_minX, x);
