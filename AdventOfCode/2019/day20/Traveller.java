@@ -33,11 +33,11 @@ public class Traveller
             if (theJourney.getLocation().equals(end))
                 return theJourney.getSteps();
 
-            for (Route nextRoute : journeys.get(theJourney.getLocation()))
+            for (Route nextRoute : routes.get(theJourney.getLocation()))
             {
-                if (locationsTraversed.add(next.getEnd()))
+                if (locationsTraversed.add(nextRoute.getEnd()))
                 {
-                    Journey nextJourney = new Journey(nextRoute.getEnd(), theJoruney.getSteps() + nextRoute.numberOfSteps());
+                    Journey nextJourney = new Journey(nextRoute.getEnd(), theJourney.getSteps() + nextRoute.numberOfSteps());
 
                     journeys.offer(nextJourney);
                 }
