@@ -14,7 +14,7 @@ public class Traveller
         _debug = debug;
     }
 
-    public int findAllKeys (List<String> inputs)
+    public int findAllKeys ()
     {
         Vector<Wormhole> outerWormholes = _theMaze.outerWormholes();
         Vector<Wormhole> innerWormholes = _theMaze.innerWormholes();
