@@ -36,8 +36,6 @@ public class Maze
 
     public boolean isPassage (Coordinate coord)
     {
-        System.out.println("checking valid "+coord);
-
         int x = coord.getX();
         int y = coord.getY();
 
@@ -46,15 +44,9 @@ public class Maze
             if ((x <= _width) && (y <= _height))
             {
                 if (_theMaze[y][x].content() == TileId.PASSAGE)
-                {
-                    System.out.println(coord+" is valid");
-
                     return true;
-                }
             }
         }
-
-        System.out.println(coord+" is not valid");
 
         return false;
     }
@@ -235,8 +227,6 @@ public class Maze
 
         _innerWormholes = new Vector<Wormhole>();
 
-        System.out.println("inner wormholes");
-
         for (int x = _minX; x <= _maxX -1; x++)
         {
             if ((_theMaze[_minY][x].content() == TileId.PORTAL) && (_theMaze[_minY +1][x].content() == TileId.PORTAL))
@@ -264,8 +254,6 @@ public class Maze
         }
 
         // now the outer ones ...
-        
-        System.out.println("outer wormholes");
 
         _outerWormholes = new Vector<Wormhole>();
         
