@@ -197,6 +197,9 @@ public class Maze
             }
         }
 
+        if (_debug)
+            System.out.println("Maze < minX: "+_minX+", maxX: "+_maxX+", minY: "+_minY+", maxY: "+_maxY+" >\n");
+
         if (valid)
             reparsePortals();
 
@@ -256,8 +259,8 @@ public class Maze
         // now the outer ones ...
 
         _outerWormholes = new Vector<Wormhole>();
-        
-        for (int x = 2; x < _height -2; x++)
+    
+        for (int x = 2; x < _width -2; x++)
         {
             if (_theMaze[0][x].content() == TileId.PORTAL)
                 _outerWormholes.add(new Wormhole(_theMaze[0][x], _theMaze[1][x], new Coordinate(x, 2)));
@@ -266,7 +269,7 @@ public class Maze
                 _outerWormholes.add(new Wormhole(_theMaze[_height -2][x], _theMaze[_height -1][x], new Coordinate(x, _height -3)));
         }
 
-        for (int y = 2; y < _width -2; y++)
+        for (int y = 2; y < _height -2; y++)
         {
             if (_theMaze[y][0].content() == TileId.PORTAL)
                 _outerWormholes.add(new Wormhole(_theMaze[y][0], _theMaze[y][1], new Coordinate(2, y)));
