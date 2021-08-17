@@ -20,11 +20,15 @@ public class Traveller
         Vector<Wormhole> innerWormholes = _theMaze.innerWormholes();
         Coordinate start = Util.findWormhole(outerWormholes, Maze.START).getLocation();
         Coordinate end = Util.findWormhole(outerWormholes, Maze.END).getLocation();
-        HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.innerWormholes(), _theMaze.outerWormholes());
-        PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
         System.out.println("start "+start);
         System.out.println("end "+end);
+
+        HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.innerWormholes(), _theMaze.outerWormholes());
+
+        System.out.println("routes size "+routes.size());
+
+        PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
         journeys.offer(new Journey(start));
         HashSet<Coordinate> locationsTraversed = new HashSet<Coordinate>();
@@ -38,9 +42,13 @@ public class Traveller
             Journey theJourney = journeys.poll();
 
             System.out.println("theJourney "+theJourney);
-            
+
             if (theJourney.getLocation().equals(end))
+            {
+                System.out.println("found");
+
                 return theJourney.getSteps();
+            }
 
             for (Route nextRoute : routes.get(theJourney.getLocation()))
             {
@@ -67,6 +75,8 @@ public class Traveller
             Wormhole toCheck = iter.next();
             int index = innerWormholes.indexOf(toCheck);
 
+            System.out.println("checking "+toCheck);
+            
             if (index != -1) // not present?
             {
                 Coordinate innerLocation = innerWormholes.elementAt(index).getLocation();
