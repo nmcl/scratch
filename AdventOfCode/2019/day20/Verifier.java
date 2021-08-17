@@ -15,14 +15,17 @@ public class Verifier
         Maze theMaze = new Maze(EXAMPLE_1, _debug);
         Traveller theTraveller = new Traveller(theMaze, _debug);
 
-        System.out.println(theMaze);
+        if (_debug)
+        {
+            System.out.println(theMaze);
 
-        System.out.println(theMaze.printWithPortals());
+            System.out.println(theMaze.printWithPortals());
+        }
 
         int numberOfSteps = theTraveller.findAllKeys();
 
         System.out.println("got "+numberOfSteps);
-        
+
         return true;
     }
 
