@@ -23,8 +23,13 @@ public class Traveller
         HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.innerWormholes(), _theMaze.outerWormholes());
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
+        System.out.println("start "+start);
+        System.out.println("end "+end);
+
         journeys.offer(new Journey(start));
         HashSet<Coordinate> locationsTraversed = new HashSet<Coordinate>();
+
+        System.out.println("initial journeys "+journeys.size());
 
         while (journeys.size() > 0)
         {
