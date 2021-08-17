@@ -49,7 +49,7 @@ public class Wormhole
         {
             Wormhole temp = (Wormhole) obj;
 
-            return _position.equals(temp._position);
+            return _name.equals(temp._name);  // compare on names for wormholes, not locations!
         }
 
         return false;
