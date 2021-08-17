@@ -36,6 +36,8 @@ public class Maze
 
     public boolean isPassage (Coordinate coord)
     {
+        System.out.println("checking valid "+coord);
+
         int x = coord.getX();
         int y = coord.getY();
 
@@ -43,10 +45,16 @@ public class Maze
         {
             if ((x <= _width) && (y <= _height))
             {
-                if (_theMaze[x][y].content() == TileId.PASSAGE)
+                if (_theMaze[y][x].content() == TileId.PASSAGE)
+                {
+                    System.out.println(coord+" is valid");
+
                     return true;
+                }
             }
         }
+
+        System.out.println(coord+" is not valid");
 
         return false;
     }
