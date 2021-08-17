@@ -1,5 +1,10 @@
 public class Journey
 {
+    public Journey (Coordinate coord)
+    {
+        this(coord, 0);
+    }
+
     public Journey (Coordinate coord, int steps)
     {
         _coord = coord;
