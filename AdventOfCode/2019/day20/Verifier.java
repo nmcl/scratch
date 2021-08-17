@@ -13,10 +13,12 @@ public class Verifier
     public boolean verify ()
     {
         Maze theMaze = new Maze(EXAMPLE_1, _debug);
+        Traveller theTraveller = new Traveller(theMaze, _debug);
 
         System.out.println(theMaze);
 
         System.out.println(theMaze.printWithPortals());
+
 
         return true;
     }
