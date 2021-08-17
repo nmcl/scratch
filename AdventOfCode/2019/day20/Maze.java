@@ -227,6 +227,8 @@ public class Maze
 
         _innerWormholes = new Vector<Wormhole>();
 
+        System.out.println("inner wormholes");
+
         for (int x = _minX; x <= _maxX -1; x++)
         {
             if ((_theMaze[_minY][x].content() == TileId.PORTAL) && (_theMaze[_minY +1][x].content() == TileId.PORTAL))
@@ -255,6 +257,8 @@ public class Maze
 
         // now the outer ones ...
         
+        System.out.println("outer wormholes");
+
         _outerWormholes = new Vector<Wormhole>();
         
         for (int x = 2; x < _height -2; x++)
