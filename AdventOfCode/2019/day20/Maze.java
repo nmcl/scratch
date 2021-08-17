@@ -53,7 +53,7 @@ public class Maze
 
     private final String createRepresentation (boolean ignorePortals)
     {
-        String str = "Maze < "+_minX+", "+_maxX+", "+_minY+", "+_maxY+" >\n";
+        String str = "Maze < minX: "+_minX+", maxX: "+_maxX+", minY: "+_minY+", maxY: "+_maxY+" >\n";
 
         for (int y = 0; y < _height; y++)
         {
@@ -115,18 +115,9 @@ public class Maze
                     {
                         case TileId.WALL:
                         case TileId.PASSAGE:
-                        {
-                            map.add(new Tile(new Coordinate(i, _height), asChar[i]));
-                        }
-                        break;
                         case TileId.SPACE:
                         {
                             map.add(new Tile(new Coordinate(i, _height), asChar[i]));
-
-                            _minX = Math.min(_minX, i);
-                            _maxX = Math.max(_maxX, i);
-                            _minY = Math.min(_minY, _height);
-                            _maxY = Math.max(_maxY, _height);
                         }
                         break;
                         default:  // add to Portal list
@@ -184,6 +175,22 @@ public class Maze
             {
                 x = 0;
                 y++;
+            }
+        }
+
+        for (y = 3; y < _height -3; y++)
+        {
+            for (x = 3; x < _width -3; x++)
+            {
+                System.out.println("maze "+y+" "+x+" "+_theMaze[y][x].content());
+                
+                if (_theMaze[y][x].content() == TileId.SPACE)
+                {
+                    _minX = Math.min(_minX, x);
+                    _maxX = Math.max(_maxX, x);
+                    _minY = Math.min(_minY, y);
+                    _maxY = Math.max(_maxY, y);
+                }
             }
         }
 
