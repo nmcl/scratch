@@ -31,5 +31,21 @@ public class Donut
             else
                 System.out.println("Failed to verify.");
         }
+        else
+        {
+            Maze theMaze = new Maze(DATA, debug);
+            Traveller theTraveller = new Traveller(theMaze, debug);
+
+            if (debug)
+            {
+                System.out.println(theMaze);
+
+                System.out.println(theMaze.printWithPortals());
+            }
+
+            int numberOfSteps = theTraveller.findAllKeys();
+
+            System.out.println("Number of steps: "+numberOfSteps);
+        }
     }
 }
