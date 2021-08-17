@@ -18,10 +18,31 @@ public class Traveller
     {
         Vector<Wormhole> outerWormholes = _theMaze.outerWormholes();
         Vector<Wormhole> innerWormholes = _theMaze.innerWormholes();
-        Wormhole start = Util.findWormhole(outerWormholes, Maze.START);
-        Wormhole end = Util.findWormhole(outerWormholes, Maze.END);
+        Coordinate start = Util.findWormhole(outerWormholes, Maze.START).getLocation();
+        Coordinate end = Util.findWormhole(outerWormholes, Maze.END).getLocation();
+        HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.innerWormholes(), _theMaze.outerWormholes());
+        PriortityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
-        // MISSING LOGIC. THINK ABOUT IT MORE!
+        journeys.offer(new Journey(start));
+        HashSet<Coordinate> locationsTraversed = new HashSet<Coordinate>();
+
+        while (journeys.size() > 0)
+        {
+            Journey theJoruney = journeys.poll();
+
+            if (theJourney.getLocation().equals(end))
+                return theJourney.getSteps();
+
+            for (Route nextRoute : journeys.get(theJourney.getLocation()))
+            {
+                if (locationsTraversed.add(next.getEnd()))
+                {
+                    Journey nextJourney = new Journey(nextRoute.getEnd(), theJoruney.getSteps() + nextRoute.numberOfSteps());
+
+                    journeys.offer(nextJourney);
+                }
+            }
+        }
 
         return -1;
     }
