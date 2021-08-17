@@ -76,9 +76,11 @@ public class Traveller
             int index = innerWormholes.indexOf(toCheck);
 
             System.out.println("checking "+toCheck);
-            
+
             if (index != -1) // not present?
             {
+                System.out.println("inner wormholes contains "+toCheck);
+
                 Coordinate innerLocation = innerWormholes.elementAt(index).getLocation();
                 List<Route> outerRoutes = routesForEachCoordinate.computeIfAbsent(toCheck.getLocation(), (k) -> new ArrayList<>());
 
@@ -88,6 +90,8 @@ public class Traveller
 
                 innerRoutes.add(new Route(innerLocation, toCheck.getLocation()));
             }
+            else
+                System.out.println("inner wormholes does not contain "+toCheck);
         }
         
         Vector<Coordinate> outerCoordinates = Util.extractCoordinates(outerWormholes);
