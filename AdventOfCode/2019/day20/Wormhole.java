@@ -27,7 +27,7 @@ public class Wormhole
     @Override
     public String toString ()
     {
-        return "Wormhold < "+_name+", "+_position+" >";
+        return "Wormhole < "+_name+", "+_position+" >";
     }
 
     @Override
