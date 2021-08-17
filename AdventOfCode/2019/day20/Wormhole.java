@@ -10,6 +10,8 @@ public class Wormhole
     {
         _name = "" + ((Portal) first).getId() + ((Portal) second).getId();
         _position = location;
+
+        System.out.println("created "+this);
     }
 
     public final String getName ()
