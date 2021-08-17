@@ -128,9 +128,13 @@ public class Traveller
 
     Optional<Route> shortestPath (Coordinate start, Coordinate destination)
     {
+        System.out.println("shortest "+start+" "+destination);
+
         HashMap<Coordinate, Integer> stepsTaken = new HashMap<Coordinate, Integer>();
         HashMap<Coordinate, Coordinate> originate = new HashMap<Coordinate, Coordinate>();
         PriorityQueue<Coordinate> locations = new PriorityQueue<Coordinate>((Comparator.comparingInt(pos -> Util.cost(stepsTaken, pos, destination))));
+
+        System.out.println("number of locations "+locations.size());
 
         stepsTaken.put(start, 0);
         locations.offer(start);
@@ -140,8 +144,14 @@ public class Traveller
             Coordinate coord = locations.poll();
             int steps = stepsTaken.get(coord);
 
+            System.out.println("comparing "+coord+" and "+destination);
+
             if (coord.equals(destination))
+            {
+                System.out.println("found");
+
                 return Optional.of(new Route(start, destination, steps));
+            }
             else
             {
                 coord.directions().stream()
