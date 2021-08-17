@@ -19,7 +19,10 @@ public class Verifier
 
         System.out.println(theMaze.printWithPortals());
 
+        int numberOfSteps = theTraveller.findAllKeys();
 
+        System.out.println("got "+numberOfSteps);
+        
         return true;
     }
 
