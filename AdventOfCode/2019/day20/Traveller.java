@@ -21,14 +21,14 @@ public class Traveller
         Coordinate start = Util.findWormhole(outerWormholes, Maze.START).getLocation();
         Coordinate end = Util.findWormhole(outerWormholes, Maze.END).getLocation();
         HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.innerWormholes(), _theMaze.outerWormholes());
-        PriortityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
+        PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
         journeys.offer(new Journey(start));
         HashSet<Coordinate> locationsTraversed = new HashSet<Coordinate>();
 
         while (journeys.size() > 0)
         {
-            Journey theJoruney = journeys.poll();
+            Journey theJourney = journeys.poll();
 
             if (theJourney.getLocation().equals(end))
                 return theJourney.getSteps();
