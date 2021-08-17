@@ -13,6 +13,21 @@ public class Route
         _end = end;
         _numberOfSteps = steps;
     }
+
+    public final Coordinate getStart ()
+    {
+        return _start;
+    }
+
+    public final Coordinate getEnd ()
+    {
+        return _end;
+    }
+
+    public final int numberOfSteps ()
+    {
+        return _numberOfSteps;
+    }
     
     @Override
     public String toString ()
