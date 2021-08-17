@@ -4,13 +4,14 @@ public class Journey
 {
     public Journey (Coordinate coord)
     {
-        this(coord, 0);
+        this(coord, 0, 0);
     }
 
-    public Journey (Coordinate coord, int steps)
+    public Journey (Coordinate coord, int steps, int mazeLevel)
     {
         _coord = coord;
         _steps = steps;
+        _mazeLevel = mazeLevel;
     }
 
     public final Coordinate getLocation ()
@@ -57,4 +58,5 @@ public class Journey
 
     private Coordinate _coord;
     private int _steps;
+    private int _mazeLevel;
 }
