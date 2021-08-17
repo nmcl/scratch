@@ -12,6 +12,7 @@ public class Journey
         _coord = coord;
         _steps = steps;
         _mazeLevel = mazeLevel;
+        _name = _coord + "" + _mazeLevel;
     }
 
     public final Coordinate getLocation ()
@@ -22,6 +23,16 @@ public class Journey
     public final int getSteps ()
     {
         return _steps;
+    }
+
+    public final int levelOfMaze ()
+    {
+        return _mazeLevel;
+    }
+
+    public String name ()
+    {
+        _name;
     }
 
     @Override
@@ -59,4 +70,5 @@ public class Journey
     private Coordinate _coord;
     private int _steps;
     private int _mazeLevel;
+    private String _name;
 }
