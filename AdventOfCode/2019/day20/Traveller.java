@@ -20,35 +20,18 @@ public class Traveller
         Vector<Wormhole> innerWormholes = _theMaze.innerWormholes();
         Coordinate start = Util.findWormhole(outerWormholes, Maze.START).getLocation();
         Coordinate end = Util.findWormhole(outerWormholes, Maze.END).getLocation();
-
-        System.out.println("start "+start);
-        System.out.println("end "+end);
-
         HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.innerWormholes(), _theMaze.outerWormholes());
-
-        System.out.println("routes size "+routes.size());
-
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
         journeys.offer(new Journey(start));
         HashSet<Coordinate> locationsTraversed = new HashSet<Coordinate>();
 
-        System.out.println("initial journeys "+journeys.size());
-
         while (journeys.size() > 0)
         {
-            System.out.println("journeys "+journeys.size());
-
             Journey theJourney = journeys.poll();
 
-            System.out.println("theJourney "+theJourney);
-
             if (theJourney.getLocation().equals(end))
-            {
-                System.out.println("found");
-
                 return theJourney.getSteps();
-            }
 
             for (Route nextRoute : routes.get(theJourney.getLocation()))
             {
@@ -75,11 +58,13 @@ public class Traveller
             Wormhole toCheck = iter.next();
             int index = innerWormholes.indexOf(toCheck);
 
-            System.out.println("checking "+toCheck);
+            if (_debug)
+                System.out.println("Searching for: "+toCheck);
 
             if (index != -1) // not present?
             {
-                System.out.println("inner wormholes contains "+toCheck);
+                if (_debug)
+                    System.out.println("Inner wormholes contains "+toCheck);
 
                 Coordinate innerLocation = innerWormholes.elementAt(index).getLocation();
                 List<Route> outerRoutes = routesForEachCoordinate.computeIfAbsent(toCheck.getLocation(), (k) -> new ArrayList<>());
@@ -90,8 +75,6 @@ public class Traveller
 
                 innerRoutes.add(new Route(innerLocation, toCheck.getLocation()));
             }
-            else
-                System.out.println("inner wormholes does not contain "+toCheck);
         }
         
         Vector<Coordinate> outerCoordinates = Util.extractCoordinates(outerWormholes);
