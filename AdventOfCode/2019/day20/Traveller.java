@@ -33,8 +33,12 @@ public class Traveller
 
         while (journeys.size() > 0)
         {
+            System.out.println("journeys "+journeys.size());
+
             Journey theJourney = journeys.poll();
 
+            System.out.println("theJourney "+theJourney);
+            
             if (theJourney.getLocation().equals(end))
                 return theJourney.getSteps();
 
