@@ -38,7 +38,7 @@ public class Journey
     @Override
     public String toString ()
     {
-        return "< "+_coord+", "+_steps+" >";
+        return "< "+_coord+", "+_steps+", "+_mazeLevel+", "+_name+" >";
     }
 
     @Override
