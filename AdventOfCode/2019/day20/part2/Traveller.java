@@ -42,13 +42,6 @@ public class Traveller
             }
             else
             {
-                for (Path nextPath : paths.get(route.position)) {
-                    boolean notOutermost = (route.level != 0);
-                    if (notOutermost && (Objects.equals(nextPath.to, startPosition) || Objects.equals(nextPath.to, endPosition))) continue;
-                    var nextRoute = new Route(nextPath.to, route.steps + nextPath.steps, route.level + nextPath.deltaLevel);
-                    routes.offer(nextRoute);
-                }
-
                 for (Route nextRoute : routes.get(theJourney.getLocation()))
                 {
                     if ((theJourney.levelOfMaze() > 0) && (nextRoute.getEnd().equals(start) || nextRoute.getEnd().equals(end)))
