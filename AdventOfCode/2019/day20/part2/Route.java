@@ -38,7 +38,7 @@ public class Route
     @Override
     public String toString ()
     {
-        return "< "+_start+", "+_end+", "+_numberOfSteps+" >";
+        return "< "+_start+", "+_end+", "+_numberOfSteps+", "+_level+" >";
     }
 
     @Override
