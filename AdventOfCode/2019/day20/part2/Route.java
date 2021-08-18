@@ -4,14 +4,15 @@ public class Route
 {
     public Route (Coordinate start, Coordinate end)
     {
-        this(start, end, 1);
+        this(start, end, 1, 0);
     }
 
-    public Route (Coordinate start, Coordinate end, int steps)
+    public Route (Coordinate start, Coordinate end, int steps, int level)
     {
         _start = start;
         _end = end;
         _numberOfSteps = steps;
+        _level = level;
     }
 
     public final Coordinate getStart ()
@@ -27,6 +28,11 @@ public class Route
     public final int numberOfSteps ()
     {
         return _numberOfSteps;
+    }
+
+    public final int getLevel ()
+    {
+        return _level;
     }
     
     @Override
@@ -64,4 +70,5 @@ public class Route
     private Coordinate _start;
     private Coordinate _end;
     private int _numberOfSteps;
+    private int _level;
 }
