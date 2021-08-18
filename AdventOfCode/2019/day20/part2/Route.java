@@ -4,7 +4,7 @@ public class Route
 {
     public Route (Coordinate start, Coordinate end)
     {
-        this(start, end, 1, 0);
+        this(start, end, 1, -1);
     }
 
     public Route (Coordinate start, Coordinate end, int steps, int level)
