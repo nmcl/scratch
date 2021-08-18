@@ -10,7 +10,7 @@ public class Verifier
 
     public boolean verify ()
     {
-        Maze theMaze = new Maze(EXAMPLE_1, _debug);
+        Maze theMaze = new Maze(EXAMPLE, _debug);
         Traveller theTraveller = new Traveller(theMaze, _debug);
 
         if (_debug)
@@ -22,27 +22,10 @@ public class Verifier
 
         int numberOfSteps = theTraveller.findAllKeys();
 
-        if (numberOfSteps == EXAMPLE_1_STEPS)
-        {
-            theMaze = new Maze(EXAMPLE_2, _debug);
-            theTraveller = new Traveller(theMaze, _debug);
-
-            if (_debug)
-            {
-                System.out.println(theMaze);
-
-                System.out.println(theMaze.printWithPortals());
-            }
-    
-            numberOfSteps = theTraveller.findAllKeys();
-    
-            if (numberOfSteps == EXAMPLE_2_STEPS)
-                return true;
-            else
-                System.out.println("Failed to verify "+EXAMPLE_2);
-        }
-        else
-            System.out.println("Failed to verify "+EXAMPLE_1);
+        if (numberOfSteps == EXAMPLE_STEPS)
+            return true;
+        
+        System.out.println("Failed to verify "+EXAMPLE);
 
         return false;
     }
