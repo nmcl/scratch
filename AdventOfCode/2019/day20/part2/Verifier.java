@@ -25,7 +25,7 @@ public class Verifier
         if (numberOfSteps == EXAMPLE_STEPS)
             return true;
         
-        System.out.println("Failed to verify "+EXAMPLE);
+        System.out.println("Failed to verify "+EXAMPLE+" with "+numberOfSteps);
 
         return false;
     }
