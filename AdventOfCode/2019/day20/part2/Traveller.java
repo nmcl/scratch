@@ -22,7 +22,7 @@ public class Traveller
         Vector<Wormhole> innerWormholes = _theMaze.innerWormholes();
         Coordinate start = Util.findWormhole(outerWormholes, Maze.START).getLocation();
         Coordinate end = Util.findWormhole(outerWormholes, Maze.END).getLocation();
-        HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.innerWormholes(), _theMaze.outerWormholes());
+        HashMap<Coordinate, List<Route>> routes = findRoutes(_theMaze.outerWormholes(), _theMaze.innerWormholes());
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
         journeys.offer(new Journey(start));
