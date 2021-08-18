@@ -85,7 +85,7 @@ public class Traveller
                 Coordinate innerLocation = innerWormholes.elementAt(index).getLocation();
                 List<Route> outerRoutes = routesForEachCoordinate.computeIfAbsent(toCheck.getLocation(), (k) -> new ArrayList<>());
 
-                outerRoutes.add(new Route(toCheck.getLocation(), innerLocation));
+                outerRoutes.add(new Route(toCheck.getLocation(), innerLocation), 1, -1);
 
                 List<Route> innerRoutes = routesForEachCoordinate.computeIfAbsent(innerLocation, (k) -> new ArrayList<>());
 
@@ -140,7 +140,7 @@ public class Traveller
             int steps = stepsTaken.get(coord);
 
             if (coord.equals(destination))
-                return Optional.of(new Route(start, destination, steps));
+                return Optional.of(new Route(start, destination, steps, 0));
             else
             {
                 coord.directions().stream()
