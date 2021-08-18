@@ -1,6 +1,8 @@
 import java.util.*;
 import java.util.stream.*;
 
+import javax.lang.model.util.ElementScanner6;
+
 /*
  * The Traveller represents the entity moving through
  * the Maze.
@@ -24,7 +26,7 @@ public class Traveller
         PriorityQueue<Journey> journeys = new PriorityQueue<Journey>(Comparator.comparingInt(r -> r.getSteps()));
 
         journeys.offer(new Journey(start));
-        HashSet<Coordinate> locationsTraversed = new HashSet<Coordinate>();
+        HashSet<String> journeysTaken = new HashSet<String>();
 
         while (journeys.size() > 0)
         {
@@ -33,13 +35,34 @@ public class Traveller
             if (theJourney.getLocation().equals(end))
                 return theJourney.getSteps();
 
-            for (Route nextRoute : routes.get(theJourney.getLocation()))
+            if ((theJourney.levelOfMaze() < 0) || !journeysTaken.add(theJourney.name()))
             {
-                if (locationsTraversed.add(nextRoute.getEnd()))
-                {
-                    Journey nextJourney = new Journey(nextRoute.getEnd(), theJourney.getSteps() + nextRoute.numberOfSteps());
+                if (_debug)
+                    System.out.println("Journey level: "+theJourney.levelOfMaze()+" and journey "+theJourney+" duplicated.");
+            }
+            else
+            {
+                for (Path nextPath : paths.get(route.position)) {
+                    boolean notOutermost = (route.level != 0);
+                    if (notOutermost && (Objects.equals(nextPath.to, startPosition) || Objects.equals(nextPath.to, endPosition))) continue;
+                    var nextRoute = new Route(nextPath.to, route.steps + nextPath.steps, route.level + nextPath.deltaLevel);
+                    routes.offer(nextRoute);
+                }
 
-                    journeys.offer(nextJourney);
+                for (Route nextRoute : routes.get(theJourney.getLocation()))
+                {
+                    if ((theJourney.levelOfMaze() > 0) && (nextRoute.getEnd().equals(start) || nextRoute.getEnd().equals(end)))
+                    {
+                        if (_debug)
+                            System.out.println("Journey level: "+theJourney.levelOfMaze()+" and journey "+theJourney);
+                    }
+                    else
+                    {
+                        Journey nextJourney = new Journey(nextRoute.getEnd(), theJourney.getSteps() + nextRoute.numberOfSteps(),
+                                                theJourney.levelOfMaze() + nextRoute.getLevel());
+
+                        journeys.offer(nextJourney);
+                    }
                 }
             }
         }
