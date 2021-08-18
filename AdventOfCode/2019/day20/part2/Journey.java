@@ -32,7 +32,7 @@ public class Journey
 
     public String name ()
     {
-        _name;
+        return _name;
     }
 
     @Override
