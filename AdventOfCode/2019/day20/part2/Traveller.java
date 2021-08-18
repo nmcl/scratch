@@ -89,7 +89,7 @@ public class Traveller
 
                 List<Route> innerRoutes = routesForEachCoordinate.computeIfAbsent(innerLocation, (k) -> new ArrayList<>());
 
-                innerRoutes.add(new Route(innerLocation, toCheck.getLocation()));
+                innerRoutes.add(new Route(innerLocation, toCheck.getLocation(), 1, 1));
             }
         }
         
