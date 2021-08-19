@@ -4,6 +4,8 @@ public class SpringDroid
 {
     public static final int MAX_INSTRUCTIONS = 15;
 
+    public static final String INSTRUCTIONS = "instructions.txt";
+
     /*
      * Jump if there is a hole on A or on B or on C and there is no hole on D.
      *
@@ -15,11 +17,21 @@ public class SpringDroid
      * 'WALK'
      */
 
-    public SpringDroid (Vector<String> instructions, boolean debug)
+    public static void main (String[] args)
     {
-        _debug = debug;
-    }
+        boolean debug = false;
 
-    private Intcode _computer;
-    private boolean _debug;
+        for (int i = 0; i < args.length; i++)
+        {
+            if ("-help".equals(args[i]))
+            {
+                System.out.println("Usage: [-debug] [-help]");
+
+                System.exit(0);
+            }
+
+            if ("-debug".equals(args[i]))
+                debug = true;
+        }
+    }
 }
