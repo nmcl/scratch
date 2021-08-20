@@ -41,5 +41,16 @@ public class SpringDroid
 
         Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
         Intcode computer = new Intcode(values, debug);
+
+        computer.setInputs("O", "R", " ", "A", " ", "J", "\n");
+        computer.setInputs("A", "N", "D", " ", "B", " ", "J", "\n");
+        computer.setInputs("A", "N", "D", " ", "C", " ", "J", "\n");
+        computer.setInputs("N", "O", "T", " ", "T", " ", "J", "\n");
+        computer.setInputs("A", "N", "D", " ", "D", " ", "J", "\n");
+        computer.setInputs("W", "A", "L", "K", "\n");
+
+        computer.executeProgram();
+
+        System.out.println(computer.getOutput());
     }
 }
