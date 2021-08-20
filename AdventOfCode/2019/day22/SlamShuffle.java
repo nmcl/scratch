@@ -19,8 +19,16 @@ public class SlamShuffle
                 debug = true;
         }
 
-        Deck theDeck = new Deck(debug, true);
+        Deck theDeck = new Deck(debug);
 
         System.out.println("Initial: "+theDeck);
+
+        System.out.println("next");
+        
+        Deck copy = new Deck(debug, false);
+
+        theDeck.dealInto(copy);
+
+        System.out.println("Dealt into: "+copy);
     }
 }
