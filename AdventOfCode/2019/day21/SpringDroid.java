@@ -41,13 +41,23 @@ public class SpringDroid
 
         Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
         Intcode computer = new Intcode(values, debug);
+        List<String> program = List.of(
+            "OR A J\n",
+            "AND B J\n",
+            "AND C J\n",
+            "NOT T J\n",
+            "AND D J\n",
+            "WALK\n"
+        );
 
-        computer.setInputs("O", "R", " ", "A", " ", "J", "\n");
-        computer.setInputs("A", "N", "D", " ", "B", " ", "J", "\n");
-        computer.setInputs("A", "N", "D", " ", "C", " ", "J", "\n");
-        computer.setInputs("N", "O", "T", " ", "T", " ", "J", "\n");
-        computer.setInputs("A", "N", "D", " ", "D", " ", "J", "\n");
-        computer.setInputs("W", "A", "L", "K", "\n");
+        Iterator<String> iter = program.iterator();
+
+        while (iter.hasNext())
+        {
+            String str = iter.next();
+
+            computer.setInputs(IntcodeUtil.convertStringToASCIIArray(str));
+        }
 
         computer.executeProgram();
 
