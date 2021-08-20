@@ -1,7 +1,7 @@
 public class SlamShuffle
 {
     public static final String DATA_FILE = "data.txt";
-    
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -18,5 +18,9 @@ public class SlamShuffle
             if ("-debug".equals(args[i]))
                 debug = true;
         }
+
+        Deck theDeck = new Deck(debug, true);
+
+        System.out.println("Initial: "+theDeck);
     }
 }
