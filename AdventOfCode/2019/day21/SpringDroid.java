@@ -7,6 +7,11 @@ public class SpringDroid
     public static final String INSTRUCTIONS = "instructions.txt";
 
     /*
+     * We know that after the droid jumps it will land 4 tiles away.
+     * Only safe to jump when D is solid or we go spinning into space!
+     * Only jump when there's a hole in front of the droid, i.e., A, B or C is
+     * a space.
+     *
      * Jump if there is a hole on A or on B or on C and there is no hole on D.
      *
      * 'OR A J', //  J = A
