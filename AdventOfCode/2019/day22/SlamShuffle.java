@@ -1,5 +1,7 @@
 public class SlamShuffle
 {
+    public static final String DATA_FILE = "data.txt";
+    
     public static void main (String[] args)
     {
         boolean debug = false;
