@@ -34,14 +34,24 @@ public class SpringDroid
 
         Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
         Intcode computer = new Intcode(values, debug);
-        List<String> program = List.of(
+        List<String> program = List.of( // # jump any space if D is safe
             "NOT A J\n",
             "NOT B T\n",
             "OR T J\n",
             "NOT C T\n",
             "OR T J\n",
             "AND D J\n",
-            "WALK\n"
+            
+            // does droid need to jump from D immediately?
+            "NOT E T\n",
+            // droid can do so only if eight is safe too
+            "AND H T\n",
+            // e or h are safe
+            "OR E T\n",
+
+            // if droid is about to jump, do so only if either e or h is safe
+            "AND T J\n",
+            "RUN\n"
         );
 
         Iterator<String> iter = program.iterator();
