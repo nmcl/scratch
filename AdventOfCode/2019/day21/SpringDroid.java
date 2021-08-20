@@ -13,13 +13,6 @@ public class SpringDroid
      * a space.
      *
      * Jump if there is a hole on A or on B or on C and there is no hole on D.
-     *
-     * 'OR A J', //  J = A
-     * 'AND B J', // J = A AND B
-     * 'AND C J', // J = A AND B AND C
-     * 'NOT T J', // J = !A OR !B OR !C
-     * 'AND D J', // J = (!A OR !B OR !C) AND D
-     * 'WALK'
      */
 
     public static void main (String[] args)
@@ -42,10 +35,11 @@ public class SpringDroid
         Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
         Intcode computer = new Intcode(values, debug);
         List<String> program = List.of(
-            "OR A J\n",
-            "AND B J\n",
-            "AND C J\n",
-            "NOT T J\n",
+            "NOT A J\n",
+            "NOT B T\n",
+            "OR T J\n",
+            "NOT C T\n",
+            "OR T J\n",
             "AND D J\n",
             "WALK\n"
         );
@@ -61,6 +55,8 @@ public class SpringDroid
 
         computer.executeProgram();
 
-        System.out.println(computer.getOutput());
+        Vector<String> outputs = computer.getOutputs();
+
+        System.out.println("Hull damage: "+outputs.elementAt(outputs.size() -1));
     }
 }
