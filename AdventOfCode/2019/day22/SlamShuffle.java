@@ -19,16 +19,17 @@ public class SlamShuffle
                 debug = true;
         }
 
-        Deck theDeck = new Deck(debug);
+        Deck theDeck = new Deck(10, debug);
+
+        theDeck.populateWithCards();
 
         System.out.println("Initial: "+theDeck);
 
-        System.out.println("next");
-        
-        Deck copy = new Deck(debug, false);
+        Deck copy = new Deck(10, debug);
 
-        theDeck.dealInto(copy);
+        if (!theDeck.dealInto(copy))
+            System.out.println("Dealing failed!");
 
-        System.out.println("Dealt into: "+copy);
+        System.out.println("\nDealt into: "+copy);
     }
 }
