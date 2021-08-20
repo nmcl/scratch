@@ -2,37 +2,47 @@ import java.util.*;
 
 public class Deck
 {
-    public static final int SIZE_OF_DECK = 10007;
+    public static final int SIZE_OF_SPACE_CARDS_DECK = 10007;
 
-    public Deck (boolean debug)
+    public Deck ()
     {
-        this(debug, true);
+        this(SIZE_OF_SPACE_CARDS_DECK, false);
     }
 
-    public Deck (boolean debug, boolean populateDeck)
+    public Deck (int deckSize, boolean debug)
     {
-        _theDeck = new Vector<Integer>(SIZE_OF_DECK);
+        _theDeck = new Vector<Integer>(deckSize);
         _debug = debug;
 
-        if (populateDeck)
-            populateWithCards();
-        else
-            initialise();
+        initialise();
     }
 
-    public void dealInto (Deck recipient)
+    public final void populateWithCards ()
     {
-        for (int i = 0; i < SIZE_OF_DECK; i++)
+        for (int i = 0; i < _theDeck.capacity(); i++)
         {
-            recipient._theDeck.set(SIZE_OF_DECK -1 -i, _theDeck.elementAt(i));
+            _theDeck.set(i, i);
         }
+    }
+
+    public boolean dealInto (Deck recipient)
+    {
+        if (_theDeck.size() != recipient._theDeck.size())
+            return false;
+
+        for (int i = 0; i < _theDeck.capacity(); i++)
+        {
+            recipient._theDeck.set(_theDeck.capacity() -1 -i, _theDeck.elementAt(i));
+        }
+
+        return true;
     }
 
     public String toString ()
     {
         String str = "Deck: ";
 
-        for (int i = 0; i < SIZE_OF_DECK; i++)
+        for (int i = 0; i < _theDeck.size(); i++)
             str += "\n"+_theDeck.elementAt(i);
 
         return str;
@@ -40,14 +50,8 @@ public class Deck
 
     private void initialise ()
     {
-        for (int i = 0; i < SIZE_OF_DECK; i++)
-            _theDeck.add(i, -1);
-    }
-
-    private void populateWithCards ()
-    {
-        for (int i = 0; i < SIZE_OF_DECK; i++)
-            _theDeck.add(i, i);
+        for (int i = 0; i < _theDeck.capacity(); i++)
+            _theDeck.add(-1);
     }
 
     private Vector<Integer> _theDeck;
