@@ -6,7 +6,7 @@ public class Deck
 
     public Deck (boolean debug)
     {
-        this(debug, false);
+        this(debug, true);
     }
 
     public Deck (boolean debug, boolean populateDeck)
@@ -15,13 +15,17 @@ public class Deck
         _debug = debug;
 
         if (populateDeck)
+            populateWithCards();
+        else
             initialise();
     }
 
     public void dealInto (Deck recipient)
     {
         for (int i = 0; i < SIZE_OF_DECK; i++)
+        {
             recipient._theDeck.set(SIZE_OF_DECK -1 -i, _theDeck.elementAt(i));
+        }
     }
 
     public String toString ()
@@ -35,6 +39,12 @@ public class Deck
     }
 
     private void initialise ()
+    {
+        for (int i = 0; i < SIZE_OF_DECK; i++)
+            _theDeck.add(i, -1);
+    }
+
+    private void populateWithCards ()
     {
         for (int i = 0; i < SIZE_OF_DECK; i++)
             _theDeck.add(i, i);
