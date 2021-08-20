@@ -34,7 +34,7 @@ public class SpringDroid
 
         Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
         Intcode computer = new Intcode(values, debug);
-        List<String> program = List.of(
+        List<String> program = List.of( // jump any space if D is safe
             "NOT A J\n",
             "NOT B T\n",
             "OR T J\n",
