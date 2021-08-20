@@ -33,5 +33,8 @@ public class SpringDroid
             if ("-debug".equals(args[i]))
                 debug = true;
         }
+
+        Vector<String> values = IntcodeUtil.readValues(INSTRUCTIONS);
+        Intcode computer = new Intcode(values, debug);
     }
 }
