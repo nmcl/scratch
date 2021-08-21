@@ -1,7 +1,8 @@
 import java.util.*;
 
 /*
- * Represents a single deck of cards.
+ * Represents a single deck of cards. Initially the deck
+ * is empty until populated.
  */
 
 public class Deck
