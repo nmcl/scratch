@@ -32,7 +32,23 @@ public class Deck
     {
         return _theDeck.size();
     }
-    
+
+    public int dealFromTop ()
+    {
+        if (_theDeck.size() > 0)
+            return _theDeck.remove(0);
+        else
+            return -1;
+    }
+
+    public int dealFromBottom ()
+    {
+        if (_theDeck.size() > 0)
+            return _theDeck.remove(_theDeck.size() -1);
+        else
+            return -1;
+    }
+
     public final void populateWithCards ()  // resets if called multiple times
     {
         for (int i = 0; i < _theDeck.capacity(); i++)
