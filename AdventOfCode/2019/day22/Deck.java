@@ -22,7 +22,7 @@ public class Deck
         initialise();
     }
 
-    public final void populateWithCards ()
+    public final void populateWithCards ()  // resets if called multiple times
     {
         for (int i = 0; i < _theDeck.capacity(); i++)
         {
@@ -45,23 +45,15 @@ public class Deck
 
     public boolean cut (int numberOfCards)
     {
-        if (numberOfCards < 0)
-            return false; // for now!
-
-        if (numberOfCards > _theDeck.size())
-            return false;
-        
-        if (numberOfCards < _theDeck.size())
+        if (numberOfCards != 0)
         {
-            Vector<Integer> cutDeck = new Vector<Integer>(_theDeck.size());
-
-            for (int i = 0; i < _theDeck.size() - numberOfCards; i++)
-                cutDeck.add(i, _theDeck.elementAt(numberOfCards + i));
-
-            for (int j = 0; j < numberOfCards; j++)
-                cutDeck.add(_theDeck.size() - numberOfCards + j, _theDeck.elementAt(j));
-
-            _theDeck = cutDeck;
+            if (Math.abs(numberOfCards) > _theDeck.size())
+                return false;
+            
+            if (numberOfCards > 0)
+                cutPositive(numberOfCards);
+            else
+                cutNegative(Math.abs(numberOfCards));
         }
 
         return true;
@@ -75,6 +67,38 @@ public class Deck
             str += " "+_theDeck.elementAt(i);
 
         return str;
+    }
+
+    private void cutPositive (int numberOfCards)
+    {   
+        if (numberOfCards < _theDeck.size())
+        {
+            Vector<Integer> cutDeck = new Vector<Integer>(_theDeck.size());
+
+            for (int i = 0; i < _theDeck.size() - numberOfCards; i++)
+                cutDeck.add(i, _theDeck.elementAt(numberOfCards + i));
+
+            for (int j = 0; j < numberOfCards; j++)
+                cutDeck.add(_theDeck.size() - numberOfCards + j, _theDeck.elementAt(j));
+
+            _theDeck = cutDeck;
+        }
+    }
+
+    private void cutNegative (int numberOfCards)
+    {
+        if (numberOfCards < _theDeck.size())
+        {
+            Vector<Integer> cutDeck = new Vector<Integer>(_theDeck.size());
+
+            for (int i = 0; i < _theDeck.size() - numberOfCards; i++)
+                cutDeck.add(i, _theDeck.elementAt(numberOfCards + i));
+
+            for (int j = 0; j < numberOfCards; j++)
+                cutDeck.add(_theDeck.size() - numberOfCards + j, _theDeck.elementAt(j));
+
+            _theDeck = cutDeck;
+        }
     }
 
     private void initialise ()
