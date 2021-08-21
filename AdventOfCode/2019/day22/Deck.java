@@ -1,5 +1,9 @@
 import java.util.*;
 
+/*
+ * Represents a single deck of cards.
+ */
+
 public class Deck
 {
     public static final int SIZE_OF_SPACE_CARDS_DECK = 10007;
