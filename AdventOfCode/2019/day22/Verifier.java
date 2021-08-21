@@ -7,8 +7,28 @@ public class Verifier
     public static final String EXAMPLE_3 = "example3.txt";
     public static final int[] EXAMPLE_3_RESULT = {6, 3, 0, 7, 4, 1, 8, 5, 2, 9};
 
-    public Verifier ()
+    public Verifier (boolean debug)
     {
-
+        _debug = debug;
     }
+
+    public boolean verify ()
+    {
+        Deck theDeck = new Deck(10, _debug);
+
+        theDeck.populateWithCards();
+
+        System.out.println("Initial:\n"+theDeck);
+
+        Deck copy = new Deck(10, _debug);
+
+        if (!theDeck.dealInto(copy))
+            System.out.println("Dealing failed!");
+
+        System.out.println("\nDealt into:\n"+copy);
+
+        return true;
+    }
+
+    private boolean _debug;
 }

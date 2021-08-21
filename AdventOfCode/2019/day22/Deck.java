@@ -43,12 +43,34 @@ public class Deck
         return true;
     }
 
+    public boolean cut (int numberOfCards)
+    {
+        if (numberOfCards < 0)
+            return false; // for now!
+
+        if (numberOfCards > _theDeck.size())
+            return false;
+        
+        if (numberOfCards < _theDeck.size())
+        {
+            Vector<Integer> cutDeck = new Vector<Integer>(_theDeck.size());
+
+            for (int i = 0; i < _theDeck.size() - numberOfCards; i++)
+                cutDeck.set(i, _theDeck.elementAt(numberOfCards + i));
+
+            for (int j = 0; j < numberOfCards; j++)
+                cutDeck.set(j + numberOfCards, _theDeck.elementAt(j));
+        }
+
+        return true;
+    }
+
     public String toString ()
     {
         String str = "Deck: ";
 
         for (int i = 0; i < _theDeck.size(); i++)
-            str += "\n"+_theDeck.elementAt(i);
+            str += " "+_theDeck.elementAt(i);
 
         return str;
     }
