@@ -56,10 +56,12 @@ public class Deck
             Vector<Integer> cutDeck = new Vector<Integer>(_theDeck.size());
 
             for (int i = 0; i < _theDeck.size() - numberOfCards; i++)
-                cutDeck.set(i, _theDeck.elementAt(numberOfCards + i));
+                cutDeck.add(i, _theDeck.elementAt(numberOfCards + i));
 
             for (int j = 0; j < numberOfCards; j++)
-                cutDeck.set(j + numberOfCards, _theDeck.elementAt(j));
+                cutDeck.add(_theDeck.size() - numberOfCards + j, _theDeck.elementAt(j));
+
+            _theDeck = cutDeck;
         }
 
         return true;
