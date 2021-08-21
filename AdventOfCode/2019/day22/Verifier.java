@@ -31,6 +31,12 @@ public class Verifier
 
         System.out.println("\nDeck after cut 3:\n"+theDeck);
 
+        theDeck.populateWithCards();
+
+        theDeck.cut(-4);
+
+        System.out.println("\nDeck after cut -4:\n"+theDeck);
+
         return true;
     }
 
