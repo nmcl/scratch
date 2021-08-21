@@ -28,6 +28,11 @@ public class Deck
         _debug = debug;
     }
 
+    public final int numberOfCards ()
+    {
+        return _theDeck.size();
+    }
+    
     public final void populateWithCards ()  // resets if called multiple times
     {
         for (int i = 0; i < _theDeck.capacity(); i++)
