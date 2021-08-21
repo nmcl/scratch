@@ -27,6 +27,10 @@ public class Verifier
 
         System.out.println("\nDealt into:\n"+copy);
 
+        theDeck.cut(3);
+
+        System.out.println("\nDeck after cut 3:\n"+theDeck);
+
         return true;
     }
 
