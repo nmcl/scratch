@@ -22,6 +22,12 @@ public class Deck
         initialise();
     }
 
+    public Deck (Vector<Integer> cards, boolean debug)
+    {
+        _theDeck = cards;
+        _debug = debug;
+    }
+
     public final void populateWithCards ()  // resets if called multiple times
     {
         for (int i = 0; i < _theDeck.capacity(); i++)
