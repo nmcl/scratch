@@ -91,11 +91,11 @@ public class Deck
         {
             Vector<Integer> cutDeck = new Vector<Integer>(_theDeck.size());
 
-            for (int i = 0; i < _theDeck.size() - numberOfCards; i++)
-                cutDeck.add(i, _theDeck.elementAt(numberOfCards + i));
+            for (int i = 0; i < numberOfCards; i++)
+                cutDeck.add(i, _theDeck.elementAt(_theDeck.size() - numberOfCards + i));
 
-            for (int j = 0; j < numberOfCards; j++)
-                cutDeck.add(_theDeck.size() - numberOfCards + j, _theDeck.elementAt(j));
+            for (int j = 0; j < _theDeck.size() - numberOfCards; j++)
+                cutDeck.add(numberOfCards + j, _theDeck.elementAt(j));
 
             _theDeck = cutDeck;
         }
