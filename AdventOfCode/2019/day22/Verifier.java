@@ -19,6 +19,16 @@ public class Verifier
 
     public boolean verify ()
     {
+        if (verifyBasic())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean verifyBasic ()
+    {
         Deck theDeck = new Deck(10, _debug);
 
         theDeck.populateWithCards();
