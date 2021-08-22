@@ -18,6 +18,18 @@ public class Table
         return false;
     }
 
+    public Deck collectCards ()
+    {
+        if (_theTable == null)
+            return null;
+
+        Deck toReturn = new Deck(_theTable);
+
+        _theTable = null; // make sure cards are only in one place at a time.
+
+        return toReturn;
+    }
+    
     private Vector<Integer> _theTable;
     private boolean _debug;
 }
