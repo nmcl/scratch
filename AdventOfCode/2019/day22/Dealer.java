@@ -3,9 +3,10 @@ import java.util.*;
 
 public class Dealer
 {
-    public Dealer ()
+    public Dealer (String commandFile, boolean debug)
     {
-
+        _commands = readCommands(commandFile);
+        _debug = debug;
     }
 
     private final Vector<String> readCommands (String inputFile)
@@ -44,4 +45,7 @@ public class Dealer
 
         return commands;
     }
+
+    private Vector<String> _commands;
+    private boolean _debug;
 }
