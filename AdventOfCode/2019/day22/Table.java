@@ -41,7 +41,7 @@ public class Table
         if (_theTable == null)
             return null;
 
-        Deck toReturn = new Deck(_theTable);
+        Deck toReturn = new Deck(_theTable, _debug);
 
         _theTable = null; // make sure cards are only in one place at a time.
 
