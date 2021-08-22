@@ -28,6 +28,14 @@ public class Deck
         _debug = debug;
     }
 
+    public Deck (Integer[] cards, boolean debug)
+    {
+        _theDeck = new Vector<Integer>();
+
+        _theDeck.addAll(Arrays.asList(cards));
+        _debug = debug;
+    }
+
     public final int numberOfCards ()
     {
         return _theDeck.size();
@@ -86,6 +94,7 @@ public class Deck
         return true;
     }
 
+    @Override
     public String toString ()
     {
         String str = "Deck: ";
@@ -94,6 +103,34 @@ public class Deck
             str += " "+_theDeck.elementAt(i);
 
         return str;
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Deck temp = (Deck) obj;
+
+            if (_theDeck.size() == temp._theDeck.size())
+            {
+                for (int i = 0; i < _theDeck.size(); i++)
+                {
+                    if (_theDeck.elementAt(i) != temp._theDeck.elementAt(i))
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void cutPositive (int numberOfCards)
