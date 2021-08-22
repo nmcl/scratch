@@ -8,6 +8,7 @@ public class Verifier
     public static final Integer[] EXAMPLE_3_RESULT = {6, 3, 0, 7, 4, 1, 8, 5, 2, 9};
 
     public static final Integer[] DEALT_INTO_RESULT = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    public static final Integer[] CUT_RESULT = {3, 4, 5, 6, 7, 8, 9, 0, 1, 2};
 
     public Verifier (boolean debug)
     {
@@ -44,6 +45,17 @@ public class Verifier
 
         System.out.println("\nDeck after cut 3:\n"+theDeck);
 
+        Deck cutDeck = new Deck(CUT_RESULT, _debug);
+
+        if (theDeck.equals(cutDeck))
+            System.out.println("Cut worked!");
+        else
+        {
+            System.out.println("Cut did not work!");
+
+            return false;
+        }
+        
         theDeck.populateWithCards();
 
         theDeck.cut(-4);
