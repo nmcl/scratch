@@ -18,11 +18,11 @@ public class Table
         int numberOfCards = theDeck.numberOfCards();
         int index = 0;
 
-        _theTable = new Vector<Integer>(theDeck.numberOfCards());
+        initialise(theDeck);
 
         for (int i = 0; i < numberOfCards; i++)
         {
-            if (_theTable.get(index) != null)
+            if (_theTable.get(index) != -1)
                 return false;
 
             _theTable.set(index, theDeck.dealFromTop());
@@ -46,6 +46,14 @@ public class Table
         _theTable = null; // make sure cards are only in one place at a time.
 
         return toReturn;
+    }
+
+    private void initialise (Deck theDeck)
+    {
+        _theTable = new Vector<Integer>(theDeck.numberOfCards());
+
+        for (int i = 0; i < _theTable.capacity(); i++)
+            _theTable.add(-1);
     }
 
     private Vector<Integer> _theTable;
