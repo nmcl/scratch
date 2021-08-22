@@ -25,7 +25,7 @@ public class Table
             if (_theTable.get(index) != null)
                 return false;
 
-            _theTable.set(index, _theDeck.dealFromTop());
+            _theTable.set(index, theDeck.dealFromTop());
 
             index += increment;
 
