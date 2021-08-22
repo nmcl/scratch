@@ -8,7 +8,9 @@ public class Verifier
     public static final Integer[] EXAMPLE_3_RESULT = {6, 3, 0, 7, 4, 1, 8, 5, 2, 9};
 
     public static final Integer[] DEALT_INTO_RESULT = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-    public static final Integer[] CUT_RESULT = {3, 4, 5, 6, 7, 8, 9, 0, 1, 2};
+    public static final Integer[] POSITIVE_CUT_RESULT = {3, 4, 5, 6, 7, 8, 9, 0, 1, 2};
+    public static final Integer[] NEGATIVE_CUT_RESULT = {6, 7, 8, 9, 0, 1, 2, 3, 4, 5};
+    public static final Integer[] DEAL_WITH_INCREMENT = {0, 7, 4, 1, 8, 5, 2, 9, 6, 3};
 
     public Verifier (boolean debug)
     {
@@ -45,22 +47,33 @@ public class Verifier
 
         System.out.println("\nDeck after cut 3:\n"+theDeck);
 
-        Deck cutDeck = new Deck(CUT_RESULT, _debug);
+        Deck cutDeck = new Deck(POSITIVE_CUT_RESULT, _debug);
 
         if (theDeck.equals(cutDeck))
-            System.out.println("Cut worked!");
+            System.out.println("Cut with positive worked!");
         else
         {
-            System.out.println("Cut did not work!");
+            System.out.println("Cut with positive did not work!");
 
             return false;
         }
-        
+
         theDeck.populateWithCards();
 
         theDeck.cut(-4);
 
         System.out.println("\nDeck after cut -4:\n"+theDeck);
+
+        cutDeck = new Deck(NEGATIVE_CUT_RESULT, _debug);
+
+        if (theDeck.equals(cutDeck))
+            System.out.println("Cut with negative worked!");
+        else
+        {
+            System.out.println("Cut with negative did not work!");
+
+            return false;
+        }
 
         theDeck.populateWithCards();
 
@@ -72,6 +85,17 @@ public class Verifier
 
         System.out.println("\nDeck after deal with increment 3:\n"+theDeck);
         
+        Deck dealtDeck = new Deck(DEAL_WITH_INCREMENT, _debug);
+
+        if (theDeck.equals(dealtDeck))
+            System.out.println("Deal with increment worked!");
+        else
+        {
+            System.out.println("Deal with increment did not work!");
+
+            return false;
+        }
+
         return true;
     }
 
