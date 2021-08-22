@@ -37,6 +37,16 @@ public class Verifier
 
         System.out.println("\nDeck after cut -4:\n"+theDeck);
 
+        theDeck.populateWithCards();
+
+        Table theTable = new Table(_debug);
+
+        theTable.deal(theDeck, 3);
+
+        theDeck = theTable.collectCards();
+
+        System.out.println("\nDeck after deal with increment 3:\n"+theDeck);
+        
         return true;
     }
 
