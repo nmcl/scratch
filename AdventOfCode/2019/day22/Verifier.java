@@ -1,11 +1,13 @@
 public class Verifier
 {
     public static final String EXAMPLE_1 = "example1.txt";
-    public static final int[] EXAMPLE_1_RESULT = {0, 3, 6, 9, 2, 5, 8, 1, 4, 7};
+    public static final Integer[] EXAMPLE_1_RESULT = {0, 3, 6, 9, 2, 5, 8, 1, 4, 7};
     public static final String EXAMPLE_2 = "example2.txt";
-    public static final int[] EXAMPLE_2_RESULT = {3, 0, 7, 4, 1, 8, 5, 2, 9, 6};
+    public static final Integer[] EXAMPLE_2_RESULT = {3, 0, 7, 4, 1, 8, 5, 2, 9, 6};
     public static final String EXAMPLE_3 = "example3.txt";
-    public static final int[] EXAMPLE_3_RESULT = {6, 3, 0, 7, 4, 1, 8, 5, 2, 9};
+    public static final Integer[] EXAMPLE_3_RESULT = {6, 3, 0, 7, 4, 1, 8, 5, 2, 9};
+
+    public static final Integer[] DEALT_INTO_RESULT = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
     public Verifier (boolean debug)
     {
@@ -26,6 +28,17 @@ public class Verifier
             System.out.println("Dealing failed!");
 
         System.out.println("\nDealt into:\n"+copy);
+
+        Deck dealtInto = new Deck(DEALT_INTO_RESULT, _debug);
+
+        if (copy.equals(dealtInto))
+            System.out.println("Dealt into worked!");
+        else
+        {
+            System.out.println("Dealt into did not work!");
+
+            return false;
+        }
 
         theDeck.cut(3);
 
