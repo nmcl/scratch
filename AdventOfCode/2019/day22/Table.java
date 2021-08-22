@@ -15,7 +15,25 @@ public class Table
 
     public boolean deal (Deck theDeck, int increment)
     {
-        return false;
+        int numberOfCards = theDeck.numberOfCards();
+        int index = 0;
+
+        _theTable = new Vector<Integer>(theDeck.numberOfCards());
+
+        for (int i = 0; i < numberOfCards; i++)
+        {
+            if (_theTable.get(index) != null)
+                return false;
+
+            _theTable.set(index, _theDeck.dealFromTop());
+
+            index += increment;
+
+            if (index >= numberOfCards)
+                index -= numberOfCards;
+        }
+
+        return true;
     }
 
     public Deck collectCards ()
@@ -29,7 +47,7 @@ public class Table
 
         return toReturn;
     }
-    
+
     private Vector<Integer> _theTable;
     private boolean _debug;
 }
