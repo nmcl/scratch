@@ -27,7 +27,10 @@ public class SlamShuffle
         {
             Verifier theVerifier = new Verifier(debug);
 
-            theVerifier.verify();
+            if (theVerifier.verify())
+                System.out.println("\nVerified ok!");
+            else
+                System.out.println("\nVerify failed!");
 
             System.exit(0);
         }
