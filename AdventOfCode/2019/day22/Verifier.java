@@ -21,6 +21,8 @@ public class Verifier
     {
         if (verifyBasic())
         {
+            Dealer theDealer = new Dealer(EXAMPLE_1, _debug);
+
             return true;
         }
 
