@@ -5,37 +5,36 @@ public class Dealer
 {
     public Dealer(String commandFile, boolean debug)
     {
-        _commands = readCommands(commandFile);
+        _commands = new Vector<String>();
         _debug = debug;
+        
+        readCommands(commandFile);
     }
 
-    private final Vector<String> readCommands(String inputFile)
+    private final void readCommands(String inputFile)
     {
         /*
          * Open the data file and read it in.
          */
 
-        System.out.println("here");
-
         BufferedReader reader = null;
-        Vector<String> commands = new Vector<String>();
 
         try
-        {
-            System.out.println("open "+inputFile);
-            
+        {       
             reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
-
-            while ((line = reader.readLine()) != null)
+            
+            do
             {
-                System.out.println("line");
+                line = reader.readLine();
                 
                 if (_debug)
                     System.out.println("Read command: " + line);
 
-                commands.add(line);
+                if (line != null)
+                    _commands.add(line);
             }
+            while (line != null);
         }
         catch (Throwable ex)
         {
@@ -51,8 +50,6 @@ public class Dealer
             {
             }
         }
-
-        return commands;
     }
 
     private Vector<String> _commands;
