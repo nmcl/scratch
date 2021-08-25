@@ -44,17 +44,39 @@ public class Dealer
 
     private void cut (String command, Deck theDeck)
     {
+        if (_debug)
+            System.out.println("Command: "+command);
 
+        int increment = argument(command, Commands.CUT);
     }
 
     private void dealInto (String command, Deck theDeck)
     {
-
+        if (_debug)
+            System.out.println("Command: "+command);
     }
 
     private void dealWithIncrement (String command, Deck theDeck)
     {
-        
+        if (_debug)
+            System.out.println("Command: "+command);
+
+        int increment = argument(command, Commands.DEAL_WITH_INCREMENT);
+    }
+
+    private final int argument (String command, String type)
+    {
+        String paramString = command.substring(type.length()).trim();
+
+        if (_debug)
+            System.out.println("Parameter string: "+paramString);
+
+        int value = Integer.getInteger(paramString);
+
+        if (_debug)
+            System.out.println("Argument: "+value);
+
+        return value;
     }
 
     private final void readCommands(String inputFile)
