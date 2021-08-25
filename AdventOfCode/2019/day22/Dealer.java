@@ -11,8 +11,34 @@ public class Dealer
         readCommands(commandFile);
     }
 
-    public boolean dealCards ()
+    public boolean dealCards (int sizeOfDeck)
     {
+        Deck theDeck = new Deck(sizeOfDeck, _debug);
+        Enumeration<String> iter = _commands.elements();
+
+        while (iter.hasMoreElements())
+        {
+            String command = iter.nextElement();
+
+            if (command.startsWith(Commands.CUT))
+                cut(command, theDeck);
+            else
+            {
+                if (command.startsWith(Commands.DEAL_INTO))
+                    dealInto(command, theDeck);
+                else
+                {
+                    if (command.startsWith(Commands.DEAL_WITH_INCREMENT))
+                        dealWithIncrement(command, theDeck);
+                    else
+                    {
+                        System.out.println("Unknown command: "+command);
+
+                        return false;
+                    }
+                }
+            }
+        }
         return false;
     }
 
