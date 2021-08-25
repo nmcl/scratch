@@ -42,6 +42,21 @@ public class Dealer
         return false;
     }
 
+    private void cut (String command, Deck theDeck)
+    {
+
+    }
+
+    private void dealInto (String command, Deck theDeck)
+    {
+
+    }
+
+    private void dealWithIncrement (String command, Deck theDeck)
+    {
+        
+    }
+
     private final void readCommands(String inputFile)
     {
         /*
