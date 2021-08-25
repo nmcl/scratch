@@ -11,6 +11,11 @@ public class Dealer
         readCommands(commandFile);
     }
 
+    public boolean dealCards ()
+    {
+        return false;
+    }
+
     private final void readCommands(String inputFile)
     {
         /*
