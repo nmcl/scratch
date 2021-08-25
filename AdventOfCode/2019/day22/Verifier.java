@@ -23,6 +23,8 @@ public class Verifier
         {
             Dealer theDealer = new Dealer(EXAMPLE_1, _debug);
 
+            theDealer.dealCards(10);
+            
             return true;
         }
 
