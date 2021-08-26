@@ -22,8 +22,9 @@ public class Verifier
         if (verifyBasic())
         {
             Dealer theDealer = new Dealer(EXAMPLE_1, _debug);
-
-            theDealer.dealCards(10);
+            Deck theDeck = theDealer.dealCards(10);
+            
+            System.out.println("got back "+theDeck);
             
             return true;
         }
