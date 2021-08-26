@@ -11,10 +11,13 @@ public class Dealer
         readCommands(commandFile);
     }
 
-    public boolean dealCards (int sizeOfDeck)
+    public Deck dealCards (int sizeOfDeck)
     {
         Deck theDeck = new Deck(sizeOfDeck, _debug);
         Enumeration<String> iter = _commands.elements();
+
+        if (_debug)
+            System.out.println("\nInitial deck: "+theDeck);
 
         while (iter.hasMoreElements())
         {
@@ -34,12 +37,16 @@ public class Dealer
                     {
                         System.out.println("Unknown command: "+command);
 
-                        return false;
+                        return null;
                     }
                 }
             }
+
+            if (_debug)
+                System.out.println("Deck after command ( "+command+" ) is: "+theDeck);
         }
-        return false;
+
+        return theDeck;
     }
 
     private Deck cut (String command, Deck theDeck)
