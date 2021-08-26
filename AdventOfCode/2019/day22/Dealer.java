@@ -53,22 +53,30 @@ public class Dealer
 
         if (_debug)
             System.out.println("Cut deck: "+theDeck);
-            
+
         return theDeck;
     }
 
-    private void dealInto (String command, Deck theDeck)
+    private Deck dealInto (String command, Deck theDeck)
     {
         if (_debug)
             System.out.println("Command: "+command);
+
+        return theDeck;
     }
 
-    private void dealWithIncrement (String command, Deck theDeck)
+    private Deck dealWithIncrement (String command, Deck theDeck)
     {
         if (_debug)
             System.out.println("Command: "+command);
 
         int increment = argument(command, Commands.DEAL_WITH_INCREMENT);
+
+        Table theTable = new Table(_debug);
+
+        theTable.deal(theDeck, increment);
+
+        return theTable.collectCards();
     }
 
     private final int argument (String command, String type)
