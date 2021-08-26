@@ -16,6 +16,8 @@ public class Dealer
         Deck theDeck = new Deck(sizeOfDeck, _debug);
         Enumeration<String> iter = _commands.elements();
 
+        theDeck.populateWithCards();
+        
         if (_debug)
             System.out.println("\nInitial deck: "+theDeck);
 
