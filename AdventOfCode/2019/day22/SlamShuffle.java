@@ -34,5 +34,13 @@ public class SlamShuffle
 
             System.exit(0);
         }
+
+        Dealer theDealer = new Dealer(DATA_FILE, debug);
+        Deck theDeck = theDealer.dealCards(10007);
+
+        for (int i = 0; i < 2019; i++)
+            System.out.println("Card in position "+(i+1)+" is "+theDeck.dealFromTop());
+
+        System.out.println("Card at position 2019 is: "+theDeck.dealFromTop());
     }
 }
