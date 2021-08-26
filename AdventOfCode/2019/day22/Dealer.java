@@ -62,7 +62,11 @@ public class Dealer
         if (_debug)
             System.out.println("Command: "+command);
 
-        return theDeck;
+        Deck copyDeck = new Deck(theDeck.numberOfCards(), _debug);
+
+        theDeck.dealInto(copyDeck);
+
+        return copyDeck;
     }
 
     private Deck dealWithIncrement (String command, Deck theDeck)
