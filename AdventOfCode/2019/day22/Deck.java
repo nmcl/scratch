@@ -20,6 +20,8 @@ public class Deck
         _debug = debug;
 
         initialise();
+
+        populateWithCards();
     }
 
     public Deck (Vector<Integer> cards, boolean debug)
