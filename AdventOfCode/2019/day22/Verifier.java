@@ -23,10 +23,33 @@ public class Verifier
         {
             Dealer theDealer = new Dealer(EXAMPLE_1, _debug);
             Deck theDeck = theDealer.dealCards(10);
+            Deck theResult = new Deck(EXAMPLE_1_RESULT, _debug);
+
+            if (_debug)
+                System.out.println("\nResult of "+EXAMPLE_1+" is "+theDeck+"\n");
             
-            System.out.println("got back "+theDeck);
-            
-            return true;
+            if (theDeck.equals(theResult))
+            {
+                theDealer = new Dealer(EXAMPLE_2, _debug);
+                theDeck = theDealer.dealCards(10);
+                theResult = new Deck(EXAMPLE_2_RESULT, _debug);
+
+                if (_debug)
+                    System.out.println("\nResult of "+EXAMPLE_2+" is "+theDeck+"\n");
+
+                if (theDeck.equals(theResult))
+                {
+                    theDealer = new Dealer(EXAMPLE_3, _debug);
+                    theDeck = theDealer.dealCards(10);
+                    theResult = new Deck(EXAMPLE_3_RESULT, _debug);
+
+                    if (_debug)
+                        System.out.println("\nResult of "+EXAMPLE_3+" is "+theDeck+"\n");
+
+                    if (theDeck.equals(theResult))
+                        return true;
+                }
+            }
         }
 
         return false;
@@ -36,7 +59,7 @@ public class Verifier
     {
         Deck theDeck = new Deck(10, _debug);
 
-        theDeck.populateWithCards();
+        //theDeck.populateWithCards();
 
         System.out.println("Initial:\n"+theDeck);
 
