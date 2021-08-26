@@ -71,7 +71,7 @@ public class Dealer
         if (_debug)
             System.out.println("Parameter string: "+paramString);
 
-        int value = Integer.getInteger(paramString);
+        int value = Integer.valueOf(paramString);
 
         if (_debug)
             System.out.println("Argument: "+value);
