@@ -42,12 +42,19 @@ public class Dealer
         return false;
     }
 
-    private void cut (String command, Deck theDeck)
+    private Deck cut (String command, Deck theDeck)
     {
         if (_debug)
             System.out.println("Command: "+command);
 
-        int increment = argument(command, Commands.CUT);
+        int cardsToCut = argument(command, Commands.CUT);
+
+        theDeck.cut(cardsToCut);
+
+        if (_debug)
+            System.out.println("Cut deck: "+theDeck);
+            
+        return theDeck;
     }
 
     private void dealInto (String command, Deck theDeck)
