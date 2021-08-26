@@ -21,15 +21,15 @@ public class Dealer
             String command = iter.nextElement();
 
             if (command.startsWith(Commands.CUT))
-                cut(command, theDeck);
+                theDeck = cut(command, theDeck);
             else
             {
                 if (command.startsWith(Commands.DEAL_INTO))
-                    dealInto(command, theDeck);
+                    theDeck = dealInto(command, theDeck);
                 else
                 {
                     if (command.startsWith(Commands.DEAL_WITH_INCREMENT))
-                        dealWithIncrement(command, theDeck);
+                        theDeck = dealWithIncrement(command, theDeck);
                     else
                     {
                         System.out.println("Unknown command: "+command);
