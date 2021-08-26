@@ -124,7 +124,7 @@ public class Dealer
             {
                 line = reader.readLine();
                 
-                if (_debug)
+                if (_debug && (line != null))
                     System.out.println("Read command: " + line);
 
                 if (line != null)
