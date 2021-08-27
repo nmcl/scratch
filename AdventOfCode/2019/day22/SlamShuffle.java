@@ -40,7 +40,5 @@ public class SlamShuffle
 
         for (int i = 0; i < 2019; i++)
             System.out.println("Card in position "+(i+1)+" is "+theDeck.dealFromTop());
-
-        System.out.println("Card at position 2019 is: "+theDeck.dealFromTop());
     }
 }
