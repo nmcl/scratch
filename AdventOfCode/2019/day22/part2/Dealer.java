@@ -4,7 +4,7 @@ import java.math.*;
 
 public class Dealer
 {
-    public Dealer(String commandFile, boolean debug)
+    public Dealer (String commandFile, boolean debug)
     {
         _commands = new Vector<String>();
         _debug = debug;
@@ -12,33 +12,29 @@ public class Dealer
         readCommands(commandFile);
     }
 
-    public Deck dealCards (BigInteger sizeOfDeck)
+    public BigInteger dealCards (BigInteger sizeOfDeck, BigInteger shuffledTimes, BigInteger position)
     {
         BigInteger[] formula = new BigInteger[] {BigInteger.valueOf(1), BigInteger.valueOf(0)};
         Collections.reverse(_commands);
 
-        Deck theDeck = new Deck(sizeOfDeck, _debug);
-        Enumeration<String> iter = _commands.elements();
+        _numberOfCards = sizeOfDeck;
 
-        theDeck.populateWithCards();
-        
-        if (_debug)
-            System.out.println("\nInitial deck: "+theDeck);
+        Enumeration<String> iter = _commands.elements();
 
         while (iter.hasMoreElements())
         {
             String command = iter.nextElement();
 
             if (command.startsWith(Commands.CUT))
-                theDeck = cut(command, theDeck);
+                formula[1] = cut(command, formula[1]);
             else
             {
                 if (command.startsWith(Commands.DEAL_INTO))
-                    theDeck = dealInto(command, theDeck);
+                    dealInto(command, formula);
                 else
                 {
                     if (command.startsWith(Commands.DEAL_WITH_INCREMENT))
-                        theDeck = dealWithIncrement(command, theDeck);
+                        dealWithIncrement(command, formula);
                     else
                     {
                         System.out.println("Unknown command: "+command);
@@ -47,63 +43,53 @@ public class Dealer
                     }
                 }
             }
-
-            if (_debug)
-                System.out.println("Deck after command ( "+command+" ) is: "+theDeck);
         }
 
-        return theDeck;
+        BigInteger modded = formula[0].modPow(shuffledTimes, _numberOfCards);
+
+        return modded.multiply(position)
+                .add(formula[1].multiply(modded.add(_numberOfCards).subtract(BigInteger.valueOf(1)))
+                        .multiply(formula[0].subtract(BigInteger.valueOf(1)).modPow(_numberOfCards.subtract(BigInteger.valueOf(2)), _numberOfCards))
+                )
+                .mod(_numberOfCards);
     }
 
-    private Deck cut (String command, Deck theDeck)
+    private BigInteger cut (String command, BigInteger func)
     {
         if (_debug)
             System.out.println("Command: "+command);
 
-        int cardsToCut = argument(command, Commands.CUT);
-
-        theDeck.cut(cardsToCut);
-
-        if (_debug)
-            System.out.println("Cut deck: "+theDeck);
-
-        return theDeck;
+        return func.add(argument(command, Commands.CUT));
     }
 
-    private Deck dealInto (String command, Deck theDeck)
+    private void dealInto (String command, BigInteger[] func)
     {
         if (_debug)
             System.out.println("Command: "+command);
 
-        Deck copyDeck = new Deck(theDeck.numberOfCards(), _debug);
-
-        theDeck.dealInto(copyDeck);
-
-        return copyDeck;
+        func[0] = func[0].multiply(BigInteger.valueOf(-1));
+        func[1] = func[1].add(BigInteger.valueOf(1)).multiply(BigInteger.valueOf(-1));
     }
 
-    private Deck dealWithIncrement (String command, Deck theDeck)
+    private void dealWithIncrement (String command, BigInteger[] func)
     {
         if (_debug)
             System.out.println("Command: "+command);
 
-        int increment = argument(command, Commands.DEAL_WITH_INCREMENT);
+        BigInteger mult = argument(command, Commands.DEAL_WITH_INCREMENT).modPow(_numberOfCards.subtract(BigInteger.valueOf(2)), _numberOfCards);
 
-        Table theTable = new Table(_debug);
-
-        theTable.deal(theDeck, increment);
-
-        return theTable.collectCards();
+        func[0] = func[0].multiply(mult);
+        func[1] = func[1].multiply(mult);
     }
 
-    private final int argument (String command, String type)
+    private final BigInteger argument (String command, String type)
     {
         String paramString = command.substring(type.length()).trim();
 
         if (_debug)
             System.out.println("Parameter string: "+paramString);
 
-        int value = Integer.valueOf(paramString);
+        BigInteger value = BigInteger.valueOf(Long.valueOf(paramString));
 
         if (_debug)
             System.out.println("Argument: "+value);
@@ -153,5 +139,6 @@ public class Dealer
     }
 
     private Vector<String> _commands;
+    private BigInteger _numberOfCards;
     private boolean _debug;
 }
