@@ -1,6 +1,8 @@
 public class SlamShuffle
 {
     public static final String DATA_FILE = "data.txt";
+    public static final int SIZE_OF_DECK = 10007;
+    public static final int CARD = 2019;
 
     public static void main (String[] args)
     {
@@ -36,9 +38,9 @@ public class SlamShuffle
         }
 
         Dealer theDealer = new Dealer(DATA_FILE, debug);
-        Deck theDeck = theDealer.dealCards(10007);
-        int position = theDeck.positionOfCard(2019);
+        Deck theDeck = theDealer.dealCards(SIZE_OF_DECK);
+        int position = theDeck.positionOfCard(CARD);
 
-        System.out.println("Position of card 2019 is "+position);
+        System.out.println("Position of card "+CARD+" is "+position);
     }
 }
