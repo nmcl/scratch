@@ -1,4 +1,5 @@
 import java.util.*;
+import java.math.*;
 
 /*
  * Represents a single deck of cards. Initially the deck
@@ -7,16 +8,9 @@ import java.util.*;
 
 public class Deck
 {
-    public static final int SIZE_OF_SPACE_CARDS_DECK = 10007;
-
-    public Deck ()
+    public Deck (BigInteger deckSize, boolean debug)
     {
-        this(SIZE_OF_SPACE_CARDS_DECK, false);
-    }
-
-    public Deck (int deckSize, boolean debug)
-    {
-        _theDeck = new Vector<Integer>(deckSize);
+        _theDeck = new Vector<BigInteger>(deckSize);
         _debug = debug;
 
         initialise();
@@ -24,26 +18,26 @@ public class Deck
         populateWithCards();
     }
 
-    public Deck (Vector<Integer> cards, boolean debug)
+    public Deck (Vector<BigInteger> cards, boolean debug)
     {
         _theDeck = cards;
         _debug = debug;
     }
 
-    public Deck (Integer[] cards, boolean debug)
+    public Deck (BigInteger[] cards, boolean debug)
     {
-        _theDeck = new Vector<Integer>();
+        _theDeck = new Vector<BigInteger>();
 
         _theDeck.addAll(Arrays.asList(cards));
         _debug = debug;
     }
 
-    public final int numberOfCards ()
+    public final BigInteger numberOfCards ()
     {
         return _theDeck.size();
     }
 
-    public int dealFromTop ()
+    public BigInteger dealFromTop ()
     {
         if (_theDeck.size() > 0)
             return _theDeck.remove(0);
@@ -51,7 +45,7 @@ public class Deck
             return -1;
     }
 
-    public int dealFromBottom ()
+    public BigInteger dealFromBottom ()
     {
         if (_theDeck.size() > 0)
             return _theDeck.remove(_theDeck.size() -1);
@@ -59,7 +53,7 @@ public class Deck
             return -1;
     }
 
-    public int positionOfCard (int card)
+    public BigInteger positionOfCard (BigInteger card)
     {
         if (card < 0)
         {
@@ -102,7 +96,7 @@ public class Deck
         return true;
     }
 
-    public boolean cut (int numberOfCards)
+    public boolean cut (BigInteger numberOfCards)
     {
         if (numberOfCards != 0)
         {
@@ -157,7 +151,7 @@ public class Deck
         return false;
     }
 
-    private void cutPositive (int numberOfCards)
+    private void cutPositive (BigInteger numberOfCards)
     {   
         if (numberOfCards < _theDeck.size())
         {
@@ -173,7 +167,7 @@ public class Deck
         }
     }
 
-    private void cutNegative (int numberOfCards)
+    private void cutNegative (BigInteger numberOfCards)
     {
         if (numberOfCards < _theDeck.size())
         {
@@ -195,6 +189,6 @@ public class Deck
             _theDeck.add(-1);
     }
 
-    private Vector<Integer> _theDeck;
+    private Vector<BigInteger> _theDeck;
     private boolean _debug;
 }
