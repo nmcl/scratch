@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.math.*;
 
 public class Dealer
 {
@@ -11,7 +12,7 @@ public class Dealer
         readCommands(commandFile);
     }
 
-    public Deck dealCards (int sizeOfDeck)
+    public Deck dealCards (BigInteger sizeOfDeck)
     {
         Deck theDeck = new Deck(sizeOfDeck, _debug);
         Enumeration<String> iter = _commands.elements();
