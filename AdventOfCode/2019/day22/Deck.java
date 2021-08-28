@@ -59,6 +59,28 @@ public class Deck
             return -1;
     }
 
+    public int positionOfCard (int card)
+    {
+        if (card < 0)
+        {
+            if (_debug)
+                System.out.println("Invalid card: "+card);
+
+            return -1;
+        }
+
+        for (int i = 0; i < _theDeck.size(); i++)
+        {
+            if (_theDeck.elementAt(i) == card)
+                return i;
+        }
+
+        if (_debug)
+            System.out.println("Card "+card+" not found in deck!");
+
+        return -1;
+    }
+
     public final void populateWithCards ()  // resets if called multiple times
     {
         for (int i = 0; i < _theDeck.capacity(); i++)
