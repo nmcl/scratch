@@ -14,6 +14,9 @@ public class Dealer
 
     public Deck dealCards (BigInteger sizeOfDeck)
     {
+        BigInteger[] formula = new BigInteger[] {BigInteger.valueOf(1), BigInteger.valueOf(0)};
+        Collections.reverse(_commands);
+
         Deck theDeck = new Deck(sizeOfDeck, _debug);
         Enumeration<String> iter = _commands.elements();
 
