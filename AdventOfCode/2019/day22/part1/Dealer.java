@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Dealer
 {
-    public Dealer(String commandFile, boolean debug)
+    public Dealer (String commandFile, boolean debug)
     {
         _commands = new Vector<String>();
         _debug = debug;
