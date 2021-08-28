@@ -1,8 +1,13 @@
+import java.math.*;
+
 public class SlamShuffle
 {
     public static final String DATA_FILE = "data.txt";
-    public static final int SIZE_OF_DECK = 10007;
-    public static final int CARD = 2019;
+    public static final BigInteger SIZE_OF_DECK = BigInteger.valueOf(119315717514047L);;
+    public static final BigInteger SHUFFLE_TIMES = BigInteger.valueOf(101741582076661L);
+    public static final int CARD = 2020;
+    
+    // https://codeforces.com/blog/entry/72593
 
     public static void main (String[] args)
     {
@@ -39,8 +44,8 @@ public class SlamShuffle
 
         Dealer theDealer = new Dealer(DATA_FILE, debug);
         Deck theDeck = theDealer.dealCards(SIZE_OF_DECK);
-        int position = theDeck.positionOfCard(CARD);
+        int position = theDeck.positionOfCard(10);
 
-        System.out.println("Position of card "+CARD+" is "+position);
+        System.out.println("Position of card "+10+" is "+position);
     }
 }
