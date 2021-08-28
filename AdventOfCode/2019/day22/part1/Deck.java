@@ -7,13 +7,6 @@ import java.util.*;
 
 public class Deck
 {
-    public static final int SIZE_OF_SPACE_CARDS_DECK = 10007;
-
-    public Deck ()
-    {
-        this(SIZE_OF_SPACE_CARDS_DECK, false);
-    }
-
     public Deck (int deckSize, boolean debug)
     {
         _theDeck = new Vector<Integer>(deckSize);
