@@ -4,4 +4,11 @@ public class Address
     {
         
     }
+
+    public String identifier ()
+    {
+
+    }
+
+    private String _id;
 }
