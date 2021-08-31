@@ -1,14 +1,17 @@
 public class Address
 {
-    public Address ()
+    // return the next unique address
+    
+    public static synchronized final int getNextAddress ()
     {
-        
+        _address++;
+
+        return _address;
     }
 
-    public String identifier ()
+    public static int _address = -1;
+
+    private Address ()
     {
-
     }
-
-    private String _id;
 }
