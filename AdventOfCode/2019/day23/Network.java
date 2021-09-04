@@ -15,7 +15,7 @@ public class Network
             _theNetwork[i] = new Intcode(IntcodeUtil.readValues(fileName), ""+i, debug);
     }
 
-    public final Packet getFirstPacket (int destination)
+    public final Packet getFirstPacket (long destination)
     {
         Packet toReturn = null;
 
