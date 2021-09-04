@@ -54,7 +54,7 @@ public class Network
 
             if (isIdle())
             {
-                if (theNAT.getPacket().getY() == computerZeroY)
+                if ((!theNAT.getPacket().isEmpty()) && (theNAT.getPacket().getY() == computerZeroY))
                     found = true;
                 else
                 {
