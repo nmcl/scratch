@@ -1,5 +1,9 @@
+import java.util.*;
+
 public class NIC
 {
+    public static final String INSTRUCTIONS = "instructions.txt";
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -16,5 +20,7 @@ public class NIC
             if ("-debug".equals(args[i]))
                 debug = true;
         }
+
+        Vector<String> instructions = IntcodeUtil.readValues(INSTRUCTIONS);
     }
 }
