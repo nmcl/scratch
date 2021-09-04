@@ -9,7 +9,7 @@ public class NAT
 
     public final void setPacket (Packet p)
     {
-        _packet = p
+        _packet = p;
     }
 
     public final Packet getPacket ()
