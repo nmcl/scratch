@@ -20,7 +20,5 @@ public class NIC
             if ("-debug".equals(args[i]))
                 debug = true;
         }
-
-        Vector<String> instructions = IntcodeUtil.readValues(INSTRUCTIONS);
     }
 }
