@@ -4,7 +4,7 @@ public class NAT
 
     public NAT ()
     {
-        _packet = null;
+        _packet = new Packet();
     }
 
     public final void setPacket (Packet p)
