@@ -1,5 +1,7 @@
 public class Packet
 {
+    public static final int EMPTY_PACKET = -1;
+    
     public Packet (int address, long x, long y)
     {
         _address = address;
