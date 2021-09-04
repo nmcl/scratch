@@ -4,6 +4,11 @@ public class Packet
 {
     public static final String EMPTY_PACKET = "-1";
 
+    public Packet ()
+    {
+        this(-1, -1, -1);
+    }
+    
     public Packet (LinkedList<String> outputs)
     {
         _address = Long.valueOf(outputs.poll());
@@ -18,6 +23,11 @@ public class Packet
         _y = y;
     }
 
+    public final boolean isEmpty ()
+    {
+        return (_address == -1);
+    }
+    
     public final long getAddress ()
     {
         return _address;
