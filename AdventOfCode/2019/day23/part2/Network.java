@@ -15,6 +15,46 @@ public class Network
             _theNetwork[i] = new Intcode(IntcodeUtil.readValues(fileName), ""+i, debug);
     }
 
+    public final Packet getPacket ()
+    {
+        Packet toReturn = null;
+        NAT theNAT = new NAT();
+
+        do
+        {
+            for (int i = 0; (i < NETWORK_SIZE) && (toReturn == null); i++)
+            {
+                _theNetwork[i].executeUntilInput();
+
+                if (_theNetwork[i].waitingForInput())
+                {
+                    _theNetwork[i].setInput(Packet.EMPTY_PACKET);
+                    _theNetwork[i].executeUntilInput();
+                }
+
+                LinkedList<String> outputs = new LinkedList<String>(_theNetwork[i].getOutputs());
+
+                while (!outputs.isEmpty())
+                {
+                    Packet thePacket = new Packet(outputs);
+                
+                    if (_debug)
+                        System.out.println("Packet received from computer "+i+" is "+thePacket);
+
+                    if (thePacket.getAddress() == NAT.ADDRESS)
+                        theNAT.setPacket(thePacket);
+                    else
+                    {
+                        if (thePacket.getAddress() < NETWORK_SIZE)
+                            _theNetwork[(int) thePacket.getAddress()].setInputs(""+thePacket.getX(), ""+thePacket.getY());
+                    }
+                }
+            }
+        } while (toReturn == null);
+
+        return toReturn;
+    }
+
     public final Packet getFirstPacket (long destination)
     {
         Packet toReturn = null;
