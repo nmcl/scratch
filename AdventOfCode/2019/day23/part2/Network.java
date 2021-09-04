@@ -15,14 +15,15 @@ public class Network
             _theNetwork[i] = new Intcode(IntcodeUtil.readValues(fileName), ""+i, debug);
     }
 
-    public final Packet getPacket ()
+    public final long getRepeatY ()
     {
-        Packet toReturn = null;
+        boolean found = false;
         NAT theNAT = new NAT();
+        long computerZeroY = -1;
 
         do
         {
-            for (int i = 0; (i < NETWORK_SIZE) && (toReturn == null); i++)
+            for (int i = 0; (i < NETWORK_SIZE) && (!found); i++)
             {
                 _theNetwork[i].executeUntilInput();
 
@@ -50,9 +51,21 @@ public class Network
                     }
                 }
             }
-        } while (toReturn == null);
 
-        return toReturn;
+            if (isIdle())
+            {
+                if (theNAT.getPacket().getY() == computerZeroY)
+                    found = true;
+                else
+                {
+                    _theNetwork[0].setInputs(""+theNAT.getPacket().getX(), ""+theNAT.getPacket().getY());
+                    computerZeroY = theNAT.getPacket().getY();
+                }
+            }   
+
+        } while (!found);
+
+        return computerZeroY;
     }
 
     public final Packet getFirstPacket (long destination)
@@ -92,6 +105,17 @@ public class Network
         } while (toReturn == null);
 
         return toReturn;
+    }
+
+    private final boolean isIdle ()
+    {
+        for (int i = 0; i < _theNetwork.length; i++)
+        {
+            if (!_theNetwork[i].waitingForInput())
+                return false;
+        }
+
+        return true;
     }
 
     private Intcode[] _theNetwork;
