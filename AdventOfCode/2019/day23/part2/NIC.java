@@ -22,5 +22,7 @@ public class NIC
         }
 
         Network theNewtork = new Network(debug, INSTRUCTIONS);
+
+        System.out.println("First Y value delivered by the NAT to the computer at address 0 twice in a row: "+theNewtork.getRepeatY());
     }
 }
