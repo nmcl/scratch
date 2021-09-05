@@ -25,33 +25,19 @@ public class Network
         {
             for (int i = 0; (i < NETWORK_SIZE) && (!found); i++)
             {
-                System.out.println("Computer "+i+" before run queue "+_theNetwork[i].getOutputs().size());
-
                 _theNetwork[i].executeUntilInput();
-
-                System.out.println("Computer "+i+" after run queue "+_theNetwork[i].getOutputs().size());
-                System.out.println("Computer "+i+" ran");
 
                 if (_theNetwork[i].waitingForInput())
                 {
-                    System.out.println("Computer "+i+" after queue "+_theNetwork[i].getOutputs().size());
-                    System.out.println("Computer "+i+" standby");
-
                     _theNetwork[i].setInput(Packet.EMPTY_PACKET);
                     _theNetwork[i].executeUntilInput();
-                    System.out.println("Computer "+i+" after second queue "+_theNetwork[i].getOutputs().size());
                 }
 
                 LinkedList<String> outputs = _theNetwork[i].getOutputs();
 
-                System.out.println("Computer "+i+" output size "+outputs.size());
-
                 while (!outputs.isEmpty())
                 {
                     Packet thePacket = new Packet(outputs);
-                
-                    System.out.println("Computer "+i+" output size now "+outputs.size());
-                    System.out.println("Computer 0 output size "+_theNetwork[0].getOutputs().size());
 
                     if (_debug)
                         System.out.println("Packet received from computer "+i+" is "+thePacket);
@@ -73,7 +59,7 @@ public class Network
 
             if (isIdle())
             {
-                //if (_debug)
+                if (_debug)
                     System.out.println("Comparing "+theNAT.getPacket().getY()+" and "+computerZeroY);
 
                 if ((!theNAT.isEmpty()) && (theNAT.getPacket().getY() == computerZeroY))
@@ -132,8 +118,8 @@ public class Network
     {
         for (int i = 0; i < _theNetwork.length; i++)
         {
-            System.out.println("Computer "+i+" input queue "+_theNetwork[i].getInputs().size());
-            System.out.println("Computer "+i+" output queue "+_theNetwork[i].getOutputs().size());
+            if (_debug)
+                System.out.println("Computer "+i+" input queue "+_theNetwork[i].getInputs().size());
 
             if (!_theNetwork[i].getInputs().isEmpty())
                 return false;
