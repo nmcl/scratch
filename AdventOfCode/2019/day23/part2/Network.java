@@ -131,7 +131,8 @@ public class Network
     {
         for (int i = 0; i < _theNetwork.length; i++)
         {
-            System.out.println("Computer "+i+" queue "+_theNetwork[i].getInputs().size());
+            System.out.println("Computer "+i+" input queue "+_theNetwork[i].getInputs().size());
+            System.out.println("Computer "+i+" output queue "+_theNetwork[i].getOutputs().size());
 
             if (!_theNetwork[i].getInputs().isEmpty())
                 return false;
