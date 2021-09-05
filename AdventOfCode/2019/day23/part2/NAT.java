@@ -7,6 +7,11 @@ public class NAT
         _packet = new Packet();
     }
 
+    public final boolean isEmpty ()
+    {
+        return _packet.isEmpty();
+    }
+    
     public final void setPacket (Packet p)
     {
         _packet = p;
