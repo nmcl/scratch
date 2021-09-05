@@ -25,16 +25,21 @@ public class Network
         {
             for (int i = 0; (i < NETWORK_SIZE) && (!found); i++)
             {
+                System.out.println("Computer "+i+" before run queue "+_theNetwork[i].getOutputs().size());
+
                 _theNetwork[i].executeUntilInput();
 
+                System.out.println("Computer "+i+" after run queue "+_theNetwork[i].getOutputs().size());
                 System.out.println("Computer "+i+" ran");
 
                 if (_theNetwork[i].waitingForInput())
                 {
+                    System.out.println("Computer "+i+" after queue "+_theNetwork[i].getOutputs().size());
                     System.out.println("Computer "+i+" standby");
 
                     _theNetwork[i].setInput(Packet.EMPTY_PACKET);
                     _theNetwork[i].executeUntilInput();
+                    System.out.println("Computer "+i+" after second queue "+_theNetwork[i].getOutputs().size());
                 }
 
                 LinkedList<String> outputs = new LinkedList<String>(_theNetwork[i].getOutputs());
