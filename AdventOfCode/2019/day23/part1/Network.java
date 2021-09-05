@@ -31,7 +31,7 @@ public class Network
                     _theNetwork[i].executeUntilInput();
                 }
             
-                LinkedList<String> outputs = new LinkedList<String>(_theNetwork[i].getOutputs());
+                LinkedList<String> outputs = _theNetwork[i].getOutputs();
 
                 while (!outputs.isEmpty())
                 {

@@ -15,9 +15,9 @@ public class Intcode
     {
         _debug = debug;
         _instructionPointer = 0;
-        _output = new Vector<String>();
+        _output = new LinkedList<String>();
         _memory = new Vector<String>(values);
-        _input = new Vector<String>();
+        _input = new LinkedList<String>();
         
         if (initialInput != null)  // cannot have null as a valid input!
             _input.add(initialInput);
@@ -56,7 +56,7 @@ public class Intcode
         return _output.remove(0);
     }
 
-    public final Vector<String> getOutputs ()
+    public final LinkedList<String> getOutputs ()
     {
         return _output;
     }
@@ -83,7 +83,7 @@ public class Intcode
         }
     }
 
-    public final Vector<String> getInputs ()
+    public final LinkedList<String> getInputs ()
     {
         return _input;
     }
@@ -530,9 +530,9 @@ public class Intcode
 
     private boolean _debug;
     private int _instructionPointer;
-    private Vector<String> _output;
+    private LinkedList<String> _output;
     private Vector<String> _memory;
-    private Vector<String> _input;
+    private LinkedList<String> _input;
     private int _status;
     private int _relativeBase;
 

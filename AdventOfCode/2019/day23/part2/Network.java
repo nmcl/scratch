@@ -42,7 +42,7 @@ public class Network
                     System.out.println("Computer "+i+" after second queue "+_theNetwork[i].getOutputs().size());
                 }
 
-                LinkedList<String> outputs = new LinkedList<String>(_theNetwork[i].getOutputs());
+                LinkedList<String> outputs = _theNetwork[i].getOutputs();
 
                 System.out.println("Computer "+i+" output size "+outputs.size());
 
@@ -51,6 +51,7 @@ public class Network
                     Packet thePacket = new Packet(outputs);
                 
                     System.out.println("Computer "+i+" output size now "+outputs.size());
+                    System.out.println("Computer 0 output size "+_theNetwork[0].getOutputs().size());
 
                     if (_debug)
                         System.out.println("Packet received from computer "+i+" is "+thePacket);
