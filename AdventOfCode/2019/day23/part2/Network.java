@@ -43,7 +43,12 @@ public class Network
                         System.out.println("Packet received from computer "+i+" is "+thePacket);
 
                     if (thePacket.getAddress() == NAT.ADDRESS)
+                    {
+                        //if (_debug)
+                            System.out.println("Packet "+thePacket);
+
                         theNAT.setPacket(thePacket);
+                    }
                     else
                     {
                         if (thePacket.getAddress() < NETWORK_SIZE)
@@ -54,13 +59,14 @@ public class Network
 
             if (isIdle())
             {
-                if ((!theNAT.getPacket().isEmpty()) && (theNAT.getPacket().getY() == computerZeroY))
+                //if (_debug)
+                    System.out.println("Comparing "+theNAT.getPacket().getY()+" and "+computerZeroY);
+
+                if ((!theNAT.isEmpty()) && (theNAT.getPacket().getY() == computerZeroY))
                     found = true;
-                else
-                {
-                    _theNetwork[0].setInputs(""+theNAT.getPacket().getX(), ""+theNAT.getPacket().getY());
-                    computerZeroY = theNAT.getPacket().getY();
-                }
+
+                _theNetwork[0].setInputs(""+theNAT.getPacket().getX(), ""+theNAT.getPacket().getY());
+                computerZeroY = theNAT.getPacket().getY();
             }   
 
         } while (!found);
@@ -111,7 +117,9 @@ public class Network
     {
         for (int i = 0; i < _theNetwork.length; i++)
         {
-            if (!_theNetwork[i].waitingForInput())
+            System.out.println("Computer "+i+" queue "+_theNetwork[i].getInputs().size());
+            
+            if (!_theNetwork[i].getInputs().isEmpty())
                 return false;
         }
 
