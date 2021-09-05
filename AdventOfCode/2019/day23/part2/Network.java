@@ -27,24 +27,32 @@ public class Network
             {
                 _theNetwork[i].executeUntilInput();
 
+                System.out.println("Computer "+i+" ran");
+
                 if (_theNetwork[i].waitingForInput())
                 {
+                    System.out.println("Computer "+i+" standby");
+
                     _theNetwork[i].setInput(Packet.EMPTY_PACKET);
                     _theNetwork[i].executeUntilInput();
                 }
 
                 LinkedList<String> outputs = new LinkedList<String>(_theNetwork[i].getOutputs());
 
+                System.out.println("Computer "+i+" output size "+outputs.size());
+
                 while (!outputs.isEmpty())
                 {
                     Packet thePacket = new Packet(outputs);
                 
+                    System.out.println("Computer "+i+" output size now "+outputs.size());
+
                     if (_debug)
                         System.out.println("Packet received from computer "+i+" is "+thePacket);
 
                     if (thePacket.getAddress() == NAT.ADDRESS)
                     {
-                        //if (_debug)
+                        if (_debug)
                             System.out.println("Packet "+thePacket);
 
                         theNAT.setPacket(thePacket);
@@ -108,6 +116,7 @@ public class Network
                     }
                 }
             }
+
         } while (toReturn == null);
 
         return toReturn;
@@ -118,7 +127,7 @@ public class Network
         for (int i = 0; i < _theNetwork.length; i++)
         {
             System.out.println("Computer "+i+" queue "+_theNetwork[i].getInputs().size());
-            
+
             if (!_theNetwork[i].getInputs().isEmpty())
                 return false;
         }
