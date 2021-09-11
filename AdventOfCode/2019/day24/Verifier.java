@@ -14,6 +14,14 @@ public class Verifier
         if (_debug)
             System.out.println(theWorld);
 
+        for (int i = 0; i < 4; i++)
+        {
+            theWorld.evolve();
+
+            System.out.println("After "+(i+1)+" minute:");
+            System.out.println(theWorld);
+        }
+
         return false;
     }
 
