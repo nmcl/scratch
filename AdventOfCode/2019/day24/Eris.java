@@ -2,6 +2,8 @@
 
 public class Eris
 {
+    public static final String WORLD_DATA = "scan.txt";
+    
     public static void main (String[] args)
     {
         boolean debug = false;
