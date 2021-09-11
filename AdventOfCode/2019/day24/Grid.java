@@ -148,6 +148,25 @@ public class Grid
         _theWorld = _nextWorld;
     }
 
+    public long biodiversityRating ()
+    {
+        long factor = 1;
+        long rating = 0;
+
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                if (_theWorld[i][j].isBug())
+                    rating += factor;
+
+                factor *= 2;
+            }
+        }
+
+        return rating;
+    }
+
     public Grid snapshot ()
     {
         return new Grid(this);
