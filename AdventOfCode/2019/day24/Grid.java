@@ -83,17 +83,43 @@ public class Grid
 
                 if (_theWorld[i][j].isBug())
                 {
+                    if (_debug)
+                        System.out.println("Tile contains bug.");
+
                     if (adjacentBugs == 1)
+                    {
+                        if (_debug)
+                            System.out.println("New tile will be bug.");
+
                         _nextWorld[i][j] = new Tile(TileId.BUG);
+                    }
                     else
+                    {
+                        if (_debug)
+                            System.out.println("New tile will be empyy.");
+
                         _nextWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
+                    }
                 }
                 else
                 {
+                    if (_debug)
+                        System.out.println("Tile is empty.");
+
                     if ((adjacentBugs == 1) || (adjacentBugs == 2))
+                    {
+                        if (_debug)
+                            System.out.println("New tile will be bug.");
+
                         _nextWorld[i][j] = new Tile(TileId.BUG);
+                    }
                     else
+                    {
+                        if (_debug)
+                            System.out.println("New tile will be empty.");
+
                         _nextWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
+                    }
                 }
             }
         }
