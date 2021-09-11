@@ -3,7 +3,7 @@
 public class Eris
 {
     public static final String WORLD_DATA = "scan.txt";
-    
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -23,6 +23,13 @@ public class Eris
 
             if ("-verify".equals(args[i]))
                 verify = true;
+        }
+
+        if (verify)
+        {
+            Verifier theVerifier = new Verifier(debug);
+
+            theVerifier.verify();
         }
     }
 }
