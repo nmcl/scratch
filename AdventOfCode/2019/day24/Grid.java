@@ -18,6 +18,22 @@ public class Grid
 
     }
 
+    @Override
+    public String toString ()
+    {
+        String str = "";
+
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+                str += _theWorld[i][j];
+            
+            str += "\n";
+        }
+
+        return str;
+    }
+
     private void loadWorld (String inputFile)
     {
         BufferedReader reader = null;
