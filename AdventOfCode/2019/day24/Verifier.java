@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Verifier
 {
     public static final String EXAMPLE = "example.txt";
@@ -31,21 +33,21 @@ public class Verifier
 
         boolean found = false;
         Grid duplicate = new Grid(DUPLICATE_LAYOUT, _debug);
-        Grid previous = theWorld.snapshot();
+        Vector<Grid> previous = new Vector<Grid>();
+
+        previous.add(theWorld.snapshot());
 
         while (!found)
         {
             theWorld.evolve();
 
-            System.out.println("Comparing\n"+theWorld+"\nwith\n"+previous);
-            
-            if (previous.equals(theWorld))
+            if (previous.contains(theWorld))
                 found = true;
             else
-                previous = theWorld.snapshot();
+                previous.add(theWorld.snapshot());
         }
 
-        if (previous.equals(duplicate))
+        if (theWorld.equals(duplicate))
             return true;
 
         return false;
