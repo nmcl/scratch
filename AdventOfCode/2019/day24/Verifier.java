@@ -9,7 +9,7 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Grid theWorld = new Grid(EXAMPLE);
+        Grid theWorld = new Grid(EXAMPLE, _debug);
 
         if (_debug)
             System.out.println(theWorld);
