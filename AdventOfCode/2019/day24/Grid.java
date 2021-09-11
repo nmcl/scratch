@@ -164,6 +164,37 @@ public class Grid
         return str;
     }
 
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Grid temp = (Grid) obj;
+
+            if ((temp._height == _height) && (temp._width == _width))
+            {
+                for (int i = 0; i < _height; i++)
+                {
+                    for (int j = 0; j < _width; j++)
+                    {
+                        if (temp._theWorld[i][j].type() != _theWorld[i][j].type())
+                            return false;
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private boolean adjacentBug (int i, int j) throws IndexOutOfBoundsException
     {
         if (_debug)
