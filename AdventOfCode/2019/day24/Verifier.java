@@ -37,6 +37,8 @@ public class Verifier
         {
             theWorld.evolve();
 
+            System.out.println("Comparing\n"+theWorld+"\nwith\n"+previous);
+            
             if (previous.equals(theWorld))
                 found = true;
             else
