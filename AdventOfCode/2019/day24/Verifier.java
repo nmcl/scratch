@@ -6,6 +6,8 @@ public class Verifier
     public static final String MINUTE_BASE = "minute";
     public static final String DUPLICATE_LAYOUT = "layout.txt";
 
+    public static final long BIODIVERSITY_RATING = 2129920;
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -48,7 +50,10 @@ public class Verifier
         }
 
         if (theWorld.equals(duplicate))
-            return true;
+        {
+            if (theWorld.biodiversityRating() == BIODIVERSITY_RATING)
+                return true;
+        }
 
         return false;
     }
