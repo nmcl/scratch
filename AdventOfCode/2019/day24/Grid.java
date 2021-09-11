@@ -54,17 +54,38 @@ public class Grid
                         adjacentBugs++;
                     else
                         emptySpaces++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                    emptySpaces++;
+                }
 
+                try
+                {
                     if (adjacentBug(i+1, j))
                         adjacentBugs++;
                     else
                         emptySpaces++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                    emptySpaces++;
+                }
 
+                try
+                {
                     if (adjacentBug(i, j-1))
                         adjacentBugs++;
                     else
                         emptySpaces++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                    emptySpaces++;
+                }
 
+                try
+                {
                     if (adjacentBug(i, j+1))
                         adjacentBugs++;
                     else
@@ -145,6 +166,9 @@ public class Grid
 
     private boolean adjacentBug (int i, int j) throws IndexOutOfBoundsException
     {
+        if (_debug)
+            System.out.println("Checking < "+i+", "+j+" >");
+
         if (_theWorld[i][j].isBug())
             return true;
         else
