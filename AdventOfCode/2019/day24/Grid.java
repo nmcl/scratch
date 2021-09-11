@@ -35,6 +35,43 @@ public class Grid
     {
         Tile[][] _nextWorld = new Tile[_height][_width];
         
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                int adjacentBugs = 0;
+                int emptySpaces = 0;
+
+                // ignore range checking and rely on exception!
+
+                try
+                {
+                    if (adjacentBug(i-1, j))
+                        adjacentBugs++;
+                    else
+                        emptySpaces++;
+
+                    if (adjacentBug(i+1, j))
+                        adjacentBugs++;
+                    else
+                        emptySpaces++;
+
+                    if (adjacentBug(i, j-1))
+                        adjacentBugs++;
+                    else
+                        emptySpaces++;
+
+                    if (adjacentBug(i, j+1))
+                        adjacentBugs++;
+                    else
+                        emptySpaces++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                    emptySpaces++;
+                }
+            }
+        }
     }
 
     @Override
@@ -51,6 +88,14 @@ public class Grid
         }
 
         return str;
+    }
+
+    private boolean adjacentBug (int i, int j) throws IndexOutOfBoundsException
+    {
+        if (_theWorld[i][j].isBug())
+            return true;
+        else
+            return false;
     }
 
     private void loadWorld (String inputFile)
