@@ -70,8 +70,25 @@ public class Grid
                 {
                     emptySpaces++;
                 }
+
+                if (_theWorld[i][j].isBug())
+                {
+                    if (adjacentBugs == 1)
+                        _nextWorld[i][j] = new Tile(TileId.BUG);
+                    else
+                        _nextWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
+                }
+                else
+                {
+                    if ((adjacentBugs == 1) || (adjacentBugs == 2))
+                        _nextWorld[i][j] = new Tile(TileId.BUG);
+                    else
+                        _nextWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
+                }
             }
         }
+
+        _theWorld = _nextWorld;
     }
 
     @Override
