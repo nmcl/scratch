@@ -5,6 +5,11 @@ public class Tile
         _type = type;
     }
 
+    public char type ()
+    {
+        return _type;
+    }
+    
     public boolean isBug ()
     {
         return TileId.BUG == _type;
