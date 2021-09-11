@@ -1,3 +1,5 @@
+import java.util.*;
+
 // Game of Life!
 
 public class Eris
@@ -33,6 +35,26 @@ public class Eris
                 System.out.println("Verified ok!");
             else
                 System.out.println("Verify failed!");
+
+            System.exit(0);
         }
+
+        Grid theWorld = new Grid(WORLD_DATA, debug);
+        boolean found = false;
+        Vector<Grid> previous = new Vector<Grid>();
+
+        previous.add(theWorld.snapshot());
+
+        while (!found)
+        {
+            theWorld.evolve();
+
+            if (previous.contains(theWorld))
+                found = true;
+            else
+                previous.add(theWorld.snapshot());
+        }
+
+        System.out.println("Biodiversity rating for the first layout that appears twice: "+theWorld.biodiversityRating());
     }
 }
