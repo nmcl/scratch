@@ -148,6 +148,11 @@ public class Grid
         _theWorld = _nextWorld;
     }
 
+    public Grid snapshot ()
+    {
+        return new Grid(this);
+    }
+
     @Override
     public String toString ()
     {
@@ -193,6 +198,23 @@ public class Grid
         }
 
         return false;
+    }
+
+    protected Grid (Grid theGrid)
+    {
+        _height = theGrid._height;
+        _width = theGrid._width;
+        _debug = theGrid._debug;
+
+        _theWorld = new Tile[_height][_width];
+
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                _theWorld[i][j] = new Tile(theGrid._theWorld[i][j].type());
+            }
+        }
     }
 
     private boolean adjacentBug (int i, int j) throws IndexOutOfBoundsException
