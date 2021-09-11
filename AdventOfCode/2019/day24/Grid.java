@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 public class Grid
 {
     public static final int DEFAULT_WIDTH = 5;
@@ -15,13 +18,47 @@ public class Grid
 
     }
 
-    private boolean loadWorld (String fileName)
+    private void loadWorld (String inputFile)
     {
-        boolean loaded = false;
+        BufferedReader reader = null;
+        int row = 0;
 
-        return loaded;
+        _theWorld = new Tile[_height][_width];
+
+        try
+        {
+            reader = new BufferedReader(new FileReader(inputFile));
+            String line = null;
+
+            while ((line = reader.readLine()) != null)
+            {
+                for (int i = 0; i < line.length(); i++)
+                {
+                    if (TileId.valid(line.charAt(i)))
+                        _theWorld[row][i] = new Tile(line.charAt(i));
+                    else
+                        System.out.println("Invalid world entry: "+line.charAt(i));
+                }
+            }
+
+            row++;
+        }
+        catch (Throwable ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                reader.close();
+            }
+            catch (Throwable ex)
+            {
+            }
+        }
     }
-    
+
     private Tile[][] _theWorld;
     private int _height;
     private int _width;
