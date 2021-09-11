@@ -19,6 +19,24 @@ public class Grid
         loadWorld(fileName);
     }
 
+    /**
+     * Each minute, The bugs live and die based on the number of bugs in the four adjacent tiles:
+     *
+     * - A bug dies (becoming an empty space) unless there is exactly one bug adjacent to it.
+     * - An empty space becomes infested with a bug if exactly one or two bugs are adjacent to it.
+     * 
+     * Otherwise, a bug or empty space remains the same. (Tiles on the edges of the grid have fewer than
+     * four adjacent tiles; the missing tiles count as empty space.) This process happens in every location
+     * simultaneously; that is, within the same minute, the number of adjacent bugs is counted for every tile
+     * first, and then the tiles are updated.
+     */
+
+    public void evolve ()
+    {
+        Tile[][] _nextWorld = new Tile[_height][_width];
+        
+    }
+
     @Override
     public String toString ()
     {
