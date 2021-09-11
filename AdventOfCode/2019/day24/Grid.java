@@ -16,6 +16,7 @@ public class Grid
         _height = height;
         _width = width;
 
+        loadWorld(fileName);
     }
 
     @Override
@@ -55,9 +56,9 @@ public class Grid
                     else
                         System.out.println("Invalid world entry: "+line.charAt(i));
                 }
-            }
 
-            row++;
+                row++;
+            }
         }
         catch (Throwable ex)
         {
