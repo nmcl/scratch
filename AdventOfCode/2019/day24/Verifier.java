@@ -11,8 +11,9 @@ public class Verifier
     {
         Grid theWorld = new Grid(EXAMPLE);
 
-        System.out.println(theWorld);
-        
+        if (_debug)
+            System.out.println(theWorld);
+
         return false;
     }
 
