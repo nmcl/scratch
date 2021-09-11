@@ -2,6 +2,7 @@ public class Verifier
 {
     public static final String EXAMPLE = "example.txt";
     public static final String MINUTE_BASE = "minute";
+    public static final String DUPLICATE_LAYOUT = "layout.txt";
 
     public Verifier (boolean debug)
     {
@@ -28,7 +29,24 @@ public class Verifier
                 return false;
         }
 
-        return true;
+        boolean found = false;
+        Grid duplicate = new Grid(DUPLICATE_LAYOUT, _debug);
+        Grid previous = theWorld.snapshot();
+
+        while (!found)
+        {
+            theWorld.evolve();
+
+            if (previous.equals(theWorld))
+                found = true;
+            else
+                previous = theWorld.snapshot();
+        }
+
+        if (previous.equals(duplicate))
+            return true;
+
+        return false;
     }
 
     private boolean _debug;
