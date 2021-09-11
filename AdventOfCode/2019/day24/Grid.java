@@ -6,15 +6,16 @@ public class Grid
     public static final int DEFAULT_WIDTH = 5;
     public static final int DEFAULT_HEIGHT = 5;
 
-    public Grid (String fileName)
+    public Grid (String fileName, boolean debug)
     {
-        this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName);
+        this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName, debug);
     }
 
-    public Grid (int height, int width, String fileName)
+    public Grid (int height, int width, String fileName, boolean debug)
     {
         _height = height;
         _width = width;
+        _debug = debug;
 
         loadWorld(fileName);
     }
@@ -44,6 +45,9 @@ public class Grid
 
                 // ignore range checking and rely on exception!
 
+                if (_debug)
+                    System.out.println("Checking tile < "+i+", "+j+" > : "+_theWorld[i][j]);
+
                 try
                 {
                     if (adjacentBug(i-1, j))
@@ -69,6 +73,12 @@ public class Grid
                 catch (IndexOutOfBoundsException ex)
                 {
                     emptySpaces++;
+                }
+
+                if (_debug)
+                {
+                    System.out.println("Empty spaces: "+emptySpaces);
+                    System.out.println("Adjacent bugs: "+adjacentBugs);
                 }
 
                 if (_theWorld[i][j].isBug())
@@ -159,4 +169,5 @@ public class Grid
     private Tile[][] _theWorld;
     private int _height;
     private int _width;
+    private boolean _debug;
 }
