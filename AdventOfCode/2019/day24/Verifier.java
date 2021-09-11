@@ -1,6 +1,6 @@
 public class Verifier
 {
-    public class Verifier (boolean debug)
+    public Verifier (boolean debug)
     {
         _debug = debug;
     }
