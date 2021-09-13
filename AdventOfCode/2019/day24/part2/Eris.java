@@ -1,6 +1,6 @@
 import java.util.*;
 
-// Game of Life!
+// Game of Life! With an infinite plane.
 
 public class Eris
 {
