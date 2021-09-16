@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
 
+// add layer variable or refactor so one grid per layer?
+
 public class Grid
 {
     public static final int DEFAULT_WIDTH = 5;
