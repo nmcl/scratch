@@ -23,6 +23,15 @@ public class Level
         _theWorld[CENTRE_HEIGHT][CENTRE_WIDTH] = new Tile(TileId.NESTED_GRID);
     }
 
+    public Level (Tile[][] theWorld, int level, boolean debug)
+    {
+        _theWorld = theWorld;
+        _height = _theWorld.length;
+        _width = _theWorld[0].length;
+        _level = level;
+        _debug = debug;
+    }
+
     @Override
     public String toString ()
     {
@@ -42,6 +51,37 @@ public class Level
         }
 
         return str;
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Level temp = (Level) obj;
+
+            if ((temp._height == _height) && (temp._width == _width))
+            {
+                for (int i = 0; i < _height; i++)
+                {
+                    for (int j = 0; j < _width; j++)
+                    {
+                        if (temp._theWorld[i][j].type() != _theWorld[i][j].type())
+                            return false;
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private Tile[][] _theWorld;
