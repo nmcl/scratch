@@ -175,15 +175,11 @@ public class Grid
         _height = theGrid._height;
         _width = theGrid._width;
         _debug = theGrid._debug;
+        _levels = new Level[theGrid._levels];
 
-        _theWorld = new Tile[_height][_width];
-
-        for (int i = 0; i < _height; i++)
+        for (int i = 0; i < _levels.length; i++)
         {
-            for (int j = 0; j < _width; j++)
-            {
-                _theWorld[i][j] = new Tile(theGrid._theWorld[i][j].type());
-            }
+            _levels[i] = new Level(theGrid._levels[i]);
         }
     }
 
