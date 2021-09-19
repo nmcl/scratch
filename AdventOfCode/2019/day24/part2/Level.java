@@ -1,5 +1,8 @@
 public class Level
 {
+    public static final int CENTRE_HEIGHT = 3;  // TODO only makes sense for 5x5 so need to fix this!!
+    public static final int CENTRE_WIDTH = 3;
+
     public Level (int height, int width, int level, boolean debug)
     {
         _level = level;
@@ -18,6 +21,25 @@ public class Level
         }
 
         _theWorld[3][3] = new Tile(TileId.NESTED_GRID);
+    }
+
+    @Override
+    public String toString ()
+    {
+        String str = "";
+
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                if (())
+                str += _theWorld[i][j];
+            }
+            
+            str += "\n";
+        }
+
+        return str;
     }
 
     private Tile[][] _theWorld;
