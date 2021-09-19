@@ -48,8 +48,10 @@ public class Grid
 
                 // ignore range checking and rely on exception!
 
+                /*
                 if (_debug)
                     System.out.println("Checking tile < "+i+", "+j+" > : "+_theWorld[i][j]);
+*/
 
                 try
                 {
@@ -105,6 +107,8 @@ public class Grid
                     System.out.println("Adjacent bugs: "+adjacentBugs);
                 }
 
+                /*
+
                 if (_theWorld[i][j].isBug())
                 {
                     if (_debug)
@@ -144,11 +148,12 @@ public class Grid
 
                         _nextWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
                     }
-                }
+                }*/
             }
         }
 
-        _theWorld = _nextWorld;
+        /*
+        _theWorld = _nextWorld;*/
     }
 
     public Grid snapshot ()
@@ -175,7 +180,7 @@ public class Grid
         _height = theGrid._height;
         _width = theGrid._width;
         _debug = theGrid._debug;
-        _levels = new Level[theGrid._levels];
+        _levels = new Level[theGrid._levels.length];
 
         for (int i = 0; i < _levels.length; i++)
         {
@@ -188,10 +193,13 @@ public class Grid
         if (_debug)
             System.out.println("Checking < "+i+", "+j+" >");
 
+            /*
         if (_theWorld[i][j].isBug())
             return true;
         else
-            return false;
+            return false;*/
+
+        return false;
     }
 
     private void loadWorld (String inputFile)
