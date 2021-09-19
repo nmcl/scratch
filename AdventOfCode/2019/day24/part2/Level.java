@@ -84,6 +84,23 @@ public class Level
         return false;
     }
 
+    protected Level (Level theGrid)
+    {
+        _height = theGrid._height;
+        _width = theGrid._width;
+        _debug = theGrid._debug;
+
+        _theWorld = new Tile[_height][_width];
+
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                _theWorld[i][j] = new Tile(theGrid._theWorld[i][j].type());
+            }
+        }
+    }
+
     private Tile[][] _theWorld;
     private int _level;
     private int _height;
