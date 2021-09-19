@@ -7,8 +7,8 @@ public class Grid
 {
     public static final int DEFAULT_WIDTH = 5;
     public static final int DEFAULT_HEIGHT = 5;
-    public static final int DEFAULT_LAYERS = 5;
-    
+    public static final int DEFAULT_LEVELS = 5;
+
     public Grid (String fileName, boolean debug)
     {
         this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName, debug);
@@ -151,25 +151,6 @@ public class Grid
         _theWorld = _nextWorld;
     }
 
-    public long biodiversityRating ()
-    {
-        long factor = 1;
-        long rating = 0;
-
-        for (int i = 0; i < _height; i++)
-        {
-            for (int j = 0; j < _width; j++)
-            {
-                if (_theWorld[i][j].isBug())
-                    rating += factor;
-
-                factor *= 2;
-            }
-        }
-
-        return rating;
-    }
-
     public Grid snapshot ()
     {
         return new Grid(this);
@@ -180,45 +161,12 @@ public class Grid
     {
         String str = "";
 
-        for (int i = 0; i < _height; i++)
-        {
-            for (int j = 0; j < _width; j++)
-                str += _theWorld[i][j];
-            
-            str += "\n";
-        }
-
         return str;
     }
 
     @Override
     public boolean equals (Object obj)
     {
-        if (obj == null)
-            return false;
-
-        if (this == obj)
-            return true;
-        
-        if (getClass() == obj.getClass())
-        {
-            Grid temp = (Grid) obj;
-
-            if ((temp._height == _height) && (temp._width == _width))
-            {
-                for (int i = 0; i < _height; i++)
-                {
-                    for (int j = 0; j < _width; j++)
-                    {
-                        if (temp._theWorld[i][j].type() != _theWorld[i][j].type())
-                            return false;
-                    }
-                }
-
-                return true;
-            }
-        }
-
         return false;
     }
 
@@ -254,8 +202,18 @@ public class Grid
     {
         BufferedReader reader = null;
         int row = 0;
+        int level = 0 - DEFAULT_LEVELS;
 
-        _theWorld = new Tile[_height][_width];
+        _levels = new Level[DEFAULT_LEVELS*2 +1];
+
+        for (int i = 0; i < _levels.length; i++)
+        {
+            _levels[i] = new Level(_height, _width, level, _debug);
+
+            level++;
+        }
+
+        Tile[][] levelZero = new Tile[_height][_width];
 
         try
         {
@@ -267,7 +225,7 @@ public class Grid
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.valid(line.charAt(i)))
-                        _theWorld[row][i] = new Tile(line.charAt(i));
+                        levelZero[row][i] = new Tile(line.charAt(i));
                     else
                         System.out.println("Invalid world entry: "+line.charAt(i));
                 }
@@ -289,9 +247,11 @@ public class Grid
             {
             }
         }
+
+        _levels[0] = new Level(levelZero, 0, _debug);
     }
 
-    private Tile[][] _theWorld;
+    private Level[] _levels;
     private int _height;
     private int _width;
     private boolean _debug;
