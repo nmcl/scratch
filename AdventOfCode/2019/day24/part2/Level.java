@@ -20,7 +20,7 @@ public class Level
             }
         }
 
-        _theWorld[3][3] = new Tile(TileId.NESTED_GRID);
+        _theWorld[CENTRE_HEIGHT][CENTRE_WIDTH] = new Tile(TileId.NESTED_GRID);
     }
 
     @Override
@@ -32,8 +32,10 @@ public class Level
         {
             for (int j = 0; j < _width; j++)
             {
-                if (())
-                str += _theWorld[i][j];
+                if ((i == CENTRE_HEIGHT) && (j == CENTRE_WIDTH))
+                    str += TileId.NESTED_GRID;
+                else
+                    str += _theWorld[i][j];
             }
             
             str += "\n";
