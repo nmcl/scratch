@@ -7,7 +7,8 @@ public class Grid
 {
     public static final int DEFAULT_WIDTH = 5;
     public static final int DEFAULT_HEIGHT = 5;
-
+    public static final int DEFAULT_LAYERS = 5;
+    
     public Grid (String fileName, boolean debug)
     {
         this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName, debug);
