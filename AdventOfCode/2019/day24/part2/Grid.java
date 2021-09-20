@@ -172,6 +172,30 @@ public class Grid
     @Override
     public boolean equals (Object obj)
     {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Grid temp = (Grid) obj;
+
+            if (_levels.length == temp._levels.length)
+            {
+                boolean same = true;
+
+                for (int i = 0; (i < _levels.length) && same; i++)
+                {
+                    if (!_levels[i].equals(temp._levels[i]))
+                        same = false;
+                }
+
+                return same;
+            }
+        }
+
         return false;
     }
 
