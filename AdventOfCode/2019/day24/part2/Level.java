@@ -32,6 +32,11 @@ public class Level
         _debug = debug;
     }
 
+    public final int getLevel ()
+    {
+        return _level;
+    }
+
     @Override
     public String toString ()
     {
