@@ -23,6 +23,11 @@ public class Grid
         loadWorld(fileName);
     }
 
+    public final int getLevels ()
+    {
+        return _levels.length;
+    }
+
     /**
      * Each minute, The bugs live and die based on the number of bugs in the four adjacent tiles:
      *
