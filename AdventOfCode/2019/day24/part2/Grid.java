@@ -1,7 +1,9 @@
 import java.util.*;
 import java.io.*;
 
-// add layer variable or refactor so one grid per layer?
+/*
+ * Infinite plane.
+ */
 
 public class Grid
 {
