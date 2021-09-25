@@ -37,6 +37,18 @@ public class Level
         return _level;
     }
 
+    public final void makeBug (int i, int j)
+    {
+        if ((i != CENTRE_HEIGHT) && (j != CENTRE_WIDTH))
+            _theWorld[i][j] = TileId.BUG;
+    }
+
+    public final void makeSpace (int i, int j)
+    {
+        if ((i != CENTRE_HEIGHT) && (j != CENTRE_WIDTH))
+            _theWorld[i][j] = TileId.EMPTY_SPACE;
+    }
+
     public boolean containsBug (int i, int j) throws IndexOutOfBoundsException
     {
         if (_debug)
