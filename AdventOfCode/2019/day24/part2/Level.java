@@ -14,6 +14,11 @@ public class Level
         _debug = debug;
     }
 
+    public final int getLevel ()
+    {
+        return _layer;
+    }
+    
     public void addBug (ThreeDPoint location)
     {
         _level.add(location);
