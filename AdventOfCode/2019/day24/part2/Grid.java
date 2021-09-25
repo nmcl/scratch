@@ -219,20 +219,6 @@ public class Grid
         }
     }
 
-    private boolean adjacentBug (int i, int j) throws IndexOutOfBoundsException
-    {
-        if (_debug)
-            System.out.println("Checking < "+i+", "+j+" >");
-
-            /*
-        if (_theWorld[i][j].isBug())
-            return true;
-        else
-            return false;*/
-
-        return false;
-    }
-
     private void loadWorld (String inputFile)
     {
         BufferedReader reader = null;
