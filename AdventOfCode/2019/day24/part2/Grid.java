@@ -40,6 +40,15 @@ public class Grid
      * four adjacent tiles; the missing tiles count as empty space.) This process happens in every location
      * simultaneously; that is, within the same minute, the number of adjacent bugs is counted for every tile
      * first, and then the tiles are updated.
+     * 
+     * For the infinite plane ...
+     * 
+     * Tile 19 has four adjacent tiles: 14, 18, 20, and 24.
+     * Tile G has four adjacent tiles: B, F, H, and L.
+     * Tile D has four adjacent tiles: 8, C, E, and I.
+     * Tile E has four adjacent tiles: 8, D, 14, and J.
+     * Tile 14 has eight adjacent tiles: 9, E, J, O, T, Y, 15, and 19.
+     * Tile N has eight adjacent tiles: I, O, S, and five tiles within the sub-grid marked ?.
      */
 
     public void evolve ()
