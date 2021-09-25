@@ -53,6 +53,22 @@ public class Grid
 
     public void evolve ()
     {
+        Level[] nextIteration = new Level[_levels.length];
+
+        for (int i = 0; i < _levels.length; i++)
+        {
+            if (i == 0)
+            {
+
+            }
+            else
+            {
+                if (i == _levels.length -1)
+                {
+                    
+                }
+            }
+        }
     }
 
     @Override
