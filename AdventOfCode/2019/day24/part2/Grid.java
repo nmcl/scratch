@@ -18,17 +18,21 @@ public class Grid
 
     public Grid (int height, int width, String fileName, boolean debug)
     {
-        _theWorld = new HashSet<ThreeDPoint>();
+        _theWorld = new Level[DEFAULT_LEVELS];
         _height = height;
         _width = width;
         _debug = debug;
 
-        loadWorld(fileName);
-    }
+        int layer = 0 - _theWorld.length;
 
-    public final int getLevels ()
-    {
-        return _levels.length;
+        for (int i = 0; i < DEFAULT_LEVELS*2 +1; i++)
+        {
+            _theWorld[i] = new Level(layer, _height, _width, _debug);
+
+            layer++;
+        }
+
+        loadWorld(fileName);
     }
 
     /**
@@ -54,36 +58,6 @@ public class Grid
 
     public void evolve ()
     {
-        Level[] nextIteration = new Level[_levels.length];
-
-        for (int i = 0; i < _levels.length; i++)
-        {
-            Level below = ((i > 0) ? _levels[i-1] : new Level(_height, _width, i-1, _debug));
-            Level above = ((i < _levels.length -1) ? _levels[i+1] : new Level(_height, _width, i+1, _debug));
-
-            for (int h = 0; h < _height; h++)
-            {
-                for (int w = 0; w < _width; w++)
-                {
-                    int adjacentBugs = 0;
-                    int emptySpaces = 0;
-
-                    if (!_levels[i].nestedLevel(h, w))
-                    {
-                        try
-                        {
-                            if (_levels[i].containsBug(h, w))
-                                adjacentBugs++;
-                            else
-                                emptySpaces++;
-                        }
-                        catch (IndexOutOfBoundsException e)
-                        {
-                        }
-                    }
-                }
-            }
-        }
     }
 
     @Override
@@ -91,10 +65,10 @@ public class Grid
     {
         String str = "";
 
-        for (int i = 0; i < _levels.length; i++)
+        for (int i = 0; i < _theWorld.length; i++)
         {
-            str += "\nDepth "+_levels[i].getLevel()+":\n";
-            str += _levels[i];
+            str += "\nDepth "+_theWorld[i].getLevel()+":\n";
+            str += _theWorld[i];
         }
 
         return str;
@@ -113,13 +87,13 @@ public class Grid
         {
             Grid temp = (Grid) obj;
 
-            if (_levels.length == temp._levels.length)
+            if (_theWorld.length == temp._theWorld.length)
             {
                 boolean same = true;
 
-                for (int i = 0; (i < _levels.length) && same; i++)
+                for (int i = 0; (i < _theWorld.length) && same; i++)
                 {
-                    if (!_levels[i].equals(temp._levels[i]))
+                    if (!_theWorld[i].equals(temp._theWorld[i]))
                         same = false;
                 }
 
@@ -133,6 +107,7 @@ public class Grid
     private void loadWorld (String inputFile)
     {
         BufferedReader reader = null;
+        int h = 0;
 
         try
         {
@@ -144,8 +119,10 @@ public class Grid
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.BUG == line.charAt(i))
-                        _theWorld
+                        _theWorld[0].addBug(new ThreeDPoint(h, i, 0));
                 }
+
+                h++;
             }
         }
         catch (Throwable ex)
@@ -162,11 +139,9 @@ public class Grid
             {
             }
         }
-
-        _levels[DEFAULT_LEVELS] = new Level(levelZero, 0, _debug);
     }
 
-    private HashSet<ThreeDPoint> _theWorld;
+    private Level[] _theWorld;
     private int _height;
     private int _width;
     private boolean _debug;
