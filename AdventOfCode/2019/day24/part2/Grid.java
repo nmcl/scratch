@@ -46,11 +46,6 @@ public class Grid
     {
     }
 
-    public Grid snapshot ()
-    {
-        return new Grid(this);
-    }
-
     @Override
     public String toString ()
     {
