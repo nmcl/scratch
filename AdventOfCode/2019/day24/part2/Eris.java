@@ -40,19 +40,5 @@ public class Eris
         }
 
         Grid theWorld = new Grid(WORLD_DATA, debug);
-        boolean found = false;
-        Vector<Grid> previous = new Vector<Grid>();
-
-        previous.add(theWorld.snapshot());
-
-        while (!found)
-        {
-            theWorld.evolve();
-
-            if (previous.contains(theWorld))
-                found = true;
-            else
-                previous.add(theWorld.snapshot());
-        }
     }
 }
