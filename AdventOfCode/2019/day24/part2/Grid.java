@@ -54,7 +54,14 @@ public class Grid
     @Override
     public String toString ()
     {
-        String str = "";  // TODO
+        String str = "";
+
+        for (int i = 0; i < _levels.length; i++)
+        {
+            str += "Level "+_levels[i].getLevel()+"\n";
+            str += _levels[i];
+            str += "----------\n";
+        }
 
         return str;
     }
