@@ -10,6 +10,11 @@ public class Tile
         return _type;
     }
     
+    public boolean isNested ()
+    {
+        return TileId.NESTED_GRID == _type;
+    }
+    
     public boolean isBug ()
     {
         return TileId.BUG == _type;
