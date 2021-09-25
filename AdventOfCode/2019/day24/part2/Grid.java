@@ -159,7 +159,7 @@ public class Grid
             }
         }
 
-        _levels[0] = new Level(levelZero, 0, _debug);
+        _levels[DEFAULT_LEVELS] = new Level(levelZero, 0, _debug);
     }
 
     private Level[] _levels;
