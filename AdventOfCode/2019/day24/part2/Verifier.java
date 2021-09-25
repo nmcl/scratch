@@ -15,6 +15,10 @@ public class Verifier
 
     public final boolean verify ()
     {
+        Grid theWorld = new Grid(EXAMPLE, _debug);
+
+        System.out.println(theWorld);
+        
         return false;
     }
 
