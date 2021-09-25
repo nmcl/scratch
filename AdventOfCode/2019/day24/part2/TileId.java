@@ -6,7 +6,7 @@ public class TileId
 
     public static boolean valid (char check)
     {
-        if ((check == BUG) || (check == EMPTY_SPACE))
+        if ((check == BUG) || (check == EMPTY_SPACE) || (check == NESTED_GRID))
             return true;
         else
             return false;
