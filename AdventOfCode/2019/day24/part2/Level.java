@@ -37,6 +37,17 @@ public class Level
         return _level;
     }
 
+    public boolean containsBug (int i, int j) throws IndexOutOfBoundsException
+    {
+        if (_debug)
+            System.out.println("Checking < "+i+", "+j+" >");
+
+        if (_theWorld[i][j].isBug())
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public String toString ()
     {
