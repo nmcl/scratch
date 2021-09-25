@@ -57,15 +57,23 @@ public class Grid
 
         for (int i = 0; i < _levels.length; i++)
         {
-            if (i == 0)
-            {
+            Level below = ((i > 0) ? _levels[i-1] : new Level(_height, _width, i-1, _debug));
+            Level above = ((i < _levels.length -1) ? _levels[i+1] : new Level(_height, _width, i+1, _debug));
 
-            }
-            else
+            for (int h = 0; h < _height; h++)
             {
-                if (i == _levels.length -1)
+                for (int w = 0; w < _width; w++)
                 {
-                    
+                    int adjacentBugs = 0;
+                    int emptySpaces = 0;
+
+                    try
+                    {
+                        
+                    }
+                    catch (IndexOutOfBoundsException e)
+                    {
+                    }
                 }
             }
         }
