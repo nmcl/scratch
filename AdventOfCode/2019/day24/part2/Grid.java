@@ -11,6 +11,9 @@ public class Grid
     public static final int DEFAULT_HEIGHT = 5;
     public static final int DEFAULT_LEVELS = 5;
 
+    public static final int CENTRE_HEIGHT = 2;  // TODO only makes sense for 5x5 so need to fix this!!
+    public static final int CENTRE_WIDTH = 2;
+
     public Grid (String fileName, boolean debug)
     {
         this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName, debug);
@@ -18,6 +21,7 @@ public class Grid
 
     public Grid (int height, int width, String fileName, boolean debug)
     {
+        _theWorld = new HashSet<ThreeDPoint>();
         _height = height;
         _width = width;
         _debug = debug;
@@ -67,12 +71,18 @@ public class Grid
                     int adjacentBugs = 0;
                     int emptySpaces = 0;
 
-                    try
+                    if (!_levels[i].nestedLevel(h, w))
                     {
-                        
-                    }
-                    catch (IndexOutOfBoundsException e)
-                    {
+                        try
+                        {
+                            if (_levels[i].containsBug(h, w))
+                                adjacentBugs++;
+                            else
+                                emptySpaces++;
+                        }
+                        catch (IndexOutOfBoundsException e)
+                        {
+                        }
                     }
                 }
             }
@@ -139,19 +149,6 @@ public class Grid
     private void loadWorld (String inputFile)
     {
         BufferedReader reader = null;
-        int row = 0;
-        int level = 0 - DEFAULT_LEVELS;
-
-        _levels = new Level[DEFAULT_LEVELS*2 +1];
-
-        for (int i = 0; i < _levels.length; i++)
-        {
-            _levels[i] = new Level(_height, _width, level, _debug);
-
-            level++;
-        }
-
-        Tile[][] levelZero = new Tile[_height][_width];
 
         try
         {
@@ -162,13 +159,9 @@ public class Grid
             {
                 for (int i = 0; i < line.length(); i++)
                 {
-                    if (TileId.valid(line.charAt(i)))
-                        levelZero[row][i] = new Tile(line.charAt(i));
-                    else
-                        System.out.println("Invalid world entry: "+line.charAt(i));
+                    if (TileId.BUG == line.charAt(i))
+                        _theWorld
                 }
-
-                row++;
             }
         }
         catch (Throwable ex)
@@ -189,7 +182,7 @@ public class Grid
         _levels[DEFAULT_LEVELS] = new Level(levelZero, 0, _debug);
     }
 
-    private Level[] _levels;
+    private HashSet<ThreeDPoint> _theWorld;
     private int _height;
     private int _width;
     private boolean _debug;
