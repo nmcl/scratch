@@ -1,7 +1,7 @@
 public class Level
 {
-    public static final int CENTRE_HEIGHT = 3;  // TODO only makes sense for 5x5 so need to fix this!!
-    public static final int CENTRE_WIDTH = 3;
+    public static final int CENTRE_HEIGHT = 2;  // TODO only makes sense for 5x5 so need to fix this!!
+    public static final int CENTRE_WIDTH = 2;
 
     public Level (int height, int width, int level, boolean debug)
     {
