@@ -53,9 +53,8 @@ public class Grid
 
         for (int i = 0; i < _levels.length; i++)
         {
-            str += "Level "+_levels[i].getLevel()+"\n";
+            str += "\nDepth "+_levels[i].getLevel()+":\n";
             str += _levels[i];
-            str += "----------\n";
         }
 
         return str;
