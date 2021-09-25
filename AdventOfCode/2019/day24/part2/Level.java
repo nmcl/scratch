@@ -49,7 +49,7 @@ public class Level
             _theWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
     }
 
-    public boolean containsBug (int i, int j) throws IndexOutOfBoundsException
+    public final boolean containsBug (int i, int j) throws IndexOutOfBoundsException
     {
         if (_debug)
             System.out.println("Checking < "+i+", "+j+" >");
@@ -58,6 +58,21 @@ public class Level
             return true;
         else
             return false;
+    }
+
+    public final boolean nestedLevel (int i, int j)
+    {
+        try
+        {
+            if (_theWorld[i][j].isBug())
+                return true;
+            else
+                return false;
+        }
+        catch (IndexOutOfBoundsException ex)
+        {
+            return false;
+        }
     }
 
     @Override
