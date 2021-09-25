@@ -11,9 +11,6 @@ public class Grid
     public static final int DEFAULT_HEIGHT = 5;
     public static final int DEFAULT_LEVELS = 5;
 
-    public static final int CENTRE_HEIGHT = 2;  // TODO only makes sense for 5x5 so need to fix this!!
-    public static final int CENTRE_WIDTH = 2;
-
     public Grid (String fileName, boolean debug)
     {
         this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName, debug);
@@ -131,19 +128,6 @@ public class Grid
         }
 
         return false;
-    }
-
-    protected Grid (Grid theGrid)
-    {
-        _height = theGrid._height;
-        _width = theGrid._width;
-        _debug = theGrid._debug;
-        _levels = new Level[theGrid._levels.length];
-
-        for (int i = 0; i < _levels.length; i++)
-        {
-            _levels[i] = new Level(theGrid._levels[i]);
-        }
     }
 
     private void loadWorld (String inputFile)
