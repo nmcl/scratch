@@ -2,9 +2,6 @@ import java.util.*;
 
 public class Level
 {
-    public static final int CENTRE_HEIGHT = 2;  // TODO only makes sense for 5x5 so need to fix this!!
-    public static final int CENTRE_WIDTH = 2;
-
     public Level (int layer, int height, int width, boolean debug)
     {
         _level = new HashSet<ThreeDPoint>();
@@ -18,7 +15,7 @@ public class Level
     {
         return _layer;
     }
-    
+
     public void addBug (ThreeDPoint location)
     {
         _level.add(location);
@@ -33,7 +30,7 @@ public class Level
         {
             for (int j = 0; j < _width; j++)
             {
-                if ((i == CENTRE_HEIGHT) && (j == CENTRE_WIDTH))
+                if ((i == GridData.CENTRE_Y) && (j == GridData.CENTRE_X))
                     str += TileId.NESTED_GRID;
                 else
                 {
