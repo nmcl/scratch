@@ -18,6 +18,9 @@ public class GridData
     public static final int TOP_INNER_EDGE_Y = 1;
     public static final int BOTTOM_INNER_EDGE_Y = 3;
 
+    public static final int LEFT_INNER_EDGE_X = 1;
+    public static final int RIGHT_INNER_EDGE_X = 3;
+
     public static final ThreeDPoint topOuterEdge (ThreeDPoint current)
     {
         return new ThreeeDPoint(2, 1, current.getZ() - 1);
