@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
  * Default values assuming 5x5.
  * 
@@ -23,58 +25,58 @@ public class GridData
 
     public static final ThreeDPoint topOuterEdge (ThreeDPoint current)
     {
-        return new ThreeeDPoint(2, 1, current.getZ() - 1);
+        return new ThreeDPoint(2, 1, current.getZ() - 1);
     }
 
     public static final ThreeDPoint bottomOuterEdge (ThreeDPoint current)
     {
-        return new ThreeeDPoint(2, 3, current.getZ() - 1);
+        return new ThreeDPoint(2, 3, current.getZ() - 1);
     }
 
     public static final ThreeDPoint leftOuterEdge (ThreeDPoint current)
     {
-        return new ThreeeDPoint(2, 3, current.getZ() - 1);
+        return new ThreeDPoint(2, 3, current.getZ() - 1);
     }
 
     public static final ThreeDPoint rightOuterEdge (ThreeDPoint current)
     {
-        return new ThreeeDPoint(3, 2, current.getZ() - 1);
+        return new ThreeDPoint(3, 2, current.getZ() - 1);
     }
 
     public static final void leftInnerEdge (ThreeDPoint current, HashSet<ThreeDPoint> tiles)
     {
-        tiles.add(new ThreeeDPoint(0, 0, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(0, 1, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(0, 2, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(0, 3, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(0, 4, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(0, 0, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(0, 1, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(0, 2, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(0, 3, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(0, 4, current.getZ() + 1));
     }
 
     public static final void rightInnerEdge (ThreeDPoint current, HashSet<ThreeDPoint> tiles)
     {
-        tiles.add(new ThreeeDPoint(4, 0, position.getZ() + 1));
-        tiles.add(new ThreeeDPoint(4, 1, position.getZ() + 1));
-        tiles.add(new ThreeeDPoint(4, 2, position.getZ() + 1));
-        tiles.add(new ThreeeDPoint(4, 3, position.getZ() + 1));
-        tiles.add(new ThreeeDPoint(4, 4, position.getZ() + 1));
+        tiles.add(new ThreeDPoint(4, 0, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(4, 1, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(4, 2, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(4, 3, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(4, 4, current.getZ() + 1));
     }
 
-    public static final void bottomInnerEdge (ThreeDPoint current, HashSet<ThredDPoint> tiles)
+    public static final void bottomInnerEdge (ThreeDPoint current, HashSet<ThreeDPoint> tiles)
     {
-        tiles.add(new ThreeeDPoint(0, 4, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(1, 4, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(2, 4, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(3, 4, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(4, 4, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(0, 4, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(1, 4, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(2, 4, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(3, 4, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(4, 4, current.getZ() + 1));
     }
 
     public static final void topInnerEdge (ThreeDPoint current, HashSet<ThreeDPoint> tiles)
     {
-        tiles.add(new ThreeeDPoint(0, 0, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(1, 0, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(2, 0, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(3, 0, current.getZ() + 1));
-        tiles.add(new ThreeeDPoint(4, 0, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(0, 0, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(1, 0, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(2, 0, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(3, 0, current.getZ() + 1));
+        tiles.add(new ThreeDPoint(4, 0, current.getZ() + 1));
     }
 
     private GridData ()
