@@ -151,6 +151,22 @@ public class Grid
         tiles.removeIf(p -> p.getX() < 0 || p.getX() > (GridData.DEFAULT_WIDTH -1) || p.getY() < 0 || p.getY() > (GridData.DEFAULT_HEIGHT -1));
     }
 
+    private int numberOfBugs (ThreeDPoint position)
+    {
+        int total = 0;
+        HashSet<ThreeDPoint> neighbours = adjacentTileCoordinates(position);
+        Iterator<ThreeDPoint> iter = neighbours.iterator();
+
+        while (iter.hasNext())
+        {
+            ThreeDPoint coord = iter.next();
+
+            if ()
+        }
+
+
+      }
+
     private void loadWorld (String inputFile)
     {
         BufferedReader reader = null;
