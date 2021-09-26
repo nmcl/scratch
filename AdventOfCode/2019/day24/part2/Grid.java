@@ -18,12 +18,12 @@ public class Grid
 
     public Grid (int height, int width, String fileName, boolean debug)
     {
-        _theWorld = new Level[DEFAULT_LEVELS];
+        _theWorld = new Level[DEFAULT_LEVELS*2 +1];
         _height = height;
         _width = width;
         _debug = debug;
 
-        int layer = 0 - _theWorld.length;
+        int layer = -DEFAULT_LEVELS;
 
         for (int i = 0; i < DEFAULT_LEVELS*2 +1; i++)
         {
