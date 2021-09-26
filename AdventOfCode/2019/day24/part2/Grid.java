@@ -54,6 +54,22 @@ public class Grid
 
     public void evolve ()
     {
+        for (int i = 0; i < _theWorld.length; i++)
+        {
+            HashSet<ThreeDPoint> evolvedBugs = new HashSet<ThreeDPoint>();
+
+            for (int x = 0; x < GridData.DEFAULT_WIDTH; x++)
+            {
+                for (int y = 0; y < GridData.DEFAULT_HEIGHT; y++)
+                {
+                    if ((x != GridData.CENTRE_X) && (y != GridData.CENTRE_Y))  // skip nested centre coord
+                    {
+                        ThreeDPoint current = new ThreeDPoint(x, y, _theWorld[i].getLevel());
+                        int bugs = numberOfBugs(current);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -157,8 +173,10 @@ public class Grid
 
         for (int i = 0; i < _theWorld.length; i++)
         {
+            HashSet<ThreeDPoint> theBugs = _theWorld[i].getBugs();
+
             total += adjacentTileCoordinates(position).stream()
-                    .filter(p -> bugs.contains(p))
+                    .filter(p -> theBugs.contains(p))
                     .count();
         }
 
