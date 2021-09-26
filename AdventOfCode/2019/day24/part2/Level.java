@@ -26,11 +26,6 @@ public class Level
         return _level;
     }
 
-    public final void resetLevel ()
-    {
-        _level = new HashSet<ThreeDPoint>();
-    }
-
     @Override
     public String toString ()
     {
