@@ -16,9 +16,19 @@ public class Level
         return _layer;
     }
 
-    public void addBug (ThreeDPoint location)
+    public final void addBug (ThreeDPoint location)
     {
         _level.add(location);
+    }
+
+    public final HashSet<ThreeDPoint> getBugs ()
+    {
+        return _level;
+    }
+
+    public final void setBugs (HashSet<ThreeDPoint> bugs)
+    {
+        _level = bugs;
     }
 
     @Override
