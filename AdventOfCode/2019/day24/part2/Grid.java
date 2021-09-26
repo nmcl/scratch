@@ -154,18 +154,16 @@ public class Grid
     private int numberOfBugs (ThreeDPoint position)
     {
         int total = 0;
-        HashSet<ThreeDPoint> neighbours = adjacentTileCoordinates(position);
-        Iterator<ThreeDPoint> iter = neighbours.iterator();
 
-        while (iter.hasNext())
+        for (int i = 0; i < _theWorld.length; i++)
         {
-            ThreeDPoint coord = iter.next();
-
-            if ()
+            total += adjacentTileCoordinates(position).stream()
+                    .filter(p -> bugs.contains(p))
+                    .count();
         }
 
-
-      }
+        return total;
+    }
 
     private void loadWorld (String inputFile)
     {
