@@ -41,6 +41,24 @@ public class GridData
         return new ThreeeDPoint(3, 2, current.getZ() - 1);
     }
 
+    public static final void leftInnerEdge (ThreeDPoint current, HashSet<ThreeDPoint> tiles)
+    {
+        tiles.add(new ThreeeDPoint(0, 0, current.getZ() + 1));
+        tiles.add(new ThreeeDPoint(0, 1, current.getZ() + 1));
+        tiles.add(new ThreeeDPoint(0, 2, current.getZ() + 1));
+        tiles.add(new ThreeeDPoint(0, 3, current.getZ() + 1));
+        tiles.add(new ThreeeDPoint(0, 4, current.getZ() + 1));
+    }
+
+    public static final void rightInnerEdge (ThreeDPoint current, HashSet<ThreeDPoint> tiles)
+    {
+        tiles.add(new ThreeeDPoint(4, 0, position.getZ() + 1));
+        tiles.add(new ThreeeDPoint(4, 1, position.getZ() + 1));
+        tiles.add(new ThreeeDPoint(4, 2, position.getZ() + 1));
+        tiles.add(new ThreeeDPoint(4, 3, position.getZ() + 1));
+        tiles.add(new ThreeeDPoint(4, 4, position.getZ() + 1));
+    }
+
     public static final void bottomInnerEdge (ThreeDPoint current, HashSet<ThredDPoint> tiles)
     {
         tiles.add(new ThreeeDPoint(0, 4, current.getZ() + 1));
