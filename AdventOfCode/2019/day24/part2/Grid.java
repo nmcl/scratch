@@ -54,22 +54,29 @@ public class Grid
 
     public void evolve ()
     {
-        for (int i = 0; i < _theWorld.length; i++)
-        {
-            HashSet<ThreeDPoint> evolvedBugs = new HashSet<ThreeDPoint>();
+        HashSet<ThreeDPoint> allBugs = mergeLayers();
+        HashSet<ThreeDPoint> evolvedBugs = new HashSet<ThreeDPoint>();
 
-            for (int x = 0; x < GridData.DEFAULT_WIDTH; x++)
+        for (int x = 0; x < GridData.DEFAULT_WIDTH; x++)
+        {
+            for (int y = 0; y < GridData.DEFAULT_HEIGHT; y++)
             {
-                for (int y = 0; y < GridData.DEFAULT_HEIGHT; y++)
+                if ((x != GridData.CENTRE_X) && (y != GridData.CENTRE_Y))
                 {
-                    if ((x != GridData.CENTRE_X) && (y != GridData.CENTRE_Y))  // skip nested centre coord
+                    for (int z = -GridData.DEFAULT_LEVELS; z <= GridData.DEFAULT_LEVELS; z++)
                     {
-                        ThreeDPoint current = new ThreeDPoint(x, y, _theWorld[i].getLevel());
-                        int bugs = numberOfBugs(current);
+                        ThreeDPoint coord = new ThreeDPoint(x, y, z);
+                        long totalBugs = numberOfBugs(coord);
+                        boolean isBug = allBugs.contains(coord);
+
+                        if ((!isBug && (totalBugs == 1 || totalBugs == 2)) || (isBug && totalBugs == 1))
+                            evolvedBugs.add(coord);
                     }
                 }
             }
         }
+
+        splitLayers(evolvedBugs);
     }
 
     @Override
@@ -130,7 +137,24 @@ public class Grid
 
     private final void splitLayers (HashSet<ThreeDPoint> merged)
     {
+        int layer = -GridData.DEFAULT_LEVELS;
 
+        for (int i = 0; i < GridData.DEFAULT_LEVELS*2 +1; i++)
+        {
+            _theWorld[i] = new Level(layer, _height, _width, _debug);
+
+            layer++;
+        }
+
+        Iterator<ThreeDPoint> iter = merged.iterator();
+
+        while (iter.hasNext())
+        {
+            ThreeDPoint position = iter.next();
+            int index = position.getZ() + GridData.DEFAULT_LEVELS;
+
+            _theWorld[index].addBug(position);
+        }
     }
 
     private HashSet<ThreeDPoint> adjacentTileCoordinates (ThreeDPoint position)
@@ -184,20 +208,13 @@ public class Grid
         tiles.removeIf(p -> p.getX() < 0 || p.getX() > (GridData.DEFAULT_WIDTH -1) || p.getY() < 0 || p.getY() > (GridData.DEFAULT_HEIGHT -1));
     }
 
-    private int numberOfBugs (ThreeDPoint position)
+    private long numberOfBugs (ThreeDPoint position)
     {
-        int total = 0;
+        HashSet<ThreeDPoint> allBugs = mergeLayers();
 
-        for (int i = 0; i < _theWorld.length; i++)
-        {
-            HashSet<ThreeDPoint> theBugs = _theWorld[i].getBugs();
-
-            total += adjacentTileCoordinates(position).stream()
-                    .filter(p -> theBugs.contains(p))
+        return adjacentTileCoordinates(position).stream()
+                    .filter(p -> allBugs.contains(p))
                     .count();
-        }
-
-        return total;
     }
 
     private void loadWorld (String inputFile)
