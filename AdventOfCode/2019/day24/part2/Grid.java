@@ -116,6 +116,23 @@ public class Grid
         return false;
     }
 
+    private final HashSet<ThreeDPoint> mergeLayers ()
+    {
+        HashSet<ThreeDPoint> merged = new HashSet<ThreeDPoint>();
+
+        for (int i = 0; i < _theWorld.length; i++)
+        {
+            merged.addAll(_theWorld[i].getBugs());
+        }
+
+        return merged;
+    }
+
+    private final void splitLayers (HashSet<ThreeDPoint> merged)
+    {
+
+    }
+
     private HashSet<ThreeDPoint> adjacentTileCoordinates (ThreeDPoint position)
     {
         HashSet<ThreeDPoint> tiles = new HashSet<ThreeDPoint>();
