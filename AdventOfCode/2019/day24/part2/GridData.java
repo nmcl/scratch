@@ -1,4 +1,10 @@
-// default values assuming 5x5
+/*
+ * Default values assuming 5x5.
+ * 
+ * If/when the state machine is updated to allow
+ * arbitrary grid sizes, these values would be
+ * computed each time.
+ */
 
 public class GridData
 {
