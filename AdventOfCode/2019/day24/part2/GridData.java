@@ -12,7 +12,7 @@ public class GridData
 {
     public static final int DEFAULT_WIDTH = 5;
     public static final int DEFAULT_HEIGHT = 5;
-    public static final int DEFAULT_LEVELS = 5;
+    public static final int DEFAULT_LEVELS = 5;  // Number of levels is 2* this +1 for level 0
 
     public static final int CENTRE_X = 2;
     public static final int CENTRE_Y = 2;
