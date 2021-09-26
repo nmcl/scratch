@@ -7,25 +7,21 @@ import java.io.*;
 
 public class Grid
 {
-    public static final int DEFAULT_WIDTH = 5;
-    public static final int DEFAULT_HEIGHT = 5;
-    public static final int DEFAULT_LEVELS = 5;
-
     public Grid (String fileName, boolean debug)
     {
-        this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName, debug);
+        this(GridData.DEFAULT_HEIGHT, GridData.DEFAULT_WIDTH, fileName, debug);
     }
 
     public Grid (int height, int width, String fileName, boolean debug)
     {
-        _theWorld = new Level[DEFAULT_LEVELS*2 +1];
+        _theWorld = new Level[GridData.DEFAULT_LEVELS*2 +1];
         _height = height;
         _width = width;
         _debug = debug;
 
-        int layer = -DEFAULT_LEVELS;
+        int layer = -GridData.DEFAULT_LEVELS;
 
-        for (int i = 0; i < DEFAULT_LEVELS*2 +1; i++)
+        for (int i = 0; i < GridData.DEFAULT_LEVELS*2 +1; i++)
         {
             _theWorld[i] = new Level(layer, _height, _width, _debug);
 
@@ -104,6 +100,57 @@ public class Grid
         return false;
     }
 
+    private HashSet<ThreeDPoint> adjacentTileCoordinates (ThreeDPoint position)
+    {
+        HashSet<ThreeDPoint> tiles = new HashSet<ThreeDPoint>();
+  
+        // could generate invalid coordinates but we'll deal with that later ...
+
+        tiles.add(new ThreeDPoint(position.getX() - 1, position.getY(), position.getZ()));
+        tiles.add(new ThreeDPoint(position.getX() + 1, position.getY(), position.getZ()));
+        tiles.add(new ThreeDPoint(position.getX(), position.getY() - 1, position.getZ()));
+        tiles.add(new ThreeDPoint(position.getX(), position.getY() + 1, position.getZ()));
+  
+        if (position.getX() == 0)
+            tiles.add(GridData.leftOuterEdge(position));
+
+        if (position.getX() == GridData.DEFAULT_HEIGHT -1)
+            tiles.add(GridData.rightOuterEdge(position));
+
+        if (position.getY() == 0)
+            tiles.add(GridData.topOuterEdge(position));
+
+        if (position.getY() == GridData.DEFAULT_HEIGHT -1)
+            tiles.add(GridData.bottomOuterEdge(position));
+  
+        if ((position.getX() == GridData.CENTRE_X) && (position.getY() == GridData.TOP_INNER_EDGE_Y))
+            GridData.topInnerEdge(position, tiles);
+
+        if ((position.getX() == GridData.CENTRE_X) && (position.getY() == GridData.BOTTOM_INNER_EDGE_Y))
+            GridData.bottomInnerEdge(position, tiles);
+
+        if ((position.getX() == GridData.LEFT_INNER_EDGE_X) && (position.getY() == GridData.CENTRE_Y))
+            GridData.leftInnerEdge(position, tiles);
+
+        if ((position.getX() == GridData.RIGHT_INNER_EDGE_X) && (position.getY() == GridData.CENTRE_Y))
+            GridData.rightInnerEdge(position, tiles);
+
+        // Nove remove any invalid points
+  
+        return tiles;
+    }
+
+    private void pruneInvalid (HashSet<ThreeDPoint> tiles)
+    {
+        // remove the nested grid marker/coordinate
+
+        tiles.removeIf(p -> p.getX() == GridData.CENTRE_X && p.getY() == GridData.CENTRE_Y);
+
+        // now remove anything with invalid coordinates
+
+        tiles.removeIf(p -> p.getX() < 0 || p.getX() > (GridData.DEFAULT_WIDTH -1) || p.getY() < 0 || p.getY() > (GridData.DEFAULT_HEIGHT -1));
+    }
+
     private void loadWorld (String inputFile)
     {
         BufferedReader reader = null;
@@ -119,7 +166,7 @@ public class Grid
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.BUG == line.charAt(i))
-                        _theWorld[DEFAULT_LEVELS].addBug(new ThreeDPoint(h, i, 0));
+                        _theWorld[GridData.DEFAULT_LEVELS].addBug(new ThreeDPoint(h, i, 0));
                 }
 
                 h++;
