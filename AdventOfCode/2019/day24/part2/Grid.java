@@ -119,7 +119,7 @@ public class Grid
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.BUG == line.charAt(i))
-                        _theWorld[0].addBug(new ThreeDPoint(h, i, 0));
+                        _theWorld[DEFAULT_LEVELS].addBug(new ThreeDPoint(h, i, 0));
                 }
 
                 h++;
