@@ -26,9 +26,9 @@ public class Level
         return _level;
     }
 
-    public final void setBugs (HashSet<ThreeDPoint> bugs)
+    public final void resetLevel ()
     {
-        _level = bugs;
+        _level = new HashSet<ThreeDPoint>();
     }
 
     @Override
