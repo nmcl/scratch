@@ -21,6 +21,8 @@ public class Grid
 
         int layer = -GridData.DEFAULT_LEVELS;
 
+        // initialise
+        
         for (int i = 0; i < GridData.DEFAULT_LEVELS*2 +1; i++)
         {
             _theWorld[i] = new Level(layer, _height, _width, _debug);
