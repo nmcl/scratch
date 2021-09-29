@@ -65,7 +65,7 @@ public class Grid
             {
                 if ((x != GridData.CENTRE_X) && (y != GridData.CENTRE_Y))
                 {
-                    for (int z = -GridData.DEFAULT_LEVELS; z <= GridData.DEFAULT_LEVELS; z++)
+                    for (int z = -GridData.DEFAULT_LEVELS; z <= GridData.DEFAULT_LEVELS; z++)  // go through the layers
                     {
                         ThreeDPoint coord = new ThreeDPoint(x, y, z);
                         long totalBugs = numberOfBugs(coord);
