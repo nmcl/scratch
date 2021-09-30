@@ -71,7 +71,7 @@ public class Grid
                         long totalBugs = numberOfBugs(coord);
                         boolean isBug = allBugs.contains(coord);
 
-                        if ((!isBug && (totalBugs == 1 || totalBugs == 2)) || (isBug && totalBugs == 1))
+                        if ((!isBug && ((totalBugs == 1) || (totalBugs == 2))) || (isBug && (totalBugs == 1)))
                             evolvedBugs.add(coord);
                     }
                 }
