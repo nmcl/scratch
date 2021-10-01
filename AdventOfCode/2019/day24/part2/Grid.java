@@ -69,10 +69,17 @@ public class Grid
                     {
                         ThreeDPoint coord = new ThreeDPoint(x, y, z);
                         long totalBugs = numberOfBugs(coord);
-                        boolean isBug = allBugs.contains(coord);
 
-                        if ((!isBug && ((totalBugs == 1) || (totalBugs == 2))) || (isBug && (totalBugs == 1)))
-                            evolvedBugs.add(coord);
+                        if (!allBugs.contains(coord))
+                        {
+                            if ((totalBugs == 1) || (totalBugs == 2))
+                                evolvedBugs.add(coord);
+                        }
+                        else
+                        {
+                            if (totalBugs == 1)
+                                evolvedBugs.add(coord);
+                        }
                     }
                 }
             }
