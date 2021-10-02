@@ -207,6 +207,10 @@ public class Grid
 
         // Nove remove any invalid points
   
+        pruneInvalid(tiles);
+
+        System.out.println("tiles "+tiles);
+        
         return tiles;
     }
 
