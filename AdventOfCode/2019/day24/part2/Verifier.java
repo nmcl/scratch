@@ -19,6 +19,13 @@ public class Verifier
 
         System.out.println(theWorld);
         
+        for (int i = 0; i < ITERATIONS; i++)
+            theWorld.evolve();
+        
+        System.out.println("After evolving for "+ITERATIONS+" minutes ...");
+
+        System.out.println(theWorld);
+        
         return false;
     }
 
