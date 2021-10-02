@@ -174,6 +174,8 @@ public class Grid
     {
         HashSet<ThreeDPoint> tiles = new HashSet<ThreeDPoint>();
   
+        System.out.println("Starting coord "+position);
+
         // could generate invalid coordinates but we'll deal with that later ...
 
         tiles.add(new ThreeDPoint(position.getX() - 1, position.getY(), position.getZ()));
