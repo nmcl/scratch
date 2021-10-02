@@ -244,10 +244,14 @@ public class Grid
 
             while ((line = reader.readLine()) != null)
             {
+                System.out.println("line "+line);
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.BUG == line.charAt(i))
-                        _theWorld[GridData.DEFAULT_LEVELS].addBug(new ThreeDPoint(h, i, 0));
+                    {
+                        System.out.println("Bug at "+i+" "+h);
+                        _theWorld[GridData.DEFAULT_LEVELS].addBug(new ThreeDPoint(i, h, 0));
+                    }
                 }
 
                 h++;
