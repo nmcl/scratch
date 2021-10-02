@@ -59,6 +59,8 @@ public class Grid
         HashSet<ThreeDPoint> allBugs = mergeLayers();
         HashSet<ThreeDPoint> evolvedBugs = new HashSet<ThreeDPoint>();
 
+        System.out.println("Starting bugs "+allBugs);
+
         for (int x = 0; x < GridData.DEFAULT_WIDTH; x++)
         {
             for (int y = 0; y < GridData.DEFAULT_HEIGHT; y++)
@@ -68,7 +70,7 @@ public class Grid
                     for (int z = -GridData.DEFAULT_LEVELS; z <= GridData.DEFAULT_LEVELS; z++)  // go through the layers
                     {
                         ThreeDPoint coord = new ThreeDPoint(x, y, z);
-                        long totalBugs = numberOfBugs(coord);
+                        long totalBugs = numberOfBugs(allBugs, coord);
 
                         if (!allBugs.contains(coord))
                         {
@@ -84,6 +86,8 @@ public class Grid
                 }
             }
         }
+
+        System.out.println("ending bugs "+evolvedBugs);
 
         splitLayers(evolvedBugs);  // split to make printing easier
     }
@@ -217,10 +221,8 @@ public class Grid
         tiles.removeIf(p -> p.getX() < 0 || p.getX() > (GridData.DEFAULT_WIDTH -1) || p.getY() < 0 || p.getY() > (GridData.DEFAULT_HEIGHT -1));
     }
 
-    private long numberOfBugs (ThreeDPoint position)
+    private long numberOfBugs (HashSet<ThreeDPoint> allBugs, ThreeDPoint position)
     {
-        HashSet<ThreeDPoint> allBugs = mergeLayers();
-
         return adjacentTileCoordinates(position).stream()
                     .filter(p -> allBugs.contains(p))
                     .count();
