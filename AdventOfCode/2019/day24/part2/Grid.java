@@ -69,6 +69,7 @@ public class Grid
                 {
                     for (int z = -GridData.DEFAULT_LEVELS; z <= GridData.DEFAULT_LEVELS; z++)  // go through the layers
                     {
+                        System.out.println("z is "+z);
                         ThreeDPoint coord = new ThreeDPoint(x, y, z);
                         long totalBugs = numberOfBugs(allBugs, coord);
 
