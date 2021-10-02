@@ -59,6 +59,13 @@ public class Grid
         HashSet<ThreeDPoint> allBugs = mergeLayers();
         HashSet<ThreeDPoint> evolvedBugs = new HashSet<ThreeDPoint>();
 
+        /*
+         * Figure out which levels actually exist at this stage.
+         */
+
+        int minZ = allBugs.stream().mapToInt(p -> p.getZ()).min().orElse(0) - 1;
+        int maxZ = allBugs.stream().mapToInt(p -> p.getZ()).max().orElse(0) + 1;
+
         System.out.println("Starting bugs "+allBugs);
 
         for (int x = 0; x < GridData.DEFAULT_WIDTH; x++)
@@ -67,7 +74,7 @@ public class Grid
             {
                 if ((x != GridData.CENTRE_X) && (y != GridData.CENTRE_Y))
                 {
-                    for (int z = -GridData.DEFAULT_LEVELS; z <= GridData.DEFAULT_LEVELS; z++)  // go through the layers
+                    for (int z = minZ; z <= maxZ; z++)  // go through the layers
                     {
                         System.out.println("z is "+z);
                         ThreeDPoint coord = new ThreeDPoint(x, y, z);
