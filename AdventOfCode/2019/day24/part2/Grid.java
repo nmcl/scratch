@@ -87,7 +87,7 @@ public class Grid
             }
         }
 
-        System.out.println("ending bugs "+evolvedBugs);
+        //System.out.println("ending bugs "+evolvedBugs);
 
         splitLayers(evolvedBugs);  // split to make printing easier
     }
@@ -210,7 +210,7 @@ public class Grid
         pruneInvalid(tiles);
 
         System.out.println("tiles "+tiles);
-        
+
         return tiles;
     }
 
