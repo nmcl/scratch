@@ -25,7 +25,7 @@ public class Verifier
         System.out.println("After evolving for "+ITERATIONS+" minutes ...");
 
         System.out.println(theWorld);
-        
+
         return false;
     }
 
