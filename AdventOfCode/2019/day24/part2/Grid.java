@@ -75,8 +75,8 @@ public class Grid
          * Figure out which levels actually exist at this stage.
          */
 
-        int minZ = allBugs.stream().mapToInt(p -> p.getZ()).min().orElse(0) - 1;
-        int maxZ = allBugs.stream().mapToInt(p -> p.getZ()).max().orElse(0) + 1;
+        int minZ = minimumLayer(allBugs);
+        int maxZ = maximumLayer(allBugs);
 
         if (_debug)
             System.out.println("Starting bugs: "+allBugs);
@@ -159,6 +159,16 @@ public class Grid
         return false;
     }
 
+    private final int minimumLayer (HashSet<ThreeDPoint> allBugs)
+    {
+        return allBugs.stream().mapToInt(p -> p.getZ()).min().orElse(0) - 1;
+    }
+
+    private final int maximumLayer (HashSet<ThreeDPoint> allBugs)
+    {
+        return allBugs.stream().mapToInt(p -> p.getZ()).max().orElse(0) + 1;
+    }
+
     private final HashSet<ThreeDPoint> mergeLayers ()
     {
         HashSet<ThreeDPoint> merged = new HashSet<ThreeDPoint>();
@@ -187,6 +197,7 @@ public class Grid
         while (iter.hasNext())
         {
             ThreeDPoint position = iter.next();
+            System.out.println("position "+position);
             int index = position.getZ() + GridData.DEFAULT_LEVELS;
 
             _theWorld[index].addBug(position);
