@@ -72,7 +72,7 @@ public class Grid
         {
             for (int y = 0; y < GridData.DEFAULT_HEIGHT; y++)
             {
-                if ((x != GridData.CENTRE_X) && (y != GridData.CENTRE_Y))
+                if ((x != GridData.CENTRE_X) || (y != GridData.CENTRE_Y))
                 {
                     for (int z = minZ; z <= maxZ; z++)  // go through the layers
                     {
