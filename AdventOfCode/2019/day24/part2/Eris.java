@@ -6,6 +6,8 @@ public class Eris
 {
     public static final String WORLD_DATA = "scan.txt";
 
+    public static final int MINUTES = 200;
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -40,5 +42,16 @@ public class Eris
         }
 
         Grid theWorld = new Grid(WORLD_DATA, debug);
+
+        for (int i = 0; i < MINUTES; i++)
+        {
+            System.out.println("Minute "+i);
+            
+            theWorld.evolve();
+        }
+
+        System.out.println("Evolved world after "+MINUTES+" minutes:\n"+theWorld);
+
+        System.out.println("\nTotal bugs: "+theWorld.totalBugCount());
     }
 }
