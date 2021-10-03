@@ -26,6 +26,15 @@ public class Verifier
 
         System.out.println(theWorld);
 
+        long bugCount = theWorld.totalBugCount();
+
+        if (bugCount == BUGS_PRESENT)
+        {
+            return true;
+        }
+        else
+            System.out.println("Wrong number of bugs: "+bugCount);
+
         return false;
     }
 
