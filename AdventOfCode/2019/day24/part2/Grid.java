@@ -185,8 +185,6 @@ public class Grid
     {
         int totalLayers = Math.abs(minimumLayer(merged)) + maximumLayer(merged) +1;
         int layer = minimumLayer(merged);
-
-        System.out.println("total "+totalLayers);
         
         _theWorld = new Level[totalLayers];
 
@@ -199,15 +197,10 @@ public class Grid
 
         Iterator<ThreeDPoint> iter = merged.iterator();
 
-        System.out.println("Splitting "+minimumLayer(merged)+" "+maximumLayer(merged));
-
         while (iter.hasNext())
         {
             ThreeDPoint position = iter.next();
-            System.out.println("position "+position);
-            int index = position.getZ() + totalLayers;
-
-            System.out.println("index "+index);
+            int index = position.getZ() + maximumLayer(merged);
 
             _theWorld[index].addBug(position);
         }
