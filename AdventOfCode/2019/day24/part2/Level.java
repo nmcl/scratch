@@ -26,6 +26,11 @@ public class Level
         return _level;
     }
 
+    public final long bugCount ()
+    {
+        return _level.size();
+    }
+
     @Override
     public String toString ()
     {
