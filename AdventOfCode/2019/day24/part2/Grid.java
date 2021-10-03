@@ -183,9 +183,10 @@ public class Grid
 
     private final void splitLayers (HashSet<ThreeDPoint> merged)
     {
-        int layer = -GridData.DEFAULT_LEVELS;
+        int totalLayers = Math.abs(minimumLayer(merged)) + maximumLayer(merged) +1;
+        int layer = minimumLayer(merged);
 
-        for (int i = 0; i < GridData.DEFAULT_LEVELS*2 +1; i++)
+        for (int i = 0; i < totalLayers; i++)
         {
             _theWorld[i] = new Level(layer, _height, _width, _debug);
 
@@ -194,11 +195,13 @@ public class Grid
 
         Iterator<ThreeDPoint> iter = merged.iterator();
 
+        System.out.println("Splitting "+minimumLayer(merged)+" "+maximumLayer(merged));
+
         while (iter.hasNext())
         {
             ThreeDPoint position = iter.next();
             System.out.println("position "+position);
-            int index = position.getZ() + GridData.DEFAULT_LEVELS;
+            int index = position.getZ() + totalLayers;
 
             _theWorld[index].addBug(position);
         }
