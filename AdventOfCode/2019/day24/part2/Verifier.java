@@ -3,7 +3,6 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE = "example.txt";
-    public static final String DEPTH_BASE = "depth";
 
     public static final int ITERATIONS = 10;  // number of minutes to run
     public static final long BUGS_PRESENT = 99;
@@ -28,12 +27,10 @@ public class Verifier
 
         long bugCount = theWorld.totalBugCount();
 
-        if (bugCount == BUGS_PRESENT)
-        {
+        if (bugCount == BUGS_PRESENT)  // could check the actual layers to be sure, but not for now ...
             return true;
-        }
-        else
-            System.out.println("Wrong number of bugs: "+bugCount);
+
+        System.out.println("Wrong number of bugs: "+bugCount);
 
         return false;
     }
