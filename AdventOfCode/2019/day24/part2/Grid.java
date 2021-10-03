@@ -254,12 +254,16 @@ public class Grid
 
             while ((line = reader.readLine()) != null)
             {
-                System.out.println("line "+line);
+                if (_debug)
+                    System.out.println("Loaded line: "+line);
+                    
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.BUG == line.charAt(i))
                     {
-                        System.out.println("Bug at "+i+" "+h);
+                        if (_debug)
+                            System.out.println("Bug at "+i+" "+h);
+
                         _theWorld[GridData.DEFAULT_LEVELS].addBug(new ThreeDPoint(i, h, 0));
                     }
                 }
