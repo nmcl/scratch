@@ -186,6 +186,10 @@ public class Grid
         int totalLayers = Math.abs(minimumLayer(merged)) + maximumLayer(merged) +1;
         int layer = minimumLayer(merged);
 
+        System.out.println("total "+totalLayers);
+        
+        _theWorld = new Level[totalLayers];
+
         for (int i = 0; i < totalLayers; i++)
         {
             _theWorld[i] = new Level(layer, _height, _width, _debug);
@@ -202,6 +206,8 @@ public class Grid
             ThreeDPoint position = iter.next();
             System.out.println("position "+position);
             int index = position.getZ() + totalLayers;
+
+            System.out.println("index "+index);
 
             _theWorld[index].addBug(position);
         }
