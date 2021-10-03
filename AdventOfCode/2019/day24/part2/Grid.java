@@ -33,6 +33,18 @@ public class Grid
         loadWorld(fileName);
     }
 
+    public final long totalBugCount ()
+    {
+        long total = 0;
+
+        for (int i = 0; i < _theWorld.length; i++)
+        {
+            total += _theWorld[i].bugCount();
+        }
+
+        return total;
+    }
+
     /**
      * Each minute, The bugs live and die based on the number of bugs in the four adjacent tiles:
      *
