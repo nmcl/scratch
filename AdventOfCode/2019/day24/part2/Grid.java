@@ -78,7 +78,8 @@ public class Grid
         int minZ = allBugs.stream().mapToInt(p -> p.getZ()).min().orElse(0) - 1;
         int maxZ = allBugs.stream().mapToInt(p -> p.getZ()).max().orElse(0) + 1;
 
-        System.out.println("Starting bugs "+allBugs);
+        if (_debug)
+            System.out.println("Starting bugs: "+allBugs);
 
         for (int x = 0; x < GridData.DEFAULT_WIDTH; x++)
         {
@@ -88,9 +89,10 @@ public class Grid
                 {
                     for (int z = minZ; z <= maxZ; z++)  // go through the layers
                     {
-                        System.out.println("z is "+z);
                         ThreeDPoint coord = new ThreeDPoint(x, y, z);
-                        long totalBugs = numberOfBugs(allBugs, coord);
+                        long totalBugs =  adjacentTileCoordinates(coord).stream()
+                                                .filter(p -> allBugs.contains(p))
+                                                .count();
 
                         if (!allBugs.contains(coord))
                         {
@@ -107,7 +109,8 @@ public class Grid
             }
         }
 
-        //System.out.println("ending bugs "+evolvedBugs);
+        if (_debug)
+            System.out.println("Evolved bugs: "+evolvedBugs);
 
         splitLayers(evolvedBugs);  // split to make printing easier
     }
@@ -193,35 +196,25 @@ public class Grid
     private HashSet<ThreeDPoint> adjacentTileCoordinates (ThreeDPoint position)
     {
         HashSet<ThreeDPoint> tiles = new HashSet<ThreeDPoint>();
-  
-        System.out.println("Starting coord "+position);
 
         // could generate invalid coordinates but we'll deal with that later ...
 
         tiles.add(new ThreeDPoint(position.getX() - 1, position.getY(), position.getZ()));
-        System.out.println("added "+tiles);
         tiles.add(new ThreeDPoint(position.getX() + 1, position.getY(), position.getZ()));
-        System.out.println("added "+tiles);
         tiles.add(new ThreeDPoint(position.getX(), position.getY() - 1, position.getZ()));
-        System.out.println("added "+tiles);
         tiles.add(new ThreeDPoint(position.getX(), position.getY() + 1, position.getZ()));
-        System.out.println("added "+tiles);
-
-        if (position.getY() == 0)
-            tiles.add(GridData.topOuterEdge(position));
-        System.out.println("added here "+tiles);
-
-        if (position.getY() == GridData.DEFAULT_HEIGHT -1)
-            tiles.add(GridData.bottomOuterEdge(position));
-        System.out.println("added here "+tiles);
 
         if (position.getX() == 0)
             tiles.add(GridData.leftOuterEdge(position));
-        System.out.println("added here "+tiles);
 
         if (position.getX() == GridData.DEFAULT_HEIGHT -1)
             tiles.add(GridData.rightOuterEdge(position));
-        System.out.println("added here "+tiles);
+
+        if (position.getY() == 0)
+            tiles.add(GridData.topOuterEdge(position));
+
+        if (position.getY() == GridData.DEFAULT_HEIGHT -1)
+            tiles.add(GridData.bottomOuterEdge(position));
 
         if ((position.getX() == GridData.CENTRE_X) && (position.getY() == GridData.TOP_INNER_EDGE_Y))
             GridData.topInnerEdge(position, tiles);
@@ -239,8 +232,6 @@ public class Grid
   
         pruneInvalid(tiles);
 
-        System.out.println("tiles "+tiles);
-
         return tiles;
     }
 
@@ -253,13 +244,6 @@ public class Grid
         // now remove anything with invalid coordinates
 
         tiles.removeIf(p -> p.getX() < 0 || p.getX() > (GridData.DEFAULT_WIDTH -1) || p.getY() < 0 || p.getY() > (GridData.DEFAULT_HEIGHT -1));
-    }
-
-    private long numberOfBugs (HashSet<ThreeDPoint> allBugs, ThreeDPoint position)
-    {
-        return adjacentTileCoordinates(position).stream()
-                    .filter(p -> allBugs.contains(p))
-                    .count();
     }
 
     private void loadWorld (String inputFile)
