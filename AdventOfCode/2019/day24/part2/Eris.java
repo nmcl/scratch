@@ -45,8 +45,6 @@ public class Eris
 
         for (int i = 0; i < MINUTES; i++)
         {
-            System.out.println("Minute "+i);
-            
             theWorld.evolve();
         }
 
