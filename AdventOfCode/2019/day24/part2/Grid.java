@@ -187,22 +187,30 @@ public class Grid
         // could generate invalid coordinates but we'll deal with that later ...
 
         tiles.add(new ThreeDPoint(position.getX() - 1, position.getY(), position.getZ()));
+        System.out.println("added "+tiles);
         tiles.add(new ThreeDPoint(position.getX() + 1, position.getY(), position.getZ()));
+        System.out.println("added "+tiles);
         tiles.add(new ThreeDPoint(position.getX(), position.getY() - 1, position.getZ()));
+        System.out.println("added "+tiles);
         tiles.add(new ThreeDPoint(position.getX(), position.getY() + 1, position.getZ()));
-  
-        if (position.getX() == 0)
-            tiles.add(GridData.leftOuterEdge(position));
-
-        if (position.getX() == GridData.DEFAULT_HEIGHT -1)
-            tiles.add(GridData.rightOuterEdge(position));
+        System.out.println("added "+tiles);
 
         if (position.getY() == 0)
             tiles.add(GridData.topOuterEdge(position));
+        System.out.println("added here "+tiles);
 
         if (position.getY() == GridData.DEFAULT_HEIGHT -1)
             tiles.add(GridData.bottomOuterEdge(position));
-  
+        System.out.println("added here "+tiles);
+
+        if (position.getX() == 0)
+            tiles.add(GridData.leftOuterEdge(position));
+        System.out.println("added here "+tiles);
+
+        if (position.getX() == GridData.DEFAULT_HEIGHT -1)
+            tiles.add(GridData.rightOuterEdge(position));
+        System.out.println("added here "+tiles);
+
         if ((position.getX() == GridData.CENTRE_X) && (position.getY() == GridData.TOP_INNER_EDGE_Y))
             GridData.topInnerEdge(position, tiles);
 
