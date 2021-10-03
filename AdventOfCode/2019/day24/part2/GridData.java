@@ -35,7 +35,7 @@ public class GridData
 
     public static final ThreeDPoint leftOuterEdge (ThreeDPoint current)
     {
-        return new ThreeDPoint(2, 3, current.getZ() - 1);
+        return new ThreeDPoint(1, 2, current.getZ() - 1);
     }
 
     public static final ThreeDPoint rightOuterEdge (ThreeDPoint current)
