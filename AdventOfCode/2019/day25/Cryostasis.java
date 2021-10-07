@@ -1,5 +1,6 @@
 public class Cryostatis
 {
+    public static final String INSTRUCTIONS = "instructions.txt";
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -16,7 +17,7 @@ public class Cryostatis
                 debug = true;
         }
     }
-    
+
     private Cryostatis ()
     {
     }
