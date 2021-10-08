@@ -1,3 +1,5 @@
+impport java.util.*;
+
 public class Cryostatis
 {
     public static final String INSTRUCTIONS = "instructions.txt";
@@ -15,6 +17,8 @@ public class Cryostatis
 
             if ("-debug".equals(args[i]))
                 debug = true;
+
+            Vector<String> instructions = IntcodeUtil.readValues(INSTRUCTIONS);
         }
     }
 
