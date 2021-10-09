@@ -26,12 +26,9 @@ public class Droid
             _theComputer.executeUntilInput();
 
             LinkedList<String> outputs = _theComputer.getOutputs();
-            Iterator<String> iter = outputs.descendingIterator();
+            String theOutput = Util.outputToString(outputs);
 
-            while (iter.hasNext())
-            {
-                System.out.println(iter.next());
-            }
+            System.out.println(theOutput);
 
             finished = true;
         }
