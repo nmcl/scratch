@@ -69,6 +69,17 @@ public class Droid
                 break;
                 case 5:
                 {
+                    System.out.println("Which item to pick up?");
+
+                    String item = Util.getInput();
+
+                    _theComputer.setInputs(Util.stringToInput(Commands.TAKE, item.trim()));
+
+		            System.out.println("Picked up: " + item);
+                }
+                break;
+                case 6:
+                {
                     System.out.println("Which item to drop?");
 
                     String item = Util.getInput();
@@ -76,11 +87,6 @@ public class Droid
                     _theComputer.setInputs(Util.stringToInput(Commands.DROP, item.trim()));
 
 		            System.out.println("Dropped: " + item);
-                }
-                break;
-                case 6:
-                {
-
                 }
                 break;
                 case 7:
