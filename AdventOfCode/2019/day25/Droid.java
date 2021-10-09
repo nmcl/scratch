@@ -64,7 +64,7 @@ public class Droid
 
                     String item = Util.getInput();
 
-                    _theComputer.setInputs(Util.stringToInput(Commands.TAKE, item.trim()));
+                    _theComputer.setInputs(Util.stringToInput(Commands.TAKE+" ", item.trim()));
 
 		            System.out.println("Taken: " + item);
                 }
@@ -75,7 +75,7 @@ public class Droid
 
                     String item = Util.getInput();
 
-                    _theComputer.setInputs(Util.stringToInput(Commands.DROP, item.trim()));
+                    _theComputer.setInputs(Util.stringToInput(Commands.DROP+" ", item.trim()));
 
 		            System.out.println("Dropped: " + item);
                 }
