@@ -24,6 +24,8 @@ public class Droid
 
         while (!finished)
         {
+            System.out.println("here");
+
             _theComputer.executeUntilInput();
 
             LinkedList<String> outputs = _theComputer.getOutputs();
@@ -34,7 +36,7 @@ public class Droid
 
             String input = Util.getInput();
 
-            int option = 9;
+            int option;
             
             try
             {
@@ -44,6 +46,8 @@ public class Droid
             {
                 option = 8;  // quit on error
             }
+
+            System.out.println("option "+option);
 
             switch (option)
             {
