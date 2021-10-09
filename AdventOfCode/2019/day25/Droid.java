@@ -32,18 +32,7 @@ public class Droid
             System.out.println(theOutput);
             System.out.println(Commands.getCommands());
 
-            String input = "";
-
-	        try
-            {
-		        InputStreamReader isReader = new InputStreamReader(System.in);
-		        BufferedReader bufferedReader = new BufferedReader(isReader);
-
-		        input = bufferedReader.readLine();
-	        }
-            catch (Throwable ex)
-            {
-	        }
+            String input = Util.getInput();
 
             int option = 9;
             
@@ -76,6 +65,27 @@ public class Droid
                 case 4:
                 {
                     _theComputer.setInput(Commands.WEST+"\n");
+                }
+                break;
+                case 5:
+                {
+                    System.out.println("Which item to drop?");
+
+                    String item = Util.getInput();
+
+                    _theComputer.setInputs(Util.stringToInput(Commands.DROP, item.trim()));
+
+		            System.out.println("Dropped: " + item);
+                }
+                break;
+                case 6:
+                {
+
+                }
+                break;
+                case 7:
+                {
+                    _theComputer.setInput(Commands.INVENTORY+"\n");
                 }
                 break;
                 case 8:
