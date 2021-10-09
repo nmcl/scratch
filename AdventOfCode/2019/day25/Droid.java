@@ -36,53 +36,40 @@ public class Droid
 
             String input = Util.getInput();
 
-            int option;
-            
-            try
+            switch (input)
             {
-                option = Integer.parseInt(input);
-            }
-            catch (Throwable ex)
-            {
-                option = 8;  // quit on error
-            }
-
-            System.out.println("option "+option);
-
-            switch (option)
-            {
-                case 1:
+                case Commands.NORTH:
                 {
                     _theComputer.setInputs(Util.stringToInput(Commands.NORTH, "\n"));
                 }
                 break;
-                case 2:
+                case Commands.SOUTH:
                 {
                     _theComputer.setInputs(Util.stringToInput(Commands.SOUTH, "\n"));
                 }
                 break;
-                case 3:
+                case Commands.EAST:
                 {
                     _theComputer.setInputs(Util.stringToInput(Commands.EAST, "\n"));
                 }
                 break;
-                case 4:
+                case Commands.WEST:
                 {
                     _theComputer.setInputs(Util.stringToInput(Commands.WEST, "\n"));
                 }
                 break;
-                case 5:
+                case Commands.TAKE:
                 {
-                    System.out.println("Which item to pick up?");
+                    System.out.println("Which item to take?");
 
                     String item = Util.getInput();
 
                     _theComputer.setInputs(Util.stringToInput(Commands.TAKE, item.trim()));
 
-		            System.out.println("Picked up: " + item);
+		            System.out.println("Taken: " + item);
                 }
                 break;
-                case 6:
+                case Commands.DROP:
                 {
                     System.out.println("Which item to drop?");
 
@@ -93,19 +80,19 @@ public class Droid
 		            System.out.println("Dropped: " + item);
                 }
                 break;
-                case 7:
+                case Commands.INVENTORY:
                 {
                     _theComputer.setInputs(Util.stringToInput(Commands.INVENTORY, "\n"));
                 }
                 break;
-                case 8:
+                case Commands.QUIT:
                 {
                     finished = true;
                 }
                 break;
                 default:
                 {
-                    System.out.println("Unrecognised input: "+option);
+                    System.out.println("Unrecognised input: "+input);
                 }
             }
         }
