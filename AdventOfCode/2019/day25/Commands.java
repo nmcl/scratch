@@ -15,7 +15,7 @@ public class Commands
     {
         // TODO add numbers as static values too
 
-        return "1: "+NORTH+"\n2: "+SOUTH+"\n3: "+EAST+"\n4: "+WEST+"\n5: "+TAKE+"\n6: "+DROP+"\n7: "+INVENTORY+"\n8: "+QUIT+"\n";
+        return NORTH+"\n"+SOUTH+"\n"+EAST+"\n"+WEST+"\n"+TAKE+"\n"+DROP+"\n"+INVENTORY+"\n"+QUIT+"\n";
     }
 
     private Commands ()  // prevent instantiation.
