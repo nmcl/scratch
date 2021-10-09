@@ -6,12 +6,13 @@ public class Util
 
     public static String outputToString (LinkedList<String> output)
     {
-        Iterator<String> iter = output.descendingIterator();
+        ListIterator<String> iter = output.listIterator();
         String toReturn = "";
 
         while (iter.hasNext())
         {
-            int v = Integer.getInteger(iter.next());
+            String s = iter.next();
+            int v = Integer.parseInt(s);
 
             toReturn += (char) v;
         }
