@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Droid
 {
@@ -30,8 +31,55 @@ public class Droid
 
             System.out.println(theOutput);
             System.out.println(Commands.getCommands());
-            
-            finished = true;
+
+            String input = "";
+
+	        try
+            {
+		        InputStreamReader isReader = new InputStreamReader(System.in);
+		        BufferedReader bufferedReader = new BufferedReader(isReader);
+
+		        input = bufferedReader.readLine();
+	        }
+            catch (IOException ex)
+            {
+		        ex.printStackTrace();
+	        }
+
+            int option = Integer.parseInt(input);
+
+            switch (option)
+            {
+                case 1:
+                {
+                    _theComputer.setInput(Commands.NORTH+"\n");
+                }
+                break;
+                case 2:
+                {
+                    _theComputer.setInput(Commands.SOUTH+"\n");
+                }
+                break;
+                case 3:
+                {
+                    _theComputer.setInput(Commands.EAST+"\n");
+                }
+                break;
+                case 4:
+                {
+                    _theComputer.setInput(Commands.WEST+"\n");
+                }
+                break;
+                case 8:
+                {
+                    finished = true;
+                }
+                break;
+                default:
+                {
+                    System.out.println("Unrecognised input: "+option);
+                }
+            }
         }
     }
 
