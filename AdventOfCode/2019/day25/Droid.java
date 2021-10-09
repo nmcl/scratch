@@ -41,12 +41,20 @@ public class Droid
 
 		        input = bufferedReader.readLine();
 	        }
-            catch (IOException ex)
+            catch (Throwable ex)
             {
-		        ex.printStackTrace();
 	        }
 
-            int option = Integer.parseInt(input);
+            int option = 9;
+            
+            try
+            {
+                option = Integer.parseInt(input);
+            }
+            catch (Throwable ex)
+            {
+                option = 8;  // quit on error
+            }
 
             switch (option)
             {
