@@ -53,22 +53,22 @@ public class Droid
             {
                 case 1:
                 {
-                    _theComputer.setInput(Commands.NORTH+"\n");
+                    _theComputer.setInputs(Util.stringToInput(Commands.NORTH, "\n"));
                 }
                 break;
                 case 2:
                 {
-                    _theComputer.setInput(Commands.SOUTH+"\n");
+                    _theComputer.setInputs(Util.stringToInput(Commands.SOUTH, "\n"));
                 }
                 break;
                 case 3:
                 {
-                    _theComputer.setInput(Commands.EAST+"\n");
+                    _theComputer.setInputs(Util.stringToInput(Commands.EAST, "\n"));
                 }
                 break;
                 case 4:
                 {
-                    _theComputer.setInput(Commands.WEST+"\n");
+                    _theComputer.setInputs(Util.stringToInput(Commands.WEST, "\n"));
                 }
                 break;
                 case 5:
@@ -95,7 +95,7 @@ public class Droid
                 break;
                 case 7:
                 {
-                    _theComputer.setInput(Commands.INVENTORY+"\n");
+                    _theComputer.setInputs(Util.stringToInput(Commands.INVENTORY, "\n"));
                 }
                 break;
                 case 8:
