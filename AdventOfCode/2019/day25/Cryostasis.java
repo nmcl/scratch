@@ -25,6 +25,12 @@ public class Cryostatis
         }
         
         Vector<String> instructions = IntcodeUtil.readValues(INSTRUCTIONS);
+        Droid theDroid = new Droid(instructions, debug);
+
+        if (manual)
+            theDroid.stepTraverse();
+        else
+            theDroid.traverse();
     }
 
     private Cryostatis ()
