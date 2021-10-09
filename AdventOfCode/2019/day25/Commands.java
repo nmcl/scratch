@@ -5,8 +5,8 @@ public class Commands
     public static final String EAST = "east";
     public static final String WEST = "west";
 
-    public static final String TAKE = "take";
-    public static final String DROP = "drop";
+    public static final String TAKE = "take ";
+    public static final String DROP = "drop ";
     public static final String INVENTORY = "inv";
 
     public static final String QUIT = "quit";
