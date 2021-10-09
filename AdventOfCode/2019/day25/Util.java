@@ -36,8 +36,8 @@ public class Util
         }
 
         System.out.println("created "+data);
-        
-        return (String[]) data.toArray();
+
+        return data.toArray(new String[data.size()]);
     }
 
     public static String getInput ()
