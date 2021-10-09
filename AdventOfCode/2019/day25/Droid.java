@@ -11,6 +11,11 @@ public class Droid
 
     }
 
+    public void stepTraverse ()
+    {
+        
+    }
+
     private Intcode _theComputer;
     private boolean _debug;
 }
