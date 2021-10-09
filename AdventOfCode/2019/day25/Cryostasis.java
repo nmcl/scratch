@@ -1,6 +1,6 @@
-impport java.util.*;
+import java.util.*;
 
-public class Cryostatis
+public class Cryostasis
 {
     public static final String INSTRUCTIONS = "instructions.txt";
     public static void main (String[] args)
@@ -33,7 +33,7 @@ public class Cryostatis
             theDroid.traverse();
     }
 
-    private Cryostatis ()
+    private Cryostasis ()
     {
     }
 }
