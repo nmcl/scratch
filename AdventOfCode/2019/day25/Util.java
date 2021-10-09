@@ -35,6 +35,8 @@ public class Util
             data.add(""+(int) line.charAt(i));
         }
 
+        System.out.println("created "+data);
+        
         return (String[]) data.toArray();
     }
 
