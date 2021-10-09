@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Util
 {
@@ -18,6 +19,41 @@ public class Util
         }
 
         return toReturn;
+    }
+
+    public static String[] stringToInput (String command, String line)
+    {
+        Vector<String> data = new Vector<String>();
+
+        for (int i = 0; i < command.length(); i++)
+        {
+            data.add(""+(int) command.charAt(i));
+        }
+
+        for (int i = 0; i < line.length(); i++)
+        {
+            data.add(""+(int) line.charAt(i));
+        }
+
+        return (String[]) data.toArray();
+    }
+
+    public static String getInput ()
+    {
+        String input = "";
+
+        try
+        {
+            InputStreamReader isReader = new InputStreamReader(System.in);
+            BufferedReader bufferedReader = new BufferedReader(isReader);
+
+            input = bufferedReader.readLine();
+        }
+        catch (Throwable ex)
+        {
+        }
+
+        return input;
     }
 
     private Util ()
