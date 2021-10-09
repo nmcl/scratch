@@ -6,6 +6,11 @@ public class Droid
         _debug = debug;
     }
 
+    public void traverse ()
+    {
+
+    }
+
     private Intcode _theComputer;
     private boolean _debug;
 }
