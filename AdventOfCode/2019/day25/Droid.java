@@ -29,7 +29,8 @@ public class Droid
             String theOutput = Util.outputToString(outputs);
 
             System.out.println(theOutput);
-
+            System.out.println(Commands.getCommands());
+            
             finished = true;
         }
     }
