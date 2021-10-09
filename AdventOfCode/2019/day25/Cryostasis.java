@@ -6,20 +6,20 @@ public class Cryostasis
     public static void main (String[] args)
     {
         boolean debug = false;
-        boolean manual = false;
+        boolean manual = true;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-manual] [-debug] [-help]");
+                System.out.println("Usage: [-auto] [-debug] [-help]");
                 System.exit(0);
             }
 
             if ("-debug".equals(args[i]))
                 debug = true;
 
-            if ("-manual".equals(args[i]))
+            if ("-auto".equals(args[i]))
                 manual = true;
 
         }
