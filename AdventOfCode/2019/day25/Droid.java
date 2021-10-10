@@ -24,8 +24,6 @@ public class Droid
 
         while (!finished)
         {
-            System.out.println("here");
-
             _theComputer.executeUntilInput();
 
             LinkedList<String> outputs = _theComputer.getOutputs();
