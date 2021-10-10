@@ -20,8 +20,7 @@ public class Cryostasis
                 debug = true;
 
             if ("-auto".equals(args[i]))
-                manual = true;
-
+                manual = false;
         }
         
         Vector<String> instructions = IntcodeUtil.readValues(INSTRUCTIONS);
