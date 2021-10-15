@@ -29,7 +29,7 @@ public class Cryostasis
         if (manual)
             theDroid.stepTraverse();
         else
-            theDroid.traverse();
+            theDroid.traverse();  // not yet implemented.
     }
 
     private Cryostasis ()
