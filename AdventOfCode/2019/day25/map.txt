@@ -1,2 +1,41 @@
 Basic map of what the Droid sees ...
 
+== Hull Breach ==
+You got in through a hole in the floor here. To keep your ship from also freezing, the hole has been sealed.
+
+Doors here lead:
+- north
+- south
+- west
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+north ...
+
+== Hallway ==
+This area has been optimized for something; you're just not quite sure what.
+
+Doors here lead:
+- east
+- south
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
