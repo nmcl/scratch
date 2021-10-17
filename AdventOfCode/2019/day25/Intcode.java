@@ -61,6 +61,15 @@ public class Intcode
         return _output;
     }
 
+    public final LinkedList<String> consumeOutputs ()
+    {
+        LinkedList<String> toReturn = _output;
+
+        _output = new LinkedList<String>();
+
+        return toReturn;
+    }
+
     public final void setInput (String input)
     {
         _input.add(input);
@@ -75,7 +84,7 @@ public class Intcode
     {
         try
         {
-            return _input.get(0);
+            return _input.get(0);  // should be remove? Or is this only peaking?
         }
         catch (Exception ex)
         {
