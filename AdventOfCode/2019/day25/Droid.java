@@ -26,7 +26,7 @@ public class Droid
         {
             _theComputer.executeUntilInput();
 
-            LinkedList<String> outputs = _theComputer.getOutputs();
+            LinkedList<String> outputs = _theComputer.consumeOutputs();
             String theOutput = Util.outputToString(outputs);
 
             System.out.println(theOutput);
