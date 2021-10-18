@@ -15,7 +15,9 @@ public class Droid
 
     public void traverse ()
     {
-        System.out.println("Auto option not yet implemented! Try manual option.");
+        System.out.println("Auto option not yet implemented! Trying manual option.");
+
+        stepTraverse();
     }
 
     public void stepTraverse ()
