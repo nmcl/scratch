@@ -1,3 +1,3 @@
-Work on the annual AdventOfCode.
+Code related to the annual AdventOfCode.
 
 https://adventofcode.com
