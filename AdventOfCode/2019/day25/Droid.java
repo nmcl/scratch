@@ -17,7 +17,7 @@ public class Droid
     {
         System.out.println("Auto option not yet implemented! Trying manual option.");
 
-        stepTraverse();
+        stepTraverse();  // TODO
     }
 
     public void stepTraverse ()
