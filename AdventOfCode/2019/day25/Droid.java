@@ -32,6 +32,14 @@ public class Droid
             String theOutput = Util.outputToString(outputs);
 
             System.out.println(theOutput);
+
+            /*
+             * We may have halted due to leaving, dying or something else!
+             */
+
+            if (_theComputer.status() == Status.HALTED)
+                return;
+
             System.out.println(Commands.getCommands());
 
             String input = Util.getInput();
