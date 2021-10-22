@@ -60,24 +60,24 @@ public class Droid
                 break;
                 case Commands.TAKE:
                 {
-                    System.out.println("Which item to take?");
+                    System.out.println("\nWhich item to take?");
 
                     String item = Util.getInput();
 
                     _theComputer.setInputs(Util.stringToInput(Commands.TAKE+" ", item.trim()+"\n"));
 
-		            System.out.println("Taken: " + item);
+		            System.out.println("\nTaken: " + item);
                 }
                 break;
                 case Commands.DROP:
                 {
-                    System.out.println("Which item to drop?");
+                    System.out.println("\nWhich item to drop?");
 
                     String item = Util.getInput();
 
                     _theComputer.setInputs(Util.stringToInput(Commands.DROP+" ", item.trim()+"\n"));
 
-		            System.out.println("Dropped: " + item);
+		            System.out.println("\nDropped: " + item);
                 }
                 break;
                 case Commands.INVENTORY:
