@@ -38,7 +38,7 @@ public class Intcode
 
     public final boolean waitingForInput ()
     {
-        return (_status == Status.WAITING_FOR_INPUT);
+        return ((_status == Status.WAITING_FOR_INPUT) || (_status == Status.HALTED));  // stop if halted too!
     }
 
     public final int status ()
