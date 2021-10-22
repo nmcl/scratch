@@ -1,41 +1,8 @@
-Basic map of what the Droid sees ...
 
-== Hull Breach ==
-You got in through a hole in the floor here. To keep your ship from also freezing, the hole has been sealed.
 
-Doors here lead:
-- north
-- south
-- west
 
-Command?
 
-north
-south
-east
-west
-take
-drop
-inv
-quit
-
-north ...
-
-== Hallway ==
-This area has been optimized for something; you're just not quite sure what.
-
-Doors here lead:
-- east
-- south
-
-Command?
-
-north
-south
-east
-west
-take
-drop
-inv
-quit
+A loud, robotic voice says "Analysis complete! You may proceed." and you enter the cockpit.
+Santa notices your small droid, looks puzzled for a moment, realizes what has happened, and radios your ship directly.
+"Oh, hello! You should be able to get in by typing 328960 on the keypad at the main airlock."
 
