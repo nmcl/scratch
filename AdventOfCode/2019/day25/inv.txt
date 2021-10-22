@@ -1,0 +1,9 @@
+Items in your inventory:
+- monolith
+- wreath
+- mug
+- astrolabe
+- manifold
+- sand
+- mouse
+- space law space brochure
