@@ -1,8 +1,489 @@
+== Hull Breach ==
+You got in through a hole in the floor here. To keep your ship from also freezing, the hole has been sealed.
 
+Doors here lead:
+- north
+- south
+- west
 
+Command?
 
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+south
+
+== Sick Bay ==
+Supports both Red-Nosed Reindeer medicine and regular reindeer medicine.
+
+Doors here lead:
+- north
+- south
+- west
+
+Items here:
+- space law space brochure
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+south
+
+== Gift Wrapping Center ==
+How else do you wrap presents on the go?
+
+Doors here lead:
+- north
+- south
+- west
+
+Items here:
+- mouse
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+south
+
+== Passages ==
+They're a little twisty and starting to look all alike.
+
+Doors here lead:
+- north
+- south
+- west
+
+Items here:
+- astrolabe
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+take
+
+Which item to take?
+astrolabe
+
+Taken: astrolabe
+
+You take the astrolabe.
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+south
+
+== Crew Quarters ==
+The beds are all too small for you.
+
+Doors here lead:
+- north
+
+Items here:
+- mug
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+take
+
+Which item to take?
+mug
+
+Taken: mug
+
+You take the mug.
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+north
+
+== Passages ==
+They're a little twisty and starting to look all alike.
+
+Doors here lead:
+- north
+- south
+- west
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+north
+
+== Gift Wrapping Center ==
+How else do you wrap presents on the go?
+
+Doors here lead:
+- north
+- south
+- west
+
+Items here:
+- mouse
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+west
+
+== Storage ==
+The boxes just contain more boxes.  Recursively.
+
+Doors here lead:
+- north
+- east
+- west
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+north
+
+== Engineering ==
+You see a whiteboard with plans for Springdroid v2.
+
+Doors here lead:
+- north
+- south
+- west
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+north
+
+== Arcade ==
+None of the cabinets seem to have power.
+
+Doors here lead:
+- south
+
+Items here:
+- wreath
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+take
+
+Which item to take?
+wreath
+
+Taken: wreath
+
+You take the wreath.
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+south
+
+== Engineering ==
+You see a whiteboard with plans for Springdroid v2.
+
+Doors here lead:
+- north
+- south
+- west
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+south
+
+== Storage ==
+The boxes just contain more boxes.  Recursively.
+
+Doors here lead:
+- north
+- east
+- west
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+east
+
+== Gift Wrapping Center ==
+How else do you wrap presents on the go?
+
+Doors here lead:
+- north
+- south
+- west
+
+Items here:
+- mouse
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+north
+
+== Sick Bay ==
+Supports both Red-Nosed Reindeer medicine and regular reindeer medicine.
+
+Doors here lead:
+- north
+- south
+- west
+
+Items here:
+- space law space brochure
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+west
+
+== Science Lab ==
+You see evidence here of prototype polymer design work.
+
+Doors here lead:
+- north
+- east
+- west
+
+Items here:
+- sand
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+take
+
+Which item to take?
+sand
+
+Taken: sand
+
+You take the sand.
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+west
+
+== Kitchen ==
+Everything's freeze-dried.
+
+Doors here lead:
+- east
+- west
+
+Items here:
+- monolith
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+west
+
+== Security Checkpoint ==
+In the next room, a pressure-sensitive floor will verify your identity.
+
+Doors here lead:
+- east
+- west
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+inv
+
+Items in your inventory:
+- wreath
+- mug
+- astrolabe
+- sand
+
+Command?
+
+north
+south
+east
+west
+take
+drop
+inv
+quit
+
+west
+
+== Pressure-Sensitive Floor ==
+Analyzing...
+
+Doors here lead:
+- east
 
 A loud, robotic voice says "Analysis complete! You may proceed." and you enter the cockpit.
 Santa notices your small droid, looks puzzled for a moment, realizes what has happened, and radios your ship directly.
 "Oh, hello! You should be able to get in by typing 328960 on the keypad at the main airlock."
-
