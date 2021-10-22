@@ -8,5 +8,9 @@ Items in your inventory:
 - mouse
 - space law space brochure
 
-
-Bad items: molten lava, escape pod, giant electromagnet, photons, infinite loop
+Bad items:
+ - molten lava
+ - escape pod
+ - giant electromagnet
+ - photons
+ - infinite loop
