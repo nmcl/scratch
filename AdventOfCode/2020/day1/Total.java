@@ -9,6 +9,9 @@ public class Total
 
     public Integer[] sum (int total)
     {
+        Integer[] toReturn = new Integer[2];
+        boolean found = false;
+
         return null;
     }
 
