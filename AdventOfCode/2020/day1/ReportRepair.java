@@ -32,6 +32,6 @@ public class ReportRepair
         }
 
         Vector<Integer> values = Util.readValues(DATA_FILE);
-        Total finder = new Total(TOTAL_TO_FIND, values);
+        Total finder = new Total(values);
     }
 }
