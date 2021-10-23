@@ -1,7 +1,8 @@
 public class ReportRepair
 {
     public static final int TOTAL_TO_FIND = 2020;
-
+    public static final String DATA_FILE = "input.txt";
+    
     public static void main (String[] args)
     {
         int number = TOTAL_TO_FIND;
