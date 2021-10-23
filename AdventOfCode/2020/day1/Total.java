@@ -12,6 +12,11 @@ public class Total
         Integer[] toReturn = new Integer[2];
         boolean found = false;
 
+        for (int i = 0; (i < _numbers.size()) && !found; i++)
+        {
+            
+        }
+
         return null;
     }
 
