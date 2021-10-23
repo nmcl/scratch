@@ -18,7 +18,12 @@ public class ReportRepair
             {
                 try
                 {
-                    number = Integer
+                    number = Integer.parseInt(args[i+1]);
+                }
+                catch (Exception ex)
+                {
+                    System.err.println("Error parsing: "+args[i+1]);
+                    System.exit(0);
                 }
             }
         }
