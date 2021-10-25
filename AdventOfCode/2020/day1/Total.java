@@ -14,10 +14,23 @@ public class Total
 
         for (int i = 0; (i < _numbers.size()) && !found; i++)
         {
-            // recurse
+            toReturn[0] = _numbers.elementAt(i);
+
+            for (int j = i; (j < _numbers.size()) && !found; j++)
+            {
+                if (toReturn[0] + _numbers.elementAt(j) == total)
+                {
+                    toReturn[1] = _numbers.elementAt(j);
+
+                    found = true;
+                }
+            }
         }
 
-        return null;
+        if (found)
+            return toReturn;
+        else
+            return null;
     }
 
     private Vector<Integer> _numbers;
