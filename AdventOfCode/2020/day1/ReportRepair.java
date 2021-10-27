@@ -8,12 +8,13 @@ public class ReportRepair
     public static void main (String[] args)
     {
         int number = TOTAL_TO_FIND;
+        boolean verify = false;
 
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-total <number>] [-help]");
+                System.out.println("Usage: [-verify][-total <number>] [-help]");
                 System.exit(0);
             }
 
@@ -29,6 +30,9 @@ public class ReportRepair
                     System.exit(0);
                 }
             }
+
+            if ("-verify".equals(args[i]))
+                verify = true;
         }
 
         Vector<Integer> values = Util.readValues(DATA_FILE);
