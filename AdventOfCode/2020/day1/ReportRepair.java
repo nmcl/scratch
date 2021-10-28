@@ -35,6 +35,11 @@ public class ReportRepair
                 verify = true;
         }
 
+        if (verify)
+        {
+            System.exit(0);
+        }
+        
         Vector<Integer> values = Util.readValues(DATA_FILE);
         Total finder = new Total(values);
     }
