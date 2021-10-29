@@ -17,6 +17,7 @@ public class Verifier
 
     public boolean verify ()
     {
+        // use Total
 
         return false;
     }
