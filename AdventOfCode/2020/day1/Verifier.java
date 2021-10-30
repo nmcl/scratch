@@ -10,6 +10,7 @@ public class Verifier
     public Verifier (boolean debug)
     {
         _figures = new Vector<Integer>();
+        _totaliser = new Total(_figures);
         _debug = debug;
 
         _figures.copyInto(EXAMPLE_FIGURES);
@@ -17,11 +18,10 @@ public class Verifier
 
     public boolean verify ()
     {
-        // use Total
-
         return false;
     }
 
     private Vector<Integer> _figures;
+    private Total _totaliser;
     private boolean _debug;
 }
