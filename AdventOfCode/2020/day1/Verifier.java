@@ -26,7 +26,11 @@ public class Verifier
         {
             if (results.length == 2)
             {
-                
+                if (((results[0] == EXAMPLE_INT1) && (results[1] == EXAMPLE_INT2)) ||
+                    ((results[0] == EXAMPLE_INT2) && (results[1] == EXAMPLE_INT1)))
+                {
+                    return true;
+                }
             }
         }
 
