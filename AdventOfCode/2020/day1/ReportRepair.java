@@ -9,7 +9,8 @@ public class ReportRepair
     {
         int number = TOTAL_TO_FIND;
         boolean verify = false;
-
+        boolean debug = false;
+        
         for (int i = 0; i < args.length; i++)
         {
             if ("-help".equals(args[i]))
@@ -39,7 +40,7 @@ public class ReportRepair
         {
             System.exit(0);
         }
-        
+
         Vector<Integer> values = Util.readValues(DATA_FILE);
         Total finder = new Total(values);
     }
