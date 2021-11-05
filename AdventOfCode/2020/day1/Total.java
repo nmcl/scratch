@@ -2,9 +2,10 @@ import java.util.*;
 
 public class Total
 {
-    public Total (Vector<Integer> list)
+    public Total (Vector<Integer> list, boolean debug)
     {
         _numbers = list;
+        _debug = debug;
     }
 
     public Integer[] sum (int total)
@@ -34,4 +35,5 @@ public class Total
     }
 
     private Vector<Integer> _numbers;
+    private boolean _debug;
 }
