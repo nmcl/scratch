@@ -27,10 +27,14 @@ public class Verifier
 
         if (results != null)
         {
-            if (results.length == 2)
+            if (results.length == 3)
             {
-                if (((results[0] == EXAMPLE_INT1) && (results[1] == EXAMPLE_INT2)) ||
-                    ((results[0] == EXAMPLE_INT2) && (results[1] == EXAMPLE_INT1)))
+                if (((results[0] == EXAMPLE_INT1) && (results[1] == EXAMPLE_INT2) && (results[2] == EXAMPLE_INT3)) ||
+                    ((results[0] == EXAMPLE_INT1) && (results[1] == EXAMPLE_INT3) && (results[2] == EXAMPLE_INT2)) ||
+                    ((results[0] == EXAMPLE_INT2) && (results[1] == EXAMPLE_INT1) && (results[2] == EXAMPLE_INT3)) ||
+                    ((results[0] == EXAMPLE_INT2) && (results[1] == EXAMPLE_INT3) && (results[2] == EXAMPLE_INT1)) ||
+                    ((results[0] == EXAMPLE_INT3) && (results[1] == EXAMPLE_INT1) && (results[2] == EXAMPLE_INT2)) ||
+                    ((results[0] == EXAMPLE_INT3) && (results[1] == EXAMPLE_INT2) && (results[2] == EXAMPLE_INT1)))
                 {
                     return true;
                 }
