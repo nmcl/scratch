@@ -2,14 +2,15 @@ import java.util.*;
 
 public class Verifier
 {
-    public static final int EXAMPLE_INT1 = 1721;
-    public static final int EXAMPLE_INT2 = 299;
+    public static final int EXAMPLE_INT1 = 979;
+    public static final int EXAMPLE_INT2 = 366;
+    public static final int EXAMPLE_INT3 = 675;
 
     public static final int EXAMPLE_TOTAL = 2020;
 
     public static final Integer[] EXAMPLE_FIGURES = { 1721, 979, 366, 299, 675, 1456 };
 
-    public Verifier (int total, boolean debug)
+    public Verifier (boolean debug)
     {
         _figures = new Vector<Integer>();
         
