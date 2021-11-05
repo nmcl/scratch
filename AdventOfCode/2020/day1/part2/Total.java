@@ -16,7 +16,7 @@ public class Total
         if (_debug)
             System.out.println("Checking for "+total);
 
-        Integer[] toReturn = new Integer[2];
+        Integer[] toReturn = new Integer[3];
         boolean found = false;
 
         for (int i = 0; (i < _numbers.size()) && !found; i++)
@@ -28,14 +28,22 @@ public class Total
 
             for (int j = i+1; (j < _numbers.size()) && !found; j++)
             {
+                toReturn[1] = _numbers.elementAt(j);
+
                 if (_debug)
-                    System.out.println("Checking "+toReturn[0]+" and "+_numbers.elementAt(j));
+                    System.out.println("Second number: "+toReturn[1]);
 
-                if (toReturn[0] + _numbers.elementAt(j) == total)
+                for (int k = j+1; (k < _numbers.size()) && !found; k++)
                 {
-                    toReturn[1] = _numbers.elementAt(j);
+                    if (_debug)
+                        System.out.println("Checking "+toReturn[0]+" and "+toReturn[1]+" and "+_numbers.elementAt(k));
 
-                    found = true;
+                    if (toReturn[0] + toReturn[1] + _numbers.elementAt(k) == total)
+                    {
+                        toReturn[2] = _numbers.elementAt(k);
+
+                        found = true;
+                    }
                 }
             }
         }
