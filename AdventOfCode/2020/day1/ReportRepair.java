@@ -41,6 +41,13 @@ public class ReportRepair
 
         if (verify)
         {
+            Verifier v = new Verifier(TOTAL_TO_FIND, debug);
+            
+            if (v.verify())
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Verify failed.");
+
             System.exit(0);
         }
 
