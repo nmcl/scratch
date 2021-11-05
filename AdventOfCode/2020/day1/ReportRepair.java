@@ -53,5 +53,15 @@ public class ReportRepair
 
         Vector<Integer> values = Util.readValues(DATA_FILE);
         Total finder = new Total(values, debug);
+        Integer[] figures = finder.sum(TOTAL_TO_FIND);
+
+        if (figures != null)
+        {
+            System.out.println("Entries are: "+figures[0]+" and "+figures[1]);
+
+            System.out.println("Multiplied together: "+(figures[0] * figures[1]));
+        }
+        else
+            System.out.println("No suitable entries found!");
     }
 }
