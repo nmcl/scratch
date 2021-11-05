@@ -12,7 +12,7 @@ public class Verifier
     public Verifier (int total, boolean debug)
     {
         _figures = new Vector<Integer>();
-        _totaliser = new Total(_figures);
+        _totaliser = new Total(_figures, debug);
         _debug = debug;
 
         _figures.copyInto(EXAMPLE_FIGURES);
