@@ -12,10 +12,12 @@ public class Verifier
     public Verifier (int total, boolean debug)
     {
         _figures = new Vector<Integer>();
+        
+        for (int i = 0; i < EXAMPLE_FIGURES.length; i++)
+            _figures.add(EXAMPLE_FIGURES[i]);
+
         _totaliser = new Total(_figures, debug);
         _debug = debug;
-
-        _figures.copyInto(EXAMPLE_FIGURES);
     }
 
     public boolean verify ()
