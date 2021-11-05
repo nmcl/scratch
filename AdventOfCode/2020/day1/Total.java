@@ -10,15 +10,23 @@ public class Total
 
     public Integer[] sum (int total)
     {
+        System.out.println("Checking for "+total);
+
         Integer[] toReturn = new Integer[2];
         boolean found = false;
 
+        System.out.println("Size of numbers: "+_numbers.size());
+        
         for (int i = 0; (i < _numbers.size()) && !found; i++)
         {
             toReturn[0] = _numbers.elementAt(i);
 
+            System.out.println("First number: "+toReturn[0]);
+
             for (int j = i; (j < _numbers.size()) && !found; j++)
             {
+                System.out.println("Checking "+toReturn[0]+" and "+_numbers.elementAt(j));
+
                 if (toReturn[0] + _numbers.elementAt(j) == total)
                 {
                     toReturn[1] = _numbers.elementAt(j);
