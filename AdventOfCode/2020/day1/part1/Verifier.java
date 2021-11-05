@@ -9,7 +9,7 @@ public class Verifier
 
     public static final Integer[] EXAMPLE_FIGURES = { 1721, 979, 366, 299, 675, 1456 };
 
-    public Verifier (int total, boolean debug)
+    public Verifier (boolean debug)
     {
         _figures = new Vector<Integer>();
         
