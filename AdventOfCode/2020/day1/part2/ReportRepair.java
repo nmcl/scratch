@@ -57,9 +57,9 @@ public class ReportRepair
 
         if (figures != null)
         {
-            System.out.println("Entries are: "+figures[0]+" and "+figures[1]);
+            System.out.println("Entries are: "+figures[0]+" and "+figures[1]+" and "+figures[2]);
 
-            System.out.println("Multiplied together: "+(figures[0] * figures[1]));
+            System.out.println("Multiplied together: "+(figures[0] * figures[1] * figures[2]));
         }
         else
             System.out.println("No suitable entries found!");
