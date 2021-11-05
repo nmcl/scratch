@@ -6,26 +6,30 @@ public class Total
     {
         _numbers = list;
         _debug = debug;
+
+        if (_debug)
+            System.out.println("Size of numbers: "+_numbers.size());
     }
 
     public Integer[] sum (int total)
     {
-        System.out.println("Checking for "+total);
+        if (_debug)
+            System.out.println("Checking for "+total);
 
         Integer[] toReturn = new Integer[2];
         boolean found = false;
-
-        System.out.println("Size of numbers: "+_numbers.size());
 
         for (int i = 0; (i < _numbers.size()) && !found; i++)
         {
             toReturn[0] = _numbers.elementAt(i);
 
-            System.out.println("First number: "+toReturn[0]);
+            if (_debug)
+                System.out.println("First number: "+toReturn[0]);
 
             for (int j = i+1; (j < _numbers.size()) && !found; j++)
             {
-                System.out.println("Checking "+toReturn[0]+" and "+_numbers.elementAt(j));
+                if (_debug)
+                    System.out.println("Checking "+toReturn[0]+" and "+_numbers.elementAt(j));
 
                 if (toReturn[0] + _numbers.elementAt(j) == total)
                 {
