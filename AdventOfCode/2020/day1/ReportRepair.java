@@ -15,7 +15,7 @@ public class ReportRepair
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-verify][-total <number>] [-help]");
+                System.out.println("Usage: [-verify] [-total <number>] [-help]");
                 System.exit(0);
             }
 
