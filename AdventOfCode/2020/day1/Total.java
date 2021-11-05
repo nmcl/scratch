@@ -16,14 +16,14 @@ public class Total
         boolean found = false;
 
         System.out.println("Size of numbers: "+_numbers.size());
-        
+
         for (int i = 0; (i < _numbers.size()) && !found; i++)
         {
             toReturn[0] = _numbers.elementAt(i);
 
             System.out.println("First number: "+toReturn[0]);
 
-            for (int j = i; (j < _numbers.size()) && !found; j++)
+            for (int j = i+1; (j < _numbers.size()) && !found; j++)
             {
                 System.out.println("Checking "+toReturn[0]+" and "+_numbers.elementAt(j));
 
