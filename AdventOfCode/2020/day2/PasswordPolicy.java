@@ -7,6 +7,21 @@ public class PasswordPolicy
         _letter = letter;
     }
 
+    public int minumum ()
+    {
+        return _lower;
+    }
+
+    public int maximum ()
+    {
+        return _upper;
+    }
+
+    public char letter ()
+    {
+        return _letter;
+    }
+
     private int _lower;
     private int _upper;
     private char _letter;
