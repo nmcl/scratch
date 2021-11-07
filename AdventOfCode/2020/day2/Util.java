@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Util
 {
-    public Vector<PasswordData> loadData (String file)
+    public static Vector<PasswordData> loadData (String file)
     {
         return null;
     }
