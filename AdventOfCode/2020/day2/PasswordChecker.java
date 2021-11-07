@@ -21,6 +21,6 @@ public class PasswordChecker
                 verify = true;
         }
 
-        Util.loadData(DATA_FILE);
+        Util.loadData(DATA_FILE, debug);
     }
 }
