@@ -1,4 +1,7 @@
-public PasswordData
+public class PasswordData
 {
-    
+    public PasswordData ()
+    {
+
+    }
 }
