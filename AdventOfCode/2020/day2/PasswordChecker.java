@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class PasswordChecker
 {
     public static final String DATA_FILE = "input.txt";
@@ -30,7 +32,17 @@ public class PasswordChecker
             else
                 System.out.println("Verify failed!");
         }
-        
-        Util.loadData(DATA_FILE, debug);
+
+        int validCount = 0;
+        Vector<PasswordData> passwords = Util.loadData(DATA_FILE, debug);
+        Enumeration<PasswordData> iter = passwords.elements();
+
+        while (iter.hasMoreElements())
+        {
+            if (iter.nextElement().valid())
+                validCount++;
+        }
+
+        System.out.println("Number of valid passwords: "+validCount);
     }
 }
