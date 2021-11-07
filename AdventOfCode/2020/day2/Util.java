@@ -47,6 +47,8 @@ public class Util
                 }
 
                 PasswordPolicy policy = new PasswordPolicy(Integer.parseInt(minimum), Integer.parseInt(maximum), letter.charAt(0));
+
+                results.add(new PasswordData(policy, password));
             }
         }
         catch (Throwable ex)
@@ -64,7 +66,7 @@ public class Util
             }
         }
 
-        return null;
+        return results;
     }
     
     private Util ()
