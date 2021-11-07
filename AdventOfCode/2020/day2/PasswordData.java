@@ -6,6 +6,26 @@ public class PasswordData
         _pwd = password;
     }
 
+    public boolean valid ()
+    {
+        if (_pwd.indexOf(_policy.letter()) != -1)
+        {
+            char[] asArray = _pwd.toCharArray();
+            int count = 0;
+
+            for (int i = 0; i < asArray.length; i++)
+            {
+                if (asArray[i] == _policy.letter())
+                    count++;
+            }
+
+            if ((count >= _policy.minumum()) && (count <= _policy.maximum()))
+                return true;
+        }
+
+        return false;
+    }
+
     @Override
     public String toString ()
     {
