@@ -45,6 +45,8 @@ public class Util
                     System.out.println("Letter: "+letter);
                     System.out.println("Password to check: "+password);
                 }
+
+                PasswordPolicy policy = new PasswordPolicy(Integer.parseInt(minimum), Integer.parseInt(maximum), letter.charAt(0));
             }
         }
         catch (Throwable ex)
