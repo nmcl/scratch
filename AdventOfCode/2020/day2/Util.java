@@ -2,6 +2,10 @@ import java.util.*;
 
 public class Util
 {
+    public static char RANGE_DELIMITER = '-';
+    public static char PASSWORD_DELIMITER = ':';
+    public static char SPACE = ' ';
+
     public static Vector<PasswordData> loadData (String inputFile)
     {
         /*
@@ -26,7 +30,12 @@ public class Util
                  * Example: 5-10 b: bhbjlkbbbbbbb
                  */
 
-                 
+                int rangeDelimiter = line.indexOf(RANGE_DELIMITER);
+                int space = line.indexOf(SPACE);
+                String minimum = line.substring(0, rangeDelimiter);
+                String maximum = line.substring(rangeDelimiter +1, space);
+
+                System.out.println("got "+minimum+" and "+maximum);
             }
         }
         catch (Throwable ex)
