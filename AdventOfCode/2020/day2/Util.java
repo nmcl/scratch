@@ -18,7 +18,11 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                
+                /*
+                 * Parse the line just read ...
+                 *
+                 * <min>-<max> <letter>: <password>
+                 */
             }
         }
         catch (Throwable ex)
