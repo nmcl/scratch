@@ -7,7 +7,7 @@ public class Util
     public static char PASSWORD_DELIMITER = ':';
     public static char SPACE = ' ';
 
-    public static Vector<PasswordData> loadData (String inputFile)
+    public static Vector<PasswordData> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
@@ -35,8 +35,16 @@ public class Util
                 int space = line.indexOf(SPACE);
                 String minimum = line.substring(0, rangeDelimiter);
                 String maximum = line.substring(rangeDelimiter +1, space);
+                int passwordDelimiter = line.indexOf(PASSWORD_DELIMITER);
+                String letter = line.substring(space +1, passwordDelimiter);
+                String password = line.substring(passwordDelimiter +1).trim();
 
-                System.out.println("got "+minimum+" and "+maximum);
+                if (debug)
+                {
+                    System.out.println("\nLoaded < "+minimum+", "+maximum+" >");
+                    System.out.println("Letter: "+letter);
+                    System.out.println("Password to check: "+password);
+                }
             }
         }
         catch (Throwable ex)
