@@ -22,7 +22,11 @@ public class Util
                  * Parse the line just read ...
                  *
                  * <min>-<max> <letter>: <password>
+                 * 
+                 * Example: 5-10 b: bhbjlkbbbbbbb
                  */
+
+                 
             }
         }
         catch (Throwable ex)
