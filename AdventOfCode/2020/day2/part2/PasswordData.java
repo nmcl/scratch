@@ -8,19 +8,15 @@ public class PasswordData
 
     public boolean valid ()
     {
-        if (_pwd.indexOf(_policy.letter()) != -1)
+        if ((_pwd.indexOf(_policy.letter()) != -1) && _policy.valid())
         {
             char[] asArray = _pwd.toCharArray();
-            int count = 0;
 
-            for (int i = 0; i < asArray.length; i++)
+            if ((asArray[_policy.first() -1] == _policy.letter()) && (asArray[_policy.second() -1] != _policy.letter()) ||
+                (asArray[_policy.first() -1] != _policy.letter()) && (asArray[_policy.second() -1] == _policy.letter()))
             {
-                if (asArray[i] == _policy.letter())
-                    count++;
-            }
-
-            if ((count >= _policy.minumum()) && (count <= _policy.maximum()))
                 return true;
+            }
         }
 
         return false;
