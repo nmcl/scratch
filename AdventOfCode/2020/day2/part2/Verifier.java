@@ -21,7 +21,7 @@ public class Verifier
         data[1] = new PasswordData(new PasswordPolicy(1, 3, 'b'), "cdefg");
         data[2] = new PasswordData(new PasswordPolicy(2, 9, 'c'), "ccccccccc");
 
-        if (data[0].valid() && !data[1].valid() && data[2].valid())
+        if (data[0].valid() && !data[1].valid() && !data[2].valid())
             return true;
 
         return false;
