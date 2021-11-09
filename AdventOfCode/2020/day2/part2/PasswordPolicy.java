@@ -2,8 +2,8 @@ public class PasswordPolicy
 {
     public PasswordPolicy (int first, int second, char letter)
     {
-        _first = lower;
-        _second = upper;
+        _first = first;
+        _second = second;
         _letter = letter;
     }
 
