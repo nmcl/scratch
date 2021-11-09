@@ -33,7 +33,7 @@ public class PasswordPolicy
     @Override
     public String toString ()
     {
-        return "PasswordPolicy: < "+_lower+", "+_upper+", "+_letter+" >";
+        return "PasswordPolicy: < "+_first+", "+_second+", "+_letter+" >";
     }
 
     private int _first;
