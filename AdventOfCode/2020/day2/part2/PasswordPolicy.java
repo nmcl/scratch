@@ -1,20 +1,20 @@
 public class PasswordPolicy
 {
-    public PasswordPolicy (int lower, int upper, char letter)
+    public PasswordPolicy (int first, int second, char letter)
     {
-        _lower = lower;
-        _upper = upper;
+        _first = lower;
+        _second = upper;
         _letter = letter;
     }
 
-    public int minumum ()
+    public int first ()
     {
-        return _lower;
+        return _first;
     }
 
-    public int maximum ()
+    public int second ()
     {
-        return _upper;
+        return _second;
     }
 
     public char letter ()
@@ -28,7 +28,7 @@ public class PasswordPolicy
         return "PasswordPolicy: < "+_lower+", "+_upper+", "+_letter+" >";
     }
 
-    private int _lower;
-    private int _upper;
+    private int _first;
+    private int _second;
     private char _letter;
 }
