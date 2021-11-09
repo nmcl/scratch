@@ -31,6 +31,8 @@ public class PasswordChecker
                 System.out.println("Verified ok.");
             else
                 System.out.println("Verify failed!");
+
+            System.exit(0);
         }
 
         int validCount = 0;
