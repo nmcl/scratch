@@ -22,6 +22,14 @@ public class PasswordPolicy
         return _letter;
     }
 
+    public boolean valid ()
+    {
+        if ((_first > 0) && (_second > 0))
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public String toString ()
     {
