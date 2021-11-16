@@ -19,5 +19,14 @@ public class Trajectory
             if ("-verify".equals(args[i]))
                 verify = true;
         }
+
+        if (verify)
+        {
+            Verifier v = new Verifier(debug);
+
+            v.verify();
+
+            System.exit(0);
+        }
     }
 }
