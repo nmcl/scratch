@@ -12,6 +12,29 @@ public class Map
             System.out.println("Error in loading data file: "+fileToLoad);
     }
 
+    @Override
+    public String toString ()
+    {
+        int xAxis = 0;
+        Enumeration<MapElement> iter = _theMap.elements();
+        String str = "";
+
+        while (iter.hasMoreElements())
+        {
+            MapElement theEntry = iter.nextElement();
+
+            if (theEntry.getPosition().getX() != xAxis)
+            {
+                xAxis = theEntry.getPosition().getX();
+                str += "\n";
+            }
+
+            str += theEntry.type();
+        }
+
+        return str;
+    }
+
     private final boolean loadData (String file)
     {
         BufferedReader reader = null;
