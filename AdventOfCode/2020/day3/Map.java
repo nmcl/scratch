@@ -15,6 +15,9 @@ public class Map
     @Override
     public String toString ()
     {
+        if (_debug)
+            System.out.println("Dimensions <"+_width+", "+_height+">");
+
         Enumeration<MapElement> iter = _theMap.elements();
         String str = "";
 
@@ -24,7 +27,9 @@ public class Map
 
             str += theEntry.type();
 
-            if (theEntry.position().getX() == _width)
+            System.out.println(theEntry.position());
+
+            if (theEntry.position().getX() == _width -1)
                 str += "\n";
         }
 
