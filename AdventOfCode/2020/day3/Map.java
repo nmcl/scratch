@@ -5,8 +5,79 @@ public class Map
 {
     public Map (String fileToLoad, boolean debug)
     {
+        _theMap = new Vector<MapElement>();
         _debug = debug;
+
+        if (!loadData(fileToLoad))
+            System.out.println("Error in loading data file: "+fileToLoad);
+    }
+
+    private final boolean loadData (String file)
+    {
+        BufferedReader reader = null;
+        boolean valid = true;
+
+        try
+        {
+            reader = new BufferedReader(new FileReader(file));
+            String line = null;
+
+            while ((line = reader.readLine()) != null)
+            {
+                char[] asChar = line.toCharArray();
+                
+                if (_width == 0)
+                    _width = asChar.length;
+
+                for (int i = 0; i < _width; i++)
+                {
+                    // remember x,y coords are reversed for arrays
+                    
+                    if (asChar[i] == MapElement.TREE)
+                    {
+                        _theMap.add(new MapElement(new Coordinate(i, _height), MapElement.TREE));
+                    }
+                    else
+                    {
+                        if (asChar[i] == MapElement.OPEN)
+                        {
+                            _theMap.add(new MapElement(new Coordinate(i, _height), MapElement.OPEN));
+                        }
+                        else
+                        {
+                            System.out.println("Unknown character in data file: "+asChar[i]);
+
+                            valid = false;
+                        }
+                    }
+                }
+
+                _height++;
+
+            }
+        }
+        catch (Throwable ex)
+        {
+            valid = false;
+
+            ex.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                reader.close();
+            }
+            catch (Throwable ex)
+            {
+            }
+        }
+
+        return valid;
     }
     
+    private Vector<MapElement> _theMap;
+    private int _height = 0;
+    private int _width = 0;
     private boolean _debug;
 }
