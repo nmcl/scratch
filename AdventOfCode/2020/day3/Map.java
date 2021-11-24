@@ -15,7 +15,6 @@ public class Map
     @Override
     public String toString ()
     {
-        int xAxis = 0;
         Enumeration<MapElement> iter = _theMap.elements();
         String str = "";
 
@@ -23,13 +22,10 @@ public class Map
         {
             MapElement theEntry = iter.nextElement();
 
-            if (theEntry.position().getX() != xAxis)
-            {
-                xAxis = theEntry.position().getX();
-                str += "\n";
-            }
-
             str += theEntry.type();
+
+            if (theEntry.position().getX() == _width)
+                str += "\n";
         }
 
         return str;
@@ -76,7 +72,6 @@ public class Map
                 }
 
                 _height++;
-
             }
         }
         catch (Throwable ex)
