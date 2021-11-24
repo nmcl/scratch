@@ -1,6 +1,9 @@
+import java.util.*;
+import java.io.*;
+
 public class Map
 {
-    public Map (boolean debug)
+    public Map (String fileToLoad, boolean debug)
     {
         _debug = debug;
     }
