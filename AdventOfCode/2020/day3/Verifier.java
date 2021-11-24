@@ -2,6 +2,8 @@ public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
 
+    public static final int NUMBER_OF_TREES = 7;
+
     public Verifier (boolean debug)
     {
         _theMap = new Map(EXAMPLE_FILE, debug);
