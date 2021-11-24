@@ -10,8 +10,8 @@ public class Verifier
 
     public boolean verify ()
     {
-        System.out.println("loaded "+_theMap);
-        
+        System.out.println("loaded\n"+_theMap);
+
         return false;
     }
 
