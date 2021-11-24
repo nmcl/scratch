@@ -23,9 +23,9 @@ public class Map
         {
             MapElement theEntry = iter.nextElement();
 
-            if (theEntry.getPosition().getX() != xAxis)
+            if (theEntry.position().getX() != xAxis)
             {
-                xAxis = theEntry.getPosition().getX();
+                xAxis = theEntry.position().getX();
                 str += "\n";
             }
 
