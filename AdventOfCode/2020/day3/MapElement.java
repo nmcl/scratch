@@ -9,6 +9,16 @@ public class MapElement
         _type = type;
     }
 
+    public final Coordinate position ()
+    {
+        return _coord;
+    }
+
+    public final char type ()
+    {
+        return _type;
+    }
+
     private Coordinate _coord;
     private char _type;
 }
