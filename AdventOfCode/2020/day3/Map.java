@@ -12,6 +12,11 @@ public class Map
             System.out.println("Error in loading data file: "+fileToLoad);
     }
 
+    public Map (Map theCopy)
+    {
+        
+    }
+
     @Override
     public String toString ()
     {
