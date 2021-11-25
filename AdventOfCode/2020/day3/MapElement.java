@@ -9,6 +9,12 @@ public class MapElement
         _type = type;
     }
 
+    public MapElement (MapElement copy)
+    {
+        _coord = new Coordinate(copy.position().getX(), copy.position().getY());
+        _type = copy.type();
+    }
+
     public final Coordinate position ()
     {
         return _coord;
