@@ -29,6 +29,21 @@ public class Map
         }
     }
 
+    public char[][] toCharArray ()
+    {
+        char[][] toReturn = new char[_width][_height];
+        Enumeration<MapElement> iter = _theMap.elements();
+
+        while (iter.hasMoreElements())
+        {
+            MapElement element = iter.nextElement();
+
+            toReturn[element.position().getX()][element.position().getY()] = element.type();
+        }
+
+        return toReturn;
+    }
+
     @Override
     public String toString ()
     {
