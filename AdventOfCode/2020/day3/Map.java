@@ -14,7 +14,19 @@ public class Map
 
     public Map (Map theCopy)
     {
-        
+        _theMap = new Vector<MapElement>();
+        _height = theCopy._height;
+        _width = theCopy._width;
+        _debug = theCopy._debug;
+
+        Enumeration<MapElement> iter = theCopy._theMap.elements();
+
+        while (iter.hasMoreElements())
+        {
+            MapElement element = iter.nextElement();
+            
+            _theMap.add(new MapElement(element));
+        }
     }
 
     @Override
