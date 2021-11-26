@@ -8,23 +8,7 @@ public class Map
         _theMap = null;
         _debug = debug;
 
-        if (!loadData(fileToLoad))
-            System.out.println("Error in loading data file: "+fileToLoad);
-    }
-
-    public Map (Map theCopy)
-    {
-        _theMap = new Vector<MapElement>();
-        _debug = theCopy._debug;
-
-        Enumeration<MapElement> iter = theCopy._theMap.elements();
-
-        while (iter.hasMoreElements())
-        {
-            MapElement element = iter.nextElement();
-            
-            _theMap.add(new MapElement(element));
-        }
+        loadData(fileToLoad);
     }
 
     @Override
@@ -84,8 +68,6 @@ public class Map
                         else
                         {
                             System.out.println("Unknown character in data file: "+asChar[i]);
-
-                            valid = false;
                         }
                     }
                 }
