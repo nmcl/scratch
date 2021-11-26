@@ -33,30 +33,27 @@ public class Map
         if (_debug)
             System.out.println("Dimensions <"+_theMap[0].length+", "+_theMap.length+">");
 
-        Enumeration<MapElement> iter = _theMap.elements();
         String str = "";
 
-        while (iter.hasMoreElements())
+        for (int x = 0; x < _theMap[0].length; x++)
         {
-            MapElement theEntry = iter.nextElement();
+            for (int y = 0; y < _theMap.length; y++)
+            {
+                str += _theMap[x][y];
+            }
 
-            str += theEntry.type();
-
-            System.out.println(theEntry.position());
-
-            if (theEntry.position().getX() == _width -1)
-                str += "\n";
+            str += "\n";
         }
 
         return str;
     }
 
-    private final boolean loadData (String file)
+    private final void loadData (String file)
     {
         BufferedReader reader = null;
-        boolean valid = true;
         int width = 0;
         int height = 0;
+        Vector<MapElement> map = new Vector<MapElement>();
 
         try
         {
@@ -67,22 +64,22 @@ public class Map
             {
                 char[] asChar = line.toCharArray();
                 
-                if (_width == 0)
-                    _width = asChar.length;
+                if (width == 0)
+                    width = asChar.length;
 
-                for (int i = 0; i < _width; i++)
+                for (int i = 0; i < width; i++)
                 {
                     // remember x,y coords are reversed for arrays
                     
                     if (asChar[i] == MapElement.TREE)
                     {
-                        _theMap.add(new MapElement(new Coordinate(i, _height), MapElement.TREE));
+                        map.add(new MapElement(new Coordinate(i, height), MapElement.TREE));
                     }
                     else
                     {
                         if (asChar[i] == MapElement.OPEN)
                         {
-                            _theMap.add(new MapElement(new Coordinate(i, _height), MapElement.OPEN));
+                            map.add(new MapElement(new Coordinate(i, height), MapElement.OPEN));
                         }
                         else
                         {
@@ -93,13 +90,11 @@ public class Map
                     }
                 }
 
-                _height++;
+                height++;
             }
         }
         catch (Throwable ex)
         {
-            valid = false;
-
             ex.printStackTrace();
         }
         finally
@@ -113,7 +108,7 @@ public class Map
             }
         }
 
-        return valid;
+        _theMap = toCharArray(map, width, height);
     }
 
     private final char[][] toCharArray (Vector<MapElement> map, int width, int height)
