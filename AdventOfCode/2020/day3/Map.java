@@ -5,7 +5,7 @@ public class Map
 {
     public Map (String fileToLoad, boolean debug)
     {
-        _theMap = new Vector<MapElement>();
+        _theMap = null;
         _debug = debug;
 
         if (!loadData(fileToLoad))
@@ -130,8 +130,23 @@ public class Map
 
         return valid;
     }
+
+    private final char[][] toCharArray (Vector<MapElement> map, int width, int height)
+    {
+        char[][] toReturn = new char[width][height];
+        Enumeration<MapElement> iter = map.elements();
+
+        while (iter.hasMoreElements())
+        {
+            MapElement element = iter.nextElement();
+
+            toReturn[element.position().getX()][element.position().getY()] = element.type();
+        }
+
+        return toReturn;
+    }
     
-    private Vector<MapElement> _theMap;
+    private char[][] _theMap;
     private int _height = 0;
     private int _width = 0;
     private boolean _debug;
