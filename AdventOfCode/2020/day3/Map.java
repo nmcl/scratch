@@ -15,8 +15,6 @@ public class Map
     public Map (Map theCopy)
     {
         _theMap = new Vector<MapElement>();
-        _height = theCopy._height;
-        _width = theCopy._width;
         _debug = theCopy._debug;
 
         Enumeration<MapElement> iter = theCopy._theMap.elements();
@@ -29,26 +27,11 @@ public class Map
         }
     }
 
-    public char[][] toCharArray ()
-    {
-        char[][] toReturn = new char[_width][_height];
-        Enumeration<MapElement> iter = _theMap.elements();
-
-        while (iter.hasMoreElements())
-        {
-            MapElement element = iter.nextElement();
-
-            toReturn[element.position().getX()][element.position().getY()] = element.type();
-        }
-
-        return toReturn;
-    }
-
     @Override
     public String toString ()
     {
         if (_debug)
-            System.out.println("Dimensions <"+_width+", "+_height+">");
+            System.out.println("Dimensions <"+_theMap[0].length+", "+_theMap.length+">");
 
         Enumeration<MapElement> iter = _theMap.elements();
         String str = "";
@@ -72,6 +55,8 @@ public class Map
     {
         BufferedReader reader = null;
         boolean valid = true;
+        int width = 0;
+        int height = 0;
 
         try
         {
@@ -147,7 +132,5 @@ public class Map
     }
     
     private char[][] _theMap;
-    private int _height = 0;
-    private int _width = 0;
     private boolean _debug;
 }
