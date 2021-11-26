@@ -1,3 +1,5 @@
+// used to load in the data
+
 public class MapElement
 {
     public static final char TREE = '#';
