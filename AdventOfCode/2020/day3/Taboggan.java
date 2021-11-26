@@ -16,7 +16,7 @@ public class Taboggan
         _debug = debug;
     }
 
-    public void move ()
+    public int move ()
     {
         boolean finished = false;
 
@@ -33,11 +33,14 @@ public class Taboggan
 
             if (!_maps[_mapIndex].finished(_position))
             {
-
+                if (_maps[_mapIndex].elementType(_position) == MapElement.TREE)
+                    _numberOfTrees++;
             }
             else
                 finished = true;
         }
+
+        return _numberOfTrees;
     }
 
     private Map[] _maps;
