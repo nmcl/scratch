@@ -11,6 +11,27 @@ public class Map
         loadData(fileToLoad);
     }
 
+    public final boolean validPosition (Coordinate pos)
+    {
+        if ((pos.getX() < _theMap[0].length) && (pos.getY() < _theMap.length))
+            return true;
+        else
+            return false;
+    }
+
+    public final boolean finished (Coordinate pos)
+    {
+        if (pos.getY() >= _theMap.length)
+            return true;
+        else
+            return false;
+    }
+
+    public final char elementType (Coordinate pos)
+    {
+        return _theMap[pos.getX()][pos.getY()];
+    }
+
     @Override
     public String toString ()
     {
