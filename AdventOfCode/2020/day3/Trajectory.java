@@ -24,7 +24,10 @@ public class Trajectory
         {
             Verifier v = new Verifier(debug);
 
-            v.verify();
+            if (v.verify())
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Verified failed!");
 
             System.exit(0);
         }
