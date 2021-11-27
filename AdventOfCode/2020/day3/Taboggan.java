@@ -27,15 +27,26 @@ public class Taboggan
 
             if (!_maps[_mapIndex].validPosition(_position))
             {
+                if (_debug)
+                    System.out.println("Invalid position to moving to next map.");
+
                 _mapIndex++;
 
                 _maps[_mapIndex] = _maps[0];
 
                 _position = new Coordinate(_position.getX() + MOVE_X, _position.getY() + MOVE_Y);
             }
+            else
+            {
+                if (_debug)
+                    System.out.println("Valid position on this map.");
+            }
 
             if (!_maps[_mapIndex].finished(_position))
             {
+                if (_debug)
+                    System.out.println("Not finished this map.");
+                    
                 if (_maps[_mapIndex].elementType(_position) == MapElement.TREE)
                     _numberOfTrees++;
             }
