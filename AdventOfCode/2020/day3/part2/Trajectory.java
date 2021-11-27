@@ -42,7 +42,7 @@ public class Trajectory
 
         Map theMap = new Map(MAP_FILE, debug);
         Taboggan theTaboggan = new Taboggan(theMap, debug);
-        int numberOfTrees = theTaboggan.move(null);
+        int numberOfTrees = theTaboggan.multiMove();
 
         System.out.println("Number of trees encountered: "+numberOfTrees);
     }
