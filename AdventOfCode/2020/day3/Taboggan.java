@@ -22,6 +22,9 @@ public class Taboggan
 
         while (!finished)
         {
+            if (_debug)
+                System.out.println("Taboggan on map "+_mapIndex+" and at "+_position);
+
             if (!_maps[_mapIndex].validPosition(_position))
             {
                 _mapIndex++;
