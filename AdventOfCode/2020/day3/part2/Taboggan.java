@@ -16,7 +16,7 @@ public class Taboggan
         _debug = debug;
     }
 
-    public int move ()
+    public int move (Coordinate jump)
     {
         boolean finished = false;
 
@@ -53,7 +53,7 @@ public class Taboggan
                 if (_maps[_mapIndex].elementType(_position) == MapElement.TREE)
                     _numberOfTrees++;
 
-                _position = new Coordinate(_position.getX() + MOVE_X, _position.getY() + MOVE_Y);
+                _position = new Coordinate(_position.getX() + jump.getX(), _position.getY() + jump.getY());
             }
             else
                 finished = true;
