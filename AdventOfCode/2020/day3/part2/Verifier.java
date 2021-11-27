@@ -2,7 +2,7 @@ public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
 
-    public static final int NUMBER_OF_TREES = 7;
+    public static final int NUMBER_OF_TREES = 336;
 
     public Verifier (boolean debug)
     {
