@@ -13,10 +13,40 @@ public class Taboggan
         _debug = debug;
     }
 
+    public int multiMove ()
+    {
+        int trees1 = move(Trajectory.JUMP_1);
+
+        if (_debug)
+            System.out.println("Trees encountered: "+trees1);
+
+        int trees2 = move(Trajectory.JUMP_2);
+
+        if (_debug)
+            System.out.println("Trees encountered: "+trees2);
+
+        int trees3 = move(Trajectory.JUMP_3);
+
+        if (_debug)
+            System.out.println("Trees encountered: "+trees3);
+
+        int trees4 = move(Trajectory.JUMP_4);
+
+        if (_debug)
+            System.out.println("Trees encountered: "+trees4);
+
+        int trees5 = move(Trajectory.JUMP_5);
+
+        if (_debug)
+            System.out.println("Trees encountered: "+trees5);
+
+        return trees1 * trees2 * trees3 * trees4 * trees5;
+    }
+
     public int move (Coordinate jump)
     {
         boolean finished = false;
-        
+
         _mapIndex = 0;
         _numberOfTrees = 0;
         _position = new Coordinate(0, 0);
