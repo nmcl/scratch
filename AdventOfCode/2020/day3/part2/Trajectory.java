@@ -2,6 +2,12 @@ public class Trajectory
 {
     public static final String MAP_FILE = "map.txt";
 
+    public static final Coordinate JUMP_1 = new Coordinate(1, 1);
+    public static final Coordinate JUMP_2 = new Coordinate(3, 1);
+    public static final Coordinate JUMP_3 = new Coordinate(5, 1);
+    public static final Coordinate JUMP_4 = new Coordinate(7, 1);
+    public static final Coordinate JUMP_5 = new Coordinate(1, 2);
+    
     public static void main (String[] args)
     {
         boolean debug = false;
