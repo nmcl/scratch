@@ -11,6 +11,16 @@ public class Map
         loadData(fileToLoad);
     }
 
+    public final int height ()
+    {
+        return _theMap.length;
+    }
+
+    public final int width ()
+    {
+        return _theMap[0].length;
+    }
+    
     public final boolean validPosition (Coordinate pos)
     {
         if ((pos.getX() < _theMap[0].length) && (pos.getY() < _theMap.length))
