@@ -28,13 +28,11 @@ public class Taboggan
             if (!_maps[_mapIndex].validPosition(_position))
             {
                 if (_debug)
-                    System.out.println("Invalid position to moving to next map.");
+                    System.out.println("Invalid position so moving to next map.");
 
                 _mapIndex++;
 
                 _maps[_mapIndex] = _maps[0];
-
-                _position = new Coordinate(_position.getX() + MOVE_X, _position.getY() + MOVE_Y);
             }
             else
             {
