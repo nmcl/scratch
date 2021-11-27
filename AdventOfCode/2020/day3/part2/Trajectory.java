@@ -7,7 +7,7 @@ public class Trajectory
     public static final Coordinate JUMP_3 = new Coordinate(5, 1);
     public static final Coordinate JUMP_4 = new Coordinate(7, 1);
     public static final Coordinate JUMP_5 = new Coordinate(1, 2);
-    
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -42,7 +42,7 @@ public class Trajectory
 
         Map theMap = new Map(MAP_FILE, debug);
         Taboggan theTaboggan = new Taboggan(theMap, debug);
-        int numberOfTrees = theTaboggan.move();
+        int numberOfTrees = theTaboggan.move(null);
 
         System.out.println("Number of trees encountered: "+numberOfTrees);
     }
