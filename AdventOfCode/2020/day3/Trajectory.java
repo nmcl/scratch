@@ -1,5 +1,7 @@
 public class Trajectory
 {
+    public static final String MAP_FILE = "map.txt";
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -31,5 +33,11 @@ public class Trajectory
 
             System.exit(0);
         }
+
+        Map theMap = new Map(MAP_FILE, debug);
+        Taboggan theTaboggan = new Taboggan(theMap, debug);
+        int numberOfTrees = theTaboggan.move();
+
+        System.out.println("Number of trees encountered: "+numberOfTrees);
     }
 }
