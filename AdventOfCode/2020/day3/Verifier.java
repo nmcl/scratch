@@ -18,9 +18,13 @@ public class Verifier
 
         int trees = _taboggan.move();
 
-        System.out.println("Trees encountered: "+trees);
+        if (_debug)
+            System.out.println("Trees encountered: "+trees);
         
-        return false;
+        if (trees == NUMBER_OF_TREES)
+            return true;
+        else
+            return false;
     }
 
     private Map _theMap;
