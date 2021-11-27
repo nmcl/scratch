@@ -33,6 +33,11 @@ public class Taboggan
                 _mapIndex++;
 
                 _maps[_mapIndex] = _maps[0];
+
+                _position = new Coordinate(_position.getX() - _maps[0].width(), _position.getY());
+
+                if (_debug)
+                    System.out.println("New position "+_position);
             }
             else
             {
