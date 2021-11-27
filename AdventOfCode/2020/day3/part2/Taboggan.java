@@ -9,23 +9,17 @@ public class Taboggan
 
         _mapIndex = 0;
         _numberOfTrees = 0;
-        _position = new Coordinate(0, 0);
+        _position = null;
         _debug = debug;
-    }
-
-    public final void reset ()
-    {
-        _maps = new Map[MAP_COPIES];
-        _maps[0] = original;
-
-        _mapIndex = 0;
-        _numberOfTrees = 0;
-        _position = new Coordinate(0, 0);
     }
 
     public int move (Coordinate jump)
     {
         boolean finished = false;
+        
+        _mapIndex = 0;
+        _numberOfTrees = 0;
+        _position = new Coordinate(0, 0);
 
         while (!finished)
         {
