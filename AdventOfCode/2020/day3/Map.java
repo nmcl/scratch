@@ -13,17 +13,17 @@ public class Map
 
     public final int height ()
     {
-        return _theMap.length;
+        return _theMap[0].length;
     }
 
     public final int width ()
     {
-        return _theMap[0].length;
+        return _theMap.length;
     }
-    
+
     public final boolean validPosition (Coordinate pos)
     {
-        if ((pos.getX() < _theMap[0].length) && (pos.getY() < _theMap.length))
+        if ((pos.getX() < width()) && (pos.getY() < height()))
             return true;
         else
             return false;
@@ -31,7 +31,7 @@ public class Map
 
     public final boolean finished (Coordinate pos)
     {
-        if (pos.getY() >= _theMap.length)
+        if (pos.getY() >= height())
             return true;
         else
             return false;
@@ -46,13 +46,13 @@ public class Map
     public String toString ()
     {
         if (_debug)
-            System.out.println("Dimensions <"+_theMap[0].length+", "+_theMap.length+">");
+            System.out.println("Dimensions <"+width()+", "+height()+">");
 
         String str = "";
 
-        for (int x = 0; x < _theMap[0].length; x++)
+        for (int x = 0; x < width(); x++)
         {
-            for (int y = 0; y < _theMap.length; y++)
+            for (int y = 0; y < height(); y++)
             {
                 str += _theMap[x][y];
             }
