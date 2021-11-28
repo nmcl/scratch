@@ -84,6 +84,12 @@ public class Passport
         return _cid;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Passport < byr:"+_byr+", iyr:"+_iyr+", eyr:"+_eyr+", hgt:"+_hgt+", hcl:"+_hcl+", ecl:"+_ecl+", pid:"+_pid+", cid:"+_cid+" >";
+    }
+
     private int _byr = 0;
     private int _iyr = 0;
     private int _eyr = 0;
