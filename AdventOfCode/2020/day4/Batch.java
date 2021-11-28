@@ -23,36 +23,76 @@ public class Batch
 
             while ((line = reader.readLine()) != null)
             {
+                Passport p = new Passport();
+
                 if (line.length() > 0) // blank?
                 {
-                    int byr = 0;
-                    int iry = 0;
-                    int eyr = 0;
-                    int hgt = 0;
-                    String hcl = "";
-                    String ecl = "";
-                    int pid = 0;
-                    int cid = 0;
+                    String[] tuples = line.split(SPACE);
 
-                    int rangeDelimiter = line.indexOf(RANGE_DELIMITER);
-                    int space = line.indexOf(SPACE);
-                    String minimum = line.substring(0, rangeDelimiter);
-                    String maximum = line.substring(rangeDelimiter +1, space);
-                    int passwordDelimiter = line.indexOf(PASSWORD_DELIMITER);
-                    String letter = line.substring(space +1, passwordDelimiter);
-                    String password = line.substring(passwordDelimiter +1).trim();
-
-                    if (debug)
+                    for (int i = 0; i < tuples.length; i++)
                     {
-                        System.out.println("\nLoaded < "+minimum+", "+maximum+" >");
-                        System.out.println("Letter: "+letter);
-                        System.out.println("Password to check: "+password);
+                        String[] pairs = tuples[i].split(DELIMITER);
+
+                        if (pairs.length != 2)
+                            System.out.println("Error - more than two in the pairs field! "+pairs);
+                        else
+                        {
+                            switch (pairs[0])
+                            {
+                                case PassportFields.BIRTH_YEAR:
+                                {
+                                    p.setBirthYear(Integer.parseInt(pairs[1]));
+                                }
+                                break;
+                                case PassportFields.ISSUE_YEAR:
+                                {
+                                    p.setIssueYear(Integer.parseInt(pairs[1]));
+                                }
+                                break;
+                                case PassportFields.EXPORATION_YEAR:
+                                {
+                                    p.setExpirationYear(Integer.parseInt(pairs[1]));
+                                }
+                                break;
+                                case PassportFields.HEIGHT:
+                                {
+                                    p.setHeight(Integer.parseInt(pairs[1]));
+                                }
+                                break;
+                                case PassportFields.HAIR_COLOUR:
+                                {
+                                    p.setExpirationYear(pairs[1]);
+                                }
+                                break;
+                                case PassportFields.EYE_COLOUR:
+                                {
+                                    p.setExpirationYear(pairs[1]);
+                                }
+                                break;
+                                case PassportFields.PASSPORT_ID:
+                                {
+                                    p.setPassportIDInteger.parseInt(pairs[1]);
+                                }
+                                break;
+                                case PassportFields.COUNTRY_ID:
+                                {
+                                    p.setCountryID(Integer.parseInt(pairs[1]));
+                                }
+                                break;
+                                default:
+                                {
+                                    System.out.println("Error - unknown field: "+pairs[0]);
+                                }
+                                break;
+                            }
+                        }
                     }
-
-                    PasswordPolicy policy = new PasswordPolicy(Integer.parseInt(minimum), Integer.parseInt(maximum), letter.charAt(0));
-
-                    results.add(new PasswordData(policy, password));
                 }
+
+                if (debug)
+                    System.out.println("Loaded passport: "+p);
+
+                results.add(p);
             }
         }
         catch (Throwable ex)
