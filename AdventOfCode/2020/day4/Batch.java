@@ -3,10 +3,10 @@ import java.io.*;
 
 public class Batch
 {
-    public static char DELIMITER = ':';
-    public static char SPACE = ' ';
+    public static String DELIMITER = ":";
+    public static String SPACE = " ";
 
-    public static Vector<Passwport> loadData (String inputFile, boolean debug)
+    public static Vector<Passport> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
@@ -61,17 +61,17 @@ public class Batch
                                 break;
                                 case PassportFields.HAIR_COLOUR:
                                 {
-                                    p.setExpirationYear(pairs[1]);
+                                    p.setHairColour(pairs[1]);
                                 }
                                 break;
                                 case PassportFields.EYE_COLOUR:
                                 {
-                                    p.setExpirationYear(pairs[1]);
+                                    p.setEyeColour(pairs[1]);
                                 }
                                 break;
                                 case PassportFields.PASSPORT_ID:
                                 {
-                                    p.setPassportIDInteger.parseInt(pairs[1]);
+                                    p.setPassportID(Integer.parseInt(pairs[1]));
                                 }
                                 break;
                                 case PassportFields.COUNTRY_ID:
