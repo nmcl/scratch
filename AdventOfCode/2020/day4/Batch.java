@@ -17,8 +17,9 @@ public class Batch
 
         try
         {
-            reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
+
+            reader = new BufferedReader(new FileReader(inputFile));
 
             while ((line = reader.readLine()) != null)
             {
