@@ -34,12 +34,12 @@ public class Passport
         return _eyr;
     }
 
-    public final void setHeight(int hgt)
+    public final void setHeight (String hgt)
     {
         _hgt = hgt;
     }
 
-    public final int getHeight ()
+    public final String getHeight ()
     {
         return _hgt;
     }
@@ -93,9 +93,9 @@ public class Passport
     private int _byr = 0;
     private int _iyr = 0;
     private int _eyr = 0;
-    private int _hgt = 0;
-    private String _hcl = "";
-    private String _ecl = "";
+    private String _hgt = "unassigned";
+    private String _hcl = "unassigned";
+    private String _ecl = "unassigned";
     private int _pid = 0;
     private int _cid = 0;
 }
