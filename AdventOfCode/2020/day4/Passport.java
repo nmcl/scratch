@@ -86,6 +86,11 @@ public class Passport
         return _cid;
     }
 
+    public final boolean isValid ()
+    {
+        return false;
+    }
+
     @Override
     public String toString ()
     {
