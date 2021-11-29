@@ -37,6 +37,9 @@ public class Batch
                             System.out.println("Error - more than two in the pairs field! "+pairs);
                         else
                         {
+                            if (debug)
+                                System.out.println("Batch loaded: < "+pairs[0]+", "+pairs[1]+" >");
+
                             switch (pairs[0])
                             {
                                 case PassportFields.BIRTH_YEAR:
