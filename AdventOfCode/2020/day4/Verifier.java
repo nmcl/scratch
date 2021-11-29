@@ -11,6 +11,8 @@ public class Verifier
 
     public boolean verify ()
     {
+        Vector<Passport> passports = Batch.loadData(EXAMPLE_FILE, _debug);
+        
         return false;
     }
 
