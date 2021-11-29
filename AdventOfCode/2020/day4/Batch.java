@@ -43,53 +43,60 @@ public class Batch
                                 if (debug)
                                     System.out.println("Batch loaded: < "+pairs[0]+", "+pairs[1]+" >");
 
-                                switch (pairs[0])
+                                try
                                 {
-                                    case PassportFields.BIRTH_YEAR:
+                                    switch (pairs[0])
                                     {
-                                        p.setBirthYear(Integer.parseInt(pairs[1]));
+                                        case PassportFields.BIRTH_YEAR:
+                                        {
+                                            p.setBirthYear(pairs[1]);
+                                        }
+                                        break;
+                                        case PassportFields.ISSUE_YEAR:
+                                        {
+                                            p.setIssueYear(pairs[1]);
+                                        }
+                                        break;
+                                        case PassportFields.EXPORATION_YEAR:
+                                        {
+                                            p.setExpirationYear(pairs[1]);
+                                        }
+                                        break;
+                                        case PassportFields.HEIGHT:
+                                        {
+                                            p.setHeight(pairs[1]);
+                                        }
+                                        break;
+                                        case PassportFields.HAIR_COLOUR:
+                                        {
+                                            p.setHairColour(pairs[1]);
+                                        }
+                                        break;
+                                        case PassportFields.EYE_COLOUR:
+                                        {
+                                            p.setEyeColour(pairs[1]);
+                                        }
+                                        break;
+                                        case PassportFields.PASSPORT_ID:
+                                        {
+                                            p.setPassportID(pairs[1]);
+                                        }
+                                        break;
+                                        case PassportFields.COUNTRY_ID:
+                                        {
+                                            p.setCountryID(pairs[1]);
+                                        }
+                                        break;
+                                        default:
+                                        {
+                                            System.out.println("Error - unknown field: "+pairs[0]);
+                                        }
+                                        break;
                                     }
-                                    break;
-                                    case PassportFields.ISSUE_YEAR:
-                                    {
-                                        p.setIssueYear(Integer.parseInt(pairs[1]));
-                                    }
-                                    break;
-                                    case PassportFields.EXPORATION_YEAR:
-                                    {
-                                        p.setExpirationYear(Integer.parseInt(pairs[1]));
-                                    }
-                                    break;
-                                    case PassportFields.HEIGHT:
-                                    {
-                                        p.setHeight(pairs[1]);
-                                    }
-                                    break;
-                                    case PassportFields.HAIR_COLOUR:
-                                    {
-                                        p.setHairColour(pairs[1]);
-                                    }
-                                    break;
-                                    case PassportFields.EYE_COLOUR:
-                                    {
-                                        p.setEyeColour(pairs[1]);
-                                    }
-                                    break;
-                                    case PassportFields.PASSPORT_ID:
-                                    {
-                                        p.setPassportID(Integer.parseInt(pairs[1]));
-                                    }
-                                    break;
-                                    case PassportFields.COUNTRY_ID:
-                                    {
-                                        p.setCountryID(Integer.parseInt(pairs[1]));
-                                    }
-                                    break;
-                                    default:
-                                    {
-                                        System.out.println("Error - unknown field: "+pairs[0]);
-                                    }
-                                    break;
+                                }
+                                catch (Exception ex)
+                                {
+                                    // ignore as some data may be invalid anyway
                                 }
                             }
                         }
