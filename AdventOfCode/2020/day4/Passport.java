@@ -92,7 +92,7 @@ public class Passport
     {
         if ((_byr != UNASSIGNED_INT) && (_iyr != UNASSIGNED_INT))
         {
-            if ((_eyr != UNASSIGNED_INT) && (_pid != UNASSIGNED_INT) && (_cid != UNASSIGNED_INT))
+            if ((_eyr != UNASSIGNED_INT) && (_pid != UNASSIGNED_INT))
             {
                 if (!UNASSIGNED_STRING.equals(_hgt) && !UNASSIGNED_STRING.equals(_hcl) && !UNASSIGNED_STRING.equals(_ecl))
                     return true;
