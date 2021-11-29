@@ -1,5 +1,9 @@
+import java.util.*;
+
 public class PassportProcessing
 {
+    public static final String INPUT_FILE = "input.txt";
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -31,5 +35,22 @@ public class PassportProcessing
 
             System.exit(0);
         }
+
+        Vector<Passport> passports = Batch.loadData(INPUT_FILE, debug);
+        Enumeration<Passport> iter = passports.elements();
+        int numberOfValidPassports = 0;
+
+        while (iter.hasMoreElements())
+        {
+            Passport p = iter.nextElement();
+
+            if (debug)
+                System.out.println("Checking "+p+" and validity: "+p.isValid());
+
+            if (p.isValid())
+                numberOfValidPassports++;
+        }
+
+        System.out.println("Number of valid passports: "+numberOfValidPassports);
     }
 }
