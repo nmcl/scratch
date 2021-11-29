@@ -24,72 +24,80 @@ public class Batch
             while ((line = reader.readLine()) != null)
             {
                 Passport p = new Passport();
+                boolean done = false;
 
-                if (line.length() > 0) // blank?
+                while (!done)
                 {
-                    String[] tuples = line.split(SPACE);
-
-                    for (int i = 0; i < tuples.length; i++)
+                    if ((line != null) && (line.length() > 0)) // blank?
                     {
-                        String[] pairs = tuples[i].split(DELIMITER);
+                        String[] tuples = line.split(SPACE);
 
-                        if (pairs.length != 2)
-                            System.out.println("Error - more than two in the pairs field! "+pairs);
-                        else
+                        for (int i = 0; i < tuples.length; i++)
                         {
-                            if (debug)
-                                System.out.println("Batch loaded: < "+pairs[0]+", "+pairs[1]+" >");
+                            String[] pairs = tuples[i].split(DELIMITER);
 
-                            switch (pairs[0])
+                            if (pairs.length != 2)
+                                System.out.println("Error - more than two in the pairs field! "+pairs);
+                            else
                             {
-                                case PassportFields.BIRTH_YEAR:
+                                if (debug)
+                                    System.out.println("Batch loaded: < "+pairs[0]+", "+pairs[1]+" >");
+
+                                switch (pairs[0])
                                 {
-                                    p.setBirthYear(Integer.parseInt(pairs[1]));
+                                    case PassportFields.BIRTH_YEAR:
+                                    {
+                                        p.setBirthYear(Integer.parseInt(pairs[1]));
+                                    }
+                                    break;
+                                    case PassportFields.ISSUE_YEAR:
+                                    {
+                                        p.setIssueYear(Integer.parseInt(pairs[1]));
+                                    }
+                                    break;
+                                    case PassportFields.EXPORATION_YEAR:
+                                    {
+                                        p.setExpirationYear(Integer.parseInt(pairs[1]));
+                                    }
+                                    break;
+                                    case PassportFields.HEIGHT:
+                                    {
+                                        p.setHeight(pairs[1]);
+                                    }
+                                    break;
+                                    case PassportFields.HAIR_COLOUR:
+                                    {
+                                        p.setHairColour(pairs[1]);
+                                    }
+                                    break;
+                                    case PassportFields.EYE_COLOUR:
+                                    {
+                                        p.setEyeColour(pairs[1]);
+                                    }
+                                    break;
+                                    case PassportFields.PASSPORT_ID:
+                                    {
+                                        p.setPassportID(Integer.parseInt(pairs[1]));
+                                    }
+                                    break;
+                                    case PassportFields.COUNTRY_ID:
+                                    {
+                                        p.setCountryID(Integer.parseInt(pairs[1]));
+                                    }
+                                    break;
+                                    default:
+                                    {
+                                        System.out.println("Error - unknown field: "+pairs[0]);
+                                    }
+                                    break;
                                 }
-                                break;
-                                case PassportFields.ISSUE_YEAR:
-                                {
-                                    p.setIssueYear(Integer.parseInt(pairs[1]));
-                                }
-                                break;
-                                case PassportFields.EXPORATION_YEAR:
-                                {
-                                    p.setExpirationYear(Integer.parseInt(pairs[1]));
-                                }
-                                break;
-                                case PassportFields.HEIGHT:
-                                {
-                                    p.setHeight(pairs[1]);
-                                }
-                                break;
-                                case PassportFields.HAIR_COLOUR:
-                                {
-                                    p.setHairColour(pairs[1]);
-                                }
-                                break;
-                                case PassportFields.EYE_COLOUR:
-                                {
-                                    p.setEyeColour(pairs[1]);
-                                }
-                                break;
-                                case PassportFields.PASSPORT_ID:
-                                {
-                                    p.setPassportID(Integer.parseInt(pairs[1]));
-                                }
-                                break;
-                                case PassportFields.COUNTRY_ID:
-                                {
-                                    p.setCountryID(Integer.parseInt(pairs[1]));
-                                }
-                                break;
-                                default:
-                                {
-                                    System.out.println("Error - unknown field: "+pairs[0]);
-                                }
-                                break;
                             }
                         }
+
+                        line = reader.readLine();
                     }
+                    else
+                        done = true;
                 }
 
                 if (debug)
