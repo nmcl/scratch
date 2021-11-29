@@ -59,7 +59,7 @@ public class Batch
                                 break;
                                 case PassportFields.HEIGHT:
                                 {
-                                    p.setHeight(Integer.parseInt(pairs[1]));
+                                    p.setHeight(pairs[1]);
                                 }
                                 break;
                                 case PassportFields.HAIR_COLOUR:
