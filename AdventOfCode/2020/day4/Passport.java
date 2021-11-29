@@ -2,6 +2,8 @@ public class Passport
 {
     public static final String UNASSIGNED_STRING = "unassigned";
 
+    public static final int UNASSIGNED_INT = -1;
+
     public Passport ()
     {
     }
@@ -88,6 +90,15 @@ public class Passport
 
     public final boolean isValid ()
     {
+        if ((_byr != UNASSIGNED_INT) && (_iyr != UNASSIGNED_INT))
+        {
+            if ((_eyr != UNASSIGNED_INT) && (_pid != UNASSIGNED_INT) && (_cid != UNASSIGNED_INT))
+            {
+                if (!UNASSIGNED_STRING.equals(_hgt) && !UNASSIGNED_STRING.equals(_hcl) && !UNASSIGNED_STRING.equals(_ecl))
+                    return true;
+            }
+        }
+
         return false;
     }
 
@@ -97,12 +108,12 @@ public class Passport
         return "Passport < byr:"+_byr+", iyr:"+_iyr+", eyr:"+_eyr+", hgt:"+_hgt+", hcl:"+_hcl+", ecl:"+_ecl+", pid:"+_pid+", cid:"+_cid+" >";
     }
 
-    private int _byr = 0;
-    private int _iyr = 0;
-    private int _eyr = 0;
+    private int _byr = UNASSIGNED_INT;
+    private int _iyr = UNASSIGNED_INT;
+    private int _eyr = UNASSIGNED_INT;
     private String _hgt = UNASSIGNED_STRING;
     private String _hcl = UNASSIGNED_STRING;
     private String _ecl = UNASSIGNED_STRING;
-    private int _pid = 0;
-    private int _cid = 0;
+    private int _pid = UNASSIGNED_INT;
+    private int _cid = UNASSIGNED_INT;
 }
