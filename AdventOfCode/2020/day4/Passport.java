@@ -1,5 +1,7 @@
 public class Passport
 {
+    public static final String UNASSIGNED_STRING = "unassigned";
+
     public Passport ()
     {
     }
@@ -93,9 +95,9 @@ public class Passport
     private int _byr = 0;
     private int _iyr = 0;
     private int _eyr = 0;
-    private String _hgt = "unassigned";
-    private String _hcl = "unassigned";
-    private String _ecl = "unassigned";
+    private String _hgt = UNASSIGNED_STRING;
+    private String _hcl = UNASSIGNED_STRING;
+    private String _ecl = UNASSIGNED_STRING;
     private int _pid = 0;
     private int _cid = 0;
 }
