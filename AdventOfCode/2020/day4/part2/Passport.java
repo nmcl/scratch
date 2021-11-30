@@ -2,6 +2,9 @@ public class Passport
 {
     public static final String UNASSIGNED_STRING = "unassigned";
 
+    public static final String CM = "cm";
+    public static final String IN = "in";
+
     public Passport ()
     {
     }
@@ -84,9 +87,24 @@ public class Passport
         return _eyr;
     }
 
+    /*
+     * hgt (Height) - a number followed by either cm or in:
+     * - If cm, the number must be at least 150 and at most 193.
+     * - If in, the number must be at least 59 and at most 76.
+     */
+
     public final void setHeight (String hgt)
     {
-        _hgt = hgt;
+        int units = hgt.indexOf(CM);
+
+        if (units == -1)
+            units = hgt.indexOf(IN);
+
+        if (units != -1)
+        {
+
+            _hgt = hgt;
+        }
     }
 
     public final String getHeight ()
