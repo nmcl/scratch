@@ -5,6 +5,8 @@ public class Passport
     public static final String CM = "cm";
     public static final String IN = "in";
 
+    public static final String[] EYE_COLOURS = { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
+
     public Passport ()
     {
     }
@@ -96,14 +98,31 @@ public class Passport
     public final void setHeight (String hgt)
     {
         int units = hgt.indexOf(CM);
+        boolean cm = false;
 
         if (units == -1)
             units = hgt.indexOf(IN);
+        else
+            cm = true;
 
         if (units != -1)
         {
+            int size = Integer.valueOf(hgt.substring(0, units));
+            boolean valid = false;
 
-            _hgt = hgt;
+            if (cm)
+            {
+                if ((size >= 150) && (size <= 193))
+                    valid = true;
+            }
+            else
+            {
+                if ((size >= 59) && (size <= 76))
+                    valid = true;
+            }
+
+            if (valid)
+                _hgt = hgt;
         }
     }
 
@@ -112,9 +131,18 @@ public class Passport
         return _hgt;
     }
 
+    // hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
+
     public final void setHairColour (String hcl)
     {
-        _hcl = hcl;
+        if (hcl.length() == 7)
+        {
+            if (hcl.charAt(0) == '#')
+            {
+                if (hcl.substring(1).matches("^[0-9a-fA-F]+$"))
+                    _hcl = hcl;
+            }
+        }
     }
 
     public final String getHairColour ()
@@ -122,9 +150,21 @@ public class Passport
         return _hcl;
     }
 
+    // ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
+
     public final void setEyeColour (String ecl)
     {
-        _ecl = ecl;
+        boolean found = false;
+
+        for (int i = 0; (i < EYE_COLOURS.length) && (!found); i++)
+        {
+            if (EYE_COLOURS[i].equals(ecl))
+                found = true;
+
+        }
+
+        if (found)
+            _ecl = ecl;
     }
 
     public final String getEyeColour ()
