@@ -2,8 +2,6 @@ public class Passport
 {
     public static final String UNASSIGNED_STRING = "unassigned";
 
-    public static final int UNASSIGNED_INT = -1;
-
     public Passport ()
     {
     }
