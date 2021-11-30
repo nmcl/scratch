@@ -172,9 +172,14 @@ public class Passport
         return _ecl;
     }
 
+    // pid (Passport ID) - a nine-digit number, including leading zeroes.
+
     public final void setPassportID (String pid)
     {
-        _pid = pid;
+        if (pid.length() == 9)
+        {
+            _pid = pid;
+        }
     }
 
     public final String getPassportUD ()
