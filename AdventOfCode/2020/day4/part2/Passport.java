@@ -10,15 +10,15 @@ public class Passport
 
     public final void setBirthYear (String byr)
     {
-        if (byr.length == 4)
+        if (byr.length() == 4)
         {
             int year = -1;
 
             try
             {
-                year = Integer.valueOd(byr);
+                year = Integer.valueOf(byr);
 
-                if ((value >= 1920) && (value <= 2002))
+                if ((year >= 1920) && (year <= 2002))
                     _byr = byr;
             }
             catch (Exception ex)
@@ -32,9 +32,25 @@ public class Passport
         return _byr;
     }
 
+    // iyr (Issue Year) - four digits; at least 2010 and at most 2020.
+
     public final void setIssueYear (String iyr)
     {
-        _iyr = iyr;
+        if (iyr.length() == 4)
+        {
+            int year = -1;
+
+            try
+            {
+                year = Integer.valueOf(iyr);
+
+                if ((year >= 2010) && (year <= 2020))
+                    _iyr = iyr;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 
     public final String getIssueYear ()
@@ -42,9 +58,25 @@ public class Passport
         return _iyr;
     }
 
+    // eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
+
     public final void setExpirationYear (String eyr)
     {
-        _eyr = eyr;
+        if (eyr.length() == 4)
+        {
+            int year = -1;
+
+            try
+            {
+                year = Integer.valueOf(eyr);
+
+                if ((year >= 2020) && (year <= 2030))
+                    _eyr = eyr;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 
     public final String getExpirationYear ()
