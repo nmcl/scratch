@@ -178,7 +178,15 @@ public class Passport
     {
         if (pid.length() == 9)
         {
-            _pid = pid;
+            try
+            {
+                Long value = Long.valueOf(pid);
+
+                _pid = pid;
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 
@@ -187,6 +195,8 @@ public class Passport
         return _pid;
     }
 
+    // cid (Country ID) - ignored, missing or not.
+    
     public final void setCountryID (String cid)
     {
         _cid = cid;
