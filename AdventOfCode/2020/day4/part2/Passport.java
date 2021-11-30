@@ -6,9 +6,25 @@ public class Passport
     {
     }
 
+    // byr (Birth Year) - four digits; at least 1920 and at most 2002.
+
     public final void setBirthYear (String byr)
     {
-        _byr = byr;
+        if (byr.length == 4)
+        {
+            int year = -1;
+
+            try
+            {
+                year = Integer.valueOd(byr);
+
+                if ((value >= 1920) && (value <= 2002))
+                    _byr = byr;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 
     public final String getBirthYear ()
