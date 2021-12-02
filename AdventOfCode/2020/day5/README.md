@@ -1,4 +1,12 @@
-half of that region the seat is in, and so on until you're left with exactly one row.
+--- Day 5: Binary Boarding ---
+
+You board your plane only to discover a new problem: you dropped your boarding pass! You aren't sure which seat is yours, and all of the flight attendants are busy with the flood of people that suddenly made it through passport control.
+
+You write a quick program to use your phone's camera to scan all of the nearby boarding passes (your puzzle input); perhaps you can find your seat through process of elimination.
+
+Instead of zones or groups, this airline uses binary space partitioning to seat people. A seat might be specified like FBFBBFFRLR, where F means "front", B means "back", L means "left", and R means "right".
+
+The first 7 characters will either be F or B; these specify exactly one of the 128 rows on the plane (numbered 0 through 127). Each letter tells you which half of a region the given seat is in. Start with the whole list of rows; the first letter indicates whether the seat is in the front (0 through 63) or the back (64 through 127). The next letter indicates which half of that region the seat is in, and so on until you're left with exactly one row.
 
 For example, consider just the first seven characters of FBFBBFFRLR:
 
@@ -9,8 +17,8 @@ For example, consider just the first seven characters of FBFBBFFRLR:
 - B means to take the upper half, keeping rows 40 through 47.
 - B keeps rows 44 through 47.
 - F keeps rows 44 through 45.
-- The final F keeps the lower of the two, row 44.
 
+The final F keeps the lower of the two, row 44.
 The last three characters will be either L or R; these specify exactly one of the 8 columns of seats on the plane (numbered 0 through 7). The same process as above proceeds again, this time with only three steps. L means to keep the lower half, while R means to keep the upper half.
 
 For example, consider just the last 3 characters of FBFBBFFRLR:
