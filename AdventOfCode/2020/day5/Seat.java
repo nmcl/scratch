@@ -14,17 +14,17 @@ public class Seat
         this(row, column, (row *8) + column);
     }
 
-    private final int getRow ()
+    public final int getRow ()
     {
         return _row;
     }
 
-    private final int getColumn ()
+    public final int getColumn ()
     {
         return _column;
     }
 
-    private final int id ()
+    public final int id ()
     {
         return _id;
     }
