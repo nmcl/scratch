@@ -16,7 +16,10 @@ public class Verifier
         Barcode code = new Barcode(PASS_1, _debug);
         Seat s = code.getSeat();
 
-        System.out.println("got "+s);
+        if (PASS_1_SEAT.equals(s))
+        {
+            return true;
+        }
 
         return false;
     }
