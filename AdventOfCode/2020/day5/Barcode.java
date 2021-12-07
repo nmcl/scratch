@@ -29,28 +29,36 @@ public class Barcode
                     {
                         // F means to take the lower half
 
-                        int size = endRange - startRange;
+                        int size = endRow - startRow;
 
-                        endRange = startRange + (size / 2);
+                        endRow = startRow - (size / 2);
                     }
                     break;
                     case BACK:
                     {
                         // B means to take the upper half
 
-                        int size = endRange - startRange;
+                        int size = endRow - startRow;
 
-                        startRange = startRange + (size / 2);
+                        startRow = startRow + (size / 2);
                     }
                     break;
                     case LEFT:
                     {
                         // L means to keep the lower half
+
+                        int size = endColumn - startColumn;
+
+                        startColumn = startColumn + (size / 2);
                     }
                     break;
                     case RIGHT:
                     {
                         // R means to keep the upper half
+
+                        int size = endColumn - startColumn;
+
+                        endColumn = endColumn - (size / 2);
                     }
                     break;
                     default:
