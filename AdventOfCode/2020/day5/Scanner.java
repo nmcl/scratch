@@ -59,7 +59,7 @@ public class Scanner
 
                 if (b.getSeat().id() > id)
                     id = b.getSeat().id();
-                    
+
                 values.add(b);
             }
         }
@@ -77,5 +77,7 @@ public class Scanner
             {
             }
         }
+
+        System.out.println("Highest seat ID on a boarding pass: "+id);
     }
 }
