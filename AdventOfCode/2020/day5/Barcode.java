@@ -16,11 +16,25 @@ public class Barcode
     {
         if (_theSeat == null)
         {
-            int range = 127;
+            int startRange = 1;
+            int endRange = 128;
 
             for (int i = 0; i < _data.length(); i++)
             {
+                switch (_data.charAt(i))
+                {
+                    case FRONT:
+                    {
+                        endRange = endRange / 2;
+                    }
+                    break;
+                    case BACK:
+                    {
+                        startRange = endRange / 2;
+                    }
+                    break;
 
+                }
             }
         }
 
