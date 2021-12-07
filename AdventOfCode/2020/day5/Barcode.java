@@ -29,36 +29,60 @@ public class Barcode
                     {
                         // F means to take the lower half
 
+                        if (_debug)
+                            System.out.println("Front currently: < "+startRow+", "+endRow+" >");
+
                         int size = endRow - startRow;
 
                         endRow = startRow - (size / 2);
+
+                        if (_debug)
+                            System.out.println("Front now: < "+startRow+", "+endRow+" >");
                     }
                     break;
                     case BACK:
                     {
                         // B means to take the upper half
 
+                        if (_debug)
+                            System.out.println("Back currently: < "+startRow+", "+endRow+" >");
+
                         int size = endRow - startRow;
 
                         startRow = startRow + (size / 2);
+
+                        if (_debug)
+                            System.out.println("Back now: < "+startRow+", "+endRow+" >");
                     }
                     break;
                     case LEFT:
                     {
                         // L means to keep the lower half
 
+                        if (_debug)
+                            System.out.println("Left currently: < "+startColumn+", "+endColumn+" >");
+
                         int size = endColumn - startColumn;
 
                         startColumn = startColumn + (size / 2);
+
+                        if (_debug)
+                            System.out.println("Left now: < "+startColumn+", "+endColumn+" >");
                     }
                     break;
                     case RIGHT:
                     {
                         // R means to keep the upper half
 
+                        if (_debug)
+                            System.out.println("Right currently: < "+startColumn+", "+endColumn+" >");
+
                         int size = endColumn - startColumn;
 
                         endColumn = endColumn - (size / 2);
+
+                        if (_debug)
+                            System.out.println("Right now: < "+startColumn+", "+endColumn+" >");
                     }
                     break;
                     default:
