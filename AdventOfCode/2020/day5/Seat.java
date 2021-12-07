@@ -3,7 +3,7 @@ public class Seat
     public Seat (int row, int column)
     {
         _row = row;
-        _column = _column;
+        _column = column;
 
         // multiply the row by 8, then add the column
 
