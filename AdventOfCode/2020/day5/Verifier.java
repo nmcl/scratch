@@ -12,6 +12,11 @@ public class Verifier
 
     public final boolean verify ()
     {
+        Barcode code = new Barcode(PASS_1, _debug);
+        Seat s = code.getSeat();
+
+        System.out.println("got "+s);
+
         return false;
     }
     
