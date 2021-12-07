@@ -30,6 +30,26 @@ public class Seat
     }
 
     @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+        return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Seat temp = (Seat) obj;
+
+            if ((temp._row == _row) && (temp._column == _column))
+                return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public String toString ()
     {
         return "Seat row: "+_row+", column: "+_column+" and id: "+_id;
