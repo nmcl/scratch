@@ -93,8 +93,6 @@ public class Barcode
                 }
             }
 
-            System.out.println(startRow+" "+startColumn);
-            
             _theSeat = new Seat(startRow, startColumn);
         }
 
