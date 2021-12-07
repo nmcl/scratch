@@ -3,6 +3,7 @@ public class Verifier
     public final String PASS_1 = "FBFBBFFRLR";
     public final Seat PASS_1_SEAT = new Seat(44, 5, 357);
     public final String PASS_2 = "BFFFBBFRRR";
+    public final Seat PASS_2_SEAT = new Seat(70, 7, 567);
     public final String PASS_3 = "FFFBBBFRRR";
     public final String PASS_4 = "BBFFBBFRLL";
 
@@ -18,7 +19,12 @@ public class Verifier
 
         if (PASS_1_SEAT.equals(s))
         {
-            return true;
+            code = new Barcode(PASS_2, _debug);
+
+            s = code.getSeat();
+
+            if (PASS_2_SEAT.equals(s))
+                return true;
         }
 
         return false;
