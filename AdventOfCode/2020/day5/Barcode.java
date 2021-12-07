@@ -64,7 +64,7 @@ public class Barcode
 
                         int size = endColumn - startColumn;
 
-                        startColumn = startColumn + (size / 2);
+                        startColumn = startColumn + (size / 2) +1;
 
                         if (_debug)
                             System.out.println("Left now: < "+startColumn+", "+endColumn+" >");
@@ -79,7 +79,7 @@ public class Barcode
 
                         int size = endColumn - startColumn;
 
-                        endColumn = endColumn - (size / 2);
+                        startColumn = startColumn + (size / 2) +1;
 
                         if (_debug)
                             System.out.println("Right now: < "+startColumn+", "+endColumn+" >");
