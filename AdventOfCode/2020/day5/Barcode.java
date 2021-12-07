@@ -64,7 +64,7 @@ public class Barcode
 
                         int size = endColumn - startColumn;
 
-                        startColumn = startColumn + (size / 2) +1;
+                        endColumn = endColumn - (size / 2) -1;
 
                         if (_debug)
                             System.out.println("Left now: < "+startColumn+", "+endColumn+" >");
@@ -93,6 +93,8 @@ public class Barcode
                 }
             }
 
+            System.out.println(startRow+" "+startColumn);
+            
             _theSeat = new Seat(startRow, startColumn);
         }
 
