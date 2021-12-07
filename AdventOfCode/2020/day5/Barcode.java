@@ -99,6 +99,12 @@ public class Barcode
         return _theSeat;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Barcode: "+_data;
+    }
+
     private String _data;
     private Seat _theSeat;
     private boolean _debug;
