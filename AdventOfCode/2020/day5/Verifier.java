@@ -1,7 +1,7 @@
 public class Verifier
 {
     public final String PASS_1 = "FBFBBFFRLR";
-    public final int[] PASS_1_RESULT = { 44, 5, 357 };
+    public final Seat PASS_1_SEAT = new Seat(44, 5, 357);
     public final String PASS_2 = "BFFFBBFRRR";
     public final String PASS_3 = "FFFBBBFRRR";
     public final String PASS_4 = "BBFFBBFRLL";
