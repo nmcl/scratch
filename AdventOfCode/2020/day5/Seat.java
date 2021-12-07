@@ -42,7 +42,7 @@ public class Seat
         {
             Seat temp = (Seat) obj;
 
-            if ((temp._row == _row) && (temp._column == _column))
+            if ((temp._row == _row) && (temp._column == _column) && (temp._id == _id))
                 return true;
         }
 
