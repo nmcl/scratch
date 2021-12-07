@@ -68,6 +68,8 @@ public class Barcode
                     break;
                 }
             }
+
+            _theSeat = new Seat(startRow, startColumn);
         }
 
         return _theSeat;
