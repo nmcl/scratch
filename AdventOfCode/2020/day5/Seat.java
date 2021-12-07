@@ -1,10 +1,13 @@
 public class Seat
 {
-    public Seat (int row, int column, int id)
+    public Seat (int row, int column)
     {
         _row = row;
         _column = _column;
-        _id = id;
+
+        // multiply the row by 8, then add the column
+
+        _id = (_row *8) + _column;
     }
 
     private final int getRow ()
@@ -20,6 +23,12 @@ public class Seat
     private final int id ()
     {
         return _id;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return "Seat row: "+_row+", column: "+_column+" and id: "+_id;
     }
 
     private int _row;
