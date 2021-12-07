@@ -1,5 +1,10 @@
+import java.util.*;
+import java.io.*;
+
 public class Scanner
 {
+    public static final String DATA_FILE = "input.txt";
+
     public static void main (String[] args)
     {
         boolean verify = false;
@@ -30,6 +35,43 @@ public class Scanner
                 System.out.println("Verify failed!");
 
             System.exit(0);
+        }
+
+        /*
+         * Open the data file and read it in.
+         */
+
+        BufferedReader reader = null;
+        Vector<Barcode> values = new Vector<Barcode>();
+
+        try
+        {
+            reader = new BufferedReader(new FileReader(DATA_FILE));
+            String line = null;
+
+            while ((line = reader.readLine()) != null)
+            {
+                Barcode b = new Barcode(line, debug);
+
+                if (debug)
+                    System.out.println("Loaded: "+b);
+
+                values.add(b);
+            }
+        }
+        catch (Throwable ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                reader.close();
+            }
+            catch (Throwable ex)
+            {
+            }
         }
     }
 }
