@@ -1,13 +1,17 @@
 public class Seat
 {
-    public Seat (int row, int column)
+    public Seat (int row, int column, int id)
     {
         _row = row;
         _column = column;
+        _id = id;
+    }
 
-        // multiply the row by 8, then add the column
+    // multiply the row by 8, then add the column
 
-        _id = (_row *8) + _column;
+    public Seat (int row, int column)
+    {
+        this(row, column, (row *8) + column);
     }
 
     private final int getRow ()
