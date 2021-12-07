@@ -16,8 +16,10 @@ public class Barcode
     {
         if (_theSeat == null)
         {
-            int startRange = 1;
-            int endRange = 128;
+            int startRow = 1;
+            int endRow = 128;
+            int startColumn = 1;
+            int endColumn = 8;
 
             for (int i = 0; i < _data.length(); i++)
             {
@@ -25,15 +27,37 @@ public class Barcode
                 {
                     case FRONT:
                     {
-                        endRange = endRange / 2;
+                        // F means to take the lower half
+
+                        int size = endRange - startRange;
+
+                        endRange = startRange + (size / 2);
                     }
                     break;
                     case BACK:
                     {
-                        startRange = endRange / 2;
+                        // B means to take the upper half
+
+                        int size = endRange - startRange;
+
+                        startRange = startRange + (size / 2);
                     }
                     break;
-
+                    case LEFT:
+                    {
+                        // L means to keep the lower half
+                    }
+                    break;
+                    case RIGHT:
+                    {
+                        // R means to keep the upper half
+                    }
+                    break;
+                    default:
+                    {
+                        System.out.println("Unrecognised barcode character: "+_data.charAt(i));
+                    }
+                    break;
                 }
             }
         }
