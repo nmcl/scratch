@@ -16,7 +16,12 @@ public class Barcode
     {
         if (_theSeat == null)
         {
+            int range = 127;
 
+            for (int i = 0; i < _data.length(); i++)
+            {
+
+            }
         }
 
         return _theSeat;
