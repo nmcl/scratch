@@ -16,10 +16,10 @@ public class Barcode
     {
         if (_theSeat == null)
         {
-            int startRow = 1;
-            int endRow = 128;
-            int startColumn = 1;
-            int endColumn = 8;
+            int startRow = 0;
+            int endRow = 127;
+            int startColumn = 0;
+            int endColumn = 7;
 
             for (int i = 0; i < _data.length(); i++)
             {
@@ -34,7 +34,7 @@ public class Barcode
 
                         int size = endRow - startRow;
 
-                        endRow = startRow - (size / 2);
+                        endRow = endRow - (size / 2) -1;
 
                         if (_debug)
                             System.out.println("Front now: < "+startRow+", "+endRow+" >");
@@ -49,7 +49,7 @@ public class Barcode
 
                         int size = endRow - startRow;
 
-                        startRow = startRow + (size / 2);
+                        startRow = startRow + (size / 2) +1;
 
                         if (_debug)
                             System.out.println("Back now: < "+startRow+", "+endRow+" >");
