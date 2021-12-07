@@ -43,6 +43,7 @@ public class Scanner
 
         BufferedReader reader = null;
         Vector<Barcode> values = new Vector<Barcode>();
+        int id = 0;
 
         try
         {
@@ -56,6 +57,9 @@ public class Scanner
                 if (debug)
                     System.out.println("Loaded: "+b);
 
+                if (b.getSeat().id() > id)
+                    id = b.getSeat().id();
+                    
                 values.add(b);
             }
         }
