@@ -42,8 +42,7 @@ public class Scanner
          */
 
         BufferedReader reader = null;
-        Vector<Barcode> values = new Vector<Barcode>();
-        int id = 0;
+        Plane thePlane = new Plane(debug);
 
         try
         {
@@ -57,10 +56,7 @@ public class Scanner
                 if (debug)
                     System.out.println("Loaded: "+b);
 
-                if (b.getSeat().id() > id)
-                    id = b.getSeat().id();
-
-                values.add(b);
+                thePlane.addSeat(b.getSeat());
             }
         }
         catch (Throwable ex)
@@ -77,7 +73,5 @@ public class Scanner
             {
             }
         }
-
-        System.out.println("Highest seat ID on a boarding pass: "+id);
     }
 }
