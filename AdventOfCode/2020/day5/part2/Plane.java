@@ -9,6 +9,16 @@ public class Plane
         _debug = debug;
     }
 
+    public final void addSeat (Seat s)
+    {
+        _seats[s.getRow()][s.getColumn()] = s;
+    }
+
+    public final Seat getSeat (int row, int column)
+    {
+        return _seats[row][column];
+    }
+
     private Seat[][] _seats;
     private boolean _debug;
 }
