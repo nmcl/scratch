@@ -73,5 +73,7 @@ public class Scanner
             {
             }
         }
+
+        Vector<Seat> iter = thePlane.emptySeats();
     }
 }
