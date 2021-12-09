@@ -76,30 +76,14 @@ public class Scanner
 
         Vector<Seat> emptySeats = thePlane.emptySeats();
         Enumeration<Seat> iter = emptySeats.elements();
-        int row = -1;
-        Seat theSeat = null;
 
-        while (iter.hasMoreElements())
+        if (debug)
         {
-            Seat s = iter.nextElement();
+            while (iter.hasMoreElements())
+            {
+                Seat s = iter.nextElement();
 
-            if (debug)
                 System.out.println("Empty seat: "+s);
-
-            /*
-             * The seat will have a unique row as it's the last one
-             * on the plane.
-             */
-
-            if (s.getRow() == row)
-            {
-                row = -1;
-                theSeat = null;
-            }
-            else
-            {
-                row = s.getRow();
-                theSeat = s;
             }
         }
 
