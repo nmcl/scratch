@@ -74,11 +74,11 @@ public class Scanner
             }
         }
 
-        Vector<Seat> emptySeats = thePlane.emptySeats();
-        Enumeration<Seat> iter = emptySeats.elements();
-
         if (debug)
         {
+            Vector<Seat> emptySeats = thePlane.emptySeats();
+            Enumeration<Seat> iter = emptySeats.elements();
+
             while (iter.hasMoreElements())
             {
                 Seat s = iter.nextElement();
@@ -87,6 +87,8 @@ public class Scanner
             }
         }
 
+        Seat theSeat = thePlane.emptySeat();
+        
         System.out.println("Seat: "+theSeat);
     }
 }
