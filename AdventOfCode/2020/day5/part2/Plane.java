@@ -43,6 +43,25 @@ public class Plane
         return blanks;
     }
 
+    /*
+     * It will have a unique row number as it's the last one in the plane (of valid seats).
+     * 
+     * assumes only one!
+     */
+
+    public final Seat emptySeat ()
+    {
+        Seat theSeat = null;
+        int[] rows = new int[ROWS];
+
+        for (int i = 0; i < ROWS; i++)
+        {
+            rows[i] = 0;
+        }
+
+        return null;
+    }
+
     private Seat[][] _seats;
     private boolean _debug;
 }
