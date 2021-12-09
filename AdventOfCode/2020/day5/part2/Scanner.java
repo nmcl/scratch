@@ -77,6 +77,11 @@ public class Scanner
         Vector<Seat> emptySeats = thePlane.emptySeats();
         Enumeration<Seat> iter = emptySeats.elements();
 
-        while 
+        while (iter.hasMoreElements())
+        {
+            Seat s = iter.nextElement();
+
+            System.out.println("Empty seat: "+s);
+        }
     }
 }
