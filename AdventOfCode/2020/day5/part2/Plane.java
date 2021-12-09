@@ -55,8 +55,21 @@ public class Plane
         int[] rows = new int[ROWS];
 
         for (int i = 0; i < ROWS; i++)
-        {
             rows[i] = 0;
+
+        Vector<Seat> blanks = emptySeats();
+        Enumeration<Seat> iter = blanks.getElements();
+
+        while (iter.hasMoreElements())
+        {
+            Seat s = iter.nextElement();
+
+            rows[s.getRow()]++;
+        }
+
+        for (int j = 0; j < ROWS; j++)
+        {
+
         }
 
         return null;
