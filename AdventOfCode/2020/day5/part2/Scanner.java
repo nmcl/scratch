@@ -74,6 +74,9 @@ public class Scanner
             }
         }
 
-        Vector<Seat> iter = thePlane.emptySeats();
+        Vector<Seat> emptySeats = thePlane.emptySeats();
+        Enumeration<Seat> iter = emptySeats.elements();
+
+        while 
     }
 }
