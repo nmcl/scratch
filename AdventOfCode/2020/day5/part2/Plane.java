@@ -53,23 +53,29 @@ public class Plane
     {
         Seat theSeat = null;
         int[] rows = new int[ROWS];
+        Seat[] seats = new Seat[ROWS];
 
         for (int i = 0; i < ROWS; i++)
+        {
             rows[i] = 0;
+            seats[i] = null;
+        }
 
         Vector<Seat> blanks = emptySeats();
-        Enumeration<Seat> iter = blanks.getElements();
+        Enumeration<Seat> iter = blanks.elements();
 
         while (iter.hasMoreElements())
         {
             Seat s = iter.nextElement();
 
             rows[s.getRow()]++;
+            seats[s.getRow()] = s;
         }
 
         for (int j = 0; j < ROWS; j++)
         {
-
+            if (rows[j] == 1)
+                return seats[j];
         }
 
         return null;
