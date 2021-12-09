@@ -91,14 +91,14 @@ public class Scanner
              * on the plane.
              */
 
-            if (s.row() == row)
+            if (s.getRow() == row)
             {
                 row = -1;
                 theSeat = null;
             }
             else
             {
-                row = s.row();
+                row = s.getRow();
                 theSeat = s;
             }
         }
