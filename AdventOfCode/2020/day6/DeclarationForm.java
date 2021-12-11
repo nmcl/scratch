@@ -1,5 +1,7 @@
 public class DeclarationForm
 {
+    public static final int INPUT_FILE = "input.txt";
+    
     public static void main (String[] args)
     {
         boolean debug = false;
