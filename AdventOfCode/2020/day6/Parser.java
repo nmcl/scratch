@@ -1,6 +1,6 @@
-public class Scanner
+public class Parser
 {
-    public Scanner (boolean debug)
+    public Parser (boolean debug)
     {
         _debug = debug;
     }
