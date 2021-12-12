@@ -5,7 +5,7 @@ public class Parser
         _debug = debug;
     }
 
-    public void work ()
+    public Questions work (String fileName)
     {
         /*
          * Open the data file and read it in.
