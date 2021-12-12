@@ -1,9 +1,9 @@
-public class Questions
+public class Answers
 {
     public static final int NUMBER_OF_QUESTIONS = 26;
     public static final int ASCII_A = 97;
 
-    public Questions ()
+    public Answers ()
     {
         _answers = new boolean[NUMBER_OF_QUESTIONS];
 
