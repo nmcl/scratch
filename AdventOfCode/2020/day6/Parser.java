@@ -14,16 +14,15 @@ public class Parser
          */
 
         BufferedReader reader = null;
+        Answers theAnswers = new Answers();
 
         try
         {
-            reader = new BufferedReader(new FileReader(DATA_FILE));
+            reader = new BufferedReader(new FileReader(fileName));
             String line = null;
 
             while ((line = reader.readLine()) != null)
             {
-                Barcode b = new Barcode(line, debug);
-
                 if (debug)
                     System.out.println("Loaded: "+b);
 
