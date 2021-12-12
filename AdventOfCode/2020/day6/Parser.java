@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class Parser
 {
     public Parser (boolean debug)
@@ -12,7 +14,6 @@ public class Parser
          */
 
         BufferedReader reader = null;
-        Plane thePlane = new Plane(debug);
 
         try
         {
