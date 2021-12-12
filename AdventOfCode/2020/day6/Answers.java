@@ -15,6 +15,11 @@ public class Answers
         _numberOfPeople = 0;
     }
 
+    public final boolean answerQuestion (char number)
+    {
+        return answerQuestion(number, true);
+    }
+
     public final boolean answerQuestion (char number, boolean answer)
     {
         if ((number > 0) && (number <= NUMBER_OF_QUESTIONS))
