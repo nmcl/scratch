@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class Parser
 {
@@ -7,26 +8,40 @@ public class Parser
         _debug = debug;
     }
 
-    public Questions work (String fileName)
+    public Vector<Questions> work (String fileName)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Answers theAnswers = new Answers();
+        Vector<Answers> allAnswers = new Vector<Answers>();
 
         try
         {
             reader = new BufferedReader(new FileReader(fileName));
             String line = null;
+            Answers theAnswer = new Answers();
 
             while ((line = reader.readLine()) != null)
             {
-                if (debug)
+                if (_debug)
                     System.out.println("Loaded: "+b);
 
-                thePlane.addSeat(b.getSeat());
+                if (line.length() == 0)
+                {
+                    allAnswers.add(theAnswer);
+                    theAnswer = new Answers();
+                }
+                else
+                {
+                    theAnswer.addPersonToGroup();
+
+                    for (int i = 0; i < line.length(); i++)
+                    {
+                        theAnswer.answerQuestion(line.charAt(i));
+                    }
+                }
             }
         }
         catch (Throwable ex)
@@ -43,6 +58,8 @@ public class Parser
             {
             }
         }
+
+        return allAnswers;
     }
     
     private boolean _debug;
