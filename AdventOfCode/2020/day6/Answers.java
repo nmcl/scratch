@@ -11,13 +11,15 @@ public class Answers
         {
             _answers[i] = false;
         }
+
+        _numberOfPeople = 0;
     }
 
     public final boolean answerQuestion (char number, boolean answer)
     {
         if ((number > 0) && (number <= NUMBER_OF_QUESTIONS))
         {
-            _answers[number ASCII_A] = answer;
+            _answers[number - ASCII_A] = answer;
 
             return true;
         }
@@ -25,5 +27,11 @@ public class Answers
         return false;
     }
 
+    public final void addPersonToGroup ()
+    {
+        _numberOfPeople++;
+    }
+
     private boolean[] _answers;
+    private int _numberOfPeople;
 }
