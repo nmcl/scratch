@@ -43,6 +43,8 @@ public class Parser
                     }
                 }
             }
+
+            allAnswers.add(theAnswer);
         }
         catch (Throwable ex)
         {
