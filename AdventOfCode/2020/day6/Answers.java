@@ -32,9 +32,29 @@ public class Answers
         return false;
     }
 
+    public final int numberOfTrueAnswers ()
+    {
+        int count = 0;
+
+        for (int i = 0; i < _answers.length; i++)
+        {
+            if (_answers[i])
+                count++;
+        }
+
+        return count;
+    }
+
     public final void addPersonToGroup ()
     {
+        System.out.println("adding");
+
         _numberOfPeople++;
+    }
+
+    public final int numberOfPeopleInGroup ()
+    {
+        return _numberOfPeople;
     }
 
     private boolean[] _answers;
