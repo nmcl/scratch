@@ -28,7 +28,10 @@ public class Verifier
 
             if (a.numberOfPeopleInGroup() == EXAMPLE1_PEOPLE)
             {
-                if (a.)
+                if (a.numberOfTrueAnswers() == EXAMPLE1_ANSWERS)
+                    return true;
+                else
+                    System.out.println("Wrong number of true answers in EXAMPLE1: "+a.numberOfTrueAnswers());
             }
             else
                 System.out.println("Wrong number of people in group in EXAMPLE1: "+a.numberOfPeopleInGroup());
