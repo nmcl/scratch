@@ -8,7 +8,7 @@ public class Parser
         _debug = debug;
     }
 
-    public Vector<Questions> work (String fileName)
+    public Vector<Answers> work (String fileName)
     {
         /*
          * Open the data file and read it in.
@@ -26,7 +26,7 @@ public class Parser
             while ((line = reader.readLine()) != null)
             {
                 if (_debug)
-                    System.out.println("Loaded: "+b);
+                    System.out.println("Loaded: "+line);
 
                 if (line.length() == 0)
                 {
