@@ -22,9 +22,11 @@ public class Answers
 
     public final boolean answerQuestion (char number, boolean answer)
     {
-        if ((number > 0) && (number <= NUMBER_OF_QUESTIONS))
+        int index = number - ASCII_A;
+
+        if ((index >= 0) && (index <= NUMBER_OF_QUESTIONS))
         {
-            _answers[number - ASCII_A] = answer;
+            _answers[index] = answer;
 
             return true;
         }
@@ -47,8 +49,6 @@ public class Answers
 
     public final void addPersonToGroup ()
     {
-        System.out.println("adding");
-
         _numberOfPeople++;
     }
 
