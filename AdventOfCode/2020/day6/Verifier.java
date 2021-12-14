@@ -34,6 +34,18 @@ public class Verifier
 
                     if (answers.size() == EXAMPLE2_GROUPS)
                     {
+                        Enumeration<Answers> iter = answers.elements();
+                        int count = 0;
+                        int people = 0;
+
+                        while (iter.hasMoreElements())
+                        {
+                            a = iter.nextElement();
+
+                            count += a.numberOfTrueAnswers();
+                            people += a.numberOfPeopleInGroup();
+                        }
+
                         return true;
                     }
                 }
