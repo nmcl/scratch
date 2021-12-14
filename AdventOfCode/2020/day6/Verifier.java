@@ -30,9 +30,9 @@ public class Verifier
             {
                 if (a.numberOfTrueAnswers() == EXAMPLE1_ANSWERS)
                 {
-                    answers = p.work(EXAMPLE1);
+                    answers = p.work(EXAMPLE2);
 
-                    if (answers.size() == EXAMPLE1_GROUPS)
+                    if (answers.size() == EXAMPLE2_GROUPS)
                     {
                         return true;
                     }
