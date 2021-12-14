@@ -30,7 +30,12 @@ public class Verifier
             {
                 if (a.numberOfTrueAnswers() == EXAMPLE1_ANSWERS)
                 {
-                    return true;
+                    answers = p.work(EXAMPLE1);
+
+                    if (answers.size() == EXAMPLE1_GROUPS)
+                    {
+                        return true;
+                    }
                 }
                 else
                     System.out.println("Wrong number of true answers in EXAMPLE1: "+a.numberOfTrueAnswers());
