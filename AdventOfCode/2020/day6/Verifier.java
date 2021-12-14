@@ -46,8 +46,18 @@ public class Verifier
                             people += a.numberOfPeopleInGroup();
                         }
 
-                        return true;
+                        if (people == EXAMPLE2_PEOPLE)
+                        {
+                            if (count == EXAMPLE2_ANSWERS)
+                                return true;
+                            else
+                                System.out.println("Wrong number of true answers in EXAMPLE2: "+count);
+                        }
+                        else
+                            System.out.println("Wrong number of people in group in EXAMPLE2: "+people);
                     }
+                    else
+                        System.out.println("Wrong number of groups in EXAMPLE2: "+answers.size());
                 }
                 else
                     System.out.println("Wrong number of true answers in EXAMPLE1: "+a.numberOfTrueAnswers());
