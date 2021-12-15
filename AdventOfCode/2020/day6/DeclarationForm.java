@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class DeclarationForm
 {
     public static final String INPUT_FILE = "input.txt";
@@ -33,5 +35,8 @@ public class DeclarationForm
 
             System.exit(0);
         }
+
+        Parser p = new Parser(debug);
+        Vector<Answers> answers = p.work(INPUT_FILE);
     }
 }
