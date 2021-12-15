@@ -38,5 +38,18 @@ public class DeclarationForm
 
         Parser p = new Parser(debug);
         Vector<Answers> answers = p.work(INPUT_FILE);
+        Enumeration<Answers> iter = answers.elements();
+        int count = 0;
+        int people = 0;
+
+        while (iter.hasMoreElements())
+        {
+            Answers a = iter.nextElement();
+
+            count += a.numberOfTrueAnswers();
+            people += a.numberOfPeopleInGroup();
+        }
+
+        System.out.println("The number of questions to which anyone answered 'yes': "+count);
     }
 }
