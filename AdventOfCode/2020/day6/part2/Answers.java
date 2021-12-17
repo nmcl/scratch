@@ -9,7 +9,7 @@ public class Answers
 
         for (int i = 0; i < NUMBER_OF_QUESTIONS; i++)
         {
-            _answers[i] = false;
+            _answers[i] = 0;
         }
 
         _numberOfPeople = 0;
@@ -26,7 +26,8 @@ public class Answers
 
         if ((index >= 0) && (index <= NUMBER_OF_QUESTIONS))
         {
-            _answers[index] = answer;
+            if (answer)
+                _answers[index]++;
 
             return true;
         }
@@ -40,7 +41,20 @@ public class Answers
 
         for (int i = 0; i < _answers.length; i++)
         {
-            if (_answers[i])
+            if (_answers[i] > 0)
+                count++;
+        }
+
+        return count;
+    }
+
+    public final int numberOfAnswersEveryoneAnsweredTrue ()
+    {
+        int count = 0;
+
+        for (int i = 0; i < _answers.length; i++)
+        {
+            if (_answers[i] == _numberOfPeople)
                 count++;
         }
 
@@ -57,6 +71,6 @@ public class Answers
         return _numberOfPeople;
     }
 
-    private boolean[] _answers;
+    private int[] _answers;
     private int _numberOfPeople;
 }
