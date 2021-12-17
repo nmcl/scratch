@@ -40,16 +40,14 @@ public class DeclarationForm
         Vector<Answers> answers = p.work(INPUT_FILE);
         Enumeration<Answers> iter = answers.elements();
         int count = 0;
-        int people = 0;
 
         while (iter.hasMoreElements())
         {
             Answers a = iter.nextElement();
 
-            count += a.numberOfTrueAnswers();
-            people += a.numberOfPeopleInGroup();
+            count += a.numberOfAnswersEveryoneAnsweredTrue();
         }
 
-        System.out.println("The number of questions to which anyone answered 'yes': "+count);
+        System.out.println("The number of questions to which everyone answered 'yes': "+count);
     }
 }
