@@ -5,7 +5,7 @@ public class Answers
 
     public Answers ()
     {
-        _answers = new boolean[NUMBER_OF_QUESTIONS];
+        _answers = new int[NUMBER_OF_QUESTIONS];
 
         for (int i = 0; i < NUMBER_OF_QUESTIONS; i++)
         {
