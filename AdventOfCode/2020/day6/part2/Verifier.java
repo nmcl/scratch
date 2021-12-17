@@ -16,22 +16,31 @@ public class Verifier
     {
         Parser p = new Parser(_debug);
         Vector<Answers> answers = p.work(EXAMPLE);
+        Enumeration<Answers> iter = answers.elements();
+        int count = 0;
+        int people = 0;
+        
+        while (iter.hasMoreElements())
+        {
+            Answers a = iter.nextElement();
+
+            count += a.numberOfAnswersEveryoneAnsweredTrue();
+            people += a.numberOfPeopleInGroup();
+        }
 
         if (answers.size() == EXAMPLE_GROUPS)
         {
-            Answers a = answers.elementAt(0);
-
-            if (a.numberOfPeopleInGroup() == EXAMPLE_PEOPLE)
+            if (people == EXAMPLE_PEOPLE)
             {
-                if (a.numberOfAnswersEveryoneAnsweredTrue() == EXAMPLE_ANSWERS)
+                if (count == EXAMPLE_ANSWERS)
                 {
                     return true;
                 }
                 else
-                    System.out.println("Wrong number of true answers in EXAMPLE: "+a.numberOfAnswersEveryoneAnsweredTrue());
+                    System.out.println("Wrong number of true answers in EXAMPLE: "+count);
             }
             else
-                System.out.println("Wrong number of people in group in EXAMPLE: "+a.numberOfPeopleInGroup());
+                System.out.println("Wrong number of people in group in EXAMPLE: "+people);
         }
         else
             System.out.println("Wrong number of groups in EXAMPLE: "+answers.size());
