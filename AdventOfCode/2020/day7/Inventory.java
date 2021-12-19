@@ -13,6 +13,22 @@ public class Inventory
         _bags.add(b);
     }
 
+    public final int bagCount (Bag theBag)
+    {
+        int count = 0;
+        Enumeration<Bag> iter = _bags.elements();
+
+        while (iter.hasMoreElements())
+        {
+            Bag b = iter.nextElement();
+
+            if (b.contains(theBag))
+                count++;
+        }
+
+        return count;
+    }
+
     @Override
     public String toString ()
     {
