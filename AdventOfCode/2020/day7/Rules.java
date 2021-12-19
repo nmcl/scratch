@@ -90,9 +90,6 @@ public class Rules
     {
         int spaceIndex = data.indexOf(Rules.SPACE, startIndex);
         String number = data.substring(startIndex, spaceIndex);
-
-        System.out.println("number "+number);
-        
         int quantity = Integer.parseInt(number);
         String bagType = data.substring(spaceIndex +1, endIndex);
         Bag containsBag = new Bag(bagType, quantity);
