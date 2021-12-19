@@ -16,8 +16,6 @@ public class Bag
     
     public void add (Bag b)
     {
-        System.out.println("**NOW "+b+" and "+b.quantity());
-
         _contains.add(b);
     }
 
