@@ -8,6 +8,7 @@ public class Rules
     public static final String CONTAINS = "contain";
     public static final String SEPARATOR = ",";
     public static final String TERMINATOR = ".";
+    public static final String SPACE = " ";
 
     public Rules (boolean debug)
     {
@@ -24,28 +25,31 @@ public class Rules
         while (iter.hasMoreElements() && !error)
         {
             String line = iter.nextElement();
-            int index = line.indexOf(BAGS_CONTAINS);  // name of bag
+            int startIndex = line.indexOf(BAGS_CONTAINS);  // name of bag
 
-            if (index != -1)
+            if (startIndex != -1)
             {
-                String bagColour = line.substring(0, index);
+                String bagColour = line.substring(0, startIndex);
                 Bag theBag = new Bag(bagColour);
 
                 inv.add(theBag);
 
-                String contains = line.substring(index + BAGS_CONTAINS.length());
+                String remainder = line.substring(startIndex + BAGS_CONTAINS.length());
 
-                if (!contains.equals(NO_BAGS))
+                if (!remainder.equals(NO_BAGS))
                 {
-                    index = 0;
+                    boolean finished = false;
 
-                    while (index < contains.length())
+                    startIndex = 0;
+
+                    while (!finished)
                     {
-                        int temp = contains.indexOf(Rules.SEPARATOR, index);
+                        int endIndex = remainder.indexOf(Rules.SEPARATOR, startIndex);
 
-                        if (temp != -1)
+                        if (startIndex != -1)
                         {
-                            
+                            int spaceIndex = remainder.indexOf(Rules.SPACE, startIndex);
+                            String number = remainder.substring(startIndex, spaceIndex);
                         }
                     }
                 }
