@@ -19,7 +19,7 @@ public class Bag
         _contains.add(b);
     }
 
-    public String rule ()
+    public String printRule ()
     {
         String str = this+" "+Rules.CONTAINS;
 
@@ -46,7 +46,7 @@ public class Bag
             str += Rules.NO_BAGS;
 
         str += Rules.TERMINATOR;
-        
+
         return str;
     }
 
