@@ -4,13 +4,39 @@ public class Bag
 {
     public Bag (String type)
     {
+        this(type, 0);
+    }
+
+    public Bag (String type, int quantity)
+    {
         _type = type;
+        _quantity = quantity;
+        _contains = new Vector<Bag>();
+    }
+    
+    public void add (Bag b)
+    {
+        _contains.add(b);
     }
 
     @Override
     public String toString ()
     {
-        return "Bag colour: "+_type;
+        String str = "Bag colour: "+_type+" "+Rules.CONTAINS;
+
+        if (_contains.size() > 0)
+        {
+            Enumeration<Bag> iter = _contains.elements();
+
+            while (iter.hasMoreElements())
+            {
+                Bag b = iter.nextElement();
+            }
+        }
+        else
+            str += Rules.NO_BAGS;
+
+        return str;
     }
 
     @Override
@@ -38,6 +64,7 @@ public class Bag
         return false;
     }
 
-
     private String _type;
+    private int _quantity;
+    private Vector<Bag>_contains;
 }
