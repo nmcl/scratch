@@ -19,6 +19,11 @@ public class Bag
         _contains.add(b);
     }
 
+    public final int quantity ()
+    {
+        return _quantity;
+    }
+    
     public String printRule ()
     {
         String str = this+" bags "+Rules.CONTAINS;
