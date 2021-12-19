@@ -35,7 +35,7 @@ public class Rules
                 if (_debug)
                     System.out.println("Loading bag "+theBag);
 
-                inv.add(theBag);
+                inv.insert(theBag);
 
                 String remainder = line.substring(startIndex + BAGS_CONTAINS.length());
 
