@@ -67,13 +67,11 @@ public class Rules
                         }
 
                         if (_debug)
-                            System.out.println("Contains "+contains);
-                            
+                            System.out.println("Contains "+contains.quantity()+" "+contains);
+
                         theBag.add(contains);
                     }
                 }
-
-                System.out.println("Adding bag "+theBag.printRule());
 
                 inv.insert(theBag);
             }
