@@ -71,6 +71,8 @@ public class Rules
                         if (_debug)
                             System.out.println("Contains "+contains);
 
+                        System.out.println("adding "+contains+" and "+contains.quantity());
+                        
                         theBag.add(contains);
                     }
                 }
