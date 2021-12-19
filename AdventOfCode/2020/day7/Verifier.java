@@ -12,7 +12,7 @@ public class Verifier
         Rules theRules = new Rules(_debug);
         Inventory inv = theRules.parse(EXAMPLE_FILE);
 
-        System.out.println("got\n"+inv);
+        System.out.println("Loaded rules:\n\n"+inv);
 
         return false;
     }
