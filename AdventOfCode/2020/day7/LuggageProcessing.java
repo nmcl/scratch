@@ -1,5 +1,9 @@
 public class LuggageProcessing
 {
+    public static final Bag BAG_TYPE = new Bag("shiny gold");
+
+    public static final String DATA_FILE = "input.txt";
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -31,5 +35,15 @@ public class LuggageProcessing
 
             System.exit(0);
         }
+
+        Rules theRules = new Rules(debug);
+        Inventory inv = theRules.parse(DATA_FILE);
+
+        if (debug)
+            System.out.println("Loaded rules:\n\n"+inv);
+
+        int count = inv.bagCount(BAG_TYPE);
+
+        System.out.println("Number of bag colours which can eventually contain at least one "+BAG_TYPE+": "+count);
     }
 }
