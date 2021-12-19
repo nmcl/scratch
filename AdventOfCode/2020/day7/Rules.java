@@ -48,12 +48,11 @@ public class Rules
                     while (!finished)
                     {
                         int endIndex = remainder.indexOf(Rules.SEPARATOR, startIndex);
+                        Bag contains = null;
 
                         if (endIndex != -1)
                         {
-                            Bag contains = containsBag(remainder, startIndex, endIndex);
-
-                            theBag.add(contains);
+                            contains = containsBag(remainder, startIndex, endIndex);
 
                             remainder = remainder.substring(endIndex +1);
                         }
@@ -61,12 +60,15 @@ public class Rules
                         {
                             endIndex = remainder.length() -1;
 
-                            Bag contains = containsBag(remainder, startIndex, endIndex);
-
-                            theBag.add(contains);
+                            contains = containsBag(remainder, startIndex, endIndex);
 
                             finished = true;
                         }
+
+                        if (_debug)
+                            System.out.println("Contains "+contains);
+                            
+                        theBag.add(contains);
                     }
                 }
             }
