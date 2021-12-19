@@ -33,10 +33,10 @@ public class Bag
 
                 if (b._quantity > 0)
                 {
-                    str += _quantity;
+                    str += " "+_quantity;
                 }
 
-                str += b;
+                str += " "+b;
 
                 if (iter.hasMoreElements())
                     str += Rules.SEPARATOR;
