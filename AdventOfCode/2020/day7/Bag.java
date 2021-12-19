@@ -10,7 +10,7 @@ public class Bag
     @Override
     public String toString ()
     {
-        return "Bag coloud: "+_type;
+        return "Bag colour: "+_type;
     }
 
     @Override
