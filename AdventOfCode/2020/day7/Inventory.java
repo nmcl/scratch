@@ -17,6 +17,21 @@ public class Inventory
     {
         int count = 0;
         Enumeration<Bag> iter = _bags.elements();
+        Vector<Bag> indirect = new Vector<Bag>();
+
+        while (iter.hasMoreElements())
+        {
+            Bag b = iter.nextElement();
+
+            if (b.contains(theBag))
+            {
+                count++;
+
+                indirect.add(b);
+            }
+        }
+
+        iter = indirect.elements();
 
         while (iter.hasMoreElements())
         {
