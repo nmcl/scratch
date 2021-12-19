@@ -9,7 +9,7 @@ public class Bag
 
     public Bag (String type, int quantity)
     {
-        _type = type;
+        _type = type.trim();
         _quantity = quantity;
         _contains = new Vector<Bag>();
     }
@@ -21,7 +21,7 @@ public class Bag
 
     public String printRule ()
     {
-        String str = this+" "+Rules.CONTAINS;
+        String str = this+" bags "+Rules.CONTAINS;
 
         if (_contains.size() > 0)
         {
@@ -33,7 +33,7 @@ public class Bag
 
                 if (b._quantity > 0)
                 {
-                    str += _quantity+" ";
+                    str += _quantity;
                 }
 
                 str += b;
