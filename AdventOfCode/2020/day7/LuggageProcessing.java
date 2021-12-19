@@ -3,7 +3,7 @@ public class LuggageProcessing
     public static void main (String[] args)
     {
         boolean debug = false;
-        boolean verifier = false;
+        boolean verify = false;
 
         for (int i = 0; i < args.length; i++)
         {
@@ -18,6 +18,18 @@ public class LuggageProcessing
 
             if ("-verify".equals(args[i]))
                 verify = true;
+        }
+
+        if (verify)
+        {
+            Verfifier v = new Verifier(debug);
+
+            if (v.verify())
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Verify failed!");
+
+            System.exit(0);
         }
     }
 }
