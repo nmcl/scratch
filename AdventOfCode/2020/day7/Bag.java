@@ -19,6 +19,11 @@ public class Bag
         _contains.add(b);
     }
 
+    public boolean contains (Bag b)
+    {
+        return _contains.contains(b);
+    }
+
     public final int quantity ()
     {
         return _quantity;
