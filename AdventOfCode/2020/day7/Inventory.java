@@ -8,7 +8,7 @@ public class Inventory
         _debug = debug;
     }
 
-    public final void add (Bag b)
+    public final void insert (Bag b)
     {
         _bags.add(b);
     }
