@@ -3,8 +3,8 @@ import java.util.*;
 public class Rules
 {
     public static final String BAGS = "bags";
-    public static final String BAGS_CONTAINS = "bags contain";
-    public static final String NO_BAGS = " no other bags";
+    public static final String BAGS_CONTAINS = "bags contain ";
+    public static final String NO_BAGS = "no other bags";
     public static final String CONTAINS = "contain";
     public static final String SEPARATOR = ",";
     public static final String TERMINATOR = ".";
@@ -67,7 +67,7 @@ public class Rules
 
                         if (_debug)
                             System.out.println("Contains "+contains);
-                            
+
                         theBag.add(contains);
                     }
                 }
@@ -85,8 +85,13 @@ public class Rules
 
     private Bag containsBag (String data, int startIndex, int endIndex)
     {
+        System.out.println("scanning "+data);
+
         int spaceIndex = data.indexOf(Rules.SPACE, startIndex);
         String number = data.substring(startIndex, spaceIndex);
+
+        System.out.println("number "+number);
+
         int quantity = Integer.parseInt(number);
         String bagType = data.substring(spaceIndex +1, endIndex);
         Bag containsBag = new Bag(bagType, quantity);
