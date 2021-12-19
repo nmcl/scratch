@@ -85,8 +85,6 @@ public class Bag
         {
             Bag temp = (Bag) obj;
 
-            System.out.println("comparing "+_type+" and "+temp._type);
-            
             return temp._type.equals(_type);
         }
 
