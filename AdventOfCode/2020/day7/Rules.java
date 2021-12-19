@@ -72,7 +72,7 @@ public class Rules
                             System.out.println("Contains "+contains);
 
                         System.out.println("adding "+contains+" and "+contains.quantity());
-                        
+
                         theBag.add(contains);
                     }
                 }
@@ -94,6 +94,9 @@ public class Rules
         String number = data.substring(startIndex, spaceIndex);
         int quantity = Integer.parseInt(number);
         String bagType = data.substring(spaceIndex +1, endIndex);
+
+        System.out.println("**bagType "+bagType);
+        
         Bag containsBag = new Bag(bagType, quantity);
 
         return containsBag;
