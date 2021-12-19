@@ -35,8 +35,6 @@ public class Rules
                 if (_debug)
                     System.out.println("Loading bag "+theBag);
 
-                inv.insert(theBag);
-
                 String remainder = line.substring(startIndex + BAGS_CONTAINS.length());
 
                 if (_debug)
@@ -70,12 +68,14 @@ public class Rules
 
                         if (_debug)
                             System.out.println("Contains "+contains);
-
-                        System.out.println("adding "+contains+" and "+contains.quantity());
-
+                            
                         theBag.add(contains);
                     }
                 }
+
+                System.out.println("Adding bag "+theBag.printRule());
+
+                inv.insert(theBag);
             }
             else
             {
@@ -90,8 +90,6 @@ public class Rules
 
     private Bag containsBag (String data, int startIndex, int endIndex, boolean end)
     {
-        System.out.println("data "+data);
-
         int spaceIndex = data.indexOf(Rules.SPACE, startIndex);
         String number = data.substring(startIndex, spaceIndex);
         int quantity = Integer.parseInt(number);
@@ -102,8 +100,6 @@ public class Rules
             bagType = data.substring(spaceIndex +1, data.indexOf(SEPARATOR));
         else
             bagType = data.substring(spaceIndex +1, endIndex);
-
-        System.out.println("**bagType "+bagType);
 
         Bag containsBag = new Bag(bagType, quantity);
 
