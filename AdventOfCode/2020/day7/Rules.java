@@ -4,7 +4,8 @@ public class Rules
 {
     public static final String BAGS = "bags";
     public static final String BAGS_CONTAINS = "bags contain";
-    public static final String NO_BAGS = "no other bags";
+    public static final String NO_BAGS = " no other bags";
+    public static final String CONTAINS = "contain";
     public static final String SEPARATOR = ",";
     public static final String TERMINATOR = ".";
 
@@ -27,7 +28,22 @@ public class Rules
 
             if (index != -1)
             {
+                String bagColour = line.substring(0, index);
+                Bag theBag = new Bag(bagColour);
 
+                inv.add(theBag);
+
+                String contents = line.substring(index + BAGS_CONTAINS.length());
+                
+                if (!contents.equals(NO_BAGS))
+                {
+                    index = 0;
+
+                    while (index < contents.length())
+                    {
+
+                    }
+                }
             }
             else
                 error = true;
