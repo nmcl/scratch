@@ -22,7 +22,7 @@ public class LuggageProcessing
 
         if (verify)
         {
-            Verfifier v = new Verifier(debug);
+            Verifier v = new Verifier(debug);
 
             if (v.verify())
                 System.out.println("Verified ok.");

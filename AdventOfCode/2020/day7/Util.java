@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Util
 {
-    public static final Vector<String> rules (String inputFile)
+    public static final Vector<String> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.

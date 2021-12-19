@@ -32,7 +32,7 @@ public class Bag
         {
             Bag temp = (Bag) obj;
 
-            return tenp._type.equals(_tyoe);
+            return temp._type.equals(_type);
         }
 
         return false;
