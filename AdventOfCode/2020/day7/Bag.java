@@ -31,6 +31,11 @@ public class Bag
             while (iter.hasMoreElements())
             {
                 Bag b = iter.nextElement();
+
+                if (b._quantity > 0)
+                {
+                    
+                }
             }
         }
         else
