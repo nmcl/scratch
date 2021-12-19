@@ -13,6 +13,22 @@ public class Inventory
         _bags.add(b);
     }
 
+    @Override
+    public String toString ()
+    {
+        String str = "";
+        Enumeration<Bag> iter = _bags.elements();
+
+        while (iter.hasMoreElements())
+        {
+            Bag b = iter.nextElement();
+
+            str += b.printRule()+"\n";
+        }
+
+        return str;
+    }
+
     private Vector<Bag> _bags;
     private boolean _debug;
 }
