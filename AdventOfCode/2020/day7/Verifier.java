@@ -9,6 +9,11 @@ public class Verifier
 
     public final boolean verify ()
     {
+        Rules theRules = new Rules(_debug);
+        Inventory inv = theRules.parse(EXAMPLE_FILE);
+
+        System.out.println("got "+inv);
+        
         return false;
     }
 
