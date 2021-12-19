@@ -26,7 +26,7 @@ public class Bag
 
     public String printRule ()
     {
-        String str = this+" bags "+Rules.CONTAINS;
+        String str = this+" bags "+Rules.CONTAINS+" ";
 
         if (_contains.size() > 0)
         {
@@ -38,7 +38,7 @@ public class Bag
 
                 if (b._quantity > 0)
                 {
-                    str += " "+b._quantity;
+                    str += b._quantity;
                 }
 
                 str += " "+b;
@@ -46,11 +46,11 @@ public class Bag
                 if (iter.hasMoreElements())
                     str += Rules.SEPARATOR;
             }
+
+            str += Rules.TERMINATOR;
         }
         else
             str += Rules.NO_BAGS;
-
-        str += Rules.TERMINATOR;
 
         return str;
     }
