@@ -3,6 +3,7 @@ import java.util.*;
 public class Rules
 {
     public static final String BAGS = "bags";
+    public static final String BAG = "bag";
     public static final String BAGS_CONTAINS = "bags contain ";
     public static final String NO_BAGS = "no other bags.";
     public static final String CONTAINS = "contain";
@@ -98,6 +99,8 @@ public class Rules
             bagType = data.substring(spaceIndex +1, data.indexOf(SEPARATOR));
         else
             bagType = data.substring(spaceIndex +1, endIndex);
+
+        bagType = bagType.substring(0, bagType.indexOf(BAG));
 
         Bag containsBag = new Bag(bagType, quantity);
 
