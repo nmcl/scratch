@@ -55,7 +55,7 @@ public class Rules
 
                         if (endIndex != -1)
                         {
-                            contains = containsBag(remainder, startIndex, endIndex);
+                            contains = containsBag(remainder, startIndex, endIndex, false);
 
                             remainder = remainder.substring(endIndex +2);
                         }
@@ -63,7 +63,7 @@ public class Rules
                         {
                             endIndex = remainder.length() -1;
 
-                            contains = containsBag(remainder, startIndex, endIndex);
+                            contains = containsBag(remainder, startIndex, endIndex, true);
 
                             finished = true;
                         }
@@ -88,15 +88,23 @@ public class Rules
         return inv;
     }
 
-    private Bag containsBag (String data, int startIndex, int endIndex)
+    private Bag containsBag (String data, int startIndex, int endIndex, boolean end)
     {
+        System.out.println("data "+data);
+
         int spaceIndex = data.indexOf(Rules.SPACE, startIndex);
         String number = data.substring(startIndex, spaceIndex);
         int quantity = Integer.parseInt(number);
-        String bagType = data.substring(spaceIndex +1, endIndex);
+
+        String bagType = null;
+
+        if (!end)
+            bagType = data.substring(spaceIndex +1, data.indexOf(SEPARATOR));
+        else
+            bagType = data.substring(spaceIndex +1, endIndex);
 
         System.out.println("**bagType "+bagType);
-        
+
         Bag containsBag = new Bag(bagType, quantity);
 
         return containsBag;
