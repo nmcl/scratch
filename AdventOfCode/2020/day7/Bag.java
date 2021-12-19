@@ -38,7 +38,7 @@ public class Bag
 
                 if (b._quantity > 0)
                 {
-                    str += " "+_quantity;
+                    str += " "+b._quantity;
                 }
 
                 str += " "+b;
