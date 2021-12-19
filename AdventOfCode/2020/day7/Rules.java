@@ -16,8 +16,18 @@ public class Rules
     public Inventory parse (String dataFile)
     {
         Vector<String> rules = Util.loadData(dataFile, _debug);
+        Inventory inv = new Inventory(_debug);
+        Enumeration<String> iter = rules.elements();
 
-        return null;
+        while (iter.hasMoreElements())
+        {
+            String line = iter.nextElement();
+            int index = line.indexOf(BAGS_CONTAINS);  // name of bag
+
+
+
+        }
+        return inv;
     }
 
     private boolean _debug;
