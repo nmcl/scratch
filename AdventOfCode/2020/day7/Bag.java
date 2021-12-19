@@ -29,6 +29,11 @@ public class Bag
         return _quantity;
     }
 
+    public final String name ()
+    {
+        return _type;
+    }
+
     public String printRule ()
     {
         String str = this+" bags "+Rules.CONTAINS+" ";
