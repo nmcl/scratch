@@ -33,20 +33,29 @@ public class Rules
 
                 inv.add(theBag);
 
-                String contents = line.substring(index + BAGS_CONTAINS.length());
-                
-                if (!contents.equals(NO_BAGS))
+                String contains = line.substring(index + BAGS_CONTAINS.length());
+
+                if (!contains.equals(NO_BAGS))
                 {
                     index = 0;
 
-                    while (index < contents.length())
+                    while (index < contains.length())
                     {
+                        int temp = contains.indexOf(Rules.SEPARATOR, index);
 
+                        if (temp != -1)
+                        {
+                            
+                        }
                     }
                 }
             }
             else
+            {
+                System.out.println("Error, no bag name found!");
+
                 error = true;
+            }
         }
 
         return inv;
