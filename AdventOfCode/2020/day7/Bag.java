@@ -19,10 +19,9 @@ public class Bag
         _contains.add(b);
     }
 
-    @Override
-    public String toString ()
+    public String rule ()
     {
-        String str = "Bag colour: "+_type+" "+Rules.CONTAINS;
+        String str = this+" "+Rules.CONTAINS;
 
         if (_contains.size() > 0)
         {
@@ -34,14 +33,27 @@ public class Bag
 
                 if (b._quantity > 0)
                 {
-                    
+                    str += _quantity+" ";
                 }
+
+                str += b;
+
+                if (iter.hasMoreElements())
+                    str += Rules.SEPARATOR;
             }
         }
         else
             str += Rules.NO_BAGS;
 
+        str += Rules.TERMINATOR;
+        
         return str;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return _type;
     }
 
     @Override
