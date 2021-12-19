@@ -12,8 +12,8 @@ public class Verifier
         Rules theRules = new Rules(_debug);
         Inventory inv = theRules.parse(EXAMPLE_FILE);
 
-        System.out.println("got "+inv);
-        
+        System.out.println("got\n"+inv);
+
         return false;
     }
 
