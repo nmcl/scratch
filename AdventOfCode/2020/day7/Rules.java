@@ -32,6 +32,9 @@ public class Rules
                 String bagColour = line.substring(0, startIndex);
                 Bag theBag = new Bag(bagColour);
 
+                if (_debug)
+                    System.out.println("Loading bag "+theBag);
+
                 inv.add(theBag);
 
                 String remainder = line.substring(startIndex + BAGS_CONTAINS.length());
@@ -46,10 +49,23 @@ public class Rules
                     {
                         int endIndex = remainder.indexOf(Rules.SEPARATOR, startIndex);
 
-                        if (startIndex != -1)
+                        if (endIndex != -1)
                         {
-                            int spaceIndex = remainder.indexOf(Rules.SPACE, startIndex);
-                            String number = remainder.substring(startIndex, spaceIndex);
+                            Bag contains = containsBag(remainder, startIndex, endIndex);
+
+                            theBag.add(contains);
+
+                            remainder = remainder.substring(endIndex +1);
+                        }
+                        else
+                        {
+                            endIndex = remainder.length() -1;
+
+                            Bag contains = containsBag(remainder, startIndex, endIndex);
+
+                            theBag.add(contains);
+
+                            finished = true;
                         }
                     }
                 }
@@ -63,6 +79,17 @@ public class Rules
         }
 
         return inv;
+    }
+
+    private Bag containsBag (String data, int startIndex, int endIndex)
+    {
+        int spaceIndex = data.indexOf(Rules.SPACE, startIndex);
+        String number = data.substring(startIndex, spaceIndex);
+        int quantity = Integer.parseInt(number);
+        String bagType = data.substring(spaceIndex +1, endIndex);
+        Bag containsBag = new Bag(bagType, quantity);
+
+        return containsBag;
     }
 
     private boolean _debug;
