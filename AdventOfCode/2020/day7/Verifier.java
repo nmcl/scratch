@@ -19,12 +19,14 @@ public class Verifier
 
         int count = inv.bagCount(BAG_TYPE);
 
-        System.out.println("got "+count);
-        
         if (count == NUMBER_OF_BAGS)
             return true;
         else
+        {
+            System.out.println("Invalid number of bags: "+count);
+
             return false;
+        }
     }
 
     private boolean _debug;
