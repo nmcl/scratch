@@ -105,7 +105,7 @@ public class Inventory
 
                     checked.add(b);
 
-                    count += b.quantity();
+                    count += b.totalBagsDueToRule();
                 }
             }
         }
