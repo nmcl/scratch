@@ -98,5 +98,5 @@ public class Bag
 
     private String _type;
     private int _quantity;
-    private Vector<Bag>_contains;
+    private Vector<Bag> _contains;
 }
