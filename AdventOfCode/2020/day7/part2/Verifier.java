@@ -1,8 +1,8 @@
 public class Verifier
 {
     public static final String EXAMPLE1_FILE = "example1.txt";
-    public static final int EXAMPLE1_NUMBER_OF_BAGS = 4;
-    
+    public static final int EXAMPLE1_TOTAL_NUMBER_OF_BAGS = 32;
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -16,13 +16,13 @@ public class Verifier
         if (_debug)
             System.out.println("\nLoaded rules:\n\n"+inv);
 
-        int count = inv.bagCount(LuggageProcessing.BAG_TYPE);
+        int count = inv.totalBagCount(LuggageProcessing.BAG_TYPE);
 
-        if (count == EXAMPLE1_NUMBER_OF_BAGS)
+        if (count == EXAMPLE1_TOTAL_NUMBER_OF_BAGS)
             return true;
         else
         {
-            System.out.println("Invalid number of bags: "+count);
+            System.out.println("Invalid number of total bags: "+count);
 
             return false;
         }
