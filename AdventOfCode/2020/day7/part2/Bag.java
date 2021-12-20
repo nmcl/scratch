@@ -37,6 +37,11 @@ public class Bag
         return count;
     }
 
+    public Vector<Bag> containedBags ()
+    {
+        return _contains;
+    }
+
     public final int quantity ()
     {
         return _quantity;
