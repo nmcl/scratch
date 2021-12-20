@@ -13,6 +13,11 @@ public class Inventory
         _bags.add(b);
     }
 
+    public final int totalBagCount (Bag theBag)
+    {
+        return 0;
+    }
+
     public final int bagCount (Bag theBag)
     {
         Vector<Bag> checked = new Vector<Bag>();
