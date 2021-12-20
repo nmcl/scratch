@@ -14,7 +14,7 @@ public class Verifier
         Inventory inv = theRules.parse(EXAMPLE_FILE);
 
         if (_debug)
-            System.out.println("Loaded rules:\n\n"+inv);
+            System.out.println("\nLoaded rules:\n\n"+inv);
 
         int count = inv.bagCount(LuggageProcessing.BAG_TYPE);
 
