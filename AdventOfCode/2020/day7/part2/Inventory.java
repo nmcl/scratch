@@ -19,7 +19,7 @@ public class Inventory
         int index = _bags.indexOf(theBag);
         Bag actualBag = _bags.elementAt(index);
 
-        System.out.println("Got "+actualBag.printRule());
+        System.out.println("Got "+actualBag.printRule()+" "+actualBag.totalContainedBags());
 
         return 0;
     }
