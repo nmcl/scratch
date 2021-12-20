@@ -15,7 +15,9 @@ public class Inventory
 
     public final int totalBagCount (Bag theBag)
     {
-        return 0;
+        Vector<Bag> checked = new Vector<Bag>();
+
+        return checkTotalBags(theBag, checked);
     }
 
     public final int bagCount (Bag theBag)
@@ -81,6 +83,48 @@ public class Inventory
 
         return count;
     }
+
+    private final int checkTotalBags (Bag theBag, Vector<Bag> checked)
+    {
+        int count = 0;
+        Enumeration<Bag> iter = _bags.elements();
+        Vector<Bag> indirect = new Vector<Bag>();
+
+        while (iter.hasMoreElements())
+        {
+            Bag b = iter.nextElement();
+
+            if (b.contains(theBag))
+            {
+                if (_debug)
+                    System.out.println("A "+b+" bag contains a "+theBag+" bag.");
+
+                if (!checked.contains(b))
+                {
+                    indirect.add(b);
+
+                    checked.add(b);
+
+                    count += b.quantity();
+                }
+            }
+        }
+
+        if (indirect.size() > 0)
+        {
+            iter = indirect.elements();
+
+            while (iter.hasMoreElements())
+            {
+                Bag b = iter.nextElement();
+
+                count += checkBags(b, checked);
+            }
+        }
+
+        return count;
+    }
+
 
     private Vector<Bag> _bags;
     private boolean _debug;
