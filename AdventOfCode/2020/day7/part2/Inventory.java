@@ -97,7 +97,7 @@ public class Inventory
             if (b.contains(theBag))
             {
                 if (_debug)
-                    System.out.println("A "+b+" bag contains a "+theBag+" bag.");
+                    System.out.println("A "+b+" bag contains "+b.quantity()+" copies of "+theBag+" bag.");
 
                 if (!checked.contains(b))
                 {
@@ -118,7 +118,7 @@ public class Inventory
             {
                 Bag b = iter.nextElement();
 
-                count += checkBags(b, checked);
+                count += checkTotalBags(b, checked);
             }
         }
 
