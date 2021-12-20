@@ -23,6 +23,19 @@ public class Bag
     {
         return _contains.contains(b);
     }
+    
+    public int totalBagsDueToRule ()
+    {
+        int count = 0;
+        Enumeration<Bag> iter = _contains.elements();
+
+        while (iter.hasMoreElements())
+        {
+            count += iter.nextElement().quantity();
+        }
+
+        return count;
+    }
 
     public final int quantity ()
     {
