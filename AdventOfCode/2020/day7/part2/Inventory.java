@@ -39,8 +39,7 @@ public class Inventory
 
             str += b.printRule()+"\n";
 
-            if (_debug)
-                str += "    Total contained bags in "+b+": "+b.totalContainedBags()+"\n";
+            //str += "    Total contained bags in "+b+": "+b.totalContainedBags()+"\n";
         }
 
         return str;
