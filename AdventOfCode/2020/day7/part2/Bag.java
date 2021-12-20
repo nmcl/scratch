@@ -24,7 +24,7 @@ public class Bag
         return _contains.contains(b);
     }
     
-    public int totalBagsDueToRule ()
+    public int totalContainedBags ()
     {
         int count = 0;
         Enumeration<Bag> iter = _contains.elements();
