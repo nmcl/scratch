@@ -18,10 +18,23 @@ public class Inventory
         Vector<Bag> checked = new Vector<Bag>();
         int index = _bags.indexOf(theBag);
         Bag actualBag = _bags.elementAt(index);
+        int count = actualBag.totalContainedBags();
 
         System.out.println("Got "+actualBag.printRule()+" "+actualBag.totalContainedBags());
 
-        return 0;
+        Vector<Bag> containedBags = actualBag.containedBags();
+
+        if (containedBags.size() > 0)
+        {
+            Enumeration<Bag> iter = containedBags.elements();
+
+            while (iter.hasMoreElements())
+            {
+                count += totalBagCount(iter.nextElement());
+            }
+        }
+
+        return count;
     }
 
     public final int bagCount (Bag theBag)
