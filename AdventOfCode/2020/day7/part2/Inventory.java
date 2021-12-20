@@ -38,6 +38,9 @@ public class Inventory
             Bag b = iter.nextElement();
 
             str += b.printRule()+"\n";
+
+            if (_debug)
+                str += "    Total contained bags in "+b+": "+b.totalContainedBags()+"\n";
         }
 
         return str;
@@ -105,7 +108,10 @@ public class Inventory
 
                     checked.add(b);
 
-                    count += b.totalBagsDueToRule();
+                    if (_debug)
+                        System.out.println("Adding "+b.totalContainedBags()+" from "+b);
+
+                    count += b.totalContainedBags();
                 }
             }
         }
