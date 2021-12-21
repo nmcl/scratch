@@ -4,7 +4,6 @@ public class Computer
 {
     public Computer (boolean debug)
     {
-        _accumulator = 0;
         _debug = debug;
     }
 
@@ -12,14 +11,16 @@ public class Computer
     {
         int index = 0;
         OpCode op = instructions.elementAt(index);
+        int accumulator = 0;
 
-        _accumulator = 0;
-
-        if (_debug)
-            System.out.println();
-            
         while (!op.visited())
         {
+            if (_debug)
+            {
+                System.out.println("\nInstruction: "+index);
+                System.out.println("Accumulator: "+accumulator+"\n");
+            }
+
             switch (op.type())
             {
                 case OpCode.ACCUMULATOR:
@@ -27,9 +28,10 @@ public class Computer
                     int value = ((Accumulator) op).getValue();
 
                     if (_debug)
-                        System.out.println("acc: adding "+value+" to accumulator "+_accumulator);
+                        System.out.println("acc: adding "+value+" to accumulator "+accumulator);
 
-                    _accumulator += value;
+                    accumulator += value;
+                    index++;
                 }
                 break;
                 case OpCode.JUMP:
@@ -49,20 +51,19 @@ public class Computer
 
                     if (_debug)
                         System.out.println("nop");
+
+                    index++;
                 }
                 break;
             }
-
-            index++;
 
             op.visit();
 
             op = instructions.elementAt(index);
         }
 
-        return _accumulator;
+        return accumulator;
     }
 
-    private int _accumulator;
     private boolean _debug;
 }
