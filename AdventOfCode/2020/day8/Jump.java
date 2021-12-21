@@ -9,5 +9,10 @@ public class Jump extends OpCode
         _step = step;
     }
 
+    public int getStep ()
+    {
+        return _step;
+    }
+
     private int _step;
 }
