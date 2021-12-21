@@ -29,17 +29,21 @@ public class Util
                 {
                     case OpCode.ACCUMULATOR:
                     {
+                        Integer v = Integer.parseInt(line.substring(space +1));
 
+                        opcode = new Accumulator(v);
                     }
                     break;
                     case OpCode.JUMP:
                     {
+                        Integer v = Integer.parseInt(line.substring(space +1));
 
+                        opcode = new Jump(v);
                     }
                     break;
                     case OpCode.NOOP:
                     {
-
+                        opcode = new NoOp();
                     }
                     break;
                     default:
