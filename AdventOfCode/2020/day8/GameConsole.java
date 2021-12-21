@@ -1,5 +1,9 @@
+import java.util.*;
+
 public class GameConsole
 {
+    public static final String INSTRUCTIONS = "instructions.txt";
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -29,5 +33,11 @@ public class GameConsole
             else
                 System.out.println("Veriff failed!");
         }
+
+        Vector<OpCode> instructions = Util.loadData(INSTRUCTIONS, debug);
+        Computer theComputer = new Computer(debug);
+        int acc = theComputer.executeUntilInfiniteLoop(instructions);
+
+        System.out.println("Value in the accumulator: "+acc);
     }
 }
