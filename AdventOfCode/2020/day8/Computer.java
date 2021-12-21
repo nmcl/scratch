@@ -14,10 +14,28 @@ public class Computer
         OpCode op = instructions.elementAt(index);
 
         _accumulator = 0;
-        
+
         while (!op.visited())
         {
+            switch (op.type())
+            {
+                case OpCode.ACCUMULATOR:
+                {
+                    _accumulator += ((Accumulator) op).getValue();
+                }
+                break;
+                case OpCode.JUMP:
+                {
 
+                }
+                break;
+                case OpCode.NOOP:
+                default:
+                {
+
+                }
+                break;
+            }
         }
 
         return -1;
