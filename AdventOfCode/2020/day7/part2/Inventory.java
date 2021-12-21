@@ -19,9 +19,6 @@ public class Inventory
         int index = _bags.indexOf(theBag);
         Bag actualBag = _bags.elementAt(index);
         int count = actualBag.totalContainedBags();
-
-        System.out.println("\nGot "+actualBag.printRule()+" "+actualBag.totalContainedBags());
-
         Vector<Bag> containedBags = actualBag.containedBags();
 
         if (containedBags.size() > 0)
@@ -31,8 +28,6 @@ public class Inventory
             while (iter.hasMoreElements())
             {
                 Bag b = iter.nextElement();
-
-                System.out.println("**using "+b);
 
                 count += totalBagCount(b) * b.quantity();
             }
