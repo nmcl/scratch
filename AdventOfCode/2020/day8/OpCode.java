@@ -20,6 +20,11 @@ public class OpCode
         return _executed;
     }
 
+    public String type ()
+    {
+        return _type;
+    }
+
     protected String _type;
     protected boolean _executed;
 }
