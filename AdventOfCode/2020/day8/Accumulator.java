@@ -9,5 +9,10 @@ public class Accumulator extends OpCode
         _amount = amount;
     }
 
+    public int getValud ()
+    {
+        return _amount;
+    }
+
     private int _amount;
 }
