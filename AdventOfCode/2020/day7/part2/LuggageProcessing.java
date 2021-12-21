@@ -42,8 +42,8 @@ public class LuggageProcessing
         if (debug)
             System.out.println("Loaded rules:\n\n"+inv);
 
-        int count = inv.bagCount(BAG_TYPE);
+        int count = inv.totalBagCount(BAG_TYPE);
 
-        System.out.println("Number of bag colours which can eventually contain at least one "+BAG_TYPE+": "+count);
+        System.out.println("Number of individual bags required inside single "+BAG_TYPE+": "+count);
     }
 }
