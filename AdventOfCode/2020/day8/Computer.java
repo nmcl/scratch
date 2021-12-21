@@ -15,11 +15,11 @@ public class Computer
 
         _accumulator = 0;
 
+        if (_debug)
+            System.out.println();
+            
         while (!op.visited())
         {
-            if (_debug)
-                System.out.println("Executing: "+op);
-
             switch (op.type())
             {
                 case OpCode.ACCUMULATOR:
@@ -27,7 +27,7 @@ public class Computer
                     int value = ((Accumulator) op).getValue();
 
                     if (_debug)
-                        System.out.println("Adding "+value+" to accumulator "+_accumulator);
+                        System.out.println("acc: adding "+value+" to accumulator "+_accumulator);
 
                     _accumulator += value;
                 }
@@ -37,7 +37,7 @@ public class Computer
                     int value = ((Jump) op).getStep();
 
                     if (_debug)
-                        System.out.println("Adding "+value+" to index "+index);
+                        System.out.println("jmp: adding "+value+" to index "+index);
 
                     index += ((Jump) op).getStep();
                 }
@@ -46,6 +46,9 @@ public class Computer
                 default:
                 {
                     // no op!!
+
+                    if (_debug)
+                        System.out.println("nop");
                 }
                 break;
             }
