@@ -26,19 +26,21 @@ public class Computer
                 break;
                 case OpCode.JUMP:
                 {
-
+                    index += ((Jump) op).getStep();
                 }
                 break;
                 case OpCode.NOOP:
                 default:
                 {
-
+                    index++;
                 }
                 break;
             }
+
+            op.visited();
         }
 
-        return -1;
+        return _accumulator;
     }
 
     private int _accumulator;
