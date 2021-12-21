@@ -14,5 +14,11 @@ public class Jump extends OpCode
         return _step;
     }
 
+    @Override
+    public String toString ()
+    {
+        return OpCode.JUMP+" "+_step;
+    }
+
     private int _step;
 }

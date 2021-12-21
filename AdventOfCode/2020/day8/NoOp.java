@@ -6,4 +6,10 @@ public class NoOp extends OpCode
     {
         super(OpCode.NOOP);
     }
+
+    @Override
+    public String toString ()
+    {
+        return OpCode.NOOP;
+    }
 }

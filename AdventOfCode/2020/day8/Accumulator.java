@@ -14,5 +14,11 @@ public class Accumulator extends OpCode
         return _amount;
     }
 
+    @Override
+    public String toString ()
+    {
+        return OpCode.ACCUMULATOR+" "+_amount;
+    }
+
     private int _amount;
 }
