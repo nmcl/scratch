@@ -3,14 +3,16 @@ import java.io.*;
 
 public class Util
 {
-    public static final Vector<String> loadData (String inputFile, boolean debug)
+    public static final String SPACE = " ";
+
+    public static final Vector<OpCode> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<String> values = new Vector<String>();
+        Vector<OpCode> values = new Vector<OpCode>();
 
         try
         {
@@ -19,7 +21,35 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                values.add(line);
+                int space = line.indexOf(SPACE);
+                String type = line.substring(0, space).trim();
+                OpCode opcode = null;
+
+                switch (type)
+                {
+                    case OpCode.ACCUMULATOR:
+                    {
+
+                    }
+                    break;
+                    case OpCode.JUMP:
+                    {
+
+                    }
+                    break;
+                    case OpCode.NOOP:
+                    {
+
+                    }
+                    break;
+                    default:
+                    {
+                        System.out.println("Unknown opcode: "+type);
+                    }
+                    break;
+                }
+
+                values.add(opcode);
             }
         }
         catch (Throwable ex)
