@@ -53,6 +53,9 @@ public class Util
                     break;
                 }
 
+                if (debug)
+                    System.out.println("Loaded "+opcode);
+                    
                 values.add(opcode);
             }
         }
