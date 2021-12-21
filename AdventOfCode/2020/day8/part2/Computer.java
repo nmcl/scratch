@@ -7,6 +7,13 @@ public class Computer
         _debug = debug;
     }
 
+    public Vector<OpCode> fix (Vector<OpCode> instructions)
+    {
+        boolean done = false;
+
+        return null;
+    }
+
     public int executeUntilEnd (Vector<OpCode> instructions)
     {
         int index = 0;
