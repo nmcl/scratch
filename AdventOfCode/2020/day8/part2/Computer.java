@@ -87,6 +87,30 @@ public class Computer
         int index = 0;
         Enumeration<OpCode> iter = instructions.elements();
 
+        while (iter.hasMoreElements())
+        {
+            OpCode oc = iter.nextElement();
+
+            switch (oc.type())
+            {
+                OpCode.ACCUMULATOR:
+                {
+
+                }
+                break;
+                OpCode.JUMP:
+                {
+
+                }
+                break;
+                default:
+                {
+
+                }
+                break;
+            }
+        }
+
         return index;
     }
 
