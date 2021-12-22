@@ -2,9 +2,16 @@
 
 public class NoOp extends OpCode
 {
-    public NoOp ()
+    public NoOp (int value)
     {
         super(OpCode.NOOP);
+
+        _value = value;
+    }
+
+    public int getValue ()
+    {
+        return _value
     }
 
     @Override
@@ -12,4 +19,6 @@ public class NoOp extends OpCode
     {
         return OpCode.NOOP;
     }
+
+    private int _value;
 }
