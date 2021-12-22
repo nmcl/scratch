@@ -11,7 +11,7 @@ public class NoOp extends OpCode
 
     public int getValue ()
     {
-        return _value
+        return _value;
     }
 
     @Override
