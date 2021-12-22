@@ -82,5 +82,13 @@ public class Computer
         return accumulator;
     }
 
+    private int changeCode (Vector<OpCode> instructions, Vector<OpCode> copy, int entry)
+    {
+        int index = 0;
+        Enumeration<OpCode> iter = instructions.elements();
+
+        return index;
+    }
+
     private boolean _debug;
 }
