@@ -1,4 +1,4 @@
-// No OPeration - it does nothing
+// No OPeration - it does nothing, but might have a parameter!
 
 public class NoOp extends OpCode
 {
