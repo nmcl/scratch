@@ -79,6 +79,18 @@ public class Util
         return values;
     }
 
+    public static final void printInstructions (Vector<OpCode> instructions)
+    {
+        Enumeration<OpCode> iter = instructions.elements();
+
+        System.out.println("\nInstructions:\n");
+
+        while (iter.hasMoreElements())
+        {
+            System.out.println(iter.nextElement());
+        }
+    }
+
     private Util ()
     {
     }
