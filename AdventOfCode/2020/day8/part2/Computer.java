@@ -10,15 +10,26 @@ public class Computer
     public Vector<OpCode> fix (Vector<OpCode> instructions)
     {
         boolean done = false;
+        int index = 0;
 
-        try
+        while (!done)
         {
-            Vector<OpCode> attempt = new Vector<OpCode>();
+            try
+            {
+                Vector<OpCode> attempt = new Vector<OpCode>();
+                
+                index = changeCode(instructions, attempt, index);
 
-        }
-        catch (ArrayIndexOutOfBoundsException ex)
-        {
-            // if we fix the program then we'll drop off the end of the program
+                executeUntilInfiniteLoop(attempt);
+
+                done = true;
+            }
+            catch (ArrayIndexOutOfBoundsException ex)
+            {
+                // if we fix the program then we'll drop off the end of the program
+
+                ex.printStackTrace();
+            }
         }
 
         return null;
