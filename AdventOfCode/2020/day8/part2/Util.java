@@ -43,7 +43,9 @@ public class Util
                     break;
                     case OpCode.NOOP:
                     {
-                        opcode = new NoOp();
+                        Integer v = Integer.parseInt(line.substring(space +1));
+
+                        opcode = new NoOp(v);
                     }
                     break;
                     default:
