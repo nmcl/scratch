@@ -17,7 +17,7 @@ public class NoOp extends OpCode
     @Override
     public String toString ()
     {
-        return OpCode.NOOP;
+        return OpCode.NOOP+" "+_value;
     }
 
     private int _value;
