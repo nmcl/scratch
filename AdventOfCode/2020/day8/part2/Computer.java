@@ -82,6 +82,8 @@ public class Computer
         return accumulator;
     }
 
+    // either a jmp is supposed to be a nop, or a nop is supposed to be a jmp
+
     private int changeCode (Vector<OpCode> instructions, Vector<OpCode> copy, int entry)
     {
         int index = 0;
@@ -90,22 +92,39 @@ public class Computer
         while (iter.hasMoreElements())
         {
             OpCode oc = iter.nextElement();
+            OpCode replacement = null;
 
             switch (oc.type())
             {
-                OpCode.ACCUMULATOR:
+                case OpCode.ACCUMULATOR:
                 {
+                    Accumulator a = (Accumulator) oc;
 
+                    replacement = new Accumulator(a.getValue());
                 }
                 break;
-                OpCode.JUMP:
+                case OpCode.JUMP:
                 {
+                    Jump j = (Jump) oc;
 
+                    if (index == entry)
+                    {
+                        replacement = new NoOp(j.getStep());
+                    }
+
+                    index++;
                 }
                 break;
                 default:
                 {
+                    NoOp n = (NoOp) oc;
 
+                    if (index == entry)
+                    {
+                        replacement = new Jump(n.getValue());
+                    }
+
+                    index++;
                 }
                 break;
             }
