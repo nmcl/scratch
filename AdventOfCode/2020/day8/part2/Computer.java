@@ -100,6 +100,8 @@ public class Computer
         int index = 0;
         Enumeration<OpCode> iter = instructions.elements();
 
+        System.out.println("**changing "+entry);
+
         while (iter.hasMoreElements())
         {
             OpCode oc = iter.nextElement();
@@ -139,6 +141,8 @@ public class Computer
                 }
                 break;
             }
+
+            copy.add(replacement);
         }
 
         return index;
