@@ -31,7 +31,7 @@ public class GameConsole
             if (v.verify())
                 System.out.println("Verified ok.");
             else
-                System.out.println("Veriff failed!");
+                System.out.println("Verify failed!");
         }
 
         Vector<OpCode> instructions = Util.loadData(INSTRUCTIONS, debug);
