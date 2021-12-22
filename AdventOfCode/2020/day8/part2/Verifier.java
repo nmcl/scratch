@@ -14,13 +14,9 @@ public class Verifier
     {
         Vector<OpCode> instructions = Util.loadData(EXAMPLE_DATA, _debug);
         Computer theComputer = new Computer(_debug);
-        int acc = theComputer.executeUntilInfiniteLoop(instructions);
-
-        if (acc == ACCUMULATOR)
-            return true;
-
-        System.out.println("Wrong accumulator value: "+acc+"\n");
         
+        theComputer.fix(instructions);
+
         return false;
     }
 
