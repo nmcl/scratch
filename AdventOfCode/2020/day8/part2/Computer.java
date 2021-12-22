@@ -21,14 +21,14 @@ public class Computer
                 index = changeCode(instructions, attempt, index);
 
                 executeUntilInfiniteLoop(attempt);
-
-                done = true;
             }
             catch (ArrayIndexOutOfBoundsException ex)
             {
                 // if we fix the program then we'll drop off the end of the program
 
                 ex.printStackTrace();
+
+                done = true;
             }
         }
 
