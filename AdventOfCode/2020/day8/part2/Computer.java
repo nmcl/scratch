@@ -11,6 +11,15 @@ public class Computer
     {
         boolean done = false;
 
+        try
+        {
+
+        }
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            // if we fix the program then we'll drop off the end of the program
+        }
+
         return null;
     }
 
