@@ -38,8 +38,8 @@ public class GameConsole
 
         Vector<OpCode> instructions = Util.loadData(INSTRUCTIONS, debug);
         Computer theComputer = new Computer(debug);
-        int acc = theComputer.executeUntilInfiniteLoop(instructions);
+        int acc = theComputer.fixAndExecute(instructions);
 
-        System.out.println("Value in the accumulator: "+acc);
+        System.out.println("Value in the accumulator after fixing the program: "+acc);
     }
 }
