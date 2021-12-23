@@ -104,6 +104,7 @@ public class Computer
     {
         int index = 0;
         Enumeration<OpCode> iter = instructions.elements();
+        int entryChanged = 0;
 
         System.out.println("**changing "+entry);
 
@@ -128,9 +129,10 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new NoOp(j.getStep());
-
-                        index++;
+                        entryChanged = index;
                     }
+
+                    index++;
                 }
                 break;
                 default:
@@ -140,9 +142,10 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new Jump(n.getValue());
-
-                        index++;
+                        entryChanged = index;
                     }
+
+                    index++;
                 }
                 break;
             }
@@ -152,7 +155,7 @@ public class Computer
 
         System.out.println("returning "+index);
 
-        return index;
+        return entryChanged;
     }
 
     private boolean _debug;
