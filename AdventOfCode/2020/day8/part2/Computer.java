@@ -128,9 +128,9 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new NoOp(j.getStep());
-                    }
 
-                    index++;
+                        index++;
+                    }
                 }
                 break;
                 default:
@@ -140,15 +140,17 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new Jump(n.getValue());
-                    }
 
-                    index++;
+                        index++;
+                    }
                 }
                 break;
             }
 
             copy.add(replacement);
         }
+
+        System.out.println("returning "+index);
 
         return index;
     }
