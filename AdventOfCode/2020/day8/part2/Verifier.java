@@ -15,7 +15,7 @@ public class Verifier
         Vector<OpCode> instructions = Util.loadData(EXAMPLE_DATA, _debug);
         Computer theComputer = new Computer(_debug);
         
-        theComputer.fix(instructions);
+        theComputer.fixAndExecute(instructions);
 
         return false;
     }
