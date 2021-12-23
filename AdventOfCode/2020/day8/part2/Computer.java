@@ -20,6 +20,9 @@ public class Computer
                 
                 index = changeCode(instructions, attempt, index);
 
+                if (_debug)
+                    Util.printInstructions(attempt);
+                    
                 executeUntilInfiniteLoop(attempt);
             }
             catch (ArrayIndexOutOfBoundsException ex)
