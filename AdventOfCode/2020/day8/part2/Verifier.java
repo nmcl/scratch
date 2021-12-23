@@ -12,6 +12,8 @@ public class Verifier
 
     public boolean verify ()
     {
+        System.out.println("verify "+_debug);
+        
         Vector<OpCode> instructions = Util.loadData(EXAMPLE_DATA, _debug);
         Computer theComputer = new Computer(_debug);
         
