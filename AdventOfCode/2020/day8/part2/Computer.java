@@ -4,10 +4,11 @@ public class Computer
 {
     public Computer (boolean debug)
     {
+        _accumulator = 0;
         _debug = debug;
     }
 
-    public Vector<OpCode> fix (Vector<OpCode> instructions)
+    public int fixAndExecute (Vector<OpCode> instructions)
     {
         boolean done = false;
         int index = 0;
@@ -37,21 +38,22 @@ public class Computer
             }
         }
 
-        return null;
+        return _accumulator;
     }
 
     public int executeUntilInfiniteLoop (Vector<OpCode> instructions)
     {
         int index = 0;
         OpCode op = instructions.elementAt(index);
-        int accumulator = 0;
+
+        _accumulator = 0;
 
         while (!op.visited())
         {
             if (_debug)
             {
                 System.out.println("\nInstruction: "+index);
-                System.out.println("Accumulator: "+accumulator+"\n");
+                System.out.println("Accumulator: "+_accumulator+"\n");
             }
 
             switch (op.type())
@@ -61,9 +63,9 @@ public class Computer
                     int value = ((Accumulator) op).getValue();
 
                     if (_debug)
-                        System.out.println("acc: adding "+value+" to accumulator "+accumulator);
+                        System.out.println("acc: adding "+value+" to accumulator "+_accumulator);
 
-                    accumulator += value;
+                    _accumulator += value;
                     index++;
                 }
                 break;
@@ -95,7 +97,7 @@ public class Computer
             op = instructions.elementAt(index);
         }
 
-        return accumulator;
+        return _accumulator;
     }
 
     // either a jmp is supposed to be a nop, or a nop is supposed to be a jmp
@@ -162,5 +164,6 @@ public class Computer
         return entryChanged;
     }
 
+    private int _accumulator;
     private boolean _debug;
 }
