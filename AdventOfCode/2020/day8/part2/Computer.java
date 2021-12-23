@@ -12,6 +12,8 @@ public class Computer
         boolean done = false;
         int index = 0;
 
+        System.out.println("**debug "+_debug);
+        
         while (!done)
         {
             try
@@ -20,9 +22,11 @@ public class Computer
                 
                 index = changeCode(instructions, attempt, index);
 
+                System.out.println("**here");
+
                 if (_debug)
                     Util.printInstructions(attempt);
-                    
+
                 executeUntilInfiniteLoop(attempt);
             }
             catch (ArrayIndexOutOfBoundsException ex)
