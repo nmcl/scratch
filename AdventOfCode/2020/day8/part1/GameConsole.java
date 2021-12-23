@@ -17,7 +17,7 @@ public class GameConsole
                 System.exit(0);
             }
 
-            if ("-debug".equals(args[0]))
+            if ("-debug".equals(args[i]))
                 debug = true;
 
             if ("-verify".equals(args[i]))
