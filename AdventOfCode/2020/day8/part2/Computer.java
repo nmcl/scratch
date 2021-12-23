@@ -102,9 +102,9 @@ public class Computer
 
     private int changeCode (Vector<OpCode> instructions, Vector<OpCode> copy, int entry)
     {
-        int index = 0;
         Enumeration<OpCode> iter = instructions.elements();
         int entryChanged = 0;
+        int index = 0;
 
         System.out.println("**changing "+entry);
 
@@ -129,7 +129,7 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new NoOp(j.getStep());
-                        entryChanged = index;
+                        entryChanged = index +1;
                     }
 
                     index++;
@@ -142,7 +142,7 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new Jump(n.getValue());
-                        entryChanged = index;
+                        entryChanged = index +1;
                     }
 
                     index++;
@@ -153,7 +153,7 @@ public class Computer
             copy.add(replacement);
         }
 
-        System.out.println("returning "+index);
+        System.out.println("returning "+entryChanged);
 
         return entryChanged;
     }
