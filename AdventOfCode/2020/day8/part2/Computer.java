@@ -129,8 +129,10 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new NoOp(j.getStep());
-                        entryChanged = index +1;
+                        entryChanged = entry +1;
                     }
+                    else
+                        replacement = new Jump(j.getStep());
 
                     index++;
                 }
@@ -142,8 +144,10 @@ public class Computer
                     if (index == entry)
                     {
                         replacement = new Jump(n.getValue());
-                        entryChanged = index +1;
+                        entryChanged = entry +1;
                     }
+                    else
+                        replacement = new NoOp(n.getValue());
 
                     index++;
                 }
