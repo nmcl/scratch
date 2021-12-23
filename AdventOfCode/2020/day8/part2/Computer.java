@@ -25,14 +25,12 @@ public class Computer
                     Util.printInstructions(attempt);
 
                 executeUntilInfiniteLoop(attempt);
-
-                System.out.println("**infinite loop");
             }
             catch (ArrayIndexOutOfBoundsException ex)
             {
                 // if we fix the program then we'll drop off the end of the program
 
-                ex.printStackTrace();
+                //ex.printStackTrace();
 
                 done = true;
             }
@@ -108,8 +106,6 @@ public class Computer
         int entryChanged = 0;
         int index = 0;
 
-        System.out.println("**changing "+entry);
-
         while (iter.hasMoreElements())
         {
             OpCode oc = iter.nextElement();
@@ -158,8 +154,6 @@ public class Computer
 
             copy.add(replacement);
         }
-
-        System.out.println("returning "+entryChanged);
 
         return entryChanged;
     }
