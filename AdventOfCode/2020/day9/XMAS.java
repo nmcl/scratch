@@ -12,6 +12,16 @@ public class XMAS
         Vector<Integer> invalid = new Vector<Integer>();
         int index = 0;
 
+        for (int i = preamble; i < input.size(); i++)
+        {
+            int toCheck = input.elementAt(i);
+
+            for (int j = index; j < preamble; j++)
+            {
+                
+            }
+        }
+
         return invalid;
     }
 
