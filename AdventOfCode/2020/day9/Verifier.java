@@ -14,9 +14,9 @@ public class Verifier
 
     public boolean verify ()
     {
-        Vector<Integer> data = Util.loadData(EXAMPLE_INPUT, _debug);
+        Vector<Long> data = Util.loadData(EXAMPLE_INPUT, _debug);
         XMAS parser = new XMAS(_debug);
-        Vector<Integer> results = parser.validate(data, EXAMPLE_PREAMBLE);
+        Vector<Long> results = parser.validate(data, EXAMPLE_PREAMBLE);
 
         if (results.size() == 1)
         {

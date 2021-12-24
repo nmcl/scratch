@@ -7,9 +7,9 @@ public class XMAS
         _debug = debug;
     }
 
-    public Vector<Integer> validate (Vector<Integer> input, int preamble)
+    public Vector<Long> validate (Vector<Long> input, int preamble)
     {
-        Vector<Integer> invalid = new Vector<Integer>();
+        Vector<Long> invalid = new Vector<Long>();
         int index = 0;
 
         for (int i = preamble; i < input.size(); i++)
@@ -23,7 +23,7 @@ public class XMAS
         return invalid;
     }
 
-    private boolean sums (int total, Vector<Integer> input, int start, int preamble)
+    private boolean sums (long total, Vector<Long> input, int start, int preamble)
     {
         //System.out.println("outer range: "+start+" to "+(start + preamble -1));
 

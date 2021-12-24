@@ -3,14 +3,14 @@ import java.io.*;
 
 public class Util
 {
-    public static final Vector<Integer> loadData (String inputFile, boolean debug)
+    public static final Vector<Long> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<Integer> values = new Vector<Integer>();
+        Vector<Long> values = new Vector<Long>();
 
         try
         {
@@ -19,7 +19,7 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                values.add(Integer.parseInt(line));
+                values.add(Long.parseLong(line));
             }
         }
         catch (Throwable ex)

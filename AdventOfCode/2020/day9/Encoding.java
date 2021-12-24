@@ -1,5 +1,10 @@
+import java.util.*;
+
 public class Encoding
 {
+    public static final String DATA_FILE = "data.txt";
+    public static final int PREAMBLE = 25;
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -31,5 +36,11 @@ public class Encoding
 
             System.exit(0);
         }
+
+        Vector<Long> data = Util.loadData(DATA_FILE, debug);
+        XMAS parser = new XMAS(debug);
+        Vector<Long> results = parser.validate(data, PREAMBLE);
+
+        System.out.println("First number which is invalid: "+results.elementAt(0));
     }
 }
