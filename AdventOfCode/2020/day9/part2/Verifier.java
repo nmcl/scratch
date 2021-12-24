@@ -6,7 +6,8 @@ public class Verifier
 
     public static final int EXAMPLE_PREAMBLE = 5;
     public static final long[] EXAMPLE_SEQUENCE = { 15, 25, 47, 40 };
-
+    public static final long EXAMPLE_TOTAL = 62;
+    
     public Verifier (boolean debug)
     {
         _debug = debug;
