@@ -40,6 +40,7 @@ public class Encoding
         Vector<Long> data = Util.loadData(DATA_FILE, debug);
         XMAS parser = new XMAS(debug);
         Vector<Long> results = parser.validate(data, PREAMBLE);
+        Vector<Long> sequence = parser.findSequence(data, results.elementAt(0));
 
         System.out.println("First number which is invalid: "+results.elementAt(0));
     }
