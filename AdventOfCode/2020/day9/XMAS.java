@@ -28,9 +28,14 @@ public class XMAS
         for (int j = start; j < (start + preamble -1); j++)
         {
             if (input.elementAt(index) + input.elementAt(index +1) == total)
+            {
                 return true;
+            }
         }
 
+        if (_debug)
+            System.out.println(total+" is not the sum of two entries.");
+            
         return false;
     }
 
