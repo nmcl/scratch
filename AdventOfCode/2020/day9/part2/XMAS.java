@@ -23,6 +23,19 @@ public class XMAS
         return invalid;
     }
 
+    public Vector<Long> findSequence (Vector<Long> input, long total)
+    {
+        int start = 0;
+        int end = 0;
+
+        while (start < input.size())
+        {
+
+        }
+
+        return null;
+    }
+
     private boolean sums (long total, Vector<Long> input, int start, int preamble)
     {
         //System.out.println("outer range: "+start+" to "+(start + preamble -1));
