@@ -25,16 +25,16 @@ public class XMAS
 
     private boolean sums (int total, Vector<Integer> input, int start, int preamble)
     {
-        for (int j = start; j < (start + preamble -1); j++)
+        for (int i = start; i < (start + preamble -1); i++)
         {
             if (_debug)
-                System.out.println("Trying to total "+total+" using "+input.elementAt(j)+" and "+input.elementAt(j +1));
+                System.out.println("Trying to total "+total+" using "+input.elementAt(i)+" and "+input.elementAt(i +1));
 
-            if (input.elementAt(j) + input.elementAt(j +1) == total)
+            if (input.elementAt(i) + input.elementAt(i +1) == total)
             {
                 if (_debug)
                     System.out.println("Total "+total+" found.");
-                    
+
                 return true;
             }
         }
