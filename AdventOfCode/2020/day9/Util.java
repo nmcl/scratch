@@ -3,16 +3,14 @@ import java.io.*;
 
 public class Util
 {
-    public static final String SPACE = " ";
-
-    public static final Vector<OpCode> loadData (String inputFile, boolean debug)
+    public static final Vector<Integer> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<OpCode> values = new Vector<OpCode>();
+        Vector<Integer> values = new Vector<Integer>();
 
         try
         {
@@ -21,44 +19,7 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                int space = line.indexOf(SPACE);
-                String type = line.substring(0, space).trim();
-                OpCode opcode = null;
-
-                switch (type)
-                {
-                    case OpCode.ACCUMULATOR:
-                    {
-                        Integer v = Integer.parseInt(line.substring(space +1));
-
-                        opcode = new Accumulator(v);
-                    }
-                    break;
-                    case OpCode.JUMP:
-                    {
-                        Integer v = Integer.parseInt(line.substring(space +1));
-
-                        opcode = new Jump(v);
-                    }
-                    break;
-                    case OpCode.NOOP:
-                    {
-                        Integer v = Integer.parseInt(line.substring(space +1));
-
-                        opcode = new NoOp(v);
-                    }
-                    break;
-                    default:
-                    {
-                        System.out.println("Unknown opcode: "+type);
-                    }
-                    break;
-                }
-
-                if (debug)
-                    System.out.println("Loaded "+opcode);
-                    
-                values.add(opcode);
+                values.add(Integer.parseInt(line));
             }
         }
         catch (Throwable ex)
@@ -77,18 +38,6 @@ public class Util
         }
 
         return values;
-    }
-
-    public static final void printInstructions (Vector<OpCode> instructions)
-    {
-        Enumeration<OpCode> iter = instructions.elements();
-
-        System.out.println("\nInstructions:\n");
-
-        while (iter.hasMoreElements())
-        {
-            System.out.println(iter.nextElement());
-        }
     }
 
     private Util ()
