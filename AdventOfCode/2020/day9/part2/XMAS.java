@@ -46,6 +46,8 @@ public class XMAS
                 if (runningTotal > total)
                     stop = true;
             }
+
+            start++;
         }
 
         return null;
