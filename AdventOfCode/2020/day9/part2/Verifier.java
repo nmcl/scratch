@@ -5,7 +5,7 @@ public class Verifier
     public static final String EXAMPLE_INPUT = "example.txt";
 
     public static final int EXAMPLE_PREAMBLE = 5;
-    public static final int INVALID_NUMBER = 127;
+    public static final long[] EXAMPLE_SEQUENCE = { 15, 25, 47, 40 };
 
     public Verifier (boolean debug)
     {
@@ -20,10 +20,24 @@ public class Verifier
 
         if (results.size() == 1)
         {
-            if (results.elementAt(0) == INVALID_NUMBER)
+            Vector<Long> sequence = parser.findSequence(data, results.elementAt(0));
+
+            if ((sequence != null) && (sequence.size() == 4))
+            {
+                for (int i = 0; i < sequence.size(); i++)
+                {
+                    if (EXAMPLE_SEQUENCE[i] != sequence.elementAt(i))
+                    {
+                        System.out.println("Incorrect sequence entry: "+sequence.elementAt(i));
+
+                        return false;
+                    }
+                }
+
                 return true;
+            }
             else
-                System.out.println("Wrong invalid entry: "+results.elementAt(0));
+                System.out.println("Incorrect sequence: "+sequence);
         }
         else
             System.out.println("Wrong number of invalid entries: "+results.size());
