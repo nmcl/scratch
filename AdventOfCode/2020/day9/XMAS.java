@@ -25,11 +25,11 @@ public class XMAS
 
     private boolean sums (int total, Vector<Integer> input, int start, int preamble)
     {
-        System.out.println("outer range: "+start+" to "+(start + preamble -1));
+        //System.out.println("outer range: "+start+" to "+(start + preamble -1));
 
         for (int i = start; i < (start + preamble -1); i++)
         {
-            System.out.println("inner range "+(i+1)+" to "+(start + preamble));
+            //System.out.println("inner range "+(i+1)+" to "+(start + preamble));
 
             for (int j = i +1; j < (start + preamble); j++)
             {
