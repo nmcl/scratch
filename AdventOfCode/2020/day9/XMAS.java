@@ -27,7 +27,10 @@ public class XMAS
     {
         for (int j = start; j < (start + preamble -1); j++)
         {
-            if (input.elementAt(start) + input.elementAt(start +1) == total)
+            if (_debug)
+                System.out.println("Trying to total "+total+" using "+input.elementAt(start)+" and "+input.elementAt(start +1));
+
+            if (input.elementAt(j) + input.elementAt(j +1) == total)
             {
                 return true;
             }
