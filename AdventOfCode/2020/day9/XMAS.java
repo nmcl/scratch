@@ -14,15 +14,24 @@ public class XMAS
 
         for (int i = preamble; i < input.size(); i++)
         {
-            int toCheck = input.elementAt(i);
-
-            for (int j = index; j < preamble; j++)
-            {
-                
-            }
+            if (!sums(elementAt(i), input, index, preamble))
+                invalid.add(elementAt(i));
+            
+            index++;
         }
 
         return invalid;
+    }
+
+    private boolean sums (int total, Vector<Integer> input, int start, int preanble)
+    {
+        for (int j = start; j < (start + preamble -1); j++)
+        {
+            if (input.elementAt(index) + input.elementAt(index +1) == total)
+                return true;
+        }
+
+        return false;
     }
 
     private boolean _debug;
