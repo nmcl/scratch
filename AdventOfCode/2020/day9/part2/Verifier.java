@@ -7,7 +7,7 @@ public class Verifier
     public static final int EXAMPLE_PREAMBLE = 5;
     public static final long[] EXAMPLE_SEQUENCE = { 15, 25, 47, 40 };
     public static final long EXAMPLE_TOTAL = 62;
-    
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -35,7 +35,10 @@ public class Verifier
                     }
                 }
 
-                return true;
+                // just to be safe ...
+
+                if (Util.smallest(sequence) + Util.largest(sequence) == EXAMPLE_TOTAL)
+                    return true;
             }
             else
                 System.out.println("Incorrect sequence: "+sequence);
