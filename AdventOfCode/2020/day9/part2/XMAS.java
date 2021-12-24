@@ -30,7 +30,22 @@ public class XMAS
 
         while (start < input.size())
         {
+            boolean stop = false;
+            int runningTotal = 0;
+            Vector<Long> seq = new Vector<Long>();
 
+            for (int i = start; (i < input.size()) && !stop; i++)
+            {
+                runningTotal += input.elementAt(i);
+
+                seq.add(input.elementAt(i));
+
+                if ((runningTotal == total) && (input.elementAt(i) != total))
+                    return seq;
+                
+                if (runningTotal > total)
+                    stop = true;
+            }
         }
 
         return null;
