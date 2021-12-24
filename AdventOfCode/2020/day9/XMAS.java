@@ -23,11 +23,23 @@ public class XMAS
         return invalid;
     }
 
+    /*
+     * 0 1
+     * 0 2
+     * 0 3
+     * 0 4
+     * 
+     * 1 2
+     * 1 3
+     * 1 4
+     * 1 5
+     */
+
     private boolean sums (int total, Vector<Integer> input, int start, int preamble)
     {
         for (int i = start; i < (start + preamble -1); i++)
         {
-            for (int j = i +1; j < preamble - i; j++)
+            for (int j = i +1; j < preamble - i +1; j++)
             {
                 if (_debug)
                     System.out.println("Trying to total "+total+" using "+input.elementAt(i)+" and "+input.elementAt(j));
