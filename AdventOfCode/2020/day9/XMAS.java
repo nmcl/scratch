@@ -14,8 +14,8 @@ public class XMAS
 
         for (int i = preamble; i < input.size(); i++)
         {
-            if (!sums(elementAt(i), input, index, preamble))
-                invalid.add(elementAt(i));
+            if (!sums(input.elementAt(i), input, index, preamble))
+                invalid.add(input.elementAt(i));
             
             index++;
         }
@@ -23,11 +23,11 @@ public class XMAS
         return invalid;
     }
 
-    private boolean sums (int total, Vector<Integer> input, int start, int preanble)
+    private boolean sums (int total, Vector<Integer> input, int start, int preamble)
     {
         for (int j = start; j < (start + preamble -1); j++)
         {
-            if (input.elementAt(index) + input.elementAt(index +1) == total)
+            if (input.elementAt(start) + input.elementAt(start +1) == total)
             {
                 return true;
             }
@@ -35,7 +35,7 @@ public class XMAS
 
         if (_debug)
             System.out.println(total+" is not the sum of two entries.");
-            
+
         return false;
     }
 
