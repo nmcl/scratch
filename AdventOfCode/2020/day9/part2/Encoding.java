@@ -42,6 +42,6 @@ public class Encoding
         Vector<Long> results = parser.validate(data, PREAMBLE);
         Vector<Long> sequence = parser.findSequence(data, results.elementAt(0));
 
-        System.out.println("First number which is invalid: "+results.elementAt(0));
+        System.out.println("Encryption weakness: "+(Util.smallest(sequence) + Util.largest(sequence)));
     }
 }
