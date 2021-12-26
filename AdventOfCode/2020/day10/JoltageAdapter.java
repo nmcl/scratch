@@ -1,7 +1,8 @@
 public class JoltageAdapter
 {
-    public JoltageAdapter (boolean debug)
+    public JoltageAdapter (int voltage, boolean debug)
     {
+        _joltage = voltage;
         _debug = debug;
     }
 
