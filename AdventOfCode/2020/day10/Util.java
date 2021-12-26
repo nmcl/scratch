@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Util
 {
@@ -9,7 +10,7 @@ public class Util
          */
 
         BufferedReader reader = null;
-        Vector<JoltageAdapter> values = new Vector<Long>();
+        Vector<JoltageAdapter> values = new Vector<JoltageAdapter>();
 
         try
         {
@@ -18,7 +19,7 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                values.add(Long.parseLong(line));
+                values.add(new JoltageAdapter(Integer.parseInt(line), debug));
             }
         }
         catch (Throwable ex)
