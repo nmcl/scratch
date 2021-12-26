@@ -6,7 +6,7 @@ public class JoltageAdapter
         _debug = debug;
     }
 
-    private int outputJoltage ()
+    public int outputJoltage ()
     {
         return _joltage;
     }
