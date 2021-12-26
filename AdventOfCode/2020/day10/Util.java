@@ -2,14 +2,14 @@ import java.util.*;
 
 public class Util
 {
-    public static final Vector<Long> loadData (String inputFile, boolean debug)
+    public static final Vector<JoltageAdapter> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<Long> values = new Vector<Long>();
+        Vector<JoltageAdapter> values = new Vector<Long>();
 
         try
         {
