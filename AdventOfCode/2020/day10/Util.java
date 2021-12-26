@@ -3,6 +3,19 @@ import java.io.*;
 
 public class Util
 {
+    public static final Device largest (Vector<JoltageAdapter> data, boolean debug)
+    {
+        int max = data.elementAt(0).outputJoltage();
+
+        for (int i = 0; i < data.size(); i++)
+        {
+            if (data.elementAt(i).outputJoltage() > max)
+                max = data.elementAt(i).outputJoltage();
+        }
+
+        return new Device(new JoltageAdapter(max +3, debug), debug);
+    }
+
     public static final Vector<JoltageAdapter> loadData (String inputFile, boolean debug)
     {
         /*
