@@ -7,13 +7,35 @@ public class Connector
 
     public Connector (boolean debug)
     {
+        _differenceOne = null;
+        _differenceTwo = null;
+        _differenceThree = null;
         _debug = debug;
+    }
+
+    public Vector<JoltageAdapter> getDifferenceOne ()
+    {
+        return _differenceOne;
+    }
+
+    public Vector<JoltageAdapter> getDifferenceTwo ()
+    {
+        return _differenceTwo;
+    }
+
+    public Vector<JoltageAdapter> getDifferenceThree ()
+    {
+        return _differenceThree;
     }
 
     public Vector<JoltageAdapter> connect (Vector<JoltageAdapter> adapters)
     {
         Vector<JoltageAdapter> toReturn = new Vector<JoltageAdapter>();
         int joltage = 0;
+
+        _differenceOne = new Vector<JoltageAdapter>();
+        _differenceTwo = new Vector<JoltageAdapter>();
+        _differenceThree = new Vector<JoltageAdapter>();
 
         while (adapters.size() > 0)
         {
@@ -63,5 +85,8 @@ public class Connector
         return toReturn;
     }
 
+    private Vector<JoltageAdapter> _differenceOne;
+    private Vector<JoltageAdapter> _differenceTwo;
+    private Vector<JoltageAdapter> _differenceThree;
     private boolean _debug;
 }
