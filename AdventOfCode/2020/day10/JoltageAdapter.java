@@ -11,6 +11,12 @@ public class JoltageAdapter
         return _joltage;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Adapter joltage: "+_joltage;
+    }
+
     private int _joltage;
     private boolean _debug;
 }
