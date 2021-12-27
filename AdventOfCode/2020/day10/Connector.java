@@ -20,13 +20,16 @@ public class Connector
             boolean found = false;
             JoltageAdapter adapter = null;
 
+            if (_debug)
+                System.out.println("Seaching for adapter joltage: "+joltage);
+            
             for (int i = 0; (i < adapters.size()) && !found; i++)
             {
                 int current = adapters.elementAt(i).outputJoltage();
 
                 if (_debug)
-                    System.out.println("Seaching for adapter joltage: "+joltage);
-                    
+                    System.out.println("Checking adapter: "+current);
+
                 if (current == joltage)
                 {
                     adapter = adapters.elementAt(i);
@@ -35,19 +38,29 @@ public class Connector
 
                 if ((current > joltage) && (current <= joltage + JOLTAGE_RANGE))
                 {
+                    if (_debug)
+                        System.out.println("Adapter "+current+" within range. Have "+adapter);
+
                     if (adapter == null)
                         adapter = adapters.elementAt(i);
                     else
                     {
                         if (current <= adapter.outputJoltage())
-                            current = adapters.elementAt(i);
+                            adapter = adapters.elementAt(i);
                     }
+
+                    if (_debug)
+                        System.out.println("Adapter: "+adapter);
                 }
             }
 
+            joltage = adapter.outputJoltage();
+
+            toReturn.add(adapter);
+            adapters.remove(adapter);
         }
 
-        return null;
+        return toReturn;
     }
 
     private boolean _debug;
