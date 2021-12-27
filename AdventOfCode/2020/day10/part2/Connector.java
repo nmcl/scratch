@@ -130,33 +130,23 @@ public class Connector
     private long check (Vector<JoltageAdapter> adapters, Map<Integer, Long> count, int current, int target)
     {
         if (current + 3 == target)
-        {
             return 1;
-        }
         else
         {
             if (count.containsKey(current))
-            {
                 return count.get(current);
-            }
         }
 
         long value = 0;
 
         if (adapters.contains(new JoltageAdapter(current + 1, _debug)))
-        {
             value += check(adapters, count, current + 1, target);
-        }
         
         if (adapters.contains(new JoltageAdapter(current + 2, _debug)))
-        {
             value += check(adapters, count, current + 2, target);
-        }
 
         if (adapters.contains(new JoltageAdapter(current + 3, _debug)))
-        {
             value += check(adapters, count, current + 3, target);
-        }
 
         count.put(current, value);
 
