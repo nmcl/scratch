@@ -28,6 +28,16 @@ public class Connector
         return _differenceThree;
     }
 
+    public long combinations (Vector<JoltageAdapter> adapters)
+    {
+        return 0;
+    }
+
+    private long check (int index)
+    {
+        return 0;
+    }
+
     public Vector<JoltageAdapter> connect (Vector<JoltageAdapter> adapters)
     {
         Vector<JoltageAdapter> toReturn = new Vector<JoltageAdapter>();
