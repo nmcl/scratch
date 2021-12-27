@@ -34,9 +34,12 @@ public class Verifier
 
         sorted.add(device.getAdapter());
 
-        for (int i = 0; i < sorted.size(); i++)
+        if (_debug)
         {
-            System.out.println("Adapter: "+sorted.elementAt(i).outputJoltage());
+            for (int i = 0; i < sorted.size(); i++)
+            {
+                System.out.println("Adapter: "+sorted.elementAt(i).outputJoltage());
+            }
         }
 
         con.getDifferenceThree().add(device.getAdapter());
@@ -45,7 +48,7 @@ public class Verifier
         {
             if (con.getDifferenceTwo().size() == diff2)
             {
-                if (con.getDifferenceThree().size() == diff1)
+                if (con.getDifferenceThree().size() == diff3)
                 {
                     return true;
                 }
