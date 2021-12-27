@@ -36,29 +36,6 @@ public class Connector
         return check(adapters, count, index);
     }
 
-    private long check (Vector<JoltageAdapter> adapters, HashMap<Integer, Long> count, int index)
-    {
-        if (index == (adapters.size() - 1))
-            return 1;
-
-        if (count.containsKey(index))
-            return count.get(index);
-
-        long value = 0;
-
-        for (int i = index + 1; i < adapters.size(); i++)
-        {
-            if (adapters.get(i).outputJoltage() - adapters.get(index).outputJoltage() > 3)
-                break;
-
-            value += check(adapters, count, i);
-        }
-
-        count.put(index, value);
-
-        return value;
-    }
-
     public Vector<JoltageAdapter> connect (Vector<JoltageAdapter> adapters)
     {
         Vector<JoltageAdapter> toReturn = new Vector<JoltageAdapter>();
@@ -148,6 +125,29 @@ public class Connector
         }
 
         return toReturn;
+    }
+
+    private long check (Vector<JoltageAdapter> adapters, HashMap<Integer, Long> count, int index)
+    {
+        if (index == (adapters.size() - 1))
+            return 1;
+
+        if (count.containsKey(index))
+            return count.get(index);
+
+        long value = 0;
+
+        for (int i = index + 1; i < adapters.size(); i++)
+        {
+            if (adapters.get(i).outputJoltage() - adapters.get(index).outputJoltage() > 3)
+                break;
+
+            value += check(adapters, count, i);
+        }
+
+        count.put(index, value);
+
+        return value;
     }
 
     private Vector<JoltageAdapter> _differenceOne;
