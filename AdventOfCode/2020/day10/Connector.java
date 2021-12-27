@@ -76,6 +76,9 @@ public class Connector
                 }
             }
 
+            if (_debug)
+                System.out.println("Difference "+(adapter.outputJoltage() - joltage));
+
             switch (adapter.outputJoltage() - joltage)
             {
                 case 1:
@@ -104,6 +107,13 @@ public class Connector
 
             toReturn.add(adapter);
             adapters.remove(adapter);
+        }
+
+        if (_debug)
+        {
+            System.out.println("Difference One: "+_differenceOne.size());
+            System.out.println("Difference Two: "+_differenceTwo.size());
+            System.out.println("Difference Three: "+_differenceThree.size());
         }
 
         return toReturn;
