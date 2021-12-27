@@ -30,12 +30,33 @@ public class Connector
 
     public long combinations (Vector<JoltageAdapter> adapters)
     {
-        return 0;
+        HashMap<Integer, Long> count = new HashMap<Integer, Long>();
+        int index = 0;
+
+        return check(adapters, count, index);
     }
 
-    private long check (int index)
+    private long check (Vector<JoltageAdapter> adapters, HashMap<Integer, Long> count, int index)
     {
-        return 0;
+        if (index == (adapters.size() - 1))
+            return 1;
+
+        if (count.containsKey(index))
+            return count.get(index);
+
+        long value = 0;
+
+        for (int i = index + 1; i < adapters.size(); i++)
+        {
+            if (adapters.get(i).outputJoltage() - adapters.get(index).outputJoltage() > 3)
+                break;
+
+            value += check(adapters, count, i);
+        }
+
+        count.put(index, value);
+
+        return value;
     }
 
     public Vector<JoltageAdapter> connect (Vector<JoltageAdapter> adapters)
