@@ -129,7 +129,7 @@ public class Connector
 
     private long check (Vector<JoltageAdapter> adapters, HashMap<Integer, Long> count, int index)
     {
-        if (index == (adapters.size() - 1))
+        if (index == adapters.size() - 1)
             return 1;
 
         if (count.containsKey(index))
@@ -139,7 +139,7 @@ public class Connector
 
         for (int i = index + 1; i < adapters.size(); i++)
         {
-            if (adapters.get(i).outputJoltage() - adapters.get(index).outputJoltage() > 3)
+            if (adapters.get(i).outputJoltage() - adapters.get(index).outputJoltage() > JOLTAGE_RANGE)
                 break;
 
             value += check(adapters, count, i);
