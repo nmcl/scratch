@@ -14,7 +14,14 @@ public class Verifier
     {
         Vector<JoltageAdapter> adapters = Util.loadData(EXAMPLE1_DATA, _debug);
         Device device = Util.largest(adapters, _debug);
-        
+        Connector con = new Connector(_debug);
+        Vector<JoltageAdapter> sorted = con.connect(adapters);
+
+        for (int i = 0; i < sorted.size(); i++)
+        {
+            System.out.println("Adapter: "+sorted.elementAt(i).outputJoltage());
+        }
+
         return false;
     }
 
