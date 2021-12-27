@@ -24,6 +24,9 @@ public class Connector
             {
                 int current = adapters.elementAt(i).outputJoltage();
 
+                if (_debug)
+                    System.out.println("Seaching for adapter joltage: "+joltage);
+                    
                 if (current == joltage)
                 {
                     adapter = adapters.elementAt(i);
