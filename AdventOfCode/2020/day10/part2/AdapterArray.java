@@ -43,9 +43,9 @@ public class AdapterArray
 
         sorted.add(device.getAdapter());
         con.getDifferenceThree().add(device.getAdapter());
-        
-        int result = con.getDifferenceOne().size() * con.getDifferenceThree().size();
 
-        System.out.println("Number of 1-jolt differences multiplied by the number of 3-jolt differences: "+result);
+        long value = con.combinations(sorted);
+
+        System.out.println("total number of distinct ways to arrange the adapters: "+value);
     }
 }
