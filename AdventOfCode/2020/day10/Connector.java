@@ -18,10 +18,28 @@ public class Connector
         while (adapters.size() > 0)
         {
             boolean found = false;
+            JoltageAdapter adapter = null;
 
             for (int i = 0; (i < adapters.size()) && !found; i++)
             {
+                int current = adapters.elementAt(i).outputJoltage();
 
+                if (current == joltage)
+                {
+                    adapter = adapters.elementAt(i);
+                    found = true;
+                }
+
+                if ((current > joltage) && (current <= joltage + JOLTAGE_RANGE))
+                {
+                    if (adapter == null)
+                        adapter = adapters.elementAt(i);
+                    else
+                    {
+                        if (current <= adapter.outputJoltage())
+                            current = adapters.elementAt(i);
+                    }
+                }
             }
 
         }
