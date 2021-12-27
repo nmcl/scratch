@@ -33,7 +33,7 @@ public class Connector
         HashMap<Integer, Long> count = new HashMap<Integer, Long>();
         int index = 0;
 
-        return check(adapters, count, index);
+        return check(adapters, count, index, adapters.elementAt(adapters.size() -1).outputJoltage());
     }
 
     public Vector<JoltageAdapter> connect (Vector<JoltageAdapter> adapters)
@@ -127,25 +127,38 @@ public class Connector
         return toReturn;
     }
 
-    private long check (Vector<JoltageAdapter> adapters, HashMap<Integer, Long> count, int index)
+    private long check (Vector<JoltageAdapter> adapters, Map<Integer, Long> count, int current, int target)
     {
-        if (index == adapters.size() - 1)
+        if (current + 3 == target)
+        {
             return 1;
-
-        if (count.containsKey(index))
-            return count.get(index);
+        }
+        else
+        {
+            if (count.containsKey(current))
+            {
+                return count.get(current);
+            }
+        }
 
         long value = 0;
 
-        for (int i = index + 1; i < adapters.size(); i++)
+        if (adapters.contains(new JoltageAdapter(current + 1, _debug)))
         {
-            if (adapters.get(i).outputJoltage() - adapters.get(index).outputJoltage() > JOLTAGE_RANGE)
-                break;
-
-            value += check(adapters, count, i);
+            value += check(adapters, count, current + 1, target);
+        }
+        
+        if (adapters.contains(new JoltageAdapter(current + 2, _debug)))
+        {
+            value += check(adapters, count, current + 2, target);
         }
 
-        count.put(index, value);
+        if (adapters.contains(new JoltageAdapter(current + 3, _debug)))
+        {
+            value += check(adapters, count, current + 3, target);
+        }
+
+        count.put(current, value);
 
         return value;
     }
