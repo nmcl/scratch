@@ -76,6 +76,30 @@ public class Connector
                 }
             }
 
+            switch (adapter.outputJoltage() - joltage)
+            {
+                case 1:
+                {
+                    _differenceOne.add(adapter);
+                }
+                break;
+                case 2:
+                {
+                    _differenceTwo.add(adapter);
+                }
+                break;
+                case 3:
+                {
+                    _differenceThree.add(adapter);
+                }
+                break;
+                default:
+                {
+                    // dp nothing
+                }
+                break;
+            }
+
             joltage = adapter.outputJoltage();
 
             toReturn.add(adapter);
