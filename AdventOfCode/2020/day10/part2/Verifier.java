@@ -43,7 +43,7 @@ public class Verifier
         if (value == combinations)
             return true;
         else
-            System.out.println("Wrong number of combinations for "+file+": "+combinations);
+            System.out.println("Wrong number of combinations for "+file+": "+value);
 
         return false;
     }
