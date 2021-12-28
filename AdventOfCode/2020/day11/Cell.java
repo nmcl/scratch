@@ -10,9 +10,9 @@ public class Cell
         return _type;
     }
     
-    public boolean isEmptySeat ()
+    public boolean isOccupiedSeat ()
     {
-        return CellId.EMPTY_SEAT == _type;
+        return CellId.OCCUPIED_SEAT == _type;
     }
 
     @Override
