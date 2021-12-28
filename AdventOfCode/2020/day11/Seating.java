@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Seating
 {
-    public static final String WORLD_DATA = "input.txt";
+    public static final String PLANE_DATA = "input.txt";
 
     public static void main (String[] args)
     {
@@ -39,20 +39,17 @@ public class Seating
             System.exit(0);
         }
 
-        Grid theWorld = new Grid(WORLD_DATA, debug);
-        boolean found = false;
-        Vector<Grid> previous = new Vector<Grid>();
-
-        previous.add(theWorld.snapshot());
-
-        while (!found)
+        Grid thePlane = new Grid(PLANE_DATA, debug);
+        boolean finished = false;
+        
+        while (!finished)
         {
-            theWorld.evolve();
+            int changedSeats = thePlane.evolve();
 
-            if (previous.contains(theWorld))
-                found = true;
-            else
-                previous.add(theWorld.snapshot());
+            if (changedSeats == 0)
+                finished = true;
         }
+
+        System.out.println("Occupied seats: "+thePlane.occupiedSeats());
     }
 }
