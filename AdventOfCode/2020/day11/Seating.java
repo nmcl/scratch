@@ -2,9 +2,9 @@ import java.util.*;
 
 // Game of Life!
 
-public class Eris
+public class Seating
 {
-    public static final String WORLD_DATA = "scan.txt";
+    public static final String WORLD_DATA = "input.txt";
 
     public static void main (String[] args)
     {
