@@ -42,10 +42,11 @@ public class Grid
      * Otherwise, the seat's state does not change.
      */
 
-    public void evolve ()
+    public int evolve ()
     {
         Cell[][] _nextPlane = new Cell[_height][_width];
-        
+        int changedSeats = 0;
+
         for (int i = 0; i < _height; i++)
         {
             for (int j = 0; j < _width; j++)
@@ -153,6 +154,8 @@ public class Grid
                             System.out.println("Seat will be occupied.");
 
                         _nextPlane[i][j] = new Cell(CellId.OCCUPIED_SEAT);
+
+                        changedSeats++;
                     }
                 }
                 else
@@ -168,6 +171,8 @@ public class Grid
                                 System.out.println("Seat wil be unoccupied.");
 
                             _nextPlane[i][j] = new Cell(CellId.EMPTY_SEAT);
+
+                            changedSeats++;
                         }
                     }
                 }
@@ -183,6 +188,8 @@ public class Grid
         }
 
         _thePlane = _nextPlane;
+
+        return changedSeats;
     }
 
     public Grid snapshot ()
