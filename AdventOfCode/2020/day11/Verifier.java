@@ -17,16 +17,16 @@ public class Verifier
         if (_debug)
             System.out.println(thePlane);
 
-        for (int i = 1; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (_debug)
-                System.out.println("Iteration: "+i);
-                
-            evolution[i] = new Grid(EXAMPLE_BASE+""+i+".txt", _debug);
+                System.out.println("Iteration: "+(i+1));
+
+            evolution[i] = new Grid(EXAMPLE_BASE+""+(i+1)+".txt", _debug);
 
             thePlane.evolve();
 
-            System.out.println("\nAfter "+i+" round:");
+            System.out.println("\nAfter "+(i+1)+" round:\n");
             System.out.println(thePlane);
 
             if (!evolution[i].equals(thePlane))
