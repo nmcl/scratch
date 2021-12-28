@@ -54,7 +54,5 @@ public class Seating
             else
                 previous.add(theWorld.snapshot());
         }
-
-        System.out.println("Biodiversity rating for the first layout that appears twice: "+theWorld.biodiversityRating());
     }
 }
