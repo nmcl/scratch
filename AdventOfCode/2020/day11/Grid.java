@@ -108,6 +108,13 @@ public class Grid
                             _nextPlane[i][j] = new Cell(CellId.EMPTY_SEAT);
                         }
                     }
+                    else
+                    {
+                        if (_debug)
+                            System.out.println("Seat state remains the same.");
+
+                        _nextPlane[i][j] = new Cell(_thePlane[i][j]);
+                    }
                 }
             }
         }
@@ -155,6 +162,8 @@ public class Grid
                 {
                     for (int j = 0; j < _width; j++)
                     {
+                        System.out.println("comparing "+temp._thePlane[i][j]+" and "+_thePlane[i][j]);
+                        
                         if (temp._thePlane[i][j].type() != _thePlane[i][j].type())
                             return false;
                     }
