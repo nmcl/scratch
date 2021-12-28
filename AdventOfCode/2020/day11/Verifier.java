@@ -3,10 +3,6 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE = "example.txt";
-    public static final String MINUTE_BASE = "minute";
-    public static final String DUPLICATE_LAYOUT = "layout.txt";
-
-    public static final long BIODIVERSITY_RATING = 2129920;
 
     public Verifier (boolean debug)
     {
