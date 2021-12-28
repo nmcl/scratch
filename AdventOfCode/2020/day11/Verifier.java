@@ -12,9 +12,6 @@ public class Verifier
     public final boolean verify ()
     {
         Grid thePlane = new Grid(EXAMPLE_BASE+".txt", _debug);
-
-        System.out.println("Loaded:\n"+thePlane);
-
         Grid[] evolution = new Grid[5];
 
         if (_debug)
@@ -24,11 +21,9 @@ public class Verifier
         {
             evolution[i] = new Grid(EXAMPLE_BASE+""+i+".txt", _debug);
 
-            System.out.println("Loaded "+i+"\n"+evolution[i]);
-
             thePlane.evolve();
 
-            System.out.println("After "+i+" round:");
+            System.out.println("\nAfter "+i+" round:");
             System.out.println(thePlane);
 
             if (!evolution[i].equals(thePlane))
