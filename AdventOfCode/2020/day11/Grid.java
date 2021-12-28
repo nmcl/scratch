@@ -17,7 +17,7 @@ public class Grid
         _width = width;
         _debug = debug;
 
-        loadWorld(fileName);
+        loadPlane(fileName);
     }
 
     /**
@@ -28,7 +28,7 @@ public class Grid
 
     public void evolve ()
     {
-        Cell[][] _nextWorld = new Cell[_height][_width];
+        Cell[][] _nextPlane = new Cell[_height][_width];
         
         for (int i = 0; i < _height; i++)
         {
@@ -39,7 +39,7 @@ public class Grid
                 // ignore range checking and rely on exception!
 
                 if (_debug)
-                    System.out.println("Checking cell < "+i+", "+j+" > : "+_theWorld[i][j]);
+                    System.out.println("Checking cell < "+i+", "+j+" > : "+_thePlane[i][j]);
 
                 try
                 {
@@ -80,7 +80,7 @@ public class Grid
                 if (_debug)
                     System.out.println("Adjacent seats: "+adjacentSeats);
 
-                if (_theWorld[i][j].isEmptySeat())
+                if (_thePlane[i][j].isEmptySeat())
                 {
                     if (_debug)
                         System.out.println("Empty seat.");
@@ -90,12 +90,12 @@ public class Grid
                         if (_debug)
                             System.out.println("Seat will be occupied.");
 
-                        _nextWorld[i][j] = new Cell(CellId.OCCUPIED_SEAT);
+                        _nextPlane[i][j] = new Cell(CellId.OCCUPIED_SEAT);
                     }
                 }
                 else
                 {
-                    if (_theWorld[i][j].isOccupiedSeat())
+                    if (_thePlane[i][j].isOccupiedSeat())
                     {
                         if (_debug)
                             System.out.println("Seat is occupied.");
@@ -105,14 +105,14 @@ public class Grid
                             if (_debug)
                                 System.out.println("Seat wil be unoccupied.");
 
-                            _nextWorld[i][j] = new Cell(CellId.EMPTY_SEAT);
+                            _nextPlane[i][j] = new Cell(CellId.EMPTY_SEAT);
                         }
                     }
                 }
             }
         }
 
-        _theWorld = _nextWorld;
+        _thePlane = _nextPlane;
     }
 
     public Grid snapshot ()
@@ -128,7 +128,7 @@ public class Grid
         for (int i = 0; i < _height; i++)
         {
             for (int j = 0; j < _width; j++)
-                str += _theWorld[i][j];
+                str += _thePlane[i][j];
             
             str += "\n";
         }
@@ -155,7 +155,7 @@ public class Grid
                 {
                     for (int j = 0; j < _width; j++)
                     {
-                        if (temp._theWorld[i][j].type() != _theWorld[i][j].type())
+                        if (temp._thePlane[i][j].type() != _thePlane[i][j].type())
                             return false;
                     }
                 }
@@ -173,13 +173,13 @@ public class Grid
         _width = theGrid._width;
         _debug = theGrid._debug;
 
-        _theWorld = new Cell[_height][_width];
+        _thePlane = new Cell[_height][_width];
 
         for (int i = 0; i < _height; i++)
         {
             for (int j = 0; j < _width; j++)
             {
-                _theWorld[i][j] = new Cell(theGrid._theWorld[i][j].type());
+                _thePlane[i][j] = new Cell(theGrid._thePlane[i][j].type());
             }
         }
     }
@@ -189,20 +189,20 @@ public class Grid
         if (_debug)
             System.out.println("Checking < "+i+", "+j+" >");
 
-        if (_theWorld[i][j].isOccupiedSeat())
+        if (_thePlane[i][j].isOccupiedSeat())
             return true;
         else
             return false;
     }
 
-    private void loadWorld (String inputFile)
+    private void loadPlane (String inputFile)
     {
         BufferedReader reader = null;
         int row = 0;
         int actualHeight = 0;
         int actualWidth = 0;
 
-        _theWorld = new Cell[_height][_width];
+        _thePlane = new Cell[_height][_width];
 
         try
         {
@@ -216,9 +216,9 @@ public class Grid
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (CellId.valid(line.charAt(i)))
-                        _theWorld[row][i] = new Cell(line.charAt(i));
+                        _thePlane[row][i] = new Cell(line.charAt(i));
                     else
-                        System.out.println("Invalid world entry: "+line.charAt(i));
+                        System.out.println("Invalid plane entry: "+line.charAt(i));
                 }
 
                 row++;
@@ -243,21 +243,21 @@ public class Grid
 
         if ((actualHeight != _height) || (actualWidth != _width))
         {
-            Cell[][] tempWorld = new Cell[actualHeight][actualWidth];
+            Cell[][] tempPlane = new Cell[actualHeight][actualWidth];
 
             for (int i = 0; i < actualHeight; i++)
             {
                 for (int j = 0; j < actualWidth; j++)
-                    tempWorld[i][j] = _theWorld[i][j];
+                    tempPlane[i][j] = _thePlane[i][j];
             }
 
-            _theWorld = tempWorld;
+            _thePlane = tempPlane;
             _height = actualHeight;
             _width = actualWidth;
         }
     }
 
-    private Cell[][] _theWorld;
+    private Cell[][] _thePlane;
     private int _height;
     private int _width;
     private boolean _debug;
