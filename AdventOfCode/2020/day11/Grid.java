@@ -34,13 +34,12 @@ public class Grid
         {
             for (int j = 0; j < _width; j++)
             {
-                int adjacentBugs = 0;
-                int emptySpaces = 0;
+                int adjacentSeats = 0;
 
                 // ignore range checking and rely on exception!
 
                 if (_debug)
-                    System.out.println("Checking tile < "+i+", "+j+" > : "+_theWorld[i][j]);
+                    System.out.println("Checking cell < "+i+", "+j+" > : "+_theWorld[i][j]);
 
                 try
                 {
@@ -99,41 +98,41 @@ public class Grid
                 if (_theWorld[i][j].isBug())
                 {
                     if (_debug)
-                        System.out.println("Tile contains bug.");
+                        System.out.println("Cell contains bug.");
 
                     if (adjacentBugs == 1)
                     {
                         if (_debug)
-                            System.out.println("New tile will be bug.");
+                            System.out.println("New cell will be bug.");
 
-                        _nextWorld[i][j] = new Tile(TileId.BUG);
+                        _nextWorld[i][j] = new Cell(TileId.BUG);
                     }
                     else
                     {
                         if (_debug)
-                            System.out.println("New tile will be empyy.");
+                            System.out.println("New cell will be empyy.");
 
-                        _nextWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
+                        _nextWorld[i][j] = new Cell(TileId.EMPTY_SPACE);
                     }
                 }
                 else
                 {
                     if (_debug)
-                        System.out.println("Tile is empty.");
+                        System.out.println("Cell is empty.");
 
                     if ((adjacentBugs == 1) || (adjacentBugs == 2))
                     {
                         if (_debug)
-                            System.out.println("New tile will be bug.");
+                            System.out.println("New cell will be bug.");
 
-                        _nextWorld[i][j] = new Tile(TileId.BUG);
+                        _nextWorld[i][j] = new Cell(TileId.BUG);
                     }
                     else
                     {
                         if (_debug)
-                            System.out.println("New tile will be empty.");
+                            System.out.println("New cell will be empty.");
 
-                        _nextWorld[i][j] = new Tile(TileId.EMPTY_SPACE);
+                        _nextWorld[i][j] = new Cell(TileId.EMPTY_SPACE);
                     }
                 }
             }
@@ -206,12 +205,12 @@ public class Grid
         {
             for (int j = 0; j < _width; j++)
             {
-                _theWorld[i][j] = new Tile(theGrid._theWorld[i][j].type());
+                _theWorld[i][j] = new Cell(theGrid._theWorld[i][j].type());
             }
         }
     }
 
-    private boolean adjacentBug (int i, int j) throws IndexOutOfBoundsException
+    private int adjacentSeat (int i, int j) throws IndexOutOfBoundsException
     {
         if (_debug)
             System.out.println("Checking < "+i+", "+j+" >");
@@ -243,7 +242,7 @@ public class Grid
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.valid(line.charAt(i)))
-                        _theWorld[row][i] = new Tile(line.charAt(i));
+                        _theWorld[row][i] = new Cell(line.charAt(i));
                     else
                         System.out.println("Invalid world entry: "+line.charAt(i));
                 }
