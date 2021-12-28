@@ -15,6 +15,11 @@ public class Cell
         return _type;
     }
     
+    public boolean isFloor ()
+    {
+        return CellId.FLOOR == _type;
+    }
+    
     public boolean isOccupiedSeat ()
     {
         return CellId.OCCUPIED_SEAT == _type;
