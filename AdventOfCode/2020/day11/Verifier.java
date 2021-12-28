@@ -23,6 +23,9 @@ public class Verifier
         for (int i = 2; i < 6; i++)
         {
             evolution[i] = new Grid(EXAMPLE_BASE+""+i+".txt", _debug);
+
+            System.out.println("Loaded "+i+"\n"+evolution[i]);
+            
             theWorld.evolve();
 
             System.out.println("After "+i+" round:");
