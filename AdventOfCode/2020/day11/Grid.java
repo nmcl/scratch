@@ -3,8 +3,8 @@ import java.io.*;
 
 public class Grid
 {
-    public static final int DEFAULT_WIDTH = 10;
-    public static final int DEFAULT_HEIGHT = 10;
+    public static final int DEFAULT_WIDTH = 100;
+    public static final int DEFAULT_HEIGHT = 100;
 
     public Grid (String fileName, boolean debug)
     {
@@ -184,12 +184,12 @@ public class Grid
         }
     }
 
-    private int adjacentSeat (int i, int j) throws IndexOutOfBoundsException
+    private boolean adjacentSeat (int i, int j) throws IndexOutOfBoundsException
     {
         if (_debug)
             System.out.println("Checking < "+i+", "+j+" >");
 
-        if (_theWorld[i][j].isBug())
+        if (_theWorld[i][j].isOccupiedSeat())
             return true;
         else
             return false;
@@ -215,7 +215,7 @@ public class Grid
 
                 for (int i = 0; i < line.length(); i++)
                 {
-                    if (TileId.valid(line.charAt(i)))
+                    if (CellId.valid(line.charAt(i)))
                         _theWorld[row][i] = new Cell(line.charAt(i));
                     else
                         System.out.println("Invalid world entry: "+line.charAt(i));
@@ -243,7 +243,7 @@ public class Grid
 
         if ((actualHeight != _height) || (actualWidth != _width))
         {
-            Cell[] tempWorld = new Cell[actualHeight][actualWidth];
+            Cell[][] tempWorld = new Cell[actualHeight][actualWidth];
 
             for (int i = 0; i < actualHeight; i++)
             {
