@@ -53,7 +53,7 @@ public class Grid
         {
             for (int j = 0; j < _width; j++)
             {
-                int adjacentSeats = 0;
+                int visibleSeats = 0;
 
                 // ignore range checking and rely on exception!
 
@@ -70,8 +70,8 @@ public class Grid
                 {
                     try
                     {
-                        if (adjacentSeat(i + DIRECTIONS[d][0], j + DIRECTIONS[d][1]))
-                            adjacentSeats++;
+                        if (visibleSeat(i, j, DIRECTIONS[d][0], DIRECTIONS[d][1]))
+                            visibleSeats++;
                     }
                     catch (IndexOutOfBoundsException ex)
                     {
@@ -79,14 +79,14 @@ public class Grid
                 }
 
                 if (_debug)
-                    System.out.println("Adjacent seats: "+adjacentSeats);
+                    System.out.println("Adjacent seats: "+visibleSeats);
 
                 if (_thePlane[i][j].isEmptySeat())
                 {
                     if (_debug)
                         System.out.println("Empty seat.");
 
-                    if (adjacentSeats == 0)
+                    if (visibleSeats == 0)
                     {
                         if (_debug)
                             System.out.println("Seat will be occupied.");
@@ -103,7 +103,7 @@ public class Grid
                         if (_debug)
                             System.out.println("Seat is occupied.");
 
-                        if (adjacentSeats >= 5)
+                        if (visibleSeats >= 5)
                         {
                             if (_debug)
                                 System.out.println("Seat wil be unoccupied.");
@@ -199,15 +199,25 @@ public class Grid
         }
     }
 
-    private boolean adjacentSeat (int i, int j) throws IndexOutOfBoundsException
+    private boolean visibleSeat (int i, int j, int hDelta, int wDelta) throws IndexOutOfBoundsException
     {
-        if (_debug)
-            System.out.println("Checking < "+i+", "+j+" >");
+        int x = i + hDelta;
+        int y = j + wDelta;
 
-        if (_thePlane[i][j].isOccupiedSeat())
+        if (_debug)
+            System.out.println("Checking < "+x+", "+y+" >");
+
+        if (_thePlane[x][y].isOccupiedSeat())
             return true;
         else
-            return false;
+        {
+            if (_thePlane[x][y].isFloor())
+            {
+                return visibleSeat(x, y, hDelta, wDelta);
+            }
+            else
+                return false;
+        }
     }
 
     private void loadPlane (String inputFile)
