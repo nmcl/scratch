@@ -3,8 +3,8 @@ import java.io.*;
 
 public class Grid
 {
-    public static final int DEFAULT_WIDTH = 5;
-    public static final int DEFAULT_HEIGHT = 5;
+    public static final int DEFAULT_WIDTH = 10;
+    public static final int DEFAULT_HEIGHT = 10;
 
     public Grid (String fileName, boolean debug)
     {
@@ -21,20 +21,14 @@ public class Grid
     }
 
     /**
-     * Each minute, The bugs live and die based on the number of bugs in the four adjacent tiles:
-     *
-     * - A bug dies (becoming an empty space) unless there is exactly one bug adjacent to it.
-     * - An empty space becomes infested with a bug if exactly one or two bugs are adjacent to it.
-     * 
-     * Otherwise, a bug or empty space remains the same. (Tiles on the edges of the grid have fewer than
-     * four adjacent tiles; the missing tiles count as empty space.) This process happens in every location
-     * simultaneously; that is, within the same minute, the number of adjacent bugs is counted for every tile
-     * first, and then the tiles are updated.
+     * If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
+     * If a seat is occupied (#) and four or more seats adjacent to it are also occupied, the seat becomes empty.
+     * Otherwise, the seat's state does not change.
      */
 
     public void evolve ()
     {
-        Tile[][] _nextWorld = new Tile[_height][_width];
+        Cell[][] _nextWorld = new Cell[_height][_width];
         
         for (int i = 0; i < _height; i++)
         {
@@ -148,25 +142,6 @@ public class Grid
         _theWorld = _nextWorld;
     }
 
-    public long biodiversityRating ()
-    {
-        long factor = 1;
-        long rating = 0;
-
-        for (int i = 0; i < _height; i++)
-        {
-            for (int j = 0; j < _width; j++)
-            {
-                if (_theWorld[i][j].isBug())
-                    rating += factor;
-
-                factor *= 2;
-            }
-        }
-
-        return rating;
-    }
-
     public Grid snapshot ()
     {
         return new Grid(this);
@@ -251,8 +226,10 @@ public class Grid
     {
         BufferedReader reader = null;
         int row = 0;
+        int actualHeight = 0;
+        int actualWidth = 0;
 
-        _theWorld = new Tile[_height][_width];
+        _theWorld = new Cell[_height][_width];
 
         try
         {
@@ -261,6 +238,8 @@ public class Grid
 
             while ((line = reader.readLine()) != null)
             {
+                actualWidth = line.length();
+
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (TileId.valid(line.charAt(i)))
@@ -286,9 +265,26 @@ public class Grid
             {
             }
         }
+
+        actualHeight = row;
+
+        if ((actualHeight != _height) || (actualWidth != _width))
+        {
+            Cell[] tempWorld = new Cell[actualHeight][actualWidth];
+
+            for (int i = 0; i < actualHeight; i++)
+            {
+                for (int j = 0; j < actualWidth; j++)
+                    tempWorld[i][j] = _theWorld[i][j];
+            }
+
+            _theWorld = tempWorld;
+            _height = actualHeight;
+            _width = actualWidth;
+        }
     }
 
-    private Tile[][] _theWorld;
+    private Cell[][] _theWorld;
     private int _height;
     private int _width;
     private boolean _debug;
