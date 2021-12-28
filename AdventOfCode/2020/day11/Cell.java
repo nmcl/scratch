@@ -15,6 +15,11 @@ public class Cell
         return CellId.OCCUPIED_SEAT == _type;
     }
 
+    public boolean isEmptySeat ()
+    {
+        return CellId.EMPTY_SEAT == _type;
+    }
+
     @Override
     public String toString ()
     {
