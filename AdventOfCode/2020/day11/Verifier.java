@@ -13,8 +13,8 @@ public class Verifier
     {
         Grid theWorld = new Grid(EXAMPLE_BASE+"1.txt", _debug);
 
-        System.out.println("Loaded: "+theWorld);
-        
+        System.out.println("Loaded:\n"+theWorld);
+
         Grid[] evolution = new Grid[4];
 
         if (_debug)
