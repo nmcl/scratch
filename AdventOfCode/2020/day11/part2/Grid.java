@@ -6,6 +6,8 @@ public class Grid
     public static final int DEFAULT_WIDTH = 100;
     public static final int DEFAULT_HEIGHT = 100;
 
+    private static final int[][] DIRECTIONS = {{-1, -1}, {-1, 0}, {0, -1}, {1, -1}, {-1, 1}, {1, 1}, {1, 0}, {0, 1}};
+
     public Grid (String fileName, boolean debug)
     {
         this(DEFAULT_HEIGHT, DEFAULT_WIDTH, fileName, debug);
@@ -64,80 +66,16 @@ public class Grid
                  * -1,-1 0,-1 1,-1
                  */
 
-                // first the diagonals
-
-                try
+                for (int d = 0; d < DIRECTIONS.length; d++)
                 {
-                    if (adjacentSeat(i-1, j+1))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
-                }
-
-                try
-                {
-                    if (adjacentSeat(i+1, j+1))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
-                }
-
-                try
-                {
-                    if (adjacentSeat(i-1, j-1))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
-                }
-
-                try
-                {
-                    if (adjacentSeat(i+1, j-1))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
-                }
-
-                // now the cross elements
-
-                try
-                {
-                    if (adjacentSeat(i-1, j))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
-                }
-
-                try
-                {
-                    if (adjacentSeat(i+1, j))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
-                }
-
-                try
-                {
-                    if (adjacentSeat(i, j-1))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
-                }
-
-                try
-                {
-                    if (adjacentSeat(i, j+1))
-                        adjacentSeats++;
-                }
-                catch (IndexOutOfBoundsException ex)
-                {
+                    try
+                    {
+                        if (adjacentSeat(i + DIRECTIONS[d][0], j + DIRECTIONS[d][1]))
+                            adjacentSeats++;
+                    }
+                    catch (IndexOutOfBoundsException ex)
+                    {
+                    }
                 }
 
                 if (_debug)
