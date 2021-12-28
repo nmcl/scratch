@@ -3,6 +3,7 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_BASE = "example";
+    public static final int EXAMPLE_OCCUPIED_SEATS = 37;
 
     public Verifier (boolean debug)
     {
@@ -33,7 +34,14 @@ public class Verifier
                 return false;
         }
 
-        return true;
+        if (thePlane.occupiedSeats() == EXAMPLE_OCCUPIED_SEATS)
+            return true;
+        else
+        {
+            System.out.println("Incorrect number of occupied seats: "+thePlane.occupiedSeats());
+
+            return false;
+        }
     }
 
     private boolean _debug;
