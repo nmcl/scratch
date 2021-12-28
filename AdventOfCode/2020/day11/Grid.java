@@ -41,6 +41,64 @@ public class Grid
                 if (_debug)
                     System.out.println("Checking cell < "+i+", "+j+" > : "+_thePlane[i][j]);
 
+                /*
+                 * 2,2
+                 * 
+                 * 1,2
+                 * 3,2
+                 * 2,1
+                 * 2,3
+                 * 
+                 * 
+                 * 1,3 2,3 3,3
+                 * 1,2 2,2 3,2
+                 * 1,1 2,1 3,1
+                 * 
+                 * -1,1 0,1 1,1
+                 * -1,0 0,0 1,0
+                 * -1,-1 0,-1 1,-1
+                 */
+
+                // first the diagonals
+
+                try
+                {
+                    if (adjacentSeat(i-1, j+1))
+                        adjacentSeats++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                }
+
+                try
+                {
+                    if (adjacentSeat(i+1, j+1))
+                        adjacentSeats++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                }
+
+                try
+                {
+                    if (adjacentSeat(i-1, j-1))
+                        adjacentSeats++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                }
+
+                try
+                {
+                    if (adjacentSeat(i+1, j-1))
+                        adjacentSeats++;
+                }
+                catch (IndexOutOfBoundsException ex)
+                {
+                }
+
+                // now the cross elements
+
                 try
                 {
                     if (adjacentSeat(i-1, j))
