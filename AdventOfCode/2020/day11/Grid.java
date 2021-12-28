@@ -43,96 +43,70 @@ public class Grid
 
                 try
                 {
-                    if (adjacentBug(i-1, j))
-                        adjacentBugs++;
-                    else
-                        emptySpaces++;
+                    if (adjacentSeat(i-1, j))
+                        adjacentSeats++;
                 }
                 catch (IndexOutOfBoundsException ex)
                 {
-                    emptySpaces++;
                 }
 
                 try
                 {
-                    if (adjacentBug(i+1, j))
-                        adjacentBugs++;
-                    else
-                        emptySpaces++;
+                    if (adjacentSeat(i+1, j))
+                        adjacentSeats++;
                 }
                 catch (IndexOutOfBoundsException ex)
                 {
-                    emptySpaces++;
                 }
 
                 try
                 {
-                    if (adjacentBug(i, j-1))
-                        adjacentBugs++;
-                    else
-                        emptySpaces++;
+                    if (adjacentSeat(i, j-1))
+                        adjacentSeats++;
                 }
                 catch (IndexOutOfBoundsException ex)
                 {
-                    emptySpaces++;
                 }
 
                 try
                 {
-                    if (adjacentBug(i, j+1))
-                        adjacentBugs++;
-                    else
-                        emptySpaces++;
+                    if (adjacentSeat(i, j+1))
+                        adjacentSeats++;
                 }
                 catch (IndexOutOfBoundsException ex)
                 {
-                    emptySpaces++;
                 }
 
                 if (_debug)
-                {
-                    System.out.println("Empty spaces: "+emptySpaces);
-                    System.out.println("Adjacent bugs: "+adjacentBugs);
-                }
+                    System.out.println("Adjacent seats: "+adjacentSeats);
 
-                if (_theWorld[i][j].isBug())
+                if (_theWorld[i][j].isEmptySeat())
                 {
                     if (_debug)
-                        System.out.println("Cell contains bug.");
+                        System.out.println("Empty seat.");
 
-                    if (adjacentBugs == 1)
+                    if (adjacentSeats == 0)
                     {
                         if (_debug)
-                            System.out.println("New cell will be bug.");
+                            System.out.println("Seat will be occupied.");
 
-                        _nextWorld[i][j] = new Cell(TileId.BUG);
-                    }
-                    else
-                    {
-                        if (_debug)
-                            System.out.println("New cell will be empyy.");
-
-                        _nextWorld[i][j] = new Cell(TileId.EMPTY_SPACE);
+                        _nextWorld[i][j] = new Cell(CellId.OCCUPIED_SEAT);
                     }
                 }
                 else
                 {
-                    if (_debug)
-                        System.out.println("Cell is empty.");
-
-                    if ((adjacentBugs == 1) || (adjacentBugs == 2))
+                    if (_theWorld[i][j].isOccupiedSeat())
                     {
                         if (_debug)
-                            System.out.println("New cell will be bug.");
+                            System.out.println("Seat is occupied.");
 
-                        _nextWorld[i][j] = new Cell(TileId.BUG);
-                    }
-                    else
-                    {
-                        if (_debug)
-                            System.out.println("New cell will be empty.");
+                        if (adjacentSeats >= 4)
+                        {
+                            if (_debug)
+                                System.out.println("Seat wil be unoccupied.");
 
-                        _nextWorld[i][j] = new Cell(TileId.EMPTY_SPACE);
+                            _nextWorld[i][j] = new Cell(CellId.EMPTY_SEAT);
+                        }
                     }
                 }
             }
@@ -199,7 +173,7 @@ public class Grid
         _width = theGrid._width;
         _debug = theGrid._debug;
 
-        _theWorld = new Tile[_height][_width];
+        _theWorld = new Cell[_height][_width];
 
         for (int i = 0; i < _height; i++)
         {
