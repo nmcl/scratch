@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Verifier
 {
-    public static final String EXAMPLE = "example.txt";
+    public static final String EXAMPLE_BASE = "example";
 
     public Verifier (boolean debug)
     {
@@ -19,7 +19,7 @@ public class Verifier
 
         for (int i = 0; i < 4; i++)
         {
-            evolution[i] = new Grid(MINUTE_BASE+""+(i+1)+".txt", _debug);
+            evolution[i] = new Grid(EXAMPLE_BASE+""+(i+1)+".txt", _debug);
             theWorld.evolve();
 
             System.out.println("After "+(i+1)+" minute:");
