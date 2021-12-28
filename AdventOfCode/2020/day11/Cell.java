@@ -5,6 +5,11 @@ public class Cell
         _type = type;
     }
 
+    public Cell (Cell copy)
+    {
+        _type = copy._type;
+    }
+
     public char type ()
     {
         return _type;
