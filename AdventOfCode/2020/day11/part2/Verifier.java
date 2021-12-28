@@ -3,7 +3,7 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_BASE = "example";
-    public static final int EXAMPLE_OCCUPIED_SEATS = 37;
+    public static final int EXAMPLE_OCCUPIED_SEATS = 26;
 
     public Verifier (boolean debug)
     {
@@ -13,12 +13,12 @@ public class Verifier
     public final boolean verify ()
     {
         Grid thePlane = new Grid(EXAMPLE_BASE+".txt", _debug);
-        Grid[] evolution = new Grid[5];
+        Grid[] evolution = new Grid[6];
 
         if (_debug)
             System.out.println(thePlane);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (_debug)
                 System.out.println("Iteration: "+(i+1));
