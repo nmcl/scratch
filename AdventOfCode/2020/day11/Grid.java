@@ -20,6 +20,22 @@ public class Grid
         loadPlane(fileName);
     }
 
+    public int occupiedSeats ()
+    {
+        int count = 0;
+
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                if (_thePlane[i][j].isOccupiedSeat())
+                    count++;
+            }
+        }
+
+        return count;
+    }
+
     /**
      * If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
      * If a seat is occupied (#) and four or more seats adjacent to it are also occupied, the seat becomes empty.
