@@ -11,27 +11,27 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Grid theWorld = new Grid(EXAMPLE_BASE+"1.txt", _debug);
+        Grid thePlane = new Grid(EXAMPLE_BASE+".txt", _debug);
 
-        System.out.println("Loaded:\n"+theWorld);
+        System.out.println("Loaded:\n"+thePlane);
 
-        Grid[] evolution = new Grid[4];
+        Grid[] evolution = new Grid[5];
 
         if (_debug)
-            System.out.println(theWorld);
+            System.out.println(thePlane);
 
-        for (int i = 2; i < 6; i++)
+        for (int i = 1; i < 6; i++)
         {
             evolution[i] = new Grid(EXAMPLE_BASE+""+i+".txt", _debug);
 
             System.out.println("Loaded "+i+"\n"+evolution[i]);
-            
-            theWorld.evolve();
+
+            thePlane.evolve();
 
             System.out.println("After "+i+" round:");
-            System.out.println(theWorld);
+            System.out.println(thePlane);
 
-            if (!evolution[i].equals(theWorld))
+            if (!evolution[i].equals(thePlane))
                 return false;
         }
 
