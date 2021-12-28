@@ -1,6 +1,6 @@
-public class Tile
+public class Cell
 {
-    public Tile (char type)
+    public Cell (char type)
     {
         _type = type;
     }
@@ -10,9 +10,9 @@ public class Tile
         return _type;
     }
     
-    public boolean isBug ()
+    public boolean isEmptySeat ()
     {
-        return TileId.BUG == _type;
+        return CellId.EMPTY_SEAT == _type;
     }
 
     @Override
