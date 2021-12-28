@@ -1,5 +1,11 @@
-public class Seating
+import java.util.*;
+
+// Game of Life!
+
+public class Eris
 {
+    public static final String WORLD_DATA = "scan.txt";
+
     public static void main (String[] args)
     {
         boolean debug = false;
@@ -9,7 +15,8 @@ public class Seating
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-debug] [-verify] [-help]");
+                System.out.println("Usage: [-verify] [-debug] [-help");
+
                 System.exit(0);
             }
 
@@ -22,14 +29,32 @@ public class Seating
 
         if (verify)
         {
-            Verifier v = new Verifier(debug);
+            Verifier theVerifier = new Verifier(debug);
 
-            if (v.verify())
-                System.out.println("Verified ok.");
+            if (theVerifier.verify())
+                System.out.println("Verified ok!");
             else
                 System.out.println("Verify failed!");
 
             System.exit(0);
         }
+
+        Grid theWorld = new Grid(WORLD_DATA, debug);
+        boolean found = false;
+        Vector<Grid> previous = new Vector<Grid>();
+
+        previous.add(theWorld.snapshot());
+
+        while (!found)
+        {
+            theWorld.evolve();
+
+            if (previous.contains(theWorld))
+                found = true;
+            else
+                previous.add(theWorld.snapshot());
+        }
+
+        System.out.println("Biodiversity rating for the first layout that appears twice: "+theWorld.biodiversityRating());
     }
 }
