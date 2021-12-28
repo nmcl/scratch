@@ -19,6 +19,9 @@ public class Verifier
 
         for (int i = 1; i < 6; i++)
         {
+            if (_debug)
+                System.out.println("Iteration: "+i);
+                
             evolution[i] = new Grid(EXAMPLE_BASE+""+i+".txt", _debug);
 
             thePlane.evolve();
