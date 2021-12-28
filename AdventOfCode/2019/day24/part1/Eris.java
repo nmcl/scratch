@@ -15,7 +15,7 @@ public class Eris
         {
             if ("-help".equals(args[i]))
             {
-                System.out.println("Usage: [-verify] [-debug] [-help");
+                System.out.println("Usage: [-verify] [-debug] [-help]");
 
                 System.exit(0);
             }
