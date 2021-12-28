@@ -103,7 +103,7 @@ public class Grid
                         if (_debug)
                             System.out.println("Seat is occupied.");
 
-                        if (adjacentSeats >= 4)
+                        if (adjacentSeats >= 5)
                         {
                             if (_debug)
                                 System.out.println("Seat wil be unoccupied.");
