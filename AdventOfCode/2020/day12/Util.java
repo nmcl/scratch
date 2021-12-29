@@ -5,7 +5,7 @@ public class Util
 {
     public static char getNextFacing (char current, Command c)
     {
-        System.out.println("Facing "+current+" and "+c);
+        // System.out.println("Facing "+current+" and "+c);
 
         // no real error checking!
 
