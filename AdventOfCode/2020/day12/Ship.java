@@ -19,6 +19,11 @@ public class Ship
         return _position;
     }
 
+    public final int getManhattanDistance ()
+    {
+        return Math.abs(_position.getX()) + Math.abs(_position.getY());
+    }
+
     public final void move (Vector<Command> commands)
     {
         Enumeration<Command> iter = commands.elements();
