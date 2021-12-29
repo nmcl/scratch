@@ -19,7 +19,28 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                values.add(new JoltageAdapter(Integer.parseInt(line), debug));
+                char action = line.charAt(0);
+                int amount = Integer.parseInt(line.substring(1));
+
+                switch (action)
+                {
+                    case Action.EAST:
+                    case Action.WEST:
+                    case Action.NORTH:
+                    case Action.SOUTH:
+                    case Action.LEFT:
+                    case Action.RIGHT:
+                    case Action.FORWARD:
+                    {
+                        values.add(new Command(action, amount));
+                    }
+                    break;
+                    default:
+                    {
+                        System.out.println("Unknown action: "+action);
+                    }
+                    break;
+                }
             }
         }
         catch (Throwable ex)
