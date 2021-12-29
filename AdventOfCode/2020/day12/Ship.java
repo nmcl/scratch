@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Ship
 {
     public Ship (boolean debug)
@@ -56,7 +58,7 @@ public class Ship
                 case Action.LEFT:
                 case Action.RIGHT:
                 {
-                    _facing = Facing.getNextFacting(_facing, c.action);
+                    _facing = Util.getNextFacing(_facing, c.action());
                 }
                 break;
                 case Action.FORWARD:
@@ -65,7 +67,7 @@ public class Ship
                 break;
                 default:
                 {
-                    System.out.println("Unknown action: "+action);
+                    System.out.println("Unknown command: "+c);
                 }
                 break;
             }
