@@ -1,6 +1,8 @@
+import java.util.*;
+
 public class Navigator
 {
-    public static final String DATA_FILE = "data.txt";
+    public static final String COMMAND_FILE = "commands.txt";
 
     public static void main (String[] args)
     {
@@ -34,5 +36,14 @@ public class Navigator
 
             System.exit(0);
         }
+
+        Vector<Command> commands = Util.loadCommands(COMMAND_FILE, debug);
+        Ship theShip = new Ship(debug);
+
+        theShip.move(commands);
+
+        System.out.println(theShip);
+        
+        System.out.println("Manhattan distance of ship: "+theShip.getManhattanDistance());
     }
 }
