@@ -6,6 +6,7 @@ public class Ship
     {
         _facing = Direction.EAST;
         _position = new Coordinate(0, 0);
+        _waypoint = new Coordinate(10, 1);
         _debug = debug;
     }
 
@@ -35,16 +36,20 @@ public class Ship
             if (_debug)
             {
                 System.out.println("Ship position: "+_position);
+                System.out.println("Waypoint position: "+_waypoint);
                 System.out.println("Ship executing "+c);
             }
 
-            // if FORWARD then move in the direction defined by our facing
-
-            if (c.action() == Action.FORWARD)
-                c = new Command(_facing, c.quantity());
-
             switch (c.action())
             {
+                case Action.FORWARD:
+                {
+                    int x = _position.getX() + (_waypoint.getX() * distOrDeg);
+                    int y = position.getY() + (_waypoint.getY() * distOrDeg);
+
+                    _position = new Coordinate(x, y);
+                }
+                break;
                 case Action.EAST:
                 {
                     _position = new Coordinate(_position.getX() + c.quantity(), _position.getY());
@@ -88,5 +93,6 @@ public class Ship
 
     private char _facing;
     private Coordinate _position;
+    private Coordinate _waypoint;
     private boolean _debug;
 }
