@@ -42,12 +42,12 @@ public class Ship
             {
                 case Action.EAST:
                 {
-                    _position = new Coordinate(_position.getX() - c.quantity(), _position.getY());
+                    _position = new Coordinate(_position.getX() + c.quantity(), _position.getY());
                 }
                 break;
                 case Action.WEST:
                 {
-                    _position = new Coordinate(_position.getX() + c.quantity(), _position.getY());
+                    _position = new Coordinate(_position.getX() - c.quantity(), _position.getY());
                 }
                 break;
                 case Action.NORTH:
