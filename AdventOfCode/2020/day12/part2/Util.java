@@ -3,67 +3,6 @@ import java.io.*;
 
 public class Util
 {
-    public static char getNextFacing (char current, Command c)
-    {
-        // System.out.println("Facing "+current+" and "+c);
-
-        // no real error checking!
-
-        int currentAngle = 0;
-
-        switch (current)
-        {
-            case Direction.NORTH:
-            {
-                currentAngle = 90;
-            }
-            break;
-            case Direction.SOUTH:
-            {
-                currentAngle = 270;
-            }
-            break;
-            case Direction.WEST:
-            {
-                currentAngle = 180;
-            }
-            break;
-            default:
-            {
-                // no op for East, i.e., angle = 0
-            }
-        }
-
-        // System.out.println("Current angle is "+currentAngle);
-
-        // assume no rotations > 270 degrees
-
-        if (c.action() == Action.LEFT)
-            currentAngle += c.quantity();
-        else
-            currentAngle -= c.quantity();
-
-        if (currentAngle < 0)
-            currentAngle += 360;
-        
-        if (currentAngle > 360)
-            currentAngle -= 360;
-
-        // System.out.println("Current angle now "+currentAngle);
-
-        switch (currentAngle)
-        {
-            case 90:
-                return Direction.NORTH;
-            case 180:
-                return Direction.WEST;
-            case 270:
-                return Direction.SOUTH;
-            default:
-                return Direction.EAST;
-        }        
-    }
-
     public static final Vector<Command> loadCommands (String inputFile, boolean debug)
     {
         /*

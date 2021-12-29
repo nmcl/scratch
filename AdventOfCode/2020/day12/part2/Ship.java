@@ -4,15 +4,14 @@ public class Ship
 {
     public Ship (boolean debug)
     {
-        _facing = Direction.EAST;
         _position = new Coordinate(0, 0);
         _waypoint = new Coordinate(10, 1);
         _debug = debug;
     }
 
-    public final char getFacing ()
+    public final Coordinate getWaypoint ()
     {
-        return _facing;
+        return _waypoint;
     }
 
     public final Coordinate getPosition ()
@@ -44,8 +43,8 @@ public class Ship
             {
                 case Action.FORWARD:
                 {
-                    int x = _position.getX() + (_waypoint.getX() * distOrDeg);
-                    int y = position.getY() + (_waypoint.getY() * distOrDeg);
+                    int x = _position.getX() + (_waypoint.getX() * c.quantity());
+                    int y = _position.getY() + (_waypoint.getY() * c.quantity());
 
                     _position = new Coordinate(x, y);
                 }
@@ -71,9 +70,33 @@ public class Ship
                 }
                 break;
                 case Action.LEFT:
+                {
+                    int rotation = c.quantity();
+
+                    while (rotation > 0)
+                    {
+                        int x = -_waypoint.getY();
+                        int y = _waypoint.getX();
+
+                        _waypoint = new Coordinate(x, y);
+
+                        rotation -= 90;
+                    }
+                }
+                break;
                 case Action.RIGHT:
                 {
-                    _facing = Util.getNextFacing(_facing, c);
+                    int rotation = c.quantity();
+
+                    while (rotation > 0)
+                    {
+                        int x = _waypoint.getY();
+                        int y = -_waypoint.getX();
+
+                        _waypoint = new Coordinate(x, y);
+
+                        rotation -= 90;
+                    }
                 }
                 break;
                 default:
@@ -88,10 +111,9 @@ public class Ship
     @Override
     public String toString ()
     {
-        return "Ship facing "+_facing+" and position "+_position;
+        return "Ship position "+_position+" and waypoint "+_waypoint;
     }
 
-    private char _facing;
     private Coordinate _position;
     private Coordinate _waypoint;
     private boolean _debug;
