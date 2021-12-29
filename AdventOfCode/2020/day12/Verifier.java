@@ -4,6 +4,7 @@ public class Verifier
 {
     public static final String EXAMPLE = "example.txt";
     public static final Coordinate EXAMPLE_COORDINATE = new Coordinate(17, -8);
+    public static final int EXAMPLE_MANHATTAN_DISTANCE = 25;
 
     public Verifier (boolean debug)
     {
@@ -21,9 +22,14 @@ public class Verifier
             System.out.println(theShip);
 
         if (EXAMPLE_COORDINATE.equals(theShip.getPosition()))
-            return true;
-
-        System.out.println("Invalid final ship position: "+theShip.getPosition());
+        {
+            if (theShip.getManhattanDistance() == EXAMPLE_MANHATTAN_DISTANCE)
+                return true;
+            
+            System.out.println("Invalid Manhattan Distance: "+theShip.getManhattanDistance());
+        }
+        else
+            System.out.println("Invalid final ship position: "+theShip.getPosition());
 
         return false;
     }
