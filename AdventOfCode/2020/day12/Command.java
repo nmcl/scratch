@@ -11,7 +11,7 @@ public class Command
         return _type;
     }
 
-    public final int distance ()
+    public final int quantity ()
     {
         return _distance;
     }

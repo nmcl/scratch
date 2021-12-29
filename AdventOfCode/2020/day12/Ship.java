@@ -34,30 +34,30 @@ public class Ship
             }
 
             // if FORWARD then move in the direction defined by our facing
-            
+
             if (c.action() == Action.FORWARD)
-                c = new Command(_facing, c.distance());
+                c = new Command(_facing, c.quantity());
 
             switch (c.action())
             {
                 case Action.EAST:
                 {
-                    _position = new Coordinate(_position.getX() - c.distance(), _position.getY());
+                    _position = new Coordinate(_position.getX() - c.quantity(), _position.getY());
                 }
                 break;
                 case Action.WEST:
                 {
-                    _position = new Coordinate(_position.getX() + c.distance(), _position.getY());
+                    _position = new Coordinate(_position.getX() + c.quantity(), _position.getY());
                 }
                 break;
                 case Action.NORTH:
                 {
-                    _position = new Coordinate(_position.getX(), _position.getY() + c.distance());
+                    _position = new Coordinate(_position.getX(), _position.getY() + c.quantity());
                 }
                 break;
                 case Action.SOUTH:
                 {
-                    _position = new Coordinate(_position.getX(), _position.getY() - c.distance());
+                    _position = new Coordinate(_position.getX(), _position.getY() - c.quantity());
                 }
                 break;
                 case Action.LEFT:
@@ -73,6 +73,12 @@ public class Ship
                 break;
             }
         }
+    }
+
+    @Override
+    public String toString ()
+    {
+        return "Ship facing "+_facing+" and position "+_position;
     }
 
     private char _facing;
