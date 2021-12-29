@@ -16,6 +16,12 @@ public class Command
         return _distance;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Command < "+_type+", "+_distance+" >";
+    }
+
     private char _type;
     private int _distance;
 }
