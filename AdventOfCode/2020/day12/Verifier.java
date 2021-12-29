@@ -3,6 +3,7 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE = "example.txt";
+    public static final Coordinate EXAMPLE_COORDINATE = new Coordinate(17, -8);
 
     public Verifier (boolean debug)
     {
@@ -16,7 +17,13 @@ public class Verifier
 
         theShip.move(commands);
 
-        System.out.println(theShip);
+        if (_debug)
+            System.out.println(theShip);
+
+        if (EXAMPLE_COORDINATE.equals(theShip.getPosition()))
+            return true;
+
+        System.out.println("Invalid final ship position: "+theShip.getPosition());
 
         return false;
     }
