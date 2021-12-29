@@ -63,7 +63,7 @@ public class Ship
                 case Action.LEFT:
                 case Action.RIGHT:
                 {
-                    _facing = Util.getNextFacing(_facing, c.action());
+                    _facing = Util.getNextFacing(_facing, c);
                 }
                 break;
                 default:
