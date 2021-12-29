@@ -34,7 +34,7 @@ public class Util
             }
         }
 
-        System.out.println("Current angle is "+currentAngle);
+        // System.out.println("Current angle is "+currentAngle);
 
         // assume no rotations > 270 degrees
 
@@ -45,8 +45,11 @@ public class Util
 
         if (currentAngle < 0)
             currentAngle += 360;
-            
-        System.out.println("Current angle now "+currentAngle);
+        
+        if (currentAngle > 360)
+            currentAngle -= 360;
+
+        // System.out.println("Current angle now "+currentAngle);
 
         switch (currentAngle)
         {
