@@ -25,26 +25,32 @@ public class Ship
         {
             Command c = iter.nextElement();
 
+            if (_debug)
+            {
+                System.out.println("Ship position: "+_position);
+                System.out.println("Ship executing "+c);
+            }
+
             switch (c.action())
             {
                 case Action.EAST:
                 {
-
+                    _position = new Coordinate(_position.getX() - c.distance(), _position.getY());
                 }
                 break;
                 case Action.WEST:
                 {
-
+                    _position = new Coordinate(_position.getX() + c.distance(), _position.getY());
                 }
                 break;
                 case Action.NORTH:
                 {
-
+                    _position = new Coordinate(_position.getX(), _position.getY() + c.distance());
                 }
                 break;
                 case Action.SOUTH:
                 {
-
+                    _position = new Coordinate(_position.getX(), _position.getY() - c.distance());
                 }
                 break;
                 case Action.LEFT:
