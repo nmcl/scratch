@@ -7,37 +7,48 @@ public class Util
     {
         // no real error checking!
 
+        int currentAngle = 0;
+
         switch (current)
         {
-            case Direction.NORTH:
-            {
-                if (c.action() == Action.LEFT)
-                    return Direction.EAST;
-                else
-                    return Direction.WEST;
-            }
             case Direction.SOUTH:
             {
-                if (c.action()  == Action.LEFT)
-                    return Direction.WEST;
-                else
-                    return Direction.EAST;
+                currentAngle = 180;
             }
+            break;
             case Direction.EAST:
             {
-                if (c.action()  == Action.LEFT)
-                    return Direction.SOUTH;
-                else
-                    return Direction.NORTH;
+                currentAngle = 90;
+            }
+            break;
+            case Direction.WEST:
+            {
+                currentAngle = 270;
             }
             default:
             {
-                if (c.action()  == Action.LEFT)
-                    return Direction.NORTH;
-                else
-                    return Direction.SOUTH;
+                // no op
             }
         }
+
+        // assume no rotations > 270 degrees
+
+        if (c.action() == Action.LEFT)
+            currentAngle -= c.quantity();
+        else
+            currentAngle += c.quantity();
+
+        switch (currentAngle)
+        {
+            case 0:
+                return Direction.NORTH;
+            case 90:
+                return Direction.EAST;
+            case 180:
+                return Direction.SOUTH;
+            default:
+                return Direction.WEST;
+        }        
     }
 
     public static final Vector<Command> loadCommands (String inputFile, boolean debug)
