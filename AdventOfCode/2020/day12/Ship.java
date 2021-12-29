@@ -54,13 +54,9 @@ public class Ship
                 }
                 break;
                 case Action.LEFT:
-                {
-
-                }
-                break;
                 case Action.RIGHT:
                 {
-
+                    _facing = Facing.getNextFacting(_facing, c.action);
                 }
                 break;
                 case Action.FORWARD:
