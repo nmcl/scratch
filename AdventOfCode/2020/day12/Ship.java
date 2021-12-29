@@ -33,6 +33,11 @@ public class Ship
                 System.out.println("Ship executing "+c);
             }
 
+            // if FORWARD then move in the direction defined by our facing
+            
+            if (c.action() == Action.FORWARD)
+                c = new Command(_facing, c.distance());
+
             switch (c.action())
             {
                 case Action.EAST:
@@ -61,13 +66,9 @@ public class Ship
                     _facing = Util.getNextFacing(_facing, c.action());
                 }
                 break;
-                case Action.FORWARD:
-                {
-                }
-                break;
                 default:
                 {
-                    System.out.println("Unknown command: "+c);
+                    System.out.println("Unexpected command: "+c);
                 }
                 break;
             }
