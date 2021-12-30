@@ -15,26 +15,36 @@ public class Timetable
         loadData(fileName);
     }
 
-    public final int earliestDeparture ()
-    {
-        return _earliestDeparture;
-    }
+    // https://en.wikipedia.org/wiki/Chinese_remainder_theorem
 
-    public final Bus busToCatch ()
+    public final long earliestTimestamp ()
     {
-        int busDepartureTime = _buses.elementAt(0).nextDeparture();
-        Bus bs = null;
+        Bus theBus = _buses.get(_buses.size() - 1);
+        long remainder = theBus.getRemainder();
+        long theMod = theBus.getID();
 
-        for (int i = 0; i < _buses.size(); i++)
+        System.out.println("starting with "+remainder+" and "+theMod);
+
+        // go down through the other buses
+
+        for (int i = _buses.size() - 2; i >=0; i--)
         {
-            if (_buses.elementAt(i).nextDeparture() < busDepartureTime)
+            theBus = _buses.elementAt(i);
+
+            long mod = theBus.getID();
+            long rem = theBus.getRemainder();
+     
+            while (remainder % mod != rem)
             {
-                busDepartureTime = _buses.elementAt(i).nextDeparture();
-                bs = _buses.elementAt(i);
+                remainder += theMod;
             }
+      
+            theMod *= mod;
         }
 
-        return bs;
+        System.out.println("returning "+remainder);
+
+        return remainder;
     }
 
     private void loadData (String inputFile)
@@ -72,7 +82,7 @@ public class Timetable
                         }
                         else
                         {
-                            Bus bs = new Bus(Integer.parseInt(busData[i]), _earliestDeparture);
+                            Bus bs = new Bus(Integer.parseInt(busData[i]), i);
 
                             if (_debug)
                                 System.out.println("Loaded "+bs);
