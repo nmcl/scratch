@@ -10,5 +10,11 @@ public class Bus
         return _id;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Bus: "+_id;
+    }
+
     private int _id;
 }
