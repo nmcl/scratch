@@ -36,7 +36,7 @@ public class Ship
             {
                 System.out.println("Ship position: "+_position);
                 System.out.println("Waypoint position: "+_waypoint);
-                System.out.println("Ship executing "+c);
+                System.out.println("Executing "+c);
             }
 
             switch (c.action())
