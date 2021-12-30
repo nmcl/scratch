@@ -4,9 +4,11 @@ import java.io.*;
 public class Timetable
 {
     public static String SEPARATOR = ",";
+    public static String OUT_OF_SERVICE = "x";
 
     public Timetable (String fileName, boolean debug)
     {
+        _earliestDeparture = 0;
         _buses = new Vector<Bus>();
         _debug = debug;
 
@@ -32,12 +34,20 @@ public class Timetable
 
                 for (int i = 0; i < busData.length; i++)
                 {
-                    Bus bs = new Bus(Integer.parseInt(busData[i]));
+                    if (OUT_OF_SERVICE.equals(busData[i]))
+                    {
+                        if (_debug)
+                            System.out.println("Loaded out of service bus.");
+                    }
+                    else
+                    {
+                        Bus bs = new Bus(Integer.parseInt(busData[i]));
 
-                    if (_debug)
-                        System.out.println("Loaded "+bs);
+                        if (_debug)
+                            System.out.println("Loaded "+bs);
 
-                    _buses.add(bs);
+                        _buses.add(bs);
+                    }
                 }
             }
         }
@@ -57,6 +67,7 @@ public class Timetable
         }
     }
 
+    private int _earliestDeparture;
     private Vector<Bus> _buses;
     private boolean _debug;
 }
