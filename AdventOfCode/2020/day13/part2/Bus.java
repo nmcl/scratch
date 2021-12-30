@@ -7,14 +7,10 @@ public class Bus
         _id = id;
         _remainder = -index;
 
-        System.out.println("initial rem "+_remainder);
-
         while (_remainder < 0)
         {
             _remainder += _id;
         }
-
-        System.out.println("rem now "+_remainder);
     }
 
     public final long getRemainder ()
@@ -23,7 +19,7 @@ public class Bus
     }
 
     // in this theorem implementation, id == mod
-    
+
     public final long getID ()
     {
         return _id;
