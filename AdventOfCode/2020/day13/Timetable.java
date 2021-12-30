@@ -50,7 +50,7 @@ public class Timetable
                         }
                         else
                         {
-                            Bus bs = new Bus(Integer.parseInt(busData[i]));
+                            Bus bs = new Bus(Integer.parseInt(busData[i]), _earliestDeparture);
 
                             if (_debug)
                                 System.out.println("Loaded "+bs);
@@ -74,6 +74,14 @@ public class Timetable
             catch (Throwable ex)
             {
             }
+        }
+
+        _earliestDeparture = _buses.elementAt(0).nextDeparture();
+
+        for (int i = 0; i < _buses.size(); i++)
+        {
+            if (_buses.elementAt(i).nextDeparture() < _earliestDeparture)
+                _earliestDeparture = _buses.elementAt(i).nextDeparture();
         }
     }
 
