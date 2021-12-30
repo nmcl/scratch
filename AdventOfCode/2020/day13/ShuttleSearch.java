@@ -36,5 +36,11 @@ public class ShuttleSearch
 
             System.exit(0);
         }
+
+        Timetable tt = new Timetable(DATA_FILE, debug);
+        Bus bs = tt.busToCatch();
+        int diff = bs.nextDeparture() - tt.earliestDeparture();
+
+        System.out.println("ID of the earliest bus multiplied by the number of minutes: "+(diff * bs.getID()));
     }
 }
