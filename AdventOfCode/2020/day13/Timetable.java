@@ -9,16 +9,17 @@ public class Timetable
     {
         _buses = new Vector<Bus>();
         _debug = debug;
+
+        loadData(fileName);
     }
 
-    private void loadData (String fileName)
+    private void loadData (String inputFile)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<Command> values = new Vector<Command>();
 
         try
         {
@@ -28,6 +29,16 @@ public class Timetable
             while ((line = reader.readLine()) != null)
             {
                 String[] busData = line.split(SEPARATOR);
+
+                for (int i = 0; i < busData.length; i++)
+                {
+                    Bus bs = new Bus(Integer.parseInt(busData[i]));
+
+                    if (_debug)
+                        System.out.println("Loaded "+bs);
+
+                    _buses.add(bs);
+                }
             }
         }
         catch (Throwable ex)
