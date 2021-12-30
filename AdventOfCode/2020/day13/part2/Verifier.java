@@ -6,6 +6,8 @@ public class Verifier
     public static final long EXAMPLE2_EARLIEST_TIMESTAMP = 3417;
     public static final String EXAMPLE3_DATA = "example3.txt";
     public static final long EXAMPLE3_EARLIEST_TIMESTAMP = 754018;
+    public static final String EXAMPLE4_DATA = "example4.txt";
+    public static final long EXAMPLE4_EARLIEST_TIMESTAMP = 779210;
 
     public Verifier (boolean debug)
     {
@@ -26,7 +28,12 @@ public class Verifier
 
                 if (tt.earliestTimestamp() == EXAMPLE3_EARLIEST_TIMESTAMP)
                 {
-                    return true;
+                    tt = new Timetable(EXAMPLE4_DATA, _debug);
+
+                    if (tt.earliestTimestamp() == EXAMPLE4_EARLIEST_TIMESTAMP)
+                        return true;
+                    else
+                        System.out.println("Wrong 4th earliest timestamp: "+tt.earliestTimestamp());
                 }
                 else
                     System.out.println("Wrong 3rd earliest timestamp: "+tt.earliestTimestamp());
