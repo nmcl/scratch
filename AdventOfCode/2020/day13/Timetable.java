@@ -30,23 +30,33 @@ public class Timetable
 
             while ((line = reader.readLine()) != null)
             {
-                String[] busData = line.split(SEPARATOR);
-
-                for (int i = 0; i < busData.length; i++)
+                if (_earliestDeparture == 0)
                 {
-                    if (OUT_OF_SERVICE.equals(busData[i]))
-                    {
-                        if (_debug)
-                            System.out.println("Loaded out of service bus.");
-                    }
-                    else
-                    {
-                        Bus bs = new Bus(Integer.parseInt(busData[i]));
+                    _earliestDeparture = Integer.parseInt(line);
 
-                        if (_debug)
-                            System.out.println("Loaded "+bs);
+                    if (_debug)
+                        System.out.println("Earliest departure time: "+_earliestDeparture+"\n");
+                }
+                else
+                {
+                    String[] busData = line.split(SEPARATOR);
 
-                        _buses.add(bs);
+                    for (int i = 0; i < busData.length; i++)
+                    {
+                        if (OUT_OF_SERVICE.equals(busData[i]))
+                        {
+                            if (_debug)
+                                System.out.println("Loaded out of service bus.");
+                        }
+                        else
+                        {
+                            Bus bs = new Bus(Integer.parseInt(busData[i]));
+
+                            if (_debug)
+                                System.out.println("Loaded "+bs);
+
+                            _buses.add(bs);
+                        }
                     }
                 }
             }
