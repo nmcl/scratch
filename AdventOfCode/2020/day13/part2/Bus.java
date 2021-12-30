@@ -1,20 +1,30 @@
 public class Bus
 {
-    public Bus (int id, int earliestDeparture)
+    // https://en.wikipedia.org/wiki/Chinese_remainder_theorem
+
+    public Bus (long id, long index)
     {
         _id = id;
-        _nextDeparture = earliestDeparture - (earliestDeparture % _id);
+        _remainder = -index;
 
-        if (_nextDeparture < earliestDeparture)
-            _nextDeparture += _id;
+        System.out.println("initial rem "+_remainder);
+
+        while (_remainder < 0)
+        {
+            _remainder += _id;
+        }
+
+        System.out.println("rem now "+_remainder);
     }
 
-    public final int nextDeparture ()
+    public final long getRemainder ()
     {
-        return _nextDeparture;
+        return _remainder;
     }
 
-    public final int getID ()
+    // in this theorem implementation, id == mod
+    
+    public final long getID ()
     {
         return _id;
     }
@@ -22,9 +32,9 @@ public class Bus
     @Override
     public String toString ()
     {
-        return "Bus "+_id+" departure "+_nextDeparture;
+        return "Bus "+_id+" remainder "+_remainder;
     }
 
-    private int _id;
-    private int _nextDeparture;
+    private long _id;
+    private long _remainder;
 }
