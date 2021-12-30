@@ -15,6 +15,28 @@ public class Timetable
         loadData(fileName);
     }
 
+    public final int earliestDeparture ()
+    {
+        return _earliestDeparture;
+    }
+
+    public final Bus busToCatch ()
+    {
+        int busDepartureTime = _buses.elementAt(0).nextDeparture();
+        Bus bs = null;
+
+        for (int i = 0; i < _buses.size(); i++)
+        {
+            if (_buses.elementAt(i).nextDeparture() < busDepartureTime)
+            {
+                busDepartureTime = _buses.elementAt(i).nextDeparture();
+                bs = _buses.elementAt(i);
+            }
+        }
+
+        return bs;
+    }
+
     private void loadData (String inputFile)
     {
         /*
@@ -74,14 +96,6 @@ public class Timetable
             catch (Throwable ex)
             {
             }
-        }
-
-        _earliestDeparture = _buses.elementAt(0).nextDeparture();
-
-        for (int i = 0; i < _buses.size(); i++)
-        {
-            if (_buses.elementAt(i).nextDeparture() < _earliestDeparture)
-                _earliestDeparture = _buses.elementAt(i).nextDeparture();
         }
     }
 
