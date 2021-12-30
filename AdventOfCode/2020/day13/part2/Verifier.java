@@ -1,8 +1,7 @@
 public class Verifier
 {
     public static final String EXAMPLE1_DATA = "example1.txt";
-    public static final int EARLIEST_DEPARTURE = 944;
-    public static final int RESULT = 295;
+    public static final long EXAMPLE1_EARLIEST_TIMESTAMP = 1068781;
 
     public Verifier (boolean debug)
     {
@@ -13,8 +12,11 @@ public class Verifier
     {
         Timetable tt = new Timetable(EXAMPLE1_DATA, _debug);
 
-        tt.earliestTimestamp();
+        if (tt.earliestTimestamp() == EXAMPLE1_EARLIEST_TIMESTAMP)
+            return true;
         
+        System.out.println("Wrong earliest timestamp: "+tt.earliestTimestamp());
+
         return false;
     }
 
