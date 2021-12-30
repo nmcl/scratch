@@ -23,8 +23,6 @@ public class Timetable
         long remainder = theBus.getRemainder();
         long theMod = theBus.getID();
 
-        System.out.println("starting with "+remainder+" and "+theMod);
-
         // go down through the other buses
 
         for (int i = _buses.size() - 2; i >=0; i--)
@@ -41,8 +39,6 @@ public class Timetable
       
             theMod *= mod;
         }
-
-        System.out.println("returning "+remainder);
 
         return remainder;
     }
