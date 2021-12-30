@@ -2,7 +2,7 @@ public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
     public static final int EARLIEST_DEPARTURE = 944;
-    public static final int RESULT = 255;
+    public static final int RESULT = 295;
 
     public Verifier (boolean debug)
     {
@@ -18,10 +18,15 @@ public class Verifier
         {
             if (bs.nextDeparture() == EARLIEST_DEPARTURE)
             {
-                return true;
-            }
+                int diff = bs.nextDeparture() - tt.earliestDeparture();
 
-            System.out.println("Incorrect departure time: "+tt.earliestDeparture());
+                if (diff * bs.getID() == RESULT)
+                    return true;
+                else
+                    System.out.println("Wrong difference "+diff+" or bus "+bs);
+            }
+            else
+                System.out.println("Incorrect departure time: "+bs.nextDeparture());
         }
         else
             System.out.println("No bus found!");
