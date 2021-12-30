@@ -38,5 +38,7 @@ public class ShuttleSearch
         }
 
         Timetable tt = new Timetable(DATA_FILE, debug);
+
+        System.out.println("Earliest timestamp: "+tt.earliestTimestamp());
     }
 }
