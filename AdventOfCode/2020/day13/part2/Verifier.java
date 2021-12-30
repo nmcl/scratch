@@ -1,6 +1,6 @@
 public class Verifier
 {
-    public static final String EXAMPLE_DATA = "example.txt";
+    public static final String EXAMPLE1_DATA = "example1.txt";
     public static final int EARLIEST_DEPARTURE = 944;
     public static final int RESULT = 295;
 
@@ -11,7 +11,7 @@ public class Verifier
 
     public boolean verify ()
     {
-        Timetable tt = new Timetable(EXAMPLE_DATA, _debug);
+        Timetable tt = new Timetable(EXAMPLE1_DATA, _debug);
         Bus bs = tt.busToCatch();
 
         if (bs != null)
