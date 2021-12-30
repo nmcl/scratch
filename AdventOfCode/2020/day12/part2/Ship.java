@@ -51,22 +51,22 @@ public class Ship
                 break;
                 case Action.EAST:
                 {
-                    _position = new Coordinate(_position.getX() + c.quantity(), _position.getY());
+                    _waypoint = new Coordinate(_waypoint.getX() + c.quantity(), _waypoint.getY());
                 }
                 break;
                 case Action.WEST:
                 {
-                    _position = new Coordinate(_position.getX() - c.quantity(), _position.getY());
+                    _waypoint = new Coordinate(_waypoint.getX() - c.quantity(), _waypoint.getY());
                 }
                 break;
                 case Action.NORTH:
                 {
-                    _position = new Coordinate(_position.getX(), _position.getY() + c.quantity());
+                    _waypoint = new Coordinate(_waypoint.getX(), _waypoint.getY() + c.quantity());
                 }
                 break;
                 case Action.SOUTH:
                 {
-                    _position = new Coordinate(_position.getX(), _position.getY() - c.quantity());
+                    _waypoint = new Coordinate(_waypoint.getX(), _waypoint.getY() - c.quantity());
                 }
                 break;
                 case Action.LEFT:
