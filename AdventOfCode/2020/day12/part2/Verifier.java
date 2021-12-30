@@ -3,7 +3,7 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE = "example.txt";
-    public static final Coordinate EXAMPLE_COORDINATE = new Coordinate(214, 72);
+    public static final Coordinate EXAMPLE_COORDINATE = new Coordinate(214, -72);
     public static final int EXAMPLE_MANHATTAN_DISTANCE = 286;
 
     public Verifier (boolean debug)
