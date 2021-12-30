@@ -8,7 +8,7 @@ public class Timetable
 
     public Timetable (String fileName, boolean debug)
     {
-        _earliestDeparture = 0;
+        _earliestDeparture = -1;
         _buses = new Vector<Bus>();
         _debug = debug;
 
@@ -62,7 +62,7 @@ public class Timetable
 
             while ((line = reader.readLine()) != null)
             {
-                if (_earliestDeparture == 0)
+                if (_earliestDeparture == -1)
                 {
                     _earliestDeparture = Integer.parseInt(line);
 
