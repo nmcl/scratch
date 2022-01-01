@@ -11,6 +11,11 @@ public class Command
         _commands = cmds;
     }
 
+    public void execute (HashMap<Long, Long> memory)
+    {
+        
+    }
+
     @Override
     public String toString ()
     {
