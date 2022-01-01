@@ -11,7 +11,7 @@ public class Verifier
 
     public boolean verify ()
     {
-        Vector<Command> cmds = Util.loadData(EXAMPLE_DATA, _debug);
+        Vector<Command> cmds = Util.loadCommands(EXAMPLE_DATA, _debug);
 
         for (int i = 0; i < cmds.size(); i++)
         {
