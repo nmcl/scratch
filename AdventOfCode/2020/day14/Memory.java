@@ -2,10 +2,24 @@ import java.util.*;
 
 public class Memory
 {
+    public static final long UNASSIGNED_MEMORY = 0;
+
     public Memory ()
     {
-        _memory = new Vector<MemoryElement>();
+        _memory = new HashMap<Long, Long>();
     }
 
-    private Vector<MemoryElement> _memory;
+    public long getValue (long address)
+    {
+        Long v = _memory.get(address);
+
+        return ((v == null) ? UNASSIGNED_MEMORY : v);
+    }
+
+    public void setValue (long address, long value)
+    {
+        _memory.put(address, value);
+    }
+
+    private HashMap<Long, Long> _memory;
 }
