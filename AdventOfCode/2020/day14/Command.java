@@ -7,7 +7,7 @@ public class Command
 
     public Command (String mask, Vector<String> cmds)
     {
-        _mask = maskl
+        _mask = mask;
         _commands = cmds;
     }
 
