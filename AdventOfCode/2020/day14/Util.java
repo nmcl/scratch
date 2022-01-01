@@ -26,10 +26,7 @@ public class Util
                 {
                     if (mask != null) // new entry
                     {
-                        Command cmd = new Command(mask, cmds);
-
-                        values.add(cmd);
-                        
+                        values.add(new Command(mask, cmds));
                         cmds = null;
                     }
 
@@ -42,9 +39,10 @@ public class Util
 
                     cmds.add(line);
                 }
-
-                values.add(new JoltageAdapter(Integer.parseInt(line), debug));
             }
+
+            if (cmds != null)
+                values.add(new Command(mask, cmds));
         }
         catch (Throwable ex)
         {
