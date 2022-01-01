@@ -15,7 +15,7 @@ public class Verifier
 
         for (int i = 0; i < cmds.size(); i++)
         {
-            System.out.println("Loaded "+cmds.elementAt(i));
+            System.out.println("Loaded:\n"+cmds.elementAt(i));
         }
 
         return false;
