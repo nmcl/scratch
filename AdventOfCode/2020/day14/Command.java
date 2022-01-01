@@ -13,7 +13,7 @@ public class Command
 
     public void execute (HashMap<Long, Long> memory)
     {
-        
+
     }
 
     @Override
