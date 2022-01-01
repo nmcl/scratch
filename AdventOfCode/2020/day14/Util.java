@@ -30,7 +30,7 @@ public class Util
                         cmds = null;
                     }
 
-                    nask = line;
+                    mask = line;
                 }
                 else
                 {
