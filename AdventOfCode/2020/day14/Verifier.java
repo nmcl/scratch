@@ -8,6 +8,7 @@ public class Verifier
     public static final long EXAMPLE_VALUE_1 = 101;
     public static final long EXAMPLE_ADDRESS_2 = 8;
     public static final long EXAMPLE_VALUE_2 = 64;
+    public static final long EXAMPLE_TOTAL = 165;
 
     public Verifier (boolean debug)
     {
@@ -21,7 +22,8 @@ public class Verifier
 
         for (int i = 0; i < cmds.size(); i++)
         {
-            System.out.println("Loaded:\n"+cmds.elementAt(i));
+            if (_debug)
+                System.out.println("Loaded:\n"+cmds.elementAt(i));
 
             cmds.elementAt(i).execute(mem);
         }
@@ -29,7 +31,12 @@ public class Verifier
         if (mem.getValue(EXAMPLE_ADDRESS_1) == EXAMPLE_VALUE_1)
         {
             if (mem.getValue(EXAMPLE_ADDRESS_2) == EXAMPLE_VALUE_2)
-                return true;
+            {
+                if (mem.getValue(EXAMPLE_ADDRESS_1) + mem.getValue(EXAMPLE_ADDRESS_2) == EXAMPLE_TOTAL)
+                    return true;
+                else
+                    System.out.println("Incorrect total: "+(mem.getValue(EXAMPLE_ADDRESS_1) + mem.getValue(EXAMPLE_ADDRESS_2)));
+            }
             else
                 System.out.println("Wrong value at memory address "+EXAMPLE_ADDRESS_2+": "+EXAMPLE_VALUE_2);
         }
