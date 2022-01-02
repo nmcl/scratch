@@ -33,5 +33,16 @@ public class Docking
 
             System.exit(0);
         }
+
+        Vector<Command> cmds = Util.loadCommands(DATA_FILE, debug);
+        Memory mem = new Memory();
+
+        for (int i = 0; i < cmds.size(); i++)
+        {
+            if (_debug)
+                System.out.println("Loaded:\n"+cmds.elementAt(i));
+
+            cmds.elementAt(i).execute(mem);
+        }
     }
 }
