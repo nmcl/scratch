@@ -5,7 +5,7 @@ public class Verifier
     public static final String EXAMPLE_DATA = "example.txt";
 
     public static final long EXAMPLE_ADDRESS_1 = 7;
-    public static final long EXAMPLE_VALUE_1 = 0;
+    public static final long EXAMPLE_VALUE_1 = 101;
     public static final long EXAMPLE_ADDRESS_2 = 8;
     public static final long EXAMPLE_VALUE_2 = 64;
 
