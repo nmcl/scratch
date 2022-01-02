@@ -43,8 +43,6 @@ public class Command
 
             if (_debug)
                 System.out.println("Value: "+value);
-
-            Vector<String> addresses = applyMask(theMask, addr);
         }
     }
 
@@ -61,28 +59,10 @@ public class Command
         return str;
     }
 
-    private Vector<String> applyMask (String mask, long address)
+    private Vector<String> generateAllAddresses (String addres)
     {
-        char[] theMaskArray = mask.toCharArray();
-        Vector<String> masks = new Vector<String>();
-        int count = 0;
-
-        for (int i = 0; i < theMaskArray.length; i++)
-        {
-            if (theMaskArray[i] == FLOATING_BIT)
-                count++;
-        }
-
-        if (count > 0)
-        {
-            int[] options = new int[count];
-        }
-        else
-            masks.add(mask);
-
-
-        return masks;
-    }
+        return null;
+	}
 
     private String _mask;
     private Vector<String> _commands;
