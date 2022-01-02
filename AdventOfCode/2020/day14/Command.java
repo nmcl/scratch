@@ -59,6 +59,11 @@ public class Command
 
             if (_debug)
                 System.out.println("Masked binary:   "+maskedBinary);
+
+            long updatedValue = Long.parseLong(new String(maskedBinary), 2);
+
+            if (_debug)
+                System.out.println("Updated value: "+updatedValue);
         }
     }
 
