@@ -43,6 +43,8 @@ public class Command
 
             if (_debug)
                 System.out.println("Value: "+value);
+
+            Vector<String> addresses = applyMask(theMask, addr);
         }
     }
 
@@ -59,7 +61,7 @@ public class Command
         return str;
     }
 
-    private Vector<String> applyMask (String theMask)
+    private Vector<String> applyMask (String theMask, long address)
     {
         return null;
     }
