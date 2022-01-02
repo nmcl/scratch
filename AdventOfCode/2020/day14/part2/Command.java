@@ -8,7 +8,7 @@ public class Command
     public static final String CLOSE_BRACE = "]";
     public static final String EQUALS = "=";
 
-    public static final char MASK_IGNORE = 'X';
+    public static final char FLOATING_BIT = 'X';
 
     public static final int INTEGER_SIZE = 36;
 
@@ -61,8 +61,18 @@ public class Command
         return str;
     }
 
-    private Vector<String> applyMask (String theMask, long address)
+    private Vector<String> applyMask (String mask, long address)
     {
+        char[] theMaskArray = mask.toCharArray();
+        Vector<String> masks = new Vector<String>();
+        int count = 0;
+
+        for (int i = 0; i < theMaskArray.length; i++)
+        {
+            if (theMaskArray[i] == FLOATING_BIT)
+                count++;
+        }
+
         return null;
     }
 
