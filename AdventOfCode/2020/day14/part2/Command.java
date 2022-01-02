@@ -59,10 +59,23 @@ public class Command
         return str;
     }
 
-    private Vector<String> generateAllAddresses (String addres)
+    private Vector<String> generateAllAddresses (String address, byte[] theMask, int index)
+    {
+        Vector<String> addresses = new Vector<String>();
+        int nextFloatingBit = -1;
+
+        for (int i = 0; i < theMask.length; i++)
+        {
+
+        }
+
+        return addresses;
+	}
+
+    private String generateAddress (String address, byte[] theMask, int index)
     {
         return null;
-	}
+    }
 
     private String _mask;
     private Vector<String> _commands;
