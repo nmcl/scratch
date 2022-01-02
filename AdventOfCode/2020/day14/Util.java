@@ -26,7 +26,7 @@ public class Util
                 {
                     if (mask != null) // new entry
                     {
-                        values.add(new Command(mask, cmds));
+                        values.add(new Command(mask, cmds, debug));
                         cmds = null;
                     }
 
@@ -42,7 +42,7 @@ public class Util
             }
 
             if (cmds != null)
-                values.add(new Command(mask, cmds));
+                values.add(new Command(mask, cmds, debug));
         }
         catch (Throwable ex)
         {
