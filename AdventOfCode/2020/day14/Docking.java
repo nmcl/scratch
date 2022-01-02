@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Docking
 {
     public static final String DATA_FILE = "data.txt";
@@ -39,7 +41,7 @@ public class Docking
 
         for (int i = 0; i < cmds.size(); i++)
         {
-            if (_debug)
+            if (debug)
                 System.out.println("Loaded:\n"+cmds.elementAt(i));
 
             cmds.elementAt(i).execute(mem);
