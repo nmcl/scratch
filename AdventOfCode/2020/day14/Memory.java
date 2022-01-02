@@ -21,5 +21,19 @@ public class Memory
         _memory.put(address, value);
     }
 
+    public long total ()
+    {
+        Collection<Long> values = _memory.values();
+        Iterator<Long> iter = values.iterator();
+        long total = 0;
+
+        while (iter.hasNext())
+        {
+            total += iter.next();
+        }
+
+        return total;
+    }
+
     private HashMap<Long, Long> _memory;
 }
