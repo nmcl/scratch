@@ -64,6 +64,8 @@ public class Command
 
             if (_debug)
                 System.out.println("Updated value: "+updatedValue);
+
+            memory.put(addr, updatedValue);
         }
     }
 
