@@ -43,29 +43,6 @@ public class Command
 
             if (_debug)
                 System.out.println("Value: "+value);
-
-            char[] binary = convertToBinary(value);
-
-            if (_debug)
-                System.out.println("Original binary: "+new String(binary));
-
-            for (int j = 0; j < theMask.length(); j++)
-            {
-                if (theMask.charAt(j) != MASK_IGNORE)
-                    binary[j] = theMask.charAt(j);
-            }
-
-            String maskedBinary = new String(binary);
-
-            if (_debug)
-                System.out.println("Masked binary:   "+maskedBinary);
-
-            long updatedValue = Long.parseLong(new String(maskedBinary), 2);
-
-            if (_debug)
-                System.out.println("Updated value: "+updatedValue);
-
-            mem.setValue(addr, updatedValue);
         }
     }
 
@@ -80,6 +57,11 @@ public class Command
         }
 
         return str;
+    }
+
+    private Vector<String> applyMask (String theMask)
+    {
+        return null;
     }
 
     private char[] convertToBinary (long value)
