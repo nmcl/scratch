@@ -73,32 +73,15 @@ public class Command
                 count++;
         }
 
-        return null;
-    }
-
-    private char[] convertToBinary (long value)
-    {
-        char[] tempBinary = Long.toBinaryString(value).toCharArray();
-        char[] binary;
-
-        if (tempBinary.length < INTEGER_SIZE)
+        if (count > 0)
         {
-            binary = new char[INTEGER_SIZE];
-
-            for (int i = 0; i < (INTEGER_SIZE - tempBinary.length); i++)
-            {
-                binary[i] = '0';
-            }
-
-            for (int j = 0; j < tempBinary.length; j++)
-            {
-                binary[(INTEGER_SIZE - tempBinary.length) +j] = tempBinary[j];
-            }
+            int[] options = new int[count];
         }
         else
-            binary = tempBinary;
+            masks.add(mask);
 
-        return binary;
+
+        return masks;
     }
 
     private String _mask;
