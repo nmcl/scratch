@@ -16,7 +16,7 @@ public class Command
 
     public void execute (HashMap<Long, Long> memory)
     {
-
+        String theMask = _mask.substring(_mask.indexOf(EQUALS) +1).trim();
     }
 
     @Override
