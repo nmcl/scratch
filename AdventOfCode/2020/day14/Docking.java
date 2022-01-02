@@ -38,6 +38,7 @@ public class Docking
 
         Vector<Command> cmds = Util.loadCommands(DATA_FILE, debug);
         Memory mem = new Memory();
+        long total;
 
         for (int i = 0; i < cmds.size(); i++)
         {
@@ -46,5 +47,7 @@ public class Docking
 
             cmds.elementAt(i).execute(mem);
         }
+
+        System.out.println("Sum of all values left in memory: "+mem.total());
     }
 }
