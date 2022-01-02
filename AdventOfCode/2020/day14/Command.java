@@ -4,6 +4,9 @@ public class Command
 {
     public static final String MASK = "mask";
     public static final String MEM = "mem";
+    public static final String OPEN_BRACE = "[";
+    public static final String CLOSE_BRACE = "]";
+    public static final String EQUALS = "=";
 
     public Command (String mask, Vector<String> cmds)
     {
