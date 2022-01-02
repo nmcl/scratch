@@ -19,7 +19,7 @@ public class Command
         _debug = debug;
     }
 
-    public void execute (HashMap<Long, Long> memory)
+    public void execute (Memory mem)
     {
         String theMask = _mask.substring(_mask.indexOf(EQUALS) +1).trim();
 
@@ -65,7 +65,7 @@ public class Command
             if (_debug)
                 System.out.println("Updated value: "+updatedValue);
 
-            memory.put(addr, updatedValue);
+            mem.setValue(addr, updatedValue);
         }
     }
 
