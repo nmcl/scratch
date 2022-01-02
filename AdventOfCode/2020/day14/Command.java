@@ -26,14 +26,16 @@ public class Command
         {
             int startIndex = _commands.elementAt(i).indexOf(OPEN_BRACE);
             int endIndex = _commands.elementAt(i).indexOf(CLOSE_BRACE);
-            String addr = _commands.elementAt(i).substring(startIndex +1, endIndex);
+            String addrStr = _commands.elementAt(i).substring(startIndex +1, endIndex);
+            Long addr = Long.parseLong(addrStr);
 
             if (_debug)
                 System.out.println("Memory address: "+addr);
 
             startIndex = _commands.elementAt(i).indexOf(EQUALS);
 
-            String value = _commands.elementAt(i).substring(startIndex +1).trim();
+            String valueStr = _commands.elementAt(i).substring(startIndex +1).trim();
+            Long value = Long.parseLong(valueStr);
 
             if (_debug)
                 System.out.println("Value: "+value);
