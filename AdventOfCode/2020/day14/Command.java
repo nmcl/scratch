@@ -8,6 +8,10 @@ public class Command
     public static final String CLOSE_BRACE = "]";
     public static final String EQUALS = "=";
 
+    public static final char MASK_IGNORE = 'X';
+
+    public static final int INTEGER_SIZE = 36;
+
     public Command (String mask, Vector<String> cmds, boolean debug)
     {
         _mask = mask;
@@ -39,6 +43,22 @@ public class Command
 
             if (_debug)
                 System.out.println("Value: "+value);
+
+            char[] binary = convertToBinary(value);
+
+            if (_debug)
+                System.out.println("Original binary: "+new String(binary));
+
+            for (int j = 0; j < theMask.length(); j++)
+            {
+                if (theMask.charAt(j) != MASK_IGNORE)
+                    binary[j] = theMask.charAt(j);
+            }
+
+            String maskedBinary = new String(binary);
+
+            if (_debug)
+                System.out.println("Masked binary:   "+maskedBinary);
         }
     }
 
@@ -53,6 +73,31 @@ public class Command
         }
 
         return str;
+    }
+
+    private char[] convertToBinary (long value)
+    {
+        char[] tempBinary = Long.toBinaryString(value).toCharArray();
+        char[] binary;
+
+        if (tempBinary.length < INTEGER_SIZE)
+        {
+            binary = new char[INTEGER_SIZE];
+
+            for (int i = 0; i < (INTEGER_SIZE - tempBinary.length); i++)
+            {
+                binary[i] = '0';
+            }
+
+            for (int j = 0; j < tempBinary.length; j++)
+            {
+                binary[(INTEGER_SIZE - tempBinary.length) +j] = tempBinary[j];
+            }
+        }
+        else
+            binary = tempBinary;
+
+        return binary;
     }
 
     private String _mask;
