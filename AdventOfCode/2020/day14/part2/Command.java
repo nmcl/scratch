@@ -9,6 +9,8 @@ public class Command
     public static final String EQUALS = "=";
 
     public static final char FLOATING_BIT = 'X';
+    public static final char ONE_BIT = '1';
+    public static final char ZERO_BIT = '0';
 
     public static final int INTEGER_SIZE = 36;
 
@@ -59,9 +61,60 @@ public class Command
         return str;
     }
 
-    private String applyMask (String address, String theMask)
+    private byte[] applyMask (String address, String theMask)
     {
+        byte[] addrAsChar = convertToBinary(Long.parseLong(address));
 
+        for (int i = 0; theMask.length(); i++)
+        {
+            switch (theMask.charAt(i))
+            {
+                case ONE_BIT:
+                case FLOATING_BIT:
+                {
+                    /*
+                     * If the bitmask bit is 1, the corresponding memory address bit is overwritten with 1.
+                     * If the bitmask bit is X, the corresponding memory address bit is floating.
+                     */
+
+                     addrAsChar[i] = theMask.charAt(i);
+                }
+                break;
+                case ZERO_BIT:
+                default:
+                {
+                    // If the bitmask bit is 0, the corresponding memory address bit is unchanged.
+                }
+                break;
+            }
+        }
+
+        return addrAsChar;
+    }
+
+    private char[] convertToBinary (long value)
+    {
+        char[] tempBinary = Long.toBinaryString(value).toCharArray();
+        char[] binary;
+
+        if (tempBinary.length < INTEGER_SIZE)
+        {
+            binary = new char[INTEGER_SIZE];
+
+            for (int i = 0; i < (INTEGER_SIZE - tempBinary.length); i++)
+            {
+                binary[i] = '0';
+            }
+
+            for (int j = 0; j < tempBinary.length; j++)
+            {
+                binary[(INTEGER_SIZE - tempBinary.length) +j] = tempBinary[j];
+            }
+        }
+        else
+            binary = tempBinary;
+
+        return binary;
     }
 
     // 000000000000000000000000000000X1001X
