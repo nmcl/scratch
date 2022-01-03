@@ -146,8 +146,8 @@ public class Command
             {
                 if (address[i] == FLOATING_BIT)
                 {
-                    addresses.add(generateAddress(address, i, ONE_BIT, addresses));
-                    addresses.add(generateAddress(address, i, ZERO_BIT, addresses));
+                    generateAddress(address, i, ONE_BIT, addresses);
+                    generateAddress(address, i, ZERO_BIT, addresses);
                 }
             }
         }
@@ -157,7 +157,7 @@ public class Command
 
     // 000000000000000000000000000000X1001X
 
-    private String generateAddress (char[] address, int index, char replace, Vector<String> addresses)
+    private void generateAddress (char[] address, int index, char replace, Vector<String> addresses)
     {
         char[] modified = Arrays.copyOf(address, address.length);
 
@@ -169,25 +169,25 @@ public class Command
 
         System.out.println("After  "+new String(modified));
 
+        boolean add = true;
+
         for (int i = index +1; i < modified.length; i++)
         {
             if (modified[i] == FLOATING_BIT)
             {
-                String str = generateAddress(modified, i, ONE_BIT, addresses);
+                add = false;
 
-                System.out.println("adding "+str);
-
-                addresses.add(str);
-
-                str = generateAddress(modified, i, ZERO_BIT, addresses);
-
-                System.out.println("adding "+str);
-                
-                addresses.add(str);
+                generateAddress(modified, i, ONE_BIT, addresses);
+                generateAddress(modified, i, ZERO_BIT, addresses);
             }
         }
 
-        return new String(modified);
+        if (add)
+        {
+            System.out.println("Adding "+new String(modified));
+
+            addresses.add(new String(modified));
+        }
     }
 
     private String _mask;
