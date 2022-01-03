@@ -144,8 +144,6 @@ public class Command
         {
             for (int i = 0; i < address.length; i++)
             {
-                System.out.println("Checking "+address[i]+" at "+i);
-
                 if (address[i] == FLOATING_BIT)
                 {
                     addresses.add(generateAddress(address, i, ONE_BIT, addresses));
@@ -173,16 +171,18 @@ public class Command
 
         for (int i = index +1; i < modified.length; i++)
         {
-            System.out.println("comparing "+modified[i]+" at "+i);
-
             if (modified[i] == FLOATING_BIT)
             {
                 String str = generateAddress(modified, i, ONE_BIT, addresses);
+
+                System.out.println("adding "+str);
 
                 addresses.add(str);
 
                 str = generateAddress(modified, i, ZERO_BIT, addresses);
 
+                System.out.println("adding "+str);
+                
                 addresses.add(str);
             }
         }
