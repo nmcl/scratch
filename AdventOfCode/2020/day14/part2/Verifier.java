@@ -3,12 +3,7 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
-
-    public static final long EXAMPLE_ADDRESS_1 = 7;
-    public static final long EXAMPLE_VALUE_1 = 101;
-    public static final long EXAMPLE_ADDRESS_2 = 8;
-    public static final long EXAMPLE_VALUE_2 = 64;
-    public static final long EXAMPLE_TOTAL = 165;
+    public static final long EXAMPLE_TOTAL = 208;
 
     public Verifier (boolean debug)
     {
@@ -28,20 +23,10 @@ public class Verifier
             cmds.elementAt(i).execute(mem);
         }
 
-        if (mem.getValue(EXAMPLE_ADDRESS_1) == EXAMPLE_VALUE_1)
-        {
-            if (mem.getValue(EXAMPLE_ADDRESS_2) == EXAMPLE_VALUE_2)
-            {
-                if (mem.getValue(EXAMPLE_ADDRESS_1) + mem.getValue(EXAMPLE_ADDRESS_2) == EXAMPLE_TOTAL)
-                    return true;
-                else
-                    System.out.println("Incorrect total: "+(mem.getValue(EXAMPLE_ADDRESS_1) + mem.getValue(EXAMPLE_ADDRESS_2)));
-            }
-            else
-                System.out.println("Wrong value at memory address "+EXAMPLE_ADDRESS_2+": "+EXAMPLE_VALUE_2);
-        }
+        if (mem.total() == EXAMPLE_TOTAL)
+            return true;
         else
-            System.out.println("Wrong value at memory address "+EXAMPLE_ADDRESS_1+": "+EXAMPLE_VALUE_1);
+            System.out.println("Wrong total value: "+mem.total());
 
         return false;
     }
