@@ -65,7 +65,7 @@ public class Command
     {
         char[] addrAsChar = convertToBinary(Long.parseLong(address));
 
-        for (int i = 0; theMask.length(); i++)
+        for (int i = 0; i < theMask.length(); i++)
         {
             switch (theMask.charAt(i))
             {
