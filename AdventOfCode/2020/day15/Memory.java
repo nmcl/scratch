@@ -11,9 +11,17 @@ import java.util.*;
 
 public class Memory
 {
-    public Memory ()
+    public Memory (int number)
     {
         _theMemory = new HashMap<Long, Long>();
+        _lastNumber = number;
+
+        _theMemory.put(number, 1);
+    }
+
+    public long getLastNumber ()
+    {
+        return _lastNumber;
     }
 
     public void addNumber (long numb)
@@ -27,4 +35,5 @@ public class Memory
     }
 
     private HashMap<Long, Long> _theMemory;
+    private long _lastNumber;
 }
