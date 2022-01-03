@@ -49,8 +49,13 @@ public class Command
             char[] maskedAddress = applyMask(addr, theMask);
             Vector<String> addresses = generateAllAddresses(maskedAddress);
 
-            for (int j = 0; j < addresses.size(); j++)
-                System.out.println(addresses.elementAt(j));
+            if (_debug)
+            {
+                System.out.println("Generated addresses:\n");
+                
+                for (int j = 0; j < addresses.size(); j++)
+                    System.out.println(addresses.elementAt(j));
+            }
         }
     }
 
@@ -96,7 +101,7 @@ public class Command
         }
 
         if (_debug)
-            System.out.println("Masked address: "+new String(addrAsChar));
+            System.out.println("Masked address: "+new String(addrAsChar)+"\n");
 
         return addrAsChar;
     }
