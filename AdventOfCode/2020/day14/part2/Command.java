@@ -133,16 +133,31 @@ public class Command
         {
             for (int i = 0; i < address.length; i++)
             {
-
+                if (address[i] == FLOATING_BIT)
+                {
+                    addresses.add(generateAddress(address, i, ONE_BIT));
+                    addresses.add(generateAddress(address, i, ZERO_BIT));
+                }
             }
         }
 
         return addresses;
 	}
 
-    private String generateAddress (String address, int index)
+    // 000000000000000000000000000000X1001X
+
+    private String generateAddress (char[] address, int index, char replace)
     {
-        return null;
+        char[] modified = Arrays.copyOf(address, address.length);
+
+        modified[index] = replace;
+
+        for (int i = 0; i < modified.length; i++)
+        {
+
+        }
+
+        return new String(modified);
     }
 
     private String _mask;
