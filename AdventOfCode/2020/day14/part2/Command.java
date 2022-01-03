@@ -136,7 +136,7 @@ public class Command
     private Vector<String> generateAllAddresses (char[] address)
     {
         Vector<String> addresses = new Vector<String>();
-        boolean hasFloatingBits = (Arrays.binarySearch(address, FLOATING_BIT) == -1) ? false : true;
+        boolean hasFloatingBits = (new String(address).indexOf(FLOATING_BIT) == -1) ? false : true;
 
         if (!hasFloatingBits)  // no floating bits!
             addresses.add(new String(address));
@@ -169,25 +169,25 @@ public class Command
 
         System.out.println("After  "+new String(modified));
 
-        boolean add = true;
-
         for (int i = index +1; i < modified.length; i++)
         {
             if (modified[i] == FLOATING_BIT)
             {
-                add = false;
-
                 generateAddress(modified, i, ONE_BIT, addresses);
                 generateAddress(modified, i, ZERO_BIT, addresses);
             }
         }
 
-        if (add)
+        System.out.println("Now got  "+new String(modified));
+
+        if (new String(modified).indexOf(FLOATING_BIT) == -1)
         {
             System.out.println("Adding "+new String(modified));
 
             addresses.add(new String(modified));
         }
+        else
+            System.out.println("Ignoring");
     }
 
     private String _mask;
