@@ -51,8 +51,8 @@ public class Command
 
             if (_debug)
             {
-                System.out.println("Generated addresses:\n");
-                
+                System.out.println("\nGenerated addresses:\n");
+
                 for (int j = 0; j < addresses.size(); j++)
                     System.out.println(addresses.elementAt(j));
             }
@@ -162,6 +162,8 @@ public class Command
         char[] modified = Arrays.copyOf(address, address.length);
 
         modified[index] = replace;
+
+        System.out.println("generateAddress "+new String(address));
 
         for (int i = index +1; i < modified.length; i++)
         {
