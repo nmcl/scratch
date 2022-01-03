@@ -49,12 +49,14 @@ public class Command
             char[] maskedAddress = applyMask(addr, theMask);
             Vector<String> addresses = generateAllAddresses(maskedAddress);
 
-            if (_debug)
+            for (int j = 0; j < addresses.size(); j++)
             {
-                System.out.println("\nGenerated addresses:\n");
+                String theAddr = addresses.elementAt(j);
 
-                for (int j = 0; j < addresses.size(); j++)
-                    System.out.println(addresses.elementAt(j));
+                if (_debug)
+                    System.out.println("Generated address: "+theAddr);
+
+                mem.setValue(Long.parseLong(theAddr, 2), value);
             }
         }
     }
@@ -116,14 +118,10 @@ public class Command
             binary = new char[INTEGER_SIZE];
 
             for (int i = 0; i < (INTEGER_SIZE - tempBinary.length); i++)
-            {
                 binary[i] = ZERO_BIT;
-            }
 
             for (int j = 0; j < tempBinary.length; j++)
-            {
                 binary[(INTEGER_SIZE - tempBinary.length) +j] = tempBinary[j];
-            }
         }
         else
             binary = tempBinary;
@@ -161,13 +159,7 @@ public class Command
     {
         char[] modified = Arrays.copyOf(address, address.length);
 
-        System.out.println("Changing "+index+" to "+replace);
-
-        System.out.println("Before "+new String(modified));
-
         modified[index] = replace;
-
-        System.out.println("After  "+new String(modified));
 
         for (int i = index +1; i < modified.length; i++)
         {
@@ -178,16 +170,8 @@ public class Command
             }
         }
 
-        System.out.println("Now got  "+new String(modified));
-
         if (new String(modified).indexOf(FLOATING_BIT) == -1)
-        {
-            System.out.println("Adding "+new String(modified));
-
             addresses.add(new String(modified));
-        }
-        else
-            System.out.println("Ignoring");
     }
 
     private String _mask;
