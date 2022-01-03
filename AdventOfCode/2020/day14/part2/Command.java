@@ -61,9 +61,9 @@ public class Command
         return str;
     }
 
-    private byte[] applyMask (String address, String theMask)
+    private char[] applyMask (String address, String theMask)
     {
-        byte[] addrAsChar = convertToBinary(Long.parseLong(address));
+        char[] addrAsChar = convertToBinary(Long.parseLong(address));
 
         for (int i = 0; theMask.length(); i++)
         {
@@ -119,10 +119,10 @@ public class Command
 
     // 000000000000000000000000000000X1001X
 
-    private Vector<String> generateAllAddresses (byte[] address, int index)
+    private Vector<String> generateAllAddresses (char[] address, int index)
     {
         Vector<String> addresses = new Vector<String>();
-        boolean hasFloatingBits = (new String(address).indexOf(FLOATING_BIT) == -1) ? false : true;
+        boolean hasFloatingBits = (Arrays.binarySearch(address, FLOATING_BIT) == -1) ? false : true;
 
         if (_debug)
             System.out.println("Masked address: "+new String(address));
