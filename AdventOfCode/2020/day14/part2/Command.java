@@ -161,7 +161,7 @@ public class Command
     {
         char[] modified = Arrays.copyOf(address, address.length);
 
-        System.out.println("Changing "+index+" to "+replace+" which is "+modified[index]);
+        System.out.println("Changing "+index+" to "+replace);
 
         System.out.println("Before "+new String(modified));
 
