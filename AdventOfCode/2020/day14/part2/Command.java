@@ -122,31 +122,25 @@ public class Command
     private Vector<String> generateAllAddresses (byte[] address, int index)
     {
         Vector<String> addresses = new Vector<String>();
-        int floatingBitIndex = -1;
+        boolean hasFloatingBits = (new String(address).indexOf(FLOATING_BIT) == -1) ? false : true;
 
         if (_debug)
             System.out.println("Masked address: "+new String(address));
 
-        for (int i = 0; i < address.length; i++)
-        {
-            if (address[i] == FLOATING_BIT)
-            {
-                floatingBitIndex = i;
-                break;
-            }
-        }
-
-        if (floatingBitIndex == -1)  // no floating bits!
+        if (!hasFloatingBits)  // no floating bits!
             addresses.add(new String(address));
         else
         {
+            for (int i = 0; i < address.length; i++)
+            {
 
+            }
         }
 
         return addresses;
 	}
 
-    private String generateAddress (String address, byte[] theMask, int index)
+    private String generateAddress (String address, int index)
     {
         return null;
     }
