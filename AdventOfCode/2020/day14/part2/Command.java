@@ -103,7 +103,7 @@ public class Command
 
             for (int i = 0; i < (INTEGER_SIZE - tempBinary.length); i++)
             {
-                binary[i] = '0';
+                binary[i] = ZERO_BIT;
             }
 
             for (int j = 0; j < tempBinary.length; j++)
