@@ -22,6 +22,13 @@ public class Verifier
 
     public boolean verify ()
     {
+        Memory mem = new Memory();
+        
+        for (int i = 0; i < 2017; i++)
+        {
+
+        }
+
         return false;
     }
 
