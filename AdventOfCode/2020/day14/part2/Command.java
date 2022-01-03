@@ -59,14 +59,20 @@ public class Command
         return str;
     }
 
+    private String applyMask (String address, String theMask)
+    {
+
+    }
+
+    // 000000000000000000000000000000X1001X
+
     private Vector<String> generateAllAddresses (String address, byte[] theMask, int index)
     {
         Vector<String> addresses = new Vector<String>();
         int nextFloatingBit = -1;
 
-        for (int i = 0; i < theMask.length; i++)
+        for (int i = 0; (i < theMask.length) && (nextFloatingBit != index); i++)
         {
-
         }
 
         return addresses;
