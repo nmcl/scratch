@@ -13,7 +13,7 @@ public class Memory
 {
     public Memory ()
     {
-        _theMemory = new HashMap<Long, Long>();
+        _theMemory = new HashMap<Long, Number>();
         _lastNumberSpoken = -1;
     }
 
@@ -22,7 +22,7 @@ public class Memory
         return _lastNumber;
     }
 
-    public Long speakNumber (long numb)
+    public Long speakNumber (Long numb)
     {
         _lastNumberSpoken = numb;
 
@@ -38,11 +38,12 @@ public class Memory
         return count;
     }
 
-    public long numberPresent (long numb)
+    public Long numberPresent (Long numb)
     {
         return -1;
     }
 
-    private HashMap<Long, Long> _theMemory;
-    private long _lastNumberSpoken;
+    private HashMap<Long, Number> _theMemory;
+    private Long _lastNumberSpoken;
+    private Long _turn;
 }
