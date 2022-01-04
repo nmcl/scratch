@@ -42,8 +42,8 @@ public class Memory
         Number numb = _theMemory.get(number);
 
         if (_debug)
-            System.out.println("First time spoken: "+numb);
-            
+            System.out.println("Checking time spoken "+number+" and got back: "+numb);
+
         if (numb == null)  // not spoken yet!
             return true;
         else
