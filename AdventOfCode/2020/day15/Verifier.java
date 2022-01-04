@@ -23,13 +23,21 @@ public class Verifier
     public boolean verify ()
     {
         Memory mem = new Memory();
-        
+
         for (int i = 0; i < 2017; i++)
         {
 
         }
 
         return false;
+    }
+
+    private void speakInitial (int[] initial, Memory mem)
+    {
+        for (int i = 0; i < initial.length; i++)
+        {
+            
+        }
     }
 
     private boolean _debug;
