@@ -15,6 +15,7 @@ public class Memory
     {
         _theMemory = new HashMap<Long, Number>();
         _lastNumberSpoken = -1;
+        _turn = 0;
     }
 
     public long getLastNumber ()
@@ -25,11 +26,12 @@ public class Memory
     public Long speakNumber (Long numb)
     {
         _lastNumberSpoken = numb;
+        _turn++l
 
-        Long count = _theMemory.get(numb);
+        Number count = _theMemory.get(numb);
 
         if (count == null)
-            count = 0;
+            count = new Number();
         else
             count++;
 
