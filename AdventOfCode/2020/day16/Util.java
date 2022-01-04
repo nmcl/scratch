@@ -34,6 +34,13 @@ public class Util
                 int orIndex = line.indexOf(OR);
                 String firstRange = line.substring(colonIndex +1, orIndex).trim();
                 String secondRange = line.substring(orIndex + OR.length()).trim();
+
+                int r1 = Integer.parseInt(firstRange.substring(0, firstRange.indexOf("-")));
+                int r2 = Integer.parseInt(firstRange.substring(firstRange.indexOf("-") +1));
+                int r3 = Integer.parseInt(secondRange.substring(0, secondRange.indexOf("-")));
+                int r4 = Integer.parseInt(secondRange.substring(secondRange.indexOf("-") +1));
+
+                values.add(new Category(type, r1, r2, r3, r4, debug));
             }
         }
         catch (Throwable ex)
