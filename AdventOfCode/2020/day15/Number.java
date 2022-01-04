@@ -10,19 +10,13 @@ public class Number
 
     public void spoken (Integer turn)
     {
-        System.out.println("On turn "+turn+" spoken "+this);
-
         _nextRecentTurn = _recentTurn;
         _recentTurn = turn;
         _numberOfTimesSpoken++;
-
-        System.out.println("Now on turn "+turn+" spoken "+this);
     }
 
     public Integer turnDifference ()
     {
-        System.out.println("Turn diff: "+(_recentTurn - _nextRecentTurn));
-
         return _recentTurn - _nextRecentTurn;
     }
 
