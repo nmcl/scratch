@@ -24,7 +24,7 @@ public class Memory
 
         if (_debug)
             System.out.println("On turn "+_turn+" speaking "+numb);
-            
+
         Number theNumber = _theMemory.get(numb);
 
         if (theNumber == null)
@@ -41,6 +41,9 @@ public class Memory
     {
         Number numb = _theMemory.get(number);
 
+        if (_debug)
+            System.out.println("First time spoken: "+numb);
+            
         if (numb == null)  // not spoken yet!
             return true;
         else
