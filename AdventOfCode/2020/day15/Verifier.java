@@ -25,12 +25,14 @@ public class Verifier
         Memory mem = new Memory(_debug);
         Integer lastNumberSpoken = speakInitial(EXAMPLE_1, mem);
 
-        for (int i = 0; i < 2017; i++)
+        for (int i = 3; i < 2020; i++)
         {
             if (mem.firstTimeSpoken(lastNumberSpoken))
                 lastNumberSpoken = 0;
             else
                 lastNumberSpoken = mem.getTurnDifference(lastNumberSpoken);
+
+            System.out.println("**got "+lastNumberSpoken);
 
             mem.speakNumber(lastNumberSpoken);
         }
