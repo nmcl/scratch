@@ -1,6 +1,6 @@
 public class Ticket
 {
-    public Ticker ()
+    public Ticket ()
     {
     }
 }

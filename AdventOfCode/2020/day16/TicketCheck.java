@@ -1,4 +1,4 @@
-public class TickeCheck
+public class TicketCheck
 {
     public static int[] STARTING_NUMBERS = { 2, 15, 0, 9, 1, 20 };
 
