@@ -23,7 +23,7 @@ public class Verifier
     public boolean verify ()
     {
         Memory mem = new Memory();
-        Long lastNumberSpoken = speakInitial(EXAMPLE_1, mem);
+        Integer lastNumberSpoken = speakInitial(EXAMPLE_1, mem);
 
         for (int i = 0; i < 2017; i++)
         {
@@ -38,9 +38,9 @@ public class Verifier
         return false;
     }
 
-    private Long speakInitial (int[] initial, Memory mem)
+    private Integer speakInitial (int[] initial, Memory mem)
     {
-        Long count = 0;
+        Integer count = 0;
 
         for (int i = 0; i < initial.length; i++)
         {

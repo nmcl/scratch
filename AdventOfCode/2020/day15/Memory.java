@@ -13,28 +13,27 @@ public class Memory
 {
     public Memory ()
     {
-        _theMemory = new HashMap<Long, Number>();
+        _theMemory = new HashMap<Integer, Number>();
         _turn = 0;
     }
 
-    public Long speakNumber (Long numb)
+    public Integer speakNumber (Integer numb)
     {
-        _lastNumberSpoken = numb;
         _turn++;
 
         Number theNumber = _theMemory.get(numb);
 
         if (theNumber == null)
-        theNumber = new Number(numb, count);
+            theNumber = new Number(numb, _turn);
         else
-            theNumber.spoken();;
+            theNumber.spoken(numb);;
 
         _theMemory.put(numb, theNumber);
 
         return theNumber.spokenTimes();
     }
 
-    public boolean firstTimeSpoken (Long number)
+    public boolean firstTimeSpoken (Integer number)
     {
         Number numb = _theMemory.get(number);
 
@@ -44,7 +43,7 @@ public class Memory
             return (numb.spokenTimes() == 1);
     }
 
-    public Long getTurnDifference (Long number)
+    public Integer getTurnDifference (Integer number)
     {
         Number numb = _theMemory.get(number);
 
@@ -54,11 +53,6 @@ public class Memory
             return numb.turnDifference();
     }
 
-    public Long getNextNumber (Long lastNumber)
-    {
-        return -1;
-    }
-
-    private HashMap<Long, Number> _theMemory;
-    private Long _turn;
+    private HashMap<Integer, Number> _theMemory;
+    private Integer _turn;
 }
