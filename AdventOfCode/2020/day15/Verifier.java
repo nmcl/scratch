@@ -27,7 +27,12 @@ public class Verifier
 
         for (int i = 0; i < 2017; i++)
         {
-            
+            if (mem.firstTimeSpoken(lastNumberSpoken))
+                lastNumberSpoken = 0;
+            else
+                lastNumberSpoken = mem.getTurnDifference(lastNumberSpoken);
+
+            mem.speakNumber(lastNumberSpoken);
         }
 
         return false;
