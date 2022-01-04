@@ -43,7 +43,7 @@ public class MemoryGame
 
         Integer lastNumberSpoken = STARTING_NUMBERS[STARTING_NUMBERS.length -1];
 
-        for (int i = STARTING_NUMBERS.length; i < 2020; i++)
+        for (int i = STARTING_NUMBERS.length; i < 30000000; i++)
         {
             if (debug)
                 System.out.println("Turn number "+i+" spoke "+lastNumberSpoken);
