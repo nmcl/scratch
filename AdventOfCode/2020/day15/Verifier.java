@@ -27,7 +27,7 @@ public class Verifier
 
         for (int i = 3; i < 2020; i++)
         {
-            System.out.println("Turn "+i+" and "+lastNumberSpoken);
+            System.out.println("Turn number "+i+" spoke "+lastNumberSpoken);
 
             if (mem.firstTimeSpoken(lastNumberSpoken))
                 lastNumberSpoken = 0;
@@ -39,6 +39,11 @@ public class Verifier
             mem.speakNumber(lastNumberSpoken);
         }
 
+        if (lastNumberSpoken == EXAMPLE_1_RESULT)
+            return true;
+        else
+            System.out.println("Incorrect final value: "+lastNumberSpoken);
+            
         return false;
     }
 
