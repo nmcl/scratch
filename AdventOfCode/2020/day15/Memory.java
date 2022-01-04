@@ -22,7 +22,7 @@ public class Memory
         return _lastNumber;
     }
 
-    public void speakNumber (long numb)
+    public Long speakNumber (long numb)
     {
         _lastNumberSpoken = numb;
 
@@ -34,6 +34,8 @@ public class Memory
             count++;
 
         _theMemory.put(numb, count);
+
+        return count;
     }
 
     public long numberPresent (long numb)
