@@ -75,10 +75,12 @@ public class Util
             reader = new BufferedReader(new FileReader(inputFile));
 
             String line = null;
+            String ownTicket = null;
+            String otherTicket = null;
 
             while ((line = reader.readLine()) != null)
             {
-                if (YOUR_TICKET.equals(line) || (NEARBY_TICKETS.equals(line)))
+                if (YOUR_TICKET.equals(line))
                 {
 
                 }
