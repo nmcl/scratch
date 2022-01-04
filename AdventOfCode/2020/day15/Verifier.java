@@ -22,8 +22,22 @@ public class Verifier
 
     public boolean verify ()
     {
+        if (check(EXAMPLE_1, EXAMPLE_1_RESULT))
+        {
+            if (check(EXAMPLE_2, EXAMPLE_2_RESULT))
+            {
+                if (check(EXAMPLE_3, EXAMPLE_3_RESULT))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean check (int[] initial, int result)
+    {
         Memory mem = new Memory(_debug);
-        Integer lastNumberSpoken = speakInitial(EXAMPLE_1, mem);
+        Integer lastNumberSpoken = speakInitial(initial, mem);
 
         for (int i = 3; i < 2020; i++)
         {
@@ -39,11 +53,11 @@ public class Verifier
             mem.speakNumber(lastNumberSpoken);
         }
 
-        if (lastNumberSpoken == EXAMPLE_1_RESULT)
+        if (lastNumberSpoken == result)
             return true;
         else
             System.out.println("Incorrect final value: "+lastNumberSpoken);
-            
+
         return false;
     }
 
