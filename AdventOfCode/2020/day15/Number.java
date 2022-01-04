@@ -3,21 +3,22 @@ public class Number
     public Number (Long value, Long turn)
     {
         _value = value;
-        _turnLastSpoken = turn;
-        _numberOfTimesSpoken = 0;
+        _recentTurn = turn;
+        _nextRecentTurn = 0;
     }
 
-    public void spoken ()
+    public void spoken (Long turn)
     {
-        _numberOfTimesSpoken++;
+        _nextRecentTurn = _recentTurn;
+        _recentTurn = turn;
     }
 
-    public Long spokenTimes ()
+    public Long turnDifference ()
     {
-        return _numberOfTimesSpoken;
+        return _recentTurn - _nextRecentTurn;
     }
 
     private Long _value;
-    private Long _turnLastSpoken;
-    private Long _numberOfTimesSpoken;
+    private Long _recentTurn;
+    private Long _nextRecentTurn;
 }
