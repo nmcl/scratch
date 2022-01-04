@@ -61,6 +61,47 @@ public class Util
         return values;
     }
 
+    public static final Vector<Ticket> loadTickets (String inputFile, boolean debug)
+    {
+        /*
+         * Open the data file and read it in.
+         */
+
+        BufferedReader reader = null;
+        Vector<Ticket> values = new Vector<Ticket>();
+
+        try
+        {
+            reader = new BufferedReader(new FileReader(inputFile));
+
+            String line = null;
+
+            while ((line = reader.readLine()) != null)
+            {
+                if (YOUR_TICKET.equals(line) || (NEARBY_TICKETS.equals(line)))
+                {
+
+                }
+            }
+        }
+        catch (Throwable ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                reader.close();
+            }
+            catch (Throwable ex)
+            {
+            }
+        }
+
+        return values;
+    }
+
     private Util ()
     {
     }
