@@ -1,9 +1,6 @@
 public class Category
 {
-    public static final String OR = "or";
-    public static final char COLON = ':';
-    
-    public Category (String type, boolean debug)
+    public Category (String type, int r1, int r2, int r3, int r4, boolean debug)
     {
         _name = type;
         _debug = debug;
