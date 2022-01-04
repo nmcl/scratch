@@ -27,7 +27,19 @@ public class Verifier
             if (check(EXAMPLE_2, EXAMPLE_2_RESULT))
             {
                 if (check(EXAMPLE_3, EXAMPLE_3_RESULT))
-                    return true;
+                {
+                    if (check(EXAMPLE_4, EXAMPLE_4_RESULT))
+                    {
+                        if (check(EXAMPLE_5, EXAMPLE_5_RESULT))
+                        {
+                            if (check(EXAMPLE_6, EXAMPLE_6_RESULT))
+                            {
+                                if (check(EXAMPLE_7, EXAMPLE_7_RESULT))
+                                    return true;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -41,14 +53,13 @@ public class Verifier
 
         for (int i = 3; i < 2020; i++)
         {
-            System.out.println("Turn number "+i+" spoke "+lastNumberSpoken);
+            if (_debug)
+                System.out.println("Turn number "+i+" spoke "+lastNumberSpoken);
 
             if (mem.firstTimeSpoken(lastNumberSpoken))
                 lastNumberSpoken = 0;
             else
                 lastNumberSpoken = mem.getTurnDifference(lastNumberSpoken);
-
-            System.out.println("**got "+lastNumberSpoken);
 
             mem.speakNumber(lastNumberSpoken);
         }
