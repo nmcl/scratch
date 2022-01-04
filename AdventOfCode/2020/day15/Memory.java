@@ -11,12 +11,10 @@ import java.util.*;
 
 public class Memory
 {
-    public Memory (int number)
+    public Memory ()
     {
         _theMemory = new HashMap<Long, Long>();
-        _lastNumber = number;
-
-        _theMemory.put(number, 1);
+        _lastNumberSpoken = -1;
     }
 
     public long getLastNumber ()
@@ -24,9 +22,18 @@ public class Memory
         return _lastNumber;
     }
 
-    public void addNumber (long numb)
+    public void speakNumber (long numb)
     {
+        _lastNumberSpoken = numb;
 
+        Long count = _theMemory.get(numb);
+
+        if (count == null)
+            count = 0;
+        else
+            count++;
+
+        _theMemory.put(numb, count);
     }
 
     public long numberPresent (long numb)
@@ -35,5 +42,5 @@ public class Memory
     }
 
     private HashMap<Long, Long> _theMemory;
-    private long _lastNumber;
+    private long _lastNumberSpoken;
 }
