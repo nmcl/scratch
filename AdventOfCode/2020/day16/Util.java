@@ -3,6 +3,11 @@ import java.io.*;
 
 public class Util
 {
+    public static final String YOUR_TICKET = "your ticket:";
+    public static final String NEARBY_TICKETS = "nearby tickets:";
+
+    public static final String OR = "or";
+
     public static final Vector<Category> loadData (String inputFile, boolean debug)
     {
         /*
@@ -16,29 +21,20 @@ public class Util
         {
             reader = new BufferedReader(new FileReader(inputFile));
 
+            String line = null;
+
             while ((line = reader.readLine()) != null)
             {
-                if (line.indexOf(Command.MASK) != -1)
-                {
-                    if (mask != null) // new entry
-                    {
-                        values.add(new Command(mask, cmds, debug));
-                        cmds = null;
-                    }
+                if (YOUR_TICKET.equals(line) || (NEARBY_TICKETS.equals(line)))
+                    break;
 
-                    mask = line;
-                }
-                else
-                {
-                    if (cmds == null)
-                        cmds = new Vector<String>();
+                int colonIndex = line.indexOf(":");
+                String type = line.substring(0, colonIndex);
 
-                    cmds.add(line);
-                }
+                int orIndex = line.indexOf(OR);
+                String firstRange = line.substring(colonIndex +1, orIndex).trim();
+                String secondRange = line.substring(orIndex + OR.length()).trim();
             }
-
-            if (cmds != null)
-                values.add(new Command(mask, cmds, debug));
         }
         catch (Throwable ex)
         {
