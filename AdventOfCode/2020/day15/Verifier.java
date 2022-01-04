@@ -79,7 +79,7 @@ public class Verifier
             mem.speakNumber(initial[i]);
         }
 
-        return initial[2];
+        return initial[initial.length -1];
     }
 
     private boolean _debug;
