@@ -27,6 +27,8 @@ public class Verifier
 
         for (int i = 3; i < 2020; i++)
         {
+            System.out.println("Turn "+i+" and "+lastNumberSpoken);
+
             if (mem.firstTimeSpoken(lastNumberSpoken))
                 lastNumberSpoken = 0;
             else
@@ -42,14 +44,12 @@ public class Verifier
 
     private Integer speakInitial (int[] initial, Memory mem)
     {
-        Integer count = 0;
-
         for (int i = 0; i < initial.length; i++)
         {
-            count = mem.speakNumber(initial[i]);
+            mem.speakNumber(initial[i]);
         }
 
-        return count;
+        return initial[2];
     }
 
     private boolean _debug;
