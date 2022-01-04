@@ -25,6 +25,12 @@ public class Number
         return _numberOfTimesSpoken;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Number < "+_value+", "+_recentTurn+", "+_nextRecentTurn+", "+_numberOfTimesSpoken+" >";
+    }
+
     private Integer _value;
     private Integer _recentTurn;
     private Integer _nextRecentTurn;
