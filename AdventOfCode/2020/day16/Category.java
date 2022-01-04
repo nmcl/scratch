@@ -1,5 +1,8 @@
 public class Category
 {
+    public static final String OR = "or";
+    public static final char COLON = ':';
+    
     public Category (String type, boolean debug)
     {
         _name = type;
