@@ -22,7 +22,7 @@ public class Verifier
 
     public boolean verify ()
     {
-        Memory mem = new Memory();
+        Memory mem = new Memory(_debug);
         Integer lastNumberSpoken = speakInitial(EXAMPLE_1, mem);
 
         for (int i = 0; i < 2017; i++)
