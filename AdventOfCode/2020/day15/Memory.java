@@ -11,16 +11,20 @@ import java.util.*;
 
 public class Memory
 {
-    public Memory ()
+    public Memory (boolean debug)
     {
         _theMemory = new HashMap<Integer, Number>();
         _turn = 0;
+        _debug = debug;
     }
 
     public Integer speakNumber (Integer numb)
     {
         _turn++;
 
+        if (_debug)
+            System.out.println("On turn "+_turn+" speaking "+numb);
+            
         Number theNumber = _theMemory.get(numb);
 
         if (theNumber == null)
@@ -55,4 +59,5 @@ public class Memory
 
     private HashMap<Integer, Number> _theMemory;
     private Integer _turn;
+    private boolean _debug;
 }
