@@ -38,20 +38,20 @@ public class Memory
     {
         Number numb = _theMemory.get(number);
 
-        if (numb == null)
+        if (numb == null)  // not spoken yet!
             return true;
         else
-            return false;
+            return (numb.spokenTimes() == 1);
     }
 
-    public Long getNumberOfTimesSpoken (Long number)
+    public Long getTurnDifference (Long number)
     {
         Number numb = _theMemory.get(number);
 
         if (numb == null)
             return 0;
         else
-            return numb.spokenTimes();
+            return numb.turnDifference();
     }
 
     public Long getNextNumber (Long lastNumber)
