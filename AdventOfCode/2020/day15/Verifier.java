@@ -23,11 +23,11 @@ public class Verifier
     public boolean verify ()
     {
         Memory mem = new Memory();
-        Long nextNumber = speakInitial(EXAMPLE_1, mem);
-        
+        Long lastNumberSpoken = speakInitial(EXAMPLE_1, mem);
+
         for (int i = 0; i < 2017; i++)
         {
-
+            
         }
 
         return false;
