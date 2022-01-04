@@ -30,7 +30,7 @@ public class Memory
         if (theNumber == null)
             theNumber = new Number(numb, _turn);
         else
-            theNumber.spoken(numb);;
+            theNumber.spoken(_turn);;
 
         _theMemory.put(numb, theNumber);
 
