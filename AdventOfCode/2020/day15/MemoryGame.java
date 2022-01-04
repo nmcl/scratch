@@ -1,5 +1,7 @@
 public class MemoryGame
 {
+    public static int[] STARTING_NUMBERS = { 2, 15, 0, 9, 1, 20 };
+
     public static void main (String[] args)
     {
         boolean verify = false;
@@ -31,5 +33,29 @@ public class MemoryGame
 
             System.exit(0);
         }
+
+        Memory mem = new Memory(debug);
+
+        for (int i = 0; i < STARTING_NUMBERS.length; i++)
+        {
+            mem.speakNumber(STARTING_NUMBERS[i]);
+        }
+
+        Integer lastNumberSpoken = STARTING_NUMBERS[STARTING_NUMBERS.length -1];
+
+        for (int i = STARTING_NUMBERS.length; i < 2020; i++)
+        {
+            if (debug)
+                System.out.println("Turn number "+i+" spoke "+lastNumberSpoken);
+
+            if (mem.firstTimeSpoken(lastNumberSpoken))
+                lastNumberSpoken = 0;
+            else
+                lastNumberSpoken = mem.getTurnDifference(lastNumberSpoken);
+
+            mem.speakNumber(lastNumberSpoken);
+        }
+
+        System.out.println("Final value: "+lastNumberSpoken);
     }
 }
