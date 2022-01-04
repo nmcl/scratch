@@ -6,6 +6,11 @@ public class Category
         _debug = debug;
     }
 
+    public boolean valid (int value)
+    {
+        return false;
+    }
+
     public final String getType ()
     {
         return _name;
