@@ -9,6 +9,8 @@ public class Verifier
     public static final Ticket TICKET_2 = new Ticket(new String[] { "55" ,"2" ,"20" });
     public static final Ticket TICKET_3 = new Ticket(new String[] { "38" ,"6" ,"12" });
 
+    public static final int EXAMPLE_ERROR_RATE = 71;
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -28,27 +30,59 @@ public class Verifier
                 System.out.println(ticks.elementAt(j));
         }
 
-        boolean[] correct = new boolean[4];
-
-        for (int l = 0; l < 4; l++)
-            correct[l] = false;
+        int errorRate = 0;
 
         for (int k = 0; k < ticks.size(); k++)
         {
-            if (ticks.elementAt(k).equals(OWN_TICKET) && (Util.checkAlCategories(cats, OWN_TICKET)))
-                correct[0] = true;
+            int[] values = null;
+            int index;
 
-            if (ticks.elementAt(k).equals(TICKET_1) && (!Util.checkAlCategories(cats, TICKET_1)))
-                correct[1] = true;
+            if (ticks.elementAt(k).equals(OWN_TICKET))
+            {
+                values = Util.checkAlCategories(cats, OWN_TICKET);
 
-            if (ticks.elementAt(k).equals(TICKET_2) && (!Util.checkAlCategories(cats, TICKET_2)))
-                correct[2] = true;
+                for (index = 0; index < values.length; index++)
+                {
+                    if (values[index] != Util.CHECKED_NUMBER)
+                        errorRate += values[index];
+                }
+            }
 
-            if (ticks.elementAt(k).equals(TICKET_3) && (!Util.checkAlCategories(cats, TICKET_3)))
-                correct[3] = true;
+            if (ticks.elementAt(k).equals(TICKET_1))
+            {
+                values = Util.checkAlCategories(cats, TICKET_1);
+
+                for (index = 0; index < values.length; index++)
+                {
+                    if (values[index] != Util.CHECKED_NUMBER)
+                        errorRate += values[index];
+                }
+            }
+
+            if (ticks.elementAt(k).equals(TICKET_2))
+            {
+                values = Util.checkAlCategories(cats, TICKET_2);
+
+                for (index = 0; index < values.length; index++)
+                {
+                    if (values[index] != Util.CHECKED_NUMBER)
+                        errorRate += values[index];
+                }
+            }
+
+            if (ticks.elementAt(k).equals(TICKET_3))
+            {
+                values = Util.checkAlCategories(cats, TICKET_3);
+
+                for (index = 0; index < values.length; index++)
+                {
+                    if (values[index] != Util.CHECKED_NUMBER)
+                        errorRate += values[index];
+                }
+            }
         }
 
-        return correct[0] & correct[1] & correct[2] & correct[3];
+        return (errorRate == EXAMPLE_ERROR_RATE);
     }
 
     private boolean _debug;
