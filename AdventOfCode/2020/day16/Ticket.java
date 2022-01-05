@@ -1,6 +1,6 @@
 public class Ticket
 {
-    public Ticket ()
+    public Ticket (String[] range)
     {
     }
 }
