@@ -3,6 +3,10 @@ public class Category
     public Category (String type, int r1, int r2, int r3, int r4, boolean debug)
     {
         _name = type;
+        _r1 = r1;
+        _r2 = r2;
+        _r3 = r3;
+        _r4 = r4;
         _debug = debug;
     }
 
@@ -19,7 +23,7 @@ public class Category
     @Override
     public String toString ()
     {
-        return "Category "+_name;
+        return "Category "+_name+": "+_r1+"-"+_r2+" or "+_r3+"-"+_r3;
     }
 
     @Override
@@ -42,5 +46,7 @@ public class Category
     }
 
     private String _name;
+    private int _r1, _r2;
+    private int _r3, _r4;
     private boolean _debug;
 }
