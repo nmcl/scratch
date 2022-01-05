@@ -8,7 +8,9 @@ public class Util
 
     public static final String OR = "or";
 
-    public static final Vector<Category> loadData (String inputFile, boolean debug)
+    // read the category data and ignore ticket information.
+
+    public static final Vector<Category> loadCategories (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
@@ -61,6 +63,8 @@ public class Util
         return values;
     }
 
+    // read the ticket data and ignore categories.
+    
     public static final Vector<Ticket> loadTickets (String inputFile, boolean debug)
     {
         /*
