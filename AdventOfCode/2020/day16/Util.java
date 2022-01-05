@@ -83,7 +83,7 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                if (YOUR_TICKET.equals(line) || ((NEARBY_TICKETS.equals(line))
+                if (YOUR_TICKET.equals(line) || NEARBY_TICKETS.equals(line))
                 {
                     ticketData = true;
                 }
