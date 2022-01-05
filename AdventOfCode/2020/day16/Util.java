@@ -8,29 +8,48 @@ public class Util
 
     public static final String OR = "or";
 
+    public static final int CHECKED_NUMBER = -1;
+
     public static final boolean checkAlCategories (Vector<Category> cats, Ticket t)
     {
-        boolean[] valid = new boolean[cats.size()];
+        int[] values = new int[t.values().length];
+
+        for (int k = 0; k < values.length; k++)
+            values[k] = t.values()[k];
+
+        System.out.println("\nSTART CHECK "+t);
 
         for (int i = 0; i < cats.size(); i++)
         {
-            valid[i] = false;
+            for (int j = 0; j < values.length; j++)
+            {
+                if (values[j] != CHECKED_NUMBER)
+                {
+                    System.out.println("Checking "+values[j]+" against "+cats.elementAt(i));
 
-            if (cats.elementAt(i).valid(t))
-                valid[i] = true;
+                    if (cats.elementAt(i).valid(values[j]))
+                    {
+                        System.out.println("VALID");
+
+                        values[j] = CHECKED_NUMBER;
+                    }
+                    else
+                        System.out.println("INVALID");
+                }
+            }
         }
 
-        boolean ultimateValidity = true;
-
-        for (int j = 0; j < valid.length; j++)
+        for (int j = 0; j < values.length; j++)
         {
-            if (!valid[j])
-                ultimateValidity = false;
+            if (values[j] != CHECKED_NUMBER)
+            {
+                System.out.println("Number "+values[j]+" is invalid");
+
+                return false;
+            }
         }
 
-        System.out.println("Checked all categories and "+t+" validity is "+ultimateValidity);
-
-        return ultimateValidity;
+        return true;
     }
 
     // read the category data and ignore ticket information.
