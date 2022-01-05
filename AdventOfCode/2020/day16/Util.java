@@ -10,15 +10,27 @@ public class Util
 
     public static final boolean checkAlCategories (Vector<Category> cats, Ticket t)
     {
+        boolean[] valid = new boolean[cats.size()];
+
         for (int i = 0; i < cats.size(); i++)
         {
+            valid[i] = false;
+
             if (cats.elementAt(i).valid(t))
-                return true;
+                valid[i] = true;
         }
 
-        System.out.println("Checked all categories and "+t+" is invalid");
+        boolean ultimateValidity = true;
 
-        return false;
+        for (int j = 0; j < valid.length; j++)
+        {
+            if (!valid[j])
+                ultimateValidity = false;
+        }
+
+        System.out.println("Checked all categories and "+t+" validity is "+ultimateValidity);
+
+        return ultimateValidity;
     }
 
     // read the category data and ignore ticket information.
