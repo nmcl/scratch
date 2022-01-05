@@ -25,11 +25,7 @@ public class Verifier
 
         for (int k = 0; k < ticks.size(); k++)
         {
-            for (int l = 0; l < cats.size(); l++)
-            {
-                if (!cats.elementAt(l).valid(ticks.elementAt(k)))
-                    System.out.println(ticks.elementAt(k)+" is invalid.");
-            }
+            Util.checkAlCategories(cats, ticks.elementAt(k));
         }
 
         return false;
