@@ -1,6 +1,8 @@
+import java.util.*;
+
 public class TicketCheck
 {
-    public static int[] STARTING_NUMBERS = { 2, 15, 0, 9, 1, 20 };
+    public static final String DATA_FILE = "data.txt";
 
     public static void main (String[] args)
     {
@@ -33,5 +35,32 @@ public class TicketCheck
 
             System.exit(0);
         }
+
+        Vector<Category> cats = Util.loadCategories(DATA_FILE, debug);
+        Vector<Ticket> ticks = Util.loadTickets(DATA_FILE, debug);
+
+        if (debug)
+        {
+            for (int i = 0; i < cats.size(); i++)
+                System.out.println(cats.elementAt(i));
+
+            for (int j = 0; j < ticks.size(); j++)
+                System.out.println(ticks.elementAt(j));
+        }
+
+        int errorRate = 0;
+
+        for (int k = 0; k < ticks.size(); k++)
+        {
+            int[] values = Util.checkAlCategories(cats, ticks.elementAt(k));
+
+            for (int index = 0; index < values.length; index++)
+            {
+                if (values[index] != Util.CHECKED_NUMBER)
+                    errorRate += values[index];
+            }
+        }
+
+        System.out.println("Ticket scanning error rate: "+errorRate);
     }
 }
