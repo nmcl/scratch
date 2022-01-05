@@ -21,7 +21,7 @@ public class Ticket
         String str = "Ticket: ";
 
         for (int i = 0; i < _values.length; i++)
-            str += i+" ";
+            str += _values[i]+" ";
 
         return str;
     }
