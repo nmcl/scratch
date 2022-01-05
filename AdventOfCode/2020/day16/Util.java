@@ -24,25 +24,39 @@ public class Util
             reader = new BufferedReader(new FileReader(inputFile));
 
             String line = null;
+            boolean finished = false;
 
-            while ((line = reader.readLine()) != null)
+            while (((line = reader.readLine()) != null) && !finished)
             {
-                if (YOUR_TICKET.equals(line) || (NEARBY_TICKETS.equals(line)))
-                    break;
+                if (YOUR_TICKET.equals(line) || (NEARBY_TICKETS.equals(line))) // end
+                    finished = true;
+                else
+                {
+                    System.out.println("line "+line);
 
-                int colonIndex = line.indexOf(":");
-                String type = line.substring(0, colonIndex);
+                    int colonIndex = line.indexOf(":");
 
-                int orIndex = line.indexOf(OR);
-                String firstRange = line.substring(colonIndex +1, orIndex).trim();
-                String secondRange = line.substring(orIndex + OR.length()).trim();
+                    if (colonIndex != -1)
+                    {
+                        String type = line.substring(0, colonIndex);
 
-                int r1 = Integer.parseInt(firstRange.substring(0, firstRange.indexOf("-")));
-                int r2 = Integer.parseInt(firstRange.substring(firstRange.indexOf("-") +1));
-                int r3 = Integer.parseInt(secondRange.substring(0, secondRange.indexOf("-")));
-                int r4 = Integer.parseInt(secondRange.substring(secondRange.indexOf("-") +1));
+                        int orIndex = line.indexOf(OR);
+                        String firstRange = line.substring(colonIndex +1, orIndex).trim();
+                        String secondRange = line.substring(orIndex + OR.length()).trim();
 
-                values.add(new Category(type, r1, r2, r3, r4, debug));
+                        int r1 = Integer.parseInt(firstRange.substring(0, firstRange.indexOf("-")));
+                        int r2 = Integer.parseInt(firstRange.substring(firstRange.indexOf("-") +1));
+                        int r3 = Integer.parseInt(secondRange.substring(0, secondRange.indexOf("-")));
+                        int r4 = Integer.parseInt(secondRange.substring(secondRange.indexOf("-") +1));
+
+                        Category cat = new Category(type, r1, r2, r3, r4, debug);
+
+                        if (debug)
+                            System.out.println("Loaded "+cat);
+
+                        values.add(cat);
+                    }
+                }
             }
         }
         catch (Throwable ex)
@@ -93,9 +107,12 @@ public class Util
                     {
                         String[] range = line.split(",");
 
-                        Ticket t = new Ticket(range);
+                        if (range.length > 0)
+                        {
+                            Ticket t = new Ticket(range);
 
-                        values.add(t);
+                            values.add(t);
+                        }
                     }
                 }
             }
