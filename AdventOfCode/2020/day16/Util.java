@@ -52,8 +52,6 @@ public class Util
 
             while (((line = reader.readLine()) != null) && !finished)
             {
-                System.out.println("working on line "+line);
-
                 if (YOUR_TICKET.equals(line) || (NEARBY_TICKETS.equals(line))) // end
                     finished = true;
                 else
