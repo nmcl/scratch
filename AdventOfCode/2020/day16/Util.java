@@ -64,7 +64,7 @@ public class Util
     }
 
     // read the ticket data and ignore categories.
-    
+
     public static final Vector<Ticket> loadTickets (String inputFile, boolean debug)
     {
         /*
@@ -83,15 +83,19 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                if (YOUR_TICKET.equals(line))
+                if (YOUR_TICKET.equals(line) || ((NEARBY_TICKETS.equals(line))
                 {
                     ticketData = true;
                 }
                 else
                 {
-                    if ((NEARBY_TICKETS.equals(line))
+                    if (ticketData)
                     {
-                        ticketData = true;
+                        String[] range = line.split(",");
+
+                        Ticket t = new Ticket(range);
+
+                        values.add(t);
                     }
                 }
             }
