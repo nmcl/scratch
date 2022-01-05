@@ -14,6 +14,9 @@ public class Category
     {
         int[] values = t.values();
 
+        if (_debug)
+            System.out.println(this+" checking validity of "+t);
+            
         for (int i = 0; i < values.length; i++)
         {
             if ((values[i] >= _r1) || (values[i] <= _r2))
