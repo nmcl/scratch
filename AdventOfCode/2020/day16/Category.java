@@ -23,7 +23,7 @@ public class Category
     @Override
     public String toString ()
     {
-        return "Category "+_name+": "+_r1+"-"+_r2+" or "+_r3+"-"+_r3;
+        return "Category "+_name+": "+_r1+"-"+_r2+" or "+_r3+"-"+_r4;
     }
 
     @Override
