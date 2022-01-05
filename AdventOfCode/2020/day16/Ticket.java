@@ -15,5 +15,16 @@ public class Ticket
         return _values;
     }
 
+    @Override
+    public String toString ()
+    {
+        String str = "Ticket: ";
+
+        for (int i = 0; i < _values.length; i++)
+            str += i+" ";
+
+        return str;
+    }
+
     private int[] _values;
 }
