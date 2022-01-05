@@ -10,7 +10,7 @@ public class Util
 
     public static final int CHECKED_NUMBER = -1;
 
-    public static final boolean checkAlCategories (Vector<Category> cats, Ticket t)
+    public static final int[] checkAlCategories (Vector<Category> cats, Ticket t)
     {
         int[] values = new int[t.values().length];
 
@@ -29,13 +29,7 @@ public class Util
             }
         }
 
-        for (int j = 0; j < values.length; j++)
-        {
-            if (values[j] != CHECKED_NUMBER)
-                return false;
-        }
-
-        return true;
+        return values;
     }
 
     // read the category data and ignore ticket information.
