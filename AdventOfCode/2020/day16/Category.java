@@ -10,39 +10,15 @@ public class Category
         _debug = debug;
     }
 
-    public boolean valid (Ticket t)
+    public boolean valid (int i)
     {
-        int[] values = t.values();
-        boolean[] valid = new boolean[values.length];
+        if ((i >= _r1) && (i <= _r2))
+            return true;
 
-        if (_debug)
-            System.out.println(this+" checking validity of "+t);
+        if ((i >= _r3) && (i <= _r4))
+            return true;
 
-        for (int i = 0; i < values.length; i++)
-        {
-            System.out.println("Checking "+values[i]);
-
-            valid[i] = false;
-
-            if ((values[i] >= _r1) && (values[i] <= _r2))
-                valid[i] = true;
-
-            if ((values[i] >= _r3) && (values[i] <= _r4))
-                valid[i] = true;
-        }
-
-        boolean ultimateValidity = true;
-
-        for (int j = 0; j < valid.length; j++)
-        {
-            if (!valid[j])
-                ultimateValidity = false;
-        }
-
-        if (_debug)
-            System.out.println(this+" decided that "+t+" validity is "+ultimateValidity);
-
-        return ultimateValidity;
+        return false;
     }
 
     public final String getType ()
