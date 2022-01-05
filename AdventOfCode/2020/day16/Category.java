@@ -12,6 +12,17 @@ public class Category
 
     public boolean valid (Ticket t)
     {
+        int[] values = t.values();
+
+        for (int i = 0; i < values.length; i++)
+        {
+            if ((values[i] >= _r1) || (values[i] <= _r2))
+                return true;
+
+            if ((values[i] >= _r3) || (values[i] <= _r4))
+                return true;
+        }
+
         return false;
     }
 
