@@ -6,7 +6,7 @@ public class Category
         _debug = debug;
     }
 
-    public boolean valid (int value)
+    public boolean valid (Ticket t)
     {
         return false;
     }
