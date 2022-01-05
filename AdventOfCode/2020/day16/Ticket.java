@@ -16,6 +16,34 @@ public class Ticket
     }
 
     @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Ticket temp = (Ticket) obj;
+
+            if (temp._values.length == _values.length)
+            {
+                for (int i = 0; i < _values.length; i++)
+                {
+                    if (temp._values[i] != _values[i])
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     public String toString ()
     {
         String str = "Ticket: ";
