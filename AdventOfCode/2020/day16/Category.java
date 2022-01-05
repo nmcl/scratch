@@ -13,20 +13,36 @@ public class Category
     public boolean valid (Ticket t)
     {
         int[] values = t.values();
+        boolean[] valid = new boolean[values.length];
 
         if (_debug)
             System.out.println(this+" checking validity of "+t);
 
         for (int i = 0; i < values.length; i++)
         {
+            System.out.println("Checking "+values[i]);
+
+            valid[i] = false;
+
             if ((values[i] >= _r1) && (values[i] <= _r2))
-                return true;
+                valid[i] = true;
 
             if ((values[i] >= _r3) && (values[i] <= _r4))
-                return true;
+                valid[i] = true;
         }
 
-        return false;
+        boolean ultimateValidity = true;
+
+        for (int j = 0; j < valid.length; j++)
+        {
+            if (!valid[j])
+                ultimateValidity = false;
+        }
+
+        if (_debug)
+            System.out.println(this+" decided that "+t+" validity is "+ultimateValidity);
+
+        return ultimateValidity;
     }
 
     public final String getType ()
