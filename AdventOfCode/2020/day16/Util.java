@@ -6,7 +6,7 @@ public class Util
     public static final String YOUR_TICKET = "your ticket:";
     public static final String NEARBY_TICKETS = "nearby tickets:";
 
-    public static final String OR = "or";
+    public static final String OR = " or ";
 
     public static final int CHECKED_NUMBER = -1;
 
@@ -52,6 +52,8 @@ public class Util
 
             while (((line = reader.readLine()) != null) && !finished)
             {
+                System.out.println("working on line "+line);
+
                 if (YOUR_TICKET.equals(line) || (NEARBY_TICKETS.equals(line))) // end
                     finished = true;
                 else
@@ -61,7 +63,6 @@ public class Util
                     if (colonIndex != -1)
                     {
                         String type = line.substring(0, colonIndex);
-
                         int orIndex = line.indexOf(OR);
                         String firstRange = line.substring(colonIndex +1, orIndex).trim();
                         String secondRange = line.substring(orIndex + OR.length()).trim();
