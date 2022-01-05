@@ -4,6 +4,10 @@ public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
 
+    public static final Ticket TICKET_1 = new Ticket(new String[] { "40" ,"4" ,"50" });
+    public static final Ticket TICKET_2 = new Ticket(new String[] { "55" ,"2" ,"20" });
+    public static final Ticket TICKET_3 = new Ticket(new String[] { "38" ,"6" ,"12" });
+
     public Verifier (boolean debug)
     {
         _debug = debug;
