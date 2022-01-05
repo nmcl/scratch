@@ -17,24 +17,14 @@ public class Util
         for (int k = 0; k < values.length; k++)
             values[k] = t.values()[k];
 
-        System.out.println("\nSTART CHECK "+t);
-
         for (int i = 0; i < cats.size(); i++)
         {
             for (int j = 0; j < values.length; j++)
             {
                 if (values[j] != CHECKED_NUMBER)
                 {
-                    System.out.println("Checking "+values[j]+" against "+cats.elementAt(i));
-
                     if (cats.elementAt(i).valid(values[j]))
-                    {
-                        System.out.println("VALID");
-
                         values[j] = CHECKED_NUMBER;
-                    }
-                    else
-                        System.out.println("INVALID");
                 }
             }
         }
@@ -42,11 +32,7 @@ public class Util
         for (int j = 0; j < values.length; j++)
         {
             if (values[j] != CHECKED_NUMBER)
-            {
-                System.out.println("Number "+values[j]+" is invalid");
-
                 return false;
-            }
         }
 
         return true;
