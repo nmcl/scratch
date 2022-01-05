@@ -8,6 +8,19 @@ public class Util
 
     public static final String OR = "or";
 
+    public static final boolean checkAlCategories (Vector<Category> cats, Ticket t)
+    {
+        for (int i = 0; i < cats.size(); i++)
+        {
+            if (cats.elementAt(i).valid(t))
+                return true;
+        }
+
+        System.out.println("Checked all categories and "+t+" is invalid");
+
+        return false;
+    }
+
     // read the category data and ignore ticket information.
 
     public static final Vector<Category> loadCategories (String inputFile, boolean debug)
