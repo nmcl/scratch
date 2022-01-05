@@ -32,8 +32,6 @@ public class Util
                     finished = true;
                 else
                 {
-                    System.out.println("line "+line);
-
                     int colonIndex = line.indexOf(":");
 
                     if (colonIndex != -1)
@@ -106,7 +104,6 @@ public class Util
                     if (ticketData && (line.indexOf(",") != -1))
                     {
                         String[] range = line.split(",");
-
                         Ticket t = new Ticket(range);
 
                         values.add(t);
