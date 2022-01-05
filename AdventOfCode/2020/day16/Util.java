@@ -103,16 +103,13 @@ public class Util
                 }
                 else
                 {
-                    if (ticketData)
+                    if (ticketData && (line.indexOf(",") != -1))
                     {
                         String[] range = line.split(",");
 
-                        if (range.length > 0)
-                        {
-                            Ticket t = new Ticket(range);
+                        Ticket t = new Ticket(range);
 
-                            values.add(t);
-                        }
+                        values.add(t);
                     }
                 }
             }
