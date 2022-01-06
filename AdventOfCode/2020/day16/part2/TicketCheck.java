@@ -49,6 +49,13 @@ public class TicketCheck
         }
 
         Vector<Category> results = Util.order(validTickets, cats);
+
+        System.out.println("\nORDER");
+        
+        for (int z = 0; z < results.size(); z++)
+            System.out.println(results.elementAt(z));
+        
+        /*
         long value = 1;
         Ticket ownTicket = validTickets.elementAt(0);
 
@@ -57,11 +64,11 @@ public class TicketCheck
         for (int i = 0; i < results.size(); i++)
         {
             System.out.println(results.elementAt(i));
-            
+
             if (results.elementAt(i).getType().startsWith(FIELD))
                 value *= ownTicket.values()[i];
         }
 
-        System.out.println("Value: "+value);
+        System.out.println("Value: "+value);*/
     }
 }
