@@ -21,6 +21,26 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
+        for (int i = 1; i < validTickets.size(); i++)
+        {
+            int[] values = validTickets.elementAt(i).values();
+            int number = 0;
+
+            for (int k = 0; k < cats.size(); k++)
+            {
+                for (int l = 0; l < values.length; l++)
+                {
+                    if (!cats.elementAt(k).valid(values[l]))
+                    {
+                        number++;
+                        break;
+                    }
+                }
+            }
+            
+            System.out.println("Ticket "+validTickets.elementAt(i)+" matches "+number+" categories.");
+        }
+
         return false;
     }
 
