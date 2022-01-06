@@ -10,6 +10,28 @@ public class Util
 
     public static final int CHECKED_NUMBER = -1;
 
+    public static final Vector<Ticket> validTickets (Vector<Category> cats, Vector<Ticket> ticks)
+    {
+        Vector<Ticket> tickets = new Vector<Ticket>();
+
+        for (int k = 0; k < ticks.size(); k++)
+        {
+            int[] values = Util.checkAlCategories(cats, ticks.elementAt(k));
+            boolean invalid = false;
+
+            for (int index = 0; index < values.length; index++)
+            {
+                if (values[index] != Util.CHECKED_NUMBER)
+                    invalid = true;
+            }
+
+            if (!invalid)
+                tickets.add(ticks.elementAt(k));
+        }
+
+        return tickets;
+    }
+
     public static final int[] checkAlCategories (Vector<Category> cats, Ticket t)
     {
         int[] values = new int[t.values().length];
