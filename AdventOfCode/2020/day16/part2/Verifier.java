@@ -4,6 +4,10 @@ public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
 
+    public static final String FIRST = "row";
+    public static final String SECOND = "class";
+    public static final String THIRD = "seat";
+
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -21,49 +25,20 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
-        Vector<Category> results = new Vector<Category>();
-
-        for (int c = 0; c < validTickets.elementAt(0).values().length; c++)
-        {
-            System.out.println();
-
-            int[] firsts = new int[ticks.size() -1];
-
-            for (int i = 0; i < firsts.length; i++)
-                firsts[i] = ticks.elementAt(i+1).values()[c];
-
-            for (int k = 0; k < cats.size(); k++)
-            {
-                boolean valid = true;
-
-                for (int l = 0; l < firsts.length; l++)
-                {
-                    if (cats.elementAt(k).valid(firsts[l]))
-                    {
-                        System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
-                    }
-                    else
-                    {
-                        System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
-
-                        valid = false;
-                        break;
-                    }
-                }
-
-                if (valid)
-                {
-                    if (!results.contains(cats.elementAt(k)))
-                        results.add(cats.elementAt(k));
-                }
-            }
-        }
+        Vector<Category> results = Util.order(validTickets, cats);
 
         System.out.println();
 
         for (int m = 0; m < results.size(); m++)
         {
             System.out.println("Element "+m+" maps to category "+results.elementAt(m));
+        }
+
+        if (FIRST.equals(results.elementAt(0).getType()) &&
+            SECOND.equals(results.elementAt(1).getType()) &&
+            THIRD.equals(results.elementAt(2).getType()))
+        {
+            return true;
         }
 
         return false;
