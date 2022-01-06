@@ -21,20 +21,46 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
-        int[] firsts = new int[ticks.size() -1];
+        HashMap<Integer, Category> results = new HashMap<Integer, Category>();
 
-        for (int i = 0; i < firsts.length; i++)
-            firsts[i] = ticks.elementAt(i+1).values()[0];
-
-        for (int k = 0; k < cats.size(); k++)
+        for (int c = 0; c < validTickets.elementAt(0).values().length; c++)
         {
-            for (int l = 0; l < firsts.length; l++)
+            int[] firsts = new int[ticks.size() -1];
+            int key = 0;
+
+            for (int i = 0; i < firsts.length; i++)
+                firsts[i] = ticks.elementAt(i+1).values()[c];
+
+            for (int k = 0; k < cats.size(); k++)
             {
-                if (cats.elementAt(k).valid(firsts[l]))
-                    System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
-                else
-                    System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
+                boolean valid = true;
+
+                for (int l = 0; l < firsts.length; l++)
+                {
+                    if (cats.elementAt(k).valid(firsts[l]))
+                    {
+                        System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
+                    }
+                    else
+                    {
+                        System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
+
+                        valid = false;
+                    }
+                }
+
+                if (valid)
+                {
+                    results.put(key, cats.elementAt(k));
+
+                    key++;
+                }
             }
+        }
+
+        for (int m = 0; m < results.size(); m++)
+        {
+            System.out.println("Element "+m+" maps to category "+results.get(m));
         }
 
         return false;
