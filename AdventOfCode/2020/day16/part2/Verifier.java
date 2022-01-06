@@ -53,12 +53,8 @@ public class Verifier
 
                 if (valid)
                 {
-                    results.add(cats.elementAt(k));
-
                     if (!results.contains(cats.elementAt(k)))
                         results.add(cats.elementAt(k));
-
-                    key++;
                 }
             }
         }
