@@ -4,6 +4,8 @@ public class TicketCheck
 {
     public static final String DATA_FILE = "data.txt";
 
+    public static final String FIELD = "departure";
+
     public static void main (String[] args)
     {
         boolean verify = false;
@@ -47,20 +49,5 @@ public class TicketCheck
             for (int j = 0; j < ticks.size(); j++)
                 System.out.println(ticks.elementAt(j));
         }
-
-        int errorRate = 0;
-
-        for (int k = 0; k < ticks.size(); k++)
-        {
-            int[] values = Util.checkAlCategories(cats, ticks.elementAt(k));
-
-            for (int index = 0; index < values.length; index++)
-            {
-                if (values[index] != Util.CHECKED_NUMBER)
-                    errorRate += values[index];
-            }
-        }
-
-        System.out.println("Ticket scanning error rate: "+errorRate);
     }
 }
