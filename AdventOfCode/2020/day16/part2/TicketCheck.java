@@ -40,14 +40,16 @@ public class TicketCheck
 
         Vector<Category> cats = Util.loadCategories(DATA_FILE, debug);
         Vector<Ticket> ticks = Util.loadTickets(DATA_FILE, debug);
+        Vector<Ticket> validTickets = Util.validTickets(cats, ticks);
 
         if (debug)
         {
-            for (int i = 0; i < cats.size(); i++)
-                System.out.println(cats.elementAt(i));
-
-            for (int j = 0; j < ticks.size(); j++)
-                System.out.println(ticks.elementAt(j));
+            for (int j = 0; j < validTickets.size(); j++)
+                System.out.println(validTickets.elementAt(j));
         }
+
+        Vector<Category> results = Util.order(validTickets, cats);
+
+        
     }
 }
