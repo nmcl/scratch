@@ -21,24 +21,20 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
-        for (int i = 1; i < validTickets.size(); i++)
-        {
-            int[] values = validTickets.elementAt(i).values();
-            int number = 0;
+        int[] firsts = new int[ticks.size() -1];
 
-            for (int k = 0; k < cats.size(); k++)
+        for (int i = 0; i < firsts.length; i++)
+            firsts[i] = ticks.elementAt(i+1).values()[0];
+
+        for (int k = 0; k < cats.size(); k++)
+        {
+            for (int l = 0; l < firsts.length; l++)
             {
-                for (int l = 0; l < values.length; l++)
-                {
-                    if (!cats.elementAt(k).valid(values[l]))
-                    {
-                        number++;
-                        break;
-                    }
-                }
+                if (cats.elementAt(k).valid(firsts[l]))
+                    System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
+                else
+                    System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
             }
-            
-            System.out.println("Ticket "+validTickets.elementAt(i)+" matches "+number+" categories.");
         }
 
         return false;
