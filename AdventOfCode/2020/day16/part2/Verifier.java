@@ -27,11 +27,14 @@ public class Verifier
 
         Vector<Category> results = Util.order(validTickets, cats);
 
-        System.out.println();
-
-        for (int m = 0; m < results.size(); m++)
+        if (_debug)
         {
-            System.out.println("Element "+m+" maps to category "+results.elementAt(m));
+            System.out.println();
+
+            for (int m = 0; m < results.size(); m++)
+            {
+                System.out.println("Element "+m+" maps to category "+results.elementAt(m));
+            }
         }
 
         if (FIRST.equals(results.elementAt(0).getType()) &&
