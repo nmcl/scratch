@@ -21,12 +21,13 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
-        HashMap<Integer, Category> results = new HashMap<Integer, Category>();
+        Vector<Category> results = new Vector<Category>();
 
         for (int c = 0; c < validTickets.elementAt(0).values().length; c++)
         {
+            System.out.println();
+
             int[] firsts = new int[ticks.size() -1];
-            int key = 0;
 
             for (int i = 0; i < firsts.length; i++)
                 firsts[i] = ticks.elementAt(i+1).values()[c];
@@ -46,21 +47,27 @@ public class Verifier
                         System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
 
                         valid = false;
+                        break;
                     }
                 }
 
                 if (valid)
                 {
-                    results.put(key, cats.elementAt(k));
+                    results.add(cats.elementAt(k));
+
+                    if (!results.contains(cats.elementAt(k)))
+                        results.add(cats.elementAt(k));
 
                     key++;
                 }
             }
         }
 
+        System.out.println();
+
         for (int m = 0; m < results.size(); m++)
         {
-            System.out.println("Element "+m+" maps to category "+results.get(m));
+            System.out.println("Element "+m+" maps to category "+results.elementAt(m));
         }
 
         return false;
