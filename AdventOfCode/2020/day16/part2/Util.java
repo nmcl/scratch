@@ -16,7 +16,7 @@ public class Util
 
         for (int c = 0; c < validTickets.elementAt(0).values().length; c++)
         {
-            //System.out.println();
+            System.out.println();
 
             int[] firsts = new int[validTickets.size() -1];
 
@@ -31,11 +31,11 @@ public class Util
                 {
                     if (cats.elementAt(k).valid(firsts[l]))
                     {
-                        //System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
+                        System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
                     }
                     else
                     {
-                        //System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
+                        System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
 
                         valid = false;
                         break;
