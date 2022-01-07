@@ -32,11 +32,7 @@ public class Util
         }
 
         if (k == arr.size() -1)
-        {
-            comb++;
-
-            System.out.println("Combination "+comb);
-            
+        {   
             //System.out.println();
 
             /*
@@ -45,18 +41,18 @@ public class Util
              */
 
             //System.out.println(Arrays.toString(arr.toArray()));
-/*
+
             boolean valid = true;
 
             for (int l = 0; l < validTickets.size(); l++)
             {
                 int[] values = validTickets.elementAt(l).values();
-*/
+
                 /*
                  * Each value in a ticket must match the category in
                  * the same order.
                  */
-/*
+
                 for (int j = 0; (j < values.length) && valid; j++)
                 {
                     //System.out.println("Checking "+values[j]+" against "+arr.elementAt(j));
@@ -71,7 +67,7 @@ public class Util
                 //System.out.println("Valid combination: "+Arrays.toString(arr.toArray()));
 
                 return true;
-            }*/
+            }
             //else
                 //System.out.println("Invalid combination: "+Arrays.toString(arr.toArray()));
         }
