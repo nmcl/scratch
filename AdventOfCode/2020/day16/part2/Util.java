@@ -17,6 +17,8 @@ public class Util
         return cats;
     }
 
+    // brute force method!
+
     public static boolean permute (Vector<Category> arr, int k, Vector<Ticket> validTickets)
     {
         for (int i = k; i < arr.size(); i++)
@@ -31,7 +33,7 @@ public class Util
 
         if (k == arr.size() -1)
         {
-            System.out.println();
+            //System.out.println();
 
             /*
              * We have a combination of categories so let's run the
@@ -53,7 +55,7 @@ public class Util
 
                 for (int j = 0; j < values.length; j++)
                 {
-                    System.out.println("Checking "+values[j]+" against "+arr.elementAt(j));
+                    //System.out.println("Checking "+values[j]+" against "+arr.elementAt(j));
 
                     if (!arr.elementAt(j).valid(values[j]))
                         valid = false;
@@ -61,9 +63,13 @@ public class Util
             }
 
             if (valid)
-                System.out.println("Valid combination: "+Arrays.toString(arr.toArray()));
-            else
-                System.out.println("Invalid combination: "+Arrays.toString(arr.toArray()));
+            {
+                //System.out.println("Valid combination: "+Arrays.toString(arr.toArray()));
+
+                return true;
+            }
+            //else
+                //System.out.println("Invalid combination: "+Arrays.toString(arr.toArray()));
         }
 
         return false;
