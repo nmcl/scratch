@@ -1,5 +1,7 @@
 import java.util.*;
 import java.io.*;
+import java.util.Map.*;
+import java.util.stream.*;
 
 public class Util
 {
@@ -10,7 +12,47 @@ public class Util
 
     public static final int CHECKED_NUMBER = -1;
 
-    public static final Vector<Category> order (Vector<Ticket> validTickets, Vector<Category> cats)
+    public static final HashMap<Integer, Integer> order (Vector<Ticket> validTickets, Vector<Category> cats)
+    {
+        ArrayList<HashMap<Integer, Integer>> validCountMap = validCounts(validTickets);
+        HashMap<Integer, Integer> indexTable = new HashMap<Integer, Integer>();
+        List<Set<Entry<Integer, Integer>>> validMaps = validCountMap.stream().map(m -> m.entrySet()).collect(Collectors.toList());
+
+        for (int i = 0; i < _ranges.size(); i++)
+        {
+            int first = -1;
+            int second = -1;
+            boolean found = false;  // find the one unique mapping
+
+            for (int j = 0; (j < validMaps.size()) && !found; j++)
+            {
+                if (validMaps.get(j).stream().filter(e -> e.getValue() == validTickets.size()).count() == 1L)
+                {
+                    Map.Entry<Integer, Integer> target = validMaps.get(j).stream().filter(e -> e.getValue() == validTickets.size()).findFirst().get();
+
+                    first = j;
+                    second = target.getKey();
+
+                    indexTable.put(first, second);
+
+                    found = true;  // stop
+                }
+            }
+
+            int targetKey = second;
+
+            for (int j = 0; j < validMaps.size(); j++)
+            {
+                Map.Entry<Integer, Integer> target = validMaps.get(j).stream().filter(e -> e.getKey() == targetKey).findFirst().get();
+
+                validMaps.get(j).remove(target);
+            }
+        }
+
+        return indexTable;
+    }
+
+    public static final Vector<Category> bruteForceOrder (Vector<Ticket> validTickets, Vector<Category> cats)
     {
         permute(cats, 0, validTickets);
 
@@ -162,6 +204,16 @@ public class Util
                             System.out.println("Loaded "+cat);
 
                         values.add(cat);
+
+                        HashSet<Integer> nums = new HashSet<Integer>();
+
+                        for (int i = r1; i <= r2; i++)
+                            nums.add(i);
+                        
+                        for (int i = r3; i <= r4; i++)
+                            nums.add(i);
+
+                        _ranges.add(nums);
                     }
                 }
             }
@@ -242,5 +294,32 @@ public class Util
     {
     }
 
-    private static int comb = 0;
+    private static ArrayList<HashMap<Integer, Integer>> validCounts(Vector<Ticket> validTickets)
+    {
+        ArrayList<HashMap<Integer, Integer>> mappingTables = new ArrayList<HashMap<Integer, Integer>>();
+
+        for (int i = 0; i < validTickets.elementAt(0).values().length; i++)
+        {
+            HashMap<Integer, Integer> tuple = new HashMap<Integer, Integer>();
+
+            for (int j = 0; j < validTickets.size(); j++)
+            {
+                int value = validTickets.elementAt(j).values()[i];
+        
+                for (int k = 0; k < _ranges.size(); k++)
+                {
+                    tuple.putIfAbsent(k, 0);
+
+                    if (_ranges.get(k).contains(value))
+                        tuple.put(k, tuple.get(k) + 1);
+                }
+            }
+
+            mappingTables.add(tuple);
+        }
+        
+        return mappingTables;
+    }
+
+    private static ArrayList<HashSet<Integer>> _ranges = new ArrayList<HashSet<Integer>>();
 }
