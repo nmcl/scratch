@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Category
 {
     public Category (String type, int r1, int r2, int r3, int r4, boolean debug)
@@ -36,6 +38,25 @@ public class Category
             return true;
         else
             return false;
+    }
+
+    public boolean validTickets (Vector<Ticket> t)
+    {
+        for (int i = 0; i < t.size(); i++)
+        {
+            //System.out.println(this+" checking validity of "+t.elementAt(i));
+
+            if (!validTicket(t.elementAt(i)))
+            {
+                //System.out.println("invalid");
+
+                return false;
+            }
+
+            //System.out.println("valid");
+        }
+
+        return true;
     }
 
     public final String getType ()
