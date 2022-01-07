@@ -48,13 +48,19 @@ public class TicketCheck
                 System.out.println(validTickets.elementAt(j));
         }
 
-        Vector<Category> results = Util.order(validTickets, cats);
+        HashMap<Integer, Integer> result = Util.order(validTickets, cats);
 
-        // if (_debug)
-         {
-             for (int i = 0; i < results.size(); i++)
-                 System.out.println("Category "+results.elementAt(i)+" maps to "+i);
-         }
- 
+        // look for the six fields on your ticket that start with the word departure
+        
+        int fieldCount = 6;
+        long value = 1;
+        
+        for (int i = 0; i < validTickets.elementAt(0).values().length; i++)
+        {
+            if (result.get(i) < fieldCount)
+                value *= (long) validTickets.elementAt(0).values()[i];            
+        }
+
+        System.out.println("Result: "+value);
     }
 }
