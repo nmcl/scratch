@@ -42,18 +42,31 @@ public class Category
 
     public boolean validTickets (Vector<Ticket> t)
     {
+        boolean[] valid = new boolean[t.size()];
+
         for (int i = 0; i < t.size(); i++)
         {
-            //System.out.println(this+" checking validity of "+t.elementAt(i));
+            System.out.println(this+" checking validity of "+t.elementAt(i));
 
             if (!validTicket(t.elementAt(i)))
             {
-                //System.out.println("invalid");
+                System.out.println("invalid");
 
-                return false;
+                valid[i] = false;
             }
+            else
+            {
+                System.out.println("valid");
 
-            //System.out.println("valid");
+                if (!valid[i])
+                    valid[i] = true;
+            }
+        }
+
+        for (int j = 0; j < valid.length; j++)
+        {
+            if (!valid[j])
+                return false;
         }
 
         return true;
