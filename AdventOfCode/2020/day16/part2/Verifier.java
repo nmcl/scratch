@@ -4,9 +4,7 @@ public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
 
-    public static final String FIRST = "row";
-    public static final String SECOND = "class";
-    public static final String THIRD = "seat";
+    public static final long EXAMPLE_RESULT = 1716;
 
     public Verifier (boolean debug)
     {
@@ -25,23 +23,18 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
-        Vector<Category> results = Util.order(validTickets, cats);
+        HashMap<Integer, Integer> result = Util.order(validTickets, cats);
 
-       // if (_debug)
-        {
-            for (int i = 0; i < results.size(); i++)
-                System.out.println("Category "+results.elementAt(i)+" maps to "+i);
-        }
-
+        int fieldCount = 6;
+        long value = 1;
         
-        if (FIRST.equals(results.elementAt(0).getType()) &&
-            SECOND.equals(results.elementAt(1).getType()) &&
-            THIRD.equals(results.elementAt(2).getType()))
+        for (int i = 0; i < validTickets.elementAt(0).values().length; i++)
         {
-            return true;
+            if (result.get(i) < fieldCount)
+                value *= (long) validTickets.elementAt(0).values()[i];            
         }
 
-        return false;
+        return (value == EXAMPLE_RESULT);
     }
 
     private boolean _debug;
