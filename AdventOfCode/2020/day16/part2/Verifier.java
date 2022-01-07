@@ -25,21 +25,12 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
-        HashMap<Category, Integer> results = Util.order(validTickets, cats);
+        Vector<Category> results = Util.order(validTickets, cats);
 
        // if (_debug)
         {
-            Iterator<Category> iter = results.keySet().iterator();
-
-            System.out.println();
-
-            while (iter.hasNext())
-            {
-                Category cat = iter.next();
-                Integer value = results.get(cat);
-
-                System.out.println("Category "+cat+" maps to "+value);
-            }
+            for (int i = 0; i < results.size(); i++)
+                System.out.println("Category "+results.elementAt(i)+" maps to "+i);
         }
 
         /*
