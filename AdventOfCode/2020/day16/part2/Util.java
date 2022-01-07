@@ -13,12 +13,14 @@ public class Util
     public static final Vector<Category> order (Vector<Ticket> validTickets, Vector<Category> cats)
     {
         Vector<Category> results = new Vector<Category>();
+        int[] catCount = new int[cats.size()];
 
         for (int c = 0; c < validTickets.elementAt(0).values().length; c++)
         {
             System.out.println();
 
             int[] firsts = new int[validTickets.size() -1];
+            int count = 0;
 
             for (int i = 0; i < firsts.length; i++)
                 firsts[i] = validTickets.elementAt(i+1).values()[c];
@@ -32,6 +34,7 @@ public class Util
                     if (cats.elementAt(k).valid(firsts[l]))
                     {
                         System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
+                        count++;
                     }
                     else
                     {
@@ -47,6 +50,10 @@ public class Util
                     if (!results.contains(cats.elementAt(k)))
                         results.add(cats.elementAt(k));
                 }
+
+                catCount[k] = count;
+
+                System.out.println("Category "+cats.elementAt(k)+" count "+count);
             }
         }
 
