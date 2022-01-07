@@ -14,9 +14,22 @@ public class Util
     {
         HashMap<Category, Integer> results = new HashMap<Category, Integer>();
 
-        for (int c = 1; c < validTickets.size(); c++)
+        for (int i = 1; i < validTickets.size(); i++)
         {
+            Ticket toCheck = validTickets.elementAt(i);
 
+            for (int j = 0; j < cats.size(); j++)
+            {
+                if (cats.elementAt(j).validTicket(toCheck))
+                {
+                    Integer count = results.get(cats.elementAt(j));
+
+                    if (count == null)
+                        results.put(cats.elementAt(j), 0);
+                    else
+                        results.put(cats.elementAt(j), count +1);
+                }
+            }
         }
 
         return results;
