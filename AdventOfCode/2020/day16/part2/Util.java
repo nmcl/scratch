@@ -10,29 +10,31 @@ public class Util
 
     public static final int CHECKED_NUMBER = -1;
 
-    public static final HashMap<Category, Integer> order (Vector<Ticket> validTickets, Vector<Category> cats)
+    public static final Vector<Category> order (Vector<Ticket> validTickets, Vector<Category> cats)
     {
-        HashMap<Category, Integer> results = new HashMap<Category, Integer>();
+        Vector<Category> results = new Vector<Category>();
+        Object[] catsAsArray = results.toArray();
 
-        for (int i = 1; i < validTickets.size(); i++)
-        {
-            Ticket toCheck = validTickets.elementAt(i);
-
-            for (int j = 0; j < cats.size(); j++)
-            {
-                if (cats.elementAt(j).validTicket(toCheck))
-                {
-                    Integer count = results.get(cats.elementAt(j));
-
-                    if (count == null)
-                        results.put(cats.elementAt(j), 0);
-                    else
-                        results.put(cats.elementAt(j), count +1);
-                }
-            }
-        }
+        permute(cats, 0);
 
         return results;
+    }
+
+    public static void permute (Vector<Category> arr, int k)
+    {
+        for (int i = k; i < arr.size(); i++)
+        {
+            Collections.swap(arr, i, k);
+
+            permute(arr, k +1);
+
+            Collections.swap(arr, k, i);
+        }
+
+        if (k == arr.size() -1)
+        {
+            System.out.println(Arrays.toString(arr.toArray()));
+        }
     }
 
     public static final Vector<Ticket> validTickets (Vector<Category> cats, Vector<Ticket> ticks)
