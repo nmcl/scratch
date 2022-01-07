@@ -21,6 +21,23 @@ public class Category
         return false;
     }
 
+    public boolean validTicket (Ticket t)
+    {
+        int count = 0;
+        int[] values = t.values();
+
+        for (int i = 0; i < values.length; i++)
+        {
+            if (valid(values[i]))
+                count++;
+        }
+
+        if (count == values.length)
+            return true;
+        else
+            return false;
+    }
+
     public final String getType ()
     {
         return _name;
