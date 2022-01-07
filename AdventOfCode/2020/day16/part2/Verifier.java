@@ -33,13 +33,13 @@ public class Verifier
                 System.out.println("Category "+results.elementAt(i)+" maps to "+i);
         }
 
-        /*
+        
         if (FIRST.equals(results.elementAt(0).getType()) &&
             SECOND.equals(results.elementAt(1).getType()) &&
             THIRD.equals(results.elementAt(2).getType()))
         {
             return true;
-        }*/
+        }
 
         return false;
     }
