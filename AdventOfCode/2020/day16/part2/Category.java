@@ -32,7 +32,7 @@ public class Category
                 count++;
         }
 
-        if (count == values.length)
+        if (count == 3)
             return true;
         else
             return false;
