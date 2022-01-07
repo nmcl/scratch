@@ -31,6 +31,8 @@ public class Util
 
         if (k == arr.size() -1)
         {
+            System.out.println();
+
             /*
              * We have a combination of categories so let's run the
              * tickets through them and see if they are valid.
@@ -51,7 +53,9 @@ public class Util
 
                 for (int j = 0; j < values.length; j++)
                 {
-                    if (arr.elementAt(j).valid(values[j]))
+                    System.out.println("Checking "+values[j]+" against "+arr.elementAt(j));
+
+                    if (!arr.elementAt(j).valid(values[j]))
                         valid = false;
                 }
             }
