@@ -12,29 +12,42 @@ public class Util
 
     public static final Vector<Category> order (Vector<Ticket> validTickets, Vector<Category> cats)
     {
-        Vector<Category> results = new Vector<Category>();
-        Object[] catsAsArray = results.toArray();
+        permute(cats, 0, validTickets);
 
-        permute(cats, 0);
-
-        return results;
+        return cats;
     }
 
-    public static void permute (Vector<Category> arr, int k)
+    public static boolean permute (Vector<Category> arr, int k, Vector<Ticket> validTickets)
     {
         for (int i = k; i < arr.size(); i++)
         {
             Collections.swap(arr, i, k);
 
-            permute(arr, k +1);
+            if (permute(arr, k +1, validTickets))
+                return true;
 
             Collections.swap(arr, k, i);
         }
 
         if (k == arr.size() -1)
         {
-            System.out.println(Arrays.toString(arr.toArray()));
+            //System.out.println(Arrays.toString(arr.toArray()));
+
+            boolean valid = true;
+
+            for (int j = 0; j < k +1; j++)
+            {
+                if (!arr.elementAt(j).validTickets(validTickets))
+                    valid = false;
+            }
+
+            if (valid)
+                System.out.println("Valid combination: "+Arrays.toString(arr.toArray()));
+            else
+                System.out.println("Invalid combination: "+Arrays.toString(arr.toArray()));
         }
+
+        return false;
     }
 
     public static final Vector<Ticket> validTickets (Vector<Category> cats, Vector<Ticket> ticks)
