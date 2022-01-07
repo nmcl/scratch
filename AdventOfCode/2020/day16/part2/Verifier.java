@@ -27,13 +27,18 @@ public class Verifier
 
         HashMap<Category, Integer> results = Util.order(validTickets, cats);
 
-        if (_debug)
+       // if (_debug)
         {
+            Iterator<Category> iter = results.keySet().iterator();
+
             System.out.println();
 
-            for (int m = 0; m < results.size(); m++)
+            while (iter.hasNext())
             {
-                System.out.println("Element "+m+" maps to category "+results.elementAt(m));
+                Category cat = iter.next();
+                Integer value = results.get(cat);
+
+                System.out.println("Category "+cat+" maps to "+value);
             }
         }
 
