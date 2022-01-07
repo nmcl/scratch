@@ -40,38 +40,6 @@ public class Category
             return false;
     }
 
-    public boolean validTickets (Vector<Ticket> t)
-    {
-        boolean[] valid = new boolean[t.size()];
-
-        for (int i = 0; i < t.size(); i++)
-        {
-            System.out.println(this+" checking validity of "+t.elementAt(i));
-
-            if (!validTicket(t.elementAt(i)))
-            {
-                System.out.println("invalid");
-
-                valid[i] = false;
-            }
-            else
-            {
-                System.out.println("valid");
-
-                if (!valid[i])
-                    valid[i] = true;
-            }
-        }
-
-        for (int j = 0; j < valid.length; j++)
-        {
-            if (!valid[j])
-                return false;
-        }
-
-        return true;
-    }
-
     public final String getType ()
     {
         return _name;
