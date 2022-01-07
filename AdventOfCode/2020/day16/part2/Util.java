@@ -40,10 +40,20 @@ public class Util
 
             boolean valid = true;
 
-            for (int j = 0; j < k +1; j++)
+            for (int l = 0; l < validTickets.size(); l++)
             {
-                if (!arr.elementAt(j).validTickets(validTickets))
-                    valid = false;
+                int[] values = validTickets.elementAt(l).values();
+
+                /*
+                 * Each value in a ticket must match the category in
+                 * the same order.
+                 */
+
+                for (int j = 0; j < values.length; j++)
+                {
+                    if (arr.elementAt(j).valid(values[j]))
+                        valid = false;
+                }
             }
 
             if (valid)
