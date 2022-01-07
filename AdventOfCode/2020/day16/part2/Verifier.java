@@ -25,7 +25,7 @@ public class Verifier
                 System.out.println(validTickets.elementAt(j));
         }
 
-        Vector<Category> results = Util.order(validTickets, cats);
+        HashMap<Category, Integer> results = Util.order(validTickets, cats);
 
         if (_debug)
         {
@@ -37,12 +37,13 @@ public class Verifier
             }
         }
 
+        /*
         if (FIRST.equals(results.elementAt(0).getType()) &&
             SECOND.equals(results.elementAt(1).getType()) &&
             THIRD.equals(results.elementAt(2).getType()))
         {
             return true;
-        }
+        }*/
 
         return false;
     }
