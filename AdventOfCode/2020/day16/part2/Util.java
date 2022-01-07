@@ -31,6 +31,11 @@ public class Util
 
         if (k == arr.size() -1)
         {
+            /*
+             * We have a combination of categories so let's run the
+             * tickets through them and see if they are valid.
+             */
+
             //System.out.println(Arrays.toString(arr.toArray()));
 
             boolean valid = true;
