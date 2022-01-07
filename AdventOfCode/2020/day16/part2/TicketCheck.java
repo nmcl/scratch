@@ -47,5 +47,14 @@ public class TicketCheck
             for (int j = 0; j < validTickets.size(); j++)
                 System.out.println(validTickets.elementAt(j));
         }
+
+        Vector<Category> results = Util.order(validTickets, cats);
+
+        // if (_debug)
+         {
+             for (int i = 0; i < results.size(); i++)
+                 System.out.println("Category "+results.elementAt(i)+" maps to "+i);
+         }
+ 
     }
 }
