@@ -14,39 +14,9 @@ public class Util
     {
         HashMap<Category, Integer> results = new HashMap<Category, Integer>();
 
-        for (int c = 0; c < validTickets.elementAt(0).values().length; c++)
+        for (int c = 1; c < validTickets.size(); c++)
         {
-            System.out.println();
 
-            int[] firsts = new int[validTickets.size() -1];
-            int count = 0;
-
-            for (int i = 0; i < firsts.length; i++)
-                firsts[i] = validTickets.elementAt(i+1).values()[c];
-
-            for (int k = 0; k < cats.size(); k++)
-            {
-                for (int l = 0; l < firsts.length; l++)
-                {
-                    if (cats.elementAt(k).valid(firsts[l]))
-                    {
-                        System.out.println("Category "+cats.elementAt(k)+" is valid for "+firsts[l]);
-                        count++;
-                    }
-                    else
-                    {
-                        System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
-                        break;
-                    }
-                }
-
-                Integer currentCount = results.get(cats.elementAt(k));
-
-                if (currentCount == null)
-                    results.put(cats.elementAt(k), count);
-                else
-                    results.replace(cats.elementAt(k), currentCount + count);
-            }
         }
 
         return results;
