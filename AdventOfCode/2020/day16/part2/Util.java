@@ -1,4 +1,7 @@
 import java.util.*;
+
+import jdk.jfr.Category;
+
 import java.io.*;
 
 public class Util
@@ -10,10 +13,9 @@ public class Util
 
     public static final int CHECKED_NUMBER = -1;
 
-    public static final Vector<Category> order (Vector<Ticket> validTickets, Vector<Category> cats)
+    public static final HashMap<Category, Integer> order (Vector<Ticket> validTickets, Vector<Category> cats)
     {
-        Vector<Category> results = new Vector<Category>();
-        int[] catCount = new int[cats.size()];
+        HashMap<Category, Integer> results = new HashMap<Category, Integer>();
 
         for (int c = 0; c < validTickets.elementAt(0).values().length; c++)
         {
@@ -27,8 +29,6 @@ public class Util
 
             for (int k = 0; k < cats.size(); k++)
             {
-                boolean valid = true;
-
                 for (int l = 0; l < firsts.length; l++)
                 {
                     if (cats.elementAt(k).valid(firsts[l]))
@@ -39,21 +39,16 @@ public class Util
                     else
                     {
                         System.out.println("Category "+cats.elementAt(k)+" is invalid for "+firsts[l]);
-
-                        valid = false;
                         break;
                     }
                 }
 
-                if (valid)
-                {
-                    if (!results.contains(cats.elementAt(k)))
-                        results.add(cats.elementAt(k));
-                }
+                Integer currentCount = results.get(cats.elementAt(k));
 
-                catCount[k] = count;
-
-                System.out.println("Category "+cats.elementAt(k)+" count "+count);
+                if (currentCount == null)
+                    results.put(cats.elementAt(k), count);
+                else
+                    results.replace(cats.elementAt(k), currentCount + count);
             }
         }
 
