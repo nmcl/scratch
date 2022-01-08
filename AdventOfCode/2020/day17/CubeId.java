@@ -1,12 +1,11 @@
-public class TileId
+public class CubeId
 {
-    public static final char BUG = '#';
-    public static final char EMPTY_SPACE = '.';
-    public static final char NESTED_GRID = '?';
+    public static final char ACTIVE = '#';
+    public static final char INACTIVE = '.';
 
     public static boolean valid (char check)
     {
-        if ((check == BUG) || (check == EMPTY_SPACE) || (check == NESTED_GRID))
+        if ((check == ACTIVE) || (check == INACTIVE))
             return true;
         else
             return false;
