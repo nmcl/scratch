@@ -94,3 +94,4 @@ public class Layer
     private int _height;
     private int _width;
     private boolean _debug;
+}
