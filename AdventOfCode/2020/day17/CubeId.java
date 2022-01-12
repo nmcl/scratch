@@ -11,7 +11,7 @@ public class CubeId
             return false;
     }
 
-    private TileId ()
+    private CubeId ()
     {
     }
 }
