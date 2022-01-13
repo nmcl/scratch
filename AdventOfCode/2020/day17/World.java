@@ -22,17 +22,17 @@ public class World
             {
                 if (_debug)
                     System.out.println("Loaded line: "+line);
-                    
+                    /*
                 for (int i = 0; i < line.length(); i++)
                 {
-                    if (TileId.BUG == line.charAt(i))
+                    if (CubeId.BUG == line.charAt(i))
                     {
                         if (_debug)
                             System.out.println("Bug at "+i+" "+h);
 
                         _theWorld[GridData.DEFAULT_LEVELS].addBug(new ThreeDPoint(i, h, 0));
                     }
-                }
+                }*/
 
                 h++;
             }
