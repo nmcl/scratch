@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class TicketCheck
+public class ConwayCubes
 {
     public static final String WORLD_DATA = "world.txt";
 
