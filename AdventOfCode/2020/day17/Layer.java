@@ -37,22 +37,22 @@ public class Layer
         String str = "";
         
         for (int i = 0; i < _height; i++)
-        {
+        {/*
             for (int j = 0; j < _width; j++)
             {
                 if ((i == GridData.CENTRE_Y) && (j == GridData.CENTRE_X))
-                    str += TileId.NESTED_GRID;
+                    str += CubeId.NESTED_GRID;
                 else
                 {
                     ThreeDPoint point = new ThreeDPoint(i, j, _layer);
 
                     if (_level.contains(point))
-                        str += TileId.BUG;
+                        str += CubeId.BUG;
                     else
-                        str += TileId.EMPTY_SPACE;
+                        str += CubeId.EMPTY_SPACE;
                 }
             }
-
+*/
             str += "\n";
         }
 
@@ -70,7 +70,7 @@ public class Layer
         
         if (getClass() == obj.getClass())
         {
-            Level temp = (Level) obj;
+            Layer temp = (Layer) obj;
 
             if (temp._level.size() == _level.size())
             {
