@@ -3,9 +3,11 @@ import java.util.*;
 
 public class World
 {
-    public World (boolean debug)
+    public World (String dataFile, boolean debug)
     {
         _debug = debug;
+
+        loadWorld(dataFile);
     }
 
     private void loadWorld (String inputFile)
