@@ -23,7 +23,8 @@ public class Dimension
         {
             reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
-
+            Vector<Character> world = new Vector<Character>();
+            
             while ((line = reader.readLine()) != null)
             {
                 if (_debug)
