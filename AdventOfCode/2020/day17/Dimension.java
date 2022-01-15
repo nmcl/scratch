@@ -3,16 +3,14 @@ import java.util.*;
 
 public class Dimension
 {
-    public static final int MAX_LAYERS = 41;  // 20 layers either size of layer 0
-
     public Dimension (String dataFile, boolean debug)
     {
-        _layers = new Layer[MAX_LAYERS];
-        _layerZero = (MAX_LAYERS / 2) +1;
+        _theWorld = new Vector<ThreeDPoint>();
+        _width = 0;
+        _height = 0;
+        _minZ = 0;
+        _maxZ = 0;
         _debug = debug;
-
-        for (int i = 0; i < MAX_LAYERS; i++)
-            _layers[i] = null;
 
         loadLayer(dataFile);
     }
@@ -36,77 +34,90 @@ public class Dimension
     {
         String str = "";
 
-        for (int i = 0; i < _layers.length; i++)
+        for (int z = _minZ; z <= _maxZ; z++)
         {
-            if (_layers[i] != null)
+            str += "z="+z+"\n";
+
+            for (int x = 0; x < _width; x++)
             {
-                str += _layers[i]+"\n";
+                for (int y = 0; y < _height; y++)
+                {
+                    ThreeDPoint point = new ThreeDPoint(x, y, z);
+
+                    System.out.println("checking "+point);
+                    
+                    if (_theWorld.contains(point))
+                        str += CubeId.ACTIVE;
+                    else
+                        str += CubeId.INACTIVE;
+                }
+
+                str += "\n";
             }
         }
 
         return str;
     }
 
-    private ThreeDPoint[] neighbours (ThreeDPoint coord)
+    public ThreeDPoint[] neighbours (ThreeDPoint coord)
     {
+        int index = 0;
 
+        for (int x = coord.getX() -1; x < coord.getX() +2; x++)
+        {
+            for (int y = coord.getY() -1; y < coord.getZ() +2; y++)
+            {
+                for (int z = coord.getZ() -1; z < coord.getZ() +2; z++)
+                {
+                    ThreeDPoint v = new ThreeDPoint(x, y, z);
+
+                    System.out.println(v);
+
+                    //n[index] = new ThreeDPoint(x, y, z);
+                    index++;
+                }
+            }
+        }
+
+        System.out.println("index: "+index);
+
+        return null;
     }
-    
+
     private void loadLayer (String inputFile)
     {
         BufferedReader reader = null;
-        int h = 0;
-        int w = 0;
 
         try
         {
             reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
-            Vector<Character> world = new Vector<Character>();
 
             while ((line = reader.readLine()) != null)
             {
                 if (_debug)
                     System.out.println("Loaded line: "+line);
 
-                w = line.length();
+                _width = line.length();
 
                 for (int i = 0; i < line.length(); i++)
                 {
                     if (CubeId.ACTIVE == line.charAt(i))
                     {
                         if (_debug)
-                            System.out.println("Active cell at "+i+" "+h);
+                            System.out.println("Active cell at "+i+" "+_height);
 
-                        world.add(CubeId.ACTIVE);
+                        _theWorld.add(new ThreeDPoint(i, _height, 0));
                     }
                     else
                     {
                         if (_debug)
-                            System.out.println("Inactive cell at "+i+" "+h);
-
-                        world.add(CubeId.INACTIVE);
+                            System.out.println("Inactive cell at "+i+" "+_height);
                     }
                 }
 
-                h++;
+                _height++;
             }
-
-            Layer theLayer = new Layer(0, h, w, _debug);
-            int index = 0;
-
-            for (int y = 0; y < h; y++)
-            {
-                for (int x = 0; x < w; x++)
-                {
-                    if (world.elementAt(index) == CubeId.ACTIVE)
-                        theLayer.activate(y, x);
-
-                    index++;
-                }
-            }
-
-            _layers[_layerZero] = theLayer;
         }
         catch (Throwable ex)
         {
@@ -124,7 +135,10 @@ public class Dimension
         }
     }
 
-    private Layer[] _layers;
-    private int _layerZero;
+    private Vector<ThreeDPoint> _theWorld;
+    private int _width;
+    private int _height;
+    private int _minZ;
+    private int _maxZ;
     private boolean _debug;
 }
