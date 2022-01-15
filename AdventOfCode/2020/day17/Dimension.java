@@ -47,6 +47,11 @@ public class Dimension
         return str;
     }
 
+    private ThreeDPoint[] neighbours (ThreeDPoint coord)
+    {
+
+    }
+    
     private void loadLayer (String inputFile)
     {
         BufferedReader reader = null;
