@@ -17,6 +17,16 @@ public class Layer
         }
     }
 
+    public final void activate (int x, int y)
+    {
+        _cubes[x][y] = CubeId.ACTIVE;
+    }
+
+    public final void deactivate (int x, int y)
+    {
+        _cubes[x][y] = CubeId.INACTIVE;
+    }
+
     public final boolean empty ()
     {
         for (int i = 0; i < _cubes.length; i++)
