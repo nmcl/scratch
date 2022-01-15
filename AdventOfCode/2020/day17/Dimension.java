@@ -38,18 +38,24 @@ public class Dimension
         {
             str += "z="+z+"\n";
 
-            for (int x = 0; x < _width; x++)
+            for (int y = 0; y < _height; y++)
             {
-                for (int y = 0; y < _height; y++)
+                for (int x = 0; x < _width; x++)
                 {
                     ThreeDPoint point = new ThreeDPoint(x, y, z);
-
-                    System.out.println("checking "+point);
                     
                     if (_theWorld.contains(point))
+                    {
+                        System.out.println("active "+point);
+
                         str += CubeId.ACTIVE;
+                    }
                     else
+                    {
+                        System.out.println("inactive "+point);
+
                         str += CubeId.INACTIVE;
+                    }
                 }
 
                 str += "\n";
@@ -102,17 +108,19 @@ public class Dimension
 
                 for (int i = 0; i < line.length(); i++)
                 {
+                    ThreeDPoint p = new ThreeDPoint(i, _height, 0);
+
                     if (CubeId.ACTIVE == line.charAt(i))
                     {
                         if (_debug)
-                            System.out.println("Active cell at "+i+" "+_height);
+                            System.out.println("Active cell at: "+p);
 
-                        _theWorld.add(new ThreeDPoint(i, _height, 0));
+                        _theWorld.add(p);
                     }
                     else
                     {
                         if (_debug)
-                            System.out.println("Inactive cell at "+i+" "+_height);
+                            System.out.println("Inactive cell at: "+p);
                     }
                 }
 
