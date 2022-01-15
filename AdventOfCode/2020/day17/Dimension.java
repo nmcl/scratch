@@ -5,7 +5,7 @@ public class Dimension
 {
     public static final int MAX_LAYERS = 41;  // 20 layers either size of layer 0
 
-    public World (String dataFile, boolean debug)
+    public Dimension (String dataFile, boolean debug)
     {
         _layers = new Layer[MAX_LAYERS];
         _layerZero = (MAX_LAYERS / 2) +1;
