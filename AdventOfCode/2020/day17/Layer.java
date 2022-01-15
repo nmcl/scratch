@@ -49,7 +49,7 @@ public class Layer
     @Override
     public String toString ()
     {
-        String str = "z="+_layer;
+        String str = "z="+_layer+"\n";
         
         for (int i = 0; i < _cubes.length; i++)
         {
