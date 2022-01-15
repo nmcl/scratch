@@ -4,11 +4,17 @@ public class Layer
 {
     public Layer (int layer, int height, int width, boolean debug)
     {
-        _level = new HashSet<ThreeDPoint>();
+        _cubes = new char[height][width];
         _layer = layer;
-        _height = height;
-        _width = width;
         _debug = debug;
+
+        for (int i = 0; i < _cubes.length; i++)
+        {
+            for (int i = 0; j < _cubes[0].length; j++)
+            {
+                _cubes[i][j] = CubeId.INACTIVE;
+            }
+        }
     }
 
     public final int getLevel ()
@@ -16,43 +22,18 @@ public class Layer
         return _layer;
     }
 
-    public final void addBug (ThreeDPoint location)
-    {
-        _level.add(location);
-    }
-
-    public final HashSet<ThreeDPoint> getBugs ()
-    {
-        return _level;
-    }
-
-    public final long bugCount ()
-    {
-        return _level.size();
-    }
-
     @Override
     public String toString ()
     {
         String str = "";
         
-        for (int i = 0; i < _height; i++)
-        {/*
-            for (int j = 0; j < _width; j++)
+        for (int i = 0; i < _cubes.length; i++)
+        {
+            for (int j = 0; j < _cubes[0].length; j++)
             {
-                if ((i == GridData.CENTRE_Y) && (j == GridData.CENTRE_X))
-                    str += CubeId.NESTED_GRID;
-                else
-                {
-                    ThreeDPoint point = new ThreeDPoint(i, j, _layer);
-
-                    if (_level.contains(point))
-                        str += CubeId.BUG;
-                    else
-                        str += CubeId.EMPTY_SPACE;
-                }
+                str += _cubes[i][j];
             }
-*/
+
             str += "\n";
         }
 
@@ -89,9 +70,7 @@ public class Layer
         return false;
     }
 
-    private HashSet<ThreeDPoint> _level;
+    private char[][] _cubes;
     private int _layer;
-    private int _height;
-    private int _width;
     private boolean _debug;
 }
