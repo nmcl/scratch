@@ -34,6 +34,12 @@ public class ThreeDPoint
     {
         return _z;
     }
+
+    @Override
+    public String toString ()
+    {
+        return "ThreeDPoint < "+_x+", "+_y+", "+_z+" >";
+    }
     
     @Override
     public int hashCode ()
