@@ -11,10 +11,10 @@ public class Dimension
         _layerZero = (MAX_LAYERS / 2) +1;
         _debug = debug;
 
-        loadWorld(dataFile);
+        loadLayer(dataFile);
     }
 
-    private void loadWorld (String inputFile)
+    private void loadLayer (String inputFile)
     {
         BufferedReader reader = null;
         int h = 0;
@@ -28,17 +28,17 @@ public class Dimension
             {
                 if (_debug)
                     System.out.println("Loaded line: "+line);
-                    /*
+
                 for (int i = 0; i < line.length(); i++)
                 {
-                    if (CubeId.BUG == line.charAt(i))
+                    if (CubeId.ACTIVE == line.charAt(i))
                     {
                         if (_debug)
-                            System.out.println("Bug at "+i+" "+h);
+                            System.out.println("Active cell at "+i+" "+h);
 
                         _theWorld[GridData.DEFAULT_LEVELS].addBug(new ThreeDPoint(i, h, 0));
                     }
-                }*/
+                }
 
                 h++;
             }
