@@ -14,6 +14,22 @@ public class Dimension
         loadLayer(dataFile);
     }
 
+    @Override
+    public String toString ()
+    {
+        String str = "";
+
+        for (int i = 0; i < _layers.length; i++)
+        {
+            if (!_layers[i].empty())
+            {
+                str += _layers[i]+"\n";
+            }
+        }
+
+        return str;
+    }
+
     private void loadLayer (String inputFile)
     {
         BufferedReader reader = null;
