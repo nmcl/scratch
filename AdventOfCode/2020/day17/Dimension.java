@@ -55,5 +55,6 @@ public class Dimension
         }
     }
 
+    private Layer[] _layers;
     private boolean _debug;
 }
