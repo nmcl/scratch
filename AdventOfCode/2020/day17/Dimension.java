@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class World
+public class Dimension
 {
     public World (String dataFile, boolean debug)
     {
