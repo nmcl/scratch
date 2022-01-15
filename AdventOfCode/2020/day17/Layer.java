@@ -10,11 +10,25 @@ public class Layer
 
         for (int i = 0; i < _cubes.length; i++)
         {
-            for (int i = 0; j < _cubes[0].length; j++)
+            for (int j = 0; j < _cubes[0].length; j++)
             {
                 _cubes[i][j] = CubeId.INACTIVE;
             }
         }
+    }
+
+    public final boolean empty ()
+    {
+        for (int i = 0; i < _cubes.length; i++)
+        {
+            for (int j = 0; j < _cubes[0].length; j++)
+            {
+                if (_cubes[i][j] == CubeId.ACTIVE)
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     public final int getLevel ()
