@@ -18,17 +18,20 @@ public class Dimension
     {
         BufferedReader reader = null;
         int h = 0;
+        int w = 0;
 
         try
         {
             reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
             Vector<Character> world = new Vector<Character>();
-            
+
             while ((line = reader.readLine()) != null)
             {
                 if (_debug)
                     System.out.println("Loaded line: "+line);
+
+                w = line.length();
 
                 for (int i = 0; i < line.length(); i++)
                 {
@@ -37,11 +40,32 @@ public class Dimension
                         if (_debug)
                             System.out.println("Active cell at "+i+" "+h);
 
-                        _theWorld[GridData.DEFAULT_LEVELS].addBug(new ThreeDPoint(i, h, 0));
+                        world.add(CubeId.ACTIVE);
+                    }
+                    else
+                    {
+                        if (_debug)
+                            System.out.println("Inactive cell at "+i+" "+h);
+
+                        world.add(CubeId.INACTIVE);
                     }
                 }
 
                 h++;
+            }
+
+            Layer theLayer = new Layer(0, h, w, _debug);
+            int index = 0;
+
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    if (world.elementAt(index) == CubeId.ACTIVE)
+                        theLayer.activate(y, x);
+
+                    index++;
+                }
             }
         }
         catch (Throwable ex)
