@@ -11,6 +11,9 @@ public class Dimension
         _layerZero = (MAX_LAYERS / 2) +1;
         _debug = debug;
 
+        for (int i = 0; i < MAX_LAYERS; i++)
+            _layers[i] = null;
+
         loadLayer(dataFile);
     }
 
@@ -21,7 +24,7 @@ public class Dimension
 
         for (int i = 0; i < _layers.length; i++)
         {
-            if (!_layers[i].empty())
+            if (_layers[i] != null)
             {
                 str += _layers[i]+"\n";
             }
@@ -83,6 +86,8 @@ public class Dimension
                     index++;
                 }
             }
+
+            _layers[_layerZero] = theLayer;
         }
         catch (Throwable ex)
         {
