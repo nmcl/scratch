@@ -8,6 +8,7 @@ public class Dimension
     public World (String dataFile, boolean debug)
     {
         _layers = new Layer[MAX_LAYERS];
+        _layerZero = (MAX_LAYERS / 2) +1;
         _debug = debug;
 
         loadWorld(dataFile);
@@ -59,5 +60,6 @@ public class Dimension
     }
 
     private Layer[] _layers;
+    private int _layerZero;
     private boolean _debug;
 }
