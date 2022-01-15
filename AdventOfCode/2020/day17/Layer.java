@@ -17,14 +17,14 @@ public class Layer
         }
     }
 
-    public final void activate (int x, int y)
+    public final void activate (int y, int x)
     {
-        _cubes[x][y] = CubeId.ACTIVE;
+        _cubes[y][x] = CubeId.ACTIVE;
     }
 
-    public final void deactivate (int x, int y)
+    public final void deactivate (int y, int x)
     {
-        _cubes[x][y] = CubeId.INACTIVE;
+        _cubes[y][x] = CubeId.INACTIVE;
     }
 
     public final boolean empty ()
