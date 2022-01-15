@@ -3,8 +3,11 @@ import java.util.*;
 
 public class Dimension
 {
+    public static final int MAX_LAYERS = 41;  // 20 layers either size of layer 0
+
     public World (String dataFile, boolean debug)
     {
+        _layers = new Layer[MAX_LAYERS];
         _debug = debug;
 
         loadWorld(dataFile);
