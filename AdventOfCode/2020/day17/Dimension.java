@@ -17,6 +17,20 @@ public class Dimension
         loadLayer(dataFile);
     }
 
+    /**
+     * During a cycle, all cubes simultaneously change their state according to the following rules:
+     * 
+     * If a cube is active and exactly 2 or 3 of its neighbors are also active, the cube remains active.
+     * Otherwise, the cube becomes inactive.
+     * If a cube is inactive but exactly 3 of its neighbors are active, the cube becomes active.
+     * Otherwise, the cube remains inactive.
+     */
+
+    public void cycle ()
+    {
+
+    }
+
     @Override
     public String toString ()
     {
