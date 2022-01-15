@@ -9,6 +9,10 @@ public class Verifier
 
     public boolean verify ()
     {
+        Dimension dim = new Dimension(EXAMPLE_WORLD, _debug);
+
+        System.out.println("Loaded: "+dim);
+
         return false;
     }
 
