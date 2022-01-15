@@ -11,7 +11,7 @@ public class Verifier
     {
         Dimension dim = new Dimension(EXAMPLE_WORLD, _debug);
 
-        System.out.println("Loaded: "+dim);
+        System.out.println("Loaded:\n\n"+dim);
 
         return false;
     }
