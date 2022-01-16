@@ -3,6 +3,8 @@ import java.util.*;
 
 public class Dimension
 {
+    public static final int TOTAL_NEIGHBOURS = 27;
+
     public Dimension (String dataFile, boolean debug)
     {
         _theWorld = new Vector<ThreeDPoint>();
@@ -60,26 +62,25 @@ public class Dimension
     public ThreeDPoint[] neighbours (ThreeDPoint coord)
     {
         int index = 0;
+        ThreeDPoint[] n = new ThreeDPoint[TOTAL_NEIGHBOURS];
 
-        for (int x = coord.getX() -1; x < coord.getX() +2; x++)
+        for (int x = -1; x <= 1; x++)
         {
-            for (int y = coord.getY() -1; y < coord.getZ() +2; y++)
+            for (int y = -1; y <= 1; y++)
             {
-                for (int z = coord.getZ() -1; z < coord.getZ() +2; z++)
+                for (int z = -1; z <= 1; z++)
                 {
-                    ThreeDPoint v = new ThreeDPoint(x, y, z);
+                    ThreeDPoint v = new ThreeDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() +z);
 
                     System.out.println(v);
 
-                    //n[index] = new ThreeDPoint(x, y, z);
+                    n[index] = v;
                     index++;
                 }
             }
         }
 
-        System.out.println("index: "+index);
-
-        return null;
+        return n;
     }
 
     private void loadLayer (String inputFile)
