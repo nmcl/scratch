@@ -28,11 +28,11 @@ public class Dimension
 
     public void cycle ()
     {
-        Vector<ThreeDPoint> nextWorld = new Vector<ThreeDPoint>();
+        Vector<Cube> nextWorld = new Vector<Cube>();
 
         for (int i = 0; i < _theWorld.size(); i++)
-        {/*
-            ThreeDPoint theCube = _theWorld.elementAt(i);
+        {
+            Cube theCube = _theWorld.elementAt(i);
             ThreeDPoint[] cubes = neighbours(theCube);
             int activeCount = -1;  // account for the fact "we" are active
 
@@ -41,7 +41,7 @@ public class Dimension
                 if (_theWorld.contains(cubes[i]))
                     activeCount++;
             }
-*/
+
 
         }
     }
