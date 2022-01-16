@@ -34,12 +34,15 @@ public class Dimension
         {
             ThreeDPoint theCube = _theWorld.elementAt(i);
             ThreeDPoint[] cubes = neighbours(theCube);
-            int activeCount = 0;
+            int activeCount = -1;  // account for the fact "we" are active
 
             for (int j = 0; j < cubes.length; j++)
             {
-                
+                if (_theWorld.contains(cubes[i]))
+                    activeCount++;
             }
+
+            
         }
     }
 
