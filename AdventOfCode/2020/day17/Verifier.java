@@ -15,7 +15,7 @@ public class Verifier
 
         ThreeDPoint coord = new ThreeDPoint(1, 2, 3);
 
-       // dim.neighbours(coord);
+        dim.neighbours(coord);
 
         return false;
     }
