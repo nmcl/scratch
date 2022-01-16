@@ -7,7 +7,7 @@ public class Dimension
 
     public Dimension (String dataFile, boolean debug)
     {
-        _theWorld = new Vector<ThreeDPoint>();
+        _theWorld = new Vector<Cube>();
         _width = 0;
         _height = 0;
         _minZ = 0;
@@ -31,7 +31,7 @@ public class Dimension
         Vector<ThreeDPoint> nextWorld = new Vector<ThreeDPoint>();
 
         for (int i = 0; i < _theWorld.size(); i++)
-        {
+        {/*
             ThreeDPoint theCube = _theWorld.elementAt(i);
             ThreeDPoint[] cubes = neighbours(theCube);
             int activeCount = -1;  // account for the fact "we" are active
@@ -41,8 +41,8 @@ public class Dimension
                 if (_theWorld.contains(cubes[i]))
                     activeCount++;
             }
+*/
 
-            
         }
     }
 
@@ -59,9 +59,12 @@ public class Dimension
             {
                 for (int x = 0; x < _width; x++)
                 {
-                    ThreeDPoint point = new ThreeDPoint(x, y, z);
-                    
-                    if (_theWorld.contains(point))
+                    Cube point = new Cube(new ThreeDPoint(x, y, z));
+                    int index = _theWorld.indexOf(point);
+
+                    point = _theWorld.elementAt(index);
+
+                    if (point.isActive())
                         str += CubeId.ACTIVE;
                     else
                         str += CubeId.INACTIVE;
@@ -123,12 +126,14 @@ public class Dimension
                         if (_debug)
                             System.out.println("Active cell at: "+p);
 
-                        _theWorld.add(p);
+                        _theWorld.add(new Cube(p, true));
                     }
                     else
                     {
                         if (_debug)
                             System.out.println("Inactive cell at: "+p);
+
+                        _theWorld.add(new Cube(p, false));
                     }
                 }
 
@@ -151,7 +156,7 @@ public class Dimension
         }
     }
 
-    private Vector<ThreeDPoint> _theWorld;
+    private Vector<Cube> _theWorld;
     private int _width;
     private int _height;
     private int _minZ;
