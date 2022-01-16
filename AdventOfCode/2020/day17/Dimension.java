@@ -45,17 +45,9 @@ public class Dimension
                     ThreeDPoint point = new ThreeDPoint(x, y, z);
                     
                     if (_theWorld.contains(point))
-                    {
-                        System.out.println("active "+point);
-
                         str += CubeId.ACTIVE;
-                    }
                     else
-                    {
-                        System.out.println("inactive "+point);
-
                         str += CubeId.INACTIVE;
-                    }
                 }
 
                 str += "\n";
