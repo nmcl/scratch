@@ -28,7 +28,19 @@ public class Dimension
 
     public void cycle ()
     {
+        Vector<ThreeDPoint> nextWorld = new Vector<ThreeDPoint>();
 
+        for (int i = 0; i < _theWorld.size(); i++)
+        {
+            ThreeDPoint theCube = _theWorld.elementAt(i);
+            ThreeDPoint[] cubes = neighbours(theCube);
+            int activeCount = 0;
+
+            for (int j = 0; j < cubes.length; j++)
+            {
+                
+            }
+        }
     }
 
     @Override
