@@ -41,8 +41,6 @@ public class Dimension
                 if (_theWorld.contains(cubes[i]))
                     activeCount++;
             }
-
-
         }
     }
 
