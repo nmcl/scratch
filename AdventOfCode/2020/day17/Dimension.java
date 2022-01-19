@@ -26,7 +26,7 @@ public class Dimension
      * Otherwise, the cube remains inactive.
      */
 
-    public void cycle ()
+    public booleam cycle ()
     {
         Vector<Cube> nextWorld = new Vector<Cube>();
 
@@ -42,6 +42,8 @@ public class Dimension
                     activeCount++;
             }
         }
+
+        return true;
     }
 
     @Override
