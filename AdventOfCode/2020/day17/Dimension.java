@@ -14,7 +14,7 @@ public class Dimension
         _maxZ = 0;
         _debug = debug;
 
-        loadLayer(dataFile);
+        loadLayer(dataFile);  // load the world
     }
 
     /**
