@@ -35,9 +35,9 @@ public class Dimension
             Cube theCube = _theWorld.elementAt(i);
 
             if (_debug)
-                System.out.println("Checking: "+theCube);
-                
-            ThreeDPoint[] cubes = neighbours(theCube.position());
+                System.out.println("\nChecking: "+theCube);
+
+            Cube[] cubes = neighbours(theCube);
             int activeCount = -1;  // account for the fact "we" are active
 
             for (int j = 0; j < cubes.length; j++)
@@ -83,10 +83,11 @@ public class Dimension
         return str;
     }
 
-    public ThreeDPoint[] neighbours (ThreeDPoint coord)
+    public Cube[] neighbours (Cube theCube)
     {
         int index = 0;
-        ThreeDPoint[] n = new ThreeDPoint[TOTAL_NEIGHBOURS];
+        Cube[] n = new Cube[TOTAL_NEIGHBOURS];
+        ThreeDPoint coord = theCube.position();
 
         for (int x = -1; x <= 1; x++)
         {
@@ -98,7 +99,7 @@ public class Dimension
 
                     System.out.println(v);
 
-                    n[index] = v;
+                    n[index] = new Cube(v);
                     index++;
                 }
             }
