@@ -1,11 +1,11 @@
 public class Cube
 {
-    public Cube (ThreeDPoint coord)
+    public Cube (FourDPoint coord)
     {
         _coord = coord;
     }
 
-    public final ThreeDPoint position ()
+    public final FourDPoint position ()
     {
         return _coord;
     }
@@ -35,5 +35,5 @@ public class Cube
         return false;
     }
 
-    private ThreeDPoint _coord;
+    private FourDPoint _coord;
 }
