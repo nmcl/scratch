@@ -2,7 +2,7 @@ public class Verifier
 {
     public static final String EXAMPLE_WORLD = "example.txt";
 
-    public static final int ACTIVE_CUBES = 112;
+    public static final int ACTIVE_CUBES = 848;
 
     public Verifier (int iterations, boolean debug)
     {
