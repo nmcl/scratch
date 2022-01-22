@@ -2,13 +2,7 @@ public class Cube
 {
     public Cube (ThreeDPoint coord)
     {
-        this(coord, false);
-    }
-
-    public Cube (ThreeDPoint coord, boolean active)
-    {
         _coord = coord;
-        _active = active;
     }
 
     public final ThreeDPoint position ()
@@ -16,25 +10,10 @@ public class Cube
         return _coord;
     }
 
-    public final boolean isActive ()
-    {
-        return _active;
-    }
-
-    public final void activate ()
-    {
-        _active = true;
-    }
-
-    public final void deactivate ()
-    {
-        _active = false;
-    }
-
     @Override
     public String toString ()
     {
-        return "Cube: "+((_active ? "active": "inactive"))+" at "+_coord;
+        return "Cube: "+_coord;
     }
 
     @Override
@@ -57,5 +36,4 @@ public class Cube
     }
 
     private ThreeDPoint _coord;
-    private boolean _active;
 }
