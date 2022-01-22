@@ -30,6 +30,8 @@ public class Dimension
     {
         Vector<Cube> nextWorld = new Vector<Cube>();
 
+        // go through the entries in the current world first.
+
         for (int i = 0; i < _theWorld.size(); i++)
         {
             Cube theCube = _theWorld.elementAt(i);
@@ -46,7 +48,21 @@ public class Dimension
                     activeCount++;
             }
 
-            System.out.println(theCube+" active count: "+activeCount);
+            if (_debug)
+                System.out.println(theCube+" active count: "+activeCount);
+
+            if (theCube.isActive())
+            {
+                if ((activeCount != 2) && (activeCount == 3))
+                    theCube.deactivate();
+            }
+            else
+            {
+                if (activeCount == 3)
+                    theCube.activate();
+            }
+
+            nextWorld.add(theCube);
         }
 
         return true;
