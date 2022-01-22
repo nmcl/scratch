@@ -66,7 +66,7 @@ public class Dimension
 
         for (int i = 0; i < _theWorld.size(); i++)
         {
-            ThreeDPoint coord = _theWorld.elementAt(i).position();
+            FourDPoint coord = _theWorld.elementAt(i).position();
 
             if (coord.getX() < minX)
                 minX = coord.getX();
@@ -95,7 +95,7 @@ public class Dimension
             {
                 for (int y = minY; y <= maxY; y++)
                 {
-                    if (_theWorld.contains(new Cube(new ThreeDPoint(y, x, z))))
+                    if (_theWorld.contains(new Cube(new FourDPoint(y, x, z, 0))))
                         System.out.print(CubeId.ACTIVE);
                     else
                         System.out.print(CubeId.INACTIVE);
@@ -120,8 +120,8 @@ public class Dimension
                 {
                     for (int z = -1; z <= 1; z++) 
                     {
-                        ThreeDPoint coord = theCube.position();
-                        Cube tempCube = new Cube(new ThreeDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() + z));
+                        FourDPoint coord = theCube.position();
+                        Cube tempCube = new Cube(new FourDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() + z, 0));
 
                         if (_theWorld.contains(tempCube))
                         {
@@ -164,7 +164,7 @@ public class Dimension
 
                 for (int i = 0; i < line.length(); i++)
                 {
-                    ThreeDPoint p = new ThreeDPoint(i, _height, 0);
+                    FourDPoint p = new FourDPoint(i, _height, 0, 0);
 
                     if (CubeId.ACTIVE == line.charAt(i))
                     {
