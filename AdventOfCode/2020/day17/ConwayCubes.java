@@ -4,6 +4,8 @@ public class ConwayCubes
 {
     public static final String WORLD_DATA = "world.txt";
 
+    public static final int ITERATIONS = 6;
+
     public static void main (String[] args)
     {
         boolean verify = false;
@@ -26,7 +28,7 @@ public class ConwayCubes
 
         if (verify)
         {
-            Verifier v = new Verifier(debug);
+            Verifier v = new Verifier(ITERATIONS, debug);
 
             if (v.verify())
                 System.out.println("Verified ok.");
