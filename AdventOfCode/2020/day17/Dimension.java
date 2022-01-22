@@ -10,6 +10,7 @@ public class Dimension
         _theWorld = new HashSet<Cube>();
         _width = 0;
         _height = 0;
+        _iterations = iterations;
         _debug = debug;
 
         loadLayer(dataFile);  // load the world
@@ -24,104 +25,65 @@ public class Dimension
      * Otherwise, the cube remains inactive.
      */
 
-    public boolean cycle ()
+    public int cycle ()
     {
-        Vector<Cube> nextWorld = new Vector<Cube>();
-
-        // go through the entries in the current world first.
-
-        for (int i = 0; i < _theWorld.size(); i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            Cube theCube = _theWorld.elementAt(i);
+            HashSet<Cube> nextWorld = new HashSet<Cube>();
+            HashSet<Cube> checked = new HashSet<Cube>();
 
-            if (_debug)
-                System.out.println("\nChecking: "+theCube);
-
-            Cube[] cubes = neighbours(theCube);
-            int activeCount = 0;
-
-            for (int j = 0; j < cubes.length; j++)
+            for (Cube theCube : _theWorld)
             {
-                if (!theCube.position().equals(cubes[j].position()))  // ignore the cube itself
+                neighbours(nextWorld, checked, theCube, true);
+            }
+
+            System.out.println("nextWorld size "+nextWorld.size());
+            System.out.println("Checked "+checked.size());
+            
+            _theWorld = nextWorld;
+        }
+
+        return _theWorld.size();
+    }
+
+    private void neighbours (HashSet<Cube> nextWorld, HashSet<Cube> checked, Cube theCube, boolean active)
+    {
+        if (!checked.contains(theCube))
+        {
+            long numberActive = active ? -1 : 0;
+            
+            checked.add(theCube);
+            
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
                 {
-                    int index = _theWorld.indexOf(cubes[j]);
-
-                    System.out.println("Neighbour proxy: "+cubes[j]+" index: "+index);
-
-                    if (index != -1)
+                    for (int z = -1; z <= 1; z++) 
                     {
-                        Cube nCube = _theWorld.elementAt(index);
-
-                        System.out.println("Neighbour: "+nCube);
-
-                        if (nCube.isActive())
+                        ThreeDPoint coord = theCube.position();
+                        Cube tempCube = new Cube(new ThreeDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() + z));
+                
+                        if (_theWorld.contains(tempCube))
                         {
-                            activeCount++;
-
-                            System.out.println("Active "+activeCount);
+                            numberActive++;
                         }
                         else
-                            System.out.println("Not active");
+                        {
+                            if (active)
+                            {
+                                neighbours(nextWorld, checked, tempCube, false);
+                            }
+                        }
                     }
                 }
             }
-
-            if (_debug)
-                System.out.println(theCube+" active count: "+activeCount);
-
-            if (theCube.isActive())
+            
+            if ((active && (numberActive == 2 || numberActive == 3)) ||
+              (!active && numberActive == 3)) 
             {
-                if ((activeCount != 2) && (activeCount == 3))
-                    theCube.deactivate();
-            }
-            else
-            {
-                if (activeCount == 3)
-                    theCube.activate();
-            }
-
-            nextWorld.add(theCube);
-        }
-
-        _theWorld = nextWorld;
-
-        return true;
-    }
-
-    @Override
-    public String toString ()
-    {
-        String str = "";
-
-        for (int i = 0; i < _theWorld.length; i++)
-        {
-            str += _theWorld[i];
-        }
-
-        return str;
-    }
-
-    public Cube[] neighbours (Cube theCube)
-    {
-        int index = 0;
-        Cube[] n = new Cube[TOTAL_NEIGHBOURS];
-        ThreeDPoint coord = theCube.position();
-
-        for (int x = -1; x <= 1; x++)
-        {
-            for (int y = -1; y <= 1; y++)
-            {
-                for (int z = -1; z <= 1; z++)
-                {
-                    ThreeDPoint v = new ThreeDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() +z);
-
-                    n[index] = new Cube(v);
-                    index++;
-                }
+                nextWorld.add(theCube);
             }
         }
-
-        return n;
     }
 
     private void loadLayer (String inputFile)
@@ -132,7 +94,6 @@ public class Dimension
         {
             reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
-            Vector<Cube> theWorld = new Vector<Cube>();
 
             while ((line = reader.readLine()) != null)
             {
@@ -150,14 +111,12 @@ public class Dimension
                         if (_debug)
                             System.out.println("Active cell at: "+p);
 
-                        theWorld.add(new Cube(p, true));
+                        _theWorld.add(new Cube(p, true));
                     }
                     else
                     {
                         if (_debug)
                             System.out.println("Inactive cell at: "+p);
-
-                        theWorld.add(new Cube(p, false));
                     }
                 }
 
@@ -183,5 +142,6 @@ public class Dimension
     private HashSet<Cube> _theWorld;
     private int _width;
     private int _height;
+    private int _iterations;
     private boolean _debug;
 }
