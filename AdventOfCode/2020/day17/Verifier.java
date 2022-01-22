@@ -1,7 +1,9 @@
 public class Verifier
 {
     public static final String EXAMPLE_WORLD = "example.txt";
-    
+
+    public static final int ACTIVE_CUBES = 12;
+
     public Verifier (int iterations, boolean debug)
     {
         _iterations = iterations;
@@ -11,8 +13,12 @@ public class Verifier
     public boolean verify ()
     {
         Dimension dim = new Dimension(EXAMPLE_WORLD, _iterations, _debug);
+        int active = dim.cycle();
 
-        System.out.println("got: "+dim.cycle());
+        if (active == ACTIVE_CUBES)
+            return true;
+
+        System.out.println("Invalid active cubes: "+dim.cycle());
 
         return false;
     }
