@@ -32,6 +32,8 @@ public class Dimension
             HashSet<Cube> nextWorld = new HashSet<Cube>();
             HashSet<Cube> checked = new HashSet<Cube>();
 
+            System.out.println("\niteration "+i);
+            
             for (Cube theCube : _theWorld)
             {
                 neighbours(nextWorld, checked, theCube, true);
@@ -39,7 +41,7 @@ public class Dimension
 
             System.out.println("nextWorld size "+nextWorld.size());
             System.out.println("Checked "+checked.size());
-            
+
             _theWorld = nextWorld;
         }
 
@@ -63,8 +65,12 @@ public class Dimension
                         ThreeDPoint coord = theCube.position();
                         Cube tempCube = new Cube(new ThreeDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() + z));
                 
+                        System.out.println("Checking "+tempCube);
+
                         if (_theWorld.contains(tempCube))
                         {
+                            System.out.println("present");
+
                             numberActive++;
                         }
                         else
@@ -111,7 +117,7 @@ public class Dimension
                         if (_debug)
                             System.out.println("Active cell at: "+p);
 
-                        _theWorld.add(new Cube(p, true));
+                        _theWorld.add(new Cube(p));
                     }
                     else
                     {
