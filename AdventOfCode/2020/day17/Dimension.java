@@ -5,13 +5,11 @@ public class Dimension
 {
     public static final int TOTAL_NEIGHBOURS = 27;
 
-    public Dimension (String dataFile, boolean debug)
+    public Dimension (String dataFile, int iterations, boolean debug)
     {
-        _theWorld = new Vector<Cube>();
+        _theWorld = new Layer[(iterations *2) +1];
         _width = 0;
         _height = 0;
-        _minZ = 0;
-        _maxZ = 0;
         _debug = debug;
 
         loadLayer(dataFile);  // load the world
@@ -27,7 +25,7 @@ public class Dimension
      */
 
     public boolean cycle ()
-    {
+    {/*
         Vector<Cube> nextWorld = new Vector<Cube>();
 
         // go through the entries in the current world first.
@@ -86,7 +84,7 @@ public class Dimension
         }
 
         _theWorld = nextWorld;
-
+*/
         return true;
     }
 
@@ -95,27 +93,9 @@ public class Dimension
     {
         String str = "";
 
-        for (int z = _minZ; z <= _maxZ; z++)
+        for (int i = 0; i < _theWorld.length; i++)
         {
-            str += "z="+z+"\n";
-
-            for (int y = 0; y < _height; y++)
-            {
-                for (int x = 0; x < _width; x++)
-                {
-                    Cube point = new Cube(new ThreeDPoint(x, y, z));
-                    int index = _theWorld.indexOf(point);
-
-                    point = _theWorld.elementAt(index);
-
-                    if (point.isActive())
-                        str += CubeId.ACTIVE;
-                    else
-                        str += CubeId.INACTIVE;
-                }
-
-                str += "\n";
-            }
+            str += _theWorld[i];
         }
 
         return str;
@@ -152,6 +132,7 @@ public class Dimension
         {
             reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
+            Vector<Cube> theWorld = new Vector<Cube>();
 
             while ((line = reader.readLine()) != null)
             {
@@ -169,14 +150,14 @@ public class Dimension
                         if (_debug)
                             System.out.println("Active cell at: "+p);
 
-                        _theWorld.add(new Cube(p, true));
+                        theWorld.add(new Cube(p, true));
                     }
                     else
                     {
                         if (_debug)
                             System.out.println("Inactive cell at: "+p);
 
-                        _theWorld.add(new Cube(p, false));
+                        theWorld.add(new Cube(p, false));
                     }
                 }
 
@@ -197,12 +178,12 @@ public class Dimension
             {
             }
         }
+
+        Layer theLayer = new Layer(0, _width, _height);
     }
 
-    private Vector<Cube> _theWorld;
+    private Layer[] _theWorld;
     private int _width;
     private int _height;
-    private int _minZ;
-    private int _maxZ;
     private boolean _debug;
 }
