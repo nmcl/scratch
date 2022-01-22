@@ -13,14 +13,8 @@ public class Verifier
 
         System.out.println("Loaded:\n\n"+dim);
 
-        ThreeDPoint coord = new ThreeDPoint(1, 2, 3);
-
-        dim.neighbours(coord);
-
-        System.out.println("\n");
-
         dim.cycle();
-        
+
         return false;
     }
 
