@@ -52,6 +52,41 @@ public class Dimension
         return _theWorld.size();
     }
 
+    private void printWorld ()
+    {
+        int minX = 0, maxX = 0;
+        int minY = 0, maxY = 0;
+        int minZ = 0, maxZ = 0;
+
+        for (int i = 0; i < _theWorld.size(); i++)
+        {
+            ThreeDPoint coord = _theWorld.elementAt(i).position();
+
+            if (coord.getX() < minX)
+                minX = coord.getX();
+
+            if (coord.getX() > maxX)
+                maxX = coord.getX();
+
+            if (coord.getY() < minY)
+                minY = coord.getY();
+
+            if (coord.getY() > maxY)
+                maxY = coord.getY();
+
+            if (coord.getZ() < minZ)
+                minZ = coord.getZ();
+
+            if (coord.getZ() > maxZ)
+                maxZ = coord.getZ();
+        }
+
+        for (int z = minZ; z <= maxZ; z++)
+        {
+            
+        }
+    }
+
     private void neighbours (Vector<Cube> nextWorld, Vector<Cube> checked, Cube theCube, boolean active)
     {
         if (!checked.contains(theCube))
