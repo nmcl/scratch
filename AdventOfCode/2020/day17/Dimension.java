@@ -42,7 +42,7 @@ public class Dimension
 
             for (int j = 0; j < cubes.length; j++)
             {
-                if (_theWorld.contains(cubes[i]))
+                if (_theWorld.contains(cubes[j]))
                     activeCount++;
             }
 
