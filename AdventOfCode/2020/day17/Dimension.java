@@ -26,14 +26,14 @@ public class Dimension
      * Otherwise, the cube remains inactive.
      */
 
-    public booleam cycle ()
+    public boolean cycle ()
     {
         Vector<Cube> nextWorld = new Vector<Cube>();
 
         for (int i = 0; i < _theWorld.size(); i++)
         {
             Cube theCube = _theWorld.elementAt(i);
-            ThreeDPoint[] cubes = neighbours(theCube);
+            ThreeDPoint[] cubes = neighbours(theCube.position());
             int activeCount = -1;  // account for the fact "we" are active
 
             for (int j = 0; j < cubes.length; j++)
