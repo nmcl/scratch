@@ -65,6 +65,8 @@ public class Dimension
             nextWorld.add(theCube);
         }
 
+        _theWorld = nextWorld;
+
         return true;
     }
 
