@@ -2,7 +2,7 @@ public class Verifier
 {
     public static final String EXAMPLE_WORLD = "example.txt";
 
-    public static final int ACTIVE_CUBES = 12;
+    public static final int ACTIVE_CUBES = 112;
 
     public Verifier (int iterations, boolean debug)
     {
@@ -18,7 +18,7 @@ public class Verifier
         if (active == ACTIVE_CUBES)
             return true;
 
-        System.out.println("Invalid active cubes: "+dim.cycle());
+        System.out.println("Invalid active cubes: "+active);
 
         return false;
     }
