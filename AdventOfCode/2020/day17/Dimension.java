@@ -7,7 +7,7 @@ public class Dimension
 
     public Dimension (String dataFile, int iterations, boolean debug)
     {
-        _theWorld = new HashSet<Cube>();
+        _theWorld = new Vector<Cube>();
         _width = 0;
         _height = 0;
         _iterations = iterations;
@@ -29,18 +29,22 @@ public class Dimension
     {
         for (int i = 0; i < _iterations; i++)
         {
-            HashSet<Cube> nextWorld = new HashSet<Cube>();
-            HashSet<Cube> checked = new HashSet<Cube>();
+            Vector<Cube> nextWorld = new Vector<Cube>();
+            Vector<Cube> checked = new Vector<Cube>();
 
-            System.out.println("\niteration "+i);
-            
+            if (_debug)
+                System.out.println("\nIteration "+i);
+
             for (Cube theCube : _theWorld)
             {
                 neighbours(nextWorld, checked, theCube, true);
             }
 
-            System.out.println("nextWorld size "+nextWorld.size());
-            System.out.println("Checked "+checked.size());
+            if (_debug)
+            {
+                System.out.println("nextWorld size "+nextWorld.size());
+                System.out.println("Checked "+checked.size());
+            }
 
             _theWorld = nextWorld;
         }
@@ -48,7 +52,7 @@ public class Dimension
         return _theWorld.size();
     }
 
-    private void neighbours (HashSet<Cube> nextWorld, HashSet<Cube> checked, Cube theCube, boolean active)
+    private void neighbours (Vector<Cube> nextWorld, Vector<Cube> checked, Cube theCube, boolean active)
     {
         if (!checked.contains(theCube))
         {
@@ -64,13 +68,9 @@ public class Dimension
                     {
                         ThreeDPoint coord = theCube.position();
                         Cube tempCube = new Cube(new ThreeDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() + z));
-                
-                        System.out.println("Checking "+tempCube);
 
                         if (_theWorld.contains(tempCube))
                         {
-                            System.out.println("present");
-
                             numberActive++;
                         }
                         else
@@ -145,7 +145,7 @@ public class Dimension
         }
     }
 
-    private HashSet<Cube> _theWorld;
+    private Vector<Cube> _theWorld;
     private int _width;
     private int _height;
     private int _iterations;
