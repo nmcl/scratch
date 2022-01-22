@@ -33,6 +33,10 @@ public class Dimension
         for (int i = 0; i < _theWorld.size(); i++)
         {
             Cube theCube = _theWorld.elementAt(i);
+
+            if (_debug)
+                System.out.println("Checking: "+theCube);
+                
             ThreeDPoint[] cubes = neighbours(theCube.position());
             int activeCount = -1;  // account for the fact "we" are active
 
@@ -42,7 +46,7 @@ public class Dimension
                     activeCount++;
             }
 
-            // ??
+            System.out.println(theCube+" active count: "+activeCount);
         }
 
         return true;
