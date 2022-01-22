@@ -178,8 +178,6 @@ public class Dimension
             {
             }
         }
-
-        Layer theLayer = new Layer(0, _width, _height);
     }
 
     private Layer[] _theWorld;
