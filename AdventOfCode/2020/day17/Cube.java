@@ -11,17 +11,22 @@ public class Cube
         _active = active;
     }
 
-    public boolean isActive ()
+    public final ThreeDPoint position ()
+    {
+        return _coord;
+    }
+
+    public final boolean isActive ()
     {
         return _active;
     }
 
-    public void activate ()
+    public final void activate ()
     {
         _active = true;
     }
 
-    public void deactivate ()
+    public final void deactivate ()
     {
         _active = false;
     }
