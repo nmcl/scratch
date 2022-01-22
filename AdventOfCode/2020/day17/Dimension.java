@@ -48,6 +48,8 @@ public class Dimension
                 {
                     int index = _theWorld.indexOf(cubes[j]);
 
+                    System.out.println("Neighbour: "+cubes[j]+" index: "+index);
+
                     if (index != -1)
                     {
                         Cube nCube = _theWorld.elementAt(index);
