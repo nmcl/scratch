@@ -12,11 +12,7 @@ public class Verifier
     {
         Dimension dim = new Dimension(EXAMPLE_WORLD, _iterations, _debug);
 
-        System.out.println("Loaded:\n\n"+dim);
-
-        dim.cycle();
-
-        System.out.println("Now:\n\n"+dim);
+        System.out.println("got: "+dim.cycle());
 
         return false;
     }
