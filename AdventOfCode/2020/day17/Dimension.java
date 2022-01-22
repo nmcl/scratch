@@ -40,7 +40,7 @@ public class Dimension
                 System.out.println("\nChecking: "+theCube);
 
             Cube[] cubes = neighbours(theCube);
-            int activeCount = -1;  // account for the fact "we" are active
+            int activeCount = 0;
 
             for (int j = 0; j < cubes.length; j++)
             {
@@ -48,14 +48,22 @@ public class Dimension
                 {
                     int index = _theWorld.indexOf(cubes[j]);
 
-                    System.out.println("Neighbour: "+cubes[j]+" index: "+index);
+                    System.out.println("Neighbour proxy: "+cubes[j]+" index: "+index);
 
                     if (index != -1)
                     {
                         Cube nCube = _theWorld.elementAt(index);
 
+                        System.out.println("Neighbour: "+nCube);
+
                         if (nCube.isActive())
+                        {
                             activeCount++;
+
+                            System.out.println("Active "+activeCount);
+                        }
+                        else
+                            System.out.println("Not active");
                     }
                 }
             }
@@ -126,8 +134,6 @@ public class Dimension
                 for (int z = -1; z <= 1; z++)
                 {
                     ThreeDPoint v = new ThreeDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() +z);
-
-                    System.out.println(v);
 
                     n[index] = new Cube(v);
                     index++;
