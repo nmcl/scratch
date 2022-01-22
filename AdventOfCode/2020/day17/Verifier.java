@@ -17,6 +17,10 @@ public class Verifier
 
         dim.neighbours(coord);
 
+        System.out.println("\n");
+
+        dim.cycle();
+        
         return false;
     }
 
