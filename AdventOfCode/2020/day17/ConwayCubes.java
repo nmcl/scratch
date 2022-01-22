@@ -37,5 +37,10 @@ public class ConwayCubes
 
             System.exit(0);
         }
+
+        Dimension dim = new Dimension(WORLD_DATA, ITERATIONS, debug);
+        int active = dim.cycle();
+
+        System.out.println("After "+ITERATIONS+" number of active cubes: "+active);
     }
 }
