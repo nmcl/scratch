@@ -1,23 +1,24 @@
 import java.util.Objects;
 
 /*
- * Represents a <x, y, z> point.
+ * Represents a <x, y, z, w> point.
  */
 
-public class ThreeDPoint
+public class FourDPoint
 {
-    public ThreeDPoint (int x, int y, int z)
+    public FourDPoint (int x, int y, int z, int w)
     {
         _x = x;
         _y = y;
         _z = z;
     }
 
-    protected ThreeDPoint (ThreeDPoint toCopy)
+    protected FourDPoint (FourDPoint toCopy)
     {
         _x = toCopy._x;
         _y = toCopy._y;
         _z = toCopy._z;
+        _w = toCopy._w;
     }
 
     public final int getX ()
@@ -35,16 +36,21 @@ public class ThreeDPoint
         return _z;
     }
 
+    public final int getW ()
+    {
+        return _w;
+    }
+
     @Override
     public String toString ()
     {
-        return "ThreeDPoint < "+_x+", "+_y+", "+_z+" >";
+        return "FourDPoint < "+_x+", "+_y+", "+_z+", "+_w+" >";
     }
     
     @Override
     public int hashCode ()
     {
-        return Objects.hash(_x, _y, _z);
+        return Objects.hash(_x, _y, _z, _w);
     }
 
     @Override
@@ -58,9 +64,9 @@ public class ThreeDPoint
         
         if (getClass() == obj.getClass())
         {
-            ThreeDPoint temp = (ThreeDPoint) obj;
+            FourDPoint temp = (FourDPoint) obj;
 
-            return ((_x == temp._x) && (_y == temp._y) && (_z == temp._z));
+            return ((_x == temp._x) && (_y == temp._y) && (_z == temp._z) && (_w == temp._w));
         }
 
         return false;
@@ -69,4 +75,5 @@ public class ThreeDPoint
     protected int _x;
     protected int _y;
     protected int _z;
+    protected int _w;
 }
