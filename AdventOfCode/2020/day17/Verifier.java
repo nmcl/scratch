@@ -15,6 +15,8 @@ public class Verifier
 
         dim.cycle();
 
+        System.out.println("Now:\n\n"+dim);
+
         return false;
     }
 
