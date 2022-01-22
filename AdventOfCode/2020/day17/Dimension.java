@@ -14,6 +14,9 @@ public class Dimension
         _debug = debug;
 
         loadLayer(dataFile);  // load the world
+
+        if (_debug)
+            printWorld();
     }
 
     /**
@@ -47,6 +50,9 @@ public class Dimension
             }
 
             _theWorld = nextWorld;
+
+            if (_debug)
+                printWorld();
         }
 
         return _theWorld.size();
@@ -83,7 +89,20 @@ public class Dimension
 
         for (int z = minZ; z <= maxZ; z++)
         {
-            
+            System.out.println("z="+z);
+
+            for (int x = minX; x <= maxX; x++)
+            {
+                for (int y = minY; y <= maxY; y++)
+                {
+                    if (_theWorld.contains(new Cube(new ThreeDPoint(y, x, z))))
+                        System.out.print(CubeId.ACTIVE);
+                    else
+                        System.out.print(CubeId.INACTIVE);
+                }
+
+                System.out.println();
+            }
         }
     }
 
