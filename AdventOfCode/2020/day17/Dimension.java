@@ -44,8 +44,18 @@ public class Dimension
 
             for (int j = 0; j < cubes.length; j++)
             {
-                if (_theWorld.contains(cubes[j]))
-                    activeCount++;
+                if (!theCube.position().equals(cubes[j].position()))  // ignore the cube itself
+                {
+                    int index = _theWorld.indexOf(cubes[j]);
+
+                    if (index != -1)
+                    {
+                        Cube nCube = _theWorld.elementAt(index);
+
+                        if (nCube.isActive())
+                            activeCount++;
+                    }
+                }
             }
 
             if (_debug)
