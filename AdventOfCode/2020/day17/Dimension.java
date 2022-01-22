@@ -7,7 +7,7 @@ public class Dimension
 
     public Dimension (String dataFile, int iterations, boolean debug)
     {
-        _theWorld = new Layer[(iterations *2) +1];
+        _theWorld = new HashSet<Cube>();
         _width = 0;
         _height = 0;
         _debug = debug;
@@ -25,7 +25,7 @@ public class Dimension
      */
 
     public boolean cycle ()
-    {/*
+    {
         Vector<Cube> nextWorld = new Vector<Cube>();
 
         // go through the entries in the current world first.
@@ -84,7 +84,7 @@ public class Dimension
         }
 
         _theWorld = nextWorld;
-*/
+
         return true;
     }
 
@@ -180,7 +180,7 @@ public class Dimension
         }
     }
 
-    private Layer[] _theWorld;
+    private HashSet<Cube> _theWorld;
     private int _width;
     private int _height;
     private boolean _debug;
