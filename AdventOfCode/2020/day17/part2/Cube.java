@@ -29,7 +29,8 @@ public class Cube
         {
             Cube temp = (Cube) obj;
 
-            return ((_coord.getX() == temp._coord.getX()) && (_coord.getY() == temp._coord.getY()) && (_coord.getZ() == temp._coord.getZ()));
+            return ((_coord.getX() == temp._coord.getX()) && (_coord.getY() == temp._coord.getY())
+                    && (_coord.getZ() == temp._coord.getZ()) && (_coord.getW() == temp._coord.getW()));
         }
 
         return false;
