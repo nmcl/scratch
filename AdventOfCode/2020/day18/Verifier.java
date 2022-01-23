@@ -52,8 +52,6 @@ public class Verifier
 
                         if (result == EXAMPLE5_RESULT)
                         {
-                            return true;
-                            /*
                             data = Util.loadData(EXAMPLE6);
 
                             result = p.parse(data);
@@ -61,7 +59,7 @@ public class Verifier
                             if (result == EXAMPLE6_RESULT)
                                 return true;
                             else
-                                System.out.println("Incorrect value for "+EXAMPLE6+" "+result);*/
+                                System.out.println("Incorrect value for "+EXAMPLE6+" "+result);
                         }
                         else
                             System.out.println("Incorrect value for "+EXAMPLE5+" "+result);
