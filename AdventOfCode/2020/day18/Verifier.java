@@ -6,6 +6,10 @@ public class Verifier
     public static final long EXAMPLE1_RESULT = 71;
     public static final String EXAMPLE2 = "example2.txt";
     public static final long EXAMPLE2_RESULT = 51;
+    public static final String EXAMPLE3 = "example3.txt";
+    public static final long EXAMPLE3_RESULT = 26;
+    public static final String EXAMPLE4 = "example4.txt";
+    public static final long EXAMPLE4_RESULT = 437;
 
     public Verifier (boolean debug)
     {
@@ -25,7 +29,25 @@ public class Verifier
             result = p.parse(data);
 
             if (result == EXAMPLE2_RESULT)
-                return true;
+            {
+                data = Util.loadData(EXAMPLE3);
+
+                result = p.parse(data);
+
+                if (result == EXAMPLE3_RESULT)
+                {
+                    data = Util.loadData(EXAMPLE4);
+
+                    result = p.parse(data);
+
+                    if (result == EXAMPLE4_RESULT)
+                        return true;
+                    else
+                        System.out.println("Incorrect value for "+EXAMPLE4+" "+result);
+                }
+                else
+                    System.out.println("Incorrect value for "+EXAMPLE3+" "+result);
+            }
             else
                 System.out.println("Incorrect value for "+EXAMPLE2+" "+result);
         }
