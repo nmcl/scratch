@@ -11,6 +11,7 @@ public class FourDPoint
         _x = x;
         _y = y;
         _z = z;
+        _w = w;
     }
 
     protected FourDPoint (FourDPoint toCopy)
