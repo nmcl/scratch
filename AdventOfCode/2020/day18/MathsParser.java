@@ -7,7 +7,7 @@ public class MathsParser
         _debug = debug;
     }
 
-    public int parse (Vector<String> data)
+    public long parse (Vector<String> data)
     {
         long finalResult = 0;
 
@@ -20,7 +20,7 @@ public class MathsParser
             char[] lineArray = currentLine.trim().toCharArray();
         }
 
-        return result;
+        return finalResult;
     }
 
     private boolean _debug;
