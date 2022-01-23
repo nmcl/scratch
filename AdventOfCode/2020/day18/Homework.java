@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Homework
 {
     public static final String INPUT_DATA = "input.txt";
@@ -33,5 +35,11 @@ public class Homework
 
             System.exit(0);
         }
+
+        Vector<String> data = Util.loadData(INPUT_DATA);
+        MathsParser p = new MathsParser(debug);
+        Long result = p.parse(data);
+
+        System.out.println("Sum of the resulting values: "+result);
     }
 }
