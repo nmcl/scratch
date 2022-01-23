@@ -120,18 +120,21 @@ public class Dimension
                 {
                     for (int z = -1; z <= 1; z++) 
                     {
-                        FourDPoint coord = theCube.position();
-                        Cube tempCube = new Cube(new FourDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() + z, 0));
+                        for (int w = -1; w <= 1; w++)
+                        {
+                            FourDPoint coord = theCube.position();
+                            Cube tempCube = new Cube(new FourDPoint(coord.getX() + x, coord.getY() + y, coord.getZ() + z, coord.getW() + w));
 
-                        if (_theWorld.contains(tempCube))
-                        {
-                            numberActive++;
-                        }
-                        else
-                        {
-                            if (active)
+                            if (_theWorld.contains(tempCube))
                             {
-                                neighbours(nextWorld, checked, tempCube, false);
+                                numberActive++;
+                            }
+                            else
+                            {
+                                if (active)
+                                {
+                                    neighbours(nextWorld, checked, tempCube, false);
+                                }
                             }
                         }
                     }
