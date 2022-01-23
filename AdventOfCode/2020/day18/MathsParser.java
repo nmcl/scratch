@@ -42,6 +42,9 @@ public class MathsParser
 
                         values.push(currentResult);
                         currentResult = 0L;
+
+                        if (_debug)
+                            System.out.println("1 currentResult "+currentResult);
                     }
                     break;
                     case Tokens.CLOSE_BRACE:
@@ -51,16 +54,25 @@ public class MathsParser
                             case Tokens.PLUS:
                             {
                                 currentResult += values.pop();
+
+                                if (_debug)
+                                    System.out.println("2 currentResult "+currentResult);
                             }
                             break;
                             case Tokens.MULTIPLY:
                             {
                                 currentResult *= values.pop();
+
+                                if (_debug)
+                                    System.out.println("3 currentResult "+currentResult);
                             }
                             break;
                             default:
                             {
-                                currentResult = values.pop();
+                                values.pop();
+
+                                if (_debug)
+                                    System.out.println("4 currentResult "+currentResult);
                             }
                             break;
                         }
@@ -73,16 +85,25 @@ public class MathsParser
                             case Tokens.PLUS:
                             {
                                 currentResult += Character.getNumericValue(lineArray[j]);
+
+                                if (_debug)
+                                    System.out.println("5 currentResult "+currentResult);
                             }
                             break;
                             case Tokens.MULTIPLY:
                             {
                                 currentResult *= Character.getNumericValue(lineArray[j]);
+
+                                if (_debug)
+                                    System.out.println("6 currentResult "+currentResult);
                             }
                             break;
                             default:
                             {
                                 currentResult = Character.getNumericValue(lineArray[j]);
+
+                                if (_debug)
+                                    System.out.println("7 currentResult "+currentResult);
                             }
                             break;
                         }
