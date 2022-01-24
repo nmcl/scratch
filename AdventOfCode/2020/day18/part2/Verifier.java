@@ -3,17 +3,17 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE1 = "example1.txt";
-    public static final long EXAMPLE1_RESULT = 71;
+    public static final long EXAMPLE1_RESULT = 231;
     public static final String EXAMPLE2 = "example2.txt";
     public static final long EXAMPLE2_RESULT = 51;
     public static final String EXAMPLE3 = "example3.txt";
-    public static final long EXAMPLE3_RESULT = 26;
+    public static final long EXAMPLE3_RESULT = 46;
     public static final String EXAMPLE4 = "example4.txt";
-    public static final long EXAMPLE4_RESULT = 437;
+    public static final long EXAMPLE4_RESULT = 1445;
     public static final String EXAMPLE5 = "example5.txt";
-    public static final long EXAMPLE5_RESULT = 12240;
+    public static final long EXAMPLE5_RESULT = 669060;
     public static final String EXAMPLE6 = "example6.txt";
-    public static final long EXAMPLE6_RESULT = 13632;
+    public static final long EXAMPLE6_RESULT = 23340;
 
     public Verifier (boolean debug)
     {
