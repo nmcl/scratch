@@ -10,6 +10,8 @@ public class MathsParser
     /**
      * All numbers within expressions are single digit so we can continue to use them as
      * characters.
+     * 
+     * Handle different precedence  to part 1.
      */
 
     public long parse (Vector<String> data)
