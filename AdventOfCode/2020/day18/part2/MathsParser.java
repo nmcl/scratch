@@ -18,6 +18,11 @@ public class MathsParser
     {
         long finalResult = 0L;
 
+        /*
+         * Since + has precedence, we need to unwind the entire
+         * equation and compute those values first before doing *
+         */
+
         for (int i = 0; i < data.size(); i++)
         {
             String currentLine = data.elementAt(i);
