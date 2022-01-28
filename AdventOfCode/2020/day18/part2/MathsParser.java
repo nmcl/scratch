@@ -29,6 +29,10 @@ public class MathsParser
             char[] lineArray = currentLine.trim().replaceAll("\\s", "").toCharArray(); // remove all spaces
             Stack<Character> operators = new Stack<Character>();
             Stack<Long> values = new Stack<Long>();
+
+            for (int j = 0; j < lineArray.length; j++)
+            {
+            }
         }
 
         return finalResult;
