@@ -64,6 +64,8 @@ public class MathsParser
                         {
                             Character c = nested.pop();
 
+                            System.out.println("popped "+c);
+                            
                             if (c == Tokens.OPEN_BRACE)
                                 done = true;
                             else
@@ -90,6 +92,8 @@ public class MathsParser
                         {
                             Character c = nested.pop();
 
+                            System.out.println("popped "+c);
+
                             if (c == Tokens.OPEN_BRACE)
                                 done = true;
                             else
@@ -102,6 +106,8 @@ public class MathsParser
                                 }
                             }
                         }
+
+                        System.out.println("pushing "+lineArray[j]);
 
                         nested.push(lineArray[j]);
                     }
