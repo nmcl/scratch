@@ -28,10 +28,24 @@ public class MathsParser
             String currentLine = data.elementAt(i);
             char[] lineArray = currentLine.trim().replaceAll("\\s", "").toCharArray(); // remove all spaces
             Stack<Character> operators = new Stack<Character>();
+            Stack<Character> nested = new Stack<Character>();
             Stack<Long> values = new Stack<Long>();
 
             for (int j = 0; j < lineArray.length; j++)
             {
+                switch (lineArray[j])
+                {
+                    case Tokens.OPEN_BRACE:
+                    {
+                        nested.push(lineArray[j]));
+                    }
+                    break;
+                    default:
+                    {
+
+                    }
+                    break;
+                }
             }
         }
 
