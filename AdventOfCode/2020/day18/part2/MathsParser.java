@@ -56,6 +56,25 @@ public class MathsParser
                     }
                     break;
                     case Tokens.PLUS:
+                    {
+                        boolean done = false;
+
+                        while (!done && !nested.isEmpty())
+                        {
+                            Character c = nested.pop();
+
+                            if (c == Tokens.OPEN_BRACE)
+                                done = true;
+                            else
+                            {
+                                if (c == Tokens.PLUS)
+                                    unrolled.add(c);
+                            }
+                        }
+
+                        nested.push(lineArray[j]);
+                    }
+                    break;
                     case Tokens.MULTIPLY:
                     {
                         boolean done = false;
