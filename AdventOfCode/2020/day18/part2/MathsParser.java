@@ -52,25 +52,21 @@ public class MathsParser
                             else
                                 done = true;
                         }
-
-                        nested.pop();
                     }
                     break;
                     case Tokens.PLUS:
                     {
-                        System.out.println("nested "+nested);
-                        System.out.println("unrolled "+unrolled);
-
-                        System.out.println("character "+Tokens.PLUS);
+                        if (_debug)
+                        {
+                            System.out.println("nested "+nested);
+                            System.out.println("unrolled "+unrolled);
+                            System.out.println("character "+Tokens.PLUS);
+                        }
 
                         while (!nested.isEmpty() && nested.peek() != Tokens.OPEN_BRACE)
                         {
-                            System.out.println("peeked "+nested.peek());
-          
                             if (nested.peek() == Tokens.PLUS)
                             {
-                                System.out.println("adding "+nested.peek());
-
                                 unrolled.add(nested.pop());
                                 continue;
                             }
@@ -79,25 +75,21 @@ public class MathsParser
                         }
 
                         nested.push(Tokens.PLUS);
-
-                        System.out.println("nested now "+nested);
                     }
                     break;
                     case Tokens.MULTIPLY:
                     {
-                        System.out.println("nested "+nested);
-                        System.out.println("unrolled "+unrolled);
-
-                        System.out.println("character "+Tokens.MULTIPLY);
+                        if (_debug)
+                        {
+                            System.out.println("nested "+nested);
+                            System.out.println("unrolled "+unrolled);
+                            System.out.println("character "+Tokens.MULTIPLY);
+                        }
 
                         while (!nested.isEmpty() && nested.peek() != Tokens.OPEN_BRACE)
                         {
-                            System.out.println("peeked "+nested.peek());
-          
                             if ((nested.peek() == Tokens.PLUS) || (nested.peek() == Tokens.MULTIPLY))
                             {
-                                System.out.println("adding "+nested.peek());
-
                                 unrolled.add(nested.pop());
                                 continue;
                             }
@@ -106,8 +98,6 @@ public class MathsParser
                         }
 
                         nested.push(Tokens.MULTIPLY);
-
-                        System.out.println("nested now "+nested);
                     }
                     break;
                     default:
@@ -123,7 +113,8 @@ public class MathsParser
                 unrolled.add(nested.pop());
             }
 
-            System.out.println("got "+unrolled);
+            if (_debug)
+                System.out.println("unrolled now: "+unrolled);
 
             Stack<Long> values = new Stack<Long>();
       
