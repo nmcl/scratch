@@ -37,7 +37,12 @@ public class MathsParser
                 {
                     case Tokens.OPEN_BRACE:
                     {
-                        nested.push(lineArray[j]));
+                        nested.push(lineArray[j]);
+                    }
+                    break;
+                    case Tokens.CLOSE_BRACE:
+                    {
+
                     }
                     break;
                     default:
