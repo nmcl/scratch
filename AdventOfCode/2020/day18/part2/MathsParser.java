@@ -29,7 +29,6 @@ public class MathsParser
             char[] lineArray = currentLine.trim().replaceAll("\\s", "").toCharArray(); // remove all spaces
             Vector<Character> unrolled = new Vector<Character>();
             Stack<Character> nested = new Stack<Character>();
-            Stack<Long> values = new Stack<Long>();
 
             for (int j = 0; j < lineArray.length; j++)
             {
@@ -81,8 +80,18 @@ public class MathsParser
 
                         while (!done && !nested.isEmpty())
                         {
+                            Character c = nested.pop();
 
+                            if (c == Tokens.OPEN_BRACE)
+                                done = true;
+                            else
+                            {
+                                if ((c == Tokens.PLUS) || (c == Tokens.MULTIPLY))
+                                    unrolled.add(c);
+                            }
                         }
+
+                        nested.push(lineArray[j]);
                     }
                     break;
                     default:
@@ -92,6 +101,39 @@ public class MathsParser
                     break;
                 }
             }
+
+            while (!nested.empty())
+            {
+                unrolled.add(nested.pop());
+            }
+
+            Stack<Long> values = new Stack<Long>();
+      
+            for (int k = 0; k < unrolled.size(); k++)
+            {
+                Character c = unrolled.elementAt(k);
+
+                switch (c)
+                {
+                    case Tokens.PLUS:
+                    {
+                        values.push(values.pop() + values.pop());
+                    }
+                    break;
+                    case Tokens.MULTIPLY:
+                    {
+                        values.push(values.pop() * values.pop());
+                    }
+                    break;
+                    default:
+                    {
+                        values.push((long) Character.getNumericValue(c));
+                    }
+                    break;
+                }
+            }
+      
+            finalResult += values.pop();
         }
 
         return finalResult;
