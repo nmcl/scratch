@@ -55,9 +55,20 @@ public class MathsParser
                         }
                     }
                     break;
+                    case Tokens.PLUS:
+                    case Tokens.MULTIPLY:
+                    {
+                        boolean done = false;
+
+                        while (!done && !nested.isEmpty())
+                        {
+
+                        }
+                    }
+                    break;
                     default:
                     {
-
+                        unrolled.add(lineArray[j]);
                     }
                     break;
                 }
