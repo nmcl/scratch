@@ -36,7 +36,7 @@ public class MathsParser
                 {
                     case Tokens.OPEN_BRACE:
                     {
-                        nested.push(lineArray[j]);
+                        nested.push(Tokens.OPEN_BRACE);
                     }
                     break;
                     case Tokens.CLOSE_BRACE:
@@ -52,6 +52,8 @@ public class MathsParser
                             else
                                 done = true;
                         }
+
+                        nested.pop();
                     }
                     break;
                     case Tokens.PLUS:
@@ -59,61 +61,53 @@ public class MathsParser
                         System.out.println("nested "+nested);
                         System.out.println("unrolled "+unrolled);
 
-                        boolean done = false;
-
                         System.out.println("character "+Tokens.PLUS);
 
-                        while (!done && !nested.isEmpty())
+                        while (!nested.isEmpty() && nested.peek() != Tokens.OPEN_BRACE)
                         {
-                            Character c = nested.pop();
-
-                            System.out.println("popped "+c);
-
-                            if (c == Tokens.OPEN_BRACE)
-                                done = true;
-                            else
+                            System.out.println("peeked "+nested.peek());
+          
+                            if (nested.peek() == Tokens.PLUS)
                             {
-                                if (c == Tokens.PLUS)
-                                {
-                                    System.out.println("adding "+c);
+                                System.out.println("adding "+nested.peek());
 
-                                    unrolled.add(c);
-                                }
+                                unrolled.add(nested.pop());
+                                continue;
                             }
+
+                            break;
                         }
 
-                        nested.push(lineArray[j]);
+                        nested.push(Tokens.PLUS);
+
+                        System.out.println("nested now "+nested);
                     }
                     break;
                     case Tokens.MULTIPLY:
                     {
                         System.out.println("nested "+nested);
                         System.out.println("unrolled "+unrolled);
-                        
-                        boolean done = false;
 
                         System.out.println("character "+Tokens.MULTIPLY);
 
-                        while (!done && !nested.isEmpty())
+                        while (!nested.isEmpty() && nested.peek() != Tokens.OPEN_BRACE)
                         {
-                            Character c = nested.pop();
-
-                            System.out.println("popped "+c);
-
-                            if (c == Tokens.OPEN_BRACE)
-                                done = true;
-                            else
+                            System.out.println("peeked "+nested.peek());
+          
+                            if ((nested.peek() == Tokens.PLUS) || (nested.peek() == Tokens.MULTIPLY))
                             {
-                                if ((c == Tokens.PLUS) || (c == Tokens.MULTIPLY))
-                                {
-                                    System.out.println("adding "+c);
+                                System.out.println("adding "+nested.peek());
 
-                                    unrolled.add(c);
-                                }
+                                unrolled.add(nested.pop());
+                                continue;
                             }
+
+                            break;
                         }
 
-                        nested.push(lineArray[j]);
+                        nested.push(Tokens.MULTIPLY);
+
+                        System.out.println("nested now "+nested);
                     }
                     break;
                     default:
