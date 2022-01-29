@@ -58,6 +58,8 @@ public class MathsParser
                     {
                         boolean done = false;
 
+                        System.out.println("character "+Tokens.PLUS);
+
                         while (!done && !nested.isEmpty())
                         {
                             Character c = nested.pop();
@@ -67,7 +69,11 @@ public class MathsParser
                             else
                             {
                                 if (c == Tokens.PLUS)
+                                {
+                                    System.out.println("adding "+c);
+
                                     unrolled.add(c);
+                                }
                             }
                         }
 
@@ -78,6 +84,8 @@ public class MathsParser
                     {
                         boolean done = false;
 
+                        System.out.println("character "+Tokens.MULTIPLY);
+
                         while (!done && !nested.isEmpty())
                         {
                             Character c = nested.pop();
@@ -87,7 +95,11 @@ public class MathsParser
                             else
                             {
                                 if ((c == Tokens.PLUS) || (c == Tokens.MULTIPLY))
+                                {
+                                    System.out.println("adding "+c);
+
                                     unrolled.add(c);
+                                }
                             }
                         }
 
