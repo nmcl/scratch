@@ -56,6 +56,9 @@ public class MathsParser
                     break;
                     case Tokens.PLUS:
                     {
+                        System.out.println("nested "+nested);
+                        System.out.println("unrolled "+unrolled);
+
                         boolean done = false;
 
                         System.out.println("character "+Tokens.PLUS);
@@ -65,7 +68,7 @@ public class MathsParser
                             Character c = nested.pop();
 
                             System.out.println("popped "+c);
-                            
+
                             if (c == Tokens.OPEN_BRACE)
                                 done = true;
                             else
@@ -84,6 +87,9 @@ public class MathsParser
                     break;
                     case Tokens.MULTIPLY:
                     {
+                        System.out.println("nested "+nested);
+                        System.out.println("unrolled "+unrolled);
+                        
                         boolean done = false;
 
                         System.out.println("character "+Tokens.MULTIPLY);
@@ -106,8 +112,6 @@ public class MathsParser
                                 }
                             }
                         }
-
-                        System.out.println("pushing "+lineArray[j]);
 
                         nested.push(lineArray[j]);
                     }
