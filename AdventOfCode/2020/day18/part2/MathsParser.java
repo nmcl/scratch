@@ -27,7 +27,7 @@ public class MathsParser
         {
             String currentLine = data.elementAt(i);
             char[] lineArray = currentLine.trim().replaceAll("\\s", "").toCharArray(); // remove all spaces
-            Stack<Character> operators = new Stack<Character>();
+            Vector<Character> unrolled = new Vector<Character>();
             Stack<Character> nested = new Stack<Character>();
             Stack<Long> values = new Stack<Long>();
 
@@ -42,7 +42,17 @@ public class MathsParser
                     break;
                     case Tokens.CLOSE_BRACE:
                     {
+                        boolean done = false;
 
+                        while (!done && !nested.isEmpty())
+                        {
+                            Character c = nested.pop();
+
+                            if (c != Tokens.OPEN_BRACE)
+                                unrolled.add(c);
+                            else
+                                done = true;
+                        }
                     }
                     break;
                     default:
