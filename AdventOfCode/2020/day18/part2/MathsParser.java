@@ -107,6 +107,8 @@ public class MathsParser
                 unrolled.add(nested.pop());
             }
 
+            System.out.println("got "+unrolled);
+
             Stack<Long> values = new Stack<Long>();
       
             for (int k = 0; k < unrolled.size(); k++)
