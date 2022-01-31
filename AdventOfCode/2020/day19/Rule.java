@@ -1,6 +1,6 @@
 public class Rule
 {
-    public Rule ()
+    public Rule (boolean debug)
     {
         
     }
