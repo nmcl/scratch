@@ -10,7 +10,7 @@ public class Util
          */
 
         BufferedReader reader = null;
-        Vector<Command> values = new Vector<Command>();
+        Vector<Rule> values = new Vector<Rule>();
 
         try
         {
