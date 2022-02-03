@@ -35,6 +35,38 @@ public class Util
         return values;
     }
 
+    public static final Vector<Message> loadMessages (String inputFile, boolean debug)
+    {
+        /*
+         * Open the data file and read it in.
+         */
+
+        BufferedReader reader = null;
+        Vector<Message> values = new Vector<Message>();
+
+        try
+        {
+            reader = new BufferedReader(new FileReader(inputFile));
+            
+        }
+        catch (Throwable ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                reader.close();
+            }
+            catch (Throwable ex)
+            {
+            }
+        }
+
+        return values;
+    }
+
     private Util ()
     {
     }
