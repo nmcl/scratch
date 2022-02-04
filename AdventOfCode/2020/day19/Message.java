@@ -5,5 +5,10 @@ public class Message
         _content = content;
     }
 
+    public final String getContent ()
+    {
+        return _content;
+    }
+
     private String _content;
 }
