@@ -28,32 +28,33 @@ public class Util
                 int nameDelim = line.indexOf(RULE_NAME_DELIMITER);
                 String name = line.substring(0, nameDelim);
 
-                System.out.println("Rule name: "+name);
+                if (debug)
+                    System.out.println("Rule name: "+name);
 
                 int matchDelim = line.indexOf(MATCH);
 
                 if (matchDelim == -1)
                 {
                     int orDelim = line.indexOf(OR_DELIMITER);  // there's only ever a maximum of one of these in a rule
-
-                    System.out.println("orDelim "+orDelim);
-
                     String dataOne = line.substring(nameDelim +1, ((orDelim == -1) ? line.length() : orDelim));
                     String dataTwo = ((orDelim == -1) ? null : line.substring(orDelim +1));
 
-                    System.out.println("Rule one: "+dataOne);
-                    System.out.println("Rule two: "+dataTwo);
+                    if (debug)
+                    {
+                        System.out.println("Rule one: "+dataOne);
+                        System.out.println("Rule two: "+dataTwo);
+                    }
 
                     String[] dataOneList = dataOne.trim().split(RULE_DELIMITER);
                     String[] dataTwoList = (dataTwo == null ? null : dataTwo.trim().split(RULE_DELIMITER));
 
-                    if (dataOneList != null)
+                    if (debug && (dataOneList != null))
                     {
                         for (int i = 0; i < dataOneList.length; i++)
                             System.out.println("Rule one list: "+dataOneList[i]);
                     }
 
-                    if (dataTwoList != null)
+                    if (debug && (dataTwoList != null))
                     {
                         for (int i = 0; i < dataTwoList.length; i++)
                             System.out.println("Rule two list: "+dataTwoList[i]);
