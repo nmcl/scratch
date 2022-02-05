@@ -18,6 +18,17 @@ public class Rule
         }
         else
             _ruleTwo = null;
+
+        _match = ' ';
+    }
+
+    public Rule (String number, char match)
+    {
+        _number = Integer.valueOf(number);
+
+        _ruleOne = _ruleTwo = null;
+
+        _match = match;
     }
 
     public final int getNumber ()
@@ -28,10 +39,11 @@ public class Rule
     @Override
     public String toString ()
     {
-        return "Rule < "+_number+", "+_ruleOne+", "+_ruleTwo+" >";
+        return "Rule < "+_number+", "+_ruleOne+", "+_ruleTwo+", "+_match+" >";
     }
 
     private int _number;
     private int[] _ruleOne;
     private int[] _ruleTwo;
+    private char _match;
 }
