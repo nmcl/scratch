@@ -5,7 +5,7 @@ public class Util
 {
     public static final char RULE_NAME_DELIMITER = ':';
     public static final char OR_DELIMITER = '|';
-    public static final char RULE_DELIMITER = ' ';
+    public static final String RULE_DELIMITER = " ";
 
     public static final Vector<Rule> loadRules (String inputFile, boolean debug)
     {
@@ -31,6 +31,10 @@ public class Util
                 String dataOne = line.substring(RULE_NAME_DELIMITER +1, ((orDelim == -1) ? line.length() : orDelim));
                 String dataTwo = ((orDelim == -1) ? null : line.substring(OR_DELIMITER +1));
 
+                char[] dataOneList = dataOne.split(RULE_DELIMITER);
+                char[] dataTwoList = (dataTwo == null ? null : dataTwo.split(RULE_DELIMITER));
+
+                values.add(new Rule(name, dataOneList, dataTwoList));
             }
         }
         catch (Throwable ex)
