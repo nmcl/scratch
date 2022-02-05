@@ -57,7 +57,7 @@ public class Rule
             str += ">";
         }
         else
-            str += _match+" >";
+            str += "'"+_match+"' >";
 
         return str;
     }
