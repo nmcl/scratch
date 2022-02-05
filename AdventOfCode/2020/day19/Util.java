@@ -4,7 +4,8 @@ import java.io.*;
 public class Util
 {
     public static final char RULE_NAME_DELIMITER = ':';
-    
+    public static final char OR_DELIMITER = '|';
+
     public static final Vector<Rule> loadRules (String inputFile, boolean debug)
     {
         /*
@@ -22,7 +23,10 @@ public class Util
          
             while (((line = reader.readLine()) != null) && (line.length() > 0))
             {
-                
+                int nameDelim = line.indexOf(RULE_NAME_DELIMITER);
+                String name = line.substring(0, nameDelim);
+
+                int orDelim = line.indexOf(OR_DELIMITER);  // there's only ever a maximum of one of these in a rule
             }
         }
         catch (Throwable ex)
