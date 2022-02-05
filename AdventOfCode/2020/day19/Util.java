@@ -3,6 +3,8 @@ import java.io.*;
 
 public class Util
 {
+    public static final char RULE_NAME_DELIMITER = ':';
+    
     public static final Vector<Rule> loadRules (String inputFile, boolean debug)
     {
         /*
