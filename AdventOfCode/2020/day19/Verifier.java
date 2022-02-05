@@ -1,6 +1,7 @@
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
+    public static final String[] EXAMPLE_MATCH = { "ababbb", "abbbab" };
 
     public Verifier (boolean debug)
     {
