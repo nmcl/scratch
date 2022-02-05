@@ -25,6 +25,12 @@ public class Rule
         return _number;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Rule < "+_number+", "+_ruleOne+", "+_ruleTwo+" >";
+    }
+
     private int _number;
     private int[] _ruleOne;
     private int[] _ruleTwo;
