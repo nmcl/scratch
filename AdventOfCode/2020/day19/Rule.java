@@ -1,9 +1,14 @@
 public class Rule
 {
-    public Rule (boolean debug)
+    public Rule (char name)
     {
-        _debug = debug;
+        _name = name;
     }
 
-    private boolean _debug;
+    public final char getName ()
+    {
+        return _name;
+    }
+
+    private char _name;
 }
