@@ -1,14 +1,14 @@
 public class Rule
 {
-    public Rule (char name)
+    public Rule (int number)
     {
-        _name = name;
+        _number = number;
     }
 
-    public final char getName ()
+    public final int getNumber ()
     {
-        return _name;
+        return _number;
     }
 
-    private char _name;
+    private int _number;
 }
