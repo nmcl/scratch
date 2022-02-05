@@ -5,6 +5,7 @@ public class Util
 {
     public static final char RULE_NAME_DELIMITER = ':';
     public static final char OR_DELIMITER = '|';
+    public static final char RULE_DELIMITER = ' ';
 
     public static final Vector<Rule> loadRules (String inputFile, boolean debug)
     {
@@ -27,6 +28,9 @@ public class Util
                 String name = line.substring(0, nameDelim);
 
                 int orDelim = line.indexOf(OR_DELIMITER);  // there's only ever a maximum of one of these in a rule
+                String dataOne = line.substring(RULE_NAME_DELIMITER +1, ((orDelim == -1) ? line.length() : orDelim));
+                String dataTwo = ((orDelim == -1) ? null : line.substring(OR_DELIMITER +1));
+
             }
         }
         catch (Throwable ex)
