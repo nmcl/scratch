@@ -8,7 +8,7 @@ public class Util
     public static final char MATCH = '"';
     public static final String RULE_DELIMITER = " ";
 
-    public static final Vector<Rule> loadRules (String inputFile, boolean debug)
+    public static final Rule[] loadRules (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
@@ -16,6 +16,7 @@ public class Util
 
         BufferedReader reader = null;
         Vector<Rule> values = new Vector<Rule>();
+        int maxRule = 0;
 
         try
         {
@@ -60,13 +61,23 @@ public class Util
                             System.out.println("Rule two list: "+dataTwoList[i]);
                     }
 
-                    values.add(new Rule(name, dataOneList, dataTwoList));
+                    Rule r = new Rule(name, dataOneList, dataTwoList);
+
+                    if (r.getNumber() > maxRule)
+                        maxRule = r.getNumber();
+
+                    values.add(r);
                 }
                 else
                 {
                     // match is always one character
 
-                    values.add(new Rule(name, line.charAt(matchDelim +1)));
+                    Rule r = new Rule(name, line.charAt(matchDelim +1));
+
+                    if (r.getNumber() > maxRule)
+                        maxRule = r.getNumber();
+
+                    values.add(r);
                 }
             }
         }
@@ -85,10 +96,19 @@ public class Util
             }
         }
 
-        return values;
+        Rule[] ordered = new Rule[maxRule +1];
+
+        for (int i = 0; i < values.size(); i++)
+        {
+            Rule r = values.elementAt(i);
+            
+            ordered[r.getNumber()] = r;
+        }
+
+        return ordered;
     }
 
-    public static final Vector<Message> loadMessages (String inputFile, boolean debug)
+    public static final Message[] loadMessages (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
@@ -128,7 +148,7 @@ public class Util
             }
         }
 
-        return values;
+        return values.toArray(new Message[values.size()]);
     }
 
     private Util ()
