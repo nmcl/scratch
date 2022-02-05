@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
@@ -11,11 +9,14 @@ public class Verifier
 
     public boolean verify ()
     {
-        Vector<Rule> rules = Util.loadRules(EXAMPLE_DATA, _debug);
-        Vector<Message> messages = Util.loadMessages(EXAMPLE_DATA, _debug);
+        Rule[] rules = Util.loadRules(EXAMPLE_DATA, _debug);
+        Message[] messages = Util.loadMessages(EXAMPLE_DATA, _debug);
 
-        System.out.println(rules);
-        System.out.println(messages);
+        for (int i = 0; i < rules.length; i++)
+            System.out.println(rules[i]);
+
+        for (int j = 0; j < messages.length; j++)
+            System.out.println(messages[j]);
 
         return false;
     }
