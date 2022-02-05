@@ -39,7 +39,27 @@ public class Rule
     @Override
     public String toString ()
     {
-        return "Rule < "+_number+", "+_ruleOne+", "+_ruleTwo+", "+_match+" >";
+        String str = "Rule < "+_number+", ";
+
+        if (_ruleOne != null)
+        {
+            for (int i = 0; i < _ruleOne.length; i++)
+                str += _ruleOne[i]+" ";
+
+            if (_ruleTwo != null)
+            {
+                str += ", ";
+
+                for (int i = 0; i < _ruleTwo.length; i++)
+                    str += _ruleTwo[i]+" ";
+            }
+
+            str += ">";
+        }
+        else
+            str += _match+" >";
+
+        return str;
     }
 
     private int _number;
