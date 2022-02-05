@@ -10,5 +10,11 @@ public class Message
         return _content;
     }
 
+    @Override
+    public String toString ()
+    {
+        return "Message: "+_content;
+    }
+
     private String _content;
 }
