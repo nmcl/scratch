@@ -14,8 +14,14 @@ public class Util
 
         try
         {
+            String line = null;
+
             reader = new BufferedReader(new FileReader(inputFile));
-            
+         
+            while (((line = reader.readLine()) != null) && (line.length() > 0))
+            {
+                
+            }
         }
         catch (Throwable ex)
         {
