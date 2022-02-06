@@ -13,11 +13,14 @@ public class Verifier
         Rule[] rules = Util.loadRules(EXAMPLE_DATA, _debug);
         Message[] messages = Util.loadMessages(EXAMPLE_DATA, _debug);
 
-        for (int i = 0; i < rules.length; i++)
-            System.out.println(rules[i]);
+        if (_debug)
+        {
+            for (int i = 0; i < rules.length; i++)
+                System.out.println(rules[i]);
 
-        for (int j = 0; j < messages.length; j++)
-            System.out.println(messages[j]);
+            for (int j = 0; j < messages.length; j++)
+                System.out.println(messages[j]);
+        }
 
         Matcher m = new Matcher(rules, _debug);
 
