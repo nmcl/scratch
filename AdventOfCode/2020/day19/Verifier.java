@@ -19,6 +19,10 @@ public class Verifier
         for (int j = 0; j < messages.length; j++)
             System.out.println(messages[j]);
 
+        Matcher m = new Matcher(rules, _debug);
+
+        m.matchRule(0, messages);
+
         return false;
     }
 
