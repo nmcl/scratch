@@ -36,6 +36,21 @@ public class Rule
         return _number;
     }
 
+    public final int[] firstDependantRules ()
+    {
+        return _ruleOne;
+    }
+
+    public final int[] secondDependantRules ()
+    {
+        return _ruleTwo;
+    }
+
+    public final char getMatch ()
+    {
+        return _match;
+    }
+
     @Override
     public String toString ()
     {
