@@ -25,6 +25,25 @@ public class Verifier
         Matcher m = new Matcher(rules, _debug);
         Message[] msgs = m.matchRule(0, messages);
 
+        if ((msgs != null) && (msgs.length == EXAMPLE_MATCH.length))
+        {
+            for (int i = 0; i < EXAMPLE_MATCH.length; i++)
+            {
+                boolean found = false;
+
+                for (int j = 0; (j < msgs.length) && !found; j++)
+                {
+                    if (msgs[j].equals(EXAMPLE_MATCH[i]))
+                        found = true;
+                }
+
+                if (!found)
+                    return false;
+            }
+
+            return true;
+        }
+
         return false;
     }
 
