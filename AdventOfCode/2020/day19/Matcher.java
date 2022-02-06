@@ -9,7 +9,10 @@ public class Matcher
     public Message[] matchRule (int ruleNumber, Message[] messages)
     {
         Rule ruleToMatch = _rules[ruleNumber];
+        String current = "";
 
+        getMatchingString(ruleToMatch, current, true);
+        
         return null;
     }
 
@@ -26,6 +29,9 @@ public class Matcher
                 for (int i = 0; i < firstRules.length; i++)
                 {
                     str = getMatchingString(_rules[firstRules[i]], str, true);
+
+                    if (_debug)
+                        System.out.println("First rules string: "+str);
                 }
             }
             else
@@ -37,6 +43,9 @@ public class Matcher
                     for (int i = 0; i < secondRules.length; i++)
                     {
                         str = getMatchingString(_rules[secondRules[i]], str, false);
+
+                        if (_debug)
+                            System.out.println("Second rules string: "+str);
                     }
                 }
             }
