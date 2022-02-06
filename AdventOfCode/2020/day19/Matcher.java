@@ -6,7 +6,7 @@ public class Matcher
         _debug = debug;
     }
 
-    public String matchRule (int ruleNumber, Message[] messages)
+    public Message[] matchRule (int ruleNumber, Message[] messages)
     {
         Rule ruleToMatch = _rules[ruleNumber];
 
@@ -21,7 +21,7 @@ public class Matcher
 
         System.out.println("Match using second rules: "+current);
 
-        return "";
+        return null;
     }
 
     private String getMatchingString (Rule theRule, String current, boolean checkFirst)
