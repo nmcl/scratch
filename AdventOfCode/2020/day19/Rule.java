@@ -1,5 +1,7 @@
 public class Rule
 {
+    public static final char NO_MATCH = ' ';
+
     public Rule (String number, String[] ruleOneList, String[] ruleTwoList)
     {
         _number = Integer.valueOf(number);
@@ -19,7 +21,7 @@ public class Rule
         else
             _ruleTwo = null;
 
-        _match = ' ';
+        _match = NO_MATCH;
     }
 
     public Rule (String number, char match)
