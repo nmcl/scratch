@@ -1,16 +1,23 @@
 public class Matcher
 {
-    public Matcher (boolean debug)
+    public Matcher (Rule[] rules, boolean debug)
     {
+        _rules = rules;
         _debug = debug;
     }
 
-    public Message[] matchRule (int ruleNumber, Rule[] rules, Message[] messages)
+    public Message[] matchRule (int ruleNumber, Message[] messages)
     {
-        Rule ruleToMatch = rules[ruleNumber];
-        
+        Rule ruleToMatch = _rules[ruleNumber];
+
         return null;
     }
 
+    private String getMatchingString (Rule theRule)
+    {
+        return null;
+    }
+
+    private Rule[] _rules;
     private boolean _debug;
 }
