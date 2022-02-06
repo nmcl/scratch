@@ -13,9 +13,18 @@ public class Matcher
         return null;
     }
 
-    private String getMatchingString (Rule theRule)
+    private String getMatchingString (Rule theRule, String current)
     {
-        return null;
+        String str = current;
+
+        if (theRule.getMatch() == Rule.NO_MATCH)
+        {
+
+        }
+        else
+            str += theRule.getMatch();
+
+        return str;
     }
 
     private Rule[] _rules;
