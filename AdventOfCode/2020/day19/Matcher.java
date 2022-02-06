@@ -6,14 +6,22 @@ public class Matcher
         _debug = debug;
     }
 
-    public Message[] matchRule (int ruleNumber, Message[] messages)
+    public String matchRule (int ruleNumber, Message[] messages)
     {
         Rule ruleToMatch = _rules[ruleNumber];
-        String current = "";
 
-        getMatchingString(ruleToMatch, current, true);
-        
-        return null;
+        if (_debug)
+            System.out.println("Trying to match rule: "+ruleToMatch);
+
+        String current = getMatchingString(ruleToMatch, "", true);
+
+        System.out.println("Match using first rules: "+current);
+
+        current = getMatchingString(ruleToMatch, "", false);
+
+        System.out.println("Match using second rules: "+current);
+
+        return "";
     }
 
     private String getMatchingString (Rule theRule, String current, boolean checkFirst)
@@ -32,6 +40,11 @@ public class Matcher
 
                     if (_debug)
                         System.out.println("First rules string: "+str);
+
+                    str = getMatchingString(_rules[firstRules[i]], str, false);
+
+                    if (_debug)
+                        System.out.println("Then adding second rules string: "+str);
                 }
             }
             else
@@ -46,6 +59,11 @@ public class Matcher
 
                         if (_debug)
                             System.out.println("Second rules string: "+str);
+
+                        str = getMatchingString(_rules[secondRules[i]], str, true);
+
+                        if (_debug)
+                            System.out.println("Then adding first rules string: "+str);
                     }
                 }
             }
