@@ -23,8 +23,7 @@ public class Verifier
         }
 
         Matcher m = new Matcher(rules, _debug);
-
-        m.matchRule(0, messages);
+        Message[] msgs = m.matchRule(0, messages);
 
         return false;
     }
