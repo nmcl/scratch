@@ -10,7 +10,7 @@ public class Matcher
     {
         Rule ruleToMatch = _rules[ruleNumber];
 
-        if (_debug)
+        //if (_debug)
             System.out.println("Trying to match rule: "+ruleToMatch);
 
         String current = getMatchingString(ruleToMatch, "", true);
@@ -28,6 +28,8 @@ public class Matcher
     {
         String str = current;
 
+        System.out.println("Looking to match "+theRule);
+
         if (theRule.getMatch() == Rule.NO_MATCH)
         {
             if (checkFirst)
@@ -38,7 +40,7 @@ public class Matcher
                 {
                     str = getMatchingString(_rules[firstRules[i]], str, true);
 
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("First rules string: "+str);
                 }
             }
@@ -52,7 +54,7 @@ public class Matcher
                     {
                         str = getMatchingString(_rules[secondRules[i]], str, false);
 
-                        if (_debug)
+                        //if (_debug)
                             System.out.println("Second rules string: "+str);
                     }
                 }
