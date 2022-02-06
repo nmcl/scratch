@@ -7,6 +7,8 @@ public class Matcher
 
     public Message[] matchRule (int ruleNumber, Rule[] rules, Message[] messages)
     {
+        Rule ruleToMatch = rules[ruleNumber];
+        
         return null;
     }
 
