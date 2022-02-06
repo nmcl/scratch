@@ -40,11 +40,6 @@ public class Matcher
 
                     if (_debug)
                         System.out.println("First rules string: "+str);
-
-                    str = getMatchingString(_rules[firstRules[i]], str, false);
-
-                    if (_debug)
-                        System.out.println("Then adding second rules string: "+str);
                 }
             }
             else
@@ -59,11 +54,6 @@ public class Matcher
 
                         if (_debug)
                             System.out.println("Second rules string: "+str);
-
-                        str = getMatchingString(_rules[secondRules[i]], str, true);
-
-                        if (_debug)
-                            System.out.println("Then adding first rules string: "+str);
                     }
                 }
             }
