@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Matcher
 {
     public Matcher (Rule[] rules, boolean debug)
@@ -9,6 +11,7 @@ public class Matcher
     public Message[] matchRule (int ruleNumber, Message[] messages)
     {
         Rule ruleToMatch = _rules[ruleNumber];
+        Vector<Message> toMatch = new Vector<Message>();
 
         //if (_debug)
             System.out.println("Trying to match rule: "+ruleToMatch);
@@ -17,8 +20,12 @@ public class Matcher
 
         System.out.println("Match using first rules: "+current);
 
+        toMatch.add(new Message(current));
+
         current = getMatchingString(ruleToMatch, "", false);
 
+        toMatch.add(new Message(current));
+        
         System.out.println("Match using second rules: "+current);
 
         return null;
