@@ -25,6 +25,8 @@ public class Verifier
         Matcher m = new Matcher(rules, _debug);
         Message[] msgs = m.matchRule(0, messages);
 
+        System.out.println("\nGot back "+msgs);
+        
         // check messages are equivalent even if different orders
         
         if ((msgs != null) && (msgs.length == EXAMPLE_MATCH.length))
