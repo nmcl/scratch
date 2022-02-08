@@ -35,7 +35,7 @@ public class Matcher
     {
         String str = current;
 
-        System.out.println("Looking to match "+theRule);
+        System.out.println("Looking to match "+theRule.getNumber());
 
         if (theRule.getMatch() == Rule.NO_MATCH)
         {
