@@ -1,6 +1,6 @@
 public class Rule
 {
-    public static final char NO_MATCH = ' ';
+    private static final char NO_MATCH = ' ';
 
     public Rule (String number, String[] ruleOneList, String[] ruleTwoList)
     {
@@ -31,6 +31,14 @@ public class Rule
         _ruleOne = _ruleTwo = null;
 
         _match = match;
+    }
+
+    public final boolean isCharacterRule ()
+    {
+        if (_match == NO_MATCH)
+            return false;
+        else
+            return true;
     }
 
     public final int getNumber ()
