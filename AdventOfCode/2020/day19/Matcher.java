@@ -70,6 +70,8 @@ public class Matcher
         else
             str += theRule.getMatch();
 
+        System.out.println("\n**returning "+str);
+
         return str;
     }
 
