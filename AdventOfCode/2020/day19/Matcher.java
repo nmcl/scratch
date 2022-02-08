@@ -37,7 +37,7 @@ public class Matcher
 
         System.out.println("Looking to match "+theRule.getNumber());
 
-        if (theRule.getMatch() == Rule.NO_MATCH)
+        if (!theRule.isCharacterRule())
         {
             if (checkFirst)
             {
