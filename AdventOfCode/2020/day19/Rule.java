@@ -41,6 +41,14 @@ public class Rule
             return true;
     }
 
+    public final boolean hasOrRule ()
+    {
+        if (_ruleTwo != null)
+            return true;
+        else
+            return false;
+    }
+
     public final int getNumber ()
     {
         return _number;
