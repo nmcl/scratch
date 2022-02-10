@@ -25,6 +25,8 @@ public class Matcher
         return null;
     }
 
+    // try first rule set only.
+    
     private String getMatchingString (Rule theRule, String current)
     {
         String str = current;
