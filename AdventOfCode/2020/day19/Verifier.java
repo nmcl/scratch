@@ -15,6 +15,8 @@ public class Verifier
 
         if (_debug)
         {
+            System.out.println("Loaded:\n");
+            
             for (int i = 0; i < rules.length; i++)
                 System.out.println(rules[i]);
 
@@ -28,7 +30,7 @@ public class Verifier
         System.out.println("\nGot back "+msgs);
         
         // check messages are equivalent even if different orders
-        
+
         if ((msgs != null) && (msgs.length == EXAMPLE_MATCH.length))
         {
             for (int i = 0; i < EXAMPLE_MATCH.length; i++)
