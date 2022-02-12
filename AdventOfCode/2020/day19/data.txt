@@ -10,9 +10,26 @@
 1 = 5
 5 = b
 
-b 2 4 3
+--> b 2 4 3
 
+2 = 4 OR 2 = 5
+4 = a
+5 = b
 
+--> b 4 4 3 OR b 5 4 3
+
+4 = a
+
+--> b a a 3 OR b 5 a 3
+
+3 = 4 5 OR 5 4
+
+--> b a a 4 5 OR b a a 5 4 OR b 5 a 4 5 OR b 5 a 5 4
+
+4 = a
+5 = b
+
+--> b a a a b OR b a a b a OR b b a a b OR b b a b a
 
 ----
 
