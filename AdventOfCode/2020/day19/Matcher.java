@@ -10,6 +10,13 @@ public class Matcher
 
     public Message[] matchRule (int ruleNumber, Message[] messages)
     {
+        if (true)
+        {
+            System.out.println("Got "+expandRule(ruleNumber));
+
+            return null;
+        }
+
         Rule ruleToMatch = _rules[ruleNumber];
         Vector<Message> toMatch = new Vector<Message>();
 
@@ -34,6 +41,28 @@ public class Matcher
             str = ""+ruleToMatch.getMatch();
         else
         {
+            int[] leftRules = ruleToMatch.leftRules();
+
+            str += " ( ";
+
+            for (int i = 0; i < leftRules.length; i++)
+            {
+                str += expandRule(leftRules[i]);
+            }
+
+            int[] rightRules = ruleToMatch.rightRules();
+
+            if (rightRules != null)
+            {
+                str += " | ";
+
+                for (int j = 0; j < rightRules.length; j++)
+                {
+                    str += expandRule(rightRules[j]);
+                }
+            }
+
+            str += " ) ";
         }
 
         return str;
