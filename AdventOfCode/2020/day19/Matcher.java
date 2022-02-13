@@ -25,9 +25,18 @@ public class Matcher
         return null;
     }
 
-    public void expandRule (int ruleNumber)
+    public String expandRule (int ruleNumber)
     {
         Rule ruleToMatch = _rules[ruleNumber];
+        String str = "";
+
+        if (ruleToMatch.isCharacterRule())
+            str = ""+ruleToMatch.getMatch();
+        else
+        {
+        }
+
+        return str;
     }
 
     // try first rule set only.
@@ -40,11 +49,11 @@ public class Matcher
 
         if (!theRule.isCharacterRule())
         {
-            int[] firstRules = theRule.firstDependantRules();
+            int[] leftRules = theRule.leftRules();
 
-            for (int i = 0; i < firstRules.length; i++)
+            for (int i = 0; i < leftRules.length; i++)
             {
-                str = getMatchingString(_rules[firstRules[i]], str);
+                str = getMatchingString(_rules[leftRules[i]], str);
 
                 //if (_debug)
                     System.out.println("First rules string: "+str);
