@@ -54,12 +54,12 @@ public class Rule
         return _number;
     }
 
-    public final int[] firstDependantRules ()
+    public final int[] leftRules ()
     {
         return _ruleOne;
     }
 
-    public final int[] secondDependantRules ()
+    public final int[] rightRules ()
     {
         return _ruleTwo;
     }
