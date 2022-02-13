@@ -25,6 +25,11 @@ public class Matcher
         return null;
     }
 
+    public void expandRule (int ruleNumber)
+    {
+        Rule ruleToMatch = _rules[ruleNumber];
+    }
+
     // try first rule set only.
     
     private String getMatchingString (Rule theRule, String current)
