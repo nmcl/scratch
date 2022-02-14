@@ -81,7 +81,7 @@ public class Rule
 
             if (_ruleTwo != null)
             {
-                str += "OR ";
+                str += "| ";
 
                 for (int i = 0; i < _ruleTwo.length; i++)
                     str += _ruleTwo[i]+" ";
