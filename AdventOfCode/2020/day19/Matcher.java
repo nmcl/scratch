@@ -68,6 +68,13 @@ public class Matcher
         return str;
     }
 
+    public String[] expandedRules (String expanded)
+    {
+        Vector<String> toReturn = new Vector<String>();
+
+        return (String[]) toReturn.toArray();
+    }
+
     // try first rule set only.
     
     private String getMatchingString (Rule theRule, String current)
