@@ -68,7 +68,7 @@ public class Matcher
         return str;
     }
 
-    public String[] expandedRules (String expanded)
+    public String[] expandedRules (int ruleNumber)
     {
         Vector<String> toReturn = new Vector<String>();
 
