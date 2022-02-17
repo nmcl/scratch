@@ -72,6 +72,37 @@ public class Matcher
     {
         Vector<String> toReturn = new Vector<String>();
 
+        Rule ruleToMatch = _rules[ruleNumber];
+        String str = "";
+
+        if (ruleToMatch.isCharacterRule())
+            str = ""+ruleToMatch.getMatch();
+        else
+        {
+            int[] leftRules = ruleToMatch.leftRules();
+
+            str += " ( ";
+
+            for (int i = 0; i < leftRules.length; i++)
+            {
+                str += expandRule(leftRules[i]);
+            }
+
+            int[] rightRules = ruleToMatch.rightRules();
+
+            if (rightRules != null)
+            {
+                str += " | ";
+
+                for (int j = 0; j < rightRules.length; j++)
+                {
+                    str += expandRule(rightRules[j]);
+                }
+            }
+
+            str += " ) ";
+        }
+        
         return (String[]) toReturn.toArray();
     }
 
