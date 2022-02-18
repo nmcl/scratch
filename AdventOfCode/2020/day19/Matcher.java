@@ -12,7 +12,7 @@ public class Matcher
     {
         if (true)
         {
-            System.out.println("Got "+expandRule(ruleNumber));
+            System.out.println("Got "+expandedRules(ruleNumber));
 
             return null;
         }
@@ -86,6 +86,8 @@ public class Matcher
             for (int i = 0; i < leftRules.length; i++)
             {
                 str += expandRule(leftRules[i]);
+
+                System.out.println("Expanded one left rule: "+str);
             }
 
             int[] rightRules = ruleToMatch.rightRules();
@@ -104,7 +106,7 @@ public class Matcher
         }
         
         System.out.println("Have "+str);
-        
+
         return (String[]) toReturn.toArray();
     }
 
