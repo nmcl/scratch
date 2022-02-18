@@ -103,6 +103,8 @@ public class Matcher
             str += " ) ";
         }
         
+        System.out.println("Have "+str);
+        
         return (String[]) toReturn.toArray();
     }
 
