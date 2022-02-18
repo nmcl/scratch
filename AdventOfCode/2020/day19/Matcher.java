@@ -12,7 +12,9 @@ public class Matcher
     {
         if (true)
         {
-            System.out.println("Got "+expandedRules(ruleNumber));
+            String str = "";
+
+            System.out.println("Got "+expandRule(ruleNumber, str));
 
             return null;
         }
@@ -32,11 +34,13 @@ public class Matcher
         return null;
     }
 
-    public String expandRule (int ruleNumber)
+    public String expandRule (int ruleNumber, String current)
     {
         Rule ruleToMatch = _rules[ruleNumber];
-        String str = "";
+        String str = current;
 
+        System.out.println("Expanding rule "+ruleNumber+" and currently have "+current);
+        
         if (ruleToMatch.isCharacterRule())
             str = ""+ruleToMatch.getMatch();
         else
@@ -72,7 +76,7 @@ public class Matcher
         }
 
         System.out.println("Done and returning: "+str);
-        
+
         return str;
     }
 
