@@ -20,7 +20,11 @@ public class Matcher
     public String expandRule (int ruleNumber)
     {
         Rule ruleToMatch = _rules[ruleNumber];
+        Vector<String> results = new Vector<String>();
+
         String str = "";
+
+        //System.out.println("Looking at rule "+ruleToMatch);
 
         if (ruleToMatch.isCharacterRule())
             str = ""+ruleToMatch.getMatch();
@@ -39,6 +43,11 @@ public class Matcher
 
             int[] rightRules = ruleToMatch.rightRules();
 
+            // want to skip and then come back later?
+            String temp = new String(str);
+
+            results.add(temp);
+
             if (rightRules != null)
             {
                 System.out.println("Have OR rule");
@@ -53,7 +62,7 @@ public class Matcher
 
             str += " ) ";
 
-            System.out.println("At this stage have: "+str);
+            System.out.println("At this stage have: "+str+" and "+results);
         }
 
         System.out.println("Done and returning: "+str);
