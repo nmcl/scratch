@@ -33,5 +33,12 @@ public class MIB
 
             System.exit(0);
         }
+
+        Rule[] rules = Util.loadRules(MESSAGE_FILE, debug);
+        Message[] messages = Util.loadMessages(MESSAGE_FILE, debug);
+        Matcher m = new Matcher(rules, debug);
+        long matching = m.numberOfMatchingMessages(0, messages);
+
+        System.out.println("Messages which completely match rule 0: "+matching);
     }
 }
