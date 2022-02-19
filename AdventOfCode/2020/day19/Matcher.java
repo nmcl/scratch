@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.regex.*;
+import java.util.stream.*;
 
 public class Matcher
 {
@@ -10,17 +12,12 @@ public class Matcher
 
     public Message[] matchRule (int ruleNumber, Message[] messages)
     {
-        String str = "";
-
-        System.out.println("Got "+expandRule(ruleNumber));
-
         return null;
     }
 
     public String expandRule (int ruleNumber)
     {
         Rule ruleToMatch = _rules[ruleNumber];
-        Vector<String> results = new Vector<String>();
         String str = "";
 
         if (_debug)
@@ -55,6 +52,31 @@ public class Matcher
         }
 
         return str;
+    }
+
+    private final String getRuleRegex (int ruleNumber)
+    {
+        Rule theRule = _rules[ruleNumber];
+
+        if (theRule.isCharacterRule())
+            return ""+theRule.getMatch();
+        else
+        {
+            if (!theRule.hasOrRule())
+                return String.format("(?:%s)", ruleListToRegex(theRule.leftRules()));
+            else
+                return String.format("(?:%s|%s)", ruleListToRegex(theRule.leftRules()), ruleListToRegex(theRule.rightRules()));
+        }
+    }
+
+    private final String ruleListToRegex (int[] rules)
+    {
+        Vector<Integer> v = new Vector<Integer>();  // convert to stream for this bit
+
+        for (int i = 0; i < rules.length; i++)
+            v.add(rules[i]);
+
+        return v.stream().map(this::getRuleRegex).collect(Collectors.joining());
     }
 
     private Rule[] _rules;
