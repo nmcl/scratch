@@ -25,30 +25,9 @@ public class Verifier
         }
 
         Matcher m = new Matcher(rules, _debug);
-        Message[] msgs = m.matchRule(0, messages);
+        long matching = m.numberOfMatchingMessages(0, messages);
 
-        System.out.println("\nGot back "+msgs);
-        
-        // check messages are equivalent even if different orders
-
-        if ((msgs != null) && (msgs.length == EXAMPLE_MATCH.length))
-        {
-            for (int i = 0; i < EXAMPLE_MATCH.length; i++)
-            {
-                boolean found = false;
-
-                for (int j = 0; (j < msgs.length) && !found; j++)
-                {
-                    if (msgs[j].equals(EXAMPLE_MATCH[i]))
-                        found = true;
-                }
-
-                if (!found)
-                    return false;
-            }
-
-            return true;
-        }
+        System.out.println("\nGot back "+matching);
 
         return false;
     }
