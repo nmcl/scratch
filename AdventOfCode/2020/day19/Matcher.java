@@ -37,16 +37,12 @@ public class Matcher
             for (int i = 0; i < leftRules.length; i++)
             {
                 str += expandRule(leftRules[i]);
-
-                System.out.println("Expanded one left rule: "+str);
             }
 
             int[] rightRules = ruleToMatch.rightRules();
 
             if (rightRules != null)
             {
-                System.out.println("Have OR rule");
-
                 str += " | ";
 
                 for (int j = 0; j < rightRules.length; j++)
@@ -56,11 +52,7 @@ public class Matcher
             }
 
             str += " ) ";
-
-            System.out.println("At this stage have: "+str);
         }
-
-        System.out.println("Done and returning: "+str);
 
         return str;
     }
