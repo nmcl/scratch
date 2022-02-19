@@ -10,9 +10,15 @@ public class Matcher
         _debug = debug;
     }
 
-    public Message[] matchRule (int ruleNumber, Message[] messages)
+    public long numberOfMatchingMessages (int ruleNumber, Message[] messages)
     {
-        return null;
+        Pattern p = Pattern.compile(getRuleRegex(ruleNumber));
+        Vector<String> messageContent = new Vector<String>();
+
+        for (int i = 0; i < messages.length; i++)
+            messageContent.add(messages[i].getContent());
+
+        return messageContent.stream().filter(s -> p.matcher(s).matches()).count();
     }
 
     public String expandRule (int ruleNumber)
