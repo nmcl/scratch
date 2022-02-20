@@ -18,7 +18,7 @@ public class Matcher
         for (int i = 0; i < messages.length; i++)
             messageContent.add(messages[i].getContent());
 
-        return messageContent.stream().filter(s -> p.matcher(s).matches()).count();
+        return 0;
     }
 
     public String expandRule (int ruleNumber)
