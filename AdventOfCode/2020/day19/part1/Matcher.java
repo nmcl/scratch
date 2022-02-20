@@ -12,7 +12,7 @@ public class Matcher
 
     public long numberOfMatchingMessages (int ruleNumber, Message[] messages)
     {
-        Pattern p = Pattern.compile(getRuleRegex(ruleNumber));
+        Pattern p = Pattern.compile(getRegexForRule(ruleNumber));
         Vector<String> messageContent = new Vector<String>();
 
         for (int i = 0; i < messages.length; i++)
@@ -60,7 +60,7 @@ public class Matcher
         return str;
     }
 
-    private final String getRuleRegex (int ruleNumber)
+    private final String getRegexForRule (int ruleNumber)
     {
         Rule theRule = _rules[ruleNumber];
 
@@ -82,7 +82,7 @@ public class Matcher
         for (int i = 0; i < rules.length; i++)
             v.add(rules[i]);
 
-        return v.stream().map(this::getRuleRegex).collect(Collectors.joining());
+        return v.stream().map(this::getRegexForRule).collect(Collectors.joining());
     }
 
     private Rule[] _rules;
