@@ -27,7 +27,7 @@ public class Verifier
         Matcher m = new Matcher(rules, _debug);
         long matching = m.numberOfMatchingMessages(0, messages);
 
-        if (matching == EXAMPLE_MATCH.length)
+        if (matching == EXAMPLE_MATCH)
             return true;
 
         System.out.println("\nGot back wrong count: "+matching);
