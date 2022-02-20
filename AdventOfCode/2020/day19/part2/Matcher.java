@@ -12,13 +12,22 @@ public class Matcher
 
     public long numberOfMatchingMessages (int ruleNumber, Message[] messages)
     {
-        Pattern p = Pattern.compile(getRuleRegex(ruleNumber));
         Vector<String> messageContent = new Vector<String>();
 
         for (int i = 0; i < messages.length; i++)
             messageContent.add(messages[i].getContent());
 
-        return 0;
+        String rule42Regex = getRegexForRule(42);
+        String rule31Regex = getRegexForRule(31);
+        String overallRegex = String.format("(%s+)(%s+)", rule42Regex, rule31Regex);
+
+        Pattern rule42Pattern = Pattern.compile(rule42Regex);
+        Pattern rule31Pattern = Pattern.compile(rule31Regex);
+        Pattern fullPattern = Pattern.compile(overallRegex);
+
+        return messageContent.stream()
+                .filter(s -> matchesRules(s, fullPattern, rule42Pattern, rule31Pattern))
+                .count();
     }
 
     public String expandRule (int ruleNumber)
@@ -60,7 +69,28 @@ public class Matcher
         return str;
     }
 
-    private final String getRuleRegex (int ruleNumber)
+    private final boolean matchesRules (String message, Pattern pattern, Pattern patternOne, Pattern patternTwo)
+    {
+        java.util.regex.Matcher m = pattern.matcher(message);
+
+        if (m.matches())
+            return numberOfMatches(patternOne, m.group(1)) > numberOfMatches(patternTwo, m.group(2));
+        
+        return false;
+    }
+
+    private int numberOfMatches (Pattern pattern, String toMatch)
+    {
+        int count = 0;
+        java.util.regex.Matcher m = pattern.matcher(toMatch);
+
+        while (m.find())
+            count++;
+
+        return count;
+    }
+
+    private final String getRegexForRule (int ruleNumber)
     {
         Rule theRule = _rules[ruleNumber];
 
@@ -82,7 +112,7 @@ public class Matcher
         for (int i = 0; i < rules.length; i++)
             v.add(rules[i]);
 
-        return v.stream().map(this::getRuleRegex).collect(Collectors.joining());
+        return v.stream().map(this::getRegexForRule).collect(Collectors.joining());
     }
 
     private Rule[] _rules;
