@@ -1,9 +1,11 @@
-public class TileId
+public class TileData
 {
     public static final char HASH = '#';
     public static final char SPACE = '.';
     
-    private TileId ()
+    public static final String TILE_ID = "Tile ";
+    
+    private TileData ()
     {
     }
 }
