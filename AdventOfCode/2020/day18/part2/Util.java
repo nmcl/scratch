@@ -16,10 +16,14 @@ public class Util
         {
             reader = new BufferedReader(new FileReader(inputFile));
             String line = null;
+            Tile t = null;
 
             while ((line = reader.readLine()) != null)
             {
-                data.add(line);
+                if (line.startsWith(TileData.TILE_ID))
+                {
+                    
+                }
             }
         }
         catch (Throwable ex)
