@@ -3,14 +3,14 @@ import java.io.*;
 
 public class Util
 {
-    public static final Vector<String> loadData (String inputFile)
+    public static final Vector<Tile> loadData (String inputFile)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<String> data = new Vector<String>();
+        Vector<Tile> data = new Vector<Tile>();
 
         try
         {
@@ -22,7 +22,7 @@ public class Util
             {
                 if (line.startsWith(TileData.TILE_ID))
                 {
-                    
+
                 }
             }
         }
