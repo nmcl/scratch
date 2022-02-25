@@ -7,6 +7,11 @@ public class Tile
         _debug = debug;
     }
 
+    public final int getID ()
+    {
+        return _id;
+    }
+
     private int _id;
     private char[][] _data;
     private boolean _debug;
