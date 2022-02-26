@@ -25,6 +25,25 @@ public class Tile
     }
 
     @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Tile temp = (Tile) obj;
+
+            return (_id == temp._id);
+        }
+
+        return false;
+    }
+
+    @Override
     public String toString ()
     {
         String str = TileData.TILE_ID+_id+":\n";
