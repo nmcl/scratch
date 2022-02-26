@@ -1,6 +1,6 @@
 public class Tile
 {
-    public Tile (int number, char[][] data, boolean debug)
+    public Tile (int number, String[] data, boolean debug)
     {
         _id = number;
         _data = date;
@@ -18,19 +18,12 @@ public class Tile
         String str = TileData.TILE_ID+_id+":\n";
 
         for (int i = 0; i < _data.length; i++)
-        {
-            for (int j = 0; i < _data[0].length; j++)
-            {
-                str += _data[j][i];
-            }
-
-            str += "\n";
-        }
+            str += _data[i]+"\n";
 
         return str;
     }
 
     private int _id;
-    private char[][] _data;
+    private String[] _data;
     private boolean _debug;
 }
