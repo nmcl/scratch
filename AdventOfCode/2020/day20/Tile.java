@@ -19,6 +19,11 @@ public class Tile
         return _id;
     }
 
+    public final String[] getEdges ()
+    {
+        return _edges;
+    }
+
     @Override
     public String toString ()
     {
