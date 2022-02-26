@@ -31,11 +31,11 @@ public class Solver
         {
             Tile t = tiles.elementAt(i);
 
-            if (!t.equals(toCheck))
+            if (!t.equals(toCheck))  // don't compare with ourself!
             {
                 for (int j = 0; j < 4; j++)
                 {
-
+                    
                 }
             }
         }
