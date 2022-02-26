@@ -1,13 +1,12 @@
 public class Tile
 {
-    public Tile (int number, String[] data, boolean debug)
+    public Tile (long number, String[] data)
     {
         _id = number;
-        _data = date;
-        _debug = debug;
+        _data = data;
     }
 
-    public final int getID ()
+    public final long getID ()
     {
         return _id;
     }
@@ -23,7 +22,6 @@ public class Tile
         return str;
     }
 
-    private int _id;
+    private long _id;
     private String[] _data;
-    private boolean _debug;
 }
