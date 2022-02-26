@@ -28,6 +28,10 @@ public class Verifier
             }
         }
 
+        Solver s = new Solver(_debug);
+
+        s.arrangement(tiles);
+
         return false;
     }
 
