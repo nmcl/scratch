@@ -23,19 +23,25 @@ public class Util
 
                 if (line.startsWith(TileData.TILE_ID))
                 {
-                    Tile t = null;
                     int index = line.indexOf(':');
                     String value = line.substring(TileData.TILE_ID.length(), index);
+                    Vector<String> lines = new Vector<String>();
+
+                    id = Long.parseLong(value);
 
                     while ((line = reader.readLine()) != null)
                     {
                         if (line.length() > 0)
-                        {
-
-                        }
+                            lines.add(line);
+                        else
+                            break;
                     }
 
-                    data.add(t);
+                    String[] tileLines = new String[lines.size()];
+
+                    tileLines = lines.toArray(tileLines);
+
+                    data.add(new Tile(id, tileLines));
                 }
             }
         }
