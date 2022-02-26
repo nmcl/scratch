@@ -19,16 +19,24 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                Tile t = null;
                 long id = -1;
 
                 if (line.startsWith(TileData.TILE_ID))
                 {
+                    Tile t = null;
                     int index = line.indexOf(':');
                     String value = line.substring(TileData.TILE_ID.length(), index);
-                }
 
-                data.add(line);
+                    while ((line = reader.readLine()) != null)
+                    {
+                        if (line.length() > 0)
+                        {
+
+                        }
+                    }
+
+                    data.add(t);
+                }
             }
         }
         catch (Throwable ex)
