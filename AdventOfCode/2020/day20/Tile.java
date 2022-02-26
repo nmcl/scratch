@@ -9,6 +9,7 @@ public class Tile
     {
         _id = number;
         _data = data;
+        _edges = new String[4];
 
         generateEdges();
     }
@@ -31,7 +32,23 @@ public class Tile
 
     private void generateEdges ()
     {
+        _edges[NORTH] = _data[0];
+        _edges[EAST] = "";
+        _edges[SOUTH] = _data[_data.length -1];
+        _edges[WEST] = "";
 
+        for (int i = 0; i < _data.length; i++)
+        {
+            _edges[WEST] += _data[i].charAt(0);
+            _edges[EAST] += _data[i].charAt(_data[i].length() -1);
+        }
+
+        System.out.println("\nEdges for "+_id);
+
+        for (int j = 0; j < 4; j++)
+        {
+            System.out.println(_edges[j]);
+        }
     }
 
     private long _id;
