@@ -3,6 +3,9 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
+    public static final long[] EXAMPLE_ROW_1 = { 1951, 2311, 3079 };
+    public static final long[] EXAMPLE_ROW_2 = { 2729, 1427, 2473 };
+    public static final long[] EXAMPLE_ROW_3 = { 2971, 1489, 1171 };
 
     public Verifier (boolean debug)
     {
