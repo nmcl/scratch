@@ -11,11 +11,15 @@ public class Solver
     {
         Vector<Tile> toReturn = new Vector<Tile>();
         int dimension = (int) Math.sqrt((double) tiles.size());
+        int x = dimension / 2;
+        int y = x;
         Tile[][] thePuzzle = new Tile[dimension][dimension];
 
         if (_debug)
             System.out.println("Dimensions "+dimension+" by "+dimension);
 
+        System.out.println("Centre "+x+" "+y);
+        
         for (int i = 0; i < tiles.size(); i++)
         {
             Tile t = tiles.elementAt(i);
