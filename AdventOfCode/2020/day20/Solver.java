@@ -57,6 +57,8 @@ public class Solver
             }
         }
 
+        System.out.println("Tile "+toCheck.getID()+" shares edges with "+matches.size()+" other tiles.");
+        
         return matches;
     }
 
