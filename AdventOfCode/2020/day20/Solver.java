@@ -11,6 +11,7 @@ public class Solver
     {
         Vector<Tile> toReturn = new Vector<Tile>();
         int dimension = (int) Math.sqrt((double) tiles.size());
+        Tile[][] thePuzzle = new Tile[dimension][dimension];
 
         if (_debug)
             System.out.println("Dimensions "+dimension+" by "+dimension);
@@ -58,7 +59,7 @@ public class Solver
         }
 
         System.out.println("Tile "+toCheck.getID()+" shares edges with "+matches.size()+" other tiles.");
-        
+
         return matches;
     }
 
