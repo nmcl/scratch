@@ -19,35 +19,45 @@ public class Solver
         {
             Tile t = tiles.elementAt(i);
 
-            numberOfMatchingEdges(t, tiles);
+            matchingTiles(t, tiles);
         }
 
         return toReturn;
     }
 
-    private int numberOfMatchingEdges (Tile toCheck, Vector<Tile> tiles)
+    private Vector<Tile> matchingTiles (Tile toCheck, Vector<Tile> tiles)
     {
+        Vector<Tile> matches = new Vector<Tile>();
+
         for (int i = 0; i < tiles.size(); i++)
         {
             Tile t = tiles.elementAt(i);
-            int number = 0;
+            boolean matchedEdge = false;
 
             if (!t.equals(toCheck))  // don't compare with ourself!
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; (j < 4) && !matchedEdge; j++)
                 {
                     for (int k = 0; k < 4; k++)
                     {
                         if (t.getEdges()[j].equals(toCheck.getEdges()[k]))
-                            number++;
+                        {
+                            matchedEdge = true;
+                            break;
+                        }
                     }
                 }
 
-                System.out.println("Tile "+t.getID()+" shares "+number+" common edges with tile "+toCheck.getID());
+                if (matchedEdge)
+                {
+                    matches.add(t);
+
+                    System.out.println("Tile "+t.getID()+" shares common edges with tile "+toCheck.getID());
+                }
             }
         }
 
-        return 0;
+        return matches;
     }
 
     private boolean _debug;
