@@ -43,7 +43,7 @@ public class Solver
     {
         Vector<Tile> matches = new Vector<Tile>();
 
-        System.out.println("Checking edges for tile "+toCheck.getID());
+        System.out.println("\nChecking edges for tile "+toCheck);
 
         for (int i = 0; i < tiles.size(); i++)
         {
@@ -77,7 +77,7 @@ public class Solver
             }
         }
 
-        System.out.println("Tile "+toCheck.getID()+" shares edges with "+matches.size()+" other tiles.");
+        System.out.println("\nTile "+toCheck.getID()+" shares edges with "+matches.size()+" other tiles.");
 
         return matches;
     }
