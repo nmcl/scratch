@@ -67,12 +67,13 @@ public class Tile
             _edges[EAST] += _data[i].charAt(_data[i].length() -1);
         }
 
+        /*
         System.out.println("\nEdges for "+_id);
 
         for (int j = 0; j < 4; j++)
         {
             System.out.println(_edges[j]);
-        }
+        }*/
     }
 
     private long _id;
