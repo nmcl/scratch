@@ -43,10 +43,14 @@ public class Solver
     {
         Vector<Tile> matches = new Vector<Tile>();
 
+        System.out.println("Checking edges for tile "+toCheck.getID());
+
         for (int i = 0; i < tiles.size(); i++)
         {
             Tile t = tiles.elementAt(i);
             boolean matchedEdge = false;
+
+            System.out.println("Comparing with tile "+t.getID());
 
             if (!t.equals(toCheck))  // don't compare with ourself!
             {
@@ -54,6 +58,8 @@ public class Solver
                 {
                     for (int k = 0; k < 4; k++)
                     {
+                        System.out.println("Comparing "+t.getEdges()[j]+" with "+toCheck.getEdges()[k]);
+
                         if (t.getEdges()[j].equals(toCheck.getEdges()[k]))
                         {
                             matchedEdge = true;
