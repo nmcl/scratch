@@ -54,6 +54,10 @@ public class Tile
         return str;
     }
 
+    /*
+     * Need to consider edge flipping too!!
+     */
+
     private void generateEdges ()
     {
         _edges[NORTH] = _data[0];
