@@ -30,6 +30,15 @@ public class Solver
         return toReturn;
     }
 
+    /**
+     * Loop through the tiles and find out how many of them have matching edges. Then,
+     * based upon the number of shared edges we do the following:
+     * 
+     * 0: ERROR!!
+     * 1: If a tile has only one matching edge, then it's easy to say where it needs
+     * to be placed.
+     */
+
     private Vector<Tile> matchingTiles (Tile toCheck, Vector<Tile> tiles)
     {
         Vector<Tile> matches = new Vector<Tile>();
