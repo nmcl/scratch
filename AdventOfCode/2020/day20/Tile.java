@@ -14,6 +14,16 @@ public class Tile
         generateEdges();
     }
 
+    public Tile flip ()
+    {
+        return this;
+    }
+
+    public Tile rotate ()
+    {
+        return this;
+    }
+    
     public final long getID ()
     {
         return _id;
