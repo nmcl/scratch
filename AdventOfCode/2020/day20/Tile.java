@@ -19,11 +19,11 @@ public class Tile
         return this;
     }
 
-    public Tile rotate ()
+    public Tile rotate () // degree?
     {
         return this;
     }
-    
+
     public final long getID ()
     {
         return _id;
