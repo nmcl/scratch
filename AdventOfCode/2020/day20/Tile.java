@@ -14,10 +14,18 @@ public class Tile
         generateEdges();
     }
 
+    /*
+     * Create an
+     */
+
     public Tile flip ()
     {
         return this;
     }
+
+    /*
+     * Rotate the array clockwise 90 degrees, i.e., one edge.
+     */
 
     public Tile rotate () // degree?
     {
