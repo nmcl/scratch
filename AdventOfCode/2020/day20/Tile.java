@@ -27,7 +27,7 @@ public class Tile
      * Rotate the array clockwise 90 degrees, i.e., one edge.
      */
 
-    public Tile rotate () // degree?
+    public Tile rotateN () // degree?
     {
         return this;
     }
