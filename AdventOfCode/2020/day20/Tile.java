@@ -15,7 +15,8 @@ public class Tile
     }
 
     /*
-     * Create an
+     * Need to flip (mirror image) across
+     * all axes.
      */
 
     public Tile flip ()
@@ -27,7 +28,7 @@ public class Tile
      * Rotate the array clockwise 90 degrees, i.e., one edge.
      */
 
-    public Tile rotateN () // degree?
+    public Tile rotate () // degree?
     {
         return this;
     }
