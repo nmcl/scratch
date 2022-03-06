@@ -52,7 +52,7 @@ public class Solver
 
             System.out.println("Comparing with tile "+t.getID());
 
-            if (!t.equals(toCheck))  // don't compare with ourself!
+            if (!t.equals(toCheck))  // don't compare with ourselves!
             {
                 for (int j = 0; (j < 4) && !matchedEdge; j++)
                 {
