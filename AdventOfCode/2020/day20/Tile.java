@@ -19,7 +19,22 @@ public class Tile
      * all axes.
      */
 
-    public Tile flip ()
+    public Tile flipN ()
+    {
+        return this;
+    }
+
+    public Tile flipS ()
+    {
+        return this;
+    }
+
+    public Tile flipE ()
+    {
+        return this;
+    }
+
+    public Tile flipW ()
     {
         return this;
     }
