@@ -17,6 +17,8 @@ public class Tile
     /*
      * Need to flip (mirror image) across
      * all axes.
+     * 
+     * And generate new edges.
      */
 
     public Tile flipN ()
