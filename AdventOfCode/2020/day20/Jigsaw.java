@@ -1,5 +1,7 @@
 public class Jigsaw
 {
+    public static final String INPUT_FILE = "data.tx";
+
     public static void main (String[] args)
     {
         boolean verify = false;
@@ -32,6 +34,22 @@ public class Jigsaw
             System.exit(0);
         }
 
-        // else
+        Vector<Tile> tiles = Util.loadData(INPUT_FILE);
+
+        if (debug)
+        {
+            Iterator<Tile> iter = tiles.iterator();
+
+            System.out.println("Loaded:\n\n");
+
+            while (iter.hasNext())
+            {
+                System.out.println(iter.next());
+            }
+        }
+
+        Solver s = new Solver(debug);
+
+        s.arrangement(tiles);
     }
 }
