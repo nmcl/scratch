@@ -5,6 +5,8 @@ public class Tile
     public static final int SOUTH = 2;
     public static final int WEST = 3;
 
+    public static final int EDGES = 4;
+
     public Tile (long number, String[] data)
     {
         _id = number;
