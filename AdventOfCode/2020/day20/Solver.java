@@ -37,6 +37,7 @@ public class Solver
      * 0: ERROR!!
      * 1: If a tile has only one matching edge, then it's easy to say where it needs
      * to be placed.
+     * 2: Work outwards from the centre.
      */
 
     private Vector<Tile> matchingTiles (Tile toCheck, Vector<Tile> tiles)
