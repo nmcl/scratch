@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Jigsaw
 {
     public static final String INPUT_FILE = "data.tx";
