@@ -5,8 +5,6 @@ public class Tile
     public static final int BOTTOM = 2;
     public static final int RIGHT = 3;
 
-    public static final int EDGES = 4;
-
     public Tile (long number, String[] data)
     {
         _id = number;
@@ -21,8 +19,6 @@ public class Tile
                 _originalState[i][j] = data[i].charAt(j);
             }
         }
-
-        _edges = new String[4];
         
         generateEdges();
     }
@@ -36,11 +32,6 @@ public class Tile
     public final long getID ()
     {
         return _id;
-    }
-
-    public final String[] getEdges ()
-    {
-        return _edges;
     }
 
     @Override
@@ -68,39 +59,19 @@ public class Tile
         String str = TileData.TILE_ID+_id+":\n";
 
         for (int i = 0; i < _data.length; i++)
-            str += _data[i]+"\n";
-
-        return str;
-    }
-
-    /*
-     * Need to consider edge flipping too!!
-     */
-
-    private void generateEdges ()
-    {
-        _edges[TOP] = _data[0];
-        _edges[LEFT] = "";
-        _edges[BOTTOM] = _data[_data.length -1];
-        _edges[RIGHT] = "";
-
-        for (int i = 0; i < _data.length; i++)
         {
-            _edges[RIGHT] += _data[i].charAt(0);
-            _edges[LEFT] += _data[i].charAt(_data[i].length() -1);
+            for (int j = 0; j < _data[0].length; j++)
+            {
+                str += _data[i][j];
+            }
+
+            str += "\n";
         }
 
-        /*
-        System.out.println("\nEdges for "+_id);
-
-        for (int j = 0; j < 4; j++)
-        {
-            System.out.println(_edges[j]);
-        }*/
+        return str;
     }
 
     private long _id;
     private char[][] _data;
     private char[][] _originalState;
-    private String[] _edges;
 }
