@@ -13,43 +13,20 @@ public class Tile
         _data = data;
         _edges = new String[4];
 
+        _originalState = new String[_data.length];
+
+        for (int i = 0; i < _originalState.length; i++)
+        {
+            _originalState[i] = _data[i];
+        }
+        
         generateEdges();
     }
 
-    /*
-     * Need to flip (mirror image) across
-     * all axes.
-     * 
-     * And generate new edges.
-     */
+    // rotates tile 90 degrees clockwise
 
-    public Tile flipN ()
+    public void rotate ()
     {
-        return this;
-    }
-
-    public Tile flipS ()
-    {
-        return this;
-    }
-
-    public Tile flipE ()
-    {
-        return this;
-    }
-
-    public Tile flipW ()
-    {
-        return this;
-    }
-
-    /*
-     * Rotate the array clockwise 90 degrees, i.e., one edge.
-     */
-
-    public Tile rotate () // degree?
-    {
-        return this;
     }
 
     public final long getID ()
@@ -120,5 +97,6 @@ public class Tile
 
     private long _id;
     private String[] _data;
+    private String[] _originalState;
     private String[] _edges;
 }
