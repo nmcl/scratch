@@ -1,9 +1,9 @@
 public class Tile
 {
-    public static final int NORTH = 0;
-    public static final int EAST = 1;
-    public static final int SOUTH = 2;
-    public static final int WEST = 3;
+    public static final int TOP = 0;
+    public static final int LEFT = 1;
+    public static final int BOTTOM = 2;
+    public static final int RIGHT = 3;
 
     public static final int EDGES = 4;
 
@@ -98,15 +98,15 @@ public class Tile
 
     private void generateEdges ()
     {
-        _edges[NORTH] = _data[0];
-        _edges[EAST] = "";
-        _edges[SOUTH] = _data[_data.length -1];
-        _edges[WEST] = "";
+        _edges[TOP] = _data[0];
+        _edges[LEFT] = "";
+        _edges[BOTTOM] = _data[_data.length -1];
+        _edges[RIGHT] = "";
 
         for (int i = 0; i < _data.length; i++)
         {
-            _edges[WEST] += _data[i].charAt(0);
-            _edges[EAST] += _data[i].charAt(_data[i].length() -1);
+            _edges[RIGHT] += _data[i].charAt(0);
+            _edges[LEFT] += _data[i].charAt(_data[i].length() -1);
         }
 
         /*
