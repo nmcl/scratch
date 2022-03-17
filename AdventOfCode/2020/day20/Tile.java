@@ -10,15 +10,19 @@ public class Tile
     public Tile (long number, String[] data)
     {
         _id = number;
-        _data = data;
-        _edges = new String[4];
+        _data = new char[data.length][data[0].length()];
+        _originalState = new char[data.length][data[0].length()];
 
-        _originalState = new String[_data.length];
-
-        for (int i = 0; i < _originalState.length; i++)
+        for (int i = 0; i < data.length; i++)
         {
-            _originalState[i] = _data[i];
+            for (int j = 0; j < data[0].length(); j++)
+            {
+                _data[i][j] = data[i].charAt(j);
+                _originalState[i][j] = data[i].charAt(j);
+            }
         }
+
+        _edges = new String[4];
         
         generateEdges();
     }
@@ -96,7 +100,7 @@ public class Tile
     }
 
     private long _id;
-    private String[] _data;
-    private String[] _originalState;
+    private char[][] _data;
+    private char[][] _originalState;
     private String[] _edges;
 }
