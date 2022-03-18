@@ -23,7 +23,11 @@ public class Tile
         generateEdges();
     }
 
-    // rotates tile 90 degrees clockwise
+    /*
+     * rotates tile 90 degrees clockwise. Assume you
+     * have to call it multiple times to get through
+     * all 360 degrees.
+     */
 
     public void rotate ()
     {
