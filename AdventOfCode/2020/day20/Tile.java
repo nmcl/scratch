@@ -19,8 +19,6 @@ public class Tile
                 _originalState[i][j] = data[i].charAt(j);
             }
         }
-        
-        generateEdges();
     }
 
     /*
