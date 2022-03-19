@@ -52,7 +52,5 @@ public class Jigsaw
         }
 
         Solver s = new Solver(debug);
-
-        s.arrangement(tiles);
     }
 }
