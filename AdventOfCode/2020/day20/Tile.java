@@ -38,9 +38,24 @@ public class Tile
         return _id;
     }
 
+    public final boolean isFrozen ()
+    {
+        return _freeze;
+    }
+
+    public final void freeze ()
+    {
+        _freeze = true;
+    }
+
     public final boolean[] getConnectionStatuses ()
     {
         return _isConnected;
+    }
+
+    public final long[] getConnections ()
+    {
+        return _connections;
     }
 
     /*
