@@ -113,6 +113,19 @@ public class Tile
         return true;
     }
 
+    public boolean connectLeftToRight (Tile toCheck)
+    {
+        for (int i = 0; i < _data.length; i++)
+        {
+            if (_data[i][0] != toCheck._data[i][_data.length - 1])
+                return false;
+        }
+
+        connect(toCheck, LEFT, RIGHT);
+
+        return true;
+    }
+
     private final void connect (Tile toCheck, int thisEdge, int otherEdge)
     {
         if ((_connections[thisEdge] == 0) && (toCheck._connections[otherEdge] == 0))
