@@ -21,16 +21,26 @@ public class Tile
         }
 
         _freeze = false;  // should the tile move?
+        _isConnected = new boolean[4];
+        _connections = new long[4];
 
         for (int i = 0; i < 4; i++)
         {
-            _connections[i] = false;  // which edges are connected?
+            _isConnected[i] = false;  // which edges are connected?
+            _connections[i] = 0;
         }
+
+        _numberOfConnections = 0;
     }
 
     public final long getID ()
     {
         return _id;
+    }
+
+    public final boolean[] getConnectionStatuses ()
+    {
+        return _isConnected;
     }
 
     /*
@@ -77,6 +87,27 @@ public class Tile
         _data = temp;
     }
 
+    public boolean canConnect (Tile toCheck)
+    {
+        for (int i = 0; i < _data.length; i++)
+        {
+            if (_data[0][i] != toCheck._data[_data.length - 1][i])
+                return false;
+        }
+    
+        if ((_connections[TOP] == 0) && (toCheck._connections[BOTTOM] == 0))
+        {
+            _connections[TOP] = toCheck.getID();
+            _isConnected[TOP] = true;
+            _numberOfConnections++;
+            toCheck._connections[BOTTOM] = getID();
+            toCheck._isConnected[BOTTOM] = true;
+            toCheck._numberOfConnections++;
+        }
+
+        return true;
+    }
+
     @Override
     public boolean equals (Object obj)
     {
@@ -118,5 +149,7 @@ public class Tile
     private char[][] _data;
     private char[][] _originalState;
     private boolean _freeze;
-    private boolean[] _connections;
+    private boolean[] _isConnected;
+    private long[] _connections;
+    private int _numberOfConnections;
 }
