@@ -21,6 +21,11 @@ public class Tile
         }
 
         _freeze = false;  // should the tile move?
+
+        for (int i = 0; i < 4; i++)
+        {
+            _connections[i] = false;  // which edges are connected?
+        }
     }
 
     public final long getID ()
@@ -45,6 +50,27 @@ public class Tile
             for (int j = 0; j < y; j++)
             {
                 temp[j][x - 1 - i] = _data[i][j];
+            }
+        }
+
+        _data = temp;
+    }
+
+    /*
+     * Flip top to bottom.
+     */
+
+    public void invert ()
+    {
+        int x = _data.length;
+	    int y = _data[0].length;
+	    char[][] temp = new char[x][y];
+
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < y; j++)
+            {
+                temp[i][_data[i].length - j - 1] = _data[i][j];
             }
         }
 
@@ -92,4 +118,5 @@ public class Tile
     private char[][] _data;
     private char[][] _originalState;
     private boolean _freeze;
+    private boolean[] _connections;
 }
