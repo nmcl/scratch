@@ -19,6 +19,8 @@ public class Tile
                 _originalState[i][j] = data[i].charAt(j);
             }
         }
+
+        _freeze = false;  // should the tile move?
     }
 
     /*
@@ -29,6 +31,19 @@ public class Tile
 
     public void rotate ()
     {
+        int x = _data.length;
+	    int y = _data[0].length;
+	    char[][] temp = new char[x][y];
+
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < y; j++)
+            {
+                temp[j][x - 1 - i] = _data[i][j];
+            }
+        }
+
+        _data = temp;
     }
 
     public final long getID ()
@@ -76,4 +91,5 @@ public class Tile
     private long _id;
     private char[][] _data;
     private char[][] _originalState;
+    private boolean _freeze;
 }
