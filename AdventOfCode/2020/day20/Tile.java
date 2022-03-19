@@ -87,7 +87,7 @@ public class Tile
         _data = temp;
     }
 
-    public boolean canConnect (Tile toCheck)
+    public boolean canConnect (Tile toCheck, int thisEdge, int otherEdge)
     {
         for (int i = 0; i < _data.length; i++)
         {
@@ -95,13 +95,13 @@ public class Tile
                 return false;
         }
     
-        if ((_connections[TOP] == 0) && (toCheck._connections[BOTTOM] == 0))
+        if ((_connections[thisEdge] == 0) && (toCheck._connections[otherEdge] == 0))
         {
-            _connections[TOP] = toCheck.getID();
-            _isConnected[TOP] = true;
+            _connections[thisEdge] = toCheck.getID();
+            _isConnected[thisEdge] = true;
             _numberOfConnections++;
-            toCheck._connections[BOTTOM] = getID();
-            toCheck._isConnected[BOTTOM] = true;
+            toCheck._connections[otherEdge] = getID();
+            toCheck._isConnected[otherEdge] = true;
             toCheck._numberOfConnections++;
         }
 
