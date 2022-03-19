@@ -23,6 +23,11 @@ public class Tile
         _freeze = false;  // should the tile move?
     }
 
+    public final long getID ()
+    {
+        return _id;
+    }
+
     /*
      * rotates tile 90 degrees clockwise. Assume you
      * have to call it multiple times to get through
@@ -44,11 +49,6 @@ public class Tile
         }
 
         _data = temp;
-    }
-
-    public final long getID ()
-    {
-        return _id;
     }
 
     @Override
