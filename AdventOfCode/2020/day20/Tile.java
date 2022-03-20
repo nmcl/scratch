@@ -104,6 +104,8 @@ public class Tile
 
     public boolean connectTopToBottom (Tile toCheck)
     {
+        // check edges match
+
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[0][i] != toCheck._data[_data.length - 1][i])
@@ -117,6 +119,8 @@ public class Tile
 
     public boolean connectBottomToTop (Tile toCheck)
     {
+        // check edges match
+
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[_data.length - 1][i] != toCheck._data[0][i])
@@ -130,6 +134,8 @@ public class Tile
 
     public boolean connectLeftToRight (Tile toCheck)
     {
+        // check edges match
+
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[i][0] != toCheck._data[i][_data.length - 1])
@@ -143,6 +149,8 @@ public class Tile
 
     public boolean connectRightToLeft (Tile toCheck)
     {
+        // check edges match
+
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[i][_data.length - 1] != toCheck._data[i][0])
