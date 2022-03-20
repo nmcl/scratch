@@ -17,7 +17,14 @@ public class Solver
      * 2: Work outwards from the centre.
      */
 
-    public boolean solve (Tile theTile, Tile toCheck)
+    public Vector<Tile> solve (Vector<Tile> tiles)
+    {
+        Vector<Tile> cornerTiles = new Vector<Tile>();
+
+        return cornerTiles;
+    } 
+
+    private boolean connects (Tile theTile, Tile toCheck)
     {
         for (int i = 0; i < 4; i++)
         {
