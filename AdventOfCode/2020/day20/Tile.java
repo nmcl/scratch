@@ -106,6 +106,8 @@ public class Tile
     {
         // check edges match
 
+        // store the edges separately again?
+        
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[0][i] != toCheck._data[_data.length - 1][i])
