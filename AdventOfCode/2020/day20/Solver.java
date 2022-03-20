@@ -1,5 +1,15 @@
 import java.util.*;
 
+/**
+ * Loop through the tiles and find out how many of them have matching edges. Then,
+ * based upon the number of shared edges we do the following:
+ * 
+ * 0: ERROR!!
+ * 1: If a tile has only one matching edge, then it's easy to say where it needs
+ * to be placed.
+ * 2: Work outwards from the centre.
+ */
+
 public class Solver
 {
     public Solver (boolean debug)
@@ -7,19 +17,24 @@ public class Solver
         _debug = debug;
     }
 
-    /**
-     * Loop through the tiles and find out how many of them have matching edges. Then,
-     * based upon the number of shared edges we do the following:
-     * 
-     * 0: ERROR!!
-     * 1: If a tile has only one matching edge, then it's easy to say where it needs
-     * to be placed.
-     * 2: Work outwards from the centre.
-     */
-
     public Vector<Tile> solve (Vector<Tile> tiles)
     {
         Vector<Tile> cornerTiles = new Vector<Tile>();
+
+        for (int i = 0; i < tiles.size(); i++)
+        {
+            Tile current = tiles.elementAt(i);
+            int count = 0;
+
+            for (int j = 0; j < tiles.size(); j++)
+            {
+                if (!current.equals(tiles.elementAt(j)) && connects(current, tiles.elementAt(j)))
+                    count++;
+            }
+
+            if (count == 2)
+                cornerTiles.add(current);
+        }
 
         return cornerTiles;
     } 
