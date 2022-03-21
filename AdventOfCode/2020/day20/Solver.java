@@ -28,6 +28,8 @@ public class Solver
 
             for (int j = 0; j < tiles.size(); j++)
             {
+                System.out.println("Comparing "+current+" with "+tiles.elementAt(j));
+                
                 if (!current.equals(tiles.elementAt(j)) && connects(current, tiles.elementAt(j)))
                     count++;
             }
