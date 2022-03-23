@@ -31,11 +31,15 @@ public class Solver
                 System.out.println("Comparing "+current+" with "+tiles.elementAt(j));
 
                 if (!current.equals(tiles.elementAt(j)) && connects(current, tiles.elementAt(j)))
+                {
+                    System.out.println("Connects!");
+                    
                     count++;
+                }
             }
 
             System.out.println("Final count is "+count);
-            
+
             if (count == 2)
                 cornerTiles.add(current);
         }
