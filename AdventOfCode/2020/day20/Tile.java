@@ -20,7 +20,7 @@ public class Tile
             }
         }
 
-        _freeze = false;  // should the tile move?
+        _freeze = false;  // should the tile move or change?
         _isConnected = new boolean[4];
         _connections = new long[4];
 
