@@ -27,7 +27,7 @@ public class Solver
             int count = 0;
 
             System.out.println("Current tile: "+current);
-            
+
             for (int j = 0; j < tiles.size(); j++)
             {
                 System.out.println("Comparing "+current+" with "+tiles.elementAt(j));
@@ -37,6 +37,8 @@ public class Solver
                     System.out.println("Connects!");
                     
                     count++;
+
+                    System.out.println("Count: "+count);
                 }
             }
 
