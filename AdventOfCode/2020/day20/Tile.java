@@ -20,9 +20,10 @@ public class Tile
             }
         }
 
-        _freeze = false;  // should the tile move or change?
-        _isConnected = new boolean[4];
-        _connections = new long[4];
+
+        _freeze = false;  // should the tile move?
+        _isConnected = new boolean[4];  // edges connected?
+        _connections = new long[4];  // if so, which ones?
 
         for (int i = 0; i < 4; i++)
         {
@@ -107,7 +108,7 @@ public class Tile
         // check edges match
 
         // store the edges separately again?
-        
+
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[0][i] != toCheck._data[_data.length - 1][i])
@@ -185,7 +186,7 @@ public class Tile
 
         if (this == obj)
             return true;
-        
+
         if (getClass() == obj.getClass())
         {
             Tile temp = (Tile) obj;
