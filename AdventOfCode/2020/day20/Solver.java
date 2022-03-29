@@ -65,6 +65,8 @@ public class Solver
         if (!toCheck.isFrozen())
             toCheck.invert();
     
+        System.out.println("here with "+toCheck);
+
         for (int i = 0; i < 4; i++)
         {
             if (theTile.connectBottomToTop(toCheck) || theTile.connectTopToBottom(toCheck) ||
