@@ -34,7 +34,12 @@ public class Verifier
 
         if (corners.size() == 4)
         {
+            long result = 1L;
 
+            for (int i = 0; i < 4; i++)
+                result *= corners.elementAt(i).getID();
+
+            System.out.println("result "+result);
         }
         else
             System.out.println("Invalid number of corners: "+corners.size());
