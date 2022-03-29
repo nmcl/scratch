@@ -33,6 +33,7 @@ public class Solver
                 if (!current.equals(tiles.elementAt(j)) && connects(current, tiles.elementAt(j)))
                 {
                     count++;
+                    System.out.println("count "+count);
                 }
             }
 
