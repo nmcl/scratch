@@ -65,7 +65,7 @@ public class Solver
         if (!toCheck.isFrozen())
             toCheck.invert();
     
-        System.out.println("here with "+toCheck);
+        System.out.println("here with\n"+toCheck);
 
         for (int i = 0; i < 4; i++)
         {
