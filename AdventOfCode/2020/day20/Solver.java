@@ -26,18 +26,19 @@ public class Solver
             Tile current = tiles.elementAt(i);
             int count = 0;
 
-            System.out.println("Tile\n"+current.getID());
+            if (_debug)
+                System.out.println("Tile\n"+current.getID());
 
             for (int j = 0; j < tiles.size(); j++)
             {
                 if (!current.equals(tiles.elementAt(j)) && connects(current, tiles.elementAt(j)))
                 {
                     count++;
-                    System.out.println("count "+count);
                 }
             }
 
-            System.out.println("Final count is "+count);
+            if (_debug)
+                System.out.println("Final count is "+count);
 
             if (count == 2)
                 cornerTiles.add(current);
@@ -48,7 +49,8 @@ public class Solver
 
     private boolean connects (Tile theTile, Tile toCheck)
     {
-        System.out.println("Checking "+toCheck.getID()+" against "+theTile.getID());
+        if (_debug)
+            System.out.println("Checking "+toCheck.getID()+" against "+theTile.getID());
         
         for (int i = 0; i < 4; i++)
         {
@@ -64,8 +66,6 @@ public class Solver
         
         if (!toCheck.isFrozen())
             toCheck.invert();
-    
-        System.out.println("here with\n"+toCheck);
 
         for (int i = 0; i < 4; i++)
         {
