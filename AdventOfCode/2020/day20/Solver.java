@@ -74,6 +74,9 @@ public class Solver
             {
                 return true;
             }
+
+            if (!toCheck.isFrozen())
+                toCheck.rotate();
         }
 
         return false;
