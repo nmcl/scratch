@@ -20,7 +20,6 @@ public class Tile
             }
         }
 
-
         _freeze = false;  // should the tile move?
         _isConnected = new boolean[4];  // edges connected?
         _connections = new long[4];  // if so, which ones?
