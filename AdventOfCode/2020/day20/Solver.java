@@ -47,6 +47,8 @@ public class Solver
 
     private boolean connects (Tile theTile, Tile toCheck)
     {
+        System.out.println("Checking "+toCheck+" against "+theTile);
+        
         for (int i = 0; i < 4; i++)
         {
             if (theTile.connectBottomToTop(toCheck) || theTile.connectTopToBottom(toCheck) ||
