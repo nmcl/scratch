@@ -39,7 +39,10 @@ public class Verifier
             for (int i = 0; i < 4; i++)
                 result *= corners.elementAt(i).getID();
 
-            System.out.println("result "+result);
+            if (result == EXAMPLE_RESULT)
+                return true;
+
+            System.out.println("Invalud result: "+result);
         }
         else
             System.out.println("Invalid number of corners: "+corners.size());
