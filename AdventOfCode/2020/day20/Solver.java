@@ -26,7 +26,7 @@ public class Solver
             Tile current = tiles.elementAt(i);
             int count = 0;
 
-            System.out.println("Tile\n"+current);
+            System.out.println("Tile\n"+current.getID());
 
             for (int j = 0; j < tiles.size(); j++)
             {
@@ -47,7 +47,7 @@ public class Solver
 
     private boolean connects (Tile theTile, Tile toCheck)
     {
-        System.out.println("Checking "+toCheck+" against "+theTile);
+        System.out.println("Checking "+toCheck.getID()+" against "+theTile.getID());
         
         for (int i = 0; i < 4; i++)
         {
