@@ -35,7 +35,7 @@ public class Tile
 
     public final void removeBorders ()
     {
-        
+
     }
 
     /*
@@ -54,7 +54,7 @@ public class Tile
             && (_data[y][x + 11] == TileData.HASH) && (_data[y][x + 12] == TileData.HASH)
             && (_data[y + 1][x + 13] == TileData.HASH) && (_data[y + 1][x + 16] == TileData.HASH)
 		    && (_data[y][x + 17] == TileData.HASH) && (_data[y][x + 18] == TileData.HASH)
-            && (_data[y][x + 19] == TileData.HASH) && (_data[y - 1][x + 18] == TileData.HASH)
+            && (_data[y][x + 19] == TileData.HASH) && (_data[y - 1][x + 18] == TileData.HASH))
         {
 	        return true;
 	    }
