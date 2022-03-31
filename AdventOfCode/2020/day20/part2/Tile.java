@@ -33,6 +33,30 @@ public class Tile
         _numberOfConnections = 0;
     }
 
+    /*
+     * Check for this pattern ...
+     * 
+     *                   # 
+     * #    ##    ##    ###
+     *  #  #  #  #  #  #   
+     */
+
+    public final boolean hasSeaMonster (int x, int y)
+    {
+        if ((_data[y + 1][x + 1] == TileData.HASH) && (_data[y + 1][x + 4] == TileData.HASH)
+            && (_data[y][x + 5] == TileData.HASH) && (_data[y][x + 6] == TileData.HASH)
+		    && (_data[y + 1][x + 7] == TileData.HASH) && (_data[y + 1][x + 10] == TileData.HASH)
+            && (_data[y][x + 11] == TileData.HASH) && (_data[y][x + 12] == TileData.HASH)
+            && (_data[y + 1][x + 13] == TileData.HASH) && (_data[y + 1][x + 16] == TileData.HASH)
+		    && (_data[y][x + 17] == TileData.HASH) && (_data[y][x + 18] == TileData.HASH)
+            && (_data[y][x + 19] == TileData.HASH) && (_data[y - 1][x + 18] == TileData.HASH)
+        {
+	        return true;
+	    }
+
+	    return false;
+    }
+
     public final long getID ()
     {
         return _id;
