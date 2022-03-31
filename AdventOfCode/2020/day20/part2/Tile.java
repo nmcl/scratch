@@ -33,6 +33,11 @@ public class Tile
         _numberOfConnections = 0;
     }
 
+    public final void removeBorders ()
+    {
+        
+    }
+
     /*
      * Check for this pattern ...
      * 
