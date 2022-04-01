@@ -42,7 +42,7 @@ public class Verifier
             if (result == EXAMPLE_RESULT)
                 return true;
 
-            System.out.println("Invalud result: "+result);
+            System.out.println("Invalid result: "+result);
         }
         else
             System.out.println("Invalid number of corners: "+corners.size());
