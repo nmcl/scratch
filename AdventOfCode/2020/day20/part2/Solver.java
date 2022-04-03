@@ -17,6 +17,11 @@ public class Solver
         _debug = debug;
     }
 
+    /*
+     * This time we need to solve the image and return the entire
+     * thing assembled, i.e., not just the corners.
+     */
+
     public Vector<Tile> solve (Vector<Tile> tiles)
     {
         Vector<Tile> cornerTiles = new Vector<Tile>();
