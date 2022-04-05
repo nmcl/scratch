@@ -145,6 +145,8 @@ public class Tile
 
         connect(toCheck, TOP, BOTTOM);
 
+        System.out.println("connectTopToBottom");
+
         return true;
     }
 
@@ -159,6 +161,8 @@ public class Tile
         }
 
         connect(toCheck, BOTTOM, TOP);
+
+        System.out.println("connectBottomToTop");
 
         return true;
     }
@@ -175,6 +179,8 @@ public class Tile
 
         connect(toCheck, LEFT, RIGHT);
 
+        System.out.println("connectLeftToRight");
+
         return true;
     }
 
@@ -189,6 +195,8 @@ public class Tile
         }
 
         connect(toCheck, RIGHT, LEFT);
+
+        System.out.println("connectRightToLeft");
 
         return true;
     }
