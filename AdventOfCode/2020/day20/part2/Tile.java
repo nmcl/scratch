@@ -35,7 +35,7 @@ public class Tile
 
     public final void removeBorders ()
     {
-
+        // remove
     }
 
     /*
