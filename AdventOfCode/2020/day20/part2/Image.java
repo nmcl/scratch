@@ -3,6 +3,12 @@ public class Image
     public Image(int x, int y)
     {
         _theWorld = new Tile[x][y];
+
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < y; j++)
+                _theWorld[i][j] = null;
+        }
     }
 
     public void placeTile (Tile theTile, int x, int y)
