@@ -13,6 +13,9 @@ public class Image
 
     public void placeTile (Tile theTile, int x, int y)
     {
+        if (_theWorld[x][y] != null)
+            System.out.println("Warning: overwiting tile < "+x+", "+y+" >");
+            
         _theWorld[x][y] = theTile;
     }
 
