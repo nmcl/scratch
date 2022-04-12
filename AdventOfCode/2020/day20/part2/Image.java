@@ -1,3 +1,5 @@
+// assemble the entire image from the Tiles
+
 public class Image
 {
     public Image(int x, int y)
@@ -15,7 +17,7 @@ public class Image
     {
         if (_theWorld[x][y] != null)
             System.out.println("Warning: overwiting tile < "+x+", "+y+" >");
-            
+
         _theWorld[x][y] = theTile;
     }
 
