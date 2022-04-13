@@ -27,4 +27,5 @@ public class Image
     }
 
     private Tile[][] _theWorld;
+    private boolean _debug;
 }
