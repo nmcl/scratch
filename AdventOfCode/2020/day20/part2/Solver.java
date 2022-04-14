@@ -49,6 +49,8 @@ public class Solver
                 cornerTiles.add(current);
         }
 
+        // once we have number of matching sides we can assemble the picture.
+        
         return cornerTiles;
     } 
 
