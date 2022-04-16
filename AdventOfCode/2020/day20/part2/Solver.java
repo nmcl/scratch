@@ -43,7 +43,7 @@ public class Solver
             }
 
             //if (_debug)
-                System.out.println("Final count is "+count);
+                System.out.println("Final count is "+count+" for "+current);
 
             if (count == 2)
                 cornerTiles.add(current);
