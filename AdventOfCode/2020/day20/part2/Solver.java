@@ -42,7 +42,7 @@ public class Solver
                 }
             }
 
-            if (_debug)
+            //if (_debug)
                 System.out.println("Final count is "+count);
 
             if (count == 2)
