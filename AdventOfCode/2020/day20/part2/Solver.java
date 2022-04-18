@@ -27,11 +27,7 @@ public class Solver
         HashMap<Long, Integer> tileTable = new HashMap<Long, Integer>();
 	
         for (int i = 0; i < tiles.size(); i++)
-        {
-            Tile t = tiles.elementAt(i);
-
-            tileTable.put(t.getID(), i);
-        }
+            tileTable.put(tiles.elementAt(i).getID(), i);
 
 	    System.out.println("**GOT "+tileTable);
 
@@ -59,6 +55,19 @@ public class Solver
 	    }
 
 	    System.out.println("**NOW have "+visited);
+
+        for (int i = 0; i < tiles.size(); i++)
+        {
+            Tile t = tiles.elementAt(i);
+
+            for (int j = 0; j < tiles.size(); j++)
+            {
+                if (!t.equals(tiles.elementAt(j)))
+                {
+                    connects(t, tiles.elementAt(j));
+                }
+            }
+        }
 
         return null;
     } 
