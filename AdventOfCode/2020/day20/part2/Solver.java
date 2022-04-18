@@ -35,6 +35,31 @@ public class Solver
 
 	    System.out.println("**GOT "+tileTable);
 
+	    HashSet<Tile> visited = new HashSet<Tile>();
+	    LinkedList<Tile> queue = new LinkedList<Tile>();
+	
+        queue.add(tiles.get(0));
+
+	    while (!queue.isEmpty())
+        {
+            Tile current = queue.poll();
+            
+            visited.add(current);
+
+            for (int j = 0; j < tiles.size(); j++)
+            {
+                Tile t = tiles.elementAt(j);
+
+                if (!visited.contains(t) && !current.equals(t))
+                {
+                    if (connects(current, t))
+                        queue.add(t);
+                }
+	        }
+	    }
+
+	    System.out.println("**NOW have "+visited);
+
         return null;
     } 
 
