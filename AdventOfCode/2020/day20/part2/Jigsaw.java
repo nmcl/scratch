@@ -50,20 +50,5 @@ public class Jigsaw
                 System.out.println(iter.next());
             }
         }
-
-        Solver s = new Solver(debug);
-        Vector<Tile> corners = s.solve(tiles);
-
-        if (corners.size() == 4)
-        {
-            long result = 1L;
-
-            for (int i = 0; i < 4; i++)
-                result *= corners.elementAt(i).getID();
-
-            System.out.println("Result from four corner tiles: "+result);
-        }
-        else
-            System.out.println("Invalid number of corners: "+corners.size());
     }
 }
