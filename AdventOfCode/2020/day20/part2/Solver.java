@@ -69,6 +69,8 @@ public class Solver
             }
         }
 
+        System.out.println("**NOW GOT\n"+tiles);
+
         return null;
     } 
 
