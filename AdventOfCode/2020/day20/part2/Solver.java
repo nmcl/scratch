@@ -24,34 +24,18 @@ public class Solver
 
     public Vector<Tile> solve (Vector<Tile> tiles)
     {
-        Vector<Tile> cornerTiles = new Vector<Tile>();
-
+        HashMap<Long, Integer> tileTable = new HashMap<Long, Integer>();
+	
         for (int i = 0; i < tiles.size(); i++)
         {
-            Tile current = tiles.elementAt(i);
-            int count = 0;
+            Tile t = tiles.elementAt(i);
 
-            if (_debug)
-                System.out.println("Tile\n"+current.getID());
-
-            for (int j = 0; j < tiles.size(); j++)
-            {
-                if (!current.equals(tiles.elementAt(j)) && connects(current, tiles.elementAt(j)))
-                {
-                    count++;
-                }
-            }
-
-            //if (_debug)
-                System.out.println("Final count is "+count+" for "+current);
-
-            if (count == 2)
-                cornerTiles.add(current);
+            tileTable.put(t.getID(), i);
         }
 
-        // once we have number of matching sides we can assemble the picture.
-        
-        return cornerTiles;
+	    System.out.println("**GOT "+tileTable);
+
+        return null;
     } 
 
     private boolean connects (Tile theTile, Tile toCheck)
