@@ -29,25 +29,6 @@ public class Verifier
         Solver s = new Solver(_debug);
         Vector<Tile> corners = s.solve(tiles);
 
-        if (corners.size() == 4)
-        {
-            /*
-             * At this stage we have the tiles.
-             */
-
-            long result = 1L;
-
-            for (int i = 0; i < 4; i++)
-                result *= corners.elementAt(i).getID();
-
-            if (result == EXAMPLE_RESULT)
-                return true;
-
-            System.out.println("Invalid result: "+result);
-        }
-        else
-            System.out.println("Invalid number of corners: "+corners.size());
-
         return false;
     }
 
