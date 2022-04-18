@@ -205,6 +205,9 @@ public class Tile
     {
         if ((_connections[thisEdge] == 0) && (toCheck._connections[otherEdge] == 0))
         {
+            toCheck.freeze();
+            freeze();
+
             _connections[thisEdge] = toCheck.getID();
             _isConnected[thisEdge] = true;
             _numberOfConnections++;
