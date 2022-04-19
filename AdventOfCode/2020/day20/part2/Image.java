@@ -8,7 +8,7 @@ public class Image
     public static final int MAX_X = 12;
     public static final int MAX_Y = 12;
 
-    public static final String NO_TILE = "xxxxxxxxxx";
+    public static final String NO_TILE = "xxxxxxxx";
 
     public Image ()
     {
@@ -21,6 +21,11 @@ public class Image
                 _theWorld[i][j] = null;
             }
         }
+    }
+
+    public void addTile (int x, int y, Tile t)
+    {
+        _theWorld[y][x] = t;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class Image
             }
 
             index++;
-            
+
         } while (index < maxIndex);
 
         return str;
