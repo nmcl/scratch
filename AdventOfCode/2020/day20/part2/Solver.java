@@ -109,7 +109,7 @@ public class Solver
         return false;
     }
 
-    private Image createImage (Vector<Tile> tiles)
+    private Tile createImage (Vector<Tile> tiles)
     {
         return null;
     }
