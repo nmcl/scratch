@@ -8,7 +8,7 @@ public class Image
     public static final int MAX_X = 12;
     public static final int MAX_Y = 12;
 
-    public static final String NO_TILE = "NO TILE PRESENT";
+    public static final String NO_TILE = "xxxxxxxxxx";
 
     public Image ()
     {
@@ -27,6 +27,33 @@ public class Image
     public String toString ()
     {
         String str = null;
+        int index = 0;
+        int maxIndex = 0;
+
+        do
+        {
+            for (int i = 0; i < _theWorld.length; i++)
+            {
+                for (int j = 0; j < _theWorld[0].length; j++)
+                {
+                    Tile t = _theWorld[i][j];
+
+                    if (t != null)
+                    {
+                        str += t.line(index);
+
+                        maxIndex = t.numberOfLinex();
+                    }
+                    else
+                        str += NO_TILE;
+                }
+
+                str += "\n";
+            }
+
+            index++;
+            
+        } while (index < maxIndex);
 
         return str;
     }
