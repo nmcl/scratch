@@ -109,5 +109,10 @@ public class Solver
         return false;
     }
 
+    private Image createImage (Vector<Tile> tiles)
+    {
+        return null;
+    }
+
     private boolean _debug;
 }
