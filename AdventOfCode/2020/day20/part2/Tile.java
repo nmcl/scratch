@@ -33,9 +33,46 @@ public class Tile
         _numberOfConnections = 0;
     }
 
-    public final void removeBorders ()
+    public Tile (long number, char[][] data)
     {
-        // remove
+        _id = number;
+        _data = data;
+        _originalState = new char[_data.length][_data[0].length];
+
+        for (int i = 0; i < _data.length; i++)
+        {
+            for (int j = 0; j < _data[0].length; j++)
+            {
+                _originalState[i][j] = _data[i][j];
+            }
+        }
+
+        _freeze = false;  // should the tile move?
+        _isConnected = new boolean[4];  // edges connected?
+        _connections = new long[4];  // if so, which ones?
+
+        for (int i = 0; i < 4; i++)
+        {
+            _isConnected[i] = false;  // which edges are connected?
+            _connections[i] = 0;
+        }
+
+        _numberOfConnections = 0;
+    }
+
+    public final Tile removeBorders ()
+    {
+        char[][] borderless = new char[_data.length -2][_data[0].length-2];
+
+        for (int i = 1; i < _data.length -1; i++)
+        {
+            for (int j = 1; j < _data[0].length -1; j++)
+            {
+                borderless[i-1][j-1] = _data[i][j];
+            }
+        }
+
+        return new Tile(getID(), borderless);
     }
 
     /*
