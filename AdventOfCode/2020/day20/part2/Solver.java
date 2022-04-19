@@ -111,6 +111,19 @@ public class Solver
 
     private Tile createImage (Vector<Tile> tiles)
     {
+        Tile topLeftCorner = null;
+
+        for (int i = 0; (i < tiles.size()) && (topLeftCorner == null); i++)
+        {
+            Tile t = tiles.elementAt(i);
+
+            if (t.getNumberOfConnections() == 2) // has to be a corner!
+            {
+                if ((t.getConnections()[Tile.TOP] == 0) && (t.getConnections()[Tile.LEFT] == 0))
+                    topLeftCorner = t;
+            }
+        }
+
         return null;
     }
 
