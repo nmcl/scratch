@@ -101,6 +101,11 @@ public class Tile
 	    return false;
     }
 
+    public final int getNumberOfConnections ()
+    {
+        return _numberOfConnections;
+    }
+    
     public final long getID ()
     {
         return _id;
@@ -270,7 +275,7 @@ public class Tile
             Tile temp = (Tile) obj;
 
             // Tiles are equal if their ids and sizes are the same.
-            
+
             return ((_id == temp._id) && ((_data.length == temp._data.length) && (_data[0].length == temp._data[0].length)));
         }
 
