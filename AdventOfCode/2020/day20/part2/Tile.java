@@ -105,7 +105,7 @@ public class Tile
     {
         return _numberOfConnections;
     }
-    
+
     public final long getID ()
     {
         return _id;
@@ -129,6 +129,16 @@ public class Tile
     public final long[] getConnections ()
     {
         return _connections;
+    }
+
+    public String line (int index)
+    {
+        return new String(_data[index]);
+    }
+
+    public int numberOfLinex ()
+    {
+        return _data.length;
     }
 
     /*
