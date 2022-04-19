@@ -25,7 +25,7 @@ public class Image
 
     public void addTile (int x, int y, Tile t)
     {
-        _theWorld[y][x] = t;
+        _theWorld[y][x] = t.removeBorders();
     }
 
     @Override
