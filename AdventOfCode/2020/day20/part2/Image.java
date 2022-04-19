@@ -8,6 +8,8 @@ public class Image
     public static final int MAX_X = 12;
     public static final int MAX_Y = 12;
 
+    public static final String NO_TILE = "NO TILE PRESENT";
+
     public Image ()
     {
         _theWorld = new Tile[MAX_Y][MAX_X];
@@ -19,6 +21,14 @@ public class Image
                 _theWorld[i][j] = null;
             }
         }
+    }
+
+    @Override
+    public String toString ()
+    {
+        String str = null;
+
+        return str;
     }
 
     private Tile[][] _theWorld;
