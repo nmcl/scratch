@@ -60,6 +60,8 @@ public class Tile
         _numberOfConnections = 0;
     }
 
+    // Take this Tile and return a borderless version.
+
     public final Tile removeBorders ()
     {
         char[][] borderless = new char[_data.length -2][_data[0].length-2];
@@ -267,7 +269,9 @@ public class Tile
         {
             Tile temp = (Tile) obj;
 
-            return (_id == temp._id);
+            // Tiles are equal if their ids and sizes are the same.
+            
+            return ((_id == temp._id) && ((_data.length == temp._data.length) && (_data[0].length == temp._data[0].length)));
         }
 
         return false;
