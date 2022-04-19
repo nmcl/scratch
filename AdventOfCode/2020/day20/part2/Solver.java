@@ -109,9 +109,10 @@ public class Solver
         return false;
     }
 
-    private Tile createImage (Vector<Tile> tiles)
+    private Image createImage (Vector<Tile> tiles)
     {
         Tile topLeftCorner = null;
+        Image theImage = new Image();
 
         for (int i = 0; (i < tiles.size()) && (topLeftCorner == null); i++)
         {
@@ -123,6 +124,8 @@ public class Solver
                     topLeftCorner = t;
             }
         }
+
+        theImage.addTile(0, 0, topLeftCorner);
 
         return null;
     }
