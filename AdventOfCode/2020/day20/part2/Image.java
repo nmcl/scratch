@@ -33,6 +33,8 @@ public class Image
     public void addTile (int x, int y, Tile t)
     {
         _theWorld[y][x] = t.removeBorders();
+
+        System.out.println("Added "+t.removeBorders()+" to "+x+" "+y);
     }
 
     @Override
