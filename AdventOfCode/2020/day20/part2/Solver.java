@@ -152,6 +152,7 @@ public class Solver
                     System.out.println("adding to "+y+" "+x);
                     theImage.addTile(x, y, current);
 
+                    x = 0;
                     y++;
                 }
             }
