@@ -41,33 +41,6 @@ public class Image
     public String toString ()
     {
         String str = "";
-        int index = 0;
-        int maxIndex = 0;
-
-        do
-        {
-            for (int i = 0; i < _theWorld.length; i++)
-            {
-                for (int j = 0; j < _theWorld[0].length; j++)
-                {
-                    Tile t = _theWorld[i][j];
-
-                    if (t != null)
-                    {
-                        str += t.line(index);
-
-                        maxIndex = t.numberOfLines();
-                    }
-                    else
-                        str += NO_TILE;
-                }
-
-                str += "\n";
-            }
-
-            index++;
-
-        } while (index < maxIndex);
 
         return str;
     }
