@@ -109,10 +109,10 @@ public class Solver
         return false;
     }
 
-    private Image createImage (Vector<Tile> tiles)
+    private Image createImage (Vector<Tile> tiles, HashMap<Long, Integer> tileTable)
     {
         Tile topLeftCorner = null;
-        Image theImage = new Image();
+        Image theImage = new Image(_debug);
 
         for (int i = 0; (i < tiles.size()) && (topLeftCorner == null); i++)
         {
@@ -125,9 +125,55 @@ public class Solver
             }
         }
 
-        theImage.addTile(0, 0, topLeftCorner);
+        //theImage.addTile(0, 0, topLeftCorner);
 
-        return null;
+        Tile current = topLeftCorner;
+	    int x = 0;
+	    int y = 0;
+
+	    while (current.getConnections()[Tile.BOTTOM] != 0)
+        {
+	        Tile left = current;
+
+	        while (current.getConnections()[Tile.RIGHT] != 0)
+            {
+                theImage.addTile(x, y, current);
+
+                x++;
+
+                current = tiles.get(tileTable.get(current.getConnections()[Tile.RIGHT]));
+
+                if (current.getConnections()[Tile.RIGHT] == 0)
+                {
+                    theImage.addTile(x, y, current);
+
+                    y++;
+                }
+            }
+
+            current = tiles.get(tileTable.get(left.getConnections()[Tile.BOTTOM]));
+
+            if (current.getConnections()[Tile.BOTTOM] == 0)
+            {
+                while (current.getConnections()[Tile.RIGHT] != 0)
+                {
+                    theImage.addTile(x, y, current);
+
+                    x++;
+
+                    current = tiles.get(tileTable.get(current.getConnections()[Tile.RIGHT]));
+
+                    if (current.getConnections()[Tile.RIGHT] == 0)
+                    {
+                        theImage.addTile(x, y, current);
+
+                        y++;
+                    }
+                }
+            }
+        }
+
+        return theImage;
     }
 
     private boolean _debug;
