@@ -136,7 +136,7 @@ public class Tile
         return new String(_data[index]);
     }
 
-    public int numberOfLinex ()
+    public int numberOfLines ()
     {
         return _data.length;
     }
