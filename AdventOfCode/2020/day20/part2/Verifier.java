@@ -26,10 +26,8 @@ public class Verifier
             }
         }
 
-        for (int i = 0; i < tiles.size(); i++)
-        {
-            System.out.println(tiles.elementAt(i).removeBorders());
-        }
+        Solver s = new Solver(_debug);
+        Vector<Tile> result = s.solve(tiles);
 
         return false;
     }
