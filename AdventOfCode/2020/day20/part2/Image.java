@@ -10,7 +10,7 @@ public class Image
 
     public static final String NO_TILE = "xxxxxxxx";
 
-    public Image ()
+    public Image (boolean debug)
     {
         _theWorld = new Tile[MAX_Y][MAX_X];
 
@@ -21,6 +21,8 @@ public class Image
                 _theWorld[i][j] = null;
             }
         }
+
+        _debug = debug;
     }
 
     public void addTile (int x, int y, Tile t)
@@ -64,4 +66,5 @@ public class Image
     }
 
     private Tile[][] _theWorld;
+    private boolean _debug;
 }
