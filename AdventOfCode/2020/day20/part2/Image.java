@@ -42,6 +42,31 @@ public class Image
     {
         String str = "";
 
+        for (int i = 0; i < _theWorld.length; i++)
+        {
+            for (int j = 0; j < _theWorld[0].length; j++)
+            {
+                Tile t = _theWorld[i][j];
+                int index = 0;
+
+                if (t != null)
+                {
+                    int maxIndex = t.numberOfLines();
+
+                    while (index < maxIndex)
+                    {
+                        str += t.line(index);
+
+                        index++;
+                    }
+                }
+                else
+                    str += NO_TILE;
+
+                str += "\n";
+            }
+        }
+
         return str;
     }
 
