@@ -71,6 +71,10 @@ public class Solver
 
         System.out.println("**NOW GOT\n"+tiles);
 
+        Image theImage = createImage(tiles, tileTable);
+
+        System.out.println("**HAVE\n"+theImage);
+        
         return null;
     } 
 
