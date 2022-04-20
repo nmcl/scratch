@@ -131,14 +131,9 @@ public class Tile
         return _connections;
     }
 
-    public String line (int index)
+    public char[][] grid ()
     {
-        return new String(_data[index]);
-    }
-
-    public int numberOfLines ()
-    {
-        return _data.length;
+        return _data;
     }
 
     /*
