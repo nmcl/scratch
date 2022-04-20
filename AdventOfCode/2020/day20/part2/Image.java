@@ -12,11 +12,16 @@ public class Image
 
     public Image (boolean debug)
     {
-        _theWorld = new Tile[MAX_Y][MAX_X];
+        this(MAX_Y, MAX_X, debug);
+    }
 
-        for (int i = 0; i < MAX_Y; i++)
+    public Image (int y, int x, boolean debug)
+    {
+        _theWorld = new Tile[y][x];
+
+        for (int i = 0; i < y; i++)
         {
-            for (int j = 0; j < MAX_X; j++)
+            for (int j = 0; j < x; j++)
             {
                 _theWorld[i][j] = null;
             }
@@ -49,7 +54,7 @@ public class Image
                     {
                         str += t.line(index);
 
-                        maxIndex = t.numberOfLinex();
+                        maxIndex = t.numberOfLines();
                     }
                     else
                         str += NO_TILE;
