@@ -38,7 +38,7 @@ public class Image
     @Override
     public String toString ()
     {
-        String str = null;
+        String str = "";
         int index = 0;
         int maxIndex = 0;
 
