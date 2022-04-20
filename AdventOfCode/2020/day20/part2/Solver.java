@@ -139,7 +139,7 @@ public class Solver
 
 	        while (current.getConnections()[Tile.RIGHT] != 0)
             {
-                System.out.println("adding to "+y+" "+x);
+                System.out.println("adding "+current.getID()+" to "+y+" "+x);
 
                 theImage.addTile(x, y, current);
 
@@ -149,7 +149,7 @@ public class Solver
 
                 if (current.getConnections()[Tile.RIGHT] == 0)
                 {
-                    System.out.println("adding to "+y+" "+x);
+                    System.out.println("adding "+current.getID()+" to "+y+" "+x);
                     theImage.addTile(x, y, current);
 
                     x = 0;
@@ -163,7 +163,7 @@ public class Solver
             {
                 while (current.getConnections()[Tile.RIGHT] != 0)
                 {
-                    System.out.println("adding to "+y+" "+x);
+                    System.out.println("adding "+current.getID()+" to "+y+" "+x);
                     theImage.addTile(x, y, current);
 
                     x++;
@@ -172,7 +172,7 @@ public class Solver
 
                     if (current.getConnections()[Tile.RIGHT] == 0)
                     {
-                        System.out.println("adding to "+y+" "+x);
+                        System.out.println("adding "+current.getID()+" to "+y+" "+x);
                         theImage.addTile(x, y, current);
 
                         y++;
