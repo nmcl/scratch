@@ -74,7 +74,7 @@ public class Solver
         Image theImage = createImage(tiles, tileTable);
 
         System.out.println("**HAVE\n"+theImage);
-        
+
         return null;
     } 
 
@@ -141,6 +141,8 @@ public class Solver
 
 	        while (current.getConnections()[Tile.RIGHT] != 0)
             {
+                System.out.println("adding to "+y+" "+x);
+
                 theImage.addTile(x, y, current);
 
                 x++;
@@ -149,6 +151,7 @@ public class Solver
 
                 if (current.getConnections()[Tile.RIGHT] == 0)
                 {
+                    System.out.println("adding to "+y+" "+x);
                     theImage.addTile(x, y, current);
 
                     y++;
@@ -161,6 +164,7 @@ public class Solver
             {
                 while (current.getConnections()[Tile.RIGHT] != 0)
                 {
+                    System.out.println("adding to "+y+" "+x);
                     theImage.addTile(x, y, current);
 
                     x++;
@@ -169,6 +173,7 @@ public class Solver
 
                     if (current.getConnections()[Tile.RIGHT] == 0)
                     {
+                        System.out.println("adding to "+y+" "+x);
                         theImage.addTile(x, y, current);
 
                         y++;
