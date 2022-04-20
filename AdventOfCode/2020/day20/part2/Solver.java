@@ -116,7 +116,7 @@ public class Solver
     private Image createImage (Vector<Tile> tiles, HashMap<Long, Integer> tileTable)
     {
         Tile topLeftCorner = null;
-        Image theImage = new Image(_debug);
+        Image theImage = new Image((int) Math.sqrt(tiles.size()), (int) Math.sqrt(tiles.size()), _debug);
 
         for (int i = 0; (i < tiles.size()) && (topLeftCorner == null); i++)
         {
@@ -128,8 +128,6 @@ public class Solver
                     topLeftCorner = t;
             }
         }
-
-        //theImage.addTile(0, 0, topLeftCorner);
 
         Tile current = topLeftCorner;
 	    int x = 0;
