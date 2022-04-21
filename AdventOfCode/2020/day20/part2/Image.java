@@ -8,8 +8,6 @@ public class Image
     public static final int MAX_X = 12;
     public static final int MAX_Y = 12;
 
-    public static final String NO_TILE = "xxxxxxxx";
-
     public Image (boolean debug)
     {
         this(MAX_Y, MAX_X, debug);
@@ -41,41 +39,34 @@ public class Image
     public String toString ()
     {
         String str = "";
-        
-        int index = 0;
-        int maxIndex = 0;
+        int y = _theWorld.length;
+        int x = _theWorld[0].length;
 
-        do
+        /*
+        0,0 0,1 0,2
+        1,0 1,1 1,2
+        2,0 2,1 2,2
+*/
+
+        for (int i = 0; i < y; i++)
         {
-            for (int i = 0; i < _theWorld.length; i++)
+            for (int index = 0; index < x; index++)
             {
-                System.out.println("size "+_theWorld[0].length);
-                
-                for (int j = 0; j < _theWorld[0].length; j++)
+                Tile t = _theWorld[i][index];
+
+                if (t != null)
                 {
-                    Tile t = _theWorld[i][j];
-
-                    if (t != null)
+                    for (int j = 0; j < t.numberOfLines(); j++)
                     {
-                        System.out.println("Tile "+t.getID()+" line "+index+" is "+t.line(index));
-                        System.out.println("So far\n"+str);
-
-                        str += t.line(index);
-
-                        System.out.println("Now\n"+str);
-
-                        maxIndex = t.numberOfLines();
+                        str += t.line(j);
                     }
-                    else
-                        str += NO_TILE;
                 }
 
                 str += "\n";
             }
 
-            index++;
-
-        } while (index < maxIndex);
+            str += "\n";
+        }
 
         return str;
     }
