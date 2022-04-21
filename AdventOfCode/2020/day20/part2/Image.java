@@ -33,6 +33,11 @@ public class Image
         _theWorld[y][x] = t.removeBorders();
     }
 
+    public final Tile convertToTile ()
+    {
+        return new Tile(0, toString().split("\n"));
+    }
+
     @Override
     public String toString ()
     {
