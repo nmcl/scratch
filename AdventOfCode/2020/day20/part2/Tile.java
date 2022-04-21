@@ -210,8 +210,6 @@ public class Tile
 
         // store the edges separately again?
 
-        System.out.println("connectTopToBottom "+toCheck);
-
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[0][i] != toCheck._data[_data.length - 1][i])
@@ -226,8 +224,6 @@ public class Tile
     public boolean connectBottomToTop (Tile toCheck)
     {
         // check edges match
-
-        System.out.println("connectBottomToTop "+toCheck);
 
         for (int i = 0; i < _data.length; i++)
         {
@@ -244,8 +240,6 @@ public class Tile
     {
         // check edges match
 
-        System.out.println("connectLeftToRight "+toCheck);
-
         for (int i = 0; i < _data.length; i++)
         {
             if (_data[i][0] != toCheck._data[i][_data.length - 1])
@@ -260,8 +254,6 @@ public class Tile
     public boolean connectRightToLeft (Tile toCheck)
     {
         // check edges match
-
-        System.out.println("connectRightToLeft "+toCheck);
 
         for (int i = 0; i < _data.length; i++)
         {
