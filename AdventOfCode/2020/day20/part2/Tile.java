@@ -85,20 +85,10 @@ public class Tile
      *  #  #  #  #  #  #   
      */
 
-    public final boolean hasSeaMonster (int x, int y)
-    {
-        if ((_data[y + 1][x + 1] == TileData.HASH) && (_data[y + 1][x + 4] == TileData.HASH)
-            && (_data[y][x + 5] == TileData.HASH) && (_data[y][x + 6] == TileData.HASH)
-		    && (_data[y + 1][x + 7] == TileData.HASH) && (_data[y + 1][x + 10] == TileData.HASH)
-            && (_data[y][x + 11] == TileData.HASH) && (_data[y][x + 12] == TileData.HASH)
-            && (_data[y + 1][x + 13] == TileData.HASH) && (_data[y + 1][x + 16] == TileData.HASH)
-		    && (_data[y][x + 17] == TileData.HASH) && (_data[y][x + 18] == TileData.HASH)
-            && (_data[y][x + 19] == TileData.HASH) && (_data[y - 1][x + 18] == TileData.HASH))
-        {
-	        return true;
-	    }
 
-	    return false;
+    public final int numberOfSeaMonsters ()
+    {
+        return 0;
     }
 
     public final int getNumberOfConnections ()
@@ -255,22 +245,6 @@ public class Tile
         return true;
     }
 
-    private final void connect (Tile toCheck, int thisEdge, int otherEdge)
-    {
-        if ((_connections[thisEdge] == 0) && (toCheck._connections[otherEdge] == 0))
-        {
-            toCheck.freeze();
-            freeze();
-
-            _connections[thisEdge] = toCheck.getID();
-            _isConnected[thisEdge] = true;
-            _numberOfConnections++;
-            toCheck._connections[otherEdge] = getID();
-            toCheck._isConnected[otherEdge] = true;
-            toCheck._numberOfConnections++;
-        }
-    }
-
     @Override
     public boolean equals (Object obj)
     {
@@ -308,6 +282,38 @@ public class Tile
         }
 
         return str;
+    }
+
+    private final boolean hasSeaMonster (int x, int y)
+    {
+        if ((_data[y + 1][x + 1] == TileData.HASH) && (_data[y + 1][x + 4] == TileData.HASH)
+            && (_data[y][x + 5] == TileData.HASH) && (_data[y][x + 6] == TileData.HASH)
+		    && (_data[y + 1][x + 7] == TileData.HASH) && (_data[y + 1][x + 10] == TileData.HASH)
+            && (_data[y][x + 11] == TileData.HASH) && (_data[y][x + 12] == TileData.HASH)
+            && (_data[y + 1][x + 13] == TileData.HASH) && (_data[y + 1][x + 16] == TileData.HASH)
+		    && (_data[y][x + 17] == TileData.HASH) && (_data[y][x + 18] == TileData.HASH)
+            && (_data[y][x + 19] == TileData.HASH) && (_data[y - 1][x + 18] == TileData.HASH))
+        {
+	        return true;
+	    }
+
+	    return false;
+    }
+
+    private final void connect (Tile toCheck, int thisEdge, int otherEdge)
+    {
+        if ((_connections[thisEdge] == 0) && (toCheck._connections[otherEdge] == 0))
+        {
+            toCheck.freeze();
+            freeze();
+
+            _connections[thisEdge] = toCheck.getID();
+            _isConnected[thisEdge] = true;
+            _numberOfConnections++;
+            toCheck._connections[otherEdge] = getID();
+            toCheck._isConnected[otherEdge] = true;
+            toCheck._numberOfConnections++;
+        }
     }
 
     private long _id;
