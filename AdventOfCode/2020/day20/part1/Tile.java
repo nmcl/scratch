@@ -164,19 +164,6 @@ public class Tile
         return true;
     }
 
-    private final void connect (Tile toCheck, int thisEdge, int otherEdge)
-    {
-        if ((_connections[thisEdge] == 0) && (toCheck._connections[otherEdge] == 0))
-        {
-            _connections[thisEdge] = toCheck.getID();
-            _isConnected[thisEdge] = true;
-            _numberOfConnections++;
-            toCheck._connections[otherEdge] = getID();
-            toCheck._isConnected[otherEdge] = true;
-            toCheck._numberOfConnections++;
-        }
-    }
-
     @Override
     public boolean equals (Object obj)
     {
@@ -212,6 +199,19 @@ public class Tile
         }
 
         return str;
+    }
+
+    private final void connect (Tile toCheck, int thisEdge, int otherEdge)
+    {
+        if ((_connections[thisEdge] == 0) && (toCheck._connections[otherEdge] == 0))
+        {
+            _connections[thisEdge] = toCheck.getID();
+            _isConnected[thisEdge] = true;
+            _numberOfConnections++;
+            toCheck._connections[otherEdge] = getID();
+            toCheck._isConnected[otherEdge] = true;
+            toCheck._numberOfConnections++;
+        }
     }
 
     private long _id;
