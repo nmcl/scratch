@@ -144,6 +144,22 @@ public class Tile
         return _data.length;
     }
 
+    public int numberOfHashes ()
+    {
+        int count = 0;
+
+        for (int i = 0; i < _data.length; i++)
+        {
+            for (int j = 0; j < _data[0].length; j++)
+            {
+                if (_data[i][j] == TileData.HASH)
+                    count++;
+            }
+        }
+
+        return count;
+    }
+
     /*
      * rotates tile 90 degrees clockwise. Assume you
      * have to call it multiple times to get through
