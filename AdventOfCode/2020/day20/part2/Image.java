@@ -48,24 +48,23 @@ public class Image
 
         for (int i = 0; i < y; i++)
         {
-            int index = 0;
-            Tile t = _theWorld[i][index];
+            Tile t = _theWorld[i][0];
 
-            for (int j = 0; j < x; j++)
+            for (int j = 0; j < t.numberOfLines(); j++)
             {
-                while (index < t.numberOfLines())
-                {
-                    t = _theWorld[i][j];
+                int index = 0;
 
-                    str += t.line(index);
+                while (index < y)
+                {
+                    t = _theWorld[i][index];
+
+                    str += t.line(j);
 
                     index++;
                 }
 
                 str += "\n";
             }
-
-            str += "\n";
         }
 
         return str;
