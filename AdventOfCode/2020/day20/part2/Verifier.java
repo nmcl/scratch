@@ -27,8 +27,13 @@ public class Verifier
         }
 
         Solver s = new Solver(_debug);
-        Vector<Tile> result = s.solve(tiles);
+        int result = s.solve(tiles);
 
+        if (result == EXAMPLE_RESULT)
+            return true;
+        else
+            System.out.println("Wrong sea roughness value: "+result);
+            
         return false;
     }
 
