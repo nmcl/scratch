@@ -22,14 +22,12 @@ public class Solver
      * thing assembled, i.e., not just the corners.
      */
 
-    public Vector<Tile> solve (Vector<Tile> tiles)
+    public int solve (Vector<Tile> tiles)
     {
         HashMap<Long, Integer> tileTable = new HashMap<Long, Integer>();
 	
         for (int i = 0; i < tiles.size(); i++)
             tileTable.put(tiles.elementAt(i).getID(), i);
-
-	    System.out.println("**GOT "+tileTable);
 
 	    HashSet<Tile> visited = new HashSet<Tile>();
 	    LinkedList<Tile> queue = new LinkedList<Tile>();
@@ -54,8 +52,6 @@ public class Solver
 	        }
 	    }
 
-	    System.out.println("**NOW have "+visited);
-
         for (int i = 0; i < tiles.size(); i++)
         {
             Tile t = tiles.elementAt(i);
@@ -69,13 +65,40 @@ public class Solver
             }
         }
 
-        System.out.println("**NOW GOT\n"+tiles);
+        Tile theImage = createImage(tiles, tileTable).convertToTile();
+        int seamonsterCount = theImage.numberOfSeaMonsters();
 
-        Image theImage = createImage(tiles, tileTable);
+        if (seamonsterCount == 0)
+        {
+            boolean foundOrientation = false;
 
-        System.out.println("**HAVE\n"+theImage.convertToTile());
+            for (int i = 0; (i < 4) && !foundOrientation; i++)
+            {
+                theImage.rotate();
 
-        return null;
+                seamonsterCount = theImage.numberOfSeaMonsters();
+                
+                if (seamonsterCount != 0)
+                    foundOrientation = true;
+            }
+
+            if (!foundOrientation)
+            {
+                theImage.invert();
+
+                for (int i = 0; (i < 4) && !foundOrientation; i++)
+                {
+                    theImage.rotate();
+
+                    seamonsterCount = theImage.numberOfSeaMonsters();
+                    
+                    if (seamonsterCount != 0)
+                        foundOrientation = true;
+                }
+            }
+        }
+
+        return (theImage.numberOfHashes() - (seamonsterCount * SeaMonster.NUMBER_OF_HASHES));
     } 
 
     private boolean connects (Tile theTile, Tile toCheck)
@@ -139,8 +162,6 @@ public class Solver
 
 	        while (current.getConnections()[Tile.RIGHT] != 0)
             {
-                System.out.println("adding "+current.getID()+" to "+y+" "+x);
-
                 theImage.addTile(x, y, current);
 
                 x++;
@@ -149,7 +170,6 @@ public class Solver
 
                 if (current.getConnections()[Tile.RIGHT] == 0)
                 {
-                    System.out.println("adding "+current.getID()+" to "+y+" "+x);
                     theImage.addTile(x, y, current);
 
                     x = 0;
@@ -163,7 +183,6 @@ public class Solver
             {
                 while (current.getConnections()[Tile.RIGHT] != 0)
                 {
-                    System.out.println("adding "+current.getID()+" to "+y+" "+x);
                     theImage.addTile(x, y, current);
 
                     x++;
@@ -172,7 +191,6 @@ public class Solver
 
                     if (current.getConnections()[Tile.RIGHT] == 0)
                     {
-                        System.out.println("adding "+current.getID()+" to "+y+" "+x);
                         theImage.addTile(x, y, current);
 
                         y++;
