@@ -40,12 +40,6 @@ public class Image
         int y = _theWorld.length;
         int x = _theWorld[0].length;
 
-        /*
-        0,0 0,1 0,2
-        1,0 1,1 1,2
-        2,0 2,1 2,2
-*/
-
         for (int i = 0; i < y; i++)
         {
             Tile t = _theWorld[i][0];
@@ -54,7 +48,7 @@ public class Image
             {
                 int index = 0;
 
-                while (index < y)
+                while (index < x)
                 {
                     t = _theWorld[i][index];
 
