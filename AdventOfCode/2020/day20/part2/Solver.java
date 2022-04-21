@@ -73,7 +73,7 @@ public class Solver
 
         Image theImage = createImage(tiles, tileTable);
 
-        System.out.println("**HAVE\n"+theImage);
+        System.out.println("**HAVE\n"+theImage.convertToTile());
 
         return null;
     } 
