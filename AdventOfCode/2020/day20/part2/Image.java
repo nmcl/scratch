@@ -58,8 +58,6 @@ public class Image
                         str += t.line(index);
 
                         maxIndex = t.numberOfLines();
-
-                        index++;
                     }
                     else
                         str += NO_TILE;
@@ -67,6 +65,8 @@ public class Image
 
                 str += "\n";
             }
+
+            index++;
 
         } while (index < maxIndex);
 
