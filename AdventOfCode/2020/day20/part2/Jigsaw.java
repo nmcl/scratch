@@ -50,5 +50,10 @@ public class Jigsaw
                 System.out.println(iter.next());
             }
         }
+
+        Solver s = new Solver(debug);
+        int result = s.solve(tiles);
+
+        System.out.println("Sea roughness: "+result);
     }
 }
