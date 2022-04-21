@@ -31,8 +31,6 @@ public class Image
     public void addTile (int x, int y, Tile t)
     {
         _theWorld[y][x] = t.removeBorders();
-
-        System.out.println("Added "+t.removeBorders()+" to "+x+" "+y);
     }
 
     @Override
@@ -50,16 +48,18 @@ public class Image
 
         for (int i = 0; i < y; i++)
         {
-            for (int index = 0; index < x; index++)
-            {
-                Tile t = _theWorld[i][index];
+            int index = 0;
+            Tile t = _theWorld[i][index];
 
-                if (t != null)
+            for (int j = 0; j < x; j++)
+            {
+                while (index < t.numberOfLines())
                 {
-                    for (int j = 0; j < t.numberOfLines(); j++)
-                    {
-                        str += t.line(j);
-                    }
+                    t = _theWorld[i][j];
+
+                    str += t.line(index);
+
+                    index++;
                 }
 
                 str += "\n";
