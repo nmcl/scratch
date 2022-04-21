@@ -11,7 +11,7 @@ public class SeaMonster
     public static final int HEIGHT = 3;
     public static final int WIDTH = 20;
 
-    public static final int COUNT = 15;
+    public static final int NUMBER_OF_HASHES = 15;
 
     private SeaMonster ()
     {
