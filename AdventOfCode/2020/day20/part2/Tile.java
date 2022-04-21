@@ -85,10 +85,23 @@ public class Tile
      *  #  #  #  #  #  #   
      */
 
-
     public final int numberOfSeaMonsters ()
     {
-        return 0;
+        int total = 0;
+
+        for (int i = 0; i < _data.length; i++)
+        {
+            for (int j = 0; j < _data[i].length; j++)
+            {
+                if ((i < _data.length - SeaMonster.HEIGHT + 1) && (j < _data[i].length - SeaMonster.WIDTH + 1) && (i != 0))
+                {
+                    if (hasSeaMonster(j, i))
+                        total++;
+                }
+            }
+        }
+
+        return total;
     }
 
     public final int getNumberOfConnections ()
