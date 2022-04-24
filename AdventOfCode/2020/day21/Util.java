@@ -5,7 +5,7 @@ public class Util
 {
     public static final String ALLERGEN_DELIMITER = "(contains";
 
-    public static final Food[] loadRules (String inputFile, boolean debug)
+    public static final Vector<Food> loadRules (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
@@ -60,7 +60,7 @@ public class Util
             }
         }
 
-        return null;
+        return values;
     }
 
     private Util ()
