@@ -3,19 +3,16 @@ import java.io.*;
 
 public class Util
 {
-    public static final char RULE_NAME_DELIMITER = ':';
-    public static final char OR_DELIMITER = '|';
-    public static final char MATCH = '"';
-    public static final String RULE_DELIMITER = " ";
+    public static final String ALLERGEN_DELIMITER = "contains";
 
-    public static final Rule[] loadRules (String inputFile, boolean debug)
+    public static final Food[] loadRules (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<Rule> values = new Vector<Rule>();
+        Vector<Food> values = new Vector<Food>();
         int maxRule = 0;
 
         try
