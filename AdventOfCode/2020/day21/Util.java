@@ -24,7 +24,10 @@ public class Util
             {
                 String[] foodData = line.split(" ");
                 
-                System.out.println(foodData);
+                System.out.println("Loaded ...");
+                
+                for (int i = 0; i < foodData.length; i++)
+                    System.out.println(foodData[i]);
             }
         }
         catch (Throwable ex)
