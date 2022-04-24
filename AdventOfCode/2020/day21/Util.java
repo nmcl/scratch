@@ -22,15 +22,27 @@ public class Util
          
             while ((line = reader.readLine()) != null)
             {
+                Food f = new Food();
                 String[] foodData = line.split(" ");
-                
-                if (debug)
-                {
-                    System.out.println("Loaded ...");
+                boolean allergens = false;
 
-                    for (int i = 0; i < foodData.length; i++)
-                        System.out.println(foodData[i]);
+                for (int i = 0; i < foodData.length; i++)
+                {
+                    if (!allergens)
+                    {
+                        if (foodData[i].startsWith(ALLERGEN_DELIMITER))
+                            allergens = true;
+                        else
+                            f.addIngredient(foodData[i]);
+                    }
+                    else
+                        f.addAllergen(foodData[i].substring(0, foodData[i].length() -1));
                 }
+
+                values.add(f);
+
+                if (debug)
+                    System.out.println("\nLoaded:\n"+f);
             }
         }
         catch (Throwable ex)
