@@ -20,11 +20,11 @@ public class Util
 
             reader = new BufferedReader(new FileReader(inputFile));
          
-            while (line = reader.readLine()) != null)
+            while ((line = reader.readLine()) != null)
             {
                 String[] foodData = line.split(" ");
                 
-                System.out.println()
+                System.out.println(foodData);
             }
         }
         catch (Throwable ex)
@@ -42,7 +42,7 @@ public class Util
             }
         }
 
-        return values;
+        return null;
     }
 
     private Util ()
