@@ -5,5 +5,9 @@ public class Translator
         _debug = debug;
     }
 
+    public void translate ()
+    {
+
+    
     private boolean _debug;
 }
