@@ -15,6 +15,10 @@ public class Verifier
 
         System.out.println("Got back:\n"+foods);
 
+        Babel fish = new Babel(_debug);
+
+        fish.translate(foods);
+
         return false;
     }
 
