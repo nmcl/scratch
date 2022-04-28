@@ -1,8 +1,8 @@
 import java.util.*;
 
-public class Translator
+public class Babel
 {
-    public Translator (boolean debug)
+    public Babel (boolean debug)
     {
         _debug = debug;
     }
