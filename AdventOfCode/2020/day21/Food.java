@@ -18,6 +18,16 @@ public class Food
         _allergens.add(data);
     }
 
+    public final Vector<String> getAllergens ()
+    {
+        return _allergens;
+    }
+
+    public final Vector<String> getIngredients ()
+    {
+        return _ingredients;
+    }
+
     @Override
     public String toString ()
     {
