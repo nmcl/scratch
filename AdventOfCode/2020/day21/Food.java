@@ -34,6 +34,25 @@ public class Food
         return str;
     }
 
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+        
+        if (getClass() == obj.getClass())
+        {
+            Food temp = (Food) obj;
+
+            return (_ingredients.equals(temp._ingredients));
+        }
+
+        return false;
+    }
+
     Vector<String> _allergens;
     Vector<String> _ingredients;
 }
