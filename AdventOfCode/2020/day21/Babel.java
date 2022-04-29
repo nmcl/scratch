@@ -27,6 +27,8 @@ public class Babel
                         if (compare.getIngredients().contains(ingredient))
                         {
                             System.out.println("Ingredient "+ingredient+" found in\n"+compare);
+
+                            // now check where this is also used
                         }
                     }
                 }
