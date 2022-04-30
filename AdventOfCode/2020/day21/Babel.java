@@ -9,6 +9,8 @@ public class Babel
 
     public void translate (Vector<Food> foods)
     {
+        Vector<String> mapped = new Vector<String>();
+        
         for (int i = 0; i < foods.size(); i++)
         {
             Food toCheck = foods.elementAt(i);
