@@ -10,7 +10,7 @@ public class Babel
     public void translate (Vector<Food> foods)
     {
         Vector<String> mapped = new Vector<String>();
-        
+
         for (int i = 0; i < foods.size(); i++)
         {
             Food toCheck = foods.elementAt(i);
@@ -28,7 +28,8 @@ public class Babel
                     {
                         if (compare.getIngredients().contains(ingredient))
                         {
-                            System.out.println("Ingredient "+ingredient+" found in\n"+compare);
+                            if (_debug)
+                                System.out.println("Ingredient "+ingredient+" found in\n"+compare);
 
                             // now check where this is also used
                         }
