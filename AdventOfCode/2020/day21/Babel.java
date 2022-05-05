@@ -32,6 +32,8 @@ public class Babel
                                 System.out.println("Ingredient "+ingredient+" found in\n"+compare);
 
                             // now check where this is also used
+
+                            mapped.add(ingredient);
                         }
                     }
                 }
