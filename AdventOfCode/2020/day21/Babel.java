@@ -39,6 +39,11 @@ public class Babel
                 }
             }
         }
+
+        for (int i = 0; i < mapped.size(); i++)
+        {
+            System.out.println("Mapped: "+mapped.elementAt(i));
+        }
     }
     
     private boolean _debug;
