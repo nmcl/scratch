@@ -39,6 +39,8 @@ public class Babel
                 }
             }
         }
+
+        System.out.println("Mapped "+mapped.size());
     }
     
     private boolean _debug;
