@@ -33,7 +33,10 @@ public class Babel
 
                             // now check where this is also used
 
-                            mapped.add(ingredient);
+                            if (mapped.contains(ingredient))
+                                System.out.println("Already added "+ingredient);
+                            else
+                                mapped.add(ingredient);
                         }
                     }
                 }
