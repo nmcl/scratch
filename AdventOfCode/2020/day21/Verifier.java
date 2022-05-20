@@ -14,7 +14,7 @@ public class Verifier
         Vector<Food> foods = Util.loadRules(EXAMPLE_FILE, _debug);
 
         if (_debug)
-            System.out.println("Got back:\n"+foods+" and "+food.size());
+            System.out.println("Got back:\n"+foods+" and "+foods.size());
 
         Babel fish = new Babel(_debug);
 
