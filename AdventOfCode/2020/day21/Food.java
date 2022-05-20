@@ -31,7 +31,7 @@ public class Food
     @Override
     public String toString ()
     {
-        String str = "Ingredients: ";
+        String str = "\nIngredients: ";
 
         for (int i = 0; i < _ingredients.size(); i++)
             str += _ingredients.elementAt(i)+" ";
