@@ -4,9 +4,7 @@ public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
 
-    public static final String[] ALLERGEN_FREE = { "kfcds", "nhms", "sbzzf", "trh" };
-    public static final int INGREDIENT_COUNT_1 = 5;
-    public static final int INGREDIENT_COUNT_2 = 2;
+    public static final int INGREDIENT_COUNT = 5;
 
     public Verifier (boolean debug)
     {
@@ -21,10 +19,12 @@ public class Verifier
             System.out.println("Got back:\n"+foods);
 
         Babel fish = new Babel(_debug);
+        int occurrences = fish.translate(foods);
 
-        fish.translate(foods);
+        if (occurrences == INGREDIENT_COUNT)
+            return true;
 
-        System.out.println("here");
+        System.out.println("Wrong number of occurrences: "+occurrences);
         
         return false;
     }
