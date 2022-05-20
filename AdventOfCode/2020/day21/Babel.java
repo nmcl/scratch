@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Map.*;
 
 public class Babel
 {
@@ -7,48 +8,34 @@ public class Babel
         _debug = debug;
     }
 
-    public void translate (Vector<Food> foods)
+    public int translate (Vector<Food> foods)
     {
-        Vector<String> mapped = new Vector<String>();
-
+        HashMap<String, Vector<String>> mapped = new HashMap<String, Vector<String>>();
+        HashMap<String, Integer> count = new HashMap<String, Integer>();
+        
         for (int i = 0; i < foods.size(); i++)
         {
             Food toCheck = foods.elementAt(i);
-            Vector<String> ingredients = toCheck.getIngredients();
+            
+            toCheck.getIngredients().forEach(ingredient -> count.put(ingredient, count.getOrDefault(ingredient, 0) + 1));
 
-            for (int j = 0; j < ingredients.size(); j++)
+            for (String allergen : toCheck.getAllergens())
             {
-                String ingredient = ingredients.elementAt(j);
-
-                for (int k = 0; k < foods.size(); k++)
-                {
-                    Food compare = foods.elementAt(k);
-
-                    if (!toCheck.equals(compare))
-                    {
-                        if (compare.getIngredients().contains(ingredient))
-                        {
-                            if (_debug)
-                                System.out.println("Ingredient "+ingredient+" found in\n"+compare);
-
-                            // now check where this is also used
-
-                            if (mapped.contains(ingredient))
-                                System.out.println("Already added "+ingredient);
-                            else
-                                mapped.add(ingredient);
-                        }
-                    }
-                }
+                mapped.computeIfAbsent(allergen, key -> new Vector<String>(toCheck.getIngredients()));
+                mapped.get(allergen).retainAll(toCheck.getIngredients());
             }
         }
 
-        System.out.println("Mapped "+mapped.size());
+        if (_debug)
+            System.out.println("Mapped "+mapped.size());
 
-        for (int i = 0; i < mapped.size(); i++)
-        {
-            System.out.println("Mapped "+i+": "+mapped.elementAt(i));
-        }
+        int totalOccurrences = count.entrySet().stream().filter(
+                                ingredient -> mapped.entrySet().stream()
+                                .noneMatch(entry -> entry.getValue().contains(ingredient.getKey())))
+                                .mapToInt(Entry::getValue)
+                                .sum();
+        
+        return totalOccurrences;
     }
     
     private boolean _debug;
