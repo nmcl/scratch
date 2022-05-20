@@ -5,7 +5,9 @@ public class Verifier
     public static final String EXAMPLE_FILE = "example.txt";
 
     public static final String[] ALLERGEN_FREE = { "kfcds", "nhms", "sbzzf", "trh" }
-
+    public static final int INGREDIENT_COUNT_1 = 5;
+    public static final int INGREDIENT_COUNT_2 = 2;
+    
     public Verifier (boolean debug)
     {
         _debug = debug;
