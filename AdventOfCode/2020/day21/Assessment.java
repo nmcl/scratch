@@ -33,9 +33,15 @@ public class Assessment
 
             System.exit(0);
         }
-        else
-        {
-            
-        }
+
+        Vector<Food> foods = Util.loadRules(INPUT_FILE, debug);
+
+        if (debug)
+            System.out.println("Got back:\n"+foods);
+
+        Babel fish = new Babel(debug);
+        int occurrences = fish.translate(foods);
+
+        System.out.println("Cound of ingredients which cannot contain any of the allergens: "+occurrences);
     }
 }
