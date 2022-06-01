@@ -44,6 +44,6 @@ public class Assessment
         Babel fish = new Babel(debug);
         String result = fish.translate(foods);
 
-        System.out.println("canonical dangerous ingredient list: "+result);
+        System.out.println("Canonical dangerous ingredient list: "+result);
     }
 }
