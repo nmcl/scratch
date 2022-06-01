@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.Map.*;
+import java.util.stream.*;
 
 public class Babel
 {
@@ -8,7 +9,7 @@ public class Babel
         _debug = debug;
     }
 
-    public int translate (Vector<Food> foods)
+    public String translate (Vector<Food> foods)
     {
         HashMap<String, Vector<String>> mapped = new HashMap<String, Vector<String>>();
         
@@ -50,8 +51,10 @@ public class Babel
                 }
             }
         }
-        
-        return 0;
+
+        return mapped.entrySet().stream().sorted(Entry.comparingByKey())
+                    .map(entry -> entry.getValue().get(0))
+                    .collect(Collectors.joining(","));
     }
     
     private boolean _debug;
