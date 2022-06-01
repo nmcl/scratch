@@ -44,6 +44,6 @@ public class Assessment
         Babel fish = new Babel(debug);
         int occurrences = fish.translate(foods);
 
-        System.out.println("Cound of ingredients which cannot contain any of the allergens: "+occurrences);
+        System.out.println("Count of ingredients which cannot contain any of the allergens: "+occurrences);
     }
 }
