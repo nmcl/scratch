@@ -42,8 +42,8 @@ public class Assessment
             System.out.println("Got back:\n"+foods);
 
         Babel fish = new Babel(debug);
-        int occurrences = fish.translate(foods);
+        String result = fish.translate(foods);
 
-        System.out.println("Cound of ingredients which cannot contain any of the allergens: "+occurrences);
+        System.out.println("canonical dangerous ingredient list: "+result);
     }
 }
