@@ -35,15 +35,18 @@ public class Babel
                 {
                     String ingredient = specific.getValue().firstElement();
             
-                    System.out.println("Looking at "+ingredient+" from "+specific);
+                    if (_debug)
+                        System.out.println("Looking at "+ingredient+" from "+specific);
 
                     for (Entry<String, Vector<String>> other : mapped.entrySet())
                     {
-                        System.out.println("Now looking at "+other.getKey()+" and "+specific.getKey());
+                        if (_debug)
+                            System.out.println("Now looking at "+other.getKey()+" and "+specific.getKey());
 
                         if (!other.getKey().equals(specific.getKey()))
                         {
-                            System.out.println("Removing "+ingredient);
+                            if (_debug)
+                                System.out.println("Removing "+ingredient);
 
                             other.getValue().remove(ingredient);
                         }
