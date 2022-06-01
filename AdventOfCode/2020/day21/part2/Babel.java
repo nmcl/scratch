@@ -11,7 +11,6 @@ public class Babel
     public int translate (Vector<Food> foods)
     {
         HashMap<String, Vector<String>> mapped = new HashMap<String, Vector<String>>();
-        HashMap<String, Integer> count = new HashMap<String, Integer>();
         
         for (int i = 0; i < foods.size(); i++)
         {
