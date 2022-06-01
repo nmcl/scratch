@@ -15,8 +15,6 @@ public class Babel
         for (int i = 0; i < foods.size(); i++)
         {
             Food toCheck = foods.elementAt(i);
-            
-            toCheck.getIngredients().forEach(ingredient -> count.put(ingredient, count.getOrDefault(ingredient, 0) + 1));
 
             for (String allergen : toCheck.getAllergens())
             {
@@ -28,13 +26,32 @@ public class Babel
         if (_debug)
             System.out.println("Mapped "+mapped.size());
 
-        int totalOccurrences = count.entrySet().stream().filter(
-                                ingredient -> mapped.entrySet().stream()
-                                .noneMatch(entry -> entry.getValue().contains(ingredient.getKey())))
-                                .mapToInt(Entry::getValue)
-                                .sum();
+        while (mapped.entrySet().stream().anyMatch(entry -> entry.getValue().size() != 1))
+        {
+            for (Entry<String, Vector<String>> specific : mapped.entrySet())
+            {
+                if (specific.getValue().size() == 1)
+                {
+                    String ingredient = specific.getValue().firstElement();
+            
+                    System.out.println("Looking at "+ingredient+" from "+specific);
+
+                    for (Entry<String, Vector<String>> other : mapped.entrySet())
+                    {
+                        System.out.println("Now looking at "+other.getKey()+" and "+specific.getKey());
+
+                        if (!other.getKey().equals(specific.getKey()))
+                        {
+                            System.out.println("Removing "+ingredient);
+
+                            other.getValue().remove(ingredient);
+                        }
+                    }
+                }
+            }
+        }
         
-        return totalOccurrences;
+        return 0;
     }
     
     private boolean _debug;
