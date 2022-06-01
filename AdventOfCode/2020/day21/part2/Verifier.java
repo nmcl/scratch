@@ -3,8 +3,7 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
-
-    public static final int INGREDIENT_COUNT = 5;
+    public static final String EXAMPLE_RESULT = "mxmxvkd,sqjhc,fvjkl";
 
     public Verifier (boolean debug)
     {
@@ -19,12 +18,12 @@ public class Verifier
             System.out.println("Got back:\n"+foods);
 
         Babel fish = new Babel(_debug);
-        int occurrences = fish.translate(foods);
+        String result = fish.translate(foods);
 
-        if (occurrences == INGREDIENT_COUNT)
+        if (EXAMPLE_RESULT.equals(result))
             return true;
 
-        System.out.println("Wrong number of occurrences: "+occurrences);
+        System.out.println("Wrong result: "+result);
         
         return false;
     }
