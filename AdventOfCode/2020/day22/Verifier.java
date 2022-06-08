@@ -11,6 +11,9 @@ public class Verifier
     {
         Deck[] decks = Util.loadRules(EXAMPLE_FILE, _debug);
 
+        System.out.println(decks[0]);
+        System.out.println(decks[1]);
+        
         return false;
     }
 
