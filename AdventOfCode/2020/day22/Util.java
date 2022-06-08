@@ -17,7 +17,7 @@ public class Util
 
         decks[0] = new Deck();
         decks[1] = new Deck();
-        
+
         try
         {
             String line = null;
@@ -34,9 +34,16 @@ public class Util
                 }
                 else
                 {
-                    int value = Integer.parseInt(line);
+                    try
+                    {
+                        int value = Integer.parseInt(line);
 
-                    decks[player].add(value);
+                        decks[player].add(value);
+                    }
+                    catch (Exception ex)
+                    {
+                        // for the blank line
+                    }
                 }
             }
         }
