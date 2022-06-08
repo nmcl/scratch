@@ -13,6 +13,11 @@ public class Deck
         _theDeck.add(value);
     }
 
+    public final boolean empty ()
+    {
+        return (_theDeck.size() == 0);
+    }
+
     @Override
     public String toString ()
     {
