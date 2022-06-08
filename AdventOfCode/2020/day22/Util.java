@@ -15,6 +15,9 @@ public class Util
         Deck[] decks = new Deck[2];
         int player = 0;
 
+        decks[0] = new Deck();
+        decks[1] = new Deck();
+        
         try
         {
             String line = null;
