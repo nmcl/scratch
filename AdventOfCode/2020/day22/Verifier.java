@@ -1,6 +1,6 @@
 public class Verifier
 {
-    public static final String EXAMPLE_FILE = "examnple.txt";
+    public static final String EXAMPLE_FILE = "example.txt";
 
     public Verifier (boolean debug)
     {
@@ -10,7 +10,7 @@ public class Verifier
     public boolean verify ()
     {
         Deck[] decks = Util.loadRules(EXAMPLE_FILE, _debug);
-        
+
         return false;
     }
 
