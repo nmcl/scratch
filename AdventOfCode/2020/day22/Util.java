@@ -26,11 +26,12 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                System.out.println("loaded "+line+" for "+player);
-
                 if (line.startsWith(PLAYER_DESIGNATOR))
                 {
                     player = Integer.parseInt(line.substring(PLAYER_DESIGNATOR.length(), line.indexOf(':')));
+
+                    if (debug)
+                        System.out.println("Loading for player "+player);
                 }
                 else
                 {
@@ -38,7 +39,10 @@ public class Util
                     {
                         int value = Integer.parseInt(line);
 
-                        decks[player].add(value);
+                        if (debug)
+                            System.out.println("Adding "+value+" to player "+player);
+
+                        decks[player -1].add(value);
                     }
                     catch (Exception ex)
                     {
