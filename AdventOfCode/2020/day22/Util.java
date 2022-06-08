@@ -21,10 +21,16 @@ public class Util
 
             reader = new BufferedReader(new FileReader(inputFile));
 
-            line = reader.readLine();
-
-            if (line.startsWith(PLAYER_DESIGNATOR))
+            while ((line = reader.readLine()) != null)
             {
+                System.out.println("loaded "+line);
+
+                if (line.startsWith(PLAYER_DESIGNATOR))
+                {
+                    player = Integer.parseInt(line.substring(PLAYER_DESIGNATOR.length(), line.indexOf(':')));
+                }
+    
+                System.out.println("player "+player);
             }
         }
         catch (Throwable ex)
