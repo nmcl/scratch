@@ -2,8 +2,9 @@ import java.util.*;
 
 public class Deck
 {
-    public Deck ()
+    public Deck (int player)
     {
+        _player = player;
         _theDeck = new ArrayDeque<Integer>();
     }
 
@@ -15,16 +16,17 @@ public class Deck
     @Override
     public String toString ()
     {
-        String str = "";
+        String str = "Player "+_player+":\n";
         Iterator<Integer> iter = _theDeck.iterator();
 
         while (iter.hasNext())
         {
-            str += iter.next();
+            str += iter.next()+"\n";
         }
 
         return str;
     }
 
+    private int _player;
     private ArrayDeque<Integer> _theDeck;
 }
