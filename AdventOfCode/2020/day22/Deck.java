@@ -7,6 +7,11 @@ public class Deck
         _theDeck = new ArrayDeque<Integer>();
     }
 
+    public final void add (int value)
+    {
+        _theDeck.add(value);
+    }
+
     @Override
     public String toString ()
     {
