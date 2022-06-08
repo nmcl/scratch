@@ -16,12 +16,12 @@ public class Deck
     @Override
     public String toString ()
     {
-        String str = "Player "+_player+":\n";
+        String str = "Player "+_player+"'s deck: ";
         Iterator<Integer> iter = _theDeck.iterator();
 
         while (iter.hasNext())
         {
-            str += iter.next()+"\n";
+            str += iter.next()+", ";
         }
 
         return str;
