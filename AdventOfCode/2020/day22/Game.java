@@ -5,5 +5,10 @@ public class Game
         _debug = debug;
     }
 
+    public final void play (Deck[] decks)
+    {
+
+    }
+    
     private boolean _debug;
 }
