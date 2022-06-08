@@ -23,14 +23,18 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                System.out.println("loaded "+line);
+                System.out.println("loaded "+line+" for "+player);
 
                 if (line.startsWith(PLAYER_DESIGNATOR))
                 {
                     player = Integer.parseInt(line.substring(PLAYER_DESIGNATOR.length(), line.indexOf(':')));
                 }
-    
-                System.out.println("player "+player);
+                else
+                {
+                    int value = Integer.parseInt(line);
+
+                    decks[player].add(value);
+                }
             }
         }
         catch (Throwable ex)
