@@ -14,6 +14,10 @@ public class Verifier
         System.out.println(decks[0]);
         System.out.println(decks[1]);
         
+        Game g = new Game(_debug);
+
+        g.play(decks);
+
         return false;
     }
 
