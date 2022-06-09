@@ -15,7 +15,7 @@ public class Deck
 
     public final void addToBottom (int value)
     {
-        _theDeck.addLast(value);
+        _theDeck.add(value);
     }
 
     public final int draw ()
