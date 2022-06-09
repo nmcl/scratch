@@ -30,7 +30,16 @@ public class Deck
 
     public final int score ()
     {
-        return 0;
+        int index = 1;
+        int total = 0;
+        Iterator<Integer> iter = _theDeck.iterator();
+
+        while (iter.hasNext())
+        {
+            total += index * iter.next();
+        }
+
+        return total;
     }
 
     @Override
