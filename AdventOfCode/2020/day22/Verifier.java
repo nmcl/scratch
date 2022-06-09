@@ -12,8 +12,11 @@ public class Verifier
     {
         Deck[] decks = Util.loadRules(EXAMPLE_FILE, _debug);
 
-        System.out.println(decks[0]);
-        System.out.println(decks[1]);
+        if (_debug)
+        {
+            System.out.println(decks[0]);
+            System.out.println(decks[1]);
+        }
         
         Game g = new Game(_debug);
         int score = g.play(decks);
@@ -22,7 +25,7 @@ public class Verifier
             return true;
 
         System.out.println("Incorrect winning score: "+score);
-        
+
         return false;
     }
 
