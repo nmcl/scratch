@@ -5,7 +5,7 @@ public class Game
         _debug = debug;
     }
 
-    public final void play (Deck[] decks)
+    public final int play (Deck[] decks)
     {
         int round = 1;
 
@@ -43,7 +43,10 @@ public class Game
         System.out.println(decks[0]);
         System.out.println(decks[1]);
 
-        System.out.println("totals "+decks[0].score()+" "+decks[1].score());
+        if (!decks[0].empty())
+            return decks[0].score();
+        else
+            return decks[1].score();
     }
 
     private boolean _debug;
