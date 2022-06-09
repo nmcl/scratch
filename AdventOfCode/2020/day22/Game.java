@@ -14,6 +14,9 @@ public class Game
             System.out.println("-- Round "+round+" --");
             System.out.println(decks[0]);
             System.out.println(decks[1]);
+
+            int playerOneCard = decks[0].draw();
+            int playerTwoCard = decks[1].draw();
         }
     }
 
