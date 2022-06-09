@@ -28,6 +28,11 @@ public class Deck
         return (_theDeck.size() == 0);
     }
 
+    public final int score ()
+    {
+        return 0;
+    }
+
     @Override
     public String toString ()
     {
