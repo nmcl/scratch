@@ -1,6 +1,7 @@
 public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
+    public static final int EXAMPLE_WINNER_SCORE = 306;
 
     public Verifier (boolean debug)
     {
@@ -15,8 +16,7 @@ public class Verifier
         System.out.println(decks[1]);
         
         Game g = new Game(_debug);
-
-        g.play(decks);
+        int score = g.play(decks);
 
         return false;
     }
