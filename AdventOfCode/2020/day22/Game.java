@@ -28,6 +28,8 @@ public class Game
                 decks[0].addToBottom(playerTwoCard);
                 decks[0].addToBottom(playerOneCard);
             }
+
+            round++;
         }
     }
 
