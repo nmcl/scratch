@@ -17,6 +17,17 @@ public class Game
 
             int playerOneCard = decks[0].draw();
             int playerTwoCard = decks[1].draw();
+
+            if (playerOneCard > playerTwoCard)
+            {
+                decks[0].addToBottom(playerOneCard);
+                decks[0].addToBottom(playerTwoCard);
+            }
+            else
+            {
+                decks[0].addToBottom(playerTwoCard);
+                decks[0].addToBottom(playerOneCard);
+            }
         }
     }
 
