@@ -42,6 +42,8 @@ public class Game
         System.out.println("\n== Post-game results ==");
         System.out.println(decks[0]);
         System.out.println(decks[1]);
+
+        System.out.println("totals "+decks[0].score()+" "+decks[1].score());
     }
 
     private boolean _debug;
