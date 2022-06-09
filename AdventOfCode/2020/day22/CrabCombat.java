@@ -1,5 +1,7 @@
 public class CrabCombat
 {
+    public static final String DATA_FILE = "data.txt";
+
     public static void main (String[] args)
     {
         boolean verify = false;
@@ -31,7 +33,18 @@ public class CrabCombat
         }
         else
         {
+            Deck[] decks = Util.loadRules(DATA_FILE, debug);
 
+            if (debug)
+            {
+                System.out.println(decks[0]);
+                System.out.println(decks[1]);
+            }
+            
+            Game g = new Game(debug);
+            int score = g.play(decks);
+    
+            System.out.println("Winning player's score: "+score);
         }
     }
 }
