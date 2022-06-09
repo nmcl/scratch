@@ -30,13 +30,15 @@ public class Deck
 
     public final int score ()
     {
-        int index = 1;
+        int index = _theDeck.size();
         int total = 0;
         Iterator<Integer> iter = _theDeck.iterator();
 
         while (iter.hasNext())
         {
             total += index * iter.next();
+
+            index--;
         }
 
         return total;
