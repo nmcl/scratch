@@ -17,10 +17,10 @@ public class Deck
     {
         _theDeck.addLast(value);
     }
-    
+
     public final int draw ()
     {
-        return _theDeck.getFirst();
+        return _theDeck.removeFirst();
     }
 
     public final boolean empty ()
