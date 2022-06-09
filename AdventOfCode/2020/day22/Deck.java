@@ -13,6 +13,11 @@ public class Deck
         _theDeck.add(value);
     }
 
+    public final void addToBottom (int value)
+    {
+        _theDeck.addLast(value);
+    }
+    
     public final int draw ()
     {
         return _theDeck.getFirst();
