@@ -32,16 +32,16 @@ public class Game
                 if (_debug)
                     System.out.println("Player 1 wins the round!");
 
-                decks[0].addToBottom(playerOneCard);
-                decks[0].addToBottom(playerTwoCard);
+                decks[0].add(playerOneCard);
+                decks[0].add(playerTwoCard);
             }
             else
             {
                 if (_debug)
                     System.out.println("Player 2 wins the round!");
 
-                decks[1].addToBottom(playerTwoCard);
-                decks[1].addToBottom(playerOneCard);
+                decks[1].add(playerTwoCard);
+                decks[1].add(playerOneCard);
             }
 
             round++;
