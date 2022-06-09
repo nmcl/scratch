@@ -18,6 +18,11 @@ public class Verifier
         Game g = new Game(_debug);
         int score = g.play(decks);
 
+        if (score == EXAMPLE_WINNER_SCORE)
+            return true;
+
+        System.out.println("Incorrect winning score: "+score);
+        
         return false;
     }
 
