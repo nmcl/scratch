@@ -18,6 +18,11 @@ public class Deck
         return _theDeck.removeFirst();
     }
 
+    public final int size ()
+    {
+        return _theDeck.size();
+    }
+    
     public final boolean empty ()
     {
         return (_theDeck.size() == 0);
