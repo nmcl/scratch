@@ -45,6 +45,27 @@ public class Deck
     }
 
     @Override
+    public boolean equals (Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (this == obj)
+            return true;
+    
+        if (getClass() == obj.getClass())
+        {
+            Deck temp = (Deck) obj;
+
+            // ignore player ID for now.
+
+            return (_theDeck.equals(temp._theDeck));
+        }
+
+        return false;
+    }
+
+    @Override
     public String toString ()
     {
         String str = "Player "+_player+"'s deck: ";
