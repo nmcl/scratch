@@ -1,7 +1,14 @@
 public class Game
 {
+    // hard coded that number of players is 2
+
     public Game (boolean debug)
     {
+        _rounds = new Round[2];
+
+        _rounds[0] = new Round(1, debug);
+        _rounds[1] = new Round(2, debug);
+        
         _debug = debug;
     }
 
@@ -60,5 +67,6 @@ public class Game
             return decks[1].score();
     }
 
+    private Round[] _rounds;
     private boolean _debug;
 }
