@@ -67,6 +67,11 @@ public class Game
             return decks[1].score();
     }
 
+    private int playRound (int round)
+    {
+        return -1;
+    }
+
     private Round[] _rounds;
     private boolean _debug;
 }
