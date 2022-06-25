@@ -15,6 +15,8 @@ public class Game
         int game = 1;
         Deck winningDeck = new Deck(0);
 
+        recursiveCombat(round, game, decks, new int[] { decks[0].size(), decks[1].size() }, winningDeck);
+        
         return winningDeck.score();
     }
 
