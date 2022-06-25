@@ -8,6 +8,15 @@ public class Deck
         _theDeck = new ArrayDeque<Integer>();
     }
 
+    public Deck (Deck deck, int offset)
+    {
+        _player = deck.player;
+        _theDeck = new ArrayDeque<Integer>(deck._theDeck);
+
+        for (int i = _theDeck.size() - offset; i > 0; i--)
+            _theDeck.removeLast();
+    }
+
     public final void add (int value)
     {
         _theDeck.add(value);
