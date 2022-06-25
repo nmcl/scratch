@@ -6,19 +6,30 @@ public class Game
 
     public Game (boolean debug)
     {
-        _winningDeck = new Deck(0); // fake player id
+        _winningDeck = null;
         _debug = debug;
     }
 
     public final int play (Deck[] decks)
     {
         int round = 1;
+        int game = 1;
+
+        return _winningDeck.score();
+    }
+
+    private Deck recursiveCombat (int round, int game, Deck[] decks, int[] offsets)
+    {
+        Decks[] theDecks = new Decks[2];
+
+        theDecks[0] = new Deck(decks[0], offsets[0]);
+        theDecks[1] = new Deck(decks[1], offsets[1]);
 
         while (!decks[0].empty() && !decks[1].empty())
         {
             if (_debug)
             {
-                System.out.println("\n-- Round "+round+" --");
+                System.out.println("\n-- Round "+round+" (Game "+game+") --");
                 System.out.println(decks[0]);
                 System.out.println(decks[1]);
             }
@@ -63,10 +74,7 @@ public class Game
             return decks[0].score();
         else
             return decks[1].score();
-    }
 
-    private int playRound (int round)
-    {
         return -1;
     }
 
