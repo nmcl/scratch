@@ -74,6 +74,11 @@ public class Deck
         return false;
     }
 
+    public String stringForm ()
+    {
+        return _theDeck.toString();
+    }
+
     @Override
     public String toString ()
     {
