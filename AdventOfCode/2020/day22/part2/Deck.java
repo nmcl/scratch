@@ -10,7 +10,7 @@ public class Deck
 
     public Deck (Deck deck, int offset)
     {
-        _player = deck.player;
+        _player = deck._player;
         _theDeck = new ArrayDeque<Integer>(deck._theDeck);
 
         for (int i = _theDeck.size() - offset; i > 0; i--)
