@@ -5,7 +5,8 @@ public class Game
     // hard coded that number of players is 2
 
     public Game (boolean debug)
-    {   
+    {
+        _winningDeck = new Deck(0); // fake player id
         _debug = debug;
     }
 
@@ -69,5 +70,6 @@ public class Game
         return -1;
     }
 
+    private Deck _winningDeck;
     private boolean _debug;
 }
