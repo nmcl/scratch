@@ -20,12 +20,12 @@ public class Game
 
     private Deck recursiveCombat (int round, int game, Deck[] decks, int[] offsets)
     {
-        Decks[] theDecks = new Decks[2];
+        Deck[] theDecks = new Deck[2];
 
         theDecks[0] = new Deck(decks[0], offsets[0]);
         theDecks[1] = new Deck(decks[1], offsets[1]);
 
-        while (!decks[0].empty() && !decks[1].empty())
+        while (!decks[0].isEmpty() && !decks[1].isEmpty())
         {
             if (_debug)
             {
@@ -70,12 +70,7 @@ public class Game
             System.out.println(decks[1]);
         }
 
-        if (!decks[0].empty())
-            return decks[0].score();
-        else
-            return decks[1].score();
-
-        return -1;
+        return null;
     }
 
     private Deck _winningDeck;
