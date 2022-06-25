@@ -6,7 +6,6 @@ public class Game
 
     public Game (boolean debug)
     {
-        _winningDeck = null;
         _debug = debug;
     }
 
@@ -14,11 +13,12 @@ public class Game
     {
         int round = 1;
         int game = 1;
+        Deck winningDeck = new Deck(0);
 
-        return _winningDeck.score();
+        return winningDeck.score();
     }
 
-    private Deck recursiveCombat (int round, int game, Deck[] decks, int[] offsets)
+    private Deck recursiveCombat (int round, int game, Deck[] decks, int[] offsets, Deck winningDeck)
     {
         Deck[] theDecks = new Deck[2];
 
@@ -50,7 +50,7 @@ public class Game
 
             if ((theDecks[0].size() >= playerOneCard) && (theDecks[1].size() >= playerTwoCard))
             {
-                if (recursiveCombat(1, game++, theDecks, new int[] { playerOneCard, playerTwoCard}) == theDecks[0])
+                if (recursiveCombat(1, game++, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
                 {
                     if (_debug)
                         System.out.println("Player 1 wins the round!");
@@ -97,9 +97,11 @@ public class Game
             System.out.println(theDecks[1]);
         }
 
-        return null;
+        if (winningDeck != null)
+            winningDeck = (theDecks[1].isEmpty() ? theDecks[0] : theDecks[1]);
+
+        return (theDecks[1].isEmpty() ? decks[0] : decks[1]);
     }
 
-    private Deck _winningDeck;
     private boolean _debug;
 }
