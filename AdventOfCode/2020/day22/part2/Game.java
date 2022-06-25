@@ -25,17 +25,22 @@ public class Game
         theDecks[0] = new Deck(decks[0], offsets[0]);
         theDecks[1] = new Deck(decks[1], offsets[1]);
 
+        HashSet<String> rounds = new HashSet<String>();
+
         while (!decks[0].isEmpty() && !decks[1].isEmpty())
         {
             if (_debug)
             {
                 System.out.println("\n-- Round "+round+" (Game "+game+") --");
-                System.out.println(decks[0]);
-                System.out.println(decks[1]);
+                System.out.println(theDecks[0]);
+                System.out.println(theDecks[1]);
             }
 
-            int playerOneCard = decks[0].draw();
-            int playerTwoCard = decks[1].draw();
+            if (!rounds.add(theDecks[0].stringForm() + theDecks[1].stringForm()))
+                return decks[0];
+
+            int playerOneCard = theDecks[0].draw();
+            int playerTwoCard = theDecks[1].draw();
 
             if (_debug)
             {
@@ -43,21 +48,43 @@ public class Game
                 System.out.println("Player 2 plays: "+playerTwoCard);
             }
 
-            if (playerOneCard > playerTwoCard)
+            if ((theDecks[0].size() >= playerOneCard) && (theDecks[1].size() >= playerTwoCard))
             {
-                if (_debug)
-                    System.out.println("Player 1 wins the round!");
+                if (recursiveCombat(1, game++, theDecks, new int[] { playerOneCard, playerTwoCard}) == theDecks[0])
+                {
+                    if (_debug)
+                        System.out.println("Player 1 wins the round!");
 
-                decks[0].add(playerOneCard);
-                decks[0].add(playerTwoCard);
+                    theDecks[0].add(playerOneCard);
+                    theDecks[0].add(playerTwoCard);
+                }
+                else
+                {
+                    if (_debug)
+                        System.out.println("Player 2 wins the round!");
+
+                    theDecks[1].add(playerOneCard);
+                    theDecks[1].add(playerTwoCard);
+                }
             }
             else
             {
-                if (_debug)
-                    System.out.println("Player 2 wins the round!");
+                if (playerOneCard > playerTwoCard)
+                {
+                    if (_debug)
+                        System.out.println("Player 1 wins the round!");
 
-                decks[1].add(playerTwoCard);
-                decks[1].add(playerOneCard);
+                    theDecks[0].add(playerOneCard);
+                    theDecks[0].add(playerTwoCard);
+                }
+                else
+                {
+                    if (_debug)
+                        System.out.println("Player 2 wins the round!");
+
+                    theDecks[1].add(playerTwoCard);
+                    theDecks[1].add(playerOneCard);
+                }
             }
 
             round++;
@@ -66,8 +93,8 @@ public class Game
         if (_debug)
         {
             System.out.println("\n== Post-game results ==");
-            System.out.println(decks[0]);
-            System.out.println(decks[1]);
+            System.out.println(theDecks[0]);
+            System.out.println(theDecks[1]);
         }
 
         return null;
