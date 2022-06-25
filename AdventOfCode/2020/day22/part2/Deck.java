@@ -23,7 +23,7 @@ public class Deck
         return _theDeck.size();
     }
     
-    public final boolean empty ()
+    public final boolean isEmpty ()
     {
         return (_theDeck.size() == 0);
     }
