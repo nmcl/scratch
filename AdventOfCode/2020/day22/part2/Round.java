@@ -1,5 +1,10 @@
 import java.util.*;
 
+/**
+ * Remembers the hands (Decks) which were in play
+ * at any given round of the gmae.
+ */
+
 public class Round
 {
     public Round (int player, boolean debug)
