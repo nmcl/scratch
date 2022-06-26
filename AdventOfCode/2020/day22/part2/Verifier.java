@@ -1,7 +1,7 @@
 public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
-    public static final int EXAMPLE_WINNER_SCORE = 306;
+    public static final int EXAMPLE_WINNER_SCORE = 291;
 
     public Verifier (boolean debug)
     {
