@@ -24,8 +24,6 @@ public class Deck
 
     public final void addAll (Deck d)
     {
-        System.out.println("**GOT all "+d);
-
         _theDeck.addAll(d._theDeck);
     }
 
