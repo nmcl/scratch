@@ -25,8 +25,6 @@ public class Game
         Deck[] theDecks = new Deck[2];
         int currentGame = game;
 
-        System.out.println("**GOT "+currentGame);
-
         theDecks[0] = new Deck(decks[0], offsets[0]);
         theDecks[1] = new Deck(decks[1], offsets[1]);
 
