@@ -114,14 +114,14 @@ public class Game
         if (theDecks[1].isEmpty())
         {
             if (_debug)
-                System.out.println("1!\n...anyway, back to game "+(game-1)+".");
+                System.out.println("1!\n\n...anyway, back to game "+(game-1)+".");
 
             return decks[0];
         }
         else
         {
             if (_debug)
-                System.out.println("2!\n...anyway, back to game "+(game-1)+".");
+                System.out.println("2!\n\n...anyway, back to game "+(game-1)+".");
 
             return decks[1];
         }
