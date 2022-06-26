@@ -59,7 +59,7 @@ public class Game
                 if (_debug)
                     System.out.println("Playing a sub-game to determine the winner...");
 
-                if (recursiveCombat(1, _numberOfGames++, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
+                if (recursiveCombat(1, ++_numberOfGames, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
                 {
                     if (_debug)
                         System.out.println("Player 1 wins round "+round+" of game "+currentGame+"!");
