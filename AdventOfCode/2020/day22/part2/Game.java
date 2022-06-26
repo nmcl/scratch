@@ -108,7 +108,23 @@ public class Game
         if (winningDeck != null)
             winningDeck = (theDecks[1].isEmpty() ? theDecks[0] : theDecks[1]);
 
-        return (theDecks[1].isEmpty() ? decks[0] : decks[1]);
+        if (_debug)
+            System.out.print("The winner of game "+game+" is player ");
+
+        if (theDecks[1].isEmpty())
+        {
+            if (_debug)
+                System.out.println("1!");
+
+            return decks[0];
+        }
+        else
+        {
+            if (_debug)
+                System.out.println("2!");
+
+            return decks[1];
+        }
     }
 
     private boolean _debug;
