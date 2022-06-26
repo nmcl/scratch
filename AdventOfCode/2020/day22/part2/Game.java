@@ -6,16 +6,16 @@ public class Game
 
     public Game (boolean debug)
     {
+        _numberOfGames = 1;
         _debug = debug;
     }
 
     public final int play (Deck[] decks)
     {
         int round = 1;
-        int game = 1;
         Deck winningDeck = new Deck(0);
 
-        recursiveCombat(round, game, decks, new int[] { decks[0].size(), decks[1].size() }, winningDeck);
+        recursiveCombat(round, 1, decks, new int[] { decks[0].size(), decks[1].size() }, winningDeck);
 
         return winningDeck.score();
     }
@@ -23,6 +23,9 @@ public class Game
     private Deck recursiveCombat (int round, int game, Deck[] decks, int[] offsets, Deck winningDeck)
     {
         Deck[] theDecks = new Deck[2];
+        int currentGame = game;
+
+        System.out.println("**GOT "+currentGame);
 
         theDecks[0] = new Deck(decks[0], offsets[0]);
         theDecks[1] = new Deck(decks[1], offsets[1]);
@@ -30,13 +33,13 @@ public class Game
         HashSet<String> rounds = new HashSet<String>();
 
         if (_debug)
-            System.out.println("\n=== Game "+game+" ===");
+            System.out.println("\n=== Game "+currentGame+" ===");
 
         while (!theDecks[0].isEmpty() && !theDecks[1].isEmpty())
         {
             if (_debug)
             {
-                System.out.println("\n-- Round "+round+" (Game "+game+") --");
+                System.out.println("\n-- Round "+round+" (Game "+currentGame+") --");
                 System.out.println(theDecks[0]);
                 System.out.println(theDecks[1]);
             }
@@ -58,10 +61,10 @@ public class Game
                 if (_debug)
                     System.out.println("Playing a sub-game to determine the winner...");
 
-                if (recursiveCombat(1, game +1, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
+                if (recursiveCombat(1, _numberOfGames++, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
                 {
                     if (_debug)
-                        System.out.println("Player 1 wins round "+round+" of game "+game+"!");
+                        System.out.println("Player 1 wins round "+round+" of game "+currentGame+"!");
 
                     theDecks[0].add(playerOneCard);
                     theDecks[0].add(playerTwoCard);
@@ -69,7 +72,7 @@ public class Game
                 else
                 {
                     if (_debug)
-                        System.out.println("Player 2 wins round "+round+" of game "+game+"!");
+                        System.out.println("Player 2 wins round "+round+" of game "+currentGame+"!");
 
                     theDecks[1].add(playerOneCard);
                     theDecks[1].add(playerTwoCard);
@@ -80,7 +83,7 @@ public class Game
                 if (playerOneCard > playerTwoCard)
                 {
                     if (_debug)
-                        System.out.println("Player 1 wins round "+round+" of game "+game+"!");
+                        System.out.println("Player 1 wins round "+round+" of game "+currentGame+"!");
 
                     theDecks[0].add(playerOneCard);
                     theDecks[0].add(playerTwoCard);
@@ -88,7 +91,7 @@ public class Game
                 else
                 {
                     if (_debug)
-                        System.out.println("Player 2 wins round "+round+" of game "+game+"!");
+                        System.out.println("Player 2 wins round "+round+" of game "+currentGame+"!");
 
                     theDecks[1].add(playerTwoCard);
                     theDecks[1].add(playerOneCard);
@@ -109,7 +112,7 @@ public class Game
             winningDeck = (theDecks[1].isEmpty() ? theDecks[0] : theDecks[1]);
 
         if (_debug)
-            System.out.print("The winner of game "+game+" is player ");
+            System.out.print("The winner of game "+currentGame+" is player ");
 
         if (theDecks[1].isEmpty())
         {
@@ -127,5 +130,6 @@ public class Game
         }
     }
 
+    private int _numberOfGames;
     private boolean _debug;
 }
