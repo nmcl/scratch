@@ -30,7 +30,7 @@ public class Game
         HashSet<String> rounds = new HashSet<String>();
 
         if (_debug)
-            System.out.println("=== Game "+gane+" ===");
+            System.out.println("=== Game "+game+" ===");
 
         while (!decks[0].isEmpty() && !decks[1].isEmpty())
         {
