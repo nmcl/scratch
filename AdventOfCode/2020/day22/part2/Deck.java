@@ -22,6 +22,13 @@ public class Deck
         _theDeck.add(value);
     }
 
+    public final void addAll (Deck d)
+    {
+        System.out.println("**GOT all "+d);
+
+        _theDeck.addAll(d._theDeck);
+    }
+
     public final int draw ()
     {
         return _theDeck.removeFirst();
