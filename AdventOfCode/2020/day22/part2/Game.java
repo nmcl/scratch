@@ -32,7 +32,7 @@ public class Game
         if (_debug)
             System.out.println("\n=== Game "+game+" ===");
 
-        while (!decks[0].isEmpty() && !decks[1].isEmpty())
+        while (!theDecks[0].isEmpty() && !theDecks[1].isEmpty())
         {
             if (_debug)
             {
@@ -114,14 +114,14 @@ public class Game
         if (theDecks[1].isEmpty())
         {
             if (_debug)
-                System.out.println("1!");
+                System.out.println("1!\n...anyway, back to game "+(game-1)+".");
 
             return decks[0];
         }
         else
         {
             if (_debug)
-                System.out.println("2!");
+                System.out.println("2!\n...anyway, back to game "+(game-1)+".");
 
             return decks[1];
         }
