@@ -29,6 +29,9 @@ public class Game
 
         HashSet<String> rounds = new HashSet<String>();
 
+        if (_debug)
+            System.out.println("=== Game "+gane+" ===");
+
         while (!decks[0].isEmpty() && !decks[1].isEmpty())
         {
             if (_debug)
@@ -52,7 +55,10 @@ public class Game
 
             if ((theDecks[0].size() >= playerOneCard) && (theDecks[1].size() >= playerTwoCard))
             {
-                if (recursiveCombat(1, game++, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
+                if (_debug)
+                    System.out.println("Playing a sub-game to determine the winner...");
+
+                if (recursiveCombat(1, game +1, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
                 {
                     if (_debug)
                         System.out.println("Player 1 wins round "+round+" of game "+game+"!");
