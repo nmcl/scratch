@@ -72,8 +72,8 @@ public class Game
                     if (_debug)
                         System.out.println("Player 2 wins round "+round+" of game "+currentGame+"!");
 
-                    theDecks[1].add(playerOneCard);
                     theDecks[1].add(playerTwoCard);
+                    theDecks[1].add(playerOneCard);
                 }
             }
             else
@@ -107,7 +107,7 @@ public class Game
         }
 
         if (winningDeck != null)
-            winningDeck = (theDecks[1].isEmpty() ? theDecks[0] : theDecks[1]);
+            winningDeck.addAll(theDecks[1].isEmpty() ? theDecks[0] : theDecks[1]);
 
         if (_debug)
             System.out.print("The winner of game "+currentGame+" is player ");
