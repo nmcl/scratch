@@ -16,7 +16,7 @@ public class Game
         Deck winningDeck = new Deck(0);
 
         recursiveCombat(round, game, decks, new int[] { decks[0].size(), decks[1].size() }, winningDeck);
-        
+
         return winningDeck.score();
     }
 
@@ -55,7 +55,7 @@ public class Game
                 if (recursiveCombat(1, game++, theDecks, new int[] { playerOneCard, playerTwoCard}, null) == theDecks[0])
                 {
                     if (_debug)
-                        System.out.println("Player 1 wins the round!");
+                        System.out.println("Player 1 wins round "+round+" of game "+game+"!");
 
                     theDecks[0].add(playerOneCard);
                     theDecks[0].add(playerTwoCard);
@@ -63,7 +63,7 @@ public class Game
                 else
                 {
                     if (_debug)
-                        System.out.println("Player 2 wins the round!");
+                        System.out.println("Player 2 wins round "+round+" of game "+game+"!");
 
                     theDecks[1].add(playerOneCard);
                     theDecks[1].add(playerTwoCard);
