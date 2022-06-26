@@ -74,7 +74,7 @@ public class Game
                 if (playerOneCard > playerTwoCard)
                 {
                     if (_debug)
-                        System.out.println("Player 1 wins the round!");
+                        System.out.println("Player 1 wins round "+round+" of game "+game+"!");
 
                     theDecks[0].add(playerOneCard);
                     theDecks[0].add(playerTwoCard);
@@ -82,7 +82,7 @@ public class Game
                 else
                 {
                     if (_debug)
-                        System.out.println("Player 2 wins the round!");
+                        System.out.println("Player 2 wins round "+round+" of game "+game+"!");
 
                     theDecks[1].add(playerTwoCard);
                     theDecks[1].add(playerOneCard);
