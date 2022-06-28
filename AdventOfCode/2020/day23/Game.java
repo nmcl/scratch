@@ -51,6 +51,7 @@ public class Game
                     index -= theCups.length;
 
                 pickup[i] = theCups[index];
+                theCups[index] = ' ';
 
                 if (_debug)
                     System.out.print(pickup[i]+", ");
@@ -58,6 +59,9 @@ public class Game
 
             if (_debug)
                 System.out.println();
+
+            String changedCups = new String(theCups);
+            char[] nextCups = changedCups.replaceAll(" ", "").toCharArray();
         }
 
         return null;
