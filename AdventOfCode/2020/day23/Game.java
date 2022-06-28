@@ -60,8 +60,7 @@ public class Game
             if (_debug)
                 System.out.println();
 
-            String changedCups = new String(theCups);
-            char[] nextCups = changedCups.replaceAll(" ", "").toCharArray();
+            theCups = new String(theCups).replaceAll(" ", "").toCharArray();
         }
 
         return null;
