@@ -23,7 +23,7 @@ public class Game
         {
             if (_debug)
             {
-                System.out.println("-- move "+(round+1)+" --");
+                System.out.println("\n-- move "+(round+1)+" --");
                 System.out.print("cups: ");
 
                 for (int i = 0; i < theCups.length; i++)
@@ -33,6 +33,9 @@ public class Game
                     else
                         System.out.print(theCups[i]+" ");
                 }
+
+                if (_debug)
+                    System.out.println();
             }
 
         }
