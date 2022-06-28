@@ -14,8 +14,9 @@ public class Game
      * - The crab selects a new current cup: the cup which is immediately clockwise of the current cup.
      */
 
-    public final void play ()
+    public final String play (String cups, int numberOfRounds)
     {
+        return null;
     }
 
     private boolean _debug;
