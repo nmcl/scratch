@@ -16,6 +16,27 @@ public class Game
 
     public final String play (String cups, int numberOfRounds)
     {
+        int currentCup = 0;
+        char[] theCups = cups.toCharArray();
+
+        for (int round = 0; round < numberOfRounds; round++)
+        {
+            if (_debug)
+            {
+                System.out.println("-- move "+(round+1)+" --");
+                System.out.print("cups: ");
+
+                for (int i = 0; i < theCups.length; i++)
+                {
+                    if (i == (currentCup +1))
+                        System.out.print("("+theCups[i]+") ");
+                    else
+                        System.out.print(theCups[i]+" ");
+                }
+            }
+
+        }
+
         return null;
     }
 
