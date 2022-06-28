@@ -12,6 +12,8 @@ public class Verifier
         Game theGame = new Game(_debug);
 
         theGame.play(EXAMPLE, 10);
+
+        return false;
     }
 
     private boolean _debug;
