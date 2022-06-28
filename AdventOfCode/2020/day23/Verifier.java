@@ -7,5 +7,12 @@ public class Verifier
         _debug = debug;
     }
 
+    public final boolean verify ()
+    {
+        Game theGame = new Game(_debug);
+
+        theGame.play(EXAMPLE, 10);
+    }
+
     private boolean _debug;
 }
