@@ -38,6 +38,26 @@ public class Game
                     System.out.println();
             }
 
+            char[] pickup = new char[3];
+
+            if (_debug)
+                System.out.print("pick up: ");
+
+            for (int i = 0; i < 3; i++)
+            {
+                int index = currentCup +i +1;
+
+                if (index > theCups.length)
+                    index -= theCups.length;
+
+                pickup[i] = theCups[index];
+
+                if (_debug)
+                    System.out.print(pickup[i]+", ");
+            }
+
+            if (_debug)
+                System.out.println();
         }
 
         return null;
