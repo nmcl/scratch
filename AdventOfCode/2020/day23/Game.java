@@ -60,6 +60,10 @@ public class Game
             if (_debug)
                 System.out.println();
 
+            int destinationCup = currentCup - 1;
+
+            System.out.println("destination: "+destinationCup);
+
             String remainingCups = new String(theCups).replaceAll(" ", "");
 
             theCups = new char[theCups.length];
