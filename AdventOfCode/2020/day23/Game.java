@@ -60,7 +60,7 @@ public class Game
             if (_debug)
                 System.out.println();
 
-            int destinationCup = currentCup - 1;
+            int destinationCup = Character.getNumericValue(theCups[currentCup]) - 1;
 
             System.out.println("destination: "+destinationCup);
 
