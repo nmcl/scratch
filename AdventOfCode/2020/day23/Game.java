@@ -61,7 +61,8 @@ public class Game
                 System.out.println();
 
             int destinationCup = Character.getNumericValue(theCups[currentCup]) - 1;
-
+            int lowest = lowestLabel(theCups);
+            
             System.out.println("destination: "+destinationCup);
 
             String remainingCups = new String(theCups).replaceAll(" ", "");
@@ -73,6 +74,19 @@ public class Game
         }
 
         return null;
+    }
+
+    private final int lowestLabel (char[] theCups)
+    {
+        int lowest = theCups[0];
+
+        for (int i = 1; i < theCups.length; i++)
+        {
+            if (theCups[i] < lowest)
+                lowest = theCups[i];
+        }
+
+        return lowest;
     }
 
     private boolean _debug;
