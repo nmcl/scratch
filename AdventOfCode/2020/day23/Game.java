@@ -1,3 +1,5 @@
+import java.beans.DesignMode;
+
 public class Game
 {
     public Game (boolean debug)
@@ -60,9 +62,8 @@ public class Game
             if (_debug)
                 System.out.println();
 
-            int destinationCup = Character.getNumericValue(theCups[currentCup]) - 1;
-            int lowest = lowestLabel(theCups);
-            
+            int destinationCup = getDestination(currentCup, theCups, pickup);
+
             System.out.println("destination: "+destinationCup);
 
             String remainingCups = new String(theCups).replaceAll(" ", "");
@@ -76,6 +77,40 @@ public class Game
         return null;
     }
 
+    private final int getDestination (int currentCup, char[] theCups, char[] pickup)
+    {
+        int destinationCup = Character.getNumericValue(theCups[currentCup]) - 1;
+        int lowest = lowestLabel(theCups);
+        boolean done = false;
+
+        while (!done)
+        {
+            if (destinationCup < lowest)
+            {
+                destinationCup = highestLabel(theCups);
+                done = true;
+            }
+            else
+            {
+                boolean conflict = false;
+
+                for (int i = 0; (i < pickup.length) && !conflict; i++)
+                {
+                    if (Character.getNumericValue(pickup[i]) == destinationCup)
+                    {
+                        destinationCup--;
+                        conflict = true;
+                    }
+                }
+
+                if (!conflict)
+                    done = true;
+            }
+        }
+
+        return destinationCup;
+    }
+
     private final int lowestLabel (char[] theCups)
     {
         int lowest = theCups[0];
@@ -87,6 +122,19 @@ public class Game
         }
 
         return lowest;
+    }
+
+    private final int highestLabel (char[] theCups)
+    {
+        int highest = theCups[0];
+
+        for (int i = 1; i < theCups.length; i++)
+        {
+            if (theCups[i] > highest)
+                highest = theCups[i];
+        }
+
+        return highest;
     }
 
     private boolean _debug;
