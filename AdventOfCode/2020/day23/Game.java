@@ -85,6 +85,9 @@ public class Game
 
         while (!done)
         {
+            if (_debug)
+                System.out.println("Comparing "+destinationCup+" and "+lowest);
+                
             if (destinationCup < lowest)
             {
                 destinationCup = highestLabel(theCups);
