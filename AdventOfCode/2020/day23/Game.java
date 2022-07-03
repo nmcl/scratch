@@ -51,7 +51,7 @@ public class Game
             {
                 int index = currentCupIndex +i +1;
 
-                if (index > theCups.length)  // in case it wraps.
+                if (index >= theCups.length)  // in case it wraps.
                     index -= theCups.length;
 
                 pickup[i] = theCups[index];
@@ -98,6 +98,9 @@ public class Game
             }
 
             currentCupIndex++;
+
+            if (currentCupIndex == theCups.length)
+                currentCupIndex -= theCups.length;
         }
 
         return null;
