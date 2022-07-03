@@ -67,10 +67,10 @@ public class Game
             String remainingCups = new String(theCups).replaceAll(" ", "");
 
             int destinationCup = getDestination(currentCup, remainingCups.toCharArray(), pickup);
-            int index = findLocation(destinationCup, theCups);
+            int index = findCupLocation(destinationCup, remainingCups.toCharArray());
 
             if (_debug)
-                System.out.println("destination: "+destinationCup);
+                System.out.println("destination: "+destinationCup+" at "+index);
 
             int remainingIndex = 0;
 
@@ -78,14 +78,20 @@ public class Game
 
             for (int i = 0; i < theCups.length; i++)
             {
+                System.out.println("theCups "+i+" will be "+remainingCups.charAt(remainingIndex)+" from "+remainingIndex);
+
                 theCups[i] = remainingCups.charAt(remainingIndex);
 
                 if (i == index)
                 {
                     System.out.println("Placing "+pickup+" at "+index);
-                    
-                    for (int j = 0; j < 0; j++)
+
+                    for (int j = 0; j < pickup.length; j++)
+                    {
+                        System.out.println("theCups "+(i+j+1)+" will be "+pickup[j]);
+
                         theCups[i+j+1] = pickup[j];
+                    }
 
                     i += pickup.length;
                 }
@@ -99,7 +105,9 @@ public class Game
         return null;
     }
 
-    private final int findLocation (int destinationCup, char[] cups)
+    // find destination cup index in those remaining
+    
+    private final int findCupLocation (int destinationCup, char[] cups)
     {
         for (int i = 0; i < cups.length; i++)
         {
@@ -111,6 +119,8 @@ public class Game
 
         return -1;
     }
+
+    // find destination cup label in those remaining
 
     private final int getDestination (int currentCup, char[] theCups, char[] pickup)
     {
