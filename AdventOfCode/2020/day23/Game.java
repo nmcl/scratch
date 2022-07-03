@@ -20,7 +20,7 @@ public class Game
 
     public final String play (String cups, int numberOfRounds)
     {
-        int currentCup = 0;
+        int currentCupIndex = 0;
         char[] theCups = cups.toCharArray();
 
         for (int round = 0; round < numberOfRounds; round++)
@@ -32,7 +32,7 @@ public class Game
 
                 for (int i = 0; i < theCups.length; i++)
                 {
-                    if (i == currentCup)
+                    if (i == currentCupIndex)
                         System.out.print("("+theCups[i]+") ");
                     else
                         System.out.print(theCups[i]+" ");
@@ -49,7 +49,7 @@ public class Game
 
             for (int i = 0; i < 3; i++)
             {
-                int index = currentCup +i +1;
+                int index = currentCupIndex +i +1;
 
                 if (index > theCups.length)  // in case it wraps.
                     index -= theCups.length;
@@ -65,7 +65,7 @@ public class Game
                 System.out.println();
 
             String remainingCups = new String(theCups).replaceAll(" ", "");
-
+            int currentCup = Character.getNumericValue(theCups[currentCupIndex]);
             int destinationCup = getDestination(currentCup, remainingCups.toCharArray(), pickup);
             int index = findCupLocation(destinationCup, remainingCups.toCharArray());
 
@@ -84,8 +84,6 @@ public class Game
 
                 if (i == index)
                 {
-                    System.out.println("Placing "+pickup+" at "+index);
-
                     for (int j = 0; j < pickup.length; j++)
                     {
                         System.out.println("theCups "+(i+j+1)+" will be "+pickup[j]);
@@ -99,7 +97,7 @@ public class Game
                 remainingIndex++;
             }
 
-            currentCup++;
+            currentCupIndex++;
         }
 
         return null;
@@ -124,7 +122,7 @@ public class Game
 
     private final int getDestination (int currentCup, char[] theCups, char[] pickup)
     {
-        int destinationCup = Character.getNumericValue(theCups[currentCup]) - 1;
+        int destinationCup = currentCup -1;
         int lowest = lowestLabel(theCups);
         boolean done = false;
 
@@ -161,7 +159,7 @@ public class Game
 
     private final int lowestLabel (char[] theCups)
     {
-        int lowest = Character.getNumericValue(theCups[1]);
+        int lowest = Character.getNumericValue(theCups[0]);
 
         for (int i = 1; i < theCups.length; i++)
         {
