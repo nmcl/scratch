@@ -69,16 +69,6 @@ public class Game
             if (_debug)
                 System.out.println("destination cup: "+destinationCup);
 
-            String nextCups = new char[theCups.length];
-
-            for (int i = 0; i < nextCups.length; i++)
-            {
-                if (theCups[i] != REMOVED_CUP)  // otherwise skip
-                {
-
-                }
-            }
-
             String remainingCups = new String(theCups).replaceAll(" ", "");
 
             theCups = new char[theCups.length];
