@@ -71,12 +71,13 @@ public class Game
                 System.out.println("destination: "+destinationCup);
 
             String remainingCups = new String(theCups).replaceAll(" ", "");
+            int remainingIndex = 0;
 
             theCups = new char[theCups.length];
 
             for (int i = 0; i < theCups.length; i++)
             {
-                theCups[i] = remainingCups.charAt(i);
+                theCups[i] = remainingCups.charAt(remainingIndex);
 
                 if (i == index)
                 {
@@ -85,6 +86,8 @@ public class Game
 
                     i += pickup.length;
                 }
+
+                remainingIndex++;
             }
 
             currentCup++;
