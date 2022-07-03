@@ -64,13 +64,14 @@ public class Game
             if (_debug)
                 System.out.println();
 
-            int destinationCup = getDestination(currentCup, theCups, pickup);
+            String remainingCups = new String(theCups).replaceAll(" ", "");
+
+            int destinationCup = getDestination(currentCup, remainingCups.toCharArray(), pickup);
             int index = findLocation(destinationCup, theCups);
 
             if (_debug)
                 System.out.println("destination: "+destinationCup);
 
-            String remainingCups = new String(theCups).replaceAll(" ", "");
             int remainingIndex = 0;
 
             theCups = new char[theCups.length];
@@ -148,10 +149,13 @@ public class Game
 
     private final int lowestLabel (char[] theCups)
     {
-        int lowest = Character.getNumericValue(theCups[0]);
+        int lowest = Character.getNumericValue(theCups[1]);
 
         for (int i = 1; i < theCups.length; i++)
         {
+            if (_debug)
+                System.out.println("Current lowest: "+lowest+" and "+Character.getNumericValue(theCups[i]));
+
             if (Character.getNumericValue(theCups[i]) < lowest)
                 lowest = theCups[i];
         }
@@ -165,6 +169,9 @@ public class Game
 
         for (int i = 1; i < theCups.length; i++)
         {
+            if (_debug)
+                System.out.println("Current highest: "+highest+" and "+Character.getNumericValue(theCups[i]));
+
             if (Character.getNumericValue(theCups[i]) > highest)
                 highest = theCups[i];
         }
