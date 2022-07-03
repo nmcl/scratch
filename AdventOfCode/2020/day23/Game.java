@@ -167,7 +167,7 @@ public class Game
                 System.out.println("Current lowest: "+lowest+" and "+Character.getNumericValue(theCups[i]));
 
             if (Character.getNumericValue(theCups[i]) < lowest)
-                lowest = theCups[i];
+                lowest = Character.getNumericValue(theCups[i]);
         }
 
         return lowest;
@@ -183,7 +183,7 @@ public class Game
                 System.out.println("Current highest: "+highest+" and "+Character.getNumericValue(theCups[i]));
 
             if (Character.getNumericValue(theCups[i]) > highest)
-                highest = theCups[i];
+                highest = Character.getNumericValue(theCups[i]);
         }
 
         return highest;
