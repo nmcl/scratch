@@ -74,8 +74,20 @@ public class Game
 
             theCups = new char[theCups.length];
 
-            for (int i = 0; i < remainingCups.length(); i++)
+            for (int i = 0; i < theCups.length; i++)
+            {
                 theCups[i] = remainingCups.charAt(i);
+
+                if (i == index)
+                {
+                    for (int j = 0; j < 0; j++)
+                        theCups[i+j+1] = pickup[j];
+
+                    i += pickup.length;
+                }
+            }
+
+            currentCup++;
         }
 
         return null;
