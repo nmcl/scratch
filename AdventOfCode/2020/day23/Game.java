@@ -2,6 +2,8 @@ import java.beans.DesignMode;
 
 public class Game
 {
+    private static final char REMOVED_CUP = ' ';
+
     public Game (boolean debug)
     {
         _debug = debug;
@@ -53,7 +55,7 @@ public class Game
                     index -= theCups.length;
 
                 pickup[i] = theCups[index];
-                theCups[index] = ' ';
+                theCups[index] = REMOVED_CUP;
 
                 if (_debug)
                     System.out.print(pickup[i]+", ");
@@ -66,6 +68,16 @@ public class Game
 
             if (_debug)
                 System.out.println("destination cup: "+destinationCup);
+
+            String nextCups = new char[theCups.length];
+
+            for (int i = 0; i < nextCups.length; i++)
+            {
+                if (theCups[i] != REMOVED_CUP)  // otherwise skip
+                {
+
+                }
+            }
 
             String remainingCups = new String(theCups).replaceAll(" ", "");
 
