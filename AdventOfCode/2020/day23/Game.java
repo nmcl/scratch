@@ -64,7 +64,8 @@ public class Game
 
             int destinationCup = getDestination(currentCup, theCups, pickup);
 
-            System.out.println("destination: "+destinationCup);
+            if (_debug)
+                System.out.println("destination cup: "+destinationCup);
 
             String remainingCups = new String(theCups).replaceAll(" ", "");
 
