@@ -5,6 +5,11 @@ public class Node
         _value = value;
     }
 
+    public void setNext (Node n)
+    {
+        _next = n;
+    }
+    
     private int _value;
     private Node _next;
 }
