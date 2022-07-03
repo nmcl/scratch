@@ -65,9 +65,10 @@ public class Game
                 System.out.println();
 
             int destinationCup = getDestination(currentCup, theCups, pickup);
+            int index = findLocation(destinationCup, theCups);
 
             if (_debug)
-                System.out.println("destination cup: "+destinationCup);
+                System.out.println("destination: "+destinationCup);
 
             String remainingCups = new String(theCups).replaceAll(" ", "");
 
@@ -78,6 +79,19 @@ public class Game
         }
 
         return null;
+    }
+
+    private final int findLocation (int destinationCup, char[] cups)
+    {
+        for (int i = 0; i < cups.length; i++)
+        {
+            if (Character.getNumericValue(cups[i]) == destinationCup)
+                return i;
+        }
+
+        System.err.println("Error! Can't find destination cup!!");
+
+        return -1;
     }
 
     private final int getDestination (int currentCup, char[] theCups, char[] pickup)
