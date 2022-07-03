@@ -32,7 +32,7 @@ public class Game
 
                 for (int i = 0; i < theCups.length; i++)
                 {
-                    if (i == (currentCup +1))
+                    if (i == currentCup)
                         System.out.print("("+theCups[i]+") ");
                     else
                         System.out.print(theCups[i]+" ");
@@ -148,11 +148,11 @@ public class Game
 
     private final int lowestLabel (char[] theCups)
     {
-        int lowest = theCups[0];
+        int lowest = Character.getNumericValue(theCups[0]);
 
         for (int i = 1; i < theCups.length; i++)
         {
-            if (theCups[i] < lowest)
+            if (Character.getNumericValue(theCups[i]) < lowest)
                 lowest = theCups[i];
         }
 
@@ -161,11 +161,11 @@ public class Game
 
     private final int highestLabel (char[] theCups)
     {
-        int highest = theCups[0];
+        int highest = Character.getNumericValue(theCups[0]);
 
         for (int i = 1; i < theCups.length; i++)
         {
-            if (theCups[i] > highest)
+            if (Character.getNumericValue(theCups[i]) > highest)
                 highest = theCups[i];
         }
 
