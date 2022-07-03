@@ -82,6 +82,8 @@ public class Game
 
                 if (i == index)
                 {
+                    System.out.println("Placing "+pickup+" at "+index);
+                    
                     for (int j = 0; j < 0; j++)
                         theCups[i+j+1] = pickup[j];
 
