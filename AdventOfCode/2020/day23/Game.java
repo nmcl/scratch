@@ -1,4 +1,4 @@
-import java.beans.DesignMode;
+import java.util.*;
 
 public class Game
 {
@@ -18,12 +18,11 @@ public class Game
      * - The crab selects a new current cup: the cup which is immediately clockwise of the current cup.
      */
 
-    public final String play (String cups, int numberOfRounds)
+    public final String play (String cupsAsString, int numberOfRounds)
     {
-        LinkedList<Integer> cupLabels = getCupLabels(cups);
-
+        LinkedList<Integer> cups = getCupLabels(cupsAsString);
         int currentCupIndex = 0;
-        char[] theCups = cups.toCharArray();
+        int numberOfCups = cups.size();
 
         for (int round = 0; round < numberOfRounds; round++)
         {
@@ -32,144 +31,82 @@ public class Game
                 System.out.println("\n-- move "+(round+1)+" --");
                 System.out.print("cups: ");
 
-                for (int i = 0; i < theCups.length; i++)
+                for (int i = 0; i < numberOfCups; i++)
                 {
                     if (i == currentCupIndex)
-                        System.out.print("("+theCups[i]+") ");
+                        System.out.print("("+cups.get(i)+") ");
                     else
-                        System.out.print(theCups[i]+" ");
+                        System.out.print(cups.get(i)+" ");
                 }
 
                 if (_debug)
                     System.out.println();
             }
 
-            char[] pickup = new char[3];
+            ArrayList<Integer> pickup = new ArrayList<Integer>();
+            int insertLocation = 0;
 
-            if (_debug)
-                System.out.print("pick up: ");
-
-            for (int i = 0; i < 3; i++)
+            for (int i = 1; i <= 3; i++)
             {
-                int index = currentCupIndex +i +1;
+                int pickupCupIndex = ((currentCupIndex + i) % numberOfCups);
 
-                if (index >= theCups.length)  // in case it wraps.
-                    index -= theCups.length;
+                pickup.add(cups.get(pickupCupIndex));
 
-                pickup[i] = theCups[index];
-                theCups[index] = REMOVED_CUP;
-
-                if (_debug)
-                    System.out.print(pickup[i]+", ");
-            }
-
-            if (_debug)
-                System.out.println();
-
-            String remainingCups = new String(theCups).replaceAll(" ", "");
-            int currentCup = Character.getNumericValue(theCups[currentCupIndex]);
-            int destinationCup = getDestination(currentCup, remainingCups.toCharArray(), pickup);
-            int index = findCupLocation(destinationCup, remainingCups.toCharArray());
-
-            if (_debug)
-                System.out.println("destination: "+destinationCup+" at "+index);
-
-            int remainingIndex = 0;
-
-            theCups = new char[theCups.length];
-
-            for (int i = 0; i < theCups.length; i++)
-            {
-                System.out.println("theCups "+i+" will be "+remainingCups.charAt(remainingIndex)+" from "+remainingIndex);
-
-                theCups[i] = remainingCups.charAt(remainingIndex);
-
-                if (i == index)
+                if (pickupCupIndex < currentCupIndex)
                 {
-                    for (int j = 0; j < pickup.length; j++)
-                    {
-                        System.out.println("theCups "+(i+j+1)+" will be "+pickup[j]);
-
-                        theCups[i+j+1] = pickup[j];
-                    }
-
-                    i += pickup.length;
+                    insertLocation++;
                 }
-
-                remainingIndex++;
             }
 
-            currentCupIndex++;
+            cups.removeAll(pickup);
 
-            if (currentCupIndex == theCups.length)
-                currentCupIndex -= theCups.length;
+            if (_debug)
+                System.out.println("pick up: "+pickup);
+
+            int index = cups.get((currentCupIndex - insertLocation + 1) % (numberOfCups - pickup.size()));
+            int destinationCup = getDestination(cups.get(currentCupIndex - insertLocation) - 1, pickup, lowestLabel(cupsAsString.toCharArray()), highestLabel(cupsAsString.toCharArray()));
+
+            if (_debug)
+                System.out.println("destination: "+destinationCup);
+
+            cups.addAll(cups.indexOf(destinationCup) + 1, pickup);
+
+            currentCupIndex = cups.indexOf(index);
         }
 
-        return null;
+        int start = cups.indexOf(1);
+        StringBuilder concatenate = new StringBuilder();
+
+        for (int i = 1; i < numberOfCups; i++)
+        {
+            concatenate.append(cups.get((start + i) % numberOfCups));
+        }
+
+        return concatenate.toString();
     }
 
     private final LinkedList<Integer> getCupLabels (String cups)
     {
         char[] theCups = cups.toCharArray();
-        LinkedList<Integer> cups = new LinkedList<Integer>();
+        LinkedList<Integer> cupLabels = new LinkedList<Integer>();
 
         for (int i = 0; i < theCups.length; i++)
         {
-            cups.add(Character.getNumericValue(theCups[i]));
+            cupLabels.add(Character.getNumericValue(theCups[i]));
         }
 
-        return cups;
-    }
-
-    // find destination cup index in those remaining
-    
-    private final int findCupLocation (int destinationCup, char[] cups)
-    {
-        for (int i = 0; i < cups.length; i++)
-        {
-            if (Character.getNumericValue(cups[i]) == destinationCup)
-                return i;
-        }
-
-        System.err.println("Error! Can't find destination cup!!");
-
-        return -1;
+        return cupLabels;
     }
 
     // find destination cup label in those remaining
 
-    private final int getDestination (int currentCup, char[] theCups, char[] pickup)
+    private final int getDestination (int initialDestination, ArrayList<Integer> pickup, int min, int max)
     {
-        int destinationCup = currentCup -1;
-        int lowest = lowestLabel(theCups);
-        boolean done = false;
+        int destinationCup = initialDestination < min ? max : initialDestination;
 
-        while (!done)
+        while (pickup.contains(destinationCup))
         {
-            if (_debug)
-                System.out.println("Comparing "+destinationCup+" and "+lowest);
-                
-            if (destinationCup < lowest)
-            {
-                destinationCup = highestLabel(theCups);
-                done = true;
-            }
-            else
-            {
-                boolean conflict = false;
-
-                for (int i = 0; (i < pickup.length) && !conflict; i++)
-                {
-                    if (Character.getNumericValue(pickup[i]) == destinationCup)
-                    {
-                        destinationCup--;
-                        conflict = true;
-                    }
-                }
-
-                if (!conflict)
-                    done = true;
-            }
+            destinationCup = destinationCup - 1 < min ? max : destinationCup - 1;
         }
 
         return destinationCup;
@@ -181,9 +118,6 @@ public class Game
 
         for (int i = 1; i < theCups.length; i++)
         {
-            if (_debug)
-                System.out.println("Current lowest: "+lowest+" and "+Character.getNumericValue(theCups[i]));
-
             if (Character.getNumericValue(theCups[i]) < lowest)
                 lowest = Character.getNumericValue(theCups[i]);
         }
@@ -197,9 +131,6 @@ public class Game
 
         for (int i = 1; i < theCups.length; i++)
         {
-            if (_debug)
-                System.out.println("Current highest: "+highest+" and "+Character.getNumericValue(theCups[i]));
-
             if (Character.getNumericValue(theCups[i]) > highest)
                 highest = Character.getNumericValue(theCups[i]);
         }
