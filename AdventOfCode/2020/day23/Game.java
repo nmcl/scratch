@@ -20,6 +20,8 @@ public class Game
 
     public final String play (String cups, int numberOfRounds)
     {
+        LinkedList<Integer> cupLabels = getCupLabels(cups);
+
         int currentCupIndex = 0;
         char[] theCups = cups.toCharArray();
 
@@ -104,6 +106,19 @@ public class Game
         }
 
         return null;
+    }
+
+    private final LinkedList<Integer> getCupLabels (String cups)
+    {
+        char[] theCups = cups.toCharArray();
+        LinkedList<Integer> cups = new LinkedList<Integer>();
+
+        for (int i = 0; i < theCups.length; i++)
+        {
+            cups.add(Character.getNumericValue(theCups[i]));
+        }
+
+        return cups;
     }
 
     // find destination cup index in those remaining
