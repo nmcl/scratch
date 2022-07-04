@@ -31,5 +31,11 @@ public class CrabCups
             else
                 System.out.println("Verify failed!");
         }
+        
+        Game theGame = new Game(debug);
+
+        String result = theGame.play(INPUT, 100);
+
+        System.out.println("Labels after 100 rounds: "+result);
     }
 }
