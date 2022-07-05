@@ -10,6 +10,12 @@ public class Node
         _next = n;
     }
     
+    @Override
+    public String toString ()
+    {
+        return "Node: "+_value;
+    }
+
     private int _value;
     private Node _next;
 }
