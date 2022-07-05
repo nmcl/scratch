@@ -17,6 +17,8 @@ public class CircularLinkedList
         _tail.setNext(_head);
     }
 
+    private int _size;
     private Node _head = null;
     private Node _tail = null;
+    private Node _current = null;
 }
