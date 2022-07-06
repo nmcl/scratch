@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Game
 {
+    // Brute force approach won't work. Use circular linked list at scale.
+    
     private static final char REMOVED_CUP = ' ';
 
     public Game (boolean debug)
