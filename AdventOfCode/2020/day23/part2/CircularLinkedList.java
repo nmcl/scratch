@@ -2,6 +2,8 @@ public class CircularLinkedList
 {
     public CircularLinkedList ()
     {
+        _size = 0;
+        _head = _tail = _current = null;
     }
 
     public void add (int value)
@@ -18,7 +20,7 @@ public class CircularLinkedList
     }
 
     private int _size;
-    private Node _head = null;
-    private Node _tail = null;
-    private Node _current = null;
+    private Node _head;
+    private Node _tail;
+    private Node _current;
 }
