@@ -1,3 +1,5 @@
+// element of circular linked list
+
 public class Node
 {
     public Node (int value)
