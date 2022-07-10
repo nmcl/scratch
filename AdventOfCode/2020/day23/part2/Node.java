@@ -12,6 +12,11 @@ public class Node
         return _value;
     }
 
+    public final Node getNext ()
+    {
+        return _next;
+    }
+    
     public final void setNext (Node n)
     {
         _next = n;
