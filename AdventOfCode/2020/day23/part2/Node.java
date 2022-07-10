@@ -7,7 +7,12 @@ public class Node
         _value = value;
     }
 
-    public void setNext (Node n)
+    public final int getValue ()
+    {
+        return _value;
+    }
+
+    public final void setNext (Node n)
     {
         _next = n;
     }
