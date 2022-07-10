@@ -8,17 +8,37 @@ public class CircularLinkedList
         _head = _tail = _current = null;
     }
 
-    public void add (int value)
+    public final void Node getCurrent ()
+    {
+        return _current;
+    }
+
+    public final void setCurrent (Node c)
+    {
+        _current = c;
+    }
+
+    public final void add (int value)
     {
         Node n = new Node(value);
         
-        if (_head == null)
+        if (_entries.size() == 0)
+        {
             _head = n;
+            _tail = _head;
+            _current = _head;
+            _current.setNext(_head);
+        }
         else
-            _tail.setNext(n);
+        {
+            Node last = _tail;
 
-        _tail = n;
-        _tail.setNext(_head);
+            last.setNext(n);
+            n.setNext(_head);
+            _tail = n;
+        }
+
+        _entries.put(value, n);
     }
 
     private HashMap<Integer, Node> _entries;
