@@ -4,7 +4,7 @@ public class CircularLinkedList
 {
     public CircularLinkedList ()
     {
-        _size = 0;
+        _entries = new HashMap<Integer, Node>();
         _head = _tail = _current = null;
     }
 
@@ -21,7 +21,7 @@ public class CircularLinkedList
         _tail.setNext(_head);
     }
 
-    private int _size;
+    private HashMap<Integer, Node> _entries;
     private Node _head;
     private Node _tail;
     private Node _current;
