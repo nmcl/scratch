@@ -8,7 +8,7 @@ public class CircularLinkedList
         _head = _tail = _current = null;
     }
 
-    public final void Node getCurrent ()
+    public final Node getCurrent ()
     {
         return _current;
     }
@@ -20,8 +20,11 @@ public class CircularLinkedList
 
     public final void add (int value)
     {
-        Node n = new Node(value);
-        
+        add(new Node(value));
+    }
+
+    public final void add (Node n)
+    {
         if (_entries.size() == 0)
         {
             _head = n;
@@ -38,7 +41,54 @@ public class CircularLinkedList
             _tail = n;
         }
 
-        _entries.put(value, n);
+        _entries.put(n.getValue(), n);
+    }
+
+    public final CircularLinkedList removeFrom (Node position)
+    {
+        CircularLinkedList removed = new CircularLinkedList();
+        Node cup = position.getNext();
+        Node entry = cup;
+
+        removed.add(cup);
+        _entries.remove(cup.getValue());
+
+        for (int i = 0; i < 2; i++)
+        {
+            entry = entry.getNext();
+
+            removed.add(entry);
+            _entries.remove(entry.getValue());
+        }
+
+        if ((entry == _tail) || (entry == _head))
+        {
+            _tail = position;
+            _tail.setNext(_head);
+
+            if (entry == _head)
+                _head = _head.getNext();
+        }
+        else
+        {
+            if ((cup == _tail) || (cup == _head))
+            {
+                _head = _head.getNext().getNext();
+
+                if (cup == _head)
+                {
+                    _head = _head.getNext();
+                }
+                else
+                    _tail = position;
+
+                _tail.setNext(_head);
+            }
+            else
+                position.setNext(entry.getNext());
+        }
+
+        return removed;
     }
 
     private HashMap<Integer, Node> _entries;
