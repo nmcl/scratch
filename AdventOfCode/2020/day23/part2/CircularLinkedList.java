@@ -44,6 +44,27 @@ public class CircularLinkedList
         _entries.put(n.getValue(), n);
     }
 
+    public void addTo (Node position, CircularLinkedList toAdd)
+    {
+        if (position == _tail)
+        {
+            Node theTail = _tail;
+
+            _tail = toAdd._tail;
+            _tail.setNext(_head);
+            theTail.setNext(toAdd._head);
+        }
+        else
+        {
+            Node posNext = position.getNext();
+
+            position.setNext(toAdd._head);
+            toAdd._tail.setNext(posNext);
+        }
+
+        _entries.putAll(toAdd._entries);
+    }
+
     public final CircularLinkedList removeFrom (Node position)
     {
         CircularLinkedList removed = new CircularLinkedList();
