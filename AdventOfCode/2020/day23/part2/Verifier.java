@@ -1,8 +1,8 @@
 public class Verifier
 {
     public static final String EXAMPLE = "389125467";
-    public static final String EXAMPLE_RESULT_10 = "92658374";
-    public static final String EXAMPLE_RESULT_100 = "67384529";
+    public static final String EXAMPLE_RESULT_CUP_1 = "934001";
+    public static final String EXAMPLE_RESULT_CUP_2 = "159792";
 
     public Verifier (boolean debug)
     {
