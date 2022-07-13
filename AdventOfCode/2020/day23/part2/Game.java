@@ -3,8 +3,9 @@ import java.util.*;
 public class Game
 {
     // Brute force approach won't work. Use circular linked list at scale.
-    
+
     private static final char REMOVED_CUP = ' ';
+    private static final int MAX_CUP_LABEL = 1000000;
 
     public Game (boolean debug)
     {
@@ -22,69 +23,34 @@ public class Game
 
     public final String play (String cupsAsString, int numberOfRounds)
     {
-        LinkedList<Integer> cups = getCupLabels(cupsAsString);
-        int currentCupIndex = 0;
-        int numberOfCups = cups.size();
+        CircularLinkedList theCups = CircularLinkedList();
+
+        // add the cup labels
+
+        for (int i = 0; i < highestLabel(cupsAsString.toCharArray()); i++)
+            theCups.add(i);
+
+        // now add the remainder (assume no gaps in first list)
+
+        for (int i = highestLabel(cupsAsString.toCharArray()); i < MAX_CUP_LABEL; i++)
+        {
+            theCups.add(i);
+        }
+
+        Node index = theCups.getCurrent();
 
         for (int round = 0; round < numberOfRounds; round++)
         {
             if (_debug)
-            {
                 System.out.println("\n-- move "+(round+1)+" --");
-                System.out.print("cups: ");
 
-                for (int i = 0; i < numberOfCups; i++)
-                {
-                    if (i == currentCupIndex)
-                        System.out.print("("+cups.get(i)+") ");
-                    else
-                        System.out.print(cups.get(i)+" ");
-                }
-
-                if (_debug)
-                    System.out.println();
-            }
-
-            ArrayList<Integer> pickup = new ArrayList<Integer>();
-            int insertLocation = 0;
-
-            for (int i = 1; i <= 3; i++)
-            {
-                int pickupCupIndex = ((currentCupIndex + i) % numberOfCups);
-
-                pickup.add(cups.get(pickupCupIndex));
-
-                if (pickupCupIndex < currentCupIndex)
-                {
-                    insertLocation++;
-                }
-            }
-
-            cups.removeAll(pickup);
+            CircularLinkedList pickup = theCups.removeFrom(index);
 
             if (_debug)
                 System.out.println("pick up: "+pickup);
-
-            int index = cups.get((currentCupIndex - insertLocation + 1) % (numberOfCups - pickup.size()));
-            int destinationCup = getDestination(cups.get(currentCupIndex - insertLocation) - 1, pickup, lowestLabel(cupsAsString.toCharArray()), highestLabel(cupsAsString.toCharArray()));
-
-            if (_debug)
-                System.out.println("destination: "+destinationCup);
-
-            cups.addAll(cups.indexOf(destinationCup) + 1, pickup);
-
-            currentCupIndex = cups.indexOf(index);
         }
 
-        int start = cups.indexOf(1);
-        StringBuilder concatenate = new StringBuilder();
-
-        for (int i = 1; i < numberOfCups; i++)
-        {
-            concatenate.append(cups.get((start + i) % numberOfCups));
-        }
-
-        return concatenate.toString();
+        return null;
     }
 
     private final LinkedList<Integer> getCupLabels (String cups)
