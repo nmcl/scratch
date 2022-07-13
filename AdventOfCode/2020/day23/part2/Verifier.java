@@ -1,7 +1,7 @@
 public class Verifier
 {
     public static final String EXAMPLE = "389125467";
-    public static final String EXAMPLE_RESULT = "149245887792";
+    public static final long EXAMPLE_RESULT = 149245887792L;
 
     public Verifier (boolean debug)
     {
@@ -11,9 +11,9 @@ public class Verifier
     public final boolean verify ()
     {
         Game theGame = new Game(_debug);
-        String result = theGame.play(EXAMPLE, 1000000);
+        long result = theGame.play(EXAMPLE, 1000000);
 
-        if (EXAMPLE_RESULT.equals(result))
+        if (result == EXAMPLE_RESULT)
             return true;
 
         System.out.println("Wrong result after 1000000 rounds: "+result);
