@@ -13,6 +13,11 @@ public class CircularLinkedList
         return _entries;
     }
     
+    public final Set<Integer> asList ()
+    {
+        return _entries.keySet();
+    }
+
     public final Node getCurrent ()
     {
         return _current;
