@@ -8,6 +8,11 @@ public class CircularLinkedList
         _head = _tail = _current = null;
     }
 
+    public final HashMap<Integer, Node> getEntries ()
+    {
+        return _entries;
+    }
+    
     public final Node getCurrent ()
     {
         return _current;
