@@ -21,18 +21,20 @@ public class Game
      * - The crab selects a new current cup: the cup which is immediately clockwise of the current cup.
      */
 
-    public final String play (String cupsAsString, int numberOfRounds)
+    public final long play (String cupsAsString, int numberOfRounds)
     {
-        CircularLinkedList theCups = CircularLinkedList();
+        CircularLinkedList theCups = new CircularLinkedList();
+        int maxCup = highestLabel(cupsAsString.toCharArray());
+        int minCup = lowestLabel(cupsAsString.toCharArray());
 
         // add the cup labels
 
-        for (int i = 0; i < highestLabel(cupsAsString.toCharArray()); i++)
+        for (int i = 0; i < maxCup; i++)
             theCups.add(i);
 
         // now add the remainder (assume no gaps in first list)
 
-        for (int i = highestLabel(cupsAsString.toCharArray()); i < MAX_CUP_LABEL; i++)
+        for (int i = maxCup +1; i < MAX_CUP_LABEL; i++)
         {
             theCups.add(i);
         }
@@ -48,9 +50,24 @@ public class Game
 
             if (_debug)
                 System.out.println("pick up: "+pickup);
+
+            int destination = index.getValue() - 1;
+
+            if (destination < minCup)
+                destination = MAX_CUP_LABEL;
+
+            while (pickup.asList().contains(destination))
+            {
+                destination = (destination - 1 < minCup) ? MAX_CUP_LABEL : destination - 1;
+            }
+
+            theCups.addTo(theCups.getEntries().get(destination), pickup);
+
+            index = index.getNext();
         }
 
-        return null;
+        return (long) theCups.getEntries().get(1).getNext().getValue() *
+                (long) theCups.getEntries().get(1).getNext().getNext().getValue();
     }
 
     private final LinkedList<Integer> getCupLabels (String cups)
