@@ -44,6 +44,8 @@ public class Game
             theCups.add(i);
         }
 
+        System.out.println("cups "+theCups);
+
         Node index = theCups.getCurrent();
 
         for (int round = 0; round < numberOfRounds; round++)
