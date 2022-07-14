@@ -56,6 +56,8 @@ public class CircularLinkedList
 
     public void addTo (Node position, CircularLinkedList toAdd)
     {
+        System.out.println("Position: "+position);
+
         if (position == _tail)
         {
             Node theTail = _tail;
@@ -122,7 +124,19 @@ public class CircularLinkedList
         return removed;
     }
 
-    private HashMap<Integer, Node> _entries;
+    @Override
+    public String toString ()
+    {
+        Iterator<Node> iter = _entries.values().iterator();
+        String str = "";
+
+        while (iter.hasNext())
+            str += iter.next()+", ";
+
+        return str;
+    }
+
+    private HashMap<Integer,Node> _entries;
     private Node _head;
     private Node _tail;
     private Node _current;
