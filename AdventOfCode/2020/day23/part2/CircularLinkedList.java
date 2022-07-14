@@ -84,6 +84,8 @@ public class CircularLinkedList
         Node entry = cup;
 
         removed.add(cup);
+        System.out.println("added "+cup);
+
         _entries.remove(cup.getValue());
 
         for (int i = 0; i < 2; i++)
@@ -91,6 +93,9 @@ public class CircularLinkedList
             entry = entry.getNext();
 
             removed.add(entry);
+
+            System.out.println("added "+entry);
+            
             _entries.remove(entry.getValue());
         }
 
