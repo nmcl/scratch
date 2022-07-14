@@ -24,13 +24,18 @@ public class Game
     public final long play (String cupsAsString, int numberOfRounds)
     {
         CircularLinkedList theCups = new CircularLinkedList();
-        int maxCup = highestLabel(cupsAsString.toCharArray());
-        int minCup = lowestLabel(cupsAsString.toCharArray());
+        char[] cupLabels = cupsAsString.toCharArray();
+        int maxCup = highestLabel(cupLabels);
+        int minCup = lowestLabel(cupLabels);
 
         // add the cup labels
 
-        for (int i = 0; i < maxCup; i++)
-            theCups.add(i);
+        for (int i = 0; i < cupLabels.length; i++)
+        {
+            theCups.add(Character.getNumericValue(cupLabels[i]));
+        }
+
+        System.out.println("cups "+theCups);
 
         // now add the remainder (assume no gaps in first list)
 
