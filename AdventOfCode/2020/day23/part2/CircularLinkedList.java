@@ -94,8 +94,8 @@ public class CircularLinkedList
 
             removed.add(entry);
 
-            System.out.println("added "+entry);
-            
+            System.out.println("added next "+entry);
+
             _entries.remove(entry.getValue());
         }
 
