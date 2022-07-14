@@ -49,7 +49,7 @@ public class Game
             CircularLinkedList pickup = theCups.removeFrom(index);
 
             if (_debug)
-                System.out.println("pick up: "+pickup);
+                System.out.print("pick up: "+pickup);
 
             int destination = index.getValue() - 1;
 
@@ -60,6 +60,8 @@ public class Game
             {
                 destination = (destination - 1 < minCup) ? MAX_CUP_LABEL : destination - 1;
             }
+
+            System.out.println("destination: "+destination);
 
             theCups.addTo(theCups.getEntries().get(destination), pickup);
 
