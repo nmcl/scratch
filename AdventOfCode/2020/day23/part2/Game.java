@@ -4,7 +4,6 @@ public class Game
 {
     // Brute force approach won't work. Use circular linked list at scale.
 
-    private static final char REMOVED_CUP = ' ';
     private static final int MAX_CUP_LABEL = 1000000;
 
     public Game (boolean debug)
