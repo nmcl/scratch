@@ -75,6 +75,9 @@ public class Game
             index = index.getNext();
         }
 
+        System.out.println("key1 " + theCups.getEntries().get(1).getNext().getValue());
+        System.out.println("key2 " + theCups.getEntries().get(1).getNext().getNext().getValue());
+
         return (long) theCups.getEntries().get(1).getNext().getValue() *
                 (long) theCups.getEntries().get(1).getNext().getNext().getValue();
     }
