@@ -53,7 +53,10 @@ public class Game
             CircularLinkedList pickup = theCups.removeFrom(index);
 
             if (_debug)
+            {
                 System.out.print("pick up: "+pickup);
+                System.out.println();
+            }
 
             int destination = index.getValue() - 1;
 
