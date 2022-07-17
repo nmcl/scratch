@@ -70,6 +70,8 @@ public class Game
 
             System.out.println("destination: "+destination);
 
+            System.out.println(theCups.asList());
+            
             theCups.addTo(theCups.getEntries().get(destination), pickup);
 
             index = index.getNext();
