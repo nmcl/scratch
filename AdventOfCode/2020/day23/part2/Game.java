@@ -34,7 +34,7 @@ public class Game
             theCups.add(Character.getNumericValue(cupLabels[i]));
         }
 
-        System.out.println("cups "+theCups);
+        //System.out.println("cups "+theCups);
 
         // now add the remainder (assume no gaps in first list)
 
