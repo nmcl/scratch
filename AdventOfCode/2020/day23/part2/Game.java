@@ -82,19 +82,6 @@ public class Game
                 (long) theCups.getEntries().get(1).getNext().getNext().getValue();
     }
 
-    private final LinkedList<Integer> getCupLabels (String cups)
-    {
-        char[] theCups = cups.toCharArray();
-        LinkedList<Integer> cupLabels = new LinkedList<Integer>();
-
-        for (int i = 0; i < theCups.length; i++)
-        {
-            cupLabels.add(Character.getNumericValue(theCups[i]));
-        }
-
-        return cupLabels;
-    }
-
     // find destination cup label in those remaining
 
     private final int getDestination (int initialDestination, ArrayList<Integer> pickup, int min, int max)
