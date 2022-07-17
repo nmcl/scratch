@@ -83,7 +83,7 @@ public class CircularLinkedList
         Node cup = position.getNext();
         Node entry = cup;
 
-        removed.add(cup);
+        removed.add(cup.getValue());
         System.out.println("added "+cup);
 
         _entries.remove(cup.getValue());
@@ -92,9 +92,9 @@ public class CircularLinkedList
         {
             entry = entry.getNext();
 
-            removed.add(entry);
+            removed.add(entry.getValue());
 
-            System.out.println("added next "+entry);
+            System.out.println("added next "+entry.getValue());
 
             _entries.remove(entry.getValue());
         }
