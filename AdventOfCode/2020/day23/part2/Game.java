@@ -38,7 +38,7 @@ public class Game
 
         // now add the remainder (assume no gaps in first list)
 
-        for (int i = maxCup +1; i < MAX_CUP_LABEL; i++)
+        for (int i = maxCup +1; i < MAX_CUP_LABEL +1; i++)
         {
             theCups.add(i);
         }
@@ -70,8 +70,6 @@ public class Game
 
             System.out.println("destination: "+destination);
 
-            System.out.println(theCups.asList());
-            
             theCups.addTo(theCups.getEntries().get(destination), pickup);
 
             index = index.getNext();
