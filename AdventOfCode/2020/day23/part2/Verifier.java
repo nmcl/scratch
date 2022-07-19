@@ -11,12 +11,12 @@ public class Verifier
     public final boolean verify ()
     {
         Game theGame = new Game(_debug);
-        long result = theGame.play(EXAMPLE, 1000000);
+        long result = theGame.play(EXAMPLE, 10000000);
 
         if (result == EXAMPLE_RESULT)
             return true;
 
-        System.out.println("Wrong result after 1000000 rounds: "+result);
+        System.out.println("Wrong result after 10000000 rounds: "+result);
 
         return false;
     }
