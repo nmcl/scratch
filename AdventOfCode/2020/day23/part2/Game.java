@@ -68,15 +68,19 @@ public class Game
                 destination = (destination - 1 < minCup) ? MAX_CUP_LABEL : destination - 1;
             }
 
-            System.out.println("destination: "+destination);
+            if (_debug)
+                System.out.println("destination: "+destination);
 
             theCups.addTo(theCups.getEntries().get(destination), pickup);
 
             index = index.getNext();
         }
 
-        System.out.println("key1 " + theCups.getEntries().get(1).getNext().getValue());
-        System.out.println("key2 " + theCups.getEntries().get(1).getNext().getNext().getValue());
+        if (_debug)
+        {
+            System.out.println("key1 " + theCups.getEntries().get(1).getNext().getValue());
+            System.out.println("key2 " + theCups.getEntries().get(1).getNext().getNext().getValue());
+        }
 
         return (long) theCups.getEntries().get(1).getNext().getValue() *
                 (long) theCups.getEntries().get(1).getNext().getNext().getValue();
