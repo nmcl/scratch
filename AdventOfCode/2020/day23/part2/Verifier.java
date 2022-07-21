@@ -11,7 +11,7 @@ public class Verifier
     public final boolean verify ()
     {
         Game theGame = new Game(_debug);
-        long result = theGame.play(EXAMPLE, 10000000);
+        long result = theGame.play(EXAMPLE, 450000);
 
         if (result == EXAMPLE_RESULT)
             return true;
