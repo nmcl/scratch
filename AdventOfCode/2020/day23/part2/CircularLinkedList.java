@@ -56,8 +56,6 @@ public class CircularLinkedList
 
     public void addTo (Node position, CircularLinkedList toAdd)
     {
-        //System.out.println("Position: "+position);
-
         if (position == _tail)
         {
             Node theTail = _tail;
@@ -84,7 +82,6 @@ public class CircularLinkedList
         Node entry = cup;
 
         removed.add(cup.getValue());
-        //System.out.println("added "+cup);
 
         _entries.remove(cup.getValue());
 
@@ -93,8 +90,6 @@ public class CircularLinkedList
             entry = entry.getNext();
 
             removed.add(entry.getValue());
-
-            //System.out.println("added next "+entry.getValue());
 
             _entries.remove(entry.getValue());
         }
