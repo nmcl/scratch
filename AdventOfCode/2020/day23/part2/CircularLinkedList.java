@@ -99,31 +99,38 @@ public class CircularLinkedList
             _entries.remove(entry.getValue());
         }
 
-        if ((entry == _tail) || (entry == _head))
+        if (entry == _tail)
         {
             _tail = position;
             _tail.setNext(_head);
-
-            if (entry == _head)
-                _head = _head.getNext();
-        }
+        } 
         else
         {
-            if ((cup == _tail) || (cup == _head))
+            if (entry == _head)
             {
-                _head = _head.getNext().getNext();
-
-                if (cup == _head)
-                {
-                    _head = _head.getNext();
-                }
-                else
-                    _tail = position;
-
+                _head = _head.getNext();
+                _tail = position;
                 _tail.setNext(_head);
             }
             else
-                position.setNext(entry.getNext());
+            {
+                if (cup == _tail)
+                {
+                    _head = _head.getNext().getNext();
+                    _tail = position;
+                    _tail.setNext(_head);
+                }
+                else
+                {
+                    if (cup == _head)
+                    {
+                        _head = _head.getNext().getNext().getNext();
+                        _tail.setNext(_head);
+                    } 
+                    else
+                        position.setNext(entry.getNext());
+                }
+            }
         }
 
         return removed;
