@@ -35,8 +35,8 @@ public class CrabCups
         }
         
         Game theGame = new Game(debug);
-        long result = theGame.play(INPUT, 100);
+        long result = theGame.play(INPUT, 10000000);
 
-        System.out.println("Labels after 100 rounds: "+result);
+        System.out.println("Game result: "+result);
     }
 }
