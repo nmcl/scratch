@@ -1,5 +1,9 @@
+import java.util.*;
+
 public class LobbyLayout
 {
+    public static final String DATA_FILE = "input.txt";
+
     public static void main (String[] args)
     {
         boolean verify = false;
@@ -31,6 +35,12 @@ public class LobbyLayout
 
             System.exit(0);
         }
+
+        Vector<String> lines = Util.readLines(DATA_FILE);
+        Renovation rv = new Renovation(debug);
+        Vector<Coordinate> blackTiles = rv.getBlackTiles(lines);
+
+        System.out.println("Number of black tiles: "+blackTiles.size());
     }
 }
         
