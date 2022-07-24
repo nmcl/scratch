@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Util
 {
-    public static final Vector<String> readLine (String inputFile)
+    public static final Vector<String> readLines (String inputFile)
     {
         /*
          * Open the data file and read it in.
