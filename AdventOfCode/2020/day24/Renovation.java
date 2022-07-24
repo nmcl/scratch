@@ -26,7 +26,26 @@ public class Renovation
 
     private Coordinate tilePosition (String line)
     {
-        return null;
+        Coordinate coord = new Coordinate(0, 0);
+        
+        for (int i = 0; i < line.length(); i++)
+        {
+            int directionSize = 2;
+
+            if ((line.charAt(i) == Directions.EAST_CHAR) || (line.charAt(i) == Directions.WEST_CHAR))
+                directionSize = 1;
+
+            String direction = line.substring(i, directionSize);
+
+            i += directionSize;
+
+            if (_debug)
+                System.out.println("Direction: "+direction);
+
+            coord = Directions.getCoordinate(coord, direction);
+        }
+
+        return coord;
     }
 
     private boolean _debug;
