@@ -42,7 +42,7 @@ public class Renovation
             if (_debug)
                 System.out.println("Direction: "+direction);
 
-            coord = Directions.getCoordinate(coord, direction);
+            coord = Directions.getCoordinate(direction, coord);
         }
 
         return coord;
