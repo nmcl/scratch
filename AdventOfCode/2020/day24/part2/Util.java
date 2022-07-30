@@ -39,4 +39,11 @@ public class Util
 
         return values;
     }
+
+    public static final Vector<Coordinate> uniqueTiles (Vector<Coordinate> first, Vector<Coordinate> second)
+    {
+        Vector<Coordinate> unique = new Vector<Coordinate>();
+
+        return unique;
+    }
 }
