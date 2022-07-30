@@ -41,9 +41,16 @@ public class Directions
         }
     }
 
-    public final static Vector<Coordinate> adjacentCoordinates (Coordinate coord)
+    public final static Vector<Coordinate> adjacentCoordinates (Coordinate current)
     {
         Vector<Coordinate> coords = new Vector<Coordinate>();
+
+        coords.add(Directions.getCoordinate(EAST, current));
+        coords.add(Directions.getCoordinate(SOUTH_EAST, current));
+        coords.add(Directions.getCoordinate(SOUTH_WEST, current));
+        coords.add(Directions.getCoordinate(WEST, current));
+        coords.add(Directions.getCoordinate(NORTH_WEST, current));
+        coords.add(Directions.getCoordinate(NORTH_EAST, current));
 
         return coords;
     } 
