@@ -39,6 +39,11 @@ public class Directions
         }
     }
 
+    public final static void adjacentCoordinates (Coordinate coord)
+    {
+
+    } 
+
     private Directions ()
     {
     }
