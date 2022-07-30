@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Directions
 {
     public static final String EAST = "e";
@@ -39,9 +41,11 @@ public class Directions
         }
     }
 
-    public final static void adjacentCoordinates (Coordinate coord)
+    public final static Vector<Coordinate> adjacentCoordinates (Coordinate coord)
     {
+        Vector<Coordinate> coords = new Vector<Coordinate>();
 
+        return coords;
     } 
 
     private Directions ()
