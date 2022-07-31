@@ -44,6 +44,12 @@ public class Util
     {
         int count = 0;
 
+        for (int i = 0; i < blackTiles.size(); i++)
+        {
+            if adjacentTiles.contains(blackTiles.elementAt(i))
+                count++;
+        }
+
         return count;
     }
 }
