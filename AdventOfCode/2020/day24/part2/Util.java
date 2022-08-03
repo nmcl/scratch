@@ -46,7 +46,7 @@ public class Util
 
         for (int i = 0; i < blackTiles.size(); i++)
         {
-            if adjacentTiles.contains(blackTiles.elementAt(i))
+            if (adjacentTiles.contains(blackTiles.elementAt(i))
                 count++;
         }
 
