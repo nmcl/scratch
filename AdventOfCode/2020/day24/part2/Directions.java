@@ -45,6 +45,8 @@ public class Directions
     {
         Vector<Coordinate> coords = new Vector<Coordinate>();
 
+        // pretty manual
+        
         coords.add(Directions.getCoordinate(EAST, current));
         coords.add(Directions.getCoordinate(SOUTH_EAST, current));
         coords.add(Directions.getCoordinate(SOUTH_WEST, current));
