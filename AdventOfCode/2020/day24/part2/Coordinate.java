@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 /*
- * Represents a <x, y> coordinate for a piece of a wire.
+ * Represents a <x, y> coordinate.
  */
 
 public class Coordinate
