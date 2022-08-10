@@ -43,7 +43,22 @@ public class Renovation
                  * Any white tile with exactly 2 black tiles immediately adjacent
                  * to it is flipped to black.
                  */
+
+                for (int j = 0; j < adjacentTiles.size(); j++)
+                {
+                    Coordinate whiteTile = adjacentTiles.elementAt(j);
+
+                    if (!blackTiles.contains(whiteTile)) // aka a white tile
+                    {
+                        int numberOfCommonBlackTiles = Util.commonBlackTiles(blackTiles, Directions.adjacentCoordinates(whiteTile));
+
+                        if (numberOfCommonBlackTiles == 2)
+                            nextIteration.add(whiteTile);
+                    }
+                }
             }
+
+            blackTiles = nextIteration;
         }
 
         return blackTiles;
