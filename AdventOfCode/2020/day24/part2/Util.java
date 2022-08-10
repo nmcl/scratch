@@ -40,13 +40,14 @@ public class Util
         return values;
     }
 
-    public static final int commonBlackTiles (Vector<Coordinate> blackTiles, Vector<Coordinate> adjacentTiles)
+    public static final int commonBlackTiles (HashSet<Coordinate> blackTiles, HashSet<Coordinate> adjacentTiles)
     {
         int count = 0;
+        Iterator<Coordinate> iter = blackTiles.iterator();
 
-        for (int i = 0; i < blackTiles.size(); i++)
+        while (iter.hasNext())
         {
-            if (adjacentTiles.contains(blackTiles.elementAt(i)))
+            if (adjacentTiles.contains(iter.next()))
                 count++;
         }
 
