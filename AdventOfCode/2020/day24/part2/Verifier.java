@@ -3,7 +3,9 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
-    public static final int EXAMPLE_BLACK_TILES = 10;
+    public static final int EXAMPLE_BLACK_TILES_DAY_1 = 15;
+    public static final int EXAMPLE_BLACK_TILES_DAY_10 = 37;
+    public static final int EXAMPLE_BLACK_TILES_DAY_100 = 2208;
 
     public Verifier (boolean debug)
     {
@@ -14,12 +16,14 @@ public class Verifier
     {
         Vector<String> lines = Util.readLines(EXAMPLE_DATA);
         Renovation rv = new Renovation(_debug);
-        Vector<Coordinate> blackTiles = rv.getBlackTiles(lines);
+        Vector<Coordinate> blackTiles = rv.tilesOfLife(lines, 1);
 
-        if (blackTiles.size() == EXAMPLE_BLACK_TILES)
+        if (blackTiles.size() == EXAMPLE_BLACK_TILES_DAY_1)
+        {
             return true;
+        }
         else
-            System.out.println("Wrong number of black tiles: "+blackTiles.size());
+            System.out.println("Wrong number of black tiles after day 1: "+blackTiles.size());
 
         return false;
     }
