@@ -40,7 +40,7 @@ public class Util
         return values;
     }
 
-    public static final int countAdjacentBlackTiles (Vector<Coordinate> blackTiles, Vector<Coordinate> adjacentTiles)
+    public static final int commonBlackTiles (Vector<Coordinate> blackTiles, Vector<Coordinate> adjacentTiles)
     {
         int count = 0;
 
