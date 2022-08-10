@@ -23,7 +23,14 @@ public class Verifier
             blackTiles = rv.tilesOfLife(lines, 10);
 
             if (blackTiles.size() == EXAMPLE_BLACK_TILES_DAY_10)
-                return true;
+            {
+                blackTiles = rv.tilesOfLife(lines, 100);
+
+                if (blackTiles.size() == EXAMPLE_BLACK_TILES_DAY_100)
+                    return true;
+                else
+                    System.out.println("Wrong number of black tiles after day 100: "+blackTiles.size());
+            }
             else
                 System.out.println("Wrong number of black tiles after day 10: "+blackTiles.size());
         }
