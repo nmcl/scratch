@@ -41,6 +41,10 @@ public class Directions
         }
     }
 
+    /*
+     * Tiles immediately adjacent means the six tiles directly touching the tile in question.
+     */
+
     public final static Vector<Coordinate> adjacentCoordinates (Coordinate current)
     {
         Vector<Coordinate> coords = new Vector<Coordinate>();
