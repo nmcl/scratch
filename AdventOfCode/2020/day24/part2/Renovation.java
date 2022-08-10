@@ -7,18 +7,21 @@ public class Renovation
         _debug = debug;
     }
 
-    public Vector<Coordinate> tilesOfLife (Vector<String> lines, int numberOfDays)
+    public HashSet<Coordinate> tilesOfLife (Vector<String> lines, int numberOfDays)
     {
-        Vector<Coordinate> blackTiles = getBlackTiles(lines);
+        HashSet<Coordinate> blackTiles = getBlackTiles(lines);
 
         for (int i = 0; i < numberOfDays; i++)
         {
-            Vector<Coordinate> nextIteration = new Vector<Coordinate>();
+            HashSet<Coordinate> nextIteration = new HashSet<Coordinate>();
+            Iterator<Coordinate> iter = blackTiles.iterator();
 
-            for (int index = 0; index < blackTiles.size(); index++)
+            System.out.println("Day "+i+" and "+blackTiles.size());
+
+            while (iter.hasNext())
             {
-                Coordinate current = blackTiles.elementAt(index);
-                Vector<Coordinate> adjacentTiles = Directions.adjacentCoordinates(current);
+                Coordinate current = iter.next();
+                HashSet<Coordinate> adjacentTiles = Directions.adjacentCoordinates(current);
                 int neighbouringBlackTiles = Util.commonBlackTiles(blackTiles, adjacentTiles);
 
                 /*
@@ -39,16 +42,16 @@ public class Renovation
                     nextIteration.add(current);
                 }
 
-                System.out.println("DONE");
-
                 /*
                  * Any white tile with exactly 2 black tiles immediately adjacent
                  * to it is flipped to black.
                  */
 
-                for (int j = 0; j < adjacentTiles.size(); j++)
+                Iterator<Coordinate> adjIter = adjacentTiles.iterator();
+
+                while (adjIter.hasNext())
                 {
-                    Coordinate whiteTile = adjacentTiles.elementAt(j);
+                    Coordinate whiteTile = adjIter.next();
 
                     if (!blackTiles.contains(whiteTile)) // aka a white tile
                     {
@@ -71,9 +74,9 @@ public class Renovation
         return blackTiles;
     }
 
-    private Vector<Coordinate> getBlackTiles (Vector<String> lines)
+    private HashSet<Coordinate> getBlackTiles (Vector<String> lines)
     {
-        Vector<Coordinate> blackTiles = new Vector<Coordinate>();
+        HashSet<Coordinate> blackTiles = new HashSet<Coordinate>();
 
         for (int i = 0; i < lines.size(); i++)
         {
