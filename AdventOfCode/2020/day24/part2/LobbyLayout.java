@@ -38,9 +38,9 @@ public class LobbyLayout
 
         Vector<String> lines = Util.readLines(DATA_FILE);
         Renovation rv = new Renovation(debug);
-        HashSet<Coordinate> blackTiles = rv.tilesOfLife(lines, 1);
+        HashSet<Coordinate> blackTiles = rv.tilesOfLife(lines, 100);
 
-        System.out.println("Number of black tiles: "+blackTiles.size());
+        System.out.println("Number of black tiles after 100 days: "+blackTiles.size());
     }
 }
         
