@@ -45,9 +45,9 @@ public class Directions
      * Tiles immediately adjacent means the six tiles directly touching the tile in question.
      */
 
-    public final static Vector<Coordinate> adjacentCoordinates (Coordinate current)
+    public final static HashSet<Coordinate> adjacentCoordinates (Coordinate current)
     {
-        Vector<Coordinate> coords = new Vector<Coordinate>();
+        HashSet<Coordinate> coords = new HashSet<Coordinate>();
 
         // pretty manual
         
