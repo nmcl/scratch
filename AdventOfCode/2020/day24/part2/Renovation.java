@@ -19,6 +19,25 @@ public class Renovation
             {
                 Coordinate current = blackTiles.elementAt(index);
                 Vector<Coordinate> adjacentTiles = Directions.adjacentCoordinates(current);
+                int neighbouringBlackTiles = Util.commonBlackTiles(blackTiles, adjacentTiles);
+
+                /*
+                 * Any black tile with zero or more than 2 black tiles immediately adjacent
+                 * to it is flipped to white.
+                 */
+
+                if ((neighbouringBlackTiles == 0) || (neighbouringBlackTiles > 2))
+                {
+                    if (_debug)
+                        System.out.println("Flipping "+current+" to white.");
+                }
+                else
+                {
+                    if (_debug)
+                        System.out.println("Leaving "+current+" as black.");
+
+                    nextIteration.add(current);
+                }
             }
         }
 
