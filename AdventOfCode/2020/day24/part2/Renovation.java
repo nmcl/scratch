@@ -38,6 +38,11 @@ public class Renovation
 
                     nextIteration.add(current);
                 }
+
+                /*
+                 * Any white tile with exactly 2 black tiles immediately adjacent
+                 * to it is flipped to black.
+                 */
             }
         }
 
