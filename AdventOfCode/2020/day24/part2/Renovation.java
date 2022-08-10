@@ -9,7 +9,18 @@ public class Renovation
 
     public Vector<Coordinate> tilesOfLife (Vector<String> lines, int numberOfDays)
     {
-        Vector<Coordinate> blackTiles = new Vector<Coordinate>();
+        Vector<Coordinate> blackTiles = getBlackTiles(lines);
+
+        for (int i = 0; i < numberOfDays; i++)
+        {
+            Vector<Coordinate> nextIteration = new Vector<Coordinate>();
+
+            for (int index = 0; index < blackTiles.size(); index++)
+            {
+                Coordinate current = blackTiles.elementAt(index);
+                Vector<Coordinate> adjacentTiles = Directions.adjacentCoordinates(current);
+            }
+        }
 
         return blackTiles;
     }
