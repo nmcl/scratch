@@ -64,7 +64,7 @@ public class Renovation
         return blackTiles;
     }
 
-    public Vector<Coordinate> getBlackTiles (Vector<String> lines)
+    private Vector<Coordinate> getBlackTiles (Vector<String> lines)
     {
         Vector<Coordinate> blackTiles = new Vector<Coordinate>();
 
