@@ -16,11 +16,16 @@ public class Verifier
     {
         Vector<String> lines = Util.readLines(EXAMPLE_DATA);
         Renovation rv = new Renovation(_debug);
-        Vector<Coordinate> blackTiles = rv.tilesOfLife(lines, 1);
+        HashSet<Coordinate> blackTiles = rv.tilesOfLife(lines, 1);
 
         if (blackTiles.size() == EXAMPLE_BLACK_TILES_DAY_1)
         {
-            return true;
+            blackTiles = rv.tilesOfLife(lines, 10);
+
+            if (blackTiles.size() == EXAMPLE_BLACK_TILES_DAY_10)
+                return true;
+            else
+                System.out.println("Wrong number of black tiles after day 10: "+blackTiles.size());
         }
         else
             System.out.println("Wrong number of black tiles after day 1: "+blackTiles.size());
