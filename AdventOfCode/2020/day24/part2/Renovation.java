@@ -16,7 +16,8 @@ public class Renovation
             HashSet<Coordinate> nextIteration = new HashSet<Coordinate>();
             Iterator<Coordinate> iter = blackTiles.iterator();
 
-            System.out.println("Day "+i+" and "+blackTiles.size());
+            if (_debug)
+                System.out.println("Day "+(i +1)+" and "+blackTiles.size());
 
             while (iter.hasNext())
             {
@@ -31,12 +32,12 @@ public class Renovation
 
                 if ((neighbouringBlackTiles == 0) || (neighbouringBlackTiles > 2))
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Flipping "+current+" to white.");
                 }
                 else
                 {
-                    //if (_debug)
+                    if (_debug)
                         System.out.println("Leaving "+current+" as black.");
 
                     nextIteration.add(current);
@@ -59,7 +60,7 @@ public class Renovation
 
                         if (numberOfCommonBlackTiles == 2)
                         {
-                            //if (_debug)
+                            if (_debug)
                                 System.out.println("Adding "+whiteTile+" as black.");
 
                             nextIteration.add(whiteTile);
