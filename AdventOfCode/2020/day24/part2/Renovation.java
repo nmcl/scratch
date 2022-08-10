@@ -7,6 +7,13 @@ public class Renovation
         _debug = debug;
     }
 
+    public Vector<Coordinate> tilesOfLife (Vector<String> lines, int numberOfDays)
+    {
+        Vector<Coordinate> blackTiles = new Vector<Coordinate>();
+
+        return blackTiles;
+    }
+
     public Vector<Coordinate> getBlackTiles (Vector<String> lines)
     {
         Vector<Coordinate> blackTiles = new Vector<Coordinate>();
