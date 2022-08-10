@@ -38,7 +38,7 @@ public class LobbyLayout
 
         Vector<String> lines = Util.readLines(DATA_FILE);
         Renovation rv = new Renovation(debug);
-        Vector<Coordinate> blackTiles = rv.getBlackTiles(lines);
+        Vector<Coordinate> blackTiles = rv.tilesOfLife(lines, 1);
 
         System.out.println("Number of black tiles: "+blackTiles.size());
     }
