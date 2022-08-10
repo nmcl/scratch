@@ -28,16 +28,18 @@ public class Renovation
 
                 if ((neighbouringBlackTiles == 0) || (neighbouringBlackTiles > 2))
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Flipping "+current+" to white.");
                 }
                 else
                 {
-                    if (_debug)
+                    //if (_debug)
                         System.out.println("Leaving "+current+" as black.");
 
                     nextIteration.add(current);
                 }
+
+                System.out.println("DONE");
 
                 /*
                  * Any white tile with exactly 2 black tiles immediately adjacent
@@ -53,7 +55,12 @@ public class Renovation
                         int numberOfCommonBlackTiles = Util.commonBlackTiles(blackTiles, Directions.adjacentCoordinates(whiteTile));
 
                         if (numberOfCommonBlackTiles == 2)
+                        {
+                            //if (_debug)
+                                System.out.println("Adding "+whiteTile+" as black.");
+
                             nextIteration.add(whiteTile);
+                        }
                     }
                 }
             }
