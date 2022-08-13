@@ -21,5 +21,15 @@ public class ComboBreaker
             if ("-verify".equals(args[i]))
                 verify = true;
         }
+
+        if (verify)
+        {
+            Verifier v = new Verifier(debug);
+
+            if (v.verify())
+                System.out.println("Verified ok.");
+            else
+                System.out.println("Verify failed!");
+        }
     }
 }
