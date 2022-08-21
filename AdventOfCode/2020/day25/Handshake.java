@@ -9,5 +9,10 @@ public class Handshake
         _debug = debug;
     }
 
+    public void work ()
+    {
+        // fill in the blanks.
+    }
+
     private boolean _debug;
 }
