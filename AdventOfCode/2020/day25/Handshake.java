@@ -11,7 +11,7 @@ public class Handshake
 
     public void work ()
     {
-        // fill in the blanks.
+        // fill in the blanks...
     }
 
     private boolean _debug;
