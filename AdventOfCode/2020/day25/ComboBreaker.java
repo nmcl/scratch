@@ -31,5 +31,7 @@ public class ComboBreaker
             else
                 System.out.println("Verify failed!");
         }
+
+        // else
     }
 }
