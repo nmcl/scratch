@@ -9,6 +9,8 @@ public class Handshake
         _debug = debug;
     }
 
+    // rename
+    
     public void work ()
     {
         // fill in the blanks...
