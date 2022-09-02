@@ -11,9 +11,11 @@ public class Handshake
 
     // rename
     
-    public void work ()
+    public boolean work ()
     {
         // fill in the blanks...
+
+        return false;
     }
 
     private boolean _debug;
