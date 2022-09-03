@@ -8,10 +8,8 @@ public class Handshake
     {
         _debug = debug;
     }
-
-    // rename
     
-    public boolean work ()
+    public boolean encryptionKey (int cardPublicKey, int doorPublicKey)
     {
         // fill in the blanks...
 
