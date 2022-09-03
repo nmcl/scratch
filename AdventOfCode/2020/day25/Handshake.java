@@ -28,7 +28,7 @@ public class Handshake
         long curr = START_NUMBER;
         long iter = 0;
 
-        while (value != publicKey)
+        while (curr != publicKey)
         {
             curr *= SUBJECT_NUMBER;
             curr %= MAGIC_NUMBER;
