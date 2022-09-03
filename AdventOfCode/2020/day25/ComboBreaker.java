@@ -22,7 +22,11 @@ public class ComboBreaker
 
         BufferedReader reader = new BufferedReader(new FileReader(DATA_FILE));
 
-        int cardPublicKey = Integer.parseInt(reader.readLine());
-        int doorPublicKey = Integer.parseInt(reader.readLine());
+        long cardPublicKey = Long.parseLong(reader.readLine());
+        long doorPublicKey = Long.parseLong(reader.readLine());
+
+        Handshake hs = new Handshake(debug);
+
+        System.out.println("Encryption key: "+hs.encryptionKey(cardPublicKey, doorPublicKey));
     }
 }
