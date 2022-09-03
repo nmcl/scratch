@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class ComboBreaker
 {
     public static final String DATA_FILE = "input.txt";
@@ -18,6 +20,9 @@ public class ComboBreaker
                 debug = true;
         }
 
+        BufferedReader reader = new BufferedReader(new FileReader(DATA_FILE));
 
+        int cardPublicKey = Integer.parseInt(reader.readLine());
+        int doorPublicKey = Integer.parseInt(reader.readLine());
     }
 }
