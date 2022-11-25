@@ -35,5 +35,15 @@ public class Dive
 
             System.exit(0);
         }
+
+        Submarine s = new Submarine(debug);
+        ThreeDPoint position = s.move(DATA_FILE);
+
+        if (debug)
+            System.out.println("Final position: "+position);
+
+        int value = position.getX() * position.getZ();
+
+        System.out.println("Value obtained: "+value);
     }
 }
