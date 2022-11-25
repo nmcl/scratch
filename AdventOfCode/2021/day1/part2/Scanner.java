@@ -16,7 +16,7 @@ public class Scanner
         int previousDepth = slidingWindowTotal(depths, 0);
 
         if (_debug)
-            System.out.println(previousDepth+" (N/A - no previous measurement)");
+            System.out.println(previousDepth+" (N/A - no previous sum)");
 
         for (int i = 1; i < depths.size(); i++)
         {
