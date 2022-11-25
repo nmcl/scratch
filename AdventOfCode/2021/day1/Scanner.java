@@ -14,21 +14,21 @@ public class Scanner
         int previousDepth = depths.elementAt(0);
 
         if (_debug)
-            System.out.println("Initial depth: "+previousDepth);
+            System.out.println(previousDepth+" (N/A - no previous measurement)");
 
         for (int i = 1; i < depths.size(); i++)
         {
             if (depths.elementAt(i) > previousDepth)
             {
                 if (_debug)
-                    System.out.println("New depth "+depths.elementAt(i)+" is greater than "+previousDepth);
+                    System.out.println(depths.elementAt(i)+" (increased)");
 
                 count++;
             }
             else
             {
                 if (_debug)
-                    System.out.println("New depth "+depths.elementAt(i)+" is less than "+previousDepth);
+                    System.out.println(depths.elementAt(i)+" (decreased)");
             }
 
             previousDepth = depths.elementAt(i);
