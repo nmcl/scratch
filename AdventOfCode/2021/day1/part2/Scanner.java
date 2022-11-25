@@ -13,27 +13,40 @@ public class Scanner
     {
         Vector<Integer> depths = Util.loadData(dataFile, _debug);
         int count = 0;
-        int previousDepth = depths.elementAt(0);
+        int previousDepth = slidingWindowTotal(depths, 0);
 
         if (_debug)
             System.out.println(previousDepth+" (N/A - no previous measurement)");
 
         for (int i = 1; i < depths.size(); i++)
         {
-            if (depths.elementAt(i) > previousDepth)
-            {
-                if (_debug)
-                    System.out.println(depths.elementAt(i)+" (increased)");
+            int value = slidingWindowTotal(depths, i);
 
-                count++;
-            }
-            else
+            if (value != -1)
             {
-                if (_debug)
-                    System.out.println(depths.elementAt(i)+" (decreased)");
-            }
+                if (value > previousDepth)
+                {
+                    if (_debug)
+                        System.out.println(value+" (increased)");
 
-            previousDepth = depths.elementAt(i);
+                    count++;
+                }
+                else
+                {
+                    if (value == previousDepth)
+                    {
+                        if (_debug)
+                            System.out.println(value+" (no change)");
+                    }
+                    else
+                    {
+                        if (_debug)
+                            System.out.println(value+" (decreased)");
+                    }
+                }
+
+                previousDepth = value;
+            }
         }
 
         return count;
