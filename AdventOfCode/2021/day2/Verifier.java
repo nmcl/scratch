@@ -11,9 +11,16 @@ public class Verifier
     public boolean verify ()
     {
         Submarine s = new Submarine(_debug);
+        ThreeDPoint position = s.move(EXAMPLE_FILE);
 
-        s.move(EXAMPLE_FILE);
-        
+        if (_debug)
+            System.out.println("Final position: "+position);
+
+        int value = position.getX() * position.getZ();
+
+        if (value == EXAMPLE_RESULT)
+            return true;
+            
         return false;
     }
 
