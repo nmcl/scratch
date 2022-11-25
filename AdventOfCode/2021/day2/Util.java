@@ -4,14 +4,14 @@ import java.io.*;
 public class Util
 {
 
-    public static Vector<Integer> loadData (String inputFile, boolean debug)
+    public static Vector<String> loadData (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<Integer> results = new Vector<Integer>();
+        Vector<String> results = new Vector<Integer>();
 
         try
         {
