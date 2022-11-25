@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Scanner
 {
+    public static final int WINDOW_SIZE = 3;
+
     public Scanner (boolean debug)
     {
         _debug = debug;
@@ -35,6 +37,21 @@ public class Scanner
         }
 
         return count;
+    }
+
+    private int slidingWindowTotal (Vector<Integer> depths, int startIndex)
+    {
+        int total = 0;
+
+        for (int i = 0; i < WINDOW_SIZE; i++)
+        {
+            if ((startIndex + i) < depths.size())
+                total += depths.elementAt(startIndex + i);
+            else
+                return -1;  // not enough elements left
+        }
+
+        return total;
     }
 
     private boolean _debug;
