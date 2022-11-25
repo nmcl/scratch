@@ -35,5 +35,9 @@ public class SonarSweep
 
             System.exit(0);
         }
+
+        Scanner s = new Scanner(debug);
+
+        System.out.println("Measurements larger than previous measurement: "+s.increasingDepth(DATA_FILE));
     }
 }
