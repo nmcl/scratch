@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class SonarSweep
+public class Dive
 {
     public static final String DATA_FILE = "input.txt";
 
