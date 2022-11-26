@@ -37,12 +37,12 @@ public class Dive
         }
 
         Submarine s = new Submarine(debug);
-        ThreeDPoint position = s.move(DATA_FILE);
+        Course position = s.move(DATA_FILE);
 
         if (debug)
             System.out.println("Final position: "+position);
 
-        int value = position.getX() * position.getZ();
+        int value = position.getPosition() * position.getDepth();
 
         System.out.println("Value obtained: "+value);
     }

@@ -4,11 +4,11 @@ public class Submarine
 {
     public Submarine (boolean debug)
     {
-        _position = new ThreeDPoint(0, 0, 0);
+        _position = new Course(0, 0, 0);
         _debug = debug;
     }
 
-    public ThreeDPoint move (String dataFile)
+    public Course move (String dataFile)
     {
         Vector<Command> cmds = Util.loadData(dataFile, _debug);
 
@@ -20,17 +20,17 @@ public class Submarine
             {
                 case Command.FORWARD:
                 {
-                    _position = new ThreeDPoint(_position.getX() + theCommand.amount(), _position.getY(), _position.getZ());
+                    _position = new Course(_position.getPosition() + theCommand.amount(), _position.getY(), _position.getDepth());
                 }
                 break;
                 case Command.DOWN:
                 {
-                    _position = new ThreeDPoint(_position.getX(), _position.getY(), _position.getZ() + theCommand.amount());
+                    _position = new Course(_position.getPosition(), _position.getY(), _position.getDepth() + theCommand.amount());
                 }
                 break;
                 case Command.UP:
                 {
-                    _position = new ThreeDPoint(_position.getX(), _position.getY(), _position.getZ() - theCommand.amount());
+                    _position = new Course(_position.getPosition(), _position.getY(), _position.getDepth() - theCommand.amount());
                 }
                 break;
                 default:
@@ -43,6 +43,6 @@ public class Submarine
         return _position;
     }
 
-    private ThreeDPoint _position;
+    private Course _position;
     private boolean _debug;
 }
