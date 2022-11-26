@@ -23,7 +23,7 @@ public class Submarine
             {
                 case Command.FORWARD:
                 {
-                    _position = new Course(_position.getPosition() + theCommand.amount(), _position.getAim(), _position.getDepth() * theCommand.amount());
+                    _position = new Course(_position.getPosition() + theCommand.amount(), _position.getAim(), _position.getDepth() + (_position.getAim() * theCommand.amount()));
                 }
                 break;
                 case Command.DOWN:
