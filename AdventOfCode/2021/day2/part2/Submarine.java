@@ -20,17 +20,17 @@ public class Submarine
             {
                 case Command.FORWARD:
                 {
-                    _position = new Course(_position.getPosition() + theCommand.amount(), _position.getY(), _position.getDepth());
+                    _position = new Course(_position.getPosition() + theCommand.amount(), _position.getAim(), _position.getDepth());
                 }
                 break;
                 case Command.DOWN:
                 {
-                    _position = new Course(_position.getPosition(), _position.getY(), _position.getDepth() + theCommand.amount());
+                    _position = new Course(_position.getPosition(), _position.getAim(), _position.getDepth() + theCommand.amount());
                 }
                 break;
                 case Command.UP:
                 {
-                    _position = new Course(_position.getPosition(), _position.getY(), _position.getDepth() - theCommand.amount());
+                    _position = new Course(_position.getPosition(), _position.getAim(), _position.getDepth() - theCommand.amount());
                 }
                 break;
                 default:

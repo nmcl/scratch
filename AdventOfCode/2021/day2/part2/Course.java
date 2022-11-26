@@ -6,17 +6,17 @@ import java.util.Objects;
 
 public class Course
 {
-    public Course (int position, int y, int depth)
+    public Course (int position, int aim, int depth)
     {
         _position = position;
-        _y = y;
+        _aim = aim;
         _depth = depth;
     }
 
     protected Course (Course toCopy)
     {
         _position = toCopy._position;
-        _y = toCopy._y;
+        _aim = toCopy._aim;
         _depth = toCopy._depth;
     }
 
@@ -25,9 +25,9 @@ public class Course
         return _position;
     }
 
-    public final int getY ()
+    public final int getAim ()
     {
-        return _y;
+        return _aim;
     }
 
     public final int getDepth ()
@@ -38,13 +38,13 @@ public class Course
     @Override
     public String toString ()
     {
-        return "Course < "+_position+", "+_y+", "+_depth+" >";
+        return "Course < "+_position+", "+_aim+", "+_depth+" >";
     }
     
     @Override
     public int hashCode ()
     {
-        return Objects.hash(_position, _y, _depth);
+        return Objects.hash(_position, _aim, _depth);
     }
 
     @Override
@@ -60,13 +60,13 @@ public class Course
         {
             Course temp = (Course) obj;
 
-            return ((_position == temp._position) && (_y == temp._y) && (_depth == temp._depth));
+            return ((_position == temp._position) && (_aim == temp._aim) && (_depth == temp._depth));
         }
 
         return false;
     }
 
     protected int _position;
-    protected int _y;
+    protected int _aim;
     protected int _depth;
 }
