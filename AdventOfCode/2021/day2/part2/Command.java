@@ -20,6 +20,12 @@ public class Command
         return _amount;
     }
 
+    @Override
+    public String toString ()
+    {
+        return _cmd+" "+_amount;
+    }
+
     private String _cmd;
     private int _amount;
 }
