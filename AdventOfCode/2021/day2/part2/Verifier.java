@@ -1,7 +1,7 @@
 public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
-    public static final int EXAMPLE_RESULT = 150;
+    public static final int EXAMPLE_RESULT = 900;
 
     public Verifier (boolean debug)
     {
@@ -16,6 +16,9 @@ public class Verifier
         if (_debug)
             System.out.println("Final position: "+position);
 
+        if (_debug)
+            System.out.println("Course: "+position);
+            
         int value = position.getPosition() * position.getDepth();
 
         if (value == EXAMPLE_RESULT)
