@@ -25,6 +25,8 @@ public class Epsilon
                 theGamma += "1";
             else
                 theGamma += "0";
+
+            index++;
         }
 
         return theGamma;
