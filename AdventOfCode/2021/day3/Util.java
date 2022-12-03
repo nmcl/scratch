@@ -11,7 +11,7 @@ public class Util
          */
 
         BufferedReader reader = null;
-        Vector<String> results = new Vector<Command>();
+        Vector<String> results = new Vector<String>();
 
         try
         {
