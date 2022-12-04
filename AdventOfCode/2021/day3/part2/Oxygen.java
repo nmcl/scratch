@@ -1,10 +1,10 @@
 import java.util.*;
 
-public class Epsilon
+public class Oxygen
 {
-    public static final String getEpsilon (Vector<String> data)
+    public static final String getOxygen (Vector<String> data)
     {
-        String theEpsilon = "";
+        String theGamma = "";
         int index = 0;
         int numberOfBits = data.elementAt(0).length();
 
@@ -22,13 +22,13 @@ public class Epsilon
             }
 
             if (ones < zeros)
-                theEpsilon += "1";
+                theGamma += "1";
             else
-                theEpsilon += "0";
+                theGamma += "0";
 
             index++;
         }
 
-        return theEpsilon;
+        return theGamma;
     }
 }
