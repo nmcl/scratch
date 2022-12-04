@@ -15,10 +15,10 @@ public class CO2
                 zeros++;
         }
 
-        char search = '0';
+        char search = '1';
 
-        if (ones > zeros)
-            search = '1';
+        if (zeros <= ones)
+            search = '0';
 
         Vector<String> subset = new Vector<String>();
 
