@@ -31,6 +31,6 @@ public class CO2
         if (subset.size() == 1)
             return subset.elementAt(0);
         else
-            return getCO2(subset, index++);
+            return getCO2(subset, ++index);
     }
 }
