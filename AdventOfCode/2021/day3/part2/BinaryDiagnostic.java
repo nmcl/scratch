@@ -35,14 +35,5 @@ public class BinaryDiagnostic
 
             System.exit(0);
         }
-
-        Vector<String> data = Util.loadData(DATA_FILE, debug);
-        String gamma = Gamma.getGamma(data);
-        String epsilon = Epsilon.getEpsilon(data);
-        int gammaRate = Integer.parseInt(gamma, 2);
-        int epsilonRate = Integer.parseInt(epsilon, 2);
-        int powerConsumption = gammaRate * epsilonRate;
-
-        System.out.println("Power consumption of the submarine: "+powerConsumption);
     }
 }
