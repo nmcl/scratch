@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Oxygen
 {
-    public static final String getOxygen (Vector<String> data)
+    public static final String getOxygen (Vector<String> data, int index)
     {
         int ones = 0;
         int zeros = 0;
