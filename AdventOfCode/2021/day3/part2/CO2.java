@@ -4,8 +4,6 @@ public class CO2
 {
     public static final String getCO2 (Vector<String> data, int index)
     {
-        String result = "";
-        Vector<String> subset = new Vector<String>();
         int ones = 0;
         int zeros = 0;
 
@@ -22,12 +20,17 @@ public class CO2
         if (ones > zeros)
             search = '1';
 
+        Vector<String> subset = new Vector<String>();
+
         for (int j = 0; j < data.size(); j++)
         {
             if (data.elementAt(j).charAt(index) == search)
                 subset.add(data.elementAt(j));
         }
 
-        return result;
+        if (subset.size() == 1)
+            return subset.elementAt(0);
+        else
+            return getCO2(subset, index++);
     }
 }
