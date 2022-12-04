@@ -35,5 +35,14 @@ public class BinaryDiagnostic
 
             System.exit(0);
         }
+
+        Vector<String> data = Util.loadData(DATA_FILE, debug);
+        String oxygen = Oxygen.getOxygen(data, 0);
+        String co2 = CO2.getCO2(data, 0);
+        int oxygenRating = Integer.parseInt(oxygen, 2);
+        int co2Rating = Integer.parseInt(co2, 2);
+        int lifesupportRating = oxygenRating * co2Rating;
+
+        System.out.println("Life support rating: "+lifesupportRating);
     }
 }
