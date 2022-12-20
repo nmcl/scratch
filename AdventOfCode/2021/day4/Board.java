@@ -40,5 +40,21 @@ public class Board
         return true;
     }
 
+    @Override
+    public String toString ()
+    {
+        String str = "";
+
+        for (int i = 0; i < Board.MAX_X; i++)
+        {
+            for (int j = 0; j < Board.MAX_Y; j++)
+                str += _theBoard[i][j].getValue();
+
+            str += "\n";
+        }
+
+        return str;
+    }
+
     private Cell[][] _theBoard;
 }
