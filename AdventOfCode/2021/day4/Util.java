@@ -10,7 +10,7 @@ public class Util
          */
 
         BufferedReader reader = null;
-        Vector<Integer> results = new Vector<String>();
+        Vector<Integer> results = new Vector<Integer>();
         
         try
         {
