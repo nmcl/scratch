@@ -11,6 +11,11 @@ public class Cell
         return _value;
     }
 
+    public final void call ()
+    {
+        _called = true;
+    }
+    
     public final boolean called ()
     {
         return _called;
