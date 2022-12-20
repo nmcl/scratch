@@ -14,6 +14,18 @@ public class Board
         }
     }
 
+    public final void call (int i)
+    {
+        for (int i = 0; i < MAX_X; i++)
+        {
+            for (int j = 0; j < MAX_Y; j++)
+            {
+                if (_theBoard[i][j].getValue() == i)
+                    _theBoard[i][j].call();
+            }
+        }
+    }
+
     public final boolean completed ()
     {
         for (int i = 0; i < MAX_X; i++)
