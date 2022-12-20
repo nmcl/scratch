@@ -15,12 +15,12 @@ public class Cell
     {
         _called = true;
     }
-    
+
     public final boolean called ()
     {
         return _called;
     }
 
     private int _value;
-    private int _called;
+    private boolean _called;
 }
