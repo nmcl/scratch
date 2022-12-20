@@ -55,7 +55,19 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                results.add(line);
+                Integer[][] numbers = new Integer[Board.MAX_X][Board.MAX_Y];
+
+                for (int i = 0; i < Board.MAX_X; i++)
+                {   
+                    String[] numbersAsString = line.split(" ");
+
+                    for (int j = 0; j < numbersAsString.length; j++)
+                        numbers[i][j] = Integer.parseInt(numbersAsString[j]);
+
+                    line = reader.readLine();
+                }
+
+                results.add(new Board(numbers));
             }
         }
         catch (Throwable ex)
