@@ -14,13 +14,13 @@ public class Board
         }
     }
 
-    public final void call (int i)
+    public final void call (int value)
     {
         for (int i = 0; i < MAX_X; i++)
         {
             for (int j = 0; j < MAX_Y; j++)
             {
-                if (_theBoard[i][j].getValue() == i)
+                if (_theBoard[i][j].getValue() == value)
                     _theBoard[i][j].call();
             }
         }
