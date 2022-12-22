@@ -11,8 +11,8 @@ public class Verifier
 
     public final boolean verify ()
     {
-        Vector<Integer> numbers = Util.loadNumbers(EXAMPLE_FILE, debug);
-        Vector<Board> boards = Util.loadBoards(EXAMPLE_FILE, debug);
+        Vector<Integer> numbers = Util.loadNumbers(EXAMPLE_FILE, _debug);
+        Vector<Board> boards = Util.loadBoards(EXAMPLE_FILE, _debug);
 
         return false;
     }
