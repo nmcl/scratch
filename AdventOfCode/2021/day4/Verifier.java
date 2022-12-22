@@ -14,6 +14,16 @@ public class Verifier
         Vector<Integer> numbers = Util.loadNumbers(EXAMPLE_FILE, _debug);
         Vector<Board> boards = Util.loadBoards(EXAMPLE_FILE, _debug);
 
+        if (_debug)
+        {
+            System.out.print("Numbers: ");
+
+            for (int i = 0; i < numbers.size(); i++)
+                System.out.print(numbers.elementAt(i)+",");
+
+            System.out.println();
+        }
+
         return false;
     }
 
