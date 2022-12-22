@@ -4,7 +4,7 @@ public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
     
-    public Verifier ()
+    public Verifier (boolean debug)
     {
         _debug = debug;
     }
@@ -13,7 +13,7 @@ public class Verifier
     {
         Vector<Integer> numbers = Util.loadNumbers(EXAMPLE_FILE, debug);
         Vector<Board> boards = Util.loadBoards(EXAMPLE_FILE, debug);
-        
+
         return false;
     }
 
