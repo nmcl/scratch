@@ -55,19 +55,26 @@ public class Util
 
             while ((line = reader.readLine()) != null)
             {
-                Integer[][] numbers = new Integer[Board.MAX_X][Board.MAX_Y];
+                if (line.length() > 0)
+                {
+                    Integer[][] numbers = new Integer[Board.MAX_X][Board.MAX_Y];
 
-                for (int i = 0; i < Board.MAX_X; i++)
-                {   
-                    String[] numbersAsString = line.split(" ");
+                    for (int i = 0; i < Board.MAX_X; i++)
+                    {   
+                        String[] numbersAsString = line.split(" ");
 
-                    for (int j = 0; j < numbersAsString.length; j++)
-                        numbers[i][j] = Integer.parseInt(numbersAsString[j]);
+                        for (int j = 0; j < numbersAsString.length; j++)
+                        {
+                            System.out.println("got "+numbersAsString[j]);
 
-                    line = reader.readLine();
+                            numbers[i][j] = Integer.parseInt(numbersAsString[j]);
+                        }
+
+                        line = reader.readLine();
+                    }
+
+                    results.add(new Board(numbers));
                 }
-
-                results.add(new Board(numbers));
             }
         }
         catch (Throwable ex)
