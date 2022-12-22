@@ -23,5 +23,12 @@ public class Bingo
             if ("-verify".equals(args[i]))
                 verify = true;
         }
+
+        if (verify)
+        {
+            Verifier v = new Verifier(debug);
+
+            v.verify();
+        }
     }
 }
