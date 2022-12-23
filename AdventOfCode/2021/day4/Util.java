@@ -65,19 +65,12 @@ public class Util
 
                         for (int j = 0; j < numbersAsString.length; j++)
                         {
-                            try
-                            {
-                                if (!numbersAsString.equals(""))
-                                {
-                                    System.out.println("got "+numbersAsString[j]);
+                            if (numbersAsString[j].equals(""))
+                                System.out.println("NULL");
 
-                                    numbers[i][j] = Integer.parseInt(numbersAsString[j]);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                
-                            }
+                            System.out.println("got "+numbersAsString[j]+" "+i+" "+j);
+
+                            numbers[i][j] = Integer.parseInt(numbersAsString[j]);
                         }
 
                         line = reader.readLine();
