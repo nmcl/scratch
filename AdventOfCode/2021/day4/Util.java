@@ -65,11 +65,18 @@ public class Util
 
                         for (int j = 0; j < numbersAsString.length; j++)
                         {
-                            if (!numbersAsString.equals(""))
+                            try
                             {
-                                System.out.println("got "+numbersAsString[j]);
+                                if (!numbersAsString.equals(""))
+                                {
+                                    System.out.println("got "+numbersAsString[j]);
 
-                                numbers[i][j] = Integer.parseInt(numbersAsString[j]);
+                                    numbers[i][j] = Integer.parseInt(numbersAsString[j]);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                
                             }
                         }
 
