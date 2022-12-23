@@ -60,14 +60,11 @@ public class Util
                     Integer[][] numbers = new Integer[Board.MAX_X][Board.MAX_Y];
 
                     for (int i = 0; i < Board.MAX_X; i++)
-                    {   
-                        String[] numbersAsString = line.replace("  ", " ").split(" ");
+                    {
+                        String[] numbersAsString = line.replace("  ", " ").trim().split(" ");
                         
                         for (int j = 0; j < numbersAsString.length; j++)
                         {
-                            if (numbersAsString[j].equals(""))
-                                System.out.println("NULL");
-
                             System.out.println("got "+numbersAsString[j]+" "+i+" "+j);
 
                             numbers[i][j] = Integer.parseInt(numbersAsString[j]);
