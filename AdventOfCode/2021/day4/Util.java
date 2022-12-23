@@ -61,8 +61,8 @@ public class Util
 
                     for (int i = 0; i < Board.MAX_X; i++)
                     {   
-                        String[] numbersAsString = line.split(" ");
-
+                        String[] numbersAsString = line.replace("  ", " ").split(" ");
+                        
                         for (int j = 0; j < numbersAsString.length; j++)
                         {
                             if (numbersAsString[j].equals(""))
