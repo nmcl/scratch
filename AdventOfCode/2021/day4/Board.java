@@ -67,14 +67,7 @@ public class Board
         for (int i = 0; i < Board.MAX_X; i++)
         {
             for (int j = 0; j < Board.MAX_Y; j++)
-            {
-                int val = _theBoard[i][j].getValue();
-
-                if (val < 10)
-                    str += " ";
-
-                str += _theBoard[i][j].getValue()+" ";
-            }
+                str += _theBoard[i][j] +" ";
 
             str += "\n";
         }
