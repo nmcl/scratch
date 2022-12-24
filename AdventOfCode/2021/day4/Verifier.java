@@ -22,6 +22,9 @@ public class Verifier
                 System.out.print(numbers.elementAt(i)+",");
 
             System.out.println();
+
+            for (int i = 0; i < boards.size(); i++)
+                System.out.println(boards.elementAt(i)+"\n");
         }
 
         return false;
