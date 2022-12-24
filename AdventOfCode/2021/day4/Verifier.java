@@ -27,6 +27,9 @@ public class Verifier
                 System.out.println(boards.elementAt(i)+"\n");
         }
 
+        Caller c = new Caller(_debug);
+        Board b = c.playTheGame(numbers, boards);
+        
         return false;
     }
 
