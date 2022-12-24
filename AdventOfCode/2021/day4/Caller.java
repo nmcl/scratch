@@ -13,6 +13,9 @@ public class Caller
         {
             for (int j = 0; j < boards.size(); j++)
             {
+                if (_debug)
+                    System.out.println("Calling "+numbers.elementAt(i));
+                    
                 boards.elementAt(j).call(numbers.elementAt(i));
 
                 if (boards.elementAt(j).completeLine())
