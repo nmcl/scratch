@@ -64,11 +64,7 @@ public class Util
                         String[] numbersAsString = line.replace("  ", " ").trim().split(" ");
                         
                         for (int j = 0; j < numbersAsString.length; j++)
-                        {
-                            System.out.println("got "+numbersAsString[j]+" "+i+" "+j);
-
                             numbers[i][j] = Integer.parseInt(numbersAsString[j]);
-                        }
 
                         line = reader.readLine();
                     }
