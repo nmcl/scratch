@@ -21,6 +21,19 @@ public class Cell
         return _called;
     }
 
+    @Override
+    public String toString ()
+    {
+        String str = "";
+
+        if (_value < 10)
+            str += " ";
+
+        str += _value+((_called) ? "T" : "F");
+
+        return str;
+    }
+
     private int _value;
     private boolean _called;
 }
