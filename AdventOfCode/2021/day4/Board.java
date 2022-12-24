@@ -26,18 +26,37 @@ public class Board
         }
     }
 
-    public final boolean completed ()
+    public final boolean completeLine ()
     {
         for (int i = 0; i < MAX_X; i++)
         {
+            boolean lineComplete = true;
+
             for (int j = 0; j < MAX_Y; j++)
             {
                 if (!_theBoard[i][j].called())
-                    return false;
+                    lineComplete = false;
             }
+
+            if (lineComplete)
+                return true;
         }
 
-        return true;
+        for (int i = 0; i < MAX_Y; i++)
+        {
+            boolean lineComplete = true;
+
+            for (int j = 0; j < MAX_X; j++)
+            {
+                if (!_theBoard[i][j].called())
+                    lineComplete = false;
+            }
+
+            if (lineComplete)
+                return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -53,7 +72,7 @@ public class Board
 
                 if (val < 10)
                     str += " ";
-                    
+
                 str += _theBoard[i][j].getValue()+" ";
             }
 
