@@ -42,13 +42,13 @@ public class Board
                 return true;
         }
 
-        for (int i = 0; i < MAX_Y; i++)
+        for (int i = 0; i < MAX_X; i++)
         {
             boolean lineComplete = true;
 
-            for (int j = 0; j < MAX_X; j++)
+            for (int j = 0; j < MAX_Y; j++)
             {
-                if (!_theBoard[i][j].called())
+                if (!_theBoard[j][i].called())
                     lineComplete = false;
             }
 
