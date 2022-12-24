@@ -16,12 +16,12 @@ public class Verifier
 
         if (_debug)
         {
-            System.out.print("Numbers: ");
+            System.out.println("Loaded:\n");
 
             for (int i = 0; i < numbers.size(); i++)
                 System.out.print(numbers.elementAt(i)+",");
 
-            System.out.println();
+            System.out.println("\n");
 
             for (int i = 0; i < boards.size(); i++)
                 System.out.println(boards.elementAt(i)+"\n");
