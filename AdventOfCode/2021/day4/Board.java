@@ -3,7 +3,7 @@ public class Board
     public static final int MAX_X = 5;
     public static final int MAX_Y = 5;
 
-    public Board (Integer[][] data)
+    public Board (Integer[][] data, boolean debug)
     {
         _theBoard = new Cell[MAX_X][MAX_Y];
 
@@ -12,6 +12,8 @@ public class Board
             for (int j = 0; j < MAX_Y; j++)
                 _theBoard[i][j] = new Cell(data[i][j]);
         }
+
+        _debug = debug;
     }
 
     public final void call (int value)
@@ -34,13 +36,12 @@ public class Board
 
             for (int j = 0; j < MAX_Y; j++)
             {
-                System.out.println("Checking "+_theBoard[i][j].getValue()+" and "+_theBoard[i][j].called());
+                if (_debug)
+                    System.out.println("Checking "+_theBoard[i][j].getValue()+" and "+_theBoard[i][j].called());
 
                 if (!_theBoard[i][j].called())
                     lineComplete = false;
             }
-
-            System.out.println("got "+lineComplete);
 
             if (lineComplete)
                 return true;
@@ -80,4 +81,5 @@ public class Board
     }
 
     private Cell[][] _theBoard;
+    private boolean _debug;
 }
