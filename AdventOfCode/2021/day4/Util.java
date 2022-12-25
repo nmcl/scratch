@@ -69,7 +69,7 @@ public class Util
                         line = reader.readLine();
                     }
 
-                    results.add(new Board(numbers));
+                    results.add(new Board(numbers, debug));
                 }
             }
         }
