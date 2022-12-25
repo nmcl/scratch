@@ -34,9 +34,13 @@ public class Board
 
             for (int j = 0; j < MAX_Y; j++)
             {
+                System.out.println("Checking "+_theBoard[i][j].getValue()+" and "+_theBoard[i][j].called());
+
                 if (!_theBoard[i][j].called())
                     lineComplete = false;
             }
+
+            System.out.println("got "+lineComplete);
 
             if (lineComplete)
                 return true;
