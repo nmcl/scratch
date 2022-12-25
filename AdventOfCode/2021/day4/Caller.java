@@ -15,9 +15,12 @@ public class Caller
             {
                 if (_debug)
                     System.out.println("Calling "+numbers.elementAt(i));
-                    
+
                 boards.elementAt(j).call(numbers.elementAt(i));
 
+                if (_debug)
+                    System.out.println("Checking: "+boards.elementAt(j));
+                    
                 if (boards.elementAt(j).completeLine())
                     return boards.elementAt(j);
             }
