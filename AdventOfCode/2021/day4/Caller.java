@@ -19,8 +19,8 @@ public class Caller
                 boards.elementAt(j).call(numbers.elementAt(i));
 
                 if (_debug)
-                    System.out.println("Checking: "+boards.elementAt(j));
-                    
+                    System.out.println("Checking:\n"+boards.elementAt(j));
+
                 if (boards.elementAt(j).completeLine())
                     return boards.elementAt(j);
             }
