@@ -1,16 +1,16 @@
 public class Result
 {
-    public Result (Integer[] line, int number)
+    public Result (Board b, int number)
     {
-        _line = line;
+        _board = b;
         _number = number;
     }
 
     private int getResult ()
     {
-        
+        return -1;
     }
 
-    private Integer[] _line;
+    private Board _board;
     private int _number;
 }
