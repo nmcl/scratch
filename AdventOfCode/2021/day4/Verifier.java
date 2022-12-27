@@ -3,6 +3,8 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_FILE = "example.txt";
+    public static final int EXAMPLE_SUM = 188;
+    public static final int EXAMPLE_NUMBER = 24;
     
     public Verifier (boolean debug)
     {
