@@ -7,7 +7,7 @@ public class Caller
         _debug = debug;
     }
 
-    public Board playTheGame (Vector<Integer> numbers, Vector<Board> boards)
+    public Integer[] playTheGame (Vector<Integer> numbers, Vector<Board> boards)
     {
         for (int i = 0; i < numbers.size(); i++)
         {
@@ -21,8 +21,10 @@ public class Caller
                 if (_debug)
                     System.out.println("Checking:\n"+boards.elementAt(j));
 
-                if (boards.elementAt(j).completeLine())
-                    return boards.elementAt(j);
+                Integer[] line = boards.elementAt(j).completeLine();
+
+                if (line != null)
+                    return line;
             }
         }
 
