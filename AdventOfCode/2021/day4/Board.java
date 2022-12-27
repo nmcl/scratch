@@ -28,40 +28,49 @@ public class Board
         }
     }
 
-    public final boolean completeLine ()
+    public final Integer[] completeLine ()
     {
         for (int i = 0; i < MAX_X; i++)
         {
             boolean lineComplete = true;
+            Integer[] line = new Integer[Board.MAX_X];
 
             for (int j = 0; j < MAX_Y; j++)
             {
                 if (_debug)
-                    System.out.println("Checking "+_theBoard[i][j].getValue()+" and "+_theBoard[i][j].called());
+                    System.out.println("Checking horizonal "+_theBoard[i][j].getValue()+" and "+_theBoard[i][j].called());
+
+                line[j] = _theBoard[i][j].getValue();
 
                 if (!_theBoard[i][j].called())
                     lineComplete = false;
             }
 
             if (lineComplete)
-                return true;
+                return line;
         }
 
         for (int i = 0; i < MAX_X; i++)
         {
             boolean lineComplete = true;
+            Integer[] line = new Integer[Board.MAX_Y];
 
             for (int j = 0; j < MAX_Y; j++)
             {
+                if (_debug)
+                    System.out.println("Checking vertical "+_theBoard[i][j].getValue()+" and "+_theBoard[i][j].called());
+
+                line[j] = _theBoard[j][i].getValue();
+
                 if (!_theBoard[j][i].called())
                     lineComplete = false;
             }
 
             if (lineComplete)
-                return true;
+                return line;
         }
 
-        return false;
+        return null;
     }
 
     @Override
