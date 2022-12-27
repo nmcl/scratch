@@ -6,9 +6,22 @@ public class Result
         _number = number;
     }
 
-    private int getResult ()
+    public int getResult ()
     {
+        int result = 0;
+
+
         return -1;
+    }
+
+    public final int sumOfUnmarked ()
+    {
+        return _board.sumOfUnmarked();
+    }
+
+    public final int getLastNumberCalled ()
+    {
+        return _number;
     }
 
     @Override
