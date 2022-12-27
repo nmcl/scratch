@@ -28,6 +28,22 @@ public class Board
         }
     }
 
+    public final int sumOfUnmarked ()
+    {
+        int val = 0;
+
+        for (int i = 0; i < MAX_X; i++)
+        {
+            for (int j = 0; j < MAX_Y; j++)
+            {
+                if (!_theBoard[i][j].called())
+                    val += _theBoard[i][j].getValue();
+            }
+        }
+
+        return val;
+    }
+
     public final boolean completeLine ()
     {
         for (int i = 0; i < MAX_X; i++)
