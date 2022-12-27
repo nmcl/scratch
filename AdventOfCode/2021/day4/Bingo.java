@@ -57,5 +57,7 @@ public class Bingo
 
         if (debug)
             System.out.println("\nResult:\n\n"+r);
+
+        System.out.println("Final score: "+(r.sumOfUnmarked() * r.getLastNumberCalled()));
     }
 }
