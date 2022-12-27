@@ -30,7 +30,17 @@ public class Verifier
         Caller c = new Caller(_debug);
         Integer[] line = c.playTheGame(numbers, boards);
 
-        System.out.println("Returned board:\n\n"+line);
+        System.out.println("Returned line:\n");
+
+        if (line == null)
+            System.out.println("NULL");
+        else
+        {
+            for (int i = 0; i < line.length; i++)
+                System.out.print(line[i]+" ");
+
+            System.out.println();
+        }
 
         return false;
     }
