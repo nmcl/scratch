@@ -28,9 +28,9 @@ public class Verifier
         }
 
         Caller c = new Caller(_debug);
-        Board b = c.playTheGame(numbers, boards);
+        Integer[] line = c.playTheGame(numbers, boards);
 
-        System.out.println("Returned board:\n\n"+b);
+        System.out.println("Returned board:\n\n"+line);
 
         return false;
     }
