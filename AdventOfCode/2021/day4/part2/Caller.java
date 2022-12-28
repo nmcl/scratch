@@ -9,6 +9,8 @@ public class Caller
 
     public Result playTheGame (Vector<Integer> numbers, Vector<Board> boards)
     {
+        int numberOfBoardsCompleted = 0;
+
         for (int i = 0; i < numbers.size(); i++)
         {
             for (int j = 0; j < boards.size(); j++)
@@ -22,6 +24,9 @@ public class Caller
                     System.out.println("Checking:\n"+boards.elementAt(j));
 
                 if (boards.elementAt(j).completeLine())
+                    numberOfBoardsCompleted++;
+
+                if (numberOfBoardsCompleted == boards.size())
                 {
                     return new Result(boards.elementAt(j), numbers.elementAt(i));
                 }
