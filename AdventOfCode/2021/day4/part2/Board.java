@@ -13,9 +13,15 @@ public class Board
                 _theBoard[i][j] = new Cell(data[i][j]);
         }
 
+        _completed = false;
         _debug = debug;
     }
 
+    public final boolean completed ()
+    {
+        return _completed;
+    }
+    
     public final void call (int value)
     {
         for (int i = 0; i < MAX_X; i++)
@@ -46,6 +52,8 @@ public class Board
 
     public final boolean completeLine ()
     {
+        _completed = true;
+
         for (int i = 0; i < MAX_X; i++)
         {
             boolean lineComplete = true;
@@ -80,6 +88,8 @@ public class Board
                 return true;
         }
 
+        _completed = false;
+
         return false;
     }
 
@@ -100,5 +110,6 @@ public class Board
     }
 
     private Cell[][] _theBoard;
+    private boolean _completed;
     private boolean _debug;
 }
