@@ -23,7 +23,7 @@ public class Caller
                 if (_debug)
                     System.out.println("Checking:\n"+boards.elementAt(j));
 
-                if (boards.elementAt(j).completeLine())
+                if (!boards.elementAt(j).completed() && boards.elementAt(j).completeLine())
                     numberOfBoardsCompleted++;
 
                 if (numberOfBoardsCompleted == boards.size())
