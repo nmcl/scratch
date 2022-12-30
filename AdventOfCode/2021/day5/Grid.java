@@ -23,7 +23,7 @@ public class Grid
 
             for (int y = startY; y <= finishY; y++)
             {
-                _theGrid[start.getX()][y]++;
+                _theGrid[y][start.getX()]++;
             }
         }
         else
@@ -33,7 +33,7 @@ public class Grid
 
             for (int x = startX; x <= finishX; x++)
             {
-                _theGrid[x][start.getY()]++;
+                _theGrid[start.getY()][x]++;
             }
         }
     }
