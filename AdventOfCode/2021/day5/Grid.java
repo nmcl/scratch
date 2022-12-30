@@ -43,9 +43,9 @@ public class Grid
     {
         String str = "";
 
-        for (int i = 0; i < maxX; i++)
+        for (int i = 0; i < _theGrid.length; i++)
         {
-            for (int j = 0; j < maxY; j++)
+            for (int j = 0; j < _theGrid[0].length; j++)
             {
                 if (_theGrid[i][j] == 0)
                     str += ".";
