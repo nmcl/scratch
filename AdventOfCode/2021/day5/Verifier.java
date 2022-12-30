@@ -3,6 +3,8 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
+    public static final String MAX_X = 9;
+    public static final String MAX_Y = 9;
 
     public Verifier (boolean debug)
     {
@@ -25,6 +27,15 @@ public class Verifier
 
                 i++;
             }
+        }
+
+        Grid g = new Grid(MAX_X, MAX_Y, _debug);
+
+        for (int i = 0; i < lines.size() -1; i++)
+        {
+            g.plot(lines.elementAt(i), lines.elementAt(i+1);
+
+            i++;
         }
 
         return false;
