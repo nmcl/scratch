@@ -17,6 +17,19 @@ public class Grid
     {
         String str = "";
 
+        for (int i = 0; i < maxX; i++)
+        {
+            for (int j = 0; j < maxY; j++)
+            {
+                if (_theGrid[i][j] == 0)
+                    str += ".";
+                else
+                    str += _theGrid[i][j];
+            }
+
+            str += "\n";
+        }
+
         return str;
     }
 
