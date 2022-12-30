@@ -12,6 +12,14 @@ public class Grid
         }
     }
 
+    @Override
+    public String toString ()
+    {
+        String str = "";
+
+        return str;
+    }
+
     private int[][] _theGrid;
     private boolean _debug;
 }
