@@ -5,6 +5,7 @@ public class Verifier
     public static final String EXAMPLE_DATA = "example.txt";
     public static final int MAX_X = 10;
     public static final int MAX_Y = 10;
+    public static final int OVERLAPS = 5;
 
     public Verifier (boolean debug)
     {
@@ -39,8 +40,13 @@ public class Verifier
         }
 
         if (_debug)
-            System.out.println("Grid:\n"+g);
-            
+            System.out.println("\nGrid:\n"+g);
+
+        if (g.overlappingLines() == OVERLAPS)
+            return true;
+        
+        System.out.println("Incorrect overlapping lines: "+g.overlappingLines());
+
         return false;
     }
 
