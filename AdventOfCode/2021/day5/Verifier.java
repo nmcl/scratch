@@ -3,8 +3,8 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
-    public static final int MAX_X = 9;
-    public static final int MAX_Y = 9;
+    public static final int MAX_X = 10;
+    public static final int MAX_Y = 10;
 
     public Verifier (boolean debug)
     {
@@ -38,6 +38,9 @@ public class Verifier
             i++;
         }
 
+        if (_debug)
+            System.out.println("Grid:\n"+g);
+            
         return false;
     }
 
