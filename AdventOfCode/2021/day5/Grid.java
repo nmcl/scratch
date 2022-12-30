@@ -12,6 +12,22 @@ public class Grid
         }
     }
 
+    public int overlappingLines ()
+    {
+        int overlaps = 0;
+
+        for (int i = 0; i < _theGrid.length; i++)
+        {
+            for (int j = 0; j < _theGrid[0].length; j++)
+            {
+                if (_theGrid[i][j] > 1)
+                    overlaps++;
+            }
+        }
+
+        return overlaps;
+    }
+
     // only horizontal or vertical lines for part 1
 
     public void plot (Coordinate start, Coordinate finish)
