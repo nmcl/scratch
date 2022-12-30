@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Util
 {
-    private static final String DELIMITER = " -> ";
+    public static final String DELIMITER = " -> ";
 
     public static Vector<Coordinate> loadCoordinates (String inputFile, boolean debug)
     {
