@@ -15,7 +15,7 @@ public class Verifier
 
         if (_debug)
         {
-            System.out.println("Loaded:\n");
+            System.out.println("\nHorizontal or vertical lines:\n");
 
             for (int i = 0; i < lines.size() -1; i++)
             {
