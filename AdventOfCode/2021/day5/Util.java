@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Util
 {
-    public static Vector<Integer> loadNumbers (String inputFile, boolean debug)
+    public static Vector<Coordinate> loadNumbers (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
