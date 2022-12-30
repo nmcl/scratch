@@ -3,74 +3,30 @@ import java.io.*;
 
 public class Util
 {
-    public static Vector<Coordinate> loadNumbers (String inputFile, boolean debug)
+    private static final String DELIMITER = " -> ";
+
+    public static Vector<Coordinate> loadCoordinates (String inputFile, boolean debug)
     {
         /*
          * Open the data file and read it in.
          */
 
         BufferedReader reader = null;
-        Vector<Integer> results = new Vector<Integer>();
+        Vector<Coordinate> results = new Vector<Coordinate>();
         
         try
         {
             reader = new BufferedReader(new FileReader(inputFile));
-            String line = reader.readLine();
-            String[] numbers = line.split(",");
-
-            for (int i = 0; i < numbers.length; i++)
-                results.add(Integer.parseInt(numbers[i]));
-        }
-        catch (Throwable ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                reader.close();
-            }
-            catch (Throwable ex)
-            {
-            }
-        }
-
-        return results;
-    }
-
-    public static Vector<Board> loadBoards (String inputFile, boolean debug)
-    {
-        /*
-         * Open the data file and read it in.
-         */
-
-        BufferedReader reader = null;
-        Vector<Board> results = new Vector<Board>();
-        
-        try
-        {
-            reader = new BufferedReader(new FileReader(inputFile));
-            String line = reader.readLine();  // ignore first line.
+            String line = null;
 
             while ((line = reader.readLine()) != null)
             {
-                if (line.length() > 0)
-                {
-                    Integer[][] numbers = new Integer[Board.MAX_X][Board.MAX_Y];
+                int first = line.indexOf(",");
+                int X1 = Integer.parseInt(line.substring(0, first));
+                int second = line.indexOf(DELIMITER);
+                int Y1 = Integer.parseInt(line.substring(first +1, second));
 
-                    for (int i = 0; i < Board.MAX_X; i++)
-                    {
-                        String[] numbersAsString = line.replace("  ", " ").trim().split(" ");
-                        
-                        for (int j = 0; j < numbersAsString.length; j++)
-                            numbers[i][j] = Integer.parseInt(numbersAsString[j]);
-
-                        line = reader.readLine();
-                    }
-
-                    results.add(new Board(numbers, debug));
-                }
+                results.add(line);
             }
         }
         catch (Throwable ex)
