@@ -29,6 +29,8 @@ public class Util
                 int second = line.indexOf(DELIMITER);
                 int Y1 = Integer.parseInt(line.substring(first +1, second));
 
+                results.add(new Coordinate(X1, Y1));
+
                 int third = line.lastIndexOf(",");
                 int X2 = Integer.parseInt(line.substring(second + DELIMITER.length(), third));
                 int Y2 = Integer.parseInt(line.substring(third +1));
@@ -36,13 +38,7 @@ public class Util
                 if (debug)
                     System.out.println(X1+","+Y1+DELIMITER+X2+","+Y2);
 
-                // In part 1 only work with horizontal or vertical lines
-
-                if ((X1 == X2) || (Y1 == Y2))
-                {
-                    results.add(new Coordinate(X1, Y1));
-                    results.add(new Coordinate(X2, Y2));
-                }
+                results.add(new Coordinate(X2, Y2));
             }
         }
         catch (Throwable ex)
