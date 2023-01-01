@@ -54,6 +54,13 @@ public class Grid
                     _theGrid[start.getY()][x]++;
                 }
             }
+            else
+            {
+                int startX = ((start.getX() < finish.getX() ? start.getX() : finish.getX()));
+                int finishX = ((start.getX() > finish.getX() ? start.getX() : finish.getX()));
+                int startY = ((start.getY() < finish.getY() ? start.getY() : finish.getY()));
+                int finishY = ((start.getY() > finish.getY() ? start.getY() : finish.getY()));
+            }
         }
     }
 
