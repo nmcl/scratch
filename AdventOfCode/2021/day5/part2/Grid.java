@@ -56,10 +56,8 @@ public class Grid
             }
             else
             {
-                int startX = ((start.getX() < finish.getX() ? start.getX() : finish.getX()));
-                int finishX = ((start.getX() > finish.getX() ? start.getX() : finish.getX()));
-                int startY = ((start.getY() < finish.getY() ? start.getY() : finish.getY()));
-                int finishY = ((start.getY() > finish.getY() ? start.getY() : finish.getY()));
+                if (_debug)
+                    System.out.println("Plotting from "+start+" to "+finish);
             }
         }
     }
