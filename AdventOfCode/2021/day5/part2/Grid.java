@@ -44,12 +44,15 @@ public class Grid
         }
         else
         {
-            int startX = ((start.getX() < finish.getX() ? start.getX() : finish.getX()));
-            int finishX = ((start.getX() > finish.getX() ? start.getX() : finish.getX()));
-
-            for (int x = startX; x <= finishX; x++)
+            if (start.getY() == finish.getY())
             {
-                _theGrid[start.getY()][x]++;
+                int startX = ((start.getX() < finish.getX() ? start.getX() : finish.getX()));
+                int finishX = ((start.getX() > finish.getX() ? start.getX() : finish.getX()));
+
+                for (int x = startX; x <= finishX; x++)
+                {
+                    _theGrid[start.getY()][x]++;
+                }
             }
         }
     }
