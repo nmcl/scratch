@@ -58,6 +58,42 @@ public class Grid
             {
                 if (_debug)
                     System.out.println("Plotting from "+start+" to "+finish);
+
+                if (((start.getX() > finish.getX()) && (start.getY() > finish.getY())) ||
+                    ((start.getX() < finish.getX()) && (start.getY() < finish.getY())))
+                {
+                    for (int x = 0; x <= Math.max(start.getX(), finish.getX()) - Math.min(start.getX(), finish.getX()); x++)
+                    {
+                        Coordinate c = new Coordinate(Math.toIntExact(Math.min(start.getX(), finish.getX()) + x),
+                                                      Math.toIntExact(Math.min(start.getY(), finish.getY()) + x));
+                        
+                        _theGrid[c.getY()][c.getX()]++;
+                    }
+                }
+                else
+                {
+                    if ((start.getX() < finish.getX()) && (start.getY() > finish.getY()))
+                    {
+                        for (int x = 0; x <= Math.max(start.getX(), finish.getX()) - Math.min(start.getX(), finish.getX()); x++)
+                        {
+                            Coordinate c = new Coordinate(Math.toIntExact(start.getX() + x), Math.toIntExact(start.getY() - x));
+
+                            _theGrid[c.getY()][c.getX()]++;
+                        }
+                    }
+                    else
+                    {
+                        if ((start.getX() > finish.getX()) && (start.getY() < finish.getY()))
+                        {
+                            for (int x = 0; x <= Math.max(start.getX(), finish.getX()) - Math.min(start.getX(), finish.getX()); x++)
+                            {
+                                Coordinate c = new Coordinate(Math.toIntExact(start.getX() - x), Math.toIntExact(start.getY() + x));
+
+                                _theGrid[c.getY()][c.getX()]++;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
