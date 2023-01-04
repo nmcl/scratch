@@ -44,9 +44,9 @@ public class Generator
 
                 for (int j = 0; j < fish.size(); j++)
                     System.out.print(fish.elementAt(j)+",");
-            }
 
-            System.out.println();
+                System.out.println();
+            }
         }
 
         return fish;
