@@ -3,7 +3,9 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
-
+    public static final int NUMBER_OF_FISH_18 = 26;
+    public static final int NUMBER_OF_FISH_80 = 5934;
+    
     public Verifier (boolean debug)
     {
         _debug = debug;
@@ -11,6 +13,9 @@ public class Verifier
 
     public final boolean verify ()
     {
+        Vector<Integer> ages = Util.loadAges(EXAMPLE_DATA, _debug);
+        Generator g = new Generator(_debug);
+
         return false;
     }
 
