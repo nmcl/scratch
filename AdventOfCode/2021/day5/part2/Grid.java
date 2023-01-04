@@ -59,6 +59,8 @@ public class Grid
                 if (_debug)
                     System.out.println("Plotting from "+start+" to "+finish);
 
+                // create Coordinates to help with pretty printing debug.
+
                 if (((start.getX() > finish.getX()) && (start.getY() > finish.getY())) ||
                     ((start.getX() < finish.getX()) && (start.getY() < finish.getY())))
                 {
@@ -67,6 +69,9 @@ public class Grid
                         Coordinate c = new Coordinate(Math.toIntExact(Math.min(start.getX(), finish.getX()) + x),
                                                       Math.toIntExact(Math.min(start.getY(), finish.getY()) + x));
                         
+                        if (_debug)
+                            System.out.println("Plotted: "+c);
+
                         _theGrid[c.getY()][c.getX()]++;
                     }
                 }
@@ -78,6 +83,9 @@ public class Grid
                         {
                             Coordinate c = new Coordinate(Math.toIntExact(start.getX() + x), Math.toIntExact(start.getY() - x));
 
+                            if (_debug)
+                                System.out.println("Plotted: "+c);
+
                             _theGrid[c.getY()][c.getX()]++;
                         }
                     }
@@ -88,6 +96,9 @@ public class Grid
                             for (int x = 0; x <= Math.max(start.getX(), finish.getX()) - Math.min(start.getX(), finish.getX()); x++)
                             {
                                 Coordinate c = new Coordinate(Math.toIntExact(start.getX() - x), Math.toIntExact(start.getY() + x));
+
+                                if (_debug)
+                                    System.out.println("Plotted: "+c);
 
                                 _theGrid[c.getY()][c.getX()]++;
                             }
