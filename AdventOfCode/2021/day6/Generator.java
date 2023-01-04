@@ -7,7 +7,7 @@ public class Generator
         _debug = debug;
     }
 
-    public void evolve (int days, Vector<Integer> fish)
+    public Vector<Integer> evolve (int days, Vector<Integer> fish)
     {
         if (_debug)
         {
@@ -41,8 +41,9 @@ public class Generator
                 for (int j = 0; j < fish.size(); j++)
                     System.out.print(fish.elementAt(j)+",");
             }
-
         }
+
+        return fish;
     }
 
     private boolean _debug;
