@@ -2,7 +2,7 @@ import java.util.*;
 
 public class LanternFish
 {
-    public static final String DATA_FILE = "input.txt";
+    public static final String DATA_FILE = "data.txt";
 
     public static void main (String[] args)
     {
