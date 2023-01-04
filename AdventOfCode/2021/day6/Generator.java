@@ -15,11 +15,15 @@ public class Generator
 
             for (int j = 0; j < fish.size(); j++)
                 System.out.print(fish.elementAt(j)+",");
+
+            System.out.println();
         }
 
         for (int d = 0; d < days; d++)
         {
-            for (int i = 0; i < fish.size(); i++)
+            int currentSize = fish.size();
+
+            for (int i = 0; i < currentSize; i++)
             {
                 Integer f = fish.elementAt(i);
 
@@ -41,6 +45,8 @@ public class Generator
                 for (int j = 0; j < fish.size(); j++)
                     System.out.print(fish.elementAt(j)+",");
             }
+
+            System.out.println();
         }
 
         return fish;
