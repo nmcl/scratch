@@ -32,8 +32,14 @@ public class LanternFish
                 System.out.println("Verified ok.");
             else
                 System.out.println("Verify failed!");
-                
+
             System.exit(0);
         }
+
+        Vector<Integer> ages = Util.loadAges(DATA_FILE, debug);
+        Generator g = new Generator(debug);
+        Vector<Integer> fish = g.evolve(80, ages);
+
+        System.out.println("Number of fish after 80 days: "+fish.size());
     }
 }
