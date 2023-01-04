@@ -5,7 +5,7 @@ public class Verifier
     public static final String EXAMPLE_DATA = "example.txt";
     public static final int MAX_X = 10;
     public static final int MAX_Y = 10;
-    public static final int OVERLAPS = 5;
+    public static final int OVERLAPS = 12;
 
     public Verifier (boolean debug)
     {
