@@ -42,8 +42,8 @@ public class Generator
                 if (_debug)
                     System.out.print("After "+(d+1)+" days: ");
 
-                for (int j = 0; j < fish.size(); j++)
-                    System.out.print(fish.elementAt(j)+",");
+                //for (int j = 0; j < fish.size(); j++)
+                //    System.out.print(fish.elementAt(j)+",");
 
                 System.out.println();
             }
