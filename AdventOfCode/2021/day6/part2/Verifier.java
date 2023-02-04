@@ -3,8 +3,7 @@ import java.util.*;
 public class Verifier
 {
     public static final String EXAMPLE_DATA = "example.txt";
-    public static final int NUMBER_OF_FISH_18 = 26;
-    public static final int NUMBER_OF_FISH_80 = 5934;
+    public static final long NUMBER_OF_FISH_256 = 26984457539L;
 
     public Verifier (boolean debug)
     {
@@ -15,20 +14,16 @@ public class Verifier
     {
         Vector<Integer> ages = Util.loadAges(EXAMPLE_DATA, _debug);
         Generator g = new Generator(_debug);
-        Vector<Integer> fish = g.evolve(18, ages);
+        Integer[] fish = g.evolve(256, ages);
+        long total = 0;
 
-        if (fish.size() == NUMBER_OF_FISH_18)
-        {
-            ages = Util.loadAges(EXAMPLE_DATA, _debug);  // reset
-            fish = g.evolve(80, ages);
+        for (int i = 0; i < fish.length; i++)
+            total += fish[i];
 
-            if (fish.size() == NUMBER_OF_FISH_80)
-                return true;
-            else
-                System.out.println("Wrong number of fish after 80 days: "+fish.size());
-        }
+        if (total == NUMBER_OF_FISH_256)
+            return true;
         else
-            System.out.println("Wrong number of fish after 18 days: "+fish.size());
+            System.out.println("Wrong number of fish after 256 days: "+total);
 
         return false;
     }
