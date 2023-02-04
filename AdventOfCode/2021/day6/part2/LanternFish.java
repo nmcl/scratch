@@ -38,7 +38,7 @@ public class LanternFish
 
         Vector<Integer> ages = Util.loadAges(DATA_FILE, debug);
         Generator g = new Generator(debug);
-        Integer[] fish = g.evolve(256, ages);
+        Long[] fish = g.evolve(256, ages);
         long total = 0;
 
         for (int i = 0; i < fish.length; i++)
