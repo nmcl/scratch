@@ -7,6 +7,12 @@ public class Generator
         _debug = debug;
     }
 
+    /*
+     * The original solution is fine up to about 150 days as a brute force
+     * approach but we need something better. If we keep count of how many
+     * fish are alive each day then we can work out the next day's count from there.
+     */
+    
     public Vector<Integer> evolve (int days, Vector<Integer> fish)
     {
         if (_debug)
