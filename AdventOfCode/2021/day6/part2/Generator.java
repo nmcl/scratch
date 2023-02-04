@@ -13,7 +13,7 @@ public class Generator
      * fish are alive each day then we can work out the next day's count from there.
      */
 
-    public Integer[] evolve (int days, Vector<Integer> fish)
+    public Long[] evolve (int days, Vector<Integer> fish)
     {
         if (_debug)
         {
@@ -25,22 +25,19 @@ public class Generator
             System.out.println();
         }
 
-        Integer[] theFish = new Integer[9];
+        Long[] theFish = new Long[9];
         int base = 0;
 
         for (int i = 0; i < 9; i++)
-            theFish[i] = 0;
+            theFish[i] = 0L;
 
         for (int i = 0; i < fish.size(); i++)
-            theFish[i] = fish.elementAt(i);
-
-        for (int i = 0; i < theFish.length; i++)
-            System.out.println(theFish[i]);
+            theFish[i] = (long) fish.elementAt(i);
 
         for (int d = 0; d < days; d++)
         {
             if (_debug)
-                System.out.print("Day: "+(d+1));
+                System.out.println("Day: "+(d+1));
 
             theFish[(base + 7) % 9] += theFish[base];
 
