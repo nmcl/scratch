@@ -25,8 +25,17 @@ public class Generator
             System.out.println();
         }
 
-        Integer[] theFish = fish.toArray(new Integer[9]);
+        Integer[] theFish = new Integer[9];
         int base = 0;
+
+        for (int i = 0; i < 9; i++)
+            theFish[i] = 0;
+
+        for (int i = 0; i < fish.size(); i++)
+            theFish[i] = fish.elementAt(i);
+
+        for (int i = 0; i < theFish.length; i++)
+            System.out.println(theFish[i]);
 
         for (int d = 0; d < days; d++)
         {
