@@ -40,10 +40,8 @@ public class Generator
                 System.out.println("Day: "+(d+1));
 
             theFish[(base + 7) % 9] += theFish[base];
-            System.out.println("got "+theFish[(base + 7) % 9]);
 
             base = (base + 1) % 9;
-            System.out.println("base "+base);
         }
 
         return theFish;
