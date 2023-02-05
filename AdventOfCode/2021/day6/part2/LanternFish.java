@@ -44,6 +44,6 @@ public class LanternFish
         for (int i = 0; i < fish.length; i++)
             total += fish[i];
 
-        System.out.println("Number of fish after 80 days: "+total);
+        System.out.println("Number of fish after 256 days: "+total);
     }
 }
