@@ -15,6 +15,13 @@ public class Generator
 
     public long[] evolve (int days, Vector<Integer> fish)
     {
+        long[] ages = new long[fish.size()];
+        long[] theFish = new long[9];
+        int base = 0;
+
+        for (int i = 0; i < fish.size(); i++)
+            ages[i] = (long) fish.elementAt(i);
+
         if (_debug)
         {
             System.out.print("Initial state: ");
@@ -25,13 +32,12 @@ public class Generator
             System.out.println();
         }
 
-        long[] theFish = {0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L};
-        int base = 0;
+        for (int i = 0; i < ages.length; i++)
+            theFish[i] = ages[i];
 
-        Arrays.stream(theFish).forEach(i -> theFish[(int) i]++);
+        Arrays.stream(ages).forEach(i -> theFish[(int) i]++);
 
-        for (int i = 0; i < fish.size(); i++)
-            theFish[i] = (long) fish.elementAt(i);
+        System.out.println("start");
 
         for (int i = 0; i < 9; i++)
             System.out.println(theFish[i]);
