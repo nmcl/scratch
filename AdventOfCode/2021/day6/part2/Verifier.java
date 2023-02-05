@@ -14,7 +14,7 @@ public class Verifier
     {
         Vector<Integer> ages = Util.loadAges(EXAMPLE_DATA, _debug);
         Generator g = new Generator(_debug);
-        Long[] fish = g.evolve(256, ages);
+        long[] fish = g.evolve(256, ages);
         long total = 0;
 
         for (int i = 0; i < fish.length; i++)
