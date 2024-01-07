@@ -11,6 +11,13 @@ public class Verifier
 
     public final boolean verify ()
     {
+        Vector<Crab> crabs = Util.loadCrabs(EXAMPLE_DATA, false);
+
+        for (int i = 0; i < crabs.size(); i++)
+            System.out.print(crabs.elementAt(i).horizontalPosition()+",");
+
+        System.out.println();
+
         return false;
     }
 
