@@ -13,4 +13,6 @@ public class Verifier
     {
         return false;
     }
+
+    private boolean _debug;
 }
