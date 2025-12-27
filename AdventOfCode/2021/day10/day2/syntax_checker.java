@@ -1,16 +1,16 @@
 import java.util.*;
 import java.io.*;
 
-public class SyntaxChecker {
+public class syntax_checker {
     
     // Points for each illegal character (Part 1)
-    private static final Map<Character, Integer> ERROR_POINTS = new HashMap<>();
+    private static final Map<Character, Integer> ERROR_POINTS = new HashMap<Character, Integer>();
     
     // Points for autocomplete characters (Part 2)
-    private static final Map<Character, Integer> AUTOCOMPLETE_POINTS = new HashMap<>();
+    private static final Map<Character, Integer> AUTOCOMPLETE_POINTS = new HashMap<Character, Integer>();
     
     // Matching pairs
-    private static final Map<Character, Character> PAIRS = new HashMap<>();
+    private static final Map<Character, Character> PAIRS = new HashMap<Character, Character>();
     
     static {
         ERROR_POINTS.put(')', 3);
@@ -57,8 +57,8 @@ public class SyntaxChecker {
             String line;
             int lineNumber = 0;
             
-            List<CorruptedLine> corruptedLines = new ArrayList<>();
-            List<IncompleteLine> incompleteLines = new ArrayList<>();
+            List<CorruptedLine> corruptedLines = new ArrayList<CorruptedLine>();
+            List<IncompleteLine> incompleteLines = new ArrayList<IncompleteLine>();
             
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
@@ -95,7 +95,7 @@ public class SyntaxChecker {
             
             // Display Part 1 results
             System.out.println("PART 1: SYNTAX ERROR CHECKING");
-            System.out.println("=" .repeat(70));
+            System.out.println("======================================================================");
             System.out.println("Total lines analyzed: " + lineNumber);
             System.out.println("Corrupted lines: " + corruptedLines.size());
             System.out.println("Incomplete lines: " + incompleteLines.size());
@@ -116,11 +116,11 @@ public class SyntaxChecker {
             // Display Part 2 results
             System.out.println();
             System.out.println("PART 2: AUTOCOMPLETE");
-            System.out.println("=" .repeat(70));
+            System.out.println("======================================================================");
             
             if (!incompleteLines.isEmpty()) {
                 // Sort scores to find median
-                List<Long> scores = new ArrayList<>();
+                List<Long> scores = new ArrayList<Long>();
                 for (IncompleteLine il : incompleteLines) {
                     scores.add(il.score);
                 }
@@ -130,7 +130,11 @@ public class SyntaxChecker {
                 System.out.println();
                 
                 // Sort incomplete lines by score for display
-                incompleteLines.sort((a, b) -> Long.compare(a.score, b.score));
+                Collections.sort(incompleteLines, new Comparator<IncompleteLine>() {
+                    public int compare(IncompleteLine a, IncompleteLine b) {
+                        return Long.compare(a.score, b.score);
+                    }
+                });
                 
                 for (int i = 0; i < incompleteLines.size(); i++) {
                     IncompleteLine il = incompleteLines.get(i);
@@ -146,11 +150,11 @@ public class SyntaxChecker {
                 // Find median score
                 long medianScore = scores.get(scores.size() / 2);
                 
-                System.out.println("=" .repeat(70));
+                System.out.println("======================================================================");
                 System.out.println("All scores (sorted): " + scores);
                 System.out.println();
                 System.out.printf("MIDDLE SCORE: %,d%n", medianScore);
-                System.out.println("=" .repeat(70));
+                System.out.println("======================================================================");
             }
             
         } catch (IOException e) {
@@ -180,7 +184,8 @@ public class SyntaxChecker {
     public static long calculateAutocompleteScore(String completion) {
         long score = 0;
         
-        for (char c : completion.toCharArray()) {
+        for (int i = 0; i < completion.length(); i++) {
+            char c = completion.charAt(i);
             score = score * 5 + AUTOCOMPLETE_POINTS.get(c);
         }
         
@@ -191,7 +196,7 @@ public class SyntaxChecker {
      * Checks a single line for syntax errors.
      */
     public static SyntaxResult checkLineSyntax(String line) {
-        Stack<Character> stack = new Stack<>();
+        Stack<Character> stack = new Stack<Character>();
         
         for (int i = 0; i < line.length(); i++) {
             char c = line.charAt(i);
@@ -217,7 +222,9 @@ public class SyntaxChecker {
         
         // If stack is not empty, line is incomplete
         if (!stack.isEmpty()) {
-            return new SyntaxResult(false, new Stack<>(stack));
+            Stack<Character> copyStack = new Stack<Character>();
+            copyStack.addAll(stack);
+            return new SyntaxResult(false, copyStack);
         }
         
         // Line is valid
@@ -245,8 +252,7 @@ public class SyntaxChecker {
         
         SyntaxResult(boolean incomplete, Stack<Character> remainingStack) {
             this.incomplete = incomplete;
-            this.remainingStack = new Stack<>();
-            this.remainingStack.addAll(remainingStack);
+            this.remainingStack = remainingStack;
             this.corrupted = false;
         }
         
@@ -323,11 +329,11 @@ public class SyntaxChecker {
             "<{([{{}}[<[[[<>{}]]]>[]]"
         };
         
-        List<Long> incompleteScores = new ArrayList<>();
+        List<Long> incompleteScores = new ArrayList<Long>();
         int errorScore = 0;
         
         System.out.println("PART 1: Corrupted lines");
-        System.out.println("-" .repeat(70));
+        System.out.println("----------------------------------------------------------------------");
         
         for (int i = 0; i < examples.length; i++) {
             SyntaxResult result = checkLineSyntax(examples[i]);
@@ -349,7 +355,7 @@ public class SyntaxChecker {
         
         System.out.println();
         System.out.println("PART 2: Incomplete lines");
-        System.out.println("-" .repeat(70));
+        System.out.println("----------------------------------------------------------------------");
         
         Collections.sort(incompleteScores);
         long median = incompleteScores.get(incompleteScores.size() / 2);
@@ -357,6 +363,6 @@ public class SyntaxChecker {
         System.out.println("Completion scores: " + incompleteScores);
         System.out.println();
         System.out.println("Middle score: " + median + " (expected: 288957)");
-        System.out.println("=" .repeat(70));
+        System.out.println("======================================================================");
     }
 }
