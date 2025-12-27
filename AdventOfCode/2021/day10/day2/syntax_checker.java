@@ -119,42 +119,37 @@ public class syntax_checker {
             System.out.println("======================================================================");
             
             if (!incompleteLines.isEmpty()) {
-                // Sort scores to find median
+                System.out.println("Finding completion strings for incomplete lines...");
+                System.out.println();
+                
+                // Collect all scores
                 List<Long> scores = new ArrayList<Long>();
                 for (IncompleteLine il : incompleteLines) {
                     scores.add(il.score);
+                    System.out.printf("Line %d: Completion string = '%s', Score = %,d%n",
+                        il.lineNumber, il.completion, il.score);
                 }
+                
+                System.out.println();
+                System.out.println("Sorting scores...");
                 Collections.sort(scores);
                 
-                System.out.println("Incomplete lines and their completions:");
+                System.out.println("Sorted scores: " + scores);
                 System.out.println();
                 
-                // Sort incomplete lines by score for display
-                Collections.sort(incompleteLines, new Comparator<IncompleteLine>() {
-                    public int compare(IncompleteLine a, IncompleteLine b) {
-                        return Long.compare(a.score, b.score);
-                    }
-                });
-                
-                for (int i = 0; i < incompleteLines.size(); i++) {
-                    IncompleteLine il = incompleteLines.get(i);
-                    boolean isMedian = (i == incompleteLines.size() / 2);
-                    String marker = isMedian ? " *** MEDIAN ***" : "";
-                    
-                    System.out.printf("Line %d:%s%n", il.lineNumber, marker);
-                    System.out.println("  Completion: " + il.completion);
-                    System.out.printf("  Score: %,d%n", il.score);
-                    System.out.println();
-                }
-                
-                // Find median score
-                long medianScore = scores.get(scores.size() / 2);
+                // Find and display the middle score
+                int middleIndex = scores.size() / 2;
+                long middleScore = scores.get(middleIndex);
                 
                 System.out.println("======================================================================");
-                System.out.println("All scores (sorted): " + scores);
+                System.out.printf("Total incomplete lines: %d%n", scores.size());
+                System.out.printf("Middle position: %d (index %d in sorted list)%n", 
+                    middleIndex + 1, middleIndex);
                 System.out.println();
-                System.out.printf("MIDDLE SCORE: %,d%n", medianScore);
+                System.out.printf("*** MIDDLE SCORE: %,d ***%n", middleScore);
                 System.out.println("======================================================================");
+            } else {
+                System.out.println("No incomplete lines found.");
             }
             
         } catch (IOException e) {
