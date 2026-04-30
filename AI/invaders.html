@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPACE INVADERS - ARCADE REDUX</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+        #game-container {
+            position: relative;
+            border: 4px solid #333;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+        canvas {
+            display: block;
+            image-rendering: pixelated;
+        }
+        .ui {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 20px;
+            pointer-events: none;
+        }
+        #overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        button {
+            background: #0f0;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-family: inherit;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div class="ui">
+        <div>SCORE: <span id="score">0000</span></div>
+        <div>LIVES: <span id="lives">3</span></div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <div id="overlay">
+        <h1 style="color: #0f0; font-size: 48px;">SPACE INVADERS</h1>
+        <p>LEFT/RIGHT ARROWS TO MOVE<br>SPACEBAR TO SHOOT</p>
+        <button onclick="startGame()">INSERT COIN</button>
+    </div>
+</div>
+
+<script>
+/** * AUDIO ENGINE 
+ */
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playTone(freq, duration, type, vol = 0.1) {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + duration);
+}
+
+const sounds = {
+    shoot: () => playTone(800, 0.1, 'square', 0.05),
+    invaderDeath: () => playTone(150, 0.2, 'sawtooth', 0.1),
+    playerDeath: () => {
+        playTone(100, 0.5, 'sawtooth', 0.2);
+        playTone(60, 0.5, 'square', 0.2);
+    },
+    beat: (note) => {
+        const freqs = [100, 90, 80, 70];
+        playTone(freqs[note % 4], 0.1, 'sine', 0.2);
+    }
+};
+
+/**
+ * GAME ENGINE
+ */
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 600;
+canvas.height = 700;
+
+let gameRunning = false;
+let score = 0;
+let lives = 3;
+let invaders = [];
+let player;
+let bullets = [];
+let enemyBullets = [];
+let bunkers = [];
+let direction = 1;
+let moveTimer = 0;
+let moveInterval = 1000;
+let beatCounter = 0;
+let keys = {};
+
+// Alien Sprite Data (8x8 grids)
+const sprites = {
+    squid: [[0,0,0,1,1,0,0,0],[0,0,1,1,1,1,0,0],[0,1,1,1,1,1,1,0],[1,1,0,1,1,0,1,1],[1,1,1,1,1,1,1,1],[0,0,1,0,0,1,0,0],[0,1,0,1,1,0,1,0],[1,0,1,0,0,1,0,1]],
+    crab:  [[0,0,1,0,0,1,0,0],[1,0,0,1,1,0,0,1],[1,0,1,1,1,1,0,1],[1,1,1,0,0,1,1,1],[0,1,1,1,1,1,1,0],[0,0,1,1,1,1,0,0],[0,1,0,0,0,0,1,0],[1,0,0,0,0,0,0,1]],
+    octo:  [[0,0,0,1,1,0,0,0],[0,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1],[1,1,1,0,0,1,1,1],[1,1,1,1,1,1,1,1],[0,0,1,1,1,1,0,0],[0,1,1,0,0,1,1,0],[1,1,0,0,0,0,1,1]]
+};
+
+function drawSprite(sprite, x, y, size, color) {
+    ctx.fillStyle = color;
+    for(let r=0; r<8; r++) {
+        for(let c=0; c<8; c++) {
+            if(sprite[r][c]) ctx.fillRect(x + c*size, y + r*size, size, size);
+        }
+    }
+}
+
+class Player {
+    constructor() {
+        this.w = 40; this.h = 20;
+        this.x = canvas.width/2 - this.w/2;
+        this.y = canvas.height - 50;
+        this.speed = 4;
+    }
+    draw() {
+        ctx.fillStyle = '#0f0';
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.fillRect(this.x + this.w/2 - 4, this.y - 8, 8, 8);
+    }
+    update() {
+        if((keys['ArrowLeft'] || keys['a']) && this.x > 0) this.x -= this.speed;
+        if((keys['ArrowRight'] || keys['d']) && this.x < canvas.width - this.w) this.x += this.speed;
+    }
+}
+
+class Invader {
+    constructor(x, y, type, points) {
+        this.x = x; this.y = y; this.type = type; this.points = points;
+        this.w = 32; this.h = 32;
+    }
+    draw() {
+        drawSprite(sprites[this.type], this.x, this.y, 4, '#fff');
+    }
+}
+
+class Bunker {
+    constructor(x, y) {
+        this.x = x; this.y = y;
+        this.health = Array(12).fill(1).map(() => Array(15).fill(1));
+        this.w = 60; this.h = 40;
+    }
+    draw() {
+        ctx.fillStyle = '#0f0';
+        for(let r=0; r<12; r++) {
+            for(let c=0; c<15; c++) {
+                if(this.health[r][c]) ctx.fillRect(this.x + c*4, this.y + r*4, 4, 4);
+            }
+        }
+    }
+}
+
+function initGame() {
+    score = 0; lives = 3; invaders = []; bullets = []; enemyBullets = []; bunkers = [];
+    player = new Player();
+    for(let r=0; r<5; r++) {
+        for(let c=0; c<11; c++) {
+            let type = r === 0 ? 'squid' : (r < 3 ? 'crab' : 'octo');
+            let pts = r === 0 ? 30 : (r < 3 ? 20 : 10);
+            invaders.push(new Invader(50 + c*45, 100 + r*40, type, pts));
+        }
+    }
+    for(let i=0; i<4; i++) {
+        bunkers.push(new Bunker(70 + i*140, 550));
+    }
+    updateUI();
+}
+
+function updateUI() {
+    document.getElementById('score').innerText = score.toString().padStart(4, '0');
+    document.getElementById('lives').innerText = lives;
+}
+
+function startGame() {
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    document.getElementById('overlay').style.display = 'none';
+    initGame();
+    gameRunning = true;
+    requestAnimationFrame(gameLoop);
+}
+
+function gameLoop(time) {
+    if(!gameRunning) return;
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // CRT Scanline effect (subtle)
+    ctx.fillStyle = 'rgba(18, 16, 16, 0.1)';
+    for(let i=0; i<canvas.height; i+=4) ctx.fillRect(0, i, canvas.width, 2);
+
+    player.update();
+    player.draw();
+
+    // Invader Movement Logic
+    if(time > moveTimer) {
+        let edge = false;
+        invaders.forEach(inv => {
+            inv.x += direction * 15;
+            if(inv.x > canvas.width - 40 || inv.x < 10) edge = true;
+        });
+
+        if(edge) {
+            direction *= -1;
+            invaders.forEach(inv => inv.y += 20);
+        }
+
+        sounds.beat(beatCounter++);
+        moveTimer = time + moveInterval;
+        moveInterval = Math.max(100, 1000 * (invaders.length / 55)); // Speed up as they die
+    }
+
+    // Shooting logic
+    if(Math.random() > 0.985 && invaders.length > 0) {
+        let shooter = invaders[Math.floor(Math.random()*invaders.length)];
+        enemyBullets.push({x: shooter.x + 16, y: shooter.y + 32});
+    }
+
+    // Update Player Bullets
+    bullets.forEach((b, i) => {
+        b.y -= 8;
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(b.x, b.y, 3, 10);
+        
+        // Hit Invaders
+        invaders.forEach((inv, ii) => {
+            if(b.x > inv.x && b.x < inv.x + inv.w && b.y > inv.y && b.y < inv.y + inv.h) {
+                invaders.splice(ii, 1);
+                bullets.splice(i, 1);
+                score += inv.points;
+                sounds.invaderDeath();
+                updateUI();
+            }
+        });
+
+        // Hit Bunkers
+        bunkers.forEach(bnk => {
+            if(b.x > bnk.x && b.x < bnk.x + bnk.w && b.y > bnk.y && b.y < bnk.y + bnk.h) {
+                let bx = Math.floor((b.x - bnk.x)/4);
+                let by = Math.floor((b.y - bnk.y)/4);
+                if(bnk.health[by] && bnk.health[by][bx]) {
+                    bnk.health[by][bx] = 0;
+                    bullets.splice(i, 1);
+                }
+            }
+        });
+        if(b.y < 0) bullets.splice(i, 1);
+    });
+
+    // Update Enemy Bullets
+    enemyBullets.forEach((b, i) => {
+        b.y += 4;
+        ctx.fillStyle = '#f00';
+        ctx.fillRect(b.x, b.y, 3, 10);
+
+        // Hit Player
+        if(b.x > player.x && b.x < player.x + player.w && b.y > player.y && b.y < player.y + player.h) {
+            lives--;
+            enemyBullets = [];
+            sounds.playerDeath();
+            updateUI();
+            if(lives <= 0) gameOver("GAME OVER - EARTH INVADED");
+        }
+
+        // Hit Bunkers
+        bunkers.forEach(bnk => {
+            if(b.x > bnk.x && b.x < bnk.x + bnk.w && b.y > bnk.y && b.y < bnk.y + bnk.h) {
+                let bx = Math.floor((b.x - bnk.x)/4);
+                let by = Math.floor((b.y - bnk.y)/4);
+                if(bnk.health[by] && bnk.health[by][bx]) {
+                    bnk.health[by][bx] = 0;
+                    enemyBullets.splice(i, 1);
+                }
+            }
+        });
+        if(b.y > canvas.height) enemyBullets.splice(i, 1);
+    });
+
+    invaders.forEach(inv => {
+        inv.draw();
+        if(inv.y + inv.h > player.y) gameOver("GAME OVER - THEY LANDED");
+    });
+    bunkers.forEach(bnk => bnk.draw());
+
+    if(invaders.length === 0) gameOver("YOU WIN! EARTH SAVED");
+
+    requestAnimationFrame(gameLoop);
+}
+
+function gameOver(msg) {
+    gameRunning = false;
+    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('overlay').querySelector('h1').innerText = msg;
+}
+
+window.addEventListener('keydown', e => {
+    keys[e.key] = true;
+    if(e.key === ' ' && gameRunning && bullets.length < 1) {
+        bullets.push({x: player.x + player.w/2, y: player.y});
+        sounds.shoot();
+    }
+});
+window.addEventListener('keyup', e => keys[e.key] = false);
+
+</script>
+</body>
+</html>

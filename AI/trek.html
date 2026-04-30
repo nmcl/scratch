@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR TREK: 1971 REDUX</title>
+    <style>
+        :root {
+            --green: #00ff41;
+            --bg: #0a0a0a;
+            --amber: #ffb000;
+            --red: #ff3e3e;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--green);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 900px;
+            border: 2px solid var(--green);
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--green);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+
+        #srs-display {
+            background: #000;
+            border: 1px solid var(--green);
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 2;
+        }
+
+        .sector {
+            border: 0.1px solid #111;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-panel {
+            border-left: 1px solid var(--green);
+            padding-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .log {
+            height: 150px;
+            overflow-y: auto;
+            border-top: 1px solid var(--green);
+            margin-top: 20px;
+            padding-top: 10px;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            background: transparent;
+            border: 1px solid var(--green);
+            color: var(--green);
+            padding: 10px;
+            flex-grow: 1;
+            font-family: inherit;
+        }
+
+        button {
+            background: var(--green);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover { background: #00cc33; }
+
+        .stat-val { color: var(--amber); }
+        .klingon { color: var(--red); font-weight: bold; }
+        .starbase { color: #00ccff; }
+        .enterprise { color: white; text-shadow: 0 0 5px white; }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <header>
+        <h1>- STAR TREK -</h1>
+        <p>MISSION: DESTROY ALL KLINGONS IN THE GALAXY</p>
+    </header>
+
+    <div class="layout">
+        <div id="srs-display">
+            </div>
+
+        <div class="status-panel" id="status-panel">
+            <p>STARDATE: <span class="stat-val" id="stardate">3421</span></p>
+            <p>CONDITION: <span class="stat-val" id="condition">GREEN</span></p>
+            <p>QUADRANT: <span class="stat-val" id="quadrant">1,1</span></p>
+            <p>ENERGY: <span class="stat-val" id="energy">3000</span></p>
+            <p>TORPEDOES: <span class="stat-val" id="torpedoes">10</span></p>
+            <p>SHIELDS: <span class="stat-val" id="shields">0</span></p>
+            <p>KLINGONS LEFT: <span class="stat-val" id="k-left">?</span></p>
+            <hr>
+            <div id="lrs-display">
+                LRS: <br>
+                [ 000 | 000 | 000 ]<br>
+                [ 000 | <span style="color:white">000</span> | 000 ]<br>
+                [ 000 | 000 | 000 ]
+            </div>
+        </div>
+    </div>
+
+    <div class="log" id="log">
+        &gt; USS ENTERPRISE INITIALIZED...<br>
+        &gt; TYPE 'HELP' FOR COMMANDS.
+    </div>
+
+    <div class="controls">
+        <input type="text" id="command-input" placeholder="ENTER COMMAND (NAV, PHA, TOR, SHI, LRS, HELP)..." autofocus>
+        <button onclick="processInput()">EXECUTE</button>
+    </div>
+</div>
+
+<script>
+    // --- AUDIO ENGINE ---
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playTone(freq, duration, type = 'square', volume = 0.1) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    const sounds = {
+        nav: () => playTone(150, 0.5, 'sine'),
+        pha: () => playTone(800, 0.3, 'sawtooth'),
+        tor: () => {
+            playTone(400, 0.1, 'sawtooth');
+            setTimeout(() => playTone(200, 0.4, 'sawtooth'), 100);
+        },
+        hit: () => playTone(60, 0.6, 'triangle', 0.3),
+        alert: () => playTone(440, 0.2, 'square')
+    };
+
+    // --- GAME LOGIC ---
+    let game = {
+        stardate: 3421,
+        energy: 3000,
+        torpedoes: 10,
+        shields: 0,
+        klingonsTotal: 0,
+        quadrant: [Math.floor(Math.random()*8), Math.floor(Math.random()*8)],
+        sector: [3, 3],
+        galaxy: [], // 8x8 array of quadrants
+        currentQuadData: null
+    };
+
+    function initGalaxy() {
+        game.klingonsTotal = 0;
+        for (let y = 0; y < 8; y++) {
+            game.galaxy[y] = [];
+            for (let x = 0; x < 8; x++) {
+                // Digits: Klingons, Bases, Stars
+                let k = Math.random() > 0.8 ? Math.floor(Math.random() * 3) + 1 : 0;
+                let b = Math.random() > 0.95 ? 1 : 0;
+                let s = Math.floor(Math.random() * 8) + 1;
+                game.galaxy[y][x] = { k, b, s, map: null };
+                game.klingonsTotal += k;
+            }
+        }
+        setupQuadrant();
+    }
+
+    function setupQuadrant() {
+        let q = game.galaxy[game.quadrant[1]][game.quadrant[0]];
+        let map = Array(8).fill(null).map(() => Array(8).fill('.'));
+        
+        // Place Enterprise
+        map[game.sector[1]][game.sector[0]] = '<span class="enterprise">E</span>';
+        
+        // Place Klingons
+        for(let i=0; i<q.k; i++) {
+            let rx, ry;
+            do { rx = Math.floor(Math.random()*8); ry = Math.floor(Math.random()*8); }
+            while(map[ry][rx] !== '.');
+            map[ry][rx] = '<span class="klingon">K</span>';
+        }
+
+        // Place Bases
+        for(let i=0; i<q.b; i++) {
+            let rx, ry;
+            do { rx = Math.floor(Math.random()*8); ry = Math.floor(Math.random()*8); }
+            while(map[ry][rx] !== '.');
+            map[ry][rx] = '<span class="starbase">B</span>';
+        }
+
+        // Place Stars
+        for(let i=0; i<q.s; i++) {
+            let rx, ry;
+            do { rx = Math.floor(Math.random()*8); ry = Math.floor(Math.random()*8); }
+            while(map[ry][rx] !== '.');
+            map[ry][rx] = '*';
+        }
+        
+        q.map = map;
+        game.currentQuadData = q;
+        render();
+    }
+
+    function render() {
+        // SRS
+        const srs = document.getElementById('srs-display');
+        srs.innerHTML = '';
+        game.currentQuadData.map.forEach(row => {
+            row.forEach(cell => {
+                const div = document.createElement('div');
+                div.className = 'sector';
+                div.innerHTML = cell;
+                srs.appendChild(div);
+            });
+        });
+
+        // LRS
+        const lrsBox = document.getElementById('lrs-display');
+        let lrsText = "LRS:<br>";
+        for(let y = game.quadrant[1]-1; y <= game.quadrant[1]+1; y++) {
+            lrsText += "[ ";
+            for(let x = game.quadrant[0]-1; x <= game.quadrant[0]+1; x++) {
+                if(y >= 0 && y < 8 && x >= 0 && x < 8) {
+                    let d = game.galaxy[y][x];
+                    lrsText += `${d.k}${d.b}${d.s} `;
+                } else {
+                    lrsText += "### ";
+                }
+            }
+            lrsText += "]<br>";
+        }
+        lrsBox.innerHTML = lrsText;
+
+        // Stats
+        document.getElementById('stardate').innerText = game.stardate;
+        document.getElementById('energy').innerText = Math.floor(game.energy);
+        document.getElementById('torpedoes').innerText = game.torpedoes;
+        document.getElementById('shields').innerText = game.shields;
+        document.getElementById('k-left').innerText = game.klingonsTotal;
+        document.getElementById('quadrant').innerText = `${game.quadrant[0]+1},${game.quadrant[1]+1}`;
+        
+        let cond = "GREEN";
+        if(game.currentQuadData.k > 0) cond = "RED";
+        else if(game.energy < 500) cond = "YELLOW";
+        document.getElementById('condition').innerText = cond;
+        document.getElementById('condition').style.color = cond === "RED" ? "var(--red)" : (cond === "YELLOW" ? "var(--amber)" : "var(--green)");
+    }
+
+    function log(msg) {
+        const l = document.getElementById('log');
+        l.innerHTML += `&gt; ${msg}<br>`;
+        l.scrollTop = l.scrollHeight;
+    }
+
+    function processInput() {
+        const input = document.getElementById('command-input');
+        const cmd = input.value.toUpperCase().split(' ');
+        input.value = '';
+
+        switch(cmd[0]) {
+            case 'NAV':
+                move(cmd[1], cmd[2]);
+                break;
+            case 'PHA':
+                phasers(cmd[1]);
+                break;
+            case 'TOR':
+                torpedo(cmd[1]);
+                break;
+            case 'SHI':
+                setShields(cmd[1]);
+                break;
+            case 'LRS':
+                log("LONG RANGE SENSORS SCANNING...");
+                break;
+            case 'HELP':
+                log("CMDS: NAV [course] [dist], PHA [n], TOR [course], SHI [n], LRS");
+                log("COURSES: 1-8 (Circular, 1 is North, 3 East, etc.)");
+                break;
+            default:
+                log("UNKNOWN COMMAND. TYPE 'HELP'");
+        }
+    }
+
+    function move(course, dist) {
+        if(!course || !dist) { log("NAV REQUIRES COURSE (1-8) AND DISTANCE (0.1 - 8)"); return; }
+        sounds.nav();
+        let d = parseFloat(dist);
+        let c = parseFloat(course);
+        
+        // Simulating 1970s angular math: 1 is UP, 3 is RIGHT
+        let angle = (c - 1) * (Math.PI / 4);
+        let dx = Math.sin(angle);
+        let dy = -Math.cos(angle);
+
+        // Move Enterprise
+        game.energy -= d * 10;
+        
+        // Simple logic: Warp between quadrants if dist >= 1
+        if (d >= 1) {
+            game.quadrant[0] = Math.max(0, Math.min(7, Math.round(game.quadrant[0] + dx * d)));
+            game.quadrant[1] = Math.max(0, Math.min(7, Math.round(game.quadrant[1] + dy * d)));
+            game.stardate += 1;
+            setupQuadrant();
+            log(`WARP TO QUADRANT ${game.quadrant[0]+1},${game.quadrant[1]+1}`);
+        } else {
+            // Local move
+            let newX = Math.max(0, Math.min(7, Math.round(game.sector[0] + dx * d * 8)));
+            let newY = Math.max(0, Math.min(7, Math.round(game.sector[1] + dy * d * 8)));
+            game.currentQuadData.map[game.sector[1]][game.sector[0]] = '.';
+            game.sector = [newX, newY];
+            game.currentQuadData.map[newY][newX] = '<span class="enterprise">E</span>';
+            render();
+            log(`IMPULSE TO SECTOR ${newX+1},${newY+1}`);
+        }
+        klingonsAttack();
+    }
+
+    function phasers(amount) {
+        if(!amount || amount > game.energy) { log("INSUFFICIENT ENERGY"); return; }
+        sounds.pha();
+        game.energy -= amount;
+        if(game.currentQuadData.k > 0) {
+            let hit = Math.floor(amount / game.currentQuadData.k * Math.random());
+            log(`PHASERS HIT FOR ${hit} UNITS.`);
+            if(hit > 100) {
+                log("KLINGON DESTROYED!");
+                game.currentQuadData.k--;
+                game.klingonsTotal--;
+                removeOne('klingon');
+            }
+        } else {
+            log("NO TARGETS FOUND.");
+        }
+        render();
+        klingonsAttack();
+    }
+
+    function torpedo(course) {
+        if(game.torpedoes <= 0) { log("OUT OF PHOTON TORPEDOES"); return; }
+        if(!course) { log("NEED COURSE (1-8)"); return; }
+        sounds.tor();
+        game.torpedoes--;
+        
+        if(game.currentQuadData.k > 0 && Math.random() > 0.3) {
+            log("TORPEDO HIT! KLINGON DESTROYED.");
+            game.currentQuadData.k--;
+            game.klingonsTotal--;
+            removeOne('klingon');
+        } else {
+            log("TORPEDO MISSED.");
+        }
+        render();
+        klingonsAttack();
+    }
+
+    function setShields(amount) {
+        let n = parseInt(amount);
+        if(isNaN(n)) { log("CURRENT SHIELD LEVEL: " + game.shields); return; }
+        if(n > game.energy) { log("NOT ENOUGH ENERGY."); return; }
+        game.energy -= n;
+        game.shields += n;
+        log(`SHIELDS SET TO ${game.shields}`);
+        render();
+    }
+
+    function klingonsAttack() {
+        if(game.currentQuadData.k > 0) {
+            let dmg = Math.floor(Math.random() * 200 * game.currentQuadData.k);
+            if(game.shields > 0) {
+                game.shields -= dmg;
+                if(game.shields < 0) { game.energy += game.shields; game.shields = 0; }
+                log(`SHIELDS HIT FOR ${dmg} UNITS!`);
+            } else {
+                game.energy -= dmg;
+                log(`DIRECT HIT! HULL DAMAGED BY ${dmg} UNITS!`);
+            }
+            sounds.hit();
+            if(game.energy <= 0) {
+                alert("ENTERPRISE DESTROYED. GALAXY CONQUERED BY KLINGONS.");
+                location.reload();
+            }
+        }
+        if(game.klingonsTotal <= 0) {
+            alert("CONGRATULATIONS! THE GALAXY IS SAFE.");
+            location.reload();
+        }
+    }
+
+    function removeOne(typeClass) {
+        let map = game.currentQuadData.map;
+        for(let y=0; y<8; y++) {
+            for(let x=0; x<8; x++) {
+                if(map[y][x].includes(typeClass)) {
+                    map[y][x] = '.';
+                    return;
+                }
+            }
+        }
+    }
+
+    // Enter key support
+    document.getElementById('command-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') processInput();
+    });
+
+    initGalaxy();
+</script>
+</body>
+</html>
