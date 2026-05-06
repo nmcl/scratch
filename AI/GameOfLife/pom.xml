@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>game-of-life-3d</artifactId>
+    <artifactId>game-of-life-3d-web</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Game of Life 3D</name>
-    <description>3D Game of Life simulation with high-resolution rendering</description>
+    <name>Game of Life 3D Web</name>
+    <description>3D Game of Life simulation with web-based visualization</description>
 
     <properties>
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
@@ -61,13 +61,13 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jdbc-postgresql</artifactId>
+            <artifactId>quarkus-websockets</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-hibernate-orm-panache</artifactId>
+            <artifactId>quarkus-undertow-websockets</artifactId>
         </dependency>
-	<dependency>
+		<dependency>
     <groupId>net.bytebuddy</groupId>
     <artifactId>byte-buddy</artifactId>
     <version>1.17.5</version> <!-- Or higher -->
