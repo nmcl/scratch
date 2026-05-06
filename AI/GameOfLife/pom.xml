@@ -67,6 +67,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-orm-panache</artifactId>
         </dependency>
+	<dependency>
+    <groupId>net.bytebuddy</groupId>
+    <artifactId>byte-buddy</artifactId>
+    <version>1.17.5</version> <!-- Or higher -->
+</dependency>
     </dependencies>
 
     <build>
