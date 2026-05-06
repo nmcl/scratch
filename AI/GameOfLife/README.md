@@ -19,17 +19,23 @@ A 3D implementation of Conway's Game of Life with high-resolution image renderin
 
 ### Building
 
-```bash
+bash
 mvn clean package
 
-# Create a new 3D world
-curl -X POST "http://localhost:8080/game-of-life/world/world1?width=100&height=100&depth=100"
 
-# Randomize the world
-curl -X POST "http://localhost:8080/game-of-life/world/world1/randomize?density=30"
+This complete implementation provides:
 
-# Start simulation
-curl -X POST "http://localhost:8080/game-of-life/world/world1/start?delay=100"
+1. **Quarkus Backend**: Full REST API and WebSocket support for real-time updates
+2. **Web Interface**: Interactive 3D visualization using Three.js
+3. **Real-time Simulation**: WebSocket-based updates for live visualization
+4. **Responsive Design**: Works on different screen sizes
+5. **Complete Controls**: All necessary controls for managing the simulation
+6. **Interactive 3D View**: Rotating 3D visualization of the cellular automata
 
-# Render world as image
-curl -X GET "http://localhost:8080/render/world/world1/image?width=800&height=600" -o world.png
+To use this application:
+1. Build with `mvn clean package`
+2. Run with `mvn quarkus:dev` or `java -jar target/game-of-life-3d-web-1.0.0-SNAPSHOT-runner.jar`
+3. Access `http://localhost:8080` in your browser
+4. Use the controls to create and manage your 3D Game of Life simulation
+
+The web interface will show a rotating 3D visualization of the cellular automata that updates in real-time as the simulation runs.

@@ -1,5 +1,6 @@
 package com.example.gamelife3d.websocket;
 
+import com.example.gamelife3d.model.Cell;
 import com.example.gamelife3d.model.World3D;
 import com.example.gamelife3d.service.GameOfLifeService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -121,7 +122,7 @@ public class GameOfLifeWebSocket {
         }
     }
 
-    private String serializeCells(List<Cell> cells) {
+    private String serializeCells(java.util.List<Cell> cells) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for (int i = 0; i < cells.size(); i++) {
