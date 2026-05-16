@@ -7,7 +7,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.io.IOException;
-import java.util.Random;
 
 @Path("/planet")
 public class PlanetVisualizationResource {
@@ -44,7 +43,8 @@ public class PlanetVisualizationResource {
         // Generate random planet data
         Planet planet = planetService.generateRandomPlanet();
         
-        return """
+        StringBuilder htmlContent = new StringBuilder();
+        htmlContent.append("""
                 <!DOCTYPE html>
                 <html>
                 <head>
@@ -114,19 +114,18 @@ public class PlanetVisualizationResource {
                 <body>
                     <div id="container">
                         <div id="info">
-                            <div class="planet-name">""" + planet.getName() + """</div>
+                            <div class="planet-name">").append(planet.getName()).append("\""</div>
                             <div class="planet-stats">
-                                <div class="stat">Planet Type: <span class="stat-value">""" + planet.getPlanetType() + """</span></div>
-                                <div class="stat">Diameter: <span class="stat-value">""" + planet.getDiameter() + """ km</span></div>
-                                <div class="stat">Rotation Period: <span class="stat-value">""" + planet.getRotationPeriod() + """ hours</span></div>
-                                <div class="stat">Orbital Period: <span class="stat-value">""" + planet.getOrbitalPeriod() + """ days</span></div>
-                                <div class="stat">Temperature: <span class="stat-value">""" + planet.getTemperature() + """°C</span></div>
-                                <div class="stat">Atmosphere: <span class="stat-value">""" + planet.getAtmosphere() + """</span></div>
-                                <div class="stat">Oceans: <span class="stat-value">""" + planet.getOceanCoverage() + """%</span></div>
-                                <div class="stat">Continents: <span class="stat-value">""" + planet.getContinentCount() + """</span></div>
-                                <div class="stat">Intelligent Life: <span class="stat-value """ + (planet.hasIntelligentLife() ? "intelligent-life" : "") + """>""" + 
-                                (planet.hasIntelligentLife() ? "YES" : "NO") + """</span></div>
-                                <div class="stat">Weather: <span class="stat-value weather-effect">""" + planet.getWeather() + """</span></div>
+                                <div class="stat">Planet Type: <span class="stat-value">").append(planet.getPlanetType()).append("""</span></div>
+                                <div class="stat">Diameter: <span class="stat-value">").append(planet.getDiameter()).append(""" km</span></div>
+                                <div class="stat">Rotation Period: <span class="stat-value">").append(planet.getRotationPeriod()).append(""" hours</span></div>
+                                <div class="stat">Orbital Period: <span class="stat-value">").append(planet.getOrbitalPeriod()).append(""" days</span></div>
+                                <div class="stat">Temperature: <span class="stat-value">").append(planet.getTemperature()).append("""°C</span></div>
+                                <div class="stat">Atmosphere: <span class="stat-value">").append(planet.getAtmosphere()).append("""</span></div>
+                                <div class="stat">Oceans: <span class="stat-value">").append(planet.getOceanCoverage()).append("""%</span></div>
+                                <div class="stat">Continents: <span class="stat-value">").append(planet.getContinentCount()).append("""</span></div>
+                                <div class="stat">Intelligent Life: <span class="stat-value """).append(planet.hasIntelligentLife() ? "intelligent-life" : "").append("""">").append(planet.hasIntelligentLife() ? "YES" : "NO").append("""</span></div>
+                                <div class="stat">Weather: <span class="stat-value weather-effect">").append(planet.getWeather()).append("""</span></div>
                             </div>
                         </div>
                         <div id="loading">Generating planet visualization...</div>
@@ -151,10 +150,6 @@ public class PlanetVisualizationResource {
                             const centerX = canvas.width / 2;
                             const centerY = canvas.height / 2;
                             const radius = Math.min(canvas.width, canvas.height) * 0.3;
-                            
-                            // Generate random seed for consistent visuals
-                            const seed = Math.floor(Math.random() * 10000);
-                            const random = new Math.seedrandom(seed);
                             
                             // Draw planet
                             function drawPlanet() {
@@ -231,7 +226,7 @@ public class PlanetVisualizationResource {
                                     case 2: // Ice world
                                         return ['#b3e5fc', '#e1f5fe', '#e0f7fa'];
                                     case 3: // Forest world
-                                        return ['#2e7d32', '#388e3c', '#1b5e20'];
+                                        return ['#2e7d32', '#4caf50', '#1b5e20'];
                                     default:
                                         return ['#1a73e8', '#388e3c', '#5d4037'];
                                 }
@@ -419,9 +414,10 @@ public class PlanetVisualizationResource {
                         // Initialize when page loads
                         window.addEventListener('load', initPlanet);
                     </script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
                 </body>
                 </html>
-                """;
+                """);
+        
+        return htmlContent.toString();
     }
 }
