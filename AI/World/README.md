@@ -1,0 +1,1 @@
+A randomly created Earth-like planet each time it runs. There should be oceans, continents with different types of vegetation, randomly some signs of intelligent life (no intelligent life is fine), weather patterns and clouds.
