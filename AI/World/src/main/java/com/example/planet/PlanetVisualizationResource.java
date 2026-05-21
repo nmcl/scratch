@@ -1,6 +1,3 @@
-I see the issue now. The problem is that the JavaScript is failing to execute properly due to the way I'm handling the rotation and the canvas drawing. Let me create a much simpler version that focuses on getting the basic visualization working first, then we can add the rotation:
-
-```java
 // src/main/java/com/example/planet/PlanetVisualizationResource.java
 package com.example.planet;
 
