@@ -1,3 +1,6 @@
+I see the issue now. The problem is that the JavaScript is failing to execute properly due to the way I'm handling the rotation and the canvas drawing. Let me create a much simpler version that focuses on getting the basic visualization working first, then we can add the rotation:
+
+```java
 // src/main/java/com/example/planet/PlanetVisualizationResource.java
 package com.example.planet;
 
@@ -85,8 +88,6 @@ public class PlanetVisualizationResource {
         html.append("const centerX = canvas.width / 2;");
         html.append("const centerY = canvas.height / 2;");
         html.append("const radius = Math.min(canvas.width, canvas.height) * 0.3;");
-        html.append("let rotationAngle = 0;");
-        html.append("const rotationSpeed = (2 * Math.PI) / 120; // Full rotation every 120 seconds");
         html.append("function drawPlanet(){");
         html.append("ctx.clearRect(0, 0, canvas.width, canvas.height);");
         html.append("drawStars();");
@@ -96,7 +97,6 @@ public class PlanetVisualizationResource {
         html.append("drawIntelligentLife();");
         html.append("drawAtmosphere();");
         html.append("drawSunGlow();");
-        html.append("rotationAngle += rotationSpeed;");
         html.append("requestAnimationFrame(drawPlanet);");
         html.append("}");
         html.append("function drawStars(){");
